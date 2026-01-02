@@ -20,7 +20,7 @@ Build:
 g++ -std=c++23 test_bf16.cpp -o test_bf16 && ./test_bf16
 ```
 
-### WSL (Ubuntu 24.04) â€“ GCC
+### WSL (Ubuntu 24.04) – GCC
 
 - `g++` (13.x) supported `std::bfloat16_t` with `-std=c++23`.
 
@@ -28,7 +28,7 @@ g++ -std=c++23 test_bf16.cpp -o test_bf16 && ./test_bf16
 g++ -std=c++23 test_bf16.cpp -o test_bf16 && ./test_bf16
 ```
 
-### WSL (Ubuntu 24.04) â€“ Clang
+### WSL (Ubuntu 24.04) – Clang
 
 - Even after installing `clang-20`, `libc++-18-dev`, `libc++-20-dev` (and matching `libc++abi` packages), `std::bfloat16_t` was not usable with Clang on this setup:
   - With default libstdc++: `std::bfloat16_t` was not defined.
