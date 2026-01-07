@@ -5,9 +5,11 @@
 #include <array>
 #include <cstdint>
 #include <cstring>
+#include <sstream>
 #include <iomanip>
 #include <iostream>
 #include <limits>
+#include <fstream>
 #include <vector>
 
 using bf16 = std::bfloat16_t;
@@ -119,6 +121,30 @@ static ErrStats summarize_errors(const std::vector<double>& abs_errs,
     }
 
     return s;
+}
+
+static std::string fmt_sci(double v, int w, int p = 6) {
+    std::ostringstream oss;
+    oss << std::scientific << std::setprecision(p) << std::setw(w) << v;
+    return oss.str();
+}
+
+static std::string fmt_fix(double v, int w, int p = 3) {
+    std::ostringstream oss;
+    oss << std::fixed << std::setprecision(p) << std::setw(w) << v;
+    return oss.str();
+}
+
+static std::string fmt_i64(int64_t v, int w) {
+    std::ostringstream oss;
+    oss << std::setw(w) << v;
+    return oss.str();
+}
+
+static std::string fmt_u64(size_t v, int w) {
+    std::ostringstream oss;
+    oss << std::setw(w) << v;
+    return oss.str();
 }
 
 // Solve 5x5 system for least squares via normal equations (Gaussian elimination).
@@ -246,7 +272,490 @@ static Bounds compute_bounds_fullscan_hw() {
     return out;
 }
 
-int main() {
+struct SegmentModel {
+    float center = 0.0f;
+    float inv_scale = 0.0f;
+    float x_lo = 0.0f;
+    float x_hi = 0.0f;
+    std::array<float, 5> c{};
+};
+
+struct SegmentRange {
+    int lo = 0;  // index into xs[]
+    int hi = 0;  // inclusive
+    SegmentModel m{};
+    int64_t ulp_max = 0;
+};
+
+static SegmentModel fit_deg4_model_on_range(const std::vector<float>& xs,
+                                            int lo,
+                                            int hi) {
+    SegmentModel m{};
+    if (lo > hi || lo < 0 || hi >= static_cast<int>(xs.size())) return m;
+    const float x_lo = xs[static_cast<size_t>(lo)];
+    const float x_hi = xs[static_cast<size_t>(hi)];
+    m.x_lo = x_lo;
+    m.x_hi = x_hi;
+    m.center = 0.5f * (x_lo + x_hi);
+    const float half_w = 0.5f * (x_hi - x_lo);
+    m.inv_scale = (half_w > 0.0f) ? (1.0f / half_w) : 0.0f;
+
+    const int n = hi - lo + 1;
+    if (n < 6 || m.inv_scale == 0.0f) {
+        const bf16 xb = static_cast<bf16>(x_lo);
+        const bf16 yb = gelu_ref_bf16_hw(xb);
+        m.c = {static_cast<float>(yb), 0.f, 0.f, 0.f, 0.f};
+        return m;
+    }
+
+    std::vector<float> ts;
+    std::vector<float> ys;
+    ts.reserve(static_cast<size_t>(n));
+    ys.reserve(static_cast<size_t>(n));
+    for (int i = lo; i <= hi; ++i) {
+        const float xf = xs[static_cast<size_t>(i)];
+        const float t = (xf - m.center) * m.inv_scale;
+        const bf16 xb = static_cast<bf16>(xf);
+        const bf16 yb = gelu_ref_bf16_hw(xb);
+        ts.push_back(t);
+        ys.push_back(static_cast<float>(yb));
+    }
+    m.c = fit_deg4_poly_t(ts, ys);
+    return m;
+}
+
+static int64_t ulp_max_on_range_hw(const std::vector<float>& xs,
+                                  int lo,
+                                  int hi,
+                                  const SegmentModel& m,
+                                  const ULP_Calculator& ulp) {
+    int64_t max_e = 0;
+    for (int i = lo; i <= hi; ++i) {
+        const float xf = xs[static_cast<size_t>(i)];
+        const float t = (xf - m.center) * m.inv_scale;
+        const float yhat_f = eval_deg4_horner_f32(m.c, t);
+        const bf16 yhat_b = bf16_from_f32_rne(yhat_f);
+        const bf16 yref_b = gelu_ref_bf16_hw(static_cast<bf16>(xf));
+        const int64_t e = ulp.ulp_distance(yref_b, yhat_b);
+        max_e = std::max(max_e, e);
+    }
+    return max_e;
+}
+
+struct Objective {
+    int64_t max_ulp = 0;  // global worst-case
+    double stddev_log = 0.0; // uniformity proxy across "active" segments
+    size_t active_n = 0;
+};
+
+static Objective compute_objective_active_log(const std::vector<SegmentRange>& segs) {
+    Objective out{};
+    if (segs.empty()) return out;
+
+    int64_t mx = 0;
+    std::vector<double> vals;
+    vals.reserve(segs.size());
+    for (const auto& s : segs) {
+        mx = std::max(mx, s.ulp_max);
+        if (s.ulp_max > 0) {
+            vals.push_back(std::log1p(static_cast<double>(s.ulp_max)));
+        }
+    }
+    out.max_ulp = mx;
+    out.active_n = vals.size();
+    if (vals.size() <= 1) {
+        out.stddev_log = 0.0;
+        return out;
+    }
+    double mean = 0.0;
+    for (double v : vals) mean += v;
+    mean /= static_cast<double>(vals.size());
+    double var = 0.0;
+    for (double v : vals) {
+        const double d = v - mean;
+        var += d * d;
+    }
+    var /= static_cast<double>(vals.size());
+    out.stddev_log = std::sqrt(var);
+    return out;
+}
+
+static bool better_objective(const Objective& a, const Objective& b) {
+    // Primary: smaller global max ULP
+    if (a.max_ulp != b.max_ulp) return a.max_ulp < b.max_ulp;
+    // Secondary: more uniform log(ulp_max) distribution (ignoring ulp_max==0 segments)
+    return a.stddev_log < b.stddev_log;
+}
+
+static SegmentRange make_seg_from_indices(const std::vector<float>& xs,
+                                         int lo,
+                                         int hi,
+                                         const ULP_Calculator& ulp) {
+    SegmentRange s;
+    s.lo = lo;
+    s.hi = hi;
+    s.m = fit_deg4_model_on_range(xs, lo, hi);
+    s.ulp_max = ulp_max_on_range_hw(xs, lo, hi, s.m, ulp);
+    return s;
+}
+
+static void budget_reallocate_merge_split(std::vector<float>& xs,
+                                         std::vector<SegmentRange>& segs,
+                                         const ULP_Calculator& ulp,
+                                         int iters = 12,
+                                         int min_points = 8,
+                                         int donor_max_ulp = 1,
+                                         int split_candidates = 63) {
+    if (segs.size() < 3) return;
+
+    auto objective = [&]() { return compute_objective_active_log(segs); };
+    Objective best = objective();
+
+    for (int it = 0; it < iters; ++it) {
+        bool improved = false;
+
+        // Pick a donor adjacent pair (low error) to merge.
+        int donor_i = -1;
+        int best_donor_len = -1;
+        for (int i = 0; i < static_cast<int>(segs.size()) - 1; ++i) {
+            const auto& a = segs[static_cast<size_t>(i)];
+            const auto& b = segs[static_cast<size_t>(i + 1)];
+            const int len_a = a.hi - a.lo + 1;
+            const int len_b = b.hi - b.lo + 1;
+            if (len_a < min_points || len_b < min_points) continue;
+            if (a.ulp_max > donor_max_ulp || b.ulp_max > donor_max_ulp) continue;
+            const int tot = len_a + len_b;
+            if (tot > best_donor_len) {
+                best_donor_len = tot;
+                donor_i = i;
+            }
+        }
+        if (donor_i < 0) break;
+
+        // Pick a recipient segment to split: prefer edges (first/last few), else global max.
+        int recip_i = -1;
+        int64_t recip_err = -1;
+        auto consider = [&](int i) {
+            const auto& s = segs[static_cast<size_t>(i)];
+            const int len = s.hi - s.lo + 1;
+            if (len < 2 * min_points) return;
+            if (s.ulp_max > recip_err) { recip_err = s.ulp_max; recip_i = i; }
+        };
+        // edge bias
+        for (int i : {0, 1, 2, static_cast<int>(segs.size()) - 3, static_cast<int>(segs.size()) - 2, static_cast<int>(segs.size()) - 1}) {
+            if (i >= 0 && i < static_cast<int>(segs.size())) consider(i);
+        }
+        if (recip_i < 0) {
+            for (int i = 0; i < static_cast<int>(segs.size()); ++i) consider(i);
+        }
+        if (recip_i < 0) break;
+
+        // Avoid overlap: if recipient is inside donor pair region, pick next best recipient.
+        if (recip_i == donor_i || recip_i == donor_i + 1) {
+            int alt = -1;
+            int64_t alt_err = -1;
+            for (int i = 0; i < static_cast<int>(segs.size()); ++i) {
+                if (i == donor_i || i == donor_i + 1) continue;
+                const auto& s = segs[static_cast<size_t>(i)];
+                const int len = s.hi - s.lo + 1;
+                if (len < 2 * min_points) continue;
+                if (s.ulp_max > alt_err) { alt_err = s.ulp_max; alt = i; }
+            }
+            if (alt < 0) break;
+            recip_i = alt;
+        }
+
+        // Build merged donor segment.
+        const int merge_lo = segs[static_cast<size_t>(donor_i)].lo;
+        const int merge_hi = segs[static_cast<size_t>(donor_i + 1)].hi;
+        const SegmentRange merged = make_seg_from_indices(xs, merge_lo, merge_hi, ulp);
+        if (merged.hi - merged.lo + 1 < min_points) break;
+
+        // Try splitting recipient with candidates; accept best combined merge+split move.
+        const auto recip = segs[static_cast<size_t>(recip_i)];
+        const int rlo = recip.lo;
+        const int rhi = recip.hi;
+        const int rlen = rhi - rlo + 1;
+        int best_mid = -1;
+        Objective best_move = best;
+        std::vector<SegmentRange> best_segs;
+
+        for (int c = 1; c <= split_candidates; ++c) {
+            const int mid = rlo + (rlen * c) / (split_candidates + 1);
+            if (mid - rlo + 1 < min_points) continue;
+            if (rhi - (mid + 1) + 1 < min_points) continue;
+
+            SegmentRange left = make_seg_from_indices(xs, rlo, mid, ulp);
+            SegmentRange right = make_seg_from_indices(xs, mid + 1, rhi, ulp);
+
+            // Build candidate seg list:
+            // - merge donor_i and donor_i+1 -> merged
+            // - split recip_i -> left,right
+            std::vector<SegmentRange> cand;
+            cand.reserve(segs.size());
+            for (int i = 0; i < static_cast<int>(segs.size()); ++i) {
+                if (i == donor_i) {
+                    cand.push_back(merged);
+                } else if (i == donor_i + 1) {
+                    continue;
+                } else if (i == recip_i) {
+                    cand.push_back(left);
+                    cand.push_back(right);
+                } else {
+                    cand.push_back(segs[static_cast<size_t>(i)]);
+                }
+            }
+            // Fix contiguous indices and refit only for those whose bounds changed by construction.
+            // (We already refit merged/left/right.)
+            for (size_t i = 0; i < cand.size(); ++i) {
+                if (i > 0) cand[i].lo = cand[i - 1].hi + 1;
+                if (i + 1 < cand.size()) cand[i].hi = cand[i + 1].lo - 1;
+            }
+            // Repair: ensure merged/left/right keep intended indices contiguously.
+            // (Since we splice, the lo/hi indices remain consistent in terms of the xs[] ordering.)
+
+            // Evaluate objective.
+            const Objective obj = compute_objective_active_log(cand);
+            if (better_objective(obj, best_move)) {
+                best_move = obj;
+                best_mid = mid;
+                best_segs = std::move(cand);
+            }
+        }
+
+        if (best_mid >= 0 && !best_segs.empty() && better_objective(best_move, best)) {
+            segs = std::move(best_segs);
+            best = best_move;
+            improved = true;
+        }
+
+        if (!improved) break;
+    }
+}
+
+static void iterative_balance_boundaries(std::vector<float>& xs,
+                                        std::vector<SegmentRange>& segs,
+                                        const ULP_Calculator& ulp,
+                                        int max_iters = 15,
+                                        int min_points = 8) {
+    if (segs.size() < 2) return;
+
+    auto refit = [&](int idx) {
+        auto& s = segs[static_cast<size_t>(idx)];
+        s.m = fit_deg4_model_on_range(xs, s.lo, s.hi);
+        s.ulp_max = ulp_max_on_range_hw(xs, s.lo, s.hi, s.m, ulp);
+    };
+
+    // Ensure consistent contiguous ranges.
+    for (size_t i = 0; i < segs.size(); ++i) {
+        if (i > 0) segs[i].lo = segs[i - 1].hi + 1;
+        if (i + 1 < segs.size()) segs[i].hi = segs[i + 1].lo - 1;
+        refit(static_cast<int>(i));
+    }
+
+    Objective best = compute_objective_active_log(segs);
+    const int64_t hard_max_cap = best.max_ulp; // do not allow global max ULP to increase
+
+    for (int it = 0; it < max_iters; ++it) {
+        bool any = false;
+        for (int b = 0; b < static_cast<int>(segs.size()) - 1; ++b) {
+            // boundary between seg b and b+1 is at index seg[b].hi
+            const int left_len = segs[static_cast<size_t>(b)].hi - segs[static_cast<size_t>(b)].lo + 1;
+            const int right_len = segs[static_cast<size_t>(b + 1)].hi - segs[static_cast<size_t>(b + 1)].lo + 1;
+            if (left_len < min_points || right_len < min_points) continue;
+
+            const int base_step = 1;
+            const int max_step = 16;
+            const int cur_hi_left = segs[static_cast<size_t>(b)].hi;
+
+            Objective local_best = best;
+            int best_new_hi_left = cur_hi_left;
+            SegmentRange best_left = segs[static_cast<size_t>(b)];
+            SegmentRange best_right = segs[static_cast<size_t>(b + 1)];
+
+            // Try both directions and a handful of step sizes.
+            for (int dir : {-1, +1}) {
+              for (int step = base_step; step <= max_step; ++step) {
+                const int delta = dir * step;
+                const int new_hi_left = cur_hi_left + delta;
+                if (new_hi_left < segs[static_cast<size_t>(b)].lo + min_points - 1) continue;
+                if (new_hi_left > segs[static_cast<size_t>(b + 1)].hi - min_points) continue;
+
+                SegmentRange left = segs[static_cast<size_t>(b)];
+                SegmentRange right = segs[static_cast<size_t>(b + 1)];
+                left.hi = new_hi_left;
+                right.lo = new_hi_left + 1;
+
+                left.m = fit_deg4_model_on_range(xs, left.lo, left.hi);
+                left.ulp_max = ulp_max_on_range_hw(xs, left.lo, left.hi, left.m, ulp);
+                right.m = fit_deg4_model_on_range(xs, right.lo, right.hi);
+                right.ulp_max = ulp_max_on_range_hw(xs, right.lo, right.hi, right.m, ulp);
+
+                // Build a temporary objective (only two segments changed).
+                std::vector<SegmentRange> tmp = segs;
+                tmp[static_cast<size_t>(b)] = left;
+                tmp[static_cast<size_t>(b + 1)] = right;
+                const Objective obj = compute_objective_active_log(tmp);
+                if (obj.max_ulp > hard_max_cap) continue; // hard constraint
+                if (better_objective(obj, local_best)) {
+                    local_best = obj;
+                    best_new_hi_left = new_hi_left;
+                    best_left = left;
+                    best_right = right;
+                }
+              }
+            }
+
+            if (best_new_hi_left != cur_hi_left) {
+                segs[static_cast<size_t>(b)] = best_left;
+                segs[static_cast<size_t>(b + 1)] = best_right;
+                best = local_best;
+                any = true;
+            }
+        }
+        if (!any) break;
+    }
+}
+
+static std::vector<SegmentRange> build_adaptive_segments_deg4_hw_from_xs(std::vector<float>& xs,
+                                                                        const ULP_Calculator& ulp,
+                                                                        int target_segments) {
+    std::vector<SegmentRange> segs;
+    segs.reserve(static_cast<size_t>(target_segments));
+
+    const int n = static_cast<int>(xs.size());
+
+    auto make_seg = [&](int lo, int hi) -> SegmentRange {
+        SegmentRange s;
+        s.lo = lo; s.hi = hi;
+        s.m = fit_deg4_model_on_range(xs, lo, hi);
+        s.ulp_max = ulp_max_on_range_hw(xs, lo, hi, s.m, ulp);
+        return s;
+    };
+
+    // Start with a single segment over the whole approximation domain.
+    if (n <= 0) return segs;
+    segs.push_back(make_seg(0, n - 1));
+
+    // Segment placement optimization:
+    // Choose the split (segment + boundary) that minimizes the *global* worst-case ulp_max
+    // after refitting the two affected children segments.
+    //
+    // Important: bf16 has very sparse coverage in the far tails. If kMinPoints is too large,
+    // we cannot refine the negative tail at all. Keep this small.
+    constexpr int kMinPoints = 8;
+    constexpr int kCandidates = 31; // evaluate ~31 candidate split locations per candidate segment
+    while (static_cast<int>(segs.size()) < target_segments) {
+        int best_seg = -1;
+        int best_mid = -1;
+        Objective best_obj{std::numeric_limits<int64_t>::max(), std::numeric_limits<double>::infinity(), 0};
+
+        // Consider splitting any segment; pick the split that minimizes the resulting global max.
+        for (int si = 0; si < static_cast<int>(segs.size()); ++si) {
+            const int lo = segs[static_cast<size_t>(si)].lo;
+            const int hi = segs[static_cast<size_t>(si)].hi;
+            const int len = hi - lo + 1;
+            if (len < 2 * kMinPoints) continue;
+
+            // Max among other segments (unchanged by this candidate).
+            int64_t other_max = 0;
+            for (int sj = 0; sj < static_cast<int>(segs.size()); ++sj) {
+                if (sj == si) continue;
+                other_max = std::max(other_max, segs[static_cast<size_t>(sj)].ulp_max);
+            }
+
+            auto candidate_obj = [&](int64_t left_max, int64_t right_max) -> Objective {
+                Objective o{};
+                o.max_ulp = std::max(other_max, std::max(left_max, right_max));
+                // stddev of log1p(ulp_max) over active segments (ulp_max>0)
+                std::vector<double> vals;
+                vals.reserve(segs.size() + 1);
+                for (int sj = 0; sj < static_cast<int>(segs.size()); ++sj) {
+                    if (sj == si) continue;
+                    const int64_t m = segs[static_cast<size_t>(sj)].ulp_max;
+                    if (m > 0) vals.push_back(std::log1p(static_cast<double>(m)));
+                }
+                if (left_max > 0) vals.push_back(std::log1p(static_cast<double>(left_max)));
+                if (right_max > 0) vals.push_back(std::log1p(static_cast<double>(right_max)));
+                o.active_n = vals.size();
+                if (vals.size() <= 1) { o.stddev_log = 0.0; return o; }
+                double mean = 0.0;
+                for (double v : vals) mean += v;
+                mean /= static_cast<double>(vals.size());
+                double var = 0.0;
+                for (double v : vals) { const double d = v - mean; var += d * d; }
+                var /= static_cast<double>(vals.size());
+                o.stddev_log = std::sqrt(var);
+                return o;
+            };
+
+            for (int c = 1; c <= kCandidates; ++c) {
+                const int mid = lo + (len * c) / (kCandidates + 1);
+                if (mid - lo + 1 < kMinPoints) continue;
+                if (hi - (mid + 1) + 1 < kMinPoints) continue;
+
+                const SegmentRange left = make_seg(lo, mid);
+                const SegmentRange right = make_seg(mid + 1, hi);
+                const Objective obj = candidate_obj(left.ulp_max, right.ulp_max);
+                if (better_objective(obj, best_obj)) {
+                    best_obj = obj;
+                    best_seg = si;
+                    best_mid = mid;
+                }
+            }
+        }
+
+        // Stop only if no feasible split.
+        if (best_seg < 0 || best_mid < 0) break;
+
+        const int lo = segs[static_cast<size_t>(best_seg)].lo;
+        const int hi = segs[static_cast<size_t>(best_seg)].hi;
+        const SegmentRange left = make_seg(lo, best_mid);
+        const SegmentRange right = make_seg(best_mid + 1, hi);
+
+        segs[static_cast<size_t>(best_seg)] = left;
+        segs.insert(segs.begin() + best_seg + 1, right);
+    }
+
+    // Ensure sorted by x_lo (they should already be).
+    std::sort(segs.begin(), segs.end(), [&](const SegmentRange& a, const SegmentRange& b2) {
+        return a.m.x_lo < b2.m.x_lo;
+    });
+    return segs;
+}
+
+static inline int pick_segment(float xf, const std::vector<SegmentModel>& segs) {
+    for (int i = 0; i < static_cast<int>(segs.size()); ++i) {
+        if (xf <= segs[static_cast<size_t>(i)].x_hi) return i;
+    }
+    return static_cast<int>(segs.size()) - 1;
+}
+
+int main(int argc, char** argv) {
+    // Output controls (to avoid terminal line-wrapping "interleaving" effects).
+    // - --out <path>   : write output to a file instead of stdout
+    // - --no-coeff     : do not print the long coefficient line per segment
+    std::ostream* out = &std::cout;
+    std::ofstream out_file;
+    bool print_coeff = true;
+    // very small argument parser
+    // (we intentionally keep this tool standalone without external deps)
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+    for (int i = 1; i < argc; ++i) {
+        const std::string a = argv[i];
+        if (a == "--no-coeff") {
+            print_coeff = false;
+        } else if (a == "--out" && i + 1 < argc) {
+            const std::string p = argv[++i];
+            out_file.open(p, std::ios::binary);
+            if (!out_file) {
+                std::cerr << "Failed to open --out file: " << p << "\n";
+                return 2;
+            }
+            out = &out_file;
+        }
+    }
+
     ULP_Calculator ulp;
     const Bounds b = compute_bounds_fullscan_hw();
 
@@ -254,58 +763,59 @@ int main() {
     const bf16 approx_x_min = b.neg_first_nonzero_x;
     const bf16 approx_x_max = b.pos_last_mismatch_x;
 
-    std::cout << std::scientific << std::setprecision(10);
-    std::cout << "Piecewise degree-4 fit under HW model (bf16 in, fp32 compute, bf16 out)\n";
-    std::cout << "======================================================================\n\n";
+    (*out) << std::scientific << std::setprecision(10);
+    (*out) << "Piecewise degree-4 fit under HW model (bf16 in, fp32 compute, bf16 out)\n";
+    (*out) << "======================================================================\n\n";
 
-    std::cout << "Saturation bounds under HW model (fp32 internal, bf16 output):\n";
-    std::cout << "  neg_last_zero_x      = " << static_cast<double>(b.neg_last_zero_x)
+    (*out) << "Saturation bounds under HW model (fp32 internal, bf16 output):\n";
+    (*out) << "  neg_last_zero_x      = " << static_cast<double>(b.neg_last_zero_x)
               << " bits=0x" << std::hex << bf16_bits(b.neg_last_zero_x) << std::dec << "\n";
-    std::cout << "  neg_first_nonzero_x  = " << static_cast<double>(b.neg_first_nonzero_x)
+    (*out) << "  neg_first_nonzero_x  = " << static_cast<double>(b.neg_first_nonzero_x)
               << " bits=0x" << std::hex << bf16_bits(b.neg_first_nonzero_x) << std::dec
               << "  y_ref=" << static_cast<double>(gelu_ref_bf16_hw(b.neg_first_nonzero_x)) << "\n";
-    std::cout << "  pos_last_mismatch_x  = " << static_cast<double>(b.pos_last_mismatch_x)
+    (*out) << "  pos_last_mismatch_x  = " << static_cast<double>(b.pos_last_mismatch_x)
               << " bits=0x" << std::hex << bf16_bits(b.pos_last_mismatch_x) << std::dec
               << "  y_ref=" << static_cast<double>(gelu_ref_bf16_hw(b.pos_last_mismatch_x)) << "\n";
-    std::cout << "  pos_first_identity_x = " << static_cast<double>(b.pos_first_identity_x)
+    (*out) << "  pos_first_identity_x = " << static_cast<double>(b.pos_first_identity_x)
               << " bits=0x" << std::hex << bf16_bits(b.pos_first_identity_x) << std::dec << "\n\n";
 
-    std::cout << "Non-saturated input region: [" << static_cast<double>(approx_x_min)
+    (*out) << "Non-saturated input region: [" << static_cast<double>(approx_x_min)
               << ", " << static_cast<double>(approx_x_max) << "]\n\n";
 
-    // Build list of all finite bf16 x in [approx_x_min, approx_x_max] (inclusive)
-    std::vector<bf16> xs;
+    // Gather all finite bf16 x in approximation region (bf16 representable, as float values).
+    std::vector<float> xs;
     xs.reserve(40000);
-    for (uint32_t i = 0; i < 65536; ++i) {
-        const uint16_t bits = static_cast<uint16_t>(i);
-        if (bf16_is_nan_bits(bits) || bf16_is_inf_bits(bits)) continue;
-        bf16 x = bf16_from_bits(bits);
-        if (static_cast<double>(x) < static_cast<double>(approx_x_min)) continue;
-        if (static_cast<double>(x) > static_cast<double>(approx_x_max)) continue;
-        xs.push_back(x);
+    for (uint32_t bits = 0; bits <= 0xFFFF; ++bits) {
+        if (bf16_is_nan_bits(static_cast<uint16_t>(bits)) || bf16_is_inf_bits(static_cast<uint16_t>(bits))) continue;
+        const bf16 xb = bf16_from_bits(static_cast<uint16_t>(bits));
+        const float xf = static_cast<float>(xb);
+        if (xf < static_cast<float>(approx_x_min) || xf > static_cast<float>(approx_x_max)) continue;
+        xs.push_back(xf);
     }
-    std::sort(xs.begin(), xs.end(), [](bf16 a, bf16 b){ return static_cast<double>(a) < static_cast<double>(b); });
-    xs.erase(std::unique(xs.begin(), xs.end(), [](bf16 a, bf16 b){ return bf16_bits(a) == bf16_bits(b); }), xs.end());
+    std::sort(xs.begin(), xs.end());
+    xs.erase(std::unique(xs.begin(), xs.end()), xs.end());
 
-    const int segments = 8;
-    const double x_min = static_cast<double>(approx_x_min);
-    const double x_max = static_cast<double>(approx_x_max);
-    std::array<double, 9> bps{};
-    for (int s = 0; s <= segments; ++s) {
-        bps[s] = x_min + (x_max - x_min) * (static_cast<double>(s) / static_cast<double>(segments));
-    }
+    // Build segments: 32 segments, then iteratively nudge boundaries to equalize ulp_max.
+    const int target_segments = 32;
+    auto seg_ranges = build_adaptive_segments_deg4_hw_from_xs(xs, ulp, target_segments);
+    // Reallocate segment budget: merge easy regions, split peak regions (often edges).
+    budget_reallocate_merge_split(xs, seg_ranges, ulp, /*iters=*/12, /*min_points=*/8, /*donor_max_ulp=*/1, /*split_candidates=*/63);
+    iterative_balance_boundaries(xs, seg_ranges, ulp, /*max_iters=*/15, /*min_points=*/8);
+    std::vector<SegmentModel> models;
+    models.reserve(seg_ranges.size());
+    for (const auto& s : seg_ranges) models.push_back(s.m);
 
-    struct Segment {
-        double lo;
-        double hi;
-        float center;
-        float inv_scale;
-        std::array<float, 5> coeffs_t; // polynomial in t
-        Stats ulp_stats;
-        ErrStats err_stats;
+    struct SegmentReport {
+        float x_lo = 0.0f;
+        float x_hi = 0.0f;
+        size_t n = 0;
+        double ulp_mean = 0.0;
+        int64_t ulp_max = 0;
+        ErrStats err{};
+        SegmentModel m{};
     };
-    std::vector<Segment> segs;
-    segs.reserve(segments);
+    std::vector<SegmentReport> reports;
+    reports.reserve(models.size());
 
     std::vector<int64_t> all_ulps;
     all_ulps.reserve(xs.size());
@@ -315,62 +825,23 @@ int main() {
     all_rel_errs.reserve(xs.size());
     size_t all_ref0_n = 0;
 
-    for (int s = 0; s < segments; ++s) {
-        const double lo = bps[s];
-        const double hi = bps[s + 1];
-        std::vector<bf16> seg_xs;
-        seg_xs.reserve(xs.size() / segments + 64);
-        for (bf16 x : xs) {
-            double xd = static_cast<double>(x);
-            if ((s < segments - 1 && xd >= lo && xd < hi) || (s == segments - 1 && xd >= lo && xd <= hi)) {
-                seg_xs.push_back(x);
-            }
-        }
-        if (seg_xs.empty()) {
-            segs.push_back(Segment{lo, hi, 0.0f, 0.0f, {0,0,0,0,0}, Stats{}});
-            continue;
-        }
-
-        const double seg_x_min = static_cast<double>(*std::min_element(seg_xs.begin(), seg_xs.end(),
-                                                                      [](bf16 a, bf16 b){ return static_cast<double>(a) < static_cast<double>(b); }));
-        const double seg_x_max = static_cast<double>(*std::max_element(seg_xs.begin(), seg_xs.end(),
-                                                                      [](bf16 a, bf16 b){ return static_cast<double>(a) < static_cast<double>(b); }));
-        const double center_d = 0.5 * (seg_x_min + seg_x_max);
-        const double half_w_d = 0.5 * (seg_x_max - seg_x_min);
-        const double inv_scale_d = (half_w_d > 0.0) ? (1.0 / half_w_d) : 0.0;
-
-        const float center_f = static_cast<float>(center_d);
-        const float inv_scale_f = static_cast<float>(inv_scale_d);
-
-        std::vector<float> ts;
-        std::vector<float> ys;
-        ts.reserve(seg_xs.size());
-        ys.reserve(seg_xs.size());
-
-        for (bf16 x : seg_xs) {
-            const float xf = static_cast<float>(x);
-            const float t = (xf - center_f) * inv_scale_f;
-            const bf16 yb = gelu_ref_bf16_hw(x);
-            ts.push_back(t);
-            ys.push_back(static_cast<float>(yb));
-        }
-
-        const auto coeffs = fit_deg4_poly_t(ts, ys);
-
-        // Evaluate + ULP stats (HW model: compute yhat in fp32, then round to bf16).
+    // Evaluate final stats per segment.
+    for (size_t si = 0; si < models.size(); ++si) {
+        const auto& m = models[si];
         std::vector<int64_t> ulps;
-        ulps.reserve(seg_xs.size());
         std::vector<double> abs_errs;
-        abs_errs.reserve(seg_xs.size());
         std::vector<double> rel_errs;
-        rel_errs.reserve(seg_xs.size());
+        ulps.reserve(2048);
+        abs_errs.reserve(2048);
+        rel_errs.reserve(2048);
         size_t ref0_n = 0;
-        for (bf16 x : seg_xs) {
-            const float xf = static_cast<float>(x);
-            const float t = (xf - center_f) * inv_scale_f;
-            const float yhat_f = eval_deg4_horner_f32(coeffs, t);
+
+        for (float xf : xs) {
+            if (xf < m.x_lo || xf > m.x_hi) continue;
+            const float t = (xf - m.center) * m.inv_scale;
+            const float yhat_f = eval_deg4_horner_f32(m.c, t);
             const bf16 yhat_b = bf16_from_f32_rne(yhat_f);
-            const bf16 yref_b = gelu_ref_bf16_hw(x);
+            const bf16 yref_b = gelu_ref_bf16_hw(static_cast<bf16>(xf));
             const int64_t e = ulp.ulp_distance(yref_b, yhat_b);
             ulps.push_back(e);
             all_ulps.push_back(e);
@@ -380,7 +851,6 @@ int main() {
             const double abs_e = std::abs(yhat - yref);
             abs_errs.push_back(abs_e);
             all_abs_errs.push_back(abs_e);
-
             if (yref != 0.0) {
                 const double rel_e = abs_e / std::abs(yref);
                 rel_errs.push_back(rel_e);
@@ -391,62 +861,73 @@ int main() {
             }
         }
 
-        segs.push_back(Segment{
-            lo, hi, center_f, inv_scale_f, coeffs,
-            summarize(std::move(ulps)),
-            summarize_errors(abs_errs, rel_errs, ref0_n)
-        });
+        Stats s_ulps = summarize(std::move(ulps));
+        ErrStats s_err = summarize_errors(abs_errs, rel_errs, ref0_n);
+
+        SegmentReport r;
+        r.x_lo = m.x_lo;
+        r.x_hi = m.x_hi;
+        r.n = s_ulps.n;
+        r.ulp_mean = s_ulps.mean;
+        r.ulp_max = s_ulps.max;
+        r.err = s_err;
+        r.m = m;
+        reports.push_back(r);
     }
 
-    const Stats overall = summarize(std::move(all_ulps));
-    const ErrStats overall_err = summarize_errors(all_abs_errs, all_rel_errs, all_ref0_n);
+    Stats overall = summarize(std::move(all_ulps));
+    ErrStats overall_err = summarize_errors(all_abs_errs, all_rel_errs, all_ref0_n);
 
-    std::cout << "Per-segment error stats (vs y_ref_bf16; HW model evaluation):\n\n";
-    std::cout << std::left
-              << std::setw(6)  << "seg"
-              << std::setw(16) << "x_lo"
-              << std::setw(16) << "x_hi"
-              << std::right
-              << std::setw(10) << "n"
-              << std::setw(12) << "ulp_mean"
-              << std::setw(10) << "ulp_max"
-              << std::setw(14) << "abs_mean"
-              << std::setw(14) << "abs_max"
-              << std::setw(12) << "rel_mean"
-              << std::setw(12) << "rel_max"
-              << std::setw(10) << "ref0_n"
-              << "\n";
-    std::cout << std::string(132, '-') << "\n";
+    (*out) << "Per-segment error stats (vs y_ref_bf16; HW model evaluation):\n\n";
+    (*out)
+        << std::left
+        << std::setw(4)  << "seg" << " "
+        << std::setw(14) << "x_lo" << " "
+        << std::setw(14) << "x_hi" << " "
+        << std::right
+        << std::setw(7)  << "n" << " "
+        << std::setw(10) << "ulp_mean" << " "
+        << std::setw(8)  << "ulp_max" << " "
+        << std::setw(14) << "abs_mean" << " "
+        << std::setw(14) << "abs_max" << " "
+        << std::setw(14) << "rel_mean" << " "
+        << std::setw(14) << "rel_max" << " "
+        << std::setw(6)  << "ref0"
+        << "\n";
+    (*out) << std::string(132, '-') << "\n";
 
-    std::cout << std::scientific << std::setprecision(6);
-    for (size_t i = 0; i < segs.size(); ++i) {
-        const auto& s = segs[i];
-        std::cout << std::left
-                  << std::setw(6)  << i
-                  << std::setw(16) << s.lo
-                  << std::setw(16) << s.hi
-                  << std::right
-                  << std::setw(10) << s.ulp_stats.n
-                  << std::setw(12) << std::fixed << std::setprecision(3) << s.ulp_stats.mean
-                  << std::setw(10) << s.ulp_stats.max
-                  << std::setw(14) << std::scientific << std::setprecision(6) << s.err_stats.abs_mean
-                  << std::setw(14) << std::scientific << std::setprecision(6) << s.err_stats.abs_max
-                  << std::setw(12) << std::scientific << std::setprecision(6) << s.err_stats.rel_mean
-                  << std::setw(12) << std::scientific << std::setprecision(6) << s.err_stats.rel_max
-                  << std::setw(10) << s.err_stats.ref0_n
-                  << "\n";
-        std::cout << "  center=" << static_cast<double>(s.center)
-                  << " inv_scale=" << static_cast<double>(s.inv_scale)
-                  << " coeffs_t=["
-                  << static_cast<double>(s.coeffs_t[0]) << ", "
-                  << static_cast<double>(s.coeffs_t[1]) << ", "
-                  << static_cast<double>(s.coeffs_t[2]) << ", "
-                  << static_cast<double>(s.coeffs_t[3]) << ", "
-                  << static_cast<double>(s.coeffs_t[4]) << "]\n";
+    for (size_t i = 0; i < reports.size(); ++i) {
+        const auto& s = reports[i];
+        (*out)
+            << std::right << std::setw(4) << i << " "
+            << fmt_sci(static_cast<double>(s.x_lo), 14, 6) << " "
+            << fmt_sci(static_cast<double>(s.x_hi), 14, 6) << " "
+            << fmt_u64(s.n, 7) << " "
+            << fmt_fix(s.ulp_mean, 10, 3) << " "
+            << fmt_i64(s.ulp_max, 8) << " "
+            << fmt_sci(s.err.abs_mean, 14, 6) << " "
+            << fmt_sci(s.err.abs_max, 14, 6) << " "
+            << fmt_sci(s.err.rel_mean, 14, 6) << " "
+            << fmt_sci(s.err.rel_max, 14, 6) << " "
+            << fmt_u64(s.err.ref0_n, 6)
+            << "\n";
+
+        if (print_coeff) {
+            (*out)
+                << "     "
+                << "center=" << fmt_sci(static_cast<double>(s.m.center), 14, 6)
+                << "  inv_scale=" << fmt_sci(static_cast<double>(s.m.inv_scale), 14, 6)
+                << "  c=["
+                << fmt_sci(static_cast<double>(s.m.c[0]), 14, 6) << ", "
+                << fmt_sci(static_cast<double>(s.m.c[1]), 14, 6) << ", "
+                << fmt_sci(static_cast<double>(s.m.c[2]), 14, 6) << ", "
+                << fmt_sci(static_cast<double>(s.m.c[3]), 14, 6) << ", "
+                << fmt_sci(static_cast<double>(s.m.c[4]), 14, 6) << "]\n";
+        }
     }
 
-    std::cout << "\nOverall error stats (all non-saturated bf16 inputs):\n";
-    std::cout << "  n=" << overall.n
+    (*out) << "\nOverall error stats (all non-saturated bf16 inputs):\n";
+    (*out) << "  n=" << overall.n
               << " ulp_mean=" << std::fixed << std::setprecision(3) << overall.mean
               << " ulp_max=" << overall.max
               << " abs_mean=" << std::scientific << std::setprecision(6) << overall_err.abs_mean

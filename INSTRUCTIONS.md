@@ -83,6 +83,20 @@ Notes:
 
 - Relative error is only defined when `ref != 0` (rows with `ref == 0` are counted separately).
 - The plot HTML uses Plotly via a CDN; if you need offline viewing, we can switch to embedding the JS bundle.
+- Segment placement is **optimized** (not fixed-width):
+  - greedy split placement to reduce global worst-case ULP while keeping `ulp_max` more uniform
+  - iterative boundary adjustments to smooth peaks without increasing global max ULP
+
+#### Recommended workflow (table + plot)
+
+```bash
+cd /mnt/c/Users/IaroslavVoitovych/CursorProjects/experiments
+g++ -std=c++23 -O2 -o piecewise_deg4_fit_fp32_hw piecewise_deg4_fit_fp32_hw.cpp -lm
+./piecewise_deg4_fit_fp32_hw --out run_logs/piecewise_deg4_fit_fp32_hw_table.txt --no-coeff
+
+g++ -std=c++23 -O2 -o dump_errors_by_index_hw dump_errors_by_index_hw.cpp -lm
+./dump_errors_by_index_hw run_logs/errors_by_index_hw.csv run_logs/errors_by_index_hw.html
+```
 
 ---
 

@@ -66,6 +66,16 @@
     - exports `run_logs/errors_by_index_hw.csv` with per-input errors keyed by bf16 ULP index ordering
     - generates `run_logs/errors_by_index_hw.html` (interactive Plotly) to visualize ULP/abs/rel vs index
 
+- **Iterated on segment placement optimization for HW-model piecewise GELU**
+  - Removed hard boundaries around `x=0` / near-zero region during optimization.
+  - Implemented greedy **segment split placement** for 32 segments that optimizes:
+    - global worst-case `ulp_max` (primary)
+    - uniformity of per-segment `ulp_max` (secondary, via stddev of `log1p(ulp_max)` over active segments)
+  - Added iterative **boundary adjustment** (“nudging”) to further smooth peaks without increasing global max ULP.
+  - Updated tools so table + plot reflect the same segmentation:
+    - `piecewise_deg4_fit_fp32_hw.cpp` (table export via `--out`, optional `--no-coeff`)
+    - `dump_errors_by_index_hw.cpp` (plot now includes index+numeric-x panels and segment bands)
+
 - **Automation for reproducibility**
   - Added `run_all_wsl.sh` to rebuild every `*.cpp`, run each executable under WSL, and capture logs in `run_logs/`.
 

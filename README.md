@@ -95,18 +95,29 @@ It will:
 
  - **Piecewise polynomial under HW model (bf16 in → fp32 compute → bf16 out)**
    - `piecewise_deg4_fit_fp32_hw.cpp` → `piecewise_deg4_fit_fp32_hw`
-   - Fits 8 segments × degree-4 (least squares) and reports a per-segment table with:
+  - Fits **32 segments × degree-4** under the HW model and reports a per-segment table with:
      - ULP mean/max
      - absolute error mean/max
      - relative error mean/max (for `ref != 0`)
    - Uses the **HW model reference**: `ref_bf16 = bf16_RNE(float(gelu_ref_fp64(float(x_bf16))))`
+  - Segment placement is **optimized**, not fixed-width:
+    - greedy split placement to reduce global worst-case ULP while keeping segment `ulp_max` more uniform
+    - iterative boundary “nudging” pass to further smooth `ulp_max` peaks without increasing global max ULP
+  - Tip: to avoid terminal line-wrapping, write the table to a file:
+
+```bash
+./piecewise_deg4_fit_fp32_hw --out run_logs/piecewise_deg4_fit_fp32_hw_table.txt --no-coeff
+```
 
  - **Full-range error dump + plot (by bf16 value index; HW model)**
    - `dump_errors_by_index_hw.cpp` → `dump_errors_by_index_hw`
    - Exports per-finite-bf16-index rows to CSV and generates an interactive HTML plot:
      - `run_logs/errors_by_index_hw.csv`
      - `run_logs/errors_by_index_hw.html`
-   - Plot x-axis is the **bf16 ULP index** order (finite only; `+0/-0` is one index).
+   - Plot shows 3×2 panels:
+     - left: errors vs **bf16 index** (finite-only ULP order; `+0/-0` is one index)
+     - right: same errors vs **numeric x**
+   - Plot overlays segment bands + boundary markers.
 
  - **MPFR validation (optional “golden” cross-check)**
    - `mpfr_gelu_validate.cpp` → `mpfr_gelu_validate`
