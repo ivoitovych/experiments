@@ -113,4 +113,37 @@ Artifacts:
 
 Note: `run_logs/` and binaries are intentionally ignored by git.
 
+---
+
+### MPFR cross-check (optional golden validation)
+
+If you have MPFR installed in WSL, you can validate that our single canonical reference
+`gelu_ref_fp64()` (stable `erfc` form) agrees with an MPFR 256-bit reference after
+deterministic `float -> bf16` RNE rounding over the **entire finite bf16 input domain**.
+
+#### Prereqs (Ubuntu/WSL)
+
+```bash
+sudo apt-get update
+sudo apt-get install -y libmpfr-dev libgmp-dev
+```
+
+#### Build + run
+
+```bash
+cd /mnt/c/Users/IaroslavVoitovych/CursorProjects/experiments
+g++ -std=c++23 -O2 -o mpfr_gelu_validate mpfr_gelu_validate.cpp -lmpfr -lgmp -lm
+./mpfr_gelu_validate
+```
+
+#### Expected output
+
+- It reports the number of finite bf16 inputs checked (should be **65280**).
+- It reports the mismatch count between:
+  - MPFR 256-bit erfc-based GELU → float → bf16(RNE)
+  - `gelu_ref_fp64` erfc-based GELU → float → bf16(RNE)
+
+A mismatch count of **0** means the current fp64 reference is sufficient for bf16-rounding
+studies under this rounding model.
+
 

@@ -93,6 +93,13 @@ It will:
   - `piecewise_deg4_fit_and_analyze.cpp` → `piecewise_deg4_fit_and_analyze`
   - Experimental least-squares degree-4 per-segment fits and per-segment ULP stats. Intended as a scaffold; it does not yet optimize directly for ULP.
 
+ - **MPFR validation (optional “golden” cross-check)**
+   - `mpfr_gelu_validate.cpp` → `mpfr_gelu_validate`
+   - If MPFR dev headers are installed, validates that bf16-rounded outputs from:
+     - MPFR 256-bit erfc-based reference
+     - `gelu_ref_fp64` erfc-based reference
+     agree across the full finite bf16 input domain.
+
 ---
 
 ### Current measured saturation bounds (stable reference)
