@@ -58,7 +58,31 @@ Implementation:
 
 Validation:
 
-- `ulp_calculator_test.cpp` (`ulp_test`) must pass.
+- `ulp_calculator_test.cpp` (`ulp_calculator_test`) must pass.
+
+---
+
+### HW model for approximation (bf16 in → fp32 compute → bf16 out)
+
+For the target hardware, assume:
+
+- **Inputs are bf16**
+- **All internal arithmetic is fp32** (adds/muls/comparisons happen in fp32)
+- **Final output is bf16**, rounded from fp32 using **round-to-nearest-even (RNE)**
+
+To make reference + approximation comparisons meaningful under this model, use:
+
+- `ref_bf16 = bf16_RNE( float( gelu_ref_fp64( float(x_bf16) ) ) )`
+
+Tools:
+
+- `piecewise_deg4_fit_fp32_hw.cpp` prints per-segment ULP/abs/rel stats under this model.
+- `dump_errors_by_index_hw.cpp` exports per-index errors and generates an interactive HTML plot.
+
+Notes:
+
+- Relative error is only defined when `ref != 0` (rows with `ref == 0` are counted separately).
+- The plot HTML uses Plotly via a CDN; if you need offline viewing, we can switch to embedding the JS bundle.
 
 ---
 

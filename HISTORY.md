@@ -54,6 +54,18 @@
 - **Piecewise approximation scaffold**
   - Implemented an experimental 8-segment degree-4 polynomial fitting + per-segment ULP reporting scaffold (not yet ULP-optimized).
 
+- **Aligned the approximation harness to the actual HW model**
+  - Confirmed HW model: **bf16 input → fp32 internal math → bf16 output (RNE)**.
+  - Added `piecewise_deg4_fit_fp32_hw.cpp`:
+    - computes saturation bounds under the HW ref model
+    - fits 8 segments × degree-4 (least squares)
+    - reports per-segment ULP mean/max plus absolute/relative error (mean/max)
+
+- **Added “by bf16 index” error export + plot**
+  - Added `dump_errors_by_index_hw.cpp`:
+    - exports `run_logs/errors_by_index_hw.csv` with per-input errors keyed by bf16 ULP index ordering
+    - generates `run_logs/errors_by_index_hw.html` (interactive Plotly) to visualize ULP/abs/rel vs index
+
 - **Automation for reproducibility**
   - Added `run_all_wsl.sh` to rebuild every `*.cpp`, run each executable under WSL, and capture logs in `run_logs/`.
 

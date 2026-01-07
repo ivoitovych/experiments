@@ -93,6 +93,21 @@ It will:
   - `piecewise_deg4_fit_and_analyze.cpp` → `piecewise_deg4_fit_and_analyze`
   - Experimental least-squares degree-4 per-segment fits and per-segment ULP stats. Intended as a scaffold; it does not yet optimize directly for ULP.
 
+ - **Piecewise polynomial under HW model (bf16 in → fp32 compute → bf16 out)**
+   - `piecewise_deg4_fit_fp32_hw.cpp` → `piecewise_deg4_fit_fp32_hw`
+   - Fits 8 segments × degree-4 (least squares) and reports a per-segment table with:
+     - ULP mean/max
+     - absolute error mean/max
+     - relative error mean/max (for `ref != 0`)
+   - Uses the **HW model reference**: `ref_bf16 = bf16_RNE(float(gelu_ref_fp64(float(x_bf16))))`
+
+ - **Full-range error dump + plot (by bf16 value index; HW model)**
+   - `dump_errors_by_index_hw.cpp` → `dump_errors_by_index_hw`
+   - Exports per-finite-bf16-index rows to CSV and generates an interactive HTML plot:
+     - `run_logs/errors_by_index_hw.csv`
+     - `run_logs/errors_by_index_hw.html`
+   - Plot x-axis is the **bf16 ULP index** order (finite only; `+0/-0` is one index).
+
  - **MPFR validation (optional “golden” cross-check)**
    - `mpfr_gelu_validate.cpp` → `mpfr_gelu_validate`
    - If MPFR dev headers are installed, validates that bf16-rounded outputs from:
@@ -128,6 +143,7 @@ The full-scan tool (`gelu_saturation_bounds_fullscan.cpp`) reports:
 - **Saturation depends on the arithmetic model**:
   - Current “final-round-only” model is `bf16(gelu_ref_fp64(x))`.
   - If your hardware quantizes `Phi` first, or rounds after each op, thresholds will shift.
+  - This repo now also contains tools for the **HW model**: bf16 inputs, fp32 internal math, bf16 output (RNE).
 
 - **Repo hygiene**:
   - This branch is intentionally **source-only**. `.gitignore` ignores all generated binaries and `run_logs/`.
