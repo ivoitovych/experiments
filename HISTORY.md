@@ -72,6 +72,7 @@
     - global worst-case `ulp_max` (primary)
     - uniformity of per-segment `ulp_max` (secondary, via stddev of `log1p(ulp_max)` over active segments)
   - Added iterative **boundary adjustment** (“nudging”) to further smooth peaks without increasing global max ULP.
+  - Implemented **bf16-rounding-aware coefficient fitting** so per-segment coefficient selection targets bf16 output bins (and thus ULP) rather than fp32 value L2 error.
   - Updated tools so table + plot reflect the same segmentation:
     - `piecewise_deg4_fit_fp32_hw.cpp` (table export via `--out`, optional `--no-coeff`)
     - `dump_errors_by_index_hw.cpp` (plot now includes index+numeric-x panels and segment bands)

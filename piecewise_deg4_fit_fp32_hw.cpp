@@ -10,6 +10,7 @@
 #include <iostream>
 #include <limits>
 #include <fstream>
+#include <unordered_map>
 #include <vector>
 
 using bf16 = std::bfloat16_t;
@@ -147,6 +148,93 @@ static std::string fmt_u64(size_t v, int w) {
     return oss.str();
 }
 
+static inline uint32_t f32_bits(float x) {
+    uint32_t u;
+    std::memcpy(&u, &x, sizeof(u));
+    return u;
+}
+
+static inline float f32_from_bits(uint32_t u) {
+    float x;
+    std::memcpy(&x, &u, sizeof(x));
+    return x;
+}
+
+static inline uint32_t f32_order_key(uint32_t u) {
+    const bool sign = (u & 0x80000000u) != 0;
+    return u ^ (sign ? 0xFFFFFFFFu : 0x80000000u);
+}
+
+static inline uint32_t f32_from_order_key(uint32_t k) {
+    if (k < 0x80000000u) {
+        return k ^ 0xFFFFFFFFu; // negative
+    }
+    return k ^ 0x80000000u; // positive
+}
+
+static inline uint16_t bf16_order_key(uint16_t bits) {
+    const bool sign = (bits & 0x8000u) != 0;
+    return static_cast<uint16_t>(bits ^ (sign ? 0xFFFFu : 0x8000u));
+}
+
+static inline uint16_t bf16_round_from_f32_bits_rne(uint32_t u) {
+    const uint32_t lsb = (u >> 16) & 1u;
+    u += 0x7FFFu + lsb;
+    return static_cast<uint16_t>(u >> 16);
+}
+
+struct RoundInterval {
+    float lo = 0.0f;
+    float hi_excl = 0.0f; // exclusive upper bound
+};
+
+static RoundInterval bf16_rounding_interval_f32(uint16_t target_bf16_bits,
+                                                std::unordered_map<uint16_t, RoundInterval>& cache) {
+    auto it = cache.find(target_bf16_bits);
+    if (it != cache.end()) return it->second;
+
+    const uint16_t target_key = bf16_order_key(target_bf16_bits);
+
+    auto rounded_key_at = [&](uint32_t k) -> uint16_t {
+        const uint32_t u = f32_from_order_key(k);
+        const uint16_t rb = bf16_round_from_f32_bits_rne(u);
+        return bf16_order_key(rb);
+    };
+
+    // Find low: first k where rounded_key_at(k) >= target_key
+    uint32_t lo_k = 0;
+    uint32_t hi_k = 0xFFFFFFFFu;
+    for (int i = 0; i < 32; ++i) {
+        const uint32_t mid = lo_k + ((hi_k - lo_k) >> 1);
+        if (rounded_key_at(mid) >= target_key) {
+            hi_k = mid;
+        } else {
+            lo_k = mid + 1;
+        }
+    }
+    const uint32_t k_low = lo_k;
+
+    // Find high: first k where rounded_key_at(k) > target_key
+    lo_k = k_low;
+    hi_k = 0xFFFFFFFFu;
+    for (int i = 0; i < 32; ++i) {
+        const uint32_t mid = lo_k + ((hi_k - lo_k) >> 1);
+        if (rounded_key_at(mid) > target_key) {
+            hi_k = mid;
+        } else {
+            lo_k = mid + 1;
+        }
+    }
+    const uint32_t k_high = lo_k; // may be 0xFFFFFFFF if last
+
+    const float lo = f32_from_bits(f32_from_order_key(k_low));
+    const float hi_excl = (k_high == k_low) ? lo : f32_from_bits(f32_from_order_key(k_high));
+
+    RoundInterval r{lo, hi_excl};
+    cache.emplace(target_bf16_bits, r);
+    return r;
+}
+
 // Solve 5x5 system for least squares via normal equations (Gaussian elimination).
 static bool solve_5x5(std::array<std::array<double, 5>, 5> A,
                       std::array<double, 5> b,
@@ -212,6 +300,55 @@ static inline float eval_deg4_horner_f32(const std::array<float, 5>& c, float t)
     y = y * t + c[1];
     y = y * t + c[0];
     return y;
+}
+
+static std::array<float, 5> fit_deg4_poly_t_rounding_aware(const std::vector<float>& ts,
+                                                          const std::vector<uint16_t>& y_bits_target,
+                                                          int iters = 6) {
+    // Start at the target bf16 values (as float).
+    std::vector<float> ys;
+    ys.reserve(ts.size());
+    for (uint16_t b : y_bits_target) {
+        ys.push_back(f32_from_bf16_bits(b));
+    }
+
+    std::unordered_map<uint16_t, RoundInterval> interval_cache;
+    interval_cache.reserve(512);
+
+    std::array<float, 5> c = fit_deg4_poly_t(ts, ys);
+    size_t best_mismatch = std::numeric_limits<size_t>::max();
+
+    for (int it = 0; it < iters; ++it) {
+        size_t mism = 0;
+        std::vector<float> proj;
+        proj.resize(ys.size());
+
+        for (size_t i = 0; i < ts.size(); ++i) {
+            const float pred = eval_deg4_horner_f32(c, ts[i]);
+            const uint16_t rb = bf16_from_f32_rne_bits(pred);
+            if (rb != y_bits_target[i]) ++mism;
+
+            const RoundInterval r = bf16_rounding_interval_f32(y_bits_target[i], interval_cache);
+            float lo = r.lo;
+            float hi_excl = r.hi_excl;
+            // Convert hi_excl to an inclusive-ish bound for clamping.
+            float hi = std::nextafter(hi_excl, -std::numeric_limits<float>::infinity());
+            if (!(lo <= hi)) {
+                // Degenerate; fall back to target.
+                proj[i] = f32_from_bf16_bits(y_bits_target[i]);
+                continue;
+            }
+            if (pred < lo) proj[i] = lo;
+            else if (pred > hi) proj[i] = hi;
+            else proj[i] = pred;
+        }
+
+        if (mism == 0 || mism >= best_mismatch) break;
+        best_mismatch = mism;
+        ys.swap(proj);
+        c = fit_deg4_poly_t(ts, ys);
+    }
+    return c;
 }
 
 struct Bounds {
@@ -309,18 +446,18 @@ static SegmentModel fit_deg4_model_on_range(const std::vector<float>& xs,
     }
 
     std::vector<float> ts;
-    std::vector<float> ys;
+    std::vector<uint16_t> ybits;
     ts.reserve(static_cast<size_t>(n));
-    ys.reserve(static_cast<size_t>(n));
+    ybits.reserve(static_cast<size_t>(n));
     for (int i = lo; i <= hi; ++i) {
         const float xf = xs[static_cast<size_t>(i)];
         const float t = (xf - m.center) * m.inv_scale;
         const bf16 xb = static_cast<bf16>(xf);
         const bf16 yb = gelu_ref_bf16_hw(xb);
         ts.push_back(t);
-        ys.push_back(static_cast<float>(yb));
+        ybits.push_back(ULP_Calculator::bf16_to_bits_public(yb));
     }
-    m.c = fit_deg4_poly_t(ts, ys);
+    m.c = fit_deg4_poly_t_rounding_aware(ts, ybits, /*iters=*/6);
     return m;
 }
 
@@ -397,140 +534,6 @@ static SegmentRange make_seg_from_indices(const std::vector<float>& xs,
     s.m = fit_deg4_model_on_range(xs, lo, hi);
     s.ulp_max = ulp_max_on_range_hw(xs, lo, hi, s.m, ulp);
     return s;
-}
-
-static void budget_reallocate_merge_split(std::vector<float>& xs,
-                                         std::vector<SegmentRange>& segs,
-                                         const ULP_Calculator& ulp,
-                                         int iters = 12,
-                                         int min_points = 8,
-                                         int donor_max_ulp = 1,
-                                         int split_candidates = 63) {
-    if (segs.size() < 3) return;
-
-    auto objective = [&]() { return compute_objective_active_log(segs); };
-    Objective best = objective();
-
-    for (int it = 0; it < iters; ++it) {
-        bool improved = false;
-
-        // Pick a donor adjacent pair (low error) to merge.
-        int donor_i = -1;
-        int best_donor_len = -1;
-        for (int i = 0; i < static_cast<int>(segs.size()) - 1; ++i) {
-            const auto& a = segs[static_cast<size_t>(i)];
-            const auto& b = segs[static_cast<size_t>(i + 1)];
-            const int len_a = a.hi - a.lo + 1;
-            const int len_b = b.hi - b.lo + 1;
-            if (len_a < min_points || len_b < min_points) continue;
-            if (a.ulp_max > donor_max_ulp || b.ulp_max > donor_max_ulp) continue;
-            const int tot = len_a + len_b;
-            if (tot > best_donor_len) {
-                best_donor_len = tot;
-                donor_i = i;
-            }
-        }
-        if (donor_i < 0) break;
-
-        // Pick a recipient segment to split: prefer edges (first/last few), else global max.
-        int recip_i = -1;
-        int64_t recip_err = -1;
-        auto consider = [&](int i) {
-            const auto& s = segs[static_cast<size_t>(i)];
-            const int len = s.hi - s.lo + 1;
-            if (len < 2 * min_points) return;
-            if (s.ulp_max > recip_err) { recip_err = s.ulp_max; recip_i = i; }
-        };
-        // edge bias
-        for (int i : {0, 1, 2, static_cast<int>(segs.size()) - 3, static_cast<int>(segs.size()) - 2, static_cast<int>(segs.size()) - 1}) {
-            if (i >= 0 && i < static_cast<int>(segs.size())) consider(i);
-        }
-        if (recip_i < 0) {
-            for (int i = 0; i < static_cast<int>(segs.size()); ++i) consider(i);
-        }
-        if (recip_i < 0) break;
-
-        // Avoid overlap: if recipient is inside donor pair region, pick next best recipient.
-        if (recip_i == donor_i || recip_i == donor_i + 1) {
-            int alt = -1;
-            int64_t alt_err = -1;
-            for (int i = 0; i < static_cast<int>(segs.size()); ++i) {
-                if (i == donor_i || i == donor_i + 1) continue;
-                const auto& s = segs[static_cast<size_t>(i)];
-                const int len = s.hi - s.lo + 1;
-                if (len < 2 * min_points) continue;
-                if (s.ulp_max > alt_err) { alt_err = s.ulp_max; alt = i; }
-            }
-            if (alt < 0) break;
-            recip_i = alt;
-        }
-
-        // Build merged donor segment.
-        const int merge_lo = segs[static_cast<size_t>(donor_i)].lo;
-        const int merge_hi = segs[static_cast<size_t>(donor_i + 1)].hi;
-        const SegmentRange merged = make_seg_from_indices(xs, merge_lo, merge_hi, ulp);
-        if (merged.hi - merged.lo + 1 < min_points) break;
-
-        // Try splitting recipient with candidates; accept best combined merge+split move.
-        const auto recip = segs[static_cast<size_t>(recip_i)];
-        const int rlo = recip.lo;
-        const int rhi = recip.hi;
-        const int rlen = rhi - rlo + 1;
-        int best_mid = -1;
-        Objective best_move = best;
-        std::vector<SegmentRange> best_segs;
-
-        for (int c = 1; c <= split_candidates; ++c) {
-            const int mid = rlo + (rlen * c) / (split_candidates + 1);
-            if (mid - rlo + 1 < min_points) continue;
-            if (rhi - (mid + 1) + 1 < min_points) continue;
-
-            SegmentRange left = make_seg_from_indices(xs, rlo, mid, ulp);
-            SegmentRange right = make_seg_from_indices(xs, mid + 1, rhi, ulp);
-
-            // Build candidate seg list:
-            // - merge donor_i and donor_i+1 -> merged
-            // - split recip_i -> left,right
-            std::vector<SegmentRange> cand;
-            cand.reserve(segs.size());
-            for (int i = 0; i < static_cast<int>(segs.size()); ++i) {
-                if (i == donor_i) {
-                    cand.push_back(merged);
-                } else if (i == donor_i + 1) {
-                    continue;
-                } else if (i == recip_i) {
-                    cand.push_back(left);
-                    cand.push_back(right);
-                } else {
-                    cand.push_back(segs[static_cast<size_t>(i)]);
-                }
-            }
-            // Fix contiguous indices and refit only for those whose bounds changed by construction.
-            // (We already refit merged/left/right.)
-            for (size_t i = 0; i < cand.size(); ++i) {
-                if (i > 0) cand[i].lo = cand[i - 1].hi + 1;
-                if (i + 1 < cand.size()) cand[i].hi = cand[i + 1].lo - 1;
-            }
-            // Repair: ensure merged/left/right keep intended indices contiguously.
-            // (Since we splice, the lo/hi indices remain consistent in terms of the xs[] ordering.)
-
-            // Evaluate objective.
-            const Objective obj = compute_objective_active_log(cand);
-            if (better_objective(obj, best_move)) {
-                best_move = obj;
-                best_mid = mid;
-                best_segs = std::move(cand);
-            }
-        }
-
-        if (best_mid >= 0 && !best_segs.empty() && better_objective(best_move, best)) {
-            segs = std::move(best_segs);
-            best = best_move;
-            improved = true;
-        }
-
-        if (!improved) break;
-    }
 }
 
 static void iterative_balance_boundaries(std::vector<float>& xs,
@@ -617,6 +620,113 @@ static void iterative_balance_boundaries(std::vector<float>& xs,
     }
 }
 
+static void recycle_budget_minimax(std::vector<float>& xs,
+                                   std::vector<SegmentRange>& segs,
+                                   const ULP_Calculator& ulp,
+                                   int iters = 16,
+                                   int min_points = 8,
+                                   int split_candidates = 63,
+                                   int merge_max_ulp = 0) {
+    // Merge adjacent "easy" segments (ulp_max==0) to free one segment,
+    // then split the current worst segment to reduce global max ULP.
+    if (segs.size() < 3) return;
+
+    auto global_max = [&]() -> int64_t {
+        int64_t mx = 0;
+        for (const auto& s : segs) mx = std::max(mx, s.ulp_max);
+        return mx;
+    };
+
+    for (int it = 0; it < iters; ++it) {
+        const int64_t before = global_max();
+
+        // Find best merge candidate:
+        // adjacent pair where max(ulp_max) <= merge_max_ulp, preferring the widest span.
+        int merge_i = -1;
+        int best_span = -1;
+        for (int i = 0; i < static_cast<int>(segs.size()) - 1; ++i) {
+            const auto& a = segs[static_cast<size_t>(i)];
+            const auto& b = segs[static_cast<size_t>(i + 1)];
+            const int len_a = a.hi - a.lo + 1;
+            const int len_b = b.hi - b.lo + 1;
+            if (len_a < min_points || len_b < min_points) continue;
+            if (std::max(a.ulp_max, b.ulp_max) > merge_max_ulp) continue;
+            const int span = len_a + len_b;
+            if (span > best_span) { best_span = span; merge_i = i; }
+        }
+        if (merge_i < 0) break; // no budget to recycle
+
+        // Identify worst segment (exclude the merge pair).
+        int worst_i = -1;
+        int64_t worst = -1;
+        for (int i = 0; i < static_cast<int>(segs.size()); ++i) {
+            if (i == merge_i || i == merge_i + 1) continue;
+            const auto& s = segs[static_cast<size_t>(i)];
+            const int len = s.hi - s.lo + 1;
+            if (len < 2 * min_points) continue;
+            if (s.ulp_max > worst) { worst = s.ulp_max; worst_i = i; }
+        }
+        if (worst_i < 0) break;
+
+        // Create merged segment (this may increase ulp_max locally, but should free a segment).
+        const int mlo = segs[static_cast<size_t>(merge_i)].lo;
+        const int mhi = segs[static_cast<size_t>(merge_i + 1)].hi;
+        SegmentRange merged = make_seg_from_indices(xs, mlo, mhi, ulp);
+
+        // Split worst segment with candidate midpoints.
+        const auto w = segs[static_cast<size_t>(worst_i)];
+        const int wlo = w.lo;
+        const int whi = w.hi;
+        const int wlen = whi - wlo + 1;
+        int best_mid = -1;
+        int64_t best_new_global = before;
+        std::vector<SegmentRange> best_state;
+
+        for (int c = 1; c <= split_candidates; ++c) {
+            const int mid = wlo + (wlen * c) / (split_candidates + 1);
+            if (mid - wlo + 1 < min_points) continue;
+            if (whi - (mid + 1) + 1 < min_points) continue;
+
+            SegmentRange left = make_seg_from_indices(xs, wlo, mid, ulp);
+            SegmentRange right = make_seg_from_indices(xs, mid + 1, whi, ulp);
+
+            std::vector<SegmentRange> cand;
+            cand.reserve(segs.size());
+            for (int i = 0; i < static_cast<int>(segs.size()); ++i) {
+                if (i == merge_i) {
+                    cand.push_back(merged);
+                } else if (i == merge_i + 1) {
+                    continue;
+                } else if (i == worst_i) {
+                    cand.push_back(left);
+                    cand.push_back(right);
+                } else {
+                    cand.push_back(segs[static_cast<size_t>(i)]);
+                }
+            }
+
+            // Recompute global max for candidate.
+            int64_t mx = 0;
+            for (const auto& s : cand) mx = std::max(mx, s.ulp_max);
+            if (mx < best_new_global) {
+                best_new_global = mx;
+                best_mid = mid;
+                best_state = std::move(cand);
+            }
+        }
+
+        if (best_mid < 0 || best_new_global >= before) {
+            // no improvement; stop recycling
+            break;
+        }
+        segs = std::move(best_state);
+        // Keep order by x_lo
+        std::sort(segs.begin(), segs.end(), [&](const SegmentRange& a, const SegmentRange& b2) {
+            return a.m.x_lo < b2.m.x_lo;
+        });
+    }
+}
+
 static std::vector<SegmentRange> build_adaptive_segments_deg4_hw_from_xs(std::vector<float>& xs,
                                                                         const ULP_Calculator& ulp,
                                                                         int target_segments) {
@@ -638,11 +748,9 @@ static std::vector<SegmentRange> build_adaptive_segments_deg4_hw_from_xs(std::ve
     segs.push_back(make_seg(0, n - 1));
 
     // Segment placement optimization:
-    // Choose the split (segment + boundary) that minimizes the *global* worst-case ulp_max
-    // after refitting the two affected children segments.
-    //
-    // Important: bf16 has very sparse coverage in the far tails. If kMinPoints is too large,
-    // we cannot refine the negative tail at all. Keep this small.
+    // Always reach `target_segments` by using an objective that primarily minimizes global ulp_max,
+    // and uses a secondary uniformity tie-break (stddev of log1p(ulp_max) over ulp_max>0 segments).
+    // This reduces "wasted" segments in already-perfect regions once rounding-aware fitting is used.
     constexpr int kMinPoints = 8;
     constexpr int kCandidates = 31; // evaluate ~31 candidate split locations per candidate segment
     while (static_cast<int>(segs.size()) < target_segments) {
@@ -650,41 +758,38 @@ static std::vector<SegmentRange> build_adaptive_segments_deg4_hw_from_xs(std::ve
         int best_mid = -1;
         Objective best_obj{std::numeric_limits<int64_t>::max(), std::numeric_limits<double>::infinity(), 0};
 
-        // Consider splitting any segment; pick the split that minimizes the resulting global max.
+        // Consider splitting any segment; pick the split that improves the objective.
         for (int si = 0; si < static_cast<int>(segs.size()); ++si) {
             const int lo = segs[static_cast<size_t>(si)].lo;
             const int hi = segs[static_cast<size_t>(si)].hi;
             const int len = hi - lo + 1;
             if (len < 2 * kMinPoints) continue;
 
-            // Max among other segments (unchanged by this candidate).
+            // Compute "other segments" maxima and log-stddev data once per si.
             int64_t other_max = 0;
+            std::vector<double> other_logs;
+            other_logs.reserve(segs.size());
             for (int sj = 0; sj < static_cast<int>(segs.size()); ++sj) {
                 if (sj == si) continue;
-                other_max = std::max(other_max, segs[static_cast<size_t>(sj)].ulp_max);
+                const int64_t m = segs[static_cast<size_t>(sj)].ulp_max;
+                other_max = std::max(other_max, m);
+                if (m > 0) other_logs.push_back(std::log1p(static_cast<double>(m)));
             }
 
-            auto candidate_obj = [&](int64_t left_max, int64_t right_max) -> Objective {
+            auto obj_for = [&](int64_t left_max, int64_t right_max) -> Objective {
                 Objective o{};
                 o.max_ulp = std::max(other_max, std::max(left_max, right_max));
-                // stddev of log1p(ulp_max) over active segments (ulp_max>0)
-                std::vector<double> vals;
-                vals.reserve(segs.size() + 1);
-                for (int sj = 0; sj < static_cast<int>(segs.size()); ++sj) {
-                    if (sj == si) continue;
-                    const int64_t m = segs[static_cast<size_t>(sj)].ulp_max;
-                    if (m > 0) vals.push_back(std::log1p(static_cast<double>(m)));
-                }
-                if (left_max > 0) vals.push_back(std::log1p(static_cast<double>(left_max)));
-                if (right_max > 0) vals.push_back(std::log1p(static_cast<double>(right_max)));
-                o.active_n = vals.size();
-                if (vals.size() <= 1) { o.stddev_log = 0.0; return o; }
+                std::vector<double> v = other_logs;
+                if (left_max > 0) v.push_back(std::log1p(static_cast<double>(left_max)));
+                if (right_max > 0) v.push_back(std::log1p(static_cast<double>(right_max)));
+                o.active_n = v.size();
+                if (v.size() <= 1) { o.stddev_log = 0.0; return o; }
                 double mean = 0.0;
-                for (double v : vals) mean += v;
-                mean /= static_cast<double>(vals.size());
+                for (double x : v) mean += x;
+                mean /= static_cast<double>(v.size());
                 double var = 0.0;
-                for (double v : vals) { const double d = v - mean; var += d * d; }
-                var /= static_cast<double>(vals.size());
+                for (double x : v) { const double d = x - mean; var += d * d; }
+                var /= static_cast<double>(v.size());
                 o.stddev_log = std::sqrt(var);
                 return o;
             };
@@ -696,7 +801,7 @@ static std::vector<SegmentRange> build_adaptive_segments_deg4_hw_from_xs(std::ve
 
                 const SegmentRange left = make_seg(lo, mid);
                 const SegmentRange right = make_seg(mid + 1, hi);
-                const Objective obj = candidate_obj(left.ulp_max, right.ulp_max);
+                const Objective obj = obj_for(left.ulp_max, right.ulp_max);
                 if (better_objective(obj, best_obj)) {
                     best_obj = obj;
                     best_seg = si;
@@ -795,11 +900,12 @@ int main(int argc, char** argv) {
     std::sort(xs.begin(), xs.end());
     xs.erase(std::unique(xs.begin(), xs.end()), xs.end());
 
-    // Build segments: 32 segments, then iteratively nudge boundaries to equalize ulp_max.
+    // Build segments: 32 segments, then iteratively nudge boundaries (without increasing global max).
     const int target_segments = 32;
     auto seg_ranges = build_adaptive_segments_deg4_hw_from_xs(xs, ulp, target_segments);
-    // Reallocate segment budget: merge easy regions, split peak regions (often edges).
-    budget_reallocate_merge_split(xs, seg_ranges, ulp, /*iters=*/12, /*min_points=*/8, /*donor_max_ulp=*/1, /*split_candidates=*/63);
+    // Recycle budget away from ulp_max==0 regions to reduce global ulp_max.
+    // Allow merging of very-low-ULP neighbors (<=1) if it helps reduce the global max after re-splitting.
+    recycle_budget_minimax(xs, seg_ranges, ulp, /*iters=*/24, /*min_points=*/8, /*split_candidates=*/63, /*merge_max_ulp=*/1);
     iterative_balance_boundaries(xs, seg_ranges, ulp, /*max_iters=*/15, /*min_points=*/8);
     std::vector<SegmentModel> models;
     models.reserve(seg_ranges.size());

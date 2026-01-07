@@ -84,8 +84,9 @@ Notes:
 - Relative error is only defined when `ref != 0` (rows with `ref == 0` are counted separately).
 - The plot HTML uses Plotly via a CDN; if you need offline viewing, we can switch to embedding the JS bundle.
 - Segment placement is **optimized** (not fixed-width):
-  - greedy split placement to reduce global worst-case ULP while keeping `ulp_max` more uniform
-  - iterative boundary adjustments to smooth peaks without increasing global max ULP
+  - **bf16-rounding-aware coefficient fitting** is used in the HW-model piecewise tool so fitting targets bf16 output bins / ULP rather than fp32 value L2 error.
+  - greedy split placement to reduce global worst-case `ulp_max`
+  - iterative boundary adjustments to smooth peaks without increasing global max `ulp_max`
 
 #### Recommended workflow (table + plot)
 

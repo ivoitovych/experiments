@@ -100,9 +100,11 @@ It will:
      - absolute error mean/max
      - relative error mean/max (for `ref != 0`)
    - Uses the **HW model reference**: `ref_bf16 = bf16_RNE(float(gelu_ref_fp64(float(x_bf16))))`
-  - Segment placement is **optimized**, not fixed-width:
-    - greedy split placement to reduce global worst-case ULP while keeping segment `ulp_max` more uniform
-    - iterative boundary “nudging” pass to further smooth `ulp_max` peaks without increasing global max ULP
+  - Segment placement is **optimized**, not fixed-width, and targets the actual objective:
+    - **bf16-rounding-aware coefficient fitting** (projects predictions into the float interval that rounds to the target bf16) so we optimize bf16 output bins / ULP, not fp32 value L2 error
+    - greedy split placement to reduce global worst-case `ulp_max`
+    - iterative boundary “nudging” pass to smooth peaks (without increasing global max `ulp_max`)
+    - optional “budget recycling” (merge easy `ulp_max==0` areas to free budget for splitting hard regions)
   - Tip: to avoid terminal line-wrapping, write the table to a file:
 
 ```bash
