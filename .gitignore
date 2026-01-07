@@ -1,0 +1,22 @@
+# Keep this research branch source-only.
+# We generate lots of ad-hoc binaries/logs when iterating in WSL; don't commit them.
+
+# Ignore everything by default, then explicitly allow source/docs/scripts.
+*
+!*/
+!.gitignore
+!*.md
+!*.cpp
+!*.h
+!*.sh
+
+# Generated artifacts / logs
+run_logs/
+*.o
+*.obj
+*.out
+*.err
+*.log
+*.md5
+
+
