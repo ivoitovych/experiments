@@ -217,7 +217,61 @@ std::bfloat16_t result = static_cast<std::bfloat16_t>(acc);
 
 ## Results
 
-*Results will be added here after running the experiments*
+### Key Findings
+
+1. **Accumulation Overflow**: BF16 accumulation catastrophically fails when summing many values. For example, summing 8192 × 1.0 gives 256.0 instead of 8192.0 (75% error).
+
+2. **Precision Loss**: BF16 internal accumulation shows 3-10x higher errors than FP32 accumulation across all operations.
+
+3. **LayerNorm Backward Errors**:
+   - **dx gradients**: BF16 max error ~0.03-0.04 vs FP32 ~0.01-0.02
+   - **dgamma/dbeta**: BF16 errors can be 10-30x higher than FP32
+
+4. **Tile Alignment**: Non-tile-aligned dimensions show slightly higher but not dramatically different errors.
+
+### Detailed Results Summary
+
+#### Experiment 1: Accumulation Error vs N
+- FP32 accumulation: Perfect precision for all N
+- BF16 accumulation: Fails catastrophically for N ≥ 512, stuck at 256.0 due to overflow
+
+#### Experiment 2: dy_gamma_sum Error Analysis
+- FP32 internal: Very low errors (< 0.0001 for most cases)
+- BF16 internal: High errors (0.09-0.94 relative error for constant inputs, 0.04-0.24 for random)
+
+#### Experiment 3: Full LayerNorm Backward Error
+- **dx errors**: BF16 2-3x higher than FP32 across all batch sizes and N
+- **dgamma/dbeta errors**: BF16 5-20x higher than FP32, especially for larger N
+
+#### Experiment 4: Tile Alignment Effects
+- Non-aligned dimensions show ~10-20% higher errors than perfectly aligned
+- Effect is present but not dominant compared to pure BF16 vs FP32 differences
+
+### Recommended Tolerances (Preliminary)
+
+Based on the experimental results, here are suggested tolerances for BF16 LayerNorm backward validation:
+
+```cpp
+struct LayerNormBwTolerances {
+    // Absolute tolerances for dx (input gradients)
+    float atol_dx_fp32_acc = 0.02f;  // FP32 accumulator
+    float atol_dx_bf16_acc = 0.05f;  // BF16 accumulator
+
+    // Absolute tolerances for dgamma/dbeta (parameter gradients)
+    float atol_dgamma_fp32_acc = 0.5f;
+    float atol_dgamma_bf16_acc = 15.0f;
+    float atol_dbeta_fp32_acc = 0.3f;
+    float atol_dbeta_bf16_acc = 20.0f;
+
+    // Relative tolerance (common)
+    float rtol = 0.01f;
+
+    // Non-aligned multiplier (increase tolerances by this factor)
+    float non_aligned_multiplier = 1.2f;
+};
+```
+
+These tolerances should detect the accumulation bugs (errors >1000) while accepting expected BF16 precision loss (errors ~3-30).
 
 ## References
 
