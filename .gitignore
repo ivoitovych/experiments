@@ -1,0 +1,5 @@
+# Build outputs (research)
+bf16-precision-research/bf16_sim
+bf16-precision-research/bf16_sim.exe
+bf16-precision-research/*.o
+
