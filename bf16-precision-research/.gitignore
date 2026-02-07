@@ -1,0 +1,5 @@
+bf16_sim
+hello
+test_bf16
+*.o
+*.obj

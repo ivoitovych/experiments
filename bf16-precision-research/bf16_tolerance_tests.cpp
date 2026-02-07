@@ -159,70 +159,74 @@ void experiment_3_full_layernorm_error() {
         for (size_t batch : batch_sizes) {
             // We'll simulate multiple samples for statistical significance
             const size_t num_samples = 10;
-            std::vector<f64> fp32_dx_errors, bf16_dx_errors;
-            std::vector<f64> fp32_dgamma_errors, bf16_dgamma_errors;
-            std::vector<f64> fp32_dbeta_errors, bf16_dbeta_errors;
+            std::vector<f64> fp32_dx_max_errors, bf16_dx_max_errors;
+            std::vector<f64> fp32_dgamma_max_errors, bf16_dgamma_max_errors;
+            std::vector<f64> fp32_dbeta_max_errors, bf16_dbeta_max_errors;
+
+            std::vector<f64> fp32_dx_mean_errors, bf16_dx_mean_errors;
+            std::vector<f64> fp32_dgamma_mean_errors, bf16_dgamma_mean_errors;
+            std::vector<f64> fp32_dbeta_mean_errors, bf16_dbeta_mean_errors;
 
             for (size_t sample = 0; sample < num_samples; ++sample) {
                 // Generate random inputs
-                auto inputs = generate_random_layernorm_inputs(N, rng);
+                auto inputs = generate_random_layernorm_inputs(batch, N, rng);
 
-                // Convert inputs to fp32 for reference
-                auto x_f32 = bf16_to_fp32(inputs.x);
-                auto dy_f32 = bf16_to_fp32(inputs.dy);
-                auto gamma_f32 = bf16_to_fp32(inputs.gamma);
-                auto beta_f32 = bf16_to_fp32(inputs.beta);
-                f32 mean_f32 = static_cast<f32>(inputs.mean);
-                f32 rstd_f32 = static_cast<f32>(inputs.rstd);
+                // Compute reference (full fp32) and bf16 variants
+                auto ref_result = layernorm_bw_fp32(inputs);
+                auto fp32_acc_result = layernorm_bw_bf16_fp32(inputs);
+                auto bf16_acc_result = layernorm_bw_bf16_bf16(inputs);
 
-                // Compute reference (full fp32)
-                auto ref_result = layernorm_bw_fp32(x_f32, dy_f32, gamma_f32, beta_f32, mean_f32, rstd_f32);
-
-                // Compute bf16 versions
-                auto fp32_acc_result = layernorm_bw_bf16_fp32(inputs.x, inputs.dy, inputs.gamma, inputs.beta, inputs.mean, inputs.rstd);
-                auto bf16_acc_result = layernorm_bw_bf16_bf16(inputs.x, inputs.dy, inputs.gamma, inputs.beta, inputs.mean, inputs.rstd);
-
-                // Convert results to f32 for comparison
+                // Convert bf16 outputs to f32 for comparison
                 auto fp32_acc_f32 = bf16_result_to_f32(fp32_acc_result);
                 auto bf16_acc_f32 = bf16_result_to_f32(bf16_acc_result);
 
-                // Compute errors for dx
+                // dx errors
                 auto dx_errors_fp32 = compute_error_stats(fp32_acc_f32.dx, ref_result.dx);
                 auto dx_errors_bf16 = compute_error_stats(bf16_acc_f32.dx, ref_result.dx);
+                fp32_dx_max_errors.push_back(dx_errors_fp32.max_abs_error);
+                bf16_dx_max_errors.push_back(dx_errors_bf16.max_abs_error);
+                fp32_dx_mean_errors.push_back(dx_errors_fp32.mean_abs_error);
+                bf16_dx_mean_errors.push_back(dx_errors_bf16.mean_abs_error);
 
-                fp32_dx_errors.push_back(dx_errors_fp32.max_abs_error);
-                bf16_dx_errors.push_back(dx_errors_bf16.max_abs_error);
+                // dgamma errors (vector)
+                auto dgamma_errors_fp32 = compute_error_stats(fp32_acc_f32.dgamma, ref_result.dgamma);
+                auto dgamma_errors_bf16 = compute_error_stats(bf16_acc_f32.dgamma, ref_result.dgamma);
+                fp32_dgamma_max_errors.push_back(dgamma_errors_fp32.max_abs_error);
+                bf16_dgamma_max_errors.push_back(dgamma_errors_bf16.max_abs_error);
+                fp32_dgamma_mean_errors.push_back(dgamma_errors_fp32.mean_abs_error);
+                bf16_dgamma_mean_errors.push_back(dgamma_errors_bf16.mean_abs_error);
 
-                // Compute errors for dgamma (single values)
-                f64 dgamma_err_fp32 = std::abs(fp32_acc_f32.dgamma - ref_result.dgamma);
-                f64 dgamma_err_bf16 = std::abs(bf16_acc_f32.dgamma - ref_result.dgamma);
-
-                fp32_dgamma_errors.push_back(dgamma_err_fp32);
-                bf16_dgamma_errors.push_back(dgamma_err_bf16);
-
-                // Compute errors for dbeta (single values)
-                f64 dbeta_err_fp32 = std::abs(fp32_acc_f32.dbeta - ref_result.dbeta);
-                f64 dbeta_err_bf16 = std::abs(bf16_acc_f32.dbeta - ref_result.dbeta);
-
-                fp32_dbeta_errors.push_back(dbeta_err_fp32);
-                bf16_dbeta_errors.push_back(dbeta_err_bf16);
+                // dbeta errors (vector)
+                auto dbeta_errors_fp32 = compute_error_stats(fp32_acc_f32.dbeta, ref_result.dbeta);
+                auto dbeta_errors_bf16 = compute_error_stats(bf16_acc_f32.dbeta, ref_result.dbeta);
+                fp32_dbeta_max_errors.push_back(dbeta_errors_fp32.max_abs_error);
+                bf16_dbeta_max_errors.push_back(dbeta_errors_bf16.max_abs_error);
+                fp32_dbeta_mean_errors.push_back(dbeta_errors_fp32.mean_abs_error);
+                bf16_dbeta_mean_errors.push_back(dbeta_errors_bf16.mean_abs_error);
             }
 
-            // Compute statistics across samples
-            auto compute_stats = [](const std::vector<f64>& errors) {
-                f64 max_err = *std::max_element(errors.begin(), errors.end());
-                f64 mean_err = 0.0;
-                for (auto e : errors) mean_err += e;
-                mean_err /= errors.size();
-                return std::make_pair(max_err, mean_err);
+            auto compute_stats = [](const std::vector<f64>& xs) {
+                f64 max_v = *std::max_element(xs.begin(), xs.end());
+                f64 mean_v = 0.0;
+                for (auto v : xs) mean_v += v;
+                mean_v /= xs.size();
+                return std::make_pair(max_v, mean_v);
             };
 
-            auto [fp32_dx_max, fp32_dx_mean] = compute_stats(fp32_dx_errors);
-            auto [bf16_dx_max, bf16_dx_mean] = compute_stats(bf16_dx_errors);
-            auto [fp32_dgamma_max, fp32_dgamma_mean] = compute_stats(fp32_dgamma_errors);
-            auto [bf16_dgamma_max, bf16_dgamma_mean] = compute_stats(bf16_dgamma_errors);
-            auto [fp32_dbeta_max, fp32_dbeta_mean] = compute_stats(fp32_dbeta_errors);
-            auto [bf16_dbeta_max, bf16_dbeta_mean] = compute_stats(bf16_dbeta_errors);
+            auto [fp32_dx_max, fp32_dx_max_mean] = compute_stats(fp32_dx_max_errors);
+            auto [bf16_dx_max, bf16_dx_max_mean] = compute_stats(bf16_dx_max_errors);
+            auto [fp32_dx_mean_max, fp32_dx_mean_mean] = compute_stats(fp32_dx_mean_errors);
+            auto [bf16_dx_mean_max, bf16_dx_mean_mean] = compute_stats(bf16_dx_mean_errors);
+
+            auto [fp32_dgamma_max, fp32_dgamma_max_mean] = compute_stats(fp32_dgamma_max_errors);
+            auto [bf16_dgamma_max, bf16_dgamma_max_mean] = compute_stats(bf16_dgamma_max_errors);
+            auto [fp32_dgamma_mean_max, fp32_dgamma_mean_mean] = compute_stats(fp32_dgamma_mean_errors);
+            auto [bf16_dgamma_mean_max, bf16_dgamma_mean_mean] = compute_stats(bf16_dgamma_mean_errors);
+
+            auto [fp32_dbeta_max, fp32_dbeta_max_mean] = compute_stats(fp32_dbeta_max_errors);
+            auto [bf16_dbeta_max, bf16_dbeta_max_mean] = compute_stats(bf16_dbeta_max_errors);
+            auto [fp32_dbeta_mean_max, fp32_dbeta_mean_mean] = compute_stats(fp32_dbeta_mean_errors);
+            auto [bf16_dbeta_mean_max, bf16_dbeta_mean_mean] = compute_stats(bf16_dbeta_mean_errors);
 
             // Print results for dx
             std::cout << std::fixed << std::setprecision(6)
@@ -231,8 +235,8 @@ void experiment_3_full_layernorm_error() {
                       << std::setw(12) << "dx"
                       << std::setw(15) << fp32_dx_max
                       << std::setw(15) << bf16_dx_max
-                      << std::setw(15) << fp32_dx_mean
-                      << std::setw(15) << bf16_dx_mean
+                      << std::setw(15) << fp32_dx_mean_mean
+                      << std::setw(15) << bf16_dx_mean_mean
                       << "\n";
 
             // Print results for dgamma
@@ -242,8 +246,8 @@ void experiment_3_full_layernorm_error() {
                       << std::setw(12) << "dgamma"
                       << std::setw(15) << fp32_dgamma_max
                       << std::setw(15) << bf16_dgamma_max
-                      << std::setw(15) << fp32_dgamma_mean
-                      << std::setw(15) << bf16_dgamma_mean
+                      << std::setw(15) << fp32_dgamma_mean_mean
+                      << std::setw(15) << bf16_dgamma_mean_mean
                       << "\n";
 
             // Print results for dbeta
@@ -253,8 +257,8 @@ void experiment_3_full_layernorm_error() {
                       << std::setw(12) << "dbeta"
                       << std::setw(15) << fp32_dbeta_max
                       << std::setw(15) << bf16_dbeta_max
-                      << std::setw(15) << fp32_dbeta_mean
-                      << std::setw(15) << bf16_dbeta_mean
+                      << std::setw(15) << fp32_dbeta_mean_mean
+                      << std::setw(15) << bf16_dbeta_mean_mean
                       << "\n";
         }
     }
@@ -291,33 +295,20 @@ void experiment_4_tile_alignment() {
 
         // Run multiple samples for statistical significance
         const size_t num_samples = 20;
-        std::vector<f64> fp32_errors, bf16_errors;
+        std::vector<f64> bf16_errors;
 
         for (size_t sample = 0; sample < num_samples; ++sample) {
             // Generate random LayerNorm inputs
-            auto inputs = generate_random_layernorm_inputs(N, rng);
+            // Use a small batch; alignment effects should show up per-row.
+            const size_t batch = 10;
+            auto inputs = generate_random_layernorm_inputs(batch, N, rng);
 
-            // Convert to fp32 for reference
-            auto x_f32 = bf16_to_fp32(inputs.x);
-            auto dy_f32 = bf16_to_fp32(inputs.dy);
-            auto gamma_f32 = bf16_to_fp32(inputs.gamma);
-            auto beta_f32 = bf16_to_fp32(inputs.beta);
-            f32 mean_f32 = static_cast<f32>(inputs.mean);
-            f32 rstd_f32 = static_cast<f32>(inputs.rstd);
-
-            // Reference result
-            auto ref_result = layernorm_bw_fp32(x_f32, dy_f32, gamma_f32, beta_f32, mean_f32, rstd_f32);
-
-            // BF16 results
-            auto bf16_acc_result = layernorm_bw_bf16_bf16(inputs.x, inputs.dy, inputs.gamma, inputs.beta, inputs.mean, inputs.rstd);
+            auto ref_result = layernorm_bw_fp32(inputs);
+            auto bf16_acc_result = layernorm_bw_bf16_bf16(inputs);
             auto bf16_acc_f32 = bf16_result_to_f32(bf16_acc_result);
 
-            // Compute max error across dx
-            f64 max_error = 0.0;
-            for (size_t i = 0; i < ref_result.dx.size(); ++i) {
-                f64 err = std::abs(bf16_acc_f32.dx[i] - ref_result.dx[i]);
-                max_error = std::max(max_error, err);
-            }
+            const auto dx_errors_bf16 = compute_error_stats(bf16_acc_f32.dx, ref_result.dx);
+            f64 max_error = dx_errors_bf16.max_abs_error;
 
             bf16_errors.push_back(max_error);
         }

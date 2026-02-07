@@ -219,13 +219,13 @@ std::bfloat16_t result = static_cast<std::bfloat16_t>(acc);
 
 ### Key Findings
 
-1. **Accumulation Overflow**: BF16 accumulation catastrophically fails when summing many values. For example, summing 8192 × 1.0 gives 256.0 instead of 8192.0 (75% error).
+1. **Accumulation precision saturation**: pure BF16 accumulation can “stall” once the running sum gets large enough that the BF16 ULP exceeds 1.0. For example, when summing \(8192 \times 1.0\), the accumulator reaches 256 and further `+1.0` additions no longer change the BF16 value (ULP ≈ 2 at 256), so the result stays 256 instead of 8192.
 
 2. **Precision Loss**: BF16 internal accumulation shows 3-10x higher errors than FP32 accumulation across all operations.
 
 3. **LayerNorm Backward Errors**:
-   - **dx gradients**: BF16 max error ~0.03-0.04 vs FP32 ~0.01-0.02
-   - **dgamma/dbeta**: BF16 errors can be 10-30x higher than FP32
+   - **dx gradients**: BF16 max abs error is typically in the ~0.02–0.04 range; FP32-internal is typically ~0.01–0.016 in these runs.
+   - **dgamma/dbeta**: BF16 errors grow with batch size; in these runs, BF16 max abs error reaches ~1.3 for `dgamma` and ~1.0 for `dbeta`, while FP32-internal reaches ~0.125.
 
 4. **Tile Alignment**: Non-tile-aligned dimensions show slightly higher but not dramatically different errors.
 
@@ -233,7 +233,7 @@ std::bfloat16_t result = static_cast<std::bfloat16_t>(acc);
 
 #### Experiment 1: Accumulation Error vs N
 - FP32 accumulation: Perfect precision for all N
-- BF16 accumulation: Fails catastrophically for N ≥ 512, stuck at 256.0 due to overflow
+- BF16 accumulation: Fails catastrophically for N ≥ 512, stuck at 256.0 due to BF16 precision saturation (not exponent overflow)
 
 #### Experiment 2: dy_gamma_sum Error Analysis
 - FP32 internal: Very low errors (< 0.0001 for most cases)
@@ -258,10 +258,10 @@ struct LayerNormBwTolerances {
     float atol_dx_bf16_acc = 0.05f;  // BF16 accumulator
 
     // Absolute tolerances for dgamma/dbeta (parameter gradients)
-    float atol_dgamma_fp32_acc = 0.5f;
-    float atol_dgamma_bf16_acc = 15.0f;
-    float atol_dbeta_fp32_acc = 0.3f;
-    float atol_dbeta_bf16_acc = 20.0f;
+    float atol_dgamma_fp32_acc = 0.15f;
+    float atol_dgamma_bf16_acc = 1.5f;
+    float atol_dbeta_fp32_acc = 0.15f;
+    float atol_dbeta_bf16_acc = 1.2f;
 
     // Relative tolerance (common)
     float rtol = 0.01f;
