@@ -16,6 +16,13 @@
 
 **Шаблон проєкту:** Базується на структурі [may-2024-drf](https://github.com/OktenSchool/may-2024-drf) — Django 5.x + DRF, MySQL через Docker, `configs/` як пакет налаштувань, API-only архітектура (без admin, sessions, CSRF).
 
+**Вимоги до здачі (контрольна):**
+- Фінальний код має бути в **ОКРЕМОМУ репозиторії** на головній гілці (**main/master**)
+- Cloud база даних (не лише локальний Docker)
+- README з інструкцією запуску та credentials
+- Postman колекція з заповненими запитами, послідовно згідно flow додатку
+- Один пуш — без повторних пушів після здачі
+
 ---
 
 ## 2. Дизайн-рішення (Design Decisions)
@@ -478,7 +485,7 @@ autoria-clone/
 │
 ├── core/                           # Спільні утиліти
 │   ├── __init__.py
-│   ├── pagination.py              # Стандартна пагінація
+│   ├── pagination.py              # PageNumberPagination (стандарт); CursorPagination для high-load
 │   ├── permissions.py             # Базові permission mixins
 │   └── middleware.py              # Кастомний middleware (якщо потрібно)
 │
@@ -528,7 +535,7 @@ autoria-clone/
 | GET | `/api/users/{id}/` | Профіль користувача | Менеджер/Адмін |
 | PATCH | `/api/users/{id}/ban/` | Заблокувати юзера | Менеджер/Адмін |
 | PATCH | `/api/users/{id}/unban/` | Розблокувати юзера | Менеджер/Адмін |
-| POST | `/api/users/upgrade-premium/` | Купити преміум | Продавець |
+| POST | `/api/users/upgrade-premium/` | Купити преміум (тільки для ролі seller) | Продавець |
 
 ### 6.3. Ролі та пермішини (`/api/roles/`) — тільки Admin
 
@@ -608,9 +615,10 @@ autoria-clone/
     │   └── Знайдено -> status = "needs_edit" -> edit_attempts = 0
     │
     ├── Конвертація валюти:
-    │   ├── Отримати поточний курс з CurrencyRate
+    │   ├── Отримати поточний курс з CurrencyRate (останній запис)
     │   ├── Розрахувати price_usd, price_eur, price_uah
-    │   └── Зберегти exchange_rate_id та original_price, original_currency
+    │   └── Зберегти rate_usd_uah, rate_eur_uah, rate_date (inline курси)
+    │       та original_price, original_currency
     │
     └── Зберегти оголошення
 ```
@@ -644,10 +652,12 @@ Celery Beat (раз на добу, о 10:00 UTC)
     │
     ├── Парсинг відповіді (USD, EUR до UAH)
     │
-    ├── Збереження нового CurrencyRate
+    ├── Збереження нових записів CurrencyRate (USD, EUR)
     │
-    └── Оновлення цін у всіх активних оголошеннях
-        (перерахунок price_usd, price_eur, price_uah)
+    └── Оновлення цін у всіх активних оголошеннях:
+        ├── Перерахунок price_usd, price_eur, price_uah
+        │   (на основі original_price + original_currency + нові курси)
+        └── Оновлення inline курсів: rate_usd_uah, rate_eur_uah, rate_date
 ```
 
 ### 7.4. Перегляд оголошення (лічильник)
@@ -896,7 +906,7 @@ EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
 ### Етап 2: Ролі та автентифікація
 1. Створення app `roles` — моделі `Permission`, `Role`
 2. Створення app `users` — кастомна модель `User` (AbstractBaseUser)
-3. Створення app `auth` — реєстрація, логін, JWT
+3. Створення app `authentication` — реєстрація, логін, JWT
 4. Seed-дані для ролей та пермішинів (fixtures)
 5. Кастомні DRF permission classes
 6. Endpoint для створення менеджера (тільки Admin)
@@ -934,21 +944,36 @@ EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
 2. Базові endpoints (CRUD)
 3. Зв'язок з системою ролей
 
-### Етап 8: Контейнеризація та документація
+### Етап 8: Тестування
+1. Unit-тести для profanity filter, currency conversion, listing limits
+2. Integration-тести для auth flow, listing CRUD, manager actions
+3. Перевірка Basic vs Premium обмежень
+4. Тест profanity → 3 спроби → inactive → email flow
+
+### Етап 9: Контейнеризація та документація
 1. Написання `Dockerfile`
 2. Оновлення `docker-compose.yml` (app + celery + beat)
 3. Тестування повного запуску через Docker Compose
-4. Написання `README.md` з інструкціями запуску
-5. Створення Postman колекції з усіма endpoints
+4. Написання `README.md` з інструкціями запуску та credentials
+5. Створення Postman колекції з усіма endpoints (послідовно згідно flow — розділ 18)
 6. Заповнення Postman колекції мок-даними (credentials, приклади запитів)
 
-### Етап 9: Фінальна перевірка
-1. Клонувати проєкт з нуля і перевірити запуск
-2. Пройти всі flow через Postman
+### Етап 10: Cloud DB та фінальна підготовка
+1. Налаштувати cloud PostgreSQL (Neon/Supabase)
+2. Оновити `.env` для cloud DB credentials
+3. Перевірити міграції та seed-дані на cloud DB
+4. Створити ОКРЕМИЙ репозиторій для фінальної здачі (вимога контрольної)
+5. Перенести код на головну гілку (main/master) фінального репо
+
+### Етап 11: Фінальна перевірка
+1. Клонувати проєкт з фінального репо з нуля і перевірити запуск
+2. Пройти всі flow через Postman (38 кроків з розділу 18)
 3. Перевірити всі ролі та пермішини
 4. Перевірити конвертацію валют
 5. Перевірити фільтр нецензурної лексики
 6. Перевірити статистику (Premium)
+7. Перевірити що cloud DB працює
+8. Перевірити Docker Compose повний запуск
 
 ---
 
@@ -989,13 +1014,18 @@ AutoRia Clone/
 │
 ├── Listings/
 │   ├── List All Listings (with filters)
-│   ├── Get Listing Details
-│   ├── Create Listing (Seller)
-│   ├── Edit Listing (Author)
-│   ├── Delete Listing (Author/Manager/Admin)
+│   ├── Get Listing Details (+ контакти продавця)
+│   ├── Create Listing (Seller - clean)
+│   ├── Create Listing (Seller - Basic 2nd attempt → 403)
+│   ├── Create Listing with Profanity (test needs_edit)
+│   ├── Edit Listing #1 (still profanity)
+│   ├── Edit Listing #2 (still profanity)
+│   ├── Edit Listing #3 (→ inactive + email)
 │   ├── My Listings (Seller)
+│   ├── Pending Listings (Manager/Admin)
+│   ├── Activate Listing (Manager/Admin)
 │   ├── Deactivate Listing (Manager/Admin)
-│   └── Create Listing with Profanity (test 3 attempts flow)
+│   └── Delete Listing (Author/Manager/Admin)
 │
 ├── Statistics (Premium)/
 │   ├── Get Listing Statistics
