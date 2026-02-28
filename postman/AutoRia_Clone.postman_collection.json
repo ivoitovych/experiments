@@ -1,0 +1,787 @@
+{
+  "info": {
+    "name": "AutoRia Clone",
+    "description": "AutoRia Clone API — 40-step sequential flow",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000"
+    },
+    {
+      "key": "admin_token",
+      "value": ""
+    },
+    {
+      "key": "seller_token",
+      "value": ""
+    },
+    {
+      "key": "buyer_token",
+      "value": ""
+    },
+    {
+      "key": "manager_token",
+      "value": ""
+    },
+    {
+      "key": "refresh_token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "01. [Anonymous] List Listings",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/listings/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "listings", ""]
+        }
+      }
+    },
+    {
+      "name": "02. [Anonymous] List Car Brands",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/cars/brands",
+          "host": ["{{base_url}}"],
+          "path": ["api", "cars", "brands"]
+        }
+      }
+    },
+    {
+      "name": "03. [Admin] Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var jsonData = pm.response.json();",
+              "pm.collectionVariables.set('admin_token', jsonData.tokens.access);",
+              "pm.collectionVariables.set('refresh_token', jsonData.tokens.refresh);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@autoria.ua\",\n  \"password\": \"Admin123!\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/auth/login",
+          "host": ["{{base_url}}"],
+          "path": ["api", "auth", "login"]
+        }
+      }
+    },
+    {
+      "name": "04. [Admin] List Roles",
+      "request": {
+        "method": "GET",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{admin_token}}"}
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/roles/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "roles", ""]
+        }
+      }
+    },
+    {
+      "name": "05. [Admin] List Permissions",
+      "request": {
+        "method": "GET",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{admin_token}}"}
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/roles/permissions",
+          "host": ["{{base_url}}"],
+          "path": ["api", "roles", "permissions"]
+        }
+      }
+    },
+    {
+      "name": "06. [Admin] Create Manager",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{admin_token}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"manager@autoria.ua\",\n  \"password\": \"Manager123!\",\n  \"first_name\": \"Manager\",\n  \"last_name\": \"AutoRia\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/users/create-manager",
+          "host": ["{{base_url}}"],
+          "path": ["api", "users", "create-manager"]
+        }
+      }
+    },
+    {
+      "name": "07. Register Seller",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var jsonData = pm.response.json();",
+              "pm.collectionVariables.set('seller_token', jsonData.tokens.access);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"seller@autoria.ua\",\n  \"password\": \"Seller123!\",\n  \"first_name\": \"Seller\",\n  \"last_name\": \"Test\",\n  \"phone\": \"+380991234567\",\n  \"role_name\": \"seller\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/auth/register",
+          "host": ["{{base_url}}"],
+          "path": ["api", "auth", "register"]
+        }
+      }
+    },
+    {
+      "name": "08. Register Buyer",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var jsonData = pm.response.json();",
+              "pm.collectionVariables.set('buyer_token', jsonData.tokens.access);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"buyer@autoria.ua\",\n  \"password\": \"Buyer123!\",\n  \"first_name\": \"Buyer\",\n  \"last_name\": \"Test\",\n  \"role_name\": \"buyer\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/auth/register",
+          "host": ["{{base_url}}"],
+          "path": ["api", "auth", "register"]
+        }
+      }
+    },
+    {
+      "name": "09. [Seller] Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var jsonData = pm.response.json();",
+              "pm.collectionVariables.set('seller_token', jsonData.tokens.access);",
+              "pm.collectionVariables.set('refresh_token', jsonData.tokens.refresh);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"seller@autoria.ua\",\n  \"password\": \"Seller123!\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/auth/login",
+          "host": ["{{base_url}}"],
+          "path": ["api", "auth", "login"]
+        }
+      }
+    },
+    {
+      "name": "10. [Seller] List Car Brands",
+      "request": {
+        "method": "GET",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{seller_token}}"}
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/cars/brands",
+          "host": ["{{base_url}}"],
+          "path": ["api", "cars", "brands"]
+        }
+      }
+    },
+    {
+      "name": "11. [Seller] List BMW Models",
+      "request": {
+        "method": "GET",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{seller_token}}"}
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/cars/brands/1/models",
+          "host": ["{{base_url}}"],
+          "path": ["api", "cars", "brands", "1", "models"]
+        }
+      }
+    },
+    {
+      "name": "12. [Seller] Request New Brand",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{seller_token}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"brand_name\": \"Tesla\",\n  \"model_name\": \"Model 3\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/cars/brand-requests",
+          "host": ["{{base_url}}"],
+          "path": ["api", "cars", "brand-requests"]
+        }
+      }
+    },
+    {
+      "name": "13. [Admin] Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var jsonData = pm.response.json();",
+              "pm.collectionVariables.set('admin_token', jsonData.tokens.access);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@autoria.ua\",\n  \"password\": \"Admin123!\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/auth/login",
+          "host": ["{{base_url}}"],
+          "path": ["api", "auth", "login"]
+        }
+      }
+    },
+    {
+      "name": "14. [Admin] List Brand Requests",
+      "request": {
+        "method": "GET",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{admin_token}}"}
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/cars/brand-requests",
+          "host": ["{{base_url}}"],
+          "path": ["api", "cars", "brand-requests"]
+        }
+      }
+    },
+    {
+      "name": "15. [Admin] Approve Brand Request",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{admin_token}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"approved\",\n  \"admin_comment\": \"Brand approved\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/cars/brand-requests/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "cars", "brand-requests", "1"]
+        }
+      }
+    },
+    {
+      "name": "16. [Seller] Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var jsonData = pm.response.json();",
+              "pm.collectionVariables.set('seller_token', jsonData.tokens.access);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"seller@autoria.ua\",\n  \"password\": \"Seller123!\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/auth/login",
+          "host": ["{{base_url}}"],
+          "path": ["api", "auth", "login"]
+        }
+      }
+    },
+    {
+      "name": "17. [Seller] Create Listing (clean)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{seller_token}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"car_brand\": 1,\n  \"car_model\": 1,\n  \"year\": 2021,\n  \"description\": \"BMW 3 Series in excellent condition. Low mileage, full service history.\",\n  \"original_price\": 25000,\n  \"original_currency\": \"USD\",\n  \"region\": 1,\n  \"city\": \"Kyiv\",\n  \"mileage\": 35000,\n  \"engine_type\": \"gasoline\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/listings/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "listings", ""]
+        }
+      }
+    },
+    {
+      "name": "18. [Anonymous] List Listings",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/listings/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "listings", ""]
+        }
+      }
+    },
+    {
+      "name": "19. [Anonymous] Get Listing Details",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/listings/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "listings", "1"]
+        }
+      }
+    },
+    {
+      "name": "20. [Seller] Create 2nd Listing (Basic -> 403)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{seller_token}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"car_brand\": 2,\n  \"car_model\": 7,\n  \"year\": 2020,\n  \"description\": \"Mercedes E-Class, diesel, automatic.\",\n  \"original_price\": 35000,\n  \"original_currency\": \"EUR\",\n  \"region\": 2,\n  \"city\": \"Lviv\",\n  \"mileage\": 50000,\n  \"engine_type\": \"diesel\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/listings/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "listings", ""]
+        }
+      }
+    },
+    {
+      "name": "21. [Seller] Upgrade to Premium",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{seller_token}}"}
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/users/upgrade-premium",
+          "host": ["{{base_url}}"],
+          "path": ["api", "users", "upgrade-premium"]
+        }
+      }
+    },
+    {
+      "name": "22. [Seller Premium] Create 2nd Listing (OK)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{seller_token}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"car_brand\": 2,\n  \"car_model\": 7,\n  \"year\": 2020,\n  \"description\": \"Mercedes E-Class, diesel, automatic, leather interior.\",\n  \"original_price\": 35000,\n  \"original_currency\": \"EUR\",\n  \"region\": 2,\n  \"city\": \"Lviv\",\n  \"mileage\": 50000,\n  \"engine_type\": \"diesel\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/listings/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "listings", ""]
+        }
+      }
+    },
+    {
+      "name": "23. [Seller] Create Listing with Profanity",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{seller_token}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"car_brand\": 3,\n  \"car_model\": 11,\n  \"year\": 2019,\n  \"description\": \"Audi A4, блять яка крута тачка, повний фарш\",\n  \"original_price\": 20000,\n  \"original_currency\": \"USD\",\n  \"region\": 3,\n  \"city\": \"Dnipro\",\n  \"mileage\": 60000,\n  \"engine_type\": \"gasoline\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/listings/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "listings", ""]
+        }
+      }
+    },
+    {
+      "name": "24. [Seller] Edit Listing #1 (still profanity)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{seller_token}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"description\": \"Audi A4, сука яка тачка, повний фарш\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/listings/3",
+          "host": ["{{base_url}}"],
+          "path": ["api", "listings", "3"]
+        }
+      }
+    },
+    {
+      "name": "25. [Seller] Edit Listing #2 (still profanity)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{seller_token}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"description\": \"Audi A4, хуйня яка тачка, треба брати\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/listings/3",
+          "host": ["{{base_url}}"],
+          "path": ["api", "listings", "3"]
+        }
+      }
+    },
+    {
+      "name": "26. [Seller] Edit Listing #3 -> inactive + email",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{seller_token}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"description\": \"Audi A4, блять ну скільки можна\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/listings/3",
+          "host": ["{{base_url}}"],
+          "path": ["api", "listings", "3"]
+        }
+      }
+    },
+    {
+      "name": "27. [Seller Premium] Get Listing Statistics",
+      "request": {
+        "method": "GET",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{seller_token}}"}
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/statistics/listings/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "statistics", "listings", "1"]
+        }
+      }
+    },
+    {
+      "name": "28. [Seller Premium] Get Listing Views",
+      "request": {
+        "method": "GET",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{seller_token}}"}
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/statistics/listings/1/views",
+          "host": ["{{base_url}}"],
+          "path": ["api", "statistics", "listings", "1", "views"]
+        }
+      }
+    },
+    {
+      "name": "29. [Seller Premium] Get Average Prices",
+      "request": {
+        "method": "GET",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{seller_token}}"}
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/statistics/listings/1/avg-price",
+          "host": ["{{base_url}}"],
+          "path": ["api", "statistics", "listings", "1", "avg-price"]
+        }
+      }
+    },
+    {
+      "name": "30. [Buyer] Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var jsonData = pm.response.json();",
+              "pm.collectionVariables.set('buyer_token', jsonData.tokens.access);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"buyer@autoria.ua\",\n  \"password\": \"Buyer123!\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/auth/login",
+          "host": ["{{base_url}}"],
+          "path": ["api", "auth", "login"]
+        }
+      }
+    },
+    {
+      "name": "31. [Buyer] Try Statistics -> 403",
+      "request": {
+        "method": "GET",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{buyer_token}}"}
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/statistics/listings/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "statistics", "listings", "1"]
+        }
+      }
+    },
+    {
+      "name": "32. [Manager] Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var jsonData = pm.response.json();",
+              "pm.collectionVariables.set('manager_token', jsonData.tokens.access);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"manager@autoria.ua\",\n  \"password\": \"Manager123!\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/auth/login",
+          "host": ["{{base_url}}"],
+          "path": ["api", "auth", "login"]
+        }
+      }
+    },
+    {
+      "name": "33. [Manager] List Pending Listings",
+      "request": {
+        "method": "GET",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{manager_token}}"}
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/listings/pending",
+          "host": ["{{base_url}}"],
+          "path": ["api", "listings", "pending"]
+        }
+      }
+    },
+    {
+      "name": "34. [Manager] Activate Listing",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{manager_token}}"}
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/listings/3/activate",
+          "host": ["{{base_url}}"],
+          "path": ["api", "listings", "3", "activate"]
+        }
+      }
+    },
+    {
+      "name": "35. [Manager] Ban User",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{manager_token}}"}
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/users/2/ban",
+          "host": ["{{base_url}}"],
+          "path": ["api", "users", "2", "ban"]
+        }
+      }
+    },
+    {
+      "name": "36. [Manager] Unban User",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{manager_token}}"}
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/users/2/unban",
+          "host": ["{{base_url}}"],
+          "path": ["api", "users", "2", "unban"]
+        }
+      }
+    },
+    {
+      "name": "37. [Anonymous] Get Currency Rates",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/currency/rates",
+          "host": ["{{base_url}}"],
+          "path": ["api", "currency", "rates"]
+        }
+      }
+    },
+    {
+      "name": "38. [Seller] Get My Listings",
+      "request": {
+        "method": "GET",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{seller_token}}"}
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/listings/my",
+          "host": ["{{base_url}}"],
+          "path": ["api", "listings", "my"]
+        }
+      }
+    },
+    {
+      "name": "39. Refresh Token",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var jsonData = pm.response.json();",
+              "pm.collectionVariables.set('seller_token', jsonData.access);",
+              "if (jsonData.refresh) { pm.collectionVariables.set('refresh_token', jsonData.refresh); }"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"refresh\": \"{{refresh_token}}\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/auth/refresh",
+          "host": ["{{base_url}}"],
+          "path": ["api", "auth", "refresh"]
+        }
+      }
+    },
+    {
+      "name": "40. Logout",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{seller_token}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"refresh\": \"{{refresh_token}}\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/auth/logout",
+          "host": ["{{base_url}}"],
+          "path": ["api", "auth", "logout"]
+        }
+      }
+    }
+  ]
+}
