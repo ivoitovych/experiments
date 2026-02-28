@@ -1,3 +1,7 @@
 from django.urls import path
 
-urlpatterns = []
+from .views import CurrencyRateView
+
+urlpatterns = [
+    path('rates', CurrencyRateView.as_view(), name='currency-rates'),
+]
