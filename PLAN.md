@@ -68,7 +68,7 @@
 **Рекомендована структура apps (Опція B):**
 ```
 apps/
-├── auth/            # Реєстрація, логін, JWT
+├── authentication/  # Реєстрація, логін, JWT
 ├── users/           # Профілі, акаунти (базовий/преміум)
 ├── roles/           # Ролі та пермішини
 ├── cars/            # Марки, моделі авто
@@ -171,6 +171,7 @@ djangorestframework-simplejwt==5.4.0
 django-cors-headers==4.6.0
 django-filter==24.3
 django-storages==1.14.4
+django-celery-beat==2.7.0
 drf-spectacular==0.28.0
 psycopg2-binary==2.9.10
 celery==5.4.0
@@ -215,39 +216,41 @@ gunicorn==23.0.0
 │ name             │◄────│ brand (FK)       │     │ seller (FK User) │
 │ is_active        │     │ name             │     │ car_brand (FK)   │
 └──────────────────┘     │ is_active        │     │ car_model (FK)   │
-                         └──────────────────┘     │ year             │
-                                                  │ price            │
-┌──────────────────┐                              │ currency (choice)│
-│  CurrencyRate    │                              │ price_usd        │
-├──────────────────┤                              │ price_eur        │
-│ id               │                              │ price_uah        │
-│ ccy (USD/EUR)    │                              │ exchange_rate    │
-│ base_ccy (UAH)   │                              │ original_currency│
-│ buy              │                              │ original_price   │
-│ sale             │                              │ description      │
-│ fetched_at       │                              │ region           │
-│ created_at       │                              │ city             │
+                         │ unique(brand,name)│     │ year             │
+                         └──────────────────┘     │ original_price   │
+                                                  │ original_currency│
+┌──────────────────┐     ┌──────────────────┐     │ price_usd        │
+│  CurrencyRate    │     │     Region       │     │ price_eur        │
+├──────────────────┤     ├──────────────────┤     │ price_uah        │
+│ id               │     │ id               │     │ rate_usd_uah     │
+│ ccy (USD/EUR)    │     │ name             │     │ rate_eur_uah     │
+│ base_ccy (UAH)   │     └──────────────────┘     │ rate_date        │
+│ buy              │            │                  │ region (FK)──────┤
+│ sale             │            │                  │ city             │
+│ fetched_at       │            └──────────────────│ description      │
 └──────────────────┘                              │ status           │
                                                   │ edit_attempts    │
-┌──────────────────┐                              │ photos (media)   │
-│  ListingView     │                              │ created_at       │
-├──────────────────┤                              │ updated_at       │
-│ id               │                              └──────────────────┘
-│ listing (FK)     │
-│ viewed_at        │     ┌──────────────────┐     ┌──────────────────┐
-│ viewer_ip        │     │   Dealership     │     │ DealershipMember │
-└──────────────────┘     ├──────────────────┤     ├──────────────────┤
-                         │ id               │     │ id               │
-┌──────────────────┐     │ name             │     │ user (FK)        │
-│ BrandRequest     │     │ description      │     │ dealership (FK)  │
-├──────────────────┤     │ logo             │     │ role (FK Role)   │
-│ id               │     │ address          │     │ joined_at        │
-│ user (FK)        │     │ owner (FK User)  │     └──────────────────┘
-│ brand_name       │     │ is_active        │
-│ model_name       │     │ created_at       │
-│ status           │     └──────────────────┘
-│ created_at       │
-└──────────────────┘
+┌──────────────────┐                              │ created_at       │
+│  ListingView     │                              │ updated_at       │
+├──────────────────┤                              └──────────────────┘
+│ id               │                                      │
+│ listing (FK)     │                              ┌──────────────────┐
+│ viewed_at        │                              │  ListingPhoto    │
+│ viewer_ip        │                              ├──────────────────┤
+└──────────────────┘                              │ listing (FK)     │
+                                                  │ photo            │
+┌──────────────────┐     ┌──────────────────┐     │ is_primary       │
+│ BrandRequest     │     │   Dealership     │     └──────────────────┘
+├──────────────────┤     ├──────────────────┤
+│ id               │     │ id               │     ┌──────────────────┐
+│ user (FK)        │     │ name             │     │ DealershipMember │
+│ brand_name       │     │ description      │     ├──────────────────┤
+│ model_name       │     │ logo             │     │ id               │
+│ status           │     │ address          │     │ user (FK)        │
+│ admin_comment    │     │ owner (FK User)  │     │ dealership (FK)  │
+│ created_at       │     │ is_active        │     │ role (FK Role)   │
+└──────────────────┘     │ created_at       │     │ joined_at        │
+                         └──────────────────┘     └──────────────────┘
 ```
 
 ### 4.2. Моделі (деталі)
@@ -295,6 +298,15 @@ gunicorn==23.0.0
 | name | CharField | Назва моделі (X5, Lanos...) |
 | is_active | BooleanField | Чи активна |
 
+*Constraints: `unique_together = ('brand', 'name')`*
+
+#### `Region` (стандартизований перелік регіонів)
+| Поле | Тип | Опис |
+|------|-----|------|
+| name | CharField (unique) | Назва регіону ("Київ", "Київська область", "Львівська область"...) |
+
+*Seed-дані: 25 областей + Київ (окремо). Стандартизація потрібна для коректної агрегації середніх цін.*
+
 #### `Listing` (Оголошення)
 | Поле | Тип | Опис |
 |------|-----|------|
@@ -303,15 +315,15 @@ gunicorn==23.0.0
 | car_model | ForeignKey(CarModel) | Модель |
 | year | IntegerField | Рік випуску |
 | description | TextField | Опис авто |
-| price | DecimalField | Ціна в оригінальній валюті |
-| currency | CharField (USD/EUR/UAH) | Валюта ціни |
 | original_price | DecimalField | Ціна яку вказав юзер |
-| original_currency | CharField | Валюта яку вказав юзер |
-| price_usd | DecimalField | Ціна в USD |
-| price_eur | DecimalField | Ціна в EUR |
-| price_uah | DecimalField | Ціна в UAH |
-| exchange_rate_id | ForeignKey(CurrencyRate) | Курс на момент розрахунку |
-| region | CharField | Регіон продажу |
+| original_currency | CharField (USD/EUR/UAH) | Валюта яку вказав юзер |
+| price_usd | DecimalField | Ціна в USD (розрахована) |
+| price_eur | DecimalField | Ціна в EUR (розрахована) |
+| price_uah | DecimalField | Ціна в UAH (розрахована) |
+| rate_usd_uah | DecimalField | Курс USD/UAH на момент розрахунку |
+| rate_eur_uah | DecimalField | Курс EUR/UAH на момент розрахунку |
+| rate_date | DateTimeField | Дата/час отримання курсу |
+| region | ForeignKey(Region) | Регіон продажу (стандартизований) |
 | city | CharField | Місто |
 | mileage | IntegerField | Пробіг |
 | engine_type | CharField | Тип двигуна |
@@ -390,7 +402,7 @@ autoria-clone/
 ├── apps/                           # Django-додатки
 │   ├── __init__.py
 │   │
-│   ├── auth/                      # Автентифікація
+│   ├── authentication/            # Автентифікація (не auth/ — конфлікт з Django)
 │   │   ├── __init__.py
 │   │   ├── serializers.py         # RegisterSerializer, LoginSerializer
 │   │   ├── views.py               # RegisterView, LoginView, TokenRefreshView
@@ -472,6 +484,7 @@ autoria-clone/
 │
 ├── fixtures/                       # Початкові дані
 │   ├── roles_permissions.json     # Ролі та пермішини
+│   ├── regions.json               # 25 областей + Київ
 │   ├── car_brands.json            # Марки авто
 │   └── car_models.json            # Моделі авто
 │
@@ -546,11 +559,13 @@ autoria-clone/
 |-------|-----|------|--------|
 | GET | `/api/listings/` | Список оголошень (з фільтрацією) | Всі |
 | POST | `/api/listings/` | Створити оголошення | Продавець |
-| GET | `/api/listings/{id}/` | Деталі оголошення | Всі |
+| GET | `/api/listings/{id}/` | Деталі оголошення (включаючи контактні дані продавця: ім'я, телефон) | Всі |
 | PATCH | `/api/listings/{id}/` | Редагувати оголошення | Автор |
 | DELETE | `/api/listings/{id}/` | Видалити оголошення | Автор/Менеджер/Адмін |
 | GET | `/api/listings/my/` | Мої оголошення | Продавець |
+| GET | `/api/listings/pending/` | Оголошення на модерацію (status: needs_edit/inactive) | Менеджер/Адмін |
 | PATCH | `/api/listings/{id}/deactivate/` | Деактивувати оголошення | Менеджер/Адмін |
+| PATCH | `/api/listings/{id}/activate/` | Активувати оголошення після перевірки | Менеджер/Адмін |
 
 ### 6.6. Статистика (`/api/statistics/`) — Premium
 
@@ -1045,13 +1060,253 @@ AutoRia Clone/
 
 ---
 
-## 14. Ключові технічні рішення
+## 14. Cloud база даних (вимога контрольної)
+
+Вимога: *"Використовуйте cloud платформу для баз даних."*
+
+### Дизайн-рішення: Cloud DB провайдер
+
+| Опція | Переваги | Недоліки | Рекомендація |
+|-------|----------|----------|--------------|
+| **A) Neon (PostgreSQL)** | Безкоштовний tier 0.5 GB; serverless; автоматичний scale-to-zero; нативний PostgreSQL | Менш відомий | **Рекомендовано** |
+| **B) Supabase (PostgreSQL)** | Безкоштовний tier 500 MB; вбудований auth (не потрібен тут); дашборд | Може бути overkill | |
+| **C) ElephantSQL** | Простий; безкоштовний tier 20 MB | Дуже малий безкоштовний tier | |
+| **D) AWS RDS Free Tier** | Нативно для AWS; 750 годин/місяць; 20 GB | Потрібен AWS акаунт з карткою | Для production |
+
+### Конфігурація settings.py
+
+Settings має підтримувати перемикання між local та cloud DB через `.env`:
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('POSTGRES_DB', 'autoria_clone'),
+        'USER': os.environ.get('POSTGRES_USER', 'autoria_user'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'autoria_password'),
+        'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
+        'PORT': os.environ.get('POSTGRES_PORT', '5432'),
+    }
+}
+```
+
+Для cloud DB `.env` буде містити URL cloud провайдера. Для локальної розробки — Docker PostgreSQL.
+
+---
+
+## 15. Налаштування settings.py (ключові)
+
+Відповідно до шаблону `may-2024-drf`:
+
+```python
+# API-only: без admin, sessions, CSRF
+INSTALLED_APPS = [
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.staticfiles',
+    # third-party
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
+    'django_filters',
+    'corsheaders',
+    'drf_spectacular',
+    'django_celery_beat',
+    # apps
+    'apps.authentication',
+    'apps.users',
+    'apps.roles',
+    'apps.cars',
+    'apps.listings',
+    'apps.currency',
+    'apps.statistics',
+    'apps.notifications',
+    'apps.dealerships',
+]
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+]
+
+APPEND_SLASH = False  # REST API конвенція (з шаблону)
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'core.pagination.StandardPagination',
+    'PAGE_SIZE': 20,
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter',
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+```
+
+---
+
+## 16. Тестування
+
+Для досягнення оцінки 98-100 потрібні базові тести:
+
+### 16.1. Unit-тести (ключові)
+
+| Модуль | Що тестувати |
+|--------|-------------|
+| `listings/validators.py` | Profanity filter — знаходить/пропускає слова |
+| `currency/services.py` | Конвертація валют — коректність розрахунків |
+| `listings/services.py` | Обмеження 1 оголошення для Basic; лічильник edit_attempts |
+| `statistics/services.py` | Підрахунок середніх цін; підрахунок переглядів |
+| `roles/permissions.py` | Permission classes — дозволяє/забороняє |
+
+### 16.2. Integration-тести (API)
+
+| Тест | Опис |
+|------|------|
+| Auth flow | Register → Login → отримання JWT → Refresh |
+| Listing CRUD | Create → Read → Update → Delete з різними ролями |
+| Profanity flow | Create з нецензурною лексикою → 3 спроби → inactive → email |
+| Basic vs Premium | Basic не може створити 2-ге оголошення; Premium може |
+| Statistics access | Basic → 403; Premium → дані |
+| Manager actions | Ban user, deactivate listing, review pending |
+
+### 16.3. Запуск тестів
+
+```bash
+python manage.py test apps/ --verbosity=2
+```
+
+---
+
+## 17. Кешування (Redis)
+
+Redis вже в стеку як Celery broker. Для масштабованості використати і для кешування:
+
+| Дані | TTL | Обґрунтування |
+|------|-----|---------------|
+| Список марок авто | 24 години | Рідко змінюється |
+| Список моделей | 24 години | Рідко змінюється |
+| Курси валют | 24 години | Оновлюються раз на день |
+| Деталі оголошення | 5 хвилин | Часто запитується, рідко змінюється |
+
+```python
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': os.environ.get('REDIS_URL', 'redis://localhost:6379/1'),
+    }
+}
+```
+
+---
+
+## 18. Postman колекція — послідовний flow
+
+Вимога: *"розподілити їх послідовно згідно flow додатку"*
+
+### Точний порядок запитів:
+
+```
+1.  POST /api/auth/register/     → Реєстрація Admin (через seed або fixture)
+2.  POST /api/auth/login/        → Логін Admin → зберегти access token
+3.  GET  /api/roles/             → Перевірити ролі (seed)
+4.  GET  /api/permissions/       → Перевірити пермішини (seed)
+5.  POST /api/users/create-manager/ → Створити менеджера (Admin)
+6.  POST /api/auth/register/     → Реєстрація Seller
+7.  POST /api/auth/register/     → Реєстрація Buyer
+8.  POST /api/auth/login/        → Логін Seller → зберегти access token
+9.  GET  /api/cars/brands/       → Список марок
+10. GET  /api/cars/brands/1/models/ → Моделі BMW
+11. POST /api/cars/brand-requests/ → Запит на нову марку (Seller)
+12. POST /api/auth/login/        → Логін Admin
+13. GET  /api/cars/brand-requests/ → Перевірити запити (Admin)
+14. PATCH /api/cars/brand-requests/1/ → Схвалити запит (Admin)
+15. POST /api/auth/login/        → Логін Seller
+16. POST /api/listings/          → Створити оголошення (чисте)
+17. GET  /api/listings/          → Список оголошень
+18. GET  /api/listings/1/        → Деталі оголошення (+ контакти продавця)
+19. POST /api/listings/          → Спроба створити 2-ге (Basic → 403)
+20. POST /api/users/upgrade-premium/ → Апгрейд до Premium
+21. POST /api/listings/          → Створити 2-ге оголошення (Premium → OK)
+22. POST /api/listings/          → Створити оголошення з нецензурною лексикою
+23. PATCH /api/listings/3/       → Редагування #1 (все ще нецензурне)
+24. PATCH /api/listings/3/       → Редагування #2 (все ще нецензурне)
+25. PATCH /api/listings/3/       → Редагування #3 → inactive → email менеджеру
+26. GET  /api/statistics/listings/1/ → Статистика (Premium)
+27. GET  /api/statistics/listings/1/views/ → Перегляди
+28. GET  /api/statistics/listings/1/avg-price/ → Середні ціни
+29. POST /api/auth/login/        → Логін Buyer
+30. GET  /api/statistics/listings/1/ → Спроба статистики (Buyer → 403)
+31. POST /api/auth/login/        → Логін Manager
+32. GET  /api/listings/pending/  → Підозрілі оголошення
+33. PATCH /api/listings/3/activate/ → Активувати після перевірки
+34. PATCH /api/users/2/ban/      → Заблокувати юзера
+35. PATCH /api/users/2/unban/    → Розблокувати юзера
+36. GET  /api/currency/rates/    → Поточні курси
+37. POST /api/auth/refresh/      → Оновити токен
+38. POST /api/auth/logout/       → Вихід
+```
+
+---
+
+## 19. .gitignore (повний)
+
+```gitignore
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environment
+venv/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Django
+db.sqlite3
+*.log
+media/
+staticfiles/
+
+# Docker
+mysql/
+postgres_data/
+
+# Environment
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+```
+
+---
+
+## 20. Ключові технічні рішення
 
 1. **AbstractBaseUser** замість AbstractUser — повний контроль над полями юзера
 2. **Сервісний шар** (`services.py`) — бізнес-логіка окремо від views
-3. **Fixtures** для seed-даних — ролі, пермішини, марки авто
+3. **Fixtures** для seed-даних — ролі, пермішини, марки авто, регіони
 4. **Celery Beat** для періодичних задач — курс валют
 5. **django-filter** для фільтрації оголошень
 6. **Окремі serializers** для створення та перегляду (CreateSerializer vs DetailSerializer)
 7. **Signals** — мінімальне використання, перевага сервісному шару
 8. **Custom management commands** — для ініціалізації даних (`python manage.py seed_data`)
+9. **APPEND_SLASH = False** — REST API конвенція (з шаблону)
+10. **Cloud DB** — settings через env-змінні, підтримка local та cloud PostgreSQL
+11. **Redis caching** — для read-heavy endpoints (марки, курси, оголошення)
+12. **Region як модель** — стандартизація для коректної агрегації середніх цін
+13. **Inline exchange rates** — курси зберігаються прямо в оголошенні (`rate_usd_uah`, `rate_eur_uah`) замість FK, для надійності та простоти
