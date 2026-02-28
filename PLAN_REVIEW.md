@@ -1,10 +1,11 @@
 # Рев'ю плану AutoRia Clone — перехресна перевірка з вимогами
 
-> **Статус: Всі знайдені проблеми виправлені у PLAN.md.** Нижче — початковий аналіз з позначками статусу виправлення.
+> **Статус: Всі знайдені проблеми (включаючи зовнішні рев'ю) виправлені у PLAN.md.**
 
 ## Методологія
 
-Кожна вимога з ТЗ перевірена на покриття у PLAN.md. Результат:
+Кожна вимога з ТЗ перевірена на покриття у PLAN.md. Додатково враховані знахідки з двох зовнішніх рев'ю.
+
 - **OK** — повністю покрито
 - **GAP** → **FIXED** — було пропущено, виправлено
 - **ISSUE** → **FIXED** — було з помилкою, виправлено
@@ -16,19 +17,15 @@
 | Вимога | Статус | Деталі |
 |--------|--------|--------|
 | Покупець — "гуляє" по платформі | **OK** | Роль `buyer`, perm `can_view_listings` |
-| Покупець — може зв'язатися з продавцем або автосалоном | **FIXED** | ~~GAP~~ Додано контактні дані продавця (ім'я, телефон) у деталях оголошення |
+| Покупець — може зв'язатися з продавцем або автосалоном | **FIXED** | Додано контактні дані продавця (ім'я, телефон) у деталях оголошення |
 | Продавець — може продати авто | **OK** | Роль `seller`, perm `can_create_listing` |
 | Менеджер — банить людей | **OK** | `can_ban_user`, `can_unban_user` |
 | Менеджер — видаляє невалідні оголошення | **OK** | `can_delete_any_listing`, `can_deactivate_listing` |
-| Менеджер — перевіряє підозрілі оголошення | **FIXED** | ~~GAP~~ Додано `GET /api/listings/pending/` та `PATCH .../activate/` для менеджерів |
+| Менеджер — перевіряє підозрілі оголошення | **FIXED** | Додано `GET /api/listings/pending/` та `PATCH .../activate/` |
 | Менеджера може створити лише Адміністратор | **OK** | `POST /api/users/create-manager/` з `can_create_manager` |
 | Адміністратор — суперюзер | **OK** | Всі пермішини |
-| Автосалони у майбутньому (менеджери, адміни, сейли, механіки) | **OK** | `Dealership` + `DealershipMembership` з FK до `Role` |
-| Система пермішинів (рекомендація тех. експерта) | **OK** | Кастомна система `Permission` + `Role` |
-
-### Рекомендації по ролях: ~~Виправлено~~
-1. ~~Додати endpoint або логіку для менеджера щоб бачити оголошення зі статусом `needs_edit` та `inactive`~~ → DONE: `GET /api/listings/pending/`
-2. ~~Додати відображення контактних даних продавця у деталях оголошення (телефон, ім'я)~~ → DONE
+| Автосалони у майбутньому | **FIXED** | `Dealership` + `DealershipMembership`; Role.scope (platform/dealership) запобігає конфлікту імен |
+| Система пермішинів | **OK** | Кастомна система `Permission` + `Role` |
 
 ---
 
@@ -36,14 +33,11 @@
 
 | Вимога | Статус | Деталі |
 |--------|--------|--------|
-| Базовий — за замовчуванням для продавців | **OK** | `account_type` choices: basic/premium, default basic |
-| Преміум — купується за гроші | **OK** | `POST /api/users/upgrade-premium/` |
-| Преміум — статистика по оголошеннях | **OK** | Endpoints в `/api/statistics/` |
-| Преміум — середня ціна по ринку | **OK** | `avg-price` endpoint |
+| Базовий — за замовчуванням | **OK** | `account_type` choices: basic/premium, default basic |
+| Преміум — купується за гроші | **OK** | `POST /api/users/upgrade-premium/` (тільки seller) |
+| Преміум — статистика | **OK** | Endpoints в `/api/statistics/` |
+| Преміум — середня ціна по ринку | **OK** | `avg-price` endpoint з фільтром brand+model |
 | Преміум — кількість переглядів | **OK** | `views` endpoint з день/тиждень/місяць |
-
-### Зауваження: ~~Виправлено~~
-- ~~`account_type` знаходиться на моделі `User`, але концептуально стосується лише продавців. Варто додати валідацію: `upgrade-premium` доступний тільки для ролі `seller`.~~ → DONE: endpoint позначено "(тільки для ролі seller)"
 
 ---
 
@@ -51,34 +45,17 @@
 
 | Вимога | Статус | Деталі |
 |--------|--------|--------|
-| Зареєстрований продавець може виставити авто | **OK** | `POST /api/listings/` з perm `can_create_listing` |
+| Продавець може виставити авто | **OK** | `POST /api/listings/` |
 | Базовий — максимум 1 оголошення | **OK** | Перевірка в бізнес-логіці (7.1) |
 | Преміум — без обмежень | **OK** | |
 | Випадайка з марками | **OK** | `GET /api/cars/brands/` |
-| Якщо марки немає — повідомити адміністрацію | **OK** | `POST /api/cars/brand-requests/` |
-| Той самий флоу з моделями | **OK** | `GET /api/cars/brands/{id}/models/` + `BrandRequest` |
-| Ціна в USD, EUR, UAH (одна валюта) | **OK** | `original_price`, `original_currency` |
-| Решта валют по курсу ПриватБанку | **OK** | `price_usd`, `price_eur`, `price_uah` |
-| Ціни оновлюються раз на день | **OK** | Celery Beat задача |
-| Вказувати по якому курсу робили підрахунок | **OK** | `rate_usd_uah`, `rate_eur_uah`, `rate_date` (inline) |
+| Якщо марки немає — повідомити | **OK** | `POST /api/cars/brand-requests/` |
+| Ціна в USD, EUR, UAH | **OK** | `original_price`, `original_currency` |
+| Ціни оновлюються раз на день | **OK** | Celery Beat + reprice job (flow 7.3) |
+| Вказувати курс | **OK** | `rate_usd_uah`, `rate_eur_uah`, `rate_date` (inline) |
 | Яку ціну вказав юзер | **OK** | `original_price`, `original_currency` |
-| Перевірка на нецензурну лексику автоматично | **OK** | `ProfanityValidator` |
-| Якщо чисто → статус активного | **OK** | `status = "active"` |
-| Якщо знайдено → пропонує редагувати | **OK** | `status = "needs_edit"` |
-| Максимум 3 редагування | **OK** | `edit_attempts` counter |
-| Після 3 невдач → статус неактивного | **OK** | `status = "inactive"` |
-| Лист для менеджера для перевірки | **OK** | Celery task email |
-
-### Знайдені та виправлені проблеми:
-
-**~~ISSUE 1: Дублювання полів ціни~~** → FIXED
-~~Модель `Listing` має і `price` + `currency`, і `original_price` + `original_currency`.~~ Видалено дублювання — залишено тільки `original_price` + `original_currency`.
-
-**~~ISSUE 2: FK на CurrencyRate для валютного курсу~~** → FIXED
-~~`exchange_rate_id` як FK до одного запису `CurrencyRate` не працює коректно.~~ Замінено на inline поля: `rate_usd_uah`, `rate_eur_uah`, `rate_date`.
-
-**~~ISSUE 3: Відсутність unique_together для CarModel~~** → FIXED
-Додано `unique_together = ('brand', 'name')`.
+| Profanity check | **OK** | `ProfanityValidator` |
+| 3 спроби → inactive → email | **OK** | `edit_attempts` + Celery email task |
 
 ---
 
@@ -87,82 +64,59 @@
 | Вимога | Статус | Деталі |
 |--------|--------|--------|
 | Базовий — НЕ надає інформації | **OK** | 403 для non-premium |
-| Преміум — кількість переглядів | **OK** | Загальна кількість |
-| Преміум — перегляди за день, тиждень, місяць | **OK** | Фільтрація по `viewed_at` |
-| Преміум — середня ціна по регіону | **OK** | AVG по region |
+| Преміум — перегляди за день/тиждень/місяць | **OK** | Фільтрація по `viewed_at` |
+| Преміум — середня ціна по регіону | **OK** | AVG по region (FK до Region) |
 | Преміум — середня ціна по Україні | **OK** | AVG по всіх регіонах |
 
-### ~~Знайдена проблема~~ → FIXED:
-
-**~~ISSUE 4: Стандартизація регіонів~~** → FIXED
-~~Поле `region` на `Listing` — це CharField без обмежень.~~ Замінено на FK до моделі `Region` з seed-даними (25 областей + Київ).
-
 ---
 
-## 5. Обов'язкові deliverables
+## 5. Deliverables
 
 | Вимога | Статус | Деталі |
 |--------|--------|--------|
-| README файл з описом запуску | **OK** | Розділ 12 плану |
-| Postman колекція з запитами | **OK** | Розділ 11 плану |
-| Замокати все для перевірки | **OK** | Мок-дані, fixtures, seed credentials |
+| README | **OK** | Розділ 12 |
+| Postman | **OK** | Розділ 11 + 18 (40 послідовних кроків) |
+| Cloud DB | **FIXED** | Розділ 14 (Neon/Supabase/AWS RDS; ElephantSQL видалено — EOL) |
+| Окреме репо + main | **FIXED** | Розділ 1 + Етап 10 |
 
 ---
 
-## 6. Вимоги з документу "Контрольна робота"
+## 6. Зведена таблиця всіх виправлень
 
-| Вимога | Статус | Деталі |
-|--------|--------|--------|
-| Робота на головній гілці (master/main) | **FIXED** | ~~GAP~~ Додано Етап 10: перенос на main/master фінального репо |
-| В ОКРЕМОМУ репозиторії | **FIXED** | ~~GAP~~ Додано Етап 10: створення окремого репозиторію + розділ 1 "Вимоги до здачі" |
-| Cloud платформа для бази даних | **FIXED** | ~~GAP~~ Додано розділ 14: Cloud DB з опціями (Neon, Supabase, ElephantSQL, AWS RDS) |
-| README з інструкцією запуску додатку | **OK** | |
-| README з credentials Docker та скриптів | **OK** | `.env` приклад, мок-дані |
-| Postman колекція з заповненими запитами | **OK** | |
-| Запити послідовно згідно flow додатку | **FIXED** | ~~ISSUE~~ Додано розділ 18: 38 послідовних кроків Postman flow |
-| Логіни та паролі в колекції | **OK** | Мок-дані з credentials |
+### Раунд 1 (внутрішнє рев'ю):
 
----
+| # | Тип | Проблема | Статус |
+|---|-----|----------|--------|
+| 1 | GAP | Немає зв'язку покупця з продавцем | **FIXED** — контактні дані в деталях |
+| 2 | GAP | Немає endpoint для менеджера | **FIXED** — `GET /api/listings/pending/` |
+| 3 | GAP | Cloud БД | **FIXED** — розділ 14 + Етап 10 |
+| 4 | GAP | Окреме репо | **FIXED** — розділ 1 + Етап 10 |
+| 5 | ISSUE | Дублювання полів ціни | **FIXED** — `original_price/currency` only |
+| 6 | ISSUE | FK на CurrencyRate | **FIXED** — inline rates |
+| 7 | ISSUE | CarModel без unique_together | **FIXED** |
+| 8 | ISSUE | Регіони без стандартизації | **FIXED** — модель Region |
+| 9 | ISSUE | `apps/auth/` конфлікт | **FIXED** — `apps/authentication/` |
+| 10 | ISSUE | django-celery-beat відсутній | **FIXED** |
+| 11 | ISSUE | Postman flow не послідовний | **FIXED** — розділ 18 |
+| 12 | ISSUE | Відсутність тестів | **FIXED** — розділ 16 + Етап 8 |
+| 13 | ISSUE | APPEND_SLASH = False | **FIXED** |
+| 14 | GAP | Кешування | **FIXED** — розділ 17 Redis cache |
 
-## 7. Технічні проблеми в плані — всі виправлені
+### Раунд 2 (зовнішні рев'ю):
 
-### ~~ISSUE 5~~ → FIXED: `apps/auth/` → `apps/authentication/`
-### ~~ISSUE 6~~ → FIXED: `django-celery-beat==2.7.0` додано до requirements
-### ISSUE 7: OK — `psycopg2-binary` коректно для PostgreSQL
-### ~~ISSUE 8~~ → FIXED: Додано розділ 16 (тестування) та Етап 8 (тести)
-### ~~ISSUE 9~~ → FIXED: `APPEND_SLASH = False` додано в розділ 15
-### ~~ISSUE 10~~ → FIXED: Повний `.gitignore` додано в розділ 19
+| # | Тип | Проблема (джерело) | Статус |
+|---|-----|----------|--------|
+| 15 | P0 | `DEFAULT_PERMISSION_CLASSES = IsAuthenticated` ламає анонімний browse (Review 2, P0.3) | **FIXED** — змінено на `AllowAny`, protected endpoints мають явні permissions |
+| 16 | P0 | ElephantSQL EOL — shutdown 27 Jan 2025 (Review 2, fact-check 2.3) | **FIXED** — видалено з опцій, додано примітку |
+| 17 | P1 | Role.scope потрібен для автосалонів (Review 2, P1.1) | **FIXED** — `scope` (platform/dealership) + `unique_together('name','scope')` |
+| 18 | P1 | Listing status visibility невизначена (Review 2, P1.2) | **FIXED** — матриця видимості статусів додана; `pending` прибрано |
+| 19 | P1 | ListingView per-request INSERT не масштабується (Review 2, P1.3) | **FIXED** — Redis INCR + flush варіант описано як рекомендований |
+| 20 | P1 | loaddata при кожному старті Docker — ризик дублювання (Review 2, P1.4) | **FIXED** — замінено на `seed_data` management command (get_or_create) |
+| 21 | P2 | Не вказано buy чи sale rate (Review 2) | **FIXED** — `sale` rate для конвертації, `coursid=5` (готівковий) |
+| 22 | P2 | SSL для cloud Postgres не згаданий (Review 2) | **FIXED** — `sslmode=require` через env var |
+| 23 | P2 | Немає anonymous browse кроків у Postman (Review 2) | **FIXED** — кроки 1-2 без токена |
+| 24 | P2 | "25 областей" → фактично 24 (Review 2, fact-check 2.4) | **FIXED** — "24 області + м.Київ" |
 
----
+### З Review 1 (позитивна валідація):
 
-## 8. Архітектурні зауваження
-
-### Зауваження 1: User — FK до Role (не M2M) — OK
-План використовує `ForeignKey(Role)` для зв'язку User → Role. Це означає один юзер = одна роль. **Поточне рішення коректне**, тому що ролі в автосалоні йдуть через `DealershipMembership.role`, а платформна роль — через `User.role`.
-
-### ~~Зауваження 2~~ → FIXED: Пагінація деталізована
-Додано коментар у структурі проєкту: `PageNumberPagination` (стандарт), `CursorPagination` для high-load.
-
-### ~~Зауваження 3~~ → FIXED: Caching додано
-Додано розділ 17: Redis caching з TTL для марок (24г), курсів (24г), оголошень (5хв).
-
----
-
-## 9. Зведена таблиця — всі проблеми виправлені
-
-| # | Тип | Проблема | Статус | Що зроблено |
-|---|-----|----------|--------|-------------|
-| 1 | GAP | Немає механізму зв'язку покупця з продавцем | **FIXED** | Контактні дані в деталях оголошення |
-| 2 | GAP | Немає endpoint для менеджера для підозрілих оголошень | **FIXED** | `GET /api/listings/pending/` + `PATCH .../activate/` |
-| 3 | GAP | Cloud БД не передбачена | **FIXED** | Розділ 14 + Етап 10 |
-| 4 | GAP | Окремий репозиторій не згаданий | **FIXED** | Розділ 1 "Вимоги до здачі" + Етап 10 |
-| 5 | ISSUE | Дублювання полів ціни | **FIXED** | Залишено тільки `original_price/currency` |
-| 6 | ISSUE | FK на CurrencyRate | **FIXED** | Inline: `rate_usd_uah`, `rate_eur_uah`, `rate_date` |
-| 7 | ISSUE | `CarModel` без `unique_together` | **FIXED** | Додано constraint |
-| 8 | ISSUE | Регіони без стандартизації | **FIXED** | Модель `Region` + seed + FK в Listing |
-| 9 | ISSUE | Конфлікт імені `apps/auth/` | **FIXED** | Перейменовано на `apps/authentication/` |
-| 10 | ISSUE | `django-celery-beat` відсутній | **FIXED** | Додано до requirements |
-| 11 | ISSUE | Postman flow не послідовний | **FIXED** | Розділ 18: 38 послідовних кроків |
-| 12 | ISSUE | Відсутність тестів | **FIXED** | Розділ 16 + Етап 8 |
-| 13 | ISSUE | `APPEND_SLASH = False` | **FIXED** | Додано в розділ 15 |
-| 14 | GAP | Кешування не розглянуте | **FIXED** | Розділ 17: Redis cache |
+Review 1 підтвердив повну відповідність плану вимогам ТЗ. Жодних фактичних помилок чи протиріч не знайдено. Оцінка: "ready for immediate implementation", "98–100 points".

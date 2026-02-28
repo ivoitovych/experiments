@@ -203,8 +203,9 @@ gunicorn==23.0.0
 │ id               │     │ id               │     │ id               │
 │ codename         │◄────│ permissions (M2M)│     │ email            │
 │ name             │     │ name             │     │ password         │
-│ description      │     │ description      │     │ first_name       │
-└──────────────────┘     └──────────────────┘     │ last_name        │
+│ description      │     │ scope            │     │ first_name       │
+└──────────────────┘     │ description      │     │ last_name        │
+                         │ unique(name,scope)│
                                 │                  │ phone            │
                                 │                  │ role (FK) ───────┤
                                 │                  │ account_type     │
@@ -281,9 +282,12 @@ gunicorn==23.0.0
 #### `Role`
 | Поле | Тип | Опис |
 |------|-----|------|
-| name | CharField (unique) | buyer / seller / manager / admin |
+| name | CharField | buyer / seller / manager / admin |
+| scope | CharField (choices: platform/dealership) | Область дії ролі |
 | description | TextField | Опис ролі |
 | permissions | ManyToManyField(Permission) | Набір пермішинів |
+
+*Constraints: `unique_together = ('name', 'scope')` — дозволяє мати "admin" на платформі та "admin" в автосалоні без конфлікту імен.*
 
 #### `Permission`
 | Поле | Тип | Опис |
@@ -312,7 +316,7 @@ gunicorn==23.0.0
 |------|-----|------|
 | name | CharField (unique) | Назва регіону ("Київ", "Київська область", "Львівська область"...) |
 
-*Seed-дані: 25 областей + Київ (окремо). Стандартизація потрібна для коректної агрегації середніх цін.*
+*Seed-дані: 24 області + м.Київ (окремо). Стандартизація потрібна для коректної агрегації середніх цін.*
 
 #### `Listing` (Оголошення)
 | Поле | Тип | Опис |
@@ -334,10 +338,18 @@ gunicorn==23.0.0
 | city | CharField | Місто |
 | mileage | IntegerField | Пробіг |
 | engine_type | CharField | Тип двигуна |
-| status | CharField | active/inactive/pending/needs_edit |
+| status | CharField | active/inactive/needs_edit |
 | edit_attempts | IntegerField (default=0) | Кількість спроб редагування |
 | created_at | DateTimeField | Дата створення |
 | updated_at | DateTimeField | Дата оновлення |
+
+**Видимість оголошень за статусом:**
+
+| Статус | Хто бачить | Коли виникає |
+|--------|-----------|-------------|
+| `active` | Всі (анонімні включно) | Створено без profanity, або активовано менеджером |
+| `needs_edit` | Автор + Менеджер/Адмін | Profanity знайдено; edit_attempts < 3 |
+| `inactive` | Менеджер/Адмін | 3 невдалі спроби редагування; або деактивовано менеджером |
 
 #### `ListingPhoto`
 | Поле | Тип | Опис |
@@ -360,7 +372,7 @@ gunicorn==23.0.0
 | ccy | CharField | Валюта (USD, EUR) |
 | base_ccy | CharField | Базова валюта (UAH) |
 | buy | DecimalField | Курс купівлі |
-| sale | DecimalField | Курс продажу |
+| sale | DecimalField | Курс продажу (використовується для конвертації цін) |
 | fetched_at | DateTimeField | Коли отримано курс |
 
 #### `BrandRequest` (запит на додавання марки/моделі)
@@ -491,7 +503,7 @@ autoria-clone/
 │
 ├── fixtures/                       # Початкові дані
 │   ├── roles_permissions.json     # Ролі та пермішини
-│   ├── regions.json               # 25 областей + Київ
+│   ├── regions.json               # 24 області + м.Київ
 │   ├── car_brands.json            # Марки авто
 │   └── car_models.json            # Моделі авто
 │
@@ -615,7 +627,7 @@ autoria-clone/
     │   └── Знайдено -> status = "needs_edit" -> edit_attempts = 0
     │
     ├── Конвертація валюти:
-    │   ├── Отримати поточний курс з CurrencyRate (останній запис)
+    │   ├── Отримати поточний курс з CurrencyRate (останній запис, поле `sale`)
     │   ├── Розрахувати price_usd, price_eur, price_uah
     │   └── Зберегти rate_usd_uah, rate_eur_uah, rate_date (inline курси)
     │       та original_price, original_currency
@@ -648,9 +660,10 @@ autoria-clone/
 Celery Beat (раз на добу, о 10:00 UTC)
     │
     ├── Запит до API ПриватБанку:
-    │   GET https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=5
+    │   GET https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5
+    │   (coursid=5 = готівковий курс)
     │
-    ├── Парсинг відповіді (USD, EUR до UAH)
+    ├── Парсинг відповіді (USD, EUR до UAH; використовуємо поле `sale`)
     │
     ├── Збереження нових записів CurrencyRate (USD, EUR)
     │
@@ -667,11 +680,14 @@ Celery Beat (раз на добу, о 10:00 UTC)
     │
     ├── Віддати дані оголошення
     │
-    └── Створити запис ListingView (async, не блокує відповідь)
-        ├── listing_id
-        ├── viewed_at = now()
-        └── viewer_ip (опціонально)
+    └── Інкремент лічильника переглядів (async, не блокує відповідь):
+        ├── Варіант A (простий): створити запис ListingView в БД
+        └── Варіант B (масштабований, рекомендовано):
+            ├── INCR Redis key views:<listing_id>:<YYYY-MM-DD>
+            └── Celery task (раз на 5 хв): flush Redis → ListingView в БД
 ```
+
+> **Масштабованість:** Для "десятки разів більше навантаження" Варіант B значно кращий — запис в Redis ~0.1ms vs INSERT ~5ms. Для контрольної роботи Варіант A прийнятний.
 
 ### 7.5. Статистика для Premium
 
@@ -833,7 +849,7 @@ services:
     restart: on-failure
     command: >
       sh -c "python manage.py migrate &&
-             python manage.py loaddata fixtures/*.json 2>/dev/null;
+             python manage.py seed_data 2>/dev/null;
              gunicorn configs.wsgi:application --bind 0.0.0.0:8000 --workers 3"
 
   celery:
@@ -967,7 +983,7 @@ EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
 
 ### Етап 11: Фінальна перевірка
 1. Клонувати проєкт з фінального репо з нуля і перевірити запуск
-2. Пройти всі flow через Postman (38 кроків з розділу 18)
+2. Пройти всі flow через Postman (40 кроків з розділу 18)
 3. Перевірити всі ролі та пермішини
 4. Перевірити конвертацію валют
 5. Перевірити фільтр нецензурної лексики
@@ -1100,8 +1116,9 @@ AutoRia Clone/
 |-------|----------|----------|--------------|
 | **A) Neon (PostgreSQL)** | Безкоштовний tier 0.5 GB; serverless; автоматичний scale-to-zero; нативний PostgreSQL | Менш відомий | **Рекомендовано** |
 | **B) Supabase (PostgreSQL)** | Безкоштовний tier 500 MB; вбудований auth (не потрібен тут); дашборд | Може бути overkill | |
-| **C) ElephantSQL** | Простий; безкоштовний tier 20 MB | Дуже малий безкоштовний tier | |
-| **D) AWS RDS Free Tier** | Нативно для AWS; 750 годин/місяць; 20 GB | Потрібен AWS акаунт з карткою | Для production |
+| **C) AWS RDS Free Tier** | Нативно для AWS; 750 годин/місяць; 20 GB | Потрібен AWS акаунт з карткою | Для production |
+
+> **Примітка:** ElephantSQL **НЕ** є опцією — сервіс припинив роботу (EOL, shutdown 27 Jan 2025).
 
 ### Конфігурація settings.py
 
@@ -1121,6 +1138,12 @@ DATABASES = {
 ```
 
 Для cloud DB `.env` буде містити URL cloud провайдера. Для локальної розробки — Docker PostgreSQL.
+
+> **SSL:** Cloud PostgreSQL (Neon, Supabase, AWS RDS) зазвичай вимагає `sslmode=require`. Додати в settings:
+> ```python
+> if os.environ.get('POSTGRES_SSL', '') == 'require':
+>     DATABASES['default']['OPTIONS'] = {'sslmode': 'require'}
+> ```
 
 ---
 
@@ -1167,7 +1190,7 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',  # маркетплейс: анонімний browse дозволений
     ],
     'DEFAULT_PAGINATION_CLASS': 'core.pagination.StandardPagination',
     'PAGE_SIZE': 20,
@@ -1244,44 +1267,61 @@ CACHES = {
 ### Точний порядок запитів:
 
 ```
-1.  POST /api/auth/register/     → Реєстрація Admin (через seed або fixture)
-2.  POST /api/auth/login/        → Логін Admin → зберегти access token
-3.  GET  /api/roles/             → Перевірити ролі (seed)
-4.  GET  /api/permissions/       → Перевірити пермішини (seed)
-5.  POST /api/users/create-manager/ → Створити менеджера (Admin)
-6.  POST /api/auth/register/     → Реєстрація Seller
-7.  POST /api/auth/register/     → Реєстрація Buyer
-8.  POST /api/auth/login/        → Логін Seller → зберегти access token
-9.  GET  /api/cars/brands/       → Список марок
-10. GET  /api/cars/brands/1/models/ → Моделі BMW
-11. POST /api/cars/brand-requests/ → Запит на нову марку (Seller)
-12. POST /api/auth/login/        → Логін Admin
-13. GET  /api/cars/brand-requests/ → Перевірити запити (Admin)
-14. PATCH /api/cars/brand-requests/1/ → Схвалити запит (Admin)
-15. POST /api/auth/login/        → Логін Seller
-16. POST /api/listings/          → Створити оголошення (чисте)
-17. GET  /api/listings/          → Список оголошень
-18. GET  /api/listings/1/        → Деталі оголошення (+ контакти продавця)
-19. POST /api/listings/          → Спроба створити 2-ге (Basic → 403)
-20. POST /api/users/upgrade-premium/ → Апгрейд до Premium
-21. POST /api/listings/          → Створити 2-ге оголошення (Premium → OK)
-22. POST /api/listings/          → Створити оголошення з нецензурною лексикою
-23. PATCH /api/listings/3/       → Редагування #1 (все ще нецензурне)
-24. PATCH /api/listings/3/       → Редагування #2 (все ще нецензурне)
-25. PATCH /api/listings/3/       → Редагування #3 → inactive → email менеджеру
-26. GET  /api/statistics/listings/1/ → Статистика (Premium)
-27. GET  /api/statistics/listings/1/views/ → Перегляди
-28. GET  /api/statistics/listings/1/avg-price/ → Середні ціни
-29. POST /api/auth/login/        → Логін Buyer
-30. GET  /api/statistics/listings/1/ → Спроба статистики (Buyer → 403)
-31. POST /api/auth/login/        → Логін Manager
-32. GET  /api/listings/pending/  → Підозрілі оголошення
-33. PATCH /api/listings/3/activate/ → Активувати після перевірки
-34. PATCH /api/users/2/ban/      → Заблокувати юзера
-35. PATCH /api/users/2/unban/    → Розблокувати юзера
-36. GET  /api/currency/rates/    → Поточні курси
-37. POST /api/auth/refresh/      → Оновити токен
-38. POST /api/auth/logout/       → Вихід
+--- Anonymous browse (без токена) ---
+1.  GET  /api/listings/          → Список оголошень (анонімно, AllowAny)
+2.  GET  /api/cars/brands/       → Список марок (анонімно)
+
+--- Admin setup ---
+3.  POST /api/auth/register/     → Реєстрація Admin (через seed або fixture)
+4.  POST /api/auth/login/        → Логін Admin → зберегти access token
+5.  GET  /api/roles/             → Перевірити ролі (seed)
+6.  GET  /api/permissions/       → Перевірити пермішини (seed)
+7.  POST /api/users/create-manager/ → Створити менеджера (Admin)
+
+--- Реєстрація користувачів ---
+8.  POST /api/auth/register/     → Реєстрація Seller
+9.  POST /api/auth/register/     → Реєстрація Buyer
+
+--- Seller flow: марки та оголошення ---
+10. POST /api/auth/login/        → Логін Seller → зберегти access token
+11. GET  /api/cars/brands/       → Список марок
+12. GET  /api/cars/brands/1/models/ → Моделі BMW
+13. POST /api/cars/brand-requests/ → Запит на нову марку (Seller)
+14. POST /api/auth/login/        → Логін Admin
+15. GET  /api/cars/brand-requests/ → Перевірити запити (Admin)
+16. PATCH /api/cars/brand-requests/1/ → Схвалити запит (Admin)
+17. POST /api/auth/login/        → Логін Seller
+18. POST /api/listings/          → Створити оголошення (чисте)
+19. GET  /api/listings/          → Список оголошень
+20. GET  /api/listings/1/        → Деталі оголошення (+ контакти продавця)
+21. POST /api/listings/          → Спроба створити 2-ге (Basic → 403)
+
+--- Premium upgrade та profanity flow ---
+22. POST /api/users/upgrade-premium/ → Апгрейд до Premium
+23. POST /api/listings/          → Створити 2-ге оголошення (Premium → OK)
+24. POST /api/listings/          → Створити оголошення з нецензурною лексикою
+25. PATCH /api/listings/3/       → Редагування #1 (все ще нецензурне)
+26. PATCH /api/listings/3/       → Редагування #2 (все ще нецензурне)
+27. PATCH /api/listings/3/       → Редагування #3 → inactive → email менеджеру
+
+--- Статистика (Premium) ---
+28. GET  /api/statistics/listings/1/ → Статистика (Premium)
+29. GET  /api/statistics/listings/1/views/ → Перегляди
+30. GET  /api/statistics/listings/1/avg-price/ → Середні ціни
+31. POST /api/auth/login/        → Логін Buyer
+32. GET  /api/statistics/listings/1/ → Спроба статистики (Buyer → 403)
+
+--- Manager flow ---
+33. POST /api/auth/login/        → Логін Manager
+34. GET  /api/listings/pending/  → Підозрілі оголошення
+35. PATCH /api/listings/3/activate/ → Активувати після перевірки
+36. PATCH /api/users/2/ban/      → Заблокувати юзера
+37. PATCH /api/users/2/unban/    → Розблокувати юзера
+
+--- Фінальні перевірки ---
+38. GET  /api/currency/rates/    → Поточні курси
+39. POST /api/auth/refresh/      → Оновити токен
+40. POST /api/auth/logout/       → Вихід
 ```
 
 ---
@@ -1334,7 +1374,7 @@ Thumbs.db
 5. **django-filter** для фільтрації оголошень
 6. **Окремі serializers** для створення та перегляду (CreateSerializer vs DetailSerializer)
 7. **Signals** — мінімальне використання, перевага сервісному шару
-8. **Custom management commands** — для ініціалізації даних (`python manage.py seed_data`)
+8. **Custom management commands** — `python manage.py seed_data` (idempotent через `get_or_create`, безпечно при повторному запуску)
 9. **APPEND_SLASH = False** — REST API конвенція (з шаблону)
 10. **Cloud DB** — settings через env-змінні, підтримка local та cloud PostgreSQL
 11. **Redis caching** — для read-heavy endpoints (марки, курси, оголошення)
