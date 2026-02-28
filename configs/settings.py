@@ -74,6 +74,14 @@ DATABASES = {
 if os.environ.get('POSTGRES_SSL', '') == 'require':
     DATABASES['default']['OPTIONS'] = {'sslmode': 'require'}
 
+# Use SQLite for testing when PostgreSQL is not available
+import sys
+if 'test' in sys.argv:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+
 # Custom user model
 AUTH_USER_MODEL = 'users.User'
 
