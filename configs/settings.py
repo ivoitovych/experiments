@@ -167,3 +167,11 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'Car marketplace platform API',
     'VERSION': '1.0.0',
 }
+
+# Test overrides (must come last to override Redis cache)
+if 'test' in sys.argv:
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        }
+    }
