@@ -11,11 +11,11 @@ def _load_profanity_words():
     if _PROFANITY_WORDS is None:
         words_path = os.path.join(settings.BASE_DIR, 'profanity', 'words.txt')
         with open(words_path, 'r', encoding='utf-8') as f:
-            _PROFANITY_WORDS = [
-                word.strip().lower()
-                for word in f.readlines()
-                if word.strip()
-            ]
+            content = f.read()
+        # Handle both "one word per line" and "space-separated" formats
+        _PROFANITY_WORDS = [
+            w.lower() for w in content.split() if w.strip()
+        ]
     return _PROFANITY_WORDS
 
 

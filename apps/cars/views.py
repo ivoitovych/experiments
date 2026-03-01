@@ -1,3 +1,4 @@
+from django.core.cache import cache
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from rest_framework import status, viewsets
@@ -23,6 +24,18 @@ class CarBrandViewSet(viewsets.ModelViewSet):
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
+    def perform_create(self, serializer):
+        serializer.save()
+        _invalidate_car_caches()
+
+    def perform_update(self, serializer):
+        serializer.save()
+        _invalidate_car_caches()
+
+    def perform_destroy(self, instance):
+        instance.delete()
+        _invalidate_car_caches()
+
     def get_permissions(self):
         if self.action in ('list', 'retrieve'):
             return [AllowAny()]
@@ -41,6 +54,15 @@ class CarModelViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(brand_id=self.kwargs['brand_pk'])
+        _invalidate_car_caches()
+
+    def perform_update(self, serializer):
+        serializer.save()
+        _invalidate_car_caches()
+
+    def perform_destroy(self, instance):
+        instance.delete()
+        _invalidate_car_caches()
 
     def get_permissions(self):
         if self.action in ('list', 'retrieve'):
@@ -59,6 +81,23 @@ class BrandRequestViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+    def perform_update(self, serializer):
+        instance = serializer.save()
+        # When approved, create the brand and model in the catalog
+        if instance.status == 'approved':
+            brand, _ = CarBrand.objects.get_or_create(
+                name=instance.brand_name,
+                defaults={'is_active': True},
+            )
+            if instance.model_name:
+                CarModel.objects.get_or_create(
+                    brand=brand,
+                    name=instance.model_name,
+                    defaults={'is_active': True},
+                )
+            # Invalidate brand/model list caches
+            _invalidate_car_caches()
+
     def get_permissions(self):
         if self.action == 'create':
             return [IsAuthenticated(), HasPermission('can_request_brand')()]
@@ -67,3 +106,11 @@ class BrandRequestViewSet(viewsets.ModelViewSet):
         if self.action == 'partial_update':
             return [IsAuthenticated(), IsAdmin()]
         return [IsAuthenticated(), IsAdmin()]
+
+
+def _invalidate_car_caches():
+    """Clear cached brand and model list responses."""
+    # Django's cache_page uses keys based on URL + Vary headers.
+    # The simplest reliable approach: clear the entire cache.
+    # For a production system with many cache keys, use a versioned key prefix.
+    cache.clear()

@@ -69,6 +69,15 @@ class ListingCreateSerializer(serializers.ModelSerializer):
             'region', 'city', 'mileage', 'engine_type',
         ]
 
+    def validate(self, attrs):
+        car_brand = attrs.get('car_brand')
+        car_model = attrs.get('car_model')
+        if car_brand and car_model and car_model.brand_id != car_brand.id:
+            raise serializers.ValidationError({
+                'car_model': f'Model "{car_model.name}" does not belong to brand "{car_brand.name}".',
+            })
+        return attrs
+
 
 class ListingEditSerializer(serializers.ModelSerializer):
     class Meta:

@@ -151,4 +151,33 @@ class Command(BaseCommand):
                 if created:
                     self.stdout.write(f'    Created model: {model_name}')
 
+        # Fetch initial currency rates from PrivatBank
+        self.stdout.write('Fetching initial currency rates...')
+        try:
+            from apps.currency.services import fetch_privatbank_rates
+            fetch_privatbank_rates()
+            self.stdout.write('  Fetched initial currency rates')
+        except Exception as e:
+            self.stdout.write(self.style.WARNING(f'  Could not fetch rates: {e}'))
+
+        # Create Celery Beat periodic task for daily currency rate updates
+        self.stdout.write('Setting up periodic tasks...')
+        try:
+            from django_celery_beat.models import IntervalSchedule, PeriodicTask
+            schedule, _ = IntervalSchedule.objects.get_or_create(
+                every=24,
+                period=IntervalSchedule.HOURS,
+            )
+            _, created = PeriodicTask.objects.get_or_create(
+                name='Fetch currency rates daily',
+                defaults={
+                    'task': 'apps.currency.tasks.fetch_currency_rates',
+                    'interval': schedule,
+                },
+            )
+            if created:
+                self.stdout.write('  Created periodic task: fetch_currency_rates (every 24h)')
+        except Exception as e:
+            self.stdout.write(self.style.WARNING(f'  Could not create periodic task: {e}'))
+
         self.stdout.write(self.style.SUCCESS('Seed data complete.'))

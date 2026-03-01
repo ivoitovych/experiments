@@ -5,7 +5,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 from apps.roles.permissions import IsManagerOrAdmin
-from core.permissions import HasPermission
+from core.permissions import HasPermission, IsOwnerOrReadOnly
 from .filters import ListingFilter
 from .models import Listing
 from .serializers import (
@@ -94,6 +94,13 @@ class ListingViewSet(viewsets.ModelViewSet):
         listing = self.get_object()
         description = request.data.get('description')
 
+        # Block edits on inactive listings (profanity attempts exhausted)
+        if listing.status == 'inactive':
+            return Response(
+                {'detail': 'Listing is inactive. Only a manager or admin can reactivate it.'},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+
         if listing.status == 'needs_edit' and listing.edit_attempts >= 3:
             return Response(
                 {'detail': 'Edit attempts exhausted. Listing is inactive.'},
@@ -154,9 +161,9 @@ class ListingViewSet(viewsets.ModelViewSet):
         if self.action == 'create':
             return [IsAuthenticated(), HasPermission('can_create_listing')()]
         if self.action == 'partial_update':
-            return [IsAuthenticated()]
+            return [IsAuthenticated(), IsOwnerOrReadOnly()]
         if self.action == 'destroy':
-            return [IsAuthenticated()]
+            return [IsAuthenticated(), IsOwnerOrReadOnly()]
         if self.action in ('my',):
             return [IsAuthenticated()]
         if self.action in ('pending', 'deactivate', 'activate'):

@@ -38,6 +38,10 @@ def process_listing_edit(listing, new_description):
     Process editing a listing that has status 'needs_edit'.
     Implements the 3-attempt profanity flow.
     """
+    # Block edits on inactive listings (profanity attempts exhausted)
+    if listing.status == 'inactive':
+        return None
+
     listing.description = new_description
 
     if listing.status != 'needs_edit':
