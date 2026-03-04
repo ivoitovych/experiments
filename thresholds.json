@@ -1,0 +1,238 @@
+{
+  "thresholds": {
+    "neg_sat_last_zero": {
+      "description": "Last (closest to 0) negative fp16 input where bf16 output is exactly 0 (excluding TAZ)",
+      "fp16_bits": "0xC830",
+      "fp16_value": -8.375,
+      "bf16_bits": "0x8000",
+      "bf16_value": -0.0
+    },
+    "neg_sat_first_nonzero": {
+      "description": "First negative fp16 input (toward 0) where bf16 output becomes non-zero",
+      "fp16_bits": "0xC82F",
+      "fp16_value": -8.3671875,
+      "bf16_bits": "0xA606",
+      "bf16_value": -4.649058916e-16
+    },
+    "neg_sat_first_zero": {
+      "description": "Most-negative finite fp16 input where bf16 output is 0",
+      "fp16_bits": "0xFBFF",
+      "fp16_value": -65504.0,
+      "bf16_bits": "0x8000",
+      "bf16_value": -0.0
+    },
+    "neg_min_output": {
+      "description": "Negative fp16 input producing most-negative bf16 output (GELU minimum)",
+      "fp16_bits": "0xBA6B",
+      "fp16_value": -0.8022460938,
+      "bf16_bits": "0xBE2E",
+      "bf16_value": -0.169921875
+    },
+    "pos_identity_start": {
+      "description": "First positive fp16 input where bf16(GELU(x)) == bf16(x) continuously to +max (identity tail)",
+      "fp16_bits": "0x454D",
+      "fp16_value": 5.30078125,
+      "bf16_bits": "0x40AA",
+      "bf16_value": 5.3125
+    },
+    "pos_last_non_identity": {
+      "description": "Last positive fp16 input where bf16(GELU(x)) != bf16(x)",
+      "fp16_bits": "0x454C",
+      "fp16_value": 5.296875,
+      "bf16_bits": "0x40A9",
+      "bf16_value": 5.28125
+    },
+    "pos_min_nonzero_output": {
+      "description": "Positive fp16 input producing smallest non-zero positive bf16 output",
+      "fp16_bits": "0x0400",
+      "fp16_value": 6.103515625e-05,
+      "bf16_bits": "0x3800",
+      "bf16_value": 3.051757812e-05
+    },
+    "taz_count": 2046,
+    "ftz_count": 0
+  },
+  "plateau_count": 5714,
+  "plateaus_top20": [
+    {
+      "start_fp16_bits": "0xFBFF",
+      "start_fp16_value": -65504.0,
+      "end_fp16_bits": "0xC830",
+      "end_fp16_value": -8.375,
+      "bf16_output_bits": "0x8000",
+      "bf16_output_value": -0.0,
+      "count": 13264
+    },
+    {
+      "start_fp16_bits": "0x83FF",
+      "start_fp16_value": -6.097555161e-05,
+      "end_fp16_bits": "0x8001",
+      "end_fp16_value": -5.960464478e-08,
+      "bf16_output_bits": "0x8000",
+      "bf16_output_value": -0.0,
+      "count": 1023
+    },
+    {
+      "start_fp16_bits": "0x0001",
+      "start_fp16_value": 5.960464478e-08,
+      "end_fp16_bits": "0x03FF",
+      "end_fp16_value": 6.097555161e-05,
+      "bf16_output_bits": "0x0000",
+      "bf16_output_value": 0.0,
+      "count": 1023
+    },
+    {
+      "start_fp16_bits": "0xBA6B",
+      "start_fp16_value": -0.8022460938,
+      "end_fp16_bits": "0xB99F",
+      "end_fp16_value": -0.7026367188,
+      "bf16_output_bits": "0xBE2E",
+      "bf16_output_value": -0.169921875,
+      "count": 205
+    },
+    {
+      "start_fp16_bits": "0xBAB3",
+      "start_fp16_value": -0.8374023438,
+      "end_fp16_bits": "0xBA6C",
+      "end_fp16_value": -0.802734375,
+      "bf16_output_bits": "0xBE2D",
+      "bf16_output_value": -0.1689453125,
+      "count": 72
+    },
+    {
+      "start_fp16_bits": "0xB99E",
+      "start_fp16_value": -0.7021484375,
+      "end_fp16_bits": "0xB95D",
+      "end_fp16_value": -0.6704101562,
+      "bf16_output_bits": "0xBE2D",
+      "bf16_output_value": -0.1689453125,
+      "count": 66
+    },
+    {
+      "start_fp16_bits": "0xBAE7",
+      "start_fp16_value": -0.8627929688,
+      "end_fp16_bits": "0xBAB4",
+      "end_fp16_value": -0.837890625,
+      "bf16_output_bits": "0xBE2C",
+      "bf16_output_value": -0.16796875,
+      "count": 52
+    },
+    {
+      "start_fp16_bits": "0xB95C",
+      "start_fp16_value": -0.669921875,
+      "end_fp16_bits": "0xB92F",
+      "end_fp16_value": -0.6479492188,
+      "bf16_output_bits": "0xBE2C",
+      "bf16_output_value": -0.16796875,
+      "count": 46
+    },
+    {
+      "start_fp16_bits": "0xBB12",
+      "start_fp16_value": -0.8837890625,
+      "end_fp16_bits": "0xBAE8",
+      "end_fp16_value": -0.86328125,
+      "bf16_output_bits": "0xBE2B",
+      "bf16_output_value": -0.1669921875,
+      "count": 43
+    },
+    {
+      "start_fp16_bits": "0xBB37",
+      "start_fp16_value": -0.9018554688,
+      "end_fp16_bits": "0xBB13",
+      "end_fp16_value": -0.8842773438,
+      "bf16_output_bits": "0xBE2A",
+      "bf16_output_value": -0.166015625,
+      "count": 37
+    },
+    {
+      "start_fp16_bits": "0xB92E",
+      "start_fp16_value": -0.6474609375,
+      "end_fp16_bits": "0xB90A",
+      "end_fp16_value": -0.6298828125,
+      "bf16_output_bits": "0xBE2B",
+      "bf16_output_value": -0.1669921875,
+      "count": 37
+    },
+    {
+      "start_fp16_bits": "0xBB59",
+      "start_fp16_value": -0.9184570312,
+      "end_fp16_bits": "0xBB38",
+      "end_fp16_value": -0.90234375,
+      "bf16_output_bits": "0xBE29",
+      "bf16_output_value": -0.1650390625,
+      "count": 34
+    },
+    {
+      "start_fp16_bits": "0xBB79",
+      "start_fp16_value": -0.9340820312,
+      "end_fp16_bits": "0xBB5A",
+      "end_fp16_value": -0.9189453125,
+      "bf16_output_bits": "0xBE28",
+      "bf16_output_value": -0.1640625,
+      "count": 32
+    },
+    {
+      "start_fp16_bits": "0xB909",
+      "start_fp16_value": -0.6293945312,
+      "end_fp16_bits": "0xB8EA",
+      "end_fp16_value": -0.6142578125,
+      "bf16_output_bits": "0xBE2A",
+      "bf16_output_value": -0.166015625,
+      "count": 32
+    },
+    {
+      "start_fp16_bits": "0xBB96",
+      "start_fp16_value": -0.9482421875,
+      "end_fp16_bits": "0xBB7A",
+      "end_fp16_value": -0.9345703125,
+      "bf16_output_bits": "0xBE27",
+      "bf16_output_value": -0.1630859375,
+      "count": 29
+    },
+    {
+      "start_fp16_bits": "0xB8E9",
+      "start_fp16_value": -0.6137695312,
+      "end_fp16_bits": "0xB8CD",
+      "end_fp16_value": -0.6000976562,
+      "bf16_output_bits": "0xBE29",
+      "bf16_output_value": -0.1650390625,
+      "count": 29
+    },
+    {
+      "start_fp16_bits": "0xB7F1",
+      "start_fp16_value": -0.4963378906,
+      "end_fp16_bits": "0xB7D5",
+      "end_fp16_value": -0.4895019531,
+      "bf16_output_bits": "0xBE1D",
+      "bf16_output_value": -0.1533203125,
+      "count": 29
+    },
+    {
+      "start_fp16_bits": "0xBBB2",
+      "start_fp16_value": -0.9619140625,
+      "end_fp16_bits": "0xBB97",
+      "end_fp16_value": -0.9487304688,
+      "bf16_output_bits": "0xBE26",
+      "bf16_output_value": -0.162109375,
+      "count": 28
+    },
+    {
+      "start_fp16_bits": "0xB7D4",
+      "start_fp16_value": -0.4892578125,
+      "end_fp16_bits": "0xB7B9",
+      "end_fp16_value": -0.4826660156,
+      "bf16_output_bits": "0xBE1C",
+      "bf16_output_value": -0.15234375,
+      "count": 28
+    },
+    {
+      "start_fp16_bits": "0xB7B8",
+      "start_fp16_value": -0.482421875,
+      "end_fp16_bits": "0xB79D",
+      "end_fp16_value": -0.4758300781,
+      "bf16_output_bits": "0xBE1B",
+      "bf16_output_value": -0.1513671875,
+      "count": 28
+    }
+  ]
+}
