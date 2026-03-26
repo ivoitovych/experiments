@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    // ─── Strict mode: catches the most bugs at compile time ───────────────────
+    "strict": true,               // enables all strict* flags below
+    "noImplicitAny": true,        // error on expressions with implied `any`
+    "strictNullChecks": true,     // null and undefined are not subtypes of other types
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitReturns": true,    // error when a code path doesn't return a value
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,       // error on unused local variables
+    "noUnusedParameters": true,   // error on unused parameters
+
+    // ─── Module resolution ────────────────────────────────────────────────────
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,               // Vite handles transpilation, TS only type-checks
+
+    // ─── JSX ─────────────────────────────────────────────────────────────────
+    "jsx": "react-jsx",
+
+    // ─── Decorators (required for class-based patterns if used) ───────────────
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    // ─── Path aliases (must match vite.config.ts alias) ──────────────────────
+    // ─── Vite types (import.meta.env, import.meta.hot) ───────────────────────
+    "types": ["vite/client"],
+
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

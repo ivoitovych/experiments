@@ -1,0 +1,1 @@
+export { RiskSliderConfig } from './RiskSliderConfig';
