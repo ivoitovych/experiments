@@ -6,7 +6,7 @@ Clinical Data De-Identification & Synthetic Data Studio — це повнофу�
 
 Система підтримує кілька регуляторних фреймворків — HIPAA (Safe Harbor та Expert Determination), GDPR, UK DPA та Swiss FADP — і надає покроковий візард для налаштування процесу де-ідентифікації. Користувачі можуть завантажувати клінічні тексти у форматах CSV, JSON або TXT, обирати стратегію анонімізації (заміна, редакція, хешування, шифрування тощо) та отримувати детальні результати з аудиторським слідом відповідності.
 
-Крім того, застосунок пропонує генерацію синтетичних даних, інтерактивну панель моніторингу (Dashboard) із візуалізацією статистики, а також повноцінну систему автентифікації через Magic Link без паролів. Уся архітектура контейнеризована за допомогою Docker Compose, що забезпечує швидке розгортання та ізоляцію сервісів.
+Крім того, застосунок пропонує генерацію синтетичних даних, інтерактивну панель моніторингу (Dashboard) із візуалізацією статистики через Recharts, а також повноцінну систему автентифікації через Magic Link без паролів. Уся інфраструктура контейнеризована за допомогою Docker Compose (MySQL 8, Presidio Analyzer, Presidio Anonymizer), що забезпечує швидке розгортання та ізоляцію сервісів.
 
 ---
 
@@ -46,8 +46,9 @@ Clinical Data De-Identification & Synthetic Data Studio — це повнофу�
 ### Крок 1: Встановлення передумов
 
 Переконайтеся, що на вашій машині встановлено:
+
 - **Node.js 20+** — середовище виконання JavaScript
-- **Docker** та **Docker Compose** — для контейнеризації інфраструктури (MySQL, Presidio)
+- **Docker** та **Docker Compose** — для контейнеризації інфраструктурних сервісів (MySQL, Presidio)
 
 ### Крок 2: Налаштування змінних оточення
 
@@ -56,16 +57,17 @@ Clinical Data De-Identification & Synthetic Data Studio — це повнофу�
 cp backend/.env.example backend/.env
 cp frontend/.env.example frontend/.env
 
-# Відредагуйте backend/.env — вкажіть безпечний JWT_SECRET та паролі бази даних
+# Відредагуйте backend/.env — встановіть безпечний JWT_SECRET та паролі БД
+# Детальний опис кожної змінної: див. 02-infrastructure-docker.md
 ```
 
 ### Крок 3: Запуск інфраструктури (MySQL + Presidio)
 
 ```bash
-# Піднімаємо контейнери MySQL 8, Presidio Analyzer та Presidio Anonymizer
+# Піднімаємо MySQL 8, Presidio Analyzer та Presidio Anonymizer у фоновому режимі
 docker compose up -d
 
-# Перевіряємо стан контейнерів (Presidio завантажує ML-моделі ~30 секунд)
+# Перевіряємо стан контейнерів (Presidio завантажує ML-моделі ~30 секунд при першому запуску)
 docker compose ps
 ```
 
@@ -74,7 +76,7 @@ docker compose ps
 ```bash
 cd backend
 npm install          # Встановлення залежностей
-npm run start:dev    # Запуск у режимі розробки з автоперезавантаженням
+npm run start:dev    # Запуск у режимі розробки з автоперезавантаженням (hot-reload)
 # API:     http://localhost:3000
 # Swagger: http://localhost:3000/api/docs
 ```
@@ -92,6 +94,11 @@ npm run dev          # Запуск Vite dev-сервера
 
 ## Корисні посилання
 
-- **Swagger UI**: `http://localhost:3000/api/docs` — інтерактивна документація API
-- **OpenAPI JSON**: `http://localhost:3000/api/docs-json` — специфікація у форматі JSON
-- **Фронтенд-застосунок**: `http://localhost:5173` — веб-інтерфейс
+| Ресурс | URL | Опис |
+|--------|-----|------|
+| Swagger UI | `http://localhost:3000/api/docs` | Інтерактивна документація REST API |
+| OpenAPI JSON | `http://localhost:3000/api/docs-json` | OpenAPI специфікація у форматі JSON |
+| Фронтенд | `http://localhost:5173` | Веб-інтерфейс застосунку |
+| MySQL | `localhost:3307` | Зовнішній порт бази даних (контейнер: 3306) |
+| Presidio Analyzer | `http://localhost:5001` | REST API аналізатора сутностей |
+| Presidio Anonymizer | `http://localhost:5002` | REST API анонімізатора тексту |
