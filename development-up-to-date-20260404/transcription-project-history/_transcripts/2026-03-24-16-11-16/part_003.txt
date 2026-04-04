@@ -1,0 +1,117 @@
+[00:00:00 - 00:00:09] uh as like previously or uh because she used her email before and she will not be able to like uh
+[00:00:10 - 00:00:19] login no no it's so because super simple like uh okay one minute i think i have somewhere this
+[00:00:20 - 00:00:25] no just you just put login and you get link if you delete this email you again
+[00:00:25 - 00:00:31] add email and okay sorry i just um last interview done very good
+[00:00:33 - 00:00:40] uh very good project yeah so we put it as portfolio on our website because it was really cool
+[00:00:41 - 00:00:49] and they do something not not similar but uh one minute do we have the link here
+[00:00:54 - 00:00:59] sorry if i ever found i will show you how this work but i don't see
+[00:00:59 - 00:01:00] links here
+[00:01:08 - 00:01:12] ah okay here let's say if backend does not broken
+[00:01:14 - 00:01:16] then you can see how magic link work
+[00:01:18 - 00:01:24] okay i put my email i click sign in okay and does something happened because last
+[00:01:24 - 00:01:30] time it was broken now i think okay now it's not work okay i will not show it to you
+[00:01:32 - 00:01:33] but it's okay
+[00:01:34 - 00:01:40] i will check to it later but this stuff is like i put the link i send in uh if nothing
+[00:01:41 - 00:01:47] came to my email or i don't know i delete it i can click sign in and i can get email so
+[00:01:48 - 00:01:54] as simple as that okay so there's no like forgot password or uh whatever like uh and
+[00:01:54 - 00:02:02] there will be no like a problem to enter uh with the same email if we previously send uh the link
+[00:02:03 - 00:02:07] it just changes the link and that's we we have a new link to use right
+[00:02:07 - 00:02:19] okay good thank you yes this is the full idea of this yeah this is the idea of uh of magic link
+[00:02:20 - 00:02:28] okay look like certificate inspired uh okay good thank you what what email should we use
+[00:02:30 - 00:02:31] um provider
+[00:02:31 - 00:02:38] okay use whatever is easy for you because um it doesn't really matter i just want that you try
+[00:02:39 - 00:02:45] try sending mail configure all the stuff select again which is simple usually in the interview
+[00:02:45 - 00:02:51] people use just google with login password it's not the best approach not the best it's we never
+[00:02:51 - 00:02:58] use it in the real projects but at least you have some knowledge how to to connect emails if you can
+[00:02:58 - 00:02:59] do something more easy for you
+[00:02:59 - 00:03:00] okay
+[00:03:00 - 00:03:06] if you can do something more advanced please it's no requirement there uh what is the final
+[00:03:06 - 00:03:13] list of client framework for mvp uh no list not final not the final i don't have list so
+[00:03:13 - 00:03:25] everything that i had yeah i provide the front end and the camp okay uh i provided to
+[00:03:27 - 00:03:29] s template and that's all
+[00:03:30 - 00:03:33] else depends on you what you decide what is my priority
+[00:03:35 - 00:03:42] okay thank you you can have a lot okay do framework require different logic only selection
+[00:03:44 - 00:03:49] i'm not sure that you understand what does a different framework mean what is framework
+[00:03:51 - 00:03:59] well i understand what framework means but maybe i could ask natalia oh you mean sorry you mean
+[00:03:59 - 00:03:59] this frame
+[00:04:00 - 00:04:08] mean this for options like gdpr what does this one uh yes i guess that's more about that okay
+[00:04:08 - 00:04:14] sorry sorry sorry this is my understanding uh-huh sorry what is the finalist compliance
+[00:04:15 - 00:04:21] okay because i usually call framework is like react node like node.js express this is from
+[00:04:21 - 00:04:29] box for me okay okay sorry uh yeah this question answer to this question sorry i just didn't know
+[00:04:29 - 00:04:34] that it's called framework we usually call it compliance and uh like just complies without
+[00:04:34 - 00:04:39] framework that's why i was confused sorry so yeah i will provide this answer by solid
+[00:04:39 - 00:04:45] actually guys uh we have 4 p.m i still have some time uh like maybe couple minutes to continue but
+[00:04:45 - 00:04:55] if somebody need to go you can go um sorry okay uh the framework required different logic uh
+[00:04:55 - 00:04:59] yeah there are some will be different logic but again i will ask that
+[00:04:59 - 00:05:03] audio prepare the specific requirements for it in the video format of the doc format
+[00:05:03 - 00:05:09] to avoid any confusions uh yeah and i think everything connect framework
+[00:05:09 - 00:05:14] let's let's go back on social day if i will not answer anything we will make additional
+[00:05:14 - 00:05:20] call or documentation fully automated require user validation editing a user validation
+[00:05:21 - 00:05:26] this is what we just talked about so this is actually user validation
+[00:05:28 - 00:05:28] actually i
+[00:05:29 - 00:05:35] think maybe it will be also good to have option like add item because um okay maybe this will
+[00:05:35 - 00:05:43] be too advanced for you because i assume that maybe some data will be not uh cached and you
+[00:05:43 - 00:05:52] need to think about how how to add them um yeah i think if you can think about some suggestion will
+[00:05:52 - 00:05:58] be great if nobody can discuss later but i think it could happen when some data will be not detected
+[00:05:58 - 00:05:59] by the library
+[00:05:59 - 00:06:05] and we need to somehow handle it that behavior need to change based on selected framework
+[00:06:05 - 00:06:11] um i think it's not about behavior it's about data which is which will be detected here
+[00:06:13 - 00:06:22] because they're very similar i actually i will check with olga why she okay no i know why she
+[00:06:22 - 00:06:27] separated because there are some still different but there are not many difference i think maybe
+[00:06:27 - 00:06:28] it's couple fields
+[00:06:29 - 00:06:30] uh
+[00:06:31 - 00:06:37] or single globaut by miylon vp okay play entity anonymization method
+[00:06:37 - 00:06:41] per min-per-entity or single
+[00:06:41 - 00:06:48] global method uh what is per entity is framework what is entity
+[00:06:48 - 00:06:53] uh i think that you have already answered this question so that was my question yeah so you
+[00:06:53 - 00:06:56] previously answered that you can change uh every entity separately yes yeah yeah it was answered
+[00:06:56 - 00:06:59] 18 про
+[00:06:59 - 00:07:14] was answered okay sorry uh is confidence threshold configuration require confidence threshold okay
+[00:07:14 - 00:07:21] please what is conference threshold confidence threshold threshold threshold no i don't know
+[00:07:21 - 00:07:39] what is it uh did they disappear one two three no no no you're here we okay yeah i think that
+[00:07:39 - 00:07:44] just nobody can answer the question ah so nobody knows conference okay so it's not valid
+[00:07:45 - 00:07:53] uh but if you will remember what is it please just refresh it in like normal simple five years old
+[00:07:53 - 00:07:59] person question okay what input formats are required for mvp input formats are it's
+[00:07:59 - 00:08:06] dependent on input i'm not sure which input we have here uh like text text no validation
+[00:08:06 - 00:08:13] no validation i think it's double down here no validation uh i don't know email validation okay
+[00:08:13 - 00:08:15] just email validation i don't think
+[00:08:15 - 00:08:16] we have a lot of inputs here
+[00:08:19 - 00:08:22] which ah maybe this one okay it should be required
+[00:08:23 - 00:08:31] oh is that actually in contact us form i didn't notice uh so yeah just required required required
+[00:08:31 - 00:08:39] required just give me suggestions and i will check if i'm okay with that also sorry can you hear me
+[00:08:39 - 00:08:45] hello yeah yes sorry about uh the previous question about confidence
+[00:08:45 - 00:08:55] threshold so uh yeah by that question i mean uh we have this um if you go back to figma
+[00:08:55 - 00:09:04] um and when you input data and before you uh let's say export and do anything with that
+[00:09:04 - 00:09:14] if you go back to figma maybe please yeah so basically uh we need to see this input data if you
+[00:09:14 - 00:09:15] go back to figma maybe please yeah so basically uh we need to see this input data if you go back to
+[00:09:15 - 00:09:15] if you go back to figma maybe please yeah so basically uh we need to see this input data if you
+[00:09:15 - 00:09:17] go back to figma maybe please yeah so basically uh we need to see this input data if you go back to
+[00:09:17 - 00:09:24] that's right sorry to each one here yes this yes and you see here below before analyze we have
+[00:09:24 - 00:09:32] confidence threshold uh below a little bit below below yes before analyze pattern yeah
+[00:09:34 - 00:09:38] uh i think this this uh this item should be provided by library
+[00:09:38 - 00:09:45] which i have was here because i think it was taken from mosaic you see this is what it does
+[00:09:45 - 00:09:50] taken from here so if you will during development you will see that something is not able to come
+[00:09:50 - 00:09:58] because we check it only based on um the demo so if there's something we'll be not able to do then
+[00:09:58 - 00:10:08] we will just keep it for now like let's see how um like how it's work the idea of this one from
+[00:10:08 - 00:10:14] my understanding is how confident which data was selected because as i said it could mean something
+[00:10:14 - 00:10:15] or it can highlight something maybe it's not the same data so you can see it's not the same data
+[00:10:15 - 00:10:21] it which is not needed so it's i'm not sure i don't think they and they could use ai because
+[00:10:21 - 00:10:26] this would be too expensive i think there are just some algorithm but maybe it's based on
+[00:10:28 - 00:10:37] how say i i forgot the word but is it required to happen yes it would be good to have of course
+[00:10:37 - 00:10:45] this will be good because there could be some difficult documents which have a lot of numbers
+[00:10:45 - 00:10:51] and yeah some confidence could be lower and this means that user need a check more deeper so
+[00:10:51 - 00:10:57] usually they just look so if it's like 100 confidence they usually don't really care like
+[00:10:57 - 00:11:03] just select everything by default if it's low they usually so they pay more attention
+[00:11:03 - 00:11:10] yeah yeah and also olga she mentioned in her video that we should remove this pattern uh where we
+[00:11:10 - 00:11:14] have like 70 percent above it uh we have this like
+[00:11:15 - 00:11:21] clicking on off yeah preserve yeah preserve document structure she said to remove it
+[00:11:21 - 00:11:27] that's okay right yeah yeah okay yeah i think she'd make this screenshot from
+[00:11:27 - 00:11:33] from website or from ai so again it's not fully true so that's why you need design you need
+[00:11:34 - 00:11:45] like review it or send it to my review and like before start developing at least uh yeah so you
+[00:11:45 - 00:11:49] need to have the design before start working on this design and the design should be approved
+[00:11:50 - 00:11:56] sorry guys i need to go let me um i in couple hours will be available and i will go through
+[00:11:56 - 00:12:01] this question in the video format uh i will send you to you you can i don't use can chat
+[00:12:01 - 00:12:07] gpt or whatever to get transcription of it and get it with the text and if one more call needed
+[00:12:07 - 00:12:14] i will be available in sales day okay okay thank you thank you everybody and thank you
+[00:12:15 - 00:12:21] uh templates who who is waiting for me i will return to it today also later
+[00:12:22 - 00:12:25] okay okay sorry thank you thank you thank you

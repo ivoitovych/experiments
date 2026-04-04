@@ -1,0 +1,184 @@
+[00:00:00 - 00:00:03] so maybe we could skip some questions because
+[00:00:03 - 00:00:07] i wasn't able to connect like right away when you started the meeting sorry about that
+[00:00:12 - 00:00:21] okay okay so uh would you like to start with the questions you open the file yeah yeah yeah okay
+[00:00:21 - 00:00:30] great so uh about the scope um again if i missed something at the beginning of the call uh so we
+[00:00:30 - 00:00:38] can skip those questions just mention it please um so about the expected outcome uh about the
+[00:00:38 - 00:00:47] functional mvp and uh demo prototypes so um for let's say first month uh especially like first
+[00:00:47 - 00:00:54] sprint we will have like two weeks sprint um what is the key like uh for demo call
+[00:00:54 - 00:01:00] should we show you like um let's say logging authentication works
+[00:01:01 - 00:01:08] could you please stop on this more but it's based on you like it's it's you need to prepare a plan
+[00:01:08 - 00:01:15] for me and say what you will show me on the first demo like okay yeah like you would not ask
+[00:01:15 - 00:01:20] customers like what do you expect to have to first demo he will say i want to see the product and you
+[00:01:20 - 00:01:26] say no it will take six months so you should need to come to customer and say okay this is our plan
+[00:01:26 - 00:01:30] this is what i will show you on first demo this is what i will show you on second demo
+[00:01:30 - 00:01:30] and
+[00:01:31 - 00:01:37] yes i i cannot because i don't know like how quick are you like uh what is like somebody
+[00:01:37 - 00:01:42] in the team maybe more of the team more advanced in the back end or maybe front end
+[00:01:42 - 00:01:47] maybe you will do backhand front end but you will not have time to connect it because i don't know
+[00:01:48 - 00:01:57] like everybody knew and lost so i could not answer it uh what are non-negotiable features
+[00:01:57 - 00:02:00] mvp i have no idea what is not negotiable features
+[00:02:01 - 00:02:10] uh-huh uh well this means that uh basically the one that uh we were represented in the video with
+[00:02:10 - 00:02:19] olga and also in sigma so this is uh i would say like the basic features so we uh have authentication
+[00:02:19 - 00:02:29] we log in we have uh emailed the link uh then we upload the file we have some uh analytical data
+[00:02:30 - 00:02:36] and uh we're able to export so basically these are like general features that must be there
+[00:02:37 - 00:02:48] and uh the question was more like mentioned about the payment like uh for demo version right
+[00:02:52 - 00:02:57] if we should add some more features yeah i just i truly say i just don't know how to answer this
+[00:02:57 - 00:03:02] question so when you ask me do you need payment or no i can say do you need payment or no but
+[00:03:02 - 00:03:07] what is not included i don't know like okay
+[00:03:07 - 00:03:12] upload picture is not included so it's so many features that are not included that
+[00:03:12 - 00:03:19] i don't know like what so if you have some like some some doubts about or you if you can send me
+[00:03:19 - 00:03:24] everything that you understand how this works that i can approve that yes it's this or i don't know
+[00:03:24 - 00:03:30] you miss something or this it shouldn't be here i could not i can't do it but say but say generally
+[00:03:30 - 00:03:36] what is not included is still too many things which are not included so if you have acceptance
+[00:03:37 - 00:03:43] for like a plan or anything like in detail that's yeah i can review it but sorry it's
+[00:03:43 - 00:03:50] two general questions um yeah what should you do for the first demo week the same questions
+[00:03:50 - 00:03:55] that first one if scope is contained it was the first feature to the priority designs based on
+[00:03:55 - 00:03:59] you you can sit with the team and think okay what will be easy for you to do or you think
+[00:03:59 - 00:04:06] it's more logical to do um like try to play if you will make mistake no problem usually it's
+[00:04:07 - 00:04:14] it's just a start if you will lucky you will like you will find the right feature right away if
+[00:04:14 - 00:04:21] you're not lucky then like you will adapt during next week uh who is the primary user of the
+[00:04:21 - 00:04:30] platform like people who need to anonymize the data who is that is people who usually who try
+[00:04:30 - 00:04:35] to train ai it could be maybe developers it could be doctors very often actually it's very often
+[00:04:35 - 00:04:36] doctors it could be nurses it could be doctors it could be doctors it could be doctors it could be
+[00:04:38 - 00:04:43] in less time it's very often r d offices so it's people who work
+[00:04:44 - 00:04:49] yeah they have medical education but they do not they're not doctors just because they do not have
+[00:04:49 - 00:04:56] practice or have some parts of the practice so i would say that platform like that more often use
+[00:04:56 - 00:05:09] people like that um what is the core use case okay sorry i disappear again um i'm sorry i just lost
+[00:05:09 - 00:05:13] my connection i couldn't hear anything but that's okay i'm just back i'm so sorry
+[00:05:14 - 00:05:24] but do you hear me fine yes now now good yes thank you uh okay uh repeat the last question
+[00:05:24 - 00:05:32] the last answer um actually you moved to uh just navigate me please so you're talking about core
+[00:05:32 - 00:05:38] user core yeah so primary users of the platform you ask for they
+[00:05:40 - 00:05:44] who are the primary users you are using in your workflow
+[00:05:44 - 00:05:52] it's actually and you can do this is the case that you have a core user um
+[00:05:52 - 00:06:01] you will do a preliminary test uh and then um once you're done uh you'll do the process
+[00:06:01 - 00:06:06] of data entry like this and then you do all the tasks as per the standard the standard
+[00:06:06 - 00:06:11] they have a lot of data, so they're very often connected to AI training.
+[00:06:12 - 00:06:15] Yeah, something like that. What is the core use case for MVP?
+[00:06:16 - 00:06:21] The re-identification, only a full pipeline. What is full pipeline?
+[00:06:22 - 00:06:28] Well, I guess it's more of the project readiness of itself, so
+[00:06:29 - 00:06:34] data certification as well, not just the identification.
+[00:06:34 - 00:06:44] Where we convert the data and export it, so it's more like...
+[00:06:45 - 00:06:49] Sorry? I didn't get you, can you rephrase maybe this question?
+[00:06:50 - 00:06:58] Yes, so by this question I mean like for the first phase, for the first months, but I guess you
+[00:06:58 - 00:07:05] already answered it at the beginning, because for the first months of our project, should we like
+[00:07:06 - 00:07:13] let's say cover de-identification only or the full pipeline, so it means like synthetic data
+[00:07:13 - 00:07:18] analyzing as well? As you decide.
+[00:07:19 - 00:07:23] Yeah, yeah, I already got this. So it depends on how it works, right?
+[00:07:24 - 00:07:30] Yeah, so this is what I expect you in three months. If you can do it in one month,
+[00:07:31 - 00:07:35] perfect, you're a genius, like it's very cool, I will be impressed.
+[00:07:37 - 00:07:43] Karma, five stars, a job, I don't know what else, but this will be really cool.
+[00:07:44 - 00:07:48] But what exactly you will take as priority, what is your priority,
+[00:07:50 - 00:07:54] it's based on you, this is what management is about, at least in my understanding.
+[00:07:55 - 00:07:59] What is the minimum end-to-end flow we must support? Sorry, I didn't get it.
+[00:08:01 - 00:08:07] What is maximum end-to-end flow? What is average end-to-end flow?
+[00:08:07 - 00:08:07] Okay, no problem.
+[00:08:07 - 00:08:12] But I guess that you already answered this question as well at the beginning.
+[00:08:12 - 00:08:17] It's just very general questions for me, so if you have something more specific, I don't know,
+[00:08:17 - 00:08:22] like, am I understand right that user doing this, this, this, then I can approve or disapprove,
+[00:08:22 - 00:08:26] but we're just like, explain the project, I didn't understand, so should I explain the project again,
+[00:08:27 - 00:08:31] or what exactly you expect from this question?
+[00:08:32 - 00:08:36] Well, I'm going to talk to you, this is Natalia from Orange Team, and
+[00:08:37 - 00:08:47] so maybe Mira meant edge cases, for example, error screens, if token expires, for example.
+[00:08:47 - 00:08:51] Of course, of course, yes, that's all you need to think about these cases.
+[00:08:51 - 00:08:59] There are no three cancers, so it's brainstorming of the team, and like, and thinking about like
+[00:08:59 - 00:09:05] what user can do wrong, and yeah, this should be covered. At least during the demo, I always try to
+[00:09:05 - 00:09:07] broke something, so try to be aware of that. Yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah.
+[00:09:07 - 00:09:11] Yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah.
+[00:09:11 - 00:09:11] Okay.
+[00:09:11 - 00:09:15] And, sorry, can I also add to the previous question?
+[00:09:16 - 00:09:16] Yeah.
+[00:09:19 - 00:09:25] I want just to clarify for myself, so you sent us Figma screens, yeah,
+[00:09:27 - 00:09:34] with like step three, for example, where we can, for example, is per entity type method
+[00:09:35 - 00:09:36] configuration planned? Yeah.
+[00:09:36 - 00:09:37] Yeah.
+[00:09:37 - 00:09:42] So, for example, when you choose HIPA, yeah?
+[00:09:42 - 00:09:44] Yeah, yeah.
+[00:09:44 - 00:09:54] Is it pre-identified all entities, or we can manually switch some entities, like this one you can change,
+[00:09:54 - 00:10:00] another one you can change, or it will be, like, a pipeline identified in advance?
+[00:10:00 - 00:10:02] What is entity? This one?
+[00:10:02 - 00:10:05] I mean, for example, name, person, time.
+[00:10:05 - 00:10:05] Yeah, yeah.
+[00:10:05 - 00:10:06] So, every single day. Yeah.
+[00:10:06 - 00:10:06] So, every single day. Yeah.
+[00:10:06 - 00:10:06] So, every single day. So, every single day, yeah.
+[00:10:06 - 00:10:06] So, every single day. Yeah, yeah.
+[00:10:06 - 00:10:06] Yeah.
+[00:10:06 - 00:10:12] should be detected and shown as a list so any sensitive information is shown and then user
+[00:10:12 - 00:10:20] should manually select or unselect based on what he won't anonymize but firstly the system will
+[00:10:20 - 00:10:27] help the user to pre-identify that entities which will be changed okay yes because system also can
+[00:10:27 - 00:10:33] make mistake because it's not always obvious that some numbers for example is social security number
+[00:10:33 - 00:10:41] maybe just some i don't know some code of an application id but system thinks that it's uh
+[00:10:42 - 00:10:48] identification sorry this is a security number so you understand that no it is just
+[00:10:48 - 00:10:54] id of the document and it's not something private if you get what i mean thanks
+[00:10:56 - 00:11:02] so yeah so generally like that uh it shouldn't be automatically replaced uh all the data that
+[00:11:03 - 00:11:11] uh um which was how it's found in this document should be shown for user and user should decide
+[00:11:11 - 00:11:17] which he want to hide and which is not so finally it's still a responsibility of the user to
+[00:11:17 - 00:11:23] anonymize data thank you so much and while you're just on the screen short question again so if you
+[00:11:23 - 00:11:30] scroll a little bit higher like yeah above uh you will see the um uh for example that uh the
+[00:11:30 - 00:11:33] identification settings uh you will see like the
+[00:11:33 - 00:11:39] down uh synthetic realistic fake data is that the same feature that we can see on the left side bar
+[00:11:40 - 00:11:44] synthetic data or it's kind of different a little bit uh features
+[00:11:46 - 00:11:54] oh it's the same it's just yeah it's just all i wanted to show you what is underneath okay thank
+[00:11:54 - 00:12:03] you yeah so this again it's white frame because for me i think maybe it's too much for user
+[00:12:03 - 00:12:09] it's better to split it to three steps so it's more like designer like ux ui designer
+[00:12:09 - 00:12:17] like it's full steam uh brainstorming but um i don't recommend you just uh like think a little
+[00:12:17 - 00:12:22] bit about the user what will be easier what will be more understandable for him to understand to to
+[00:12:22 - 00:12:31] get or like make this process easier so ux ui maybe a little bit more ux and you shouldn't repeat ever
+[00:12:33 - 00:12:41] so that's the thing so what are you going to do so um you're going to download a document
+[00:12:41 - 00:12:45] which is actually a nice format so i think it's a good one so if you download it to google
+[00:12:45 - 00:12:50] or you have a google document uh what kind of document you're going to stitch to to download
+[00:12:50 - 00:12:59] it it will be like a gson document or pdf file or it ups to us to decide which type of document
+[00:13:00 - 00:13:02] no no it's for me let's let's take pdf because the office is the most used used format but if you want to drop your file to upload you can just use txt files yeah
+[00:13:02 - 00:13:02] um actually i think it's also good to have pdf
+[00:13:02 - 00:13:02] all the times
+[00:13:02 - 00:13:02] all the times yeah
+[00:13:02 - 00:13:03] sam sam yeah
+[00:13:03 - 00:13:03] okay
+[00:13:03 - 00:13:03] um uh yeah um
+[00:13:03 - 00:13:08] Yeah. PDF, .txt, .docs.
+[00:13:08 - 00:13:10] Excel type no, also no?
+[00:13:10 - 00:13:14] No, I said Excel no because it will be difficult to show it to you here.
+[00:13:14 - 00:13:17] So you could not just show it as a plain text.
+[00:13:17 - 00:13:18] So let's keep PDF.
+[00:13:18 - 00:13:23] But I think .txt, .docs, PDF, as mentioned before.
+[00:13:23 - 00:13:27] Maybe .txt, it will be good.
+[00:13:27 - 00:13:31] No, JSON, no, it's very rare.
+[00:13:31 - 00:13:32] Okay.
+[00:13:32 - 00:13:34] Yeah.
+[00:13:34 - 00:13:37] Actually, .txt also, I don't think that somebody used .txt.
+[00:13:37 - 00:13:41] Let's just stick on PDF and .docs.
+[00:13:41 - 00:13:46] Okay.
+[00:13:46 - 00:13:47] Okay, next one.
+[00:13:47 - 00:13:49] Is management zone notification?
+[00:13:49 - 00:13:51] This is we discuss.
+[00:13:51 - 00:13:53] What happens after session expire?
+[00:13:53 - 00:13:55] Log out.
+[00:13:55 - 00:13:58] Can user write the cache immediately?
+[00:13:58 - 00:14:00] Can you explain what is right?
+[00:14:00 - 00:14:01] Yes.
+[00:14:01 - 00:14:03] So, for example, the session is expired.
+[00:14:03 - 00:14:04] And then.
+[00:14:04 - 00:14:05] Mm-hmm.
+[00:14:05 - 00:14:10] The user can enter, follow the same magic link and reenter the session.
+[00:14:10 - 00:14:18] Or will need to wait, like, 10 minutes or, like, 30 minutes to reenter.
+[00:14:18 - 00:14:19] No.
+[00:14:19 - 00:14:20] You just log in again.
+[00:14:20 - 00:14:21] Okay.
+[00:14:21 - 00:14:22] And log in again.
+[00:14:22 - 00:14:25] So there's no, there's no, like, time limit.
+[00:14:25 - 00:14:26] No.
+[00:14:26 - 00:14:27] Black user, no.
+[00:14:27 - 00:14:28] Yes.
+[00:14:28 - 00:14:29] No.
+[00:14:29 - 00:14:30] Okay.
+[00:14:30 - 00:14:31] Like, first time I hear about such.
+[00:14:31 - 00:14:32] No, no.
+[00:14:32 - 00:14:34] What is a fallback flow of expire?
+[00:14:34 - 00:14:35] Yeah.
+[00:14:35 - 00:14:36] What is fallback flow?
+[00:14:36 - 00:14:47] Well, let's say, for example, if user had this e-mail with the link and by mistake just
+[00:14:47 - 00:14:48] deleted.
+[00:14:48 - 00:14:49] Mm-hmm.
+[00:14:49 - 00:14:57] So, for example, to enter the platform again to log in, she will just need to use her e-mail.
+[00:14:57 - 00:14:59] And then she can use her profile as well.
+[00:14:59 - 00:15:00] Okay.

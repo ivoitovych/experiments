@@ -1,0 +1,331 @@
+[00:00:00 - 00:00:09] develop branch it's it's my high recommendation yeah you if you will not do it i will see it and
+[00:00:09 - 00:00:18] like you will work with consequences um yeah that's all what this call was for any questions
+[00:00:18 - 00:00:33] general not general specific no we are good good then please uh everybody are free except
+[00:00:33 - 00:00:41] sorry one minute ways you need pm except orange team please orange team left because we need to
+[00:00:41 - 00:00:46] figure out what you are should do and because from what from my investigation you don't have any plan
+[00:00:47 - 00:00:50] so let's stay and decide to not yeah
+[00:00:51 - 00:00:52] to make
+[00:00:52 - 00:00:57] some plan yeah thank you everybody rest is free to go
+[00:00:57 - 00:01:37] okay guys
+[00:01:40 - 00:01:41] but
+[00:01:41 - 00:01:45] was
+[00:01:45 - 00:01:48] but
+[00:01:48 - 00:01:49] one
+[00:01:49 - 00:01:50] one
+[00:01:50 - 00:01:51] within
+[00:01:51 - 00:01:51] seven
+[00:01:51 - 00:01:51] yeah
+[00:01:51 - 00:01:51] i
+[00:01:51 - 00:01:52] think
+[00:01:52 - 00:01:52] for
+[00:01:52 - 00:01:52] know
+[00:01:52 - 00:01:53] is
+[00:01:53 - 00:01:54] not
+[00:01:54 - 00:01:54] a
+[00:01:54 - 00:01:54] good
+[00:01:54 - 00:01:55] there
+[00:01:55 - 00:01:55] is
+[00:01:55 - 00:01:55] a
+[00:01:55 - 00:01:55] all
+[00:01:55 - 00:01:55] sh
+[00:01:55 - 00:01:55] and
+[00:01:55 - 00:01:55] a
+[00:01:55 - 00:02:00] She was supposed to create a dashboard.
+[00:02:00 - 00:02:04] Do you remember what the tasks were for everyone?
+[00:02:04 - 00:02:07] What format was the planning?
+[00:02:07 - 00:02:11] We discussed what we had to do for the sprint.
+[00:02:11 - 00:02:14] The tasks were not yet distributed.
+[00:02:14 - 00:02:17] What were the plans for the sprint?
+[00:02:17 - 00:02:25] Authentication, part of the landing.
+[00:02:25 - 00:02:27] We focus on the design.
+[00:02:27 - 00:02:29] Yes, I found it strange.
+[00:02:29 - 00:02:31] I looked at the design and there was nothing there.
+[00:02:31 - 00:02:33] The design went the other way.
+[00:02:33 - 00:02:38] So, okay.
+[00:02:38 - 00:02:43] Authentication and landing is what you planned to do for the next sprint, right?
+[00:02:43 - 00:02:46] Yes, we planned it differently.
+[00:02:46 - 00:02:49] Okay.
+[00:02:49 - 00:02:52] Okay.
+[00:02:52 - 00:02:55] Natasha, tell me, please.
+[00:02:55 - 00:02:58] Did the task give you an APM?
+[00:02:58 - 00:03:02] Or did you set the priority yourself and it just told you to do it?
+[00:03:02 - 00:03:05] No, there was a meeting with the team.
+[00:03:05 - 00:03:09] They told me, as we decided, that in order for everyone to have work,
+[00:03:09 - 00:03:11] no one expected anyone.
+[00:03:11 - 00:03:13] From the landing, I only make contact form.
+[00:03:13 - 00:03:15] This is the table that you approved.
+[00:03:15 - 00:03:21] Then I had to do this autofocus on the link.
+[00:03:21 - 00:03:22] Magic link.
+[00:03:22 - 00:03:29] And we decided that as soon as I finish it, I will make this dashboard.
+[00:03:29 - 00:03:30] Okay.
+[00:03:30 - 00:03:35] No, just those designs that I asked you about in the movie, they are completely different.
+[00:03:35 - 00:03:38] Or did you just start doing it, and then you had a planning?
+[00:03:38 - 00:03:41] I started with the first wizard.
+[00:03:41 - 00:03:42] This was our first meeting.
+[00:03:42 - 00:03:45] Wizard is, I mean, a compliance card.
+[00:03:45 - 00:03:51] Then we had a second meeting, at which we decided that I, with this hand,
+[00:03:51 - 00:03:54] with the help of a hundred pairs of other developers,
+[00:03:54 - 00:03:59] it would be better for me to start with the contact form on the landing
+[00:03:59 - 00:04:04] and start authorizing the link.
+[00:04:04 - 00:04:06] This is contact us.
+[00:04:06 - 00:04:08] I thought it was authorization.
+[00:04:08 - 00:04:11] Authorization is what you get.
+[00:04:11 - 00:04:13] I started with this, then I threw it in.
+[00:04:13 - 00:04:15] And this is what I did magic link.
+[00:04:15 - 00:04:18] This is when you click on the get started button on the landing page
+[00:04:18 - 00:04:20] and go to this screen.
+[00:04:20 - 00:04:21] That's it.
+[00:04:21 - 00:04:24] In short, I probably fell asleep when I was writing your message.
+[00:04:24 - 00:04:26] And I think so.
+[00:04:26 - 00:04:29] I also wrote to you in a voice message.
+[00:04:29 - 00:04:31] I think maybe I didn't understand anything.
+[00:04:31 - 00:04:33] In short, okay, that's it.
+[00:04:33 - 00:04:34] I don't know.
+[00:04:34 - 00:04:37] In short, I was, well, I think I switched, but I didn't switch.
+[00:04:37 - 00:04:38] Yes, everything is fine.
+[00:04:38 - 00:04:39] That's it.
+[00:04:39 - 00:04:42] That is, this screen is when you click on get started.
+[00:04:42 - 00:04:44] And you get to this screen.
+[00:04:44 - 00:04:47] And here you were shown different input states.
+[00:04:47 - 00:04:49] Super, super cool.
+[00:04:49 - 00:04:50] Super.
+[00:04:50 - 00:04:51] That's it.
+[00:04:51 - 00:04:52] We have a contact form.
+[00:04:52 - 00:04:53] We don't have a landing page.
+[00:04:53 - 00:04:54] This is probably what we need.
+[00:04:54 - 00:04:56] Yes, I'll do the landing in the middle for the guys.
+[00:04:56 - 00:04:59] That is, I still have the morning, so I have two days.
+[00:04:59 - 00:05:02] I will send the landing in the middle.
+[00:05:02 - 00:05:05] First you, Orange Team, then Tegano, right?
+[00:05:05 - 00:05:10] I wanted to ask how it happens, how do you confirm the design?
+[00:05:10 - 00:05:13] Do I have to pull you and that's it?
+[00:05:13 - 00:05:14] Yes.
+[00:05:14 - 00:05:18] Well, as long as PM is not there, then yes, like, pull me.
+[00:05:18 - 00:05:19] Better.
+[00:05:19 - 00:05:22] Well, in short, ideally, throw me a link and, like, what is it?
+[00:05:22 - 00:05:23] Well, I don't know.
+[00:05:23 - 00:05:24] Ah, okay.
+[00:05:24 - 00:05:26] Throw me a link, like, a landing page.
+[00:05:26 - 00:05:29] If there is something super new, well, like, here you have some transitions, then you can
+[00:05:29 - 00:05:30] record some small videos.
+[00:05:30 - 00:05:35] When you have a PM, you will discuss it with us and the PM will have to communicate with me.
+[00:05:35 - 00:05:36] But for now, let's do it this way.
+[00:05:36 - 00:05:37] Yes, okay.
+[00:05:37 - 00:05:38] Well, then everything is not so bad.
+[00:05:38 - 00:05:39] Then I only have such a question.
+[00:05:39 - 00:05:44] I asked when you were making a plan, do you know what someone is taking?
+[00:05:44 - 00:05:48] Or let's go through it again now and determine what someone is doing.
+[00:05:48 - 00:05:52] This is already up to the developer team.
+[00:05:52 - 00:05:53] Yes, judging by everything.
+[00:05:53 - 00:05:57] Well, I plan to choose authorization for myself.
+[00:05:57 - 00:05:58] Uh-huh.
+[00:05:58 - 00:05:59] On the magic link.
+[00:05:59 - 00:06:00] Uh-huh.
+[00:06:00 - 00:06:01] Okay.
+[00:06:01 - 00:06:02] And when are you talking about authorization?
+[00:06:02 - 00:06:03] Do you mean front-end, back-end, email connection?
+[00:06:03 - 00:06:04] And what do you mean when you say authorization?
+[00:06:04 - 00:06:05] Well, first I will do back-end.
+[00:06:05 - 00:06:06] Uh-huh.
+[00:06:06 - 00:06:07] Do endpoint.
+[00:06:07 - 00:06:08] Uh-huh.
+[00:06:08 - 00:06:09] And then I will do a backup.
+[00:06:09 - 00:06:10] Uh-huh.
+[00:06:10 - 00:06:11] Uh-huh.
+[00:06:11 - 00:06:12] Uh-huh.
+[00:06:12 - 00:06:13] Uh-huh.
+[00:06:13 - 00:06:14] Uh-huh.
+[00:06:14 - 00:06:15] Uh-huh.
+[00:06:15 - 00:06:16] Uh-huh.
+[00:06:16 - 00:06:17] Uh-huh.
+[00:06:17 - 00:06:18] Uh-huh.
+[00:06:18 - 00:06:19] Uh-huh.
+[00:06:19 - 00:06:20] Uh-huh.
+[00:06:20 - 00:06:21] Uh-huh.
+[00:06:21 - 00:06:22] Uh-huh.
+[00:06:22 - 00:06:25] And then when the JVT token is issued ...
+[00:06:25 - 00:06:26] Uh-huh.
+[00:06:26 - 00:06:27] Okay.
+[00:06:27 - 00:06:28] Uh-huh.
+[00:06:28 - 00:06:29] And then to be sure.
+[00:06:29 - 00:06:30] Then design.
+[00:06:30 - 00:06:31] Then I will start to work together ...
+[00:06:31 - 00:06:32] There is a design.
+[00:06:32 - 00:06:33] There it is.
+[00:06:33 - 00:06:34] Time to figure it out.
+[00:06:34 - 00:06:36] This week I plan to infuse the backend, and the next design ...
+[00:06:36 - 00:06:37] C'mon, it took a shit lenght.
+[00:06:37 - 00:06:38] I knew it.
+[00:06:38 - 00:06:39] I didn't know.
+[00:06:39 - 00:06:40] Charge your skin, but all that shit?
+[00:06:40 - 00:06:41] No, but ...
+[00:06:41 - 00:06:44] Yeah.
+[00:06:44 - 00:06:46] No, but for actors in general and complete,...
+[00:06:46 - 00:06:47] Oh, in returns it cost, but they?
+[00:06:47 - 00:06:48] I used it already.
+[00:06:48 - 00:06:49] Oh, now they sell it in customs.
+[00:06:49 - 00:06:50] Yeah.
+[00:06:50 - 00:06:51] So how?
+[00:06:51 - 00:06:52] Well, in my opinion after all that ...
+[00:06:52 - 00:06:53] So.
+[00:06:53 - 00:07:00] Okay, good. I heard about it. With such plans, we will now break up into a few people.
+[00:07:00 - 00:07:10] Okay, then let's do this. You take the endpoint, the database, because you need to save the token that you will send to the mail somewhere, right?
+[00:07:10 - 00:07:18] Plus, you need a user ... By the way, we haven't talked about it yet. Okay, let's do this for now.
+[00:07:18 - 00:07:23] Well, you need to save this token in the database. And you need to create a UI.
+[00:07:23 - 00:07:31] Now I need someone to connect the email. I suggest that we create an email with a separate task.
+[00:07:31 - 00:07:43] Of course, we need to create a service that will accept the token and email and send it to this email in a token link.
+[00:07:43 - 00:07:47] That's how it should be. In short, someone will do it.
+[00:07:47 - 00:07:48] I wish.
+[00:07:48 - 00:07:54] There are no wishes. Okay. We will choose.
+[00:07:54 - 00:07:58] If I struggle with endpoint and GVT token, then I will try.
+[00:07:58 - 00:08:03] Well, if you struggle, then yes. And if you don't, that's it, you don't struggle.
+[00:08:03 - 00:08:08] I need someone else parallel. There you will have a job.
+[00:08:08 - 00:08:13] Because you still need to accept this GVT token on the frontend.
+[00:08:13 - 00:08:17] Well, you sent it, right? You made a UI, you sent it.
+[00:08:17 - 00:08:18] Then the person will go.
+[00:08:18 - 00:08:21] Then the person will go to this GVT and you also need to show how it looks.
+[00:08:21 - 00:08:24] By the way, I think that ...
+[00:08:24 - 00:08:27] Wait a minute, I got confused about the design.
+[00:08:27 - 00:08:28] Everything is here, the design.
+[00:08:28 - 00:08:34] So, I suppose that when a person will go, he will probably go to the dashboard right away.
+[00:08:34 - 00:08:37] Yes, yes, yes. It should be here right away.
+[00:08:37 - 00:08:39] Autonomous already.
+[00:08:39 - 00:08:40] Autonomous already.
+[00:08:40 - 00:08:47] So, we need a page. Natasha, we need a page of this. Empty, in short.
+[00:08:47 - 00:08:52] Yes, I will make an empty state. I just didn't have time.
+[00:08:52 - 00:08:56] This is filled, there will still be an empty state with tooltips.
+[00:08:56 - 00:08:58] Yes, what are tooltips?
+[00:08:58 - 00:09:04] And this is when you point an arrow at some chart and it tells you where you are and what it means.
+[00:09:04 - 00:09:07] Oh, yes, well, okay. No, this is good.
+[00:09:07 - 00:09:10] Only the tooltip, it seems to me, should not be filled.
+[00:09:10 - 00:09:13] And when it comes for the first time, you need to show, for example, you don't have any data.
+[00:09:13 - 00:09:14] Yes, when it comes.
+[00:09:14 - 00:09:16] That is, I plan for these charts to just be ...
+[00:09:16 - 00:09:21] Yes, that is, they should be in the default state of gray color with zero values.
+[00:09:21 - 00:09:23] That is, in principle, the layout will remain the same.
+[00:09:23 - 00:09:24] No, no, no, no.
+[00:09:24 - 00:09:25] No?
+[00:09:25 - 00:09:28] We don't understand well, why 185?
+[00:09:28 - 00:09:31] Well, even if it is gray, the user can be confused.
+[00:09:31 - 00:09:33] Why 98%?
+[00:09:33 - 00:09:39] No, it's like a mockup, you know, when there is already some information, when the user is not the first.
+[00:09:39 - 00:09:45] And if it is a new user, a banner will appear, we welcome a new user, for example.
+[00:09:45 - 00:09:46] Yes, yes.
+[00:09:46 - 00:09:49] It will be just zeros, that is, it will be in zeros.
+[00:09:49 - 00:09:51] Oh, you want to do that.
+[00:09:51 - 00:09:53] Well, okay, you can try.
+[00:09:53 - 00:09:59] I would just say, like, no data to show, like, start using the app, or something like that.
+[00:09:59 - 00:10:00] Well, you can ...
+[00:10:00 - 00:10:02] Well, in short, you need to look, because I just saw it in zeros.
+[00:10:02 - 00:10:05] I was just thinking about the developers and how it will be more important for them.
+[00:10:05 - 00:10:15] I thought that if the layout and all these frames remain the same, there will simply be zero values and a hint for the user that, as you are new, the date is still empty.
+[00:10:15 - 00:10:18] I thought about it from the point of view of the developer.
+[00:10:18 - 00:10:21] No, it should be from the point of view of the user.
+[00:10:21 - 00:10:22] Well, at least ...
+[00:10:22 - 00:10:33] Well, like, yes, it's right for the developer to ask some things, but I just think that from the point of view of the user, it will be strange for him to see zero values.
+[00:10:33 - 00:10:40] Because it's okay, where there are numbers, it's just okay, but the chart will be completely empty, everything will be empty here, there will also be only these.
+[00:10:40 - 00:10:41] They just ...
+[00:10:41 - 00:10:44] Well, it seems to be empty, in fact, when there will be nothing.
+[00:10:44 - 00:10:50] Oh, look, I don't know if I can make two options, let's make two options, and we'll see what it will look like.
+[00:10:50 - 00:10:51] Okay, okay.
+[00:10:51 - 00:10:52] It's not difficult for me.
+[00:10:52 - 00:10:53] Let's do it this way.
+[00:10:53 - 00:11:01] Well, anyway, in any case, when you need to redirect links, you can at least display some kind of hello world page here, and display these things here.
+[00:11:01 - 00:11:02] Well, the menu.
+[00:11:02 - 00:11:05] I'm talking about the authorization ...
+[00:11:05 - 00:11:10] No, I don't know, okay, that's it for now.
+[00:11:10 - 00:11:13] Yes, okay, there are no email requests.
+[00:11:13 - 00:11:18] If you want to send a link to an email, then we will have a mark.
+[00:11:18 - 00:11:20] So, Mark, what do you need to do?
+[00:11:20 - 00:11:25] You need to write a function that will receive an email, and what do we have there?
+[00:11:25 - 00:11:27] Token.
+[00:11:27 - 00:11:28] Oops.
+[00:11:28 - 00:11:30] Token.
+[00:11:30 - 00:11:33] And, in principle, nothing ...
+[00:11:33 - 00:11:34] No, return ...
+[00:11:34 - 00:11:37] Well, I don't know, you probably don't have to return anything.
+[00:11:37 - 00:11:38] We'll see.
+[00:11:38 - 00:11:43] And it will send, in fact, a link, it will send something like ...
+[00:11:43 - 00:11:45] Well, in this case, you have a localhost.
+[00:11:45 - 00:11:47] Something like that.
+[00:11:47 - 00:11:50] HTTP.
+[00:11:50 - 00:11:51] What is there?
+[00:11:51 - 00:11:52] Localhost.
+[00:11:52 - 00:11:53] Localhost.
+[00:11:53 - 00:11:55] There are three thousand.
+[00:11:55 - 00:11:58] This means that I have to get rid of nif.
+[00:11:58 - 00:12:02] Well, this thing is the front end, the path.
+[00:12:02 - 00:12:05] And something like ...
+[00:12:05 - 00:12:07] Login.
+[00:12:07 - 00:12:08] I don't know.
+[00:12:08 - 00:12:10] And here is this token.
+[00:12:10 - 00:12:13] In general, in this format, which you will have to send.
+[00:12:13 - 00:12:19] There, if there is something, some little things, then we will correct it.
+[00:12:19 - 00:12:20] I have a question.
+[00:12:20 - 00:12:21] Query parameters.
+[00:12:21 - 00:12:27] Token equals.
+[00:12:27 - 00:12:28] Query parameters.
+[00:12:28 - 00:12:29] Token equals.
+[00:12:29 - 00:12:33] Oh, you, like, instead of a login, write a token here.
+[00:12:33 - 00:12:34] Oh, you want it like this.
+[00:12:34 - 00:12:35] I understand.
+[00:12:35 - 00:12:36] You, like, like this.
+[00:12:36 - 00:12:38] Well, in fact, they rarely write now.
+[00:12:38 - 00:12:39] Yes.
+[00:12:39 - 00:12:42] Well, like, I understand that it's a little easier for parsing.
+[00:12:42 - 00:12:43] I understood it like this.
+[00:12:43 - 00:12:45] Well, for parsing, it's so much easier.
+[00:12:45 - 00:12:48] But for the user, these things, well, it's better not to do that.
+[00:12:48 - 00:12:51] Well, like, what is sent to the email, it's better not to do it in this format.
+[00:12:51 - 00:12:56] It's better to do it in the form of, there, token, there, slash.
+[00:12:56 - 00:12:59] Well, in short, it's better to do it in this format.
+[00:12:59 - 00:13:01] Well, it's more trustful.
+[00:13:01 - 00:13:05] In other words, if you pay attention to what links come to you on the mail for verification
+[00:13:05 - 00:13:07] and all that, you will very rarely see a question mark.
+[00:13:07 - 00:13:10] Like, you will always see it in this format.
+[00:13:10 - 00:13:11] Yes.
+[00:13:11 - 00:13:12] Yes.
+[00:13:12 - 00:13:14] I don't look at that link at all, just.
+[00:13:14 - 00:13:18] Well, that's just a reason to start looking.
+[00:13:18 - 00:13:22] Well, like, the whole experience of development is to start paying attention to these things
+[00:13:22 - 00:13:24] that you didn't pay attention to before.
+[00:13:24 - 00:13:25] So, okay.
+[00:13:25 - 00:13:27] What was the question there?
+[00:13:27 - 00:13:30] Mark, you can just turn on the microphone and talk.
+[00:13:30 - 00:13:32] Yes, I had a question.
+[00:13:32 - 00:13:35] And from which mail should we send this link to the user?
+[00:13:35 - 00:13:36] Create one.
+[00:13:36 - 00:13:38] Well, that's a good question.
+[00:13:38 - 00:13:39] Just create.
+[00:13:39 - 00:13:40] There is the simplest option.
+[00:13:40 - 00:13:42] It's like, you create some kind of Google.
+[00:13:42 - 00:13:43] I don't know.
+[00:13:43 - 00:13:44] Some kind of common.
+[00:13:44 - 00:13:45] I don't know.
+[00:13:45 - 00:13:48] Zenbeat, Intersheet, Green Team, Hello World, something like that.
+[00:13:48 - 00:13:51] And there you send the login and password.
+[00:13:51 - 00:13:56] If you can do something more secure, well, at least not with a login and password,
+[00:13:56 - 00:14:01] but through a token, there again, some AI will tell you.
+[00:14:01 - 00:14:03] Then it will be generally super.
+[00:14:03 - 00:14:07] If you can turn on some service, like, well, in short, some service,
+[00:14:07 - 00:14:11] it will be even cooler that the services allow you to draw templates yourself.
+[00:14:11 - 00:14:14] Well, like, what the email itself will look like.
+[00:14:14 - 00:14:16] And, by the way, yes, this is a good thing.
+[00:14:16 - 00:14:18] The fact that you will have to write the email itself.
+[00:14:18 - 00:14:19] Email text.
+[00:14:19 - 00:14:21] Well, like, create a template.
+[00:14:21 - 00:14:25] Something like, hello, there, not hello, user.
+[00:14:25 - 00:14:27] But like, I don't know.
+[00:14:27 - 00:14:30] What can you do there?
+[00:14:30 - 00:14:32] Like, here is your link.
+[00:14:32 - 00:14:38] Here is your link for verification.
+[00:14:38 - 00:14:40] By the way, this is a very good point.
+[00:14:41 - 00:14:43] We will need more.
+[00:14:43 - 00:14:44] I don't forget it yet.
+[00:14:44 - 00:14:46] I leave it in the comments.
+[00:14:46 - 00:14:49] This is probably the next priority.
+[00:14:49 - 00:14:51] In short, the next priority.
+[00:14:51 - 00:14:52] Well, let's call it two.
+[00:14:52 - 00:14:53] I don't know.
+[00:14:53 - 00:14:58] We will need an email template.
+[00:14:58 - 00:14:59] What does it mean?

@@ -1,0 +1,167 @@
+[00:00:00 - 00:00:05] information which is connected to a specific user and is sensitive is not shown to anyone.
+[00:00:06 - 00:00:15] And when we get this data, when we will replace finally this output with fake data,
+[00:00:16 - 00:00:24] we can use the data, again, for example, for training AI. We will show some extra charts
+[00:00:24 - 00:00:32] and dashboards, like login system, I think login system is not showed here but don't worry,
+[00:00:32 - 00:00:38] you have designer, you have PM, and you have five developers. So you will figure out how the rest
+[00:00:38 - 00:00:45] of the applications work. So what I will send? I will send you the sigma. Also, here is very
+[00:00:45 - 00:00:53] big description about rules validation. Also, I will send you three videos that
+[00:00:54 - 00:00:54] was...
+[00:00:54 - 00:01:02] prepared for you to check and more deep understand all this stuff um and your task for next week
+[00:01:02 - 00:01:11] will be to check all of this and try to make some general plan actually for me it's more important
+[00:01:11 - 00:01:16] that you prepare the questions because in one week what is in one week we will have in one week
+[00:01:16 - 00:01:23] like around 30 we will have we need to start development so during next week you need to
+[00:01:23 - 00:01:30] prepare as much as needed for you to like i don't know questions for me i don't know backlog what do
+[00:01:30 - 00:01:38] you need like rest of the stuff to be sure that on 30s you start actual development this is will be
+[00:01:38 - 00:01:46] your like your task for next week um i suggest to have a call next week somewhere in wednesday
+[00:01:46 - 00:01:50] i think wednesday it's not too
+[00:01:50 - 00:01:52] uh
+[00:01:52 - 00:01:53] um
+[00:01:54 - 00:01:59] okay wednesday okay wednesday i could make it available for you on wednesday we can communicate
+[00:01:59 - 00:02:07] in in slack uh what time is better uh so you like so you'll have something called in case
+[00:02:07 - 00:02:13] something needed from me um if anything else we will communicate in slack uh
+[00:02:15 - 00:02:21] most of the communication will be in your team chat sorry where is it
+[00:02:23 - 00:02:29] so most communication in the team chat if something general i put it here if you need
+[00:02:29 - 00:02:35] some communication between the team you also can use here please do not write me a private message
+[00:02:35 - 00:02:43] because i usually don't read them i won't because it's also like kind of role we never talk with a
+[00:02:44 - 00:02:52] customer in the private messages and even with team member we try to do it in the general chats
+[00:02:53 - 00:02:57] because if there are any conflicts or some unpredictable situation it's much more easy
+[00:02:57 - 00:03:04] to see the history in the chat than in private conversation ask for skin short and all the stuff
+[00:03:04 - 00:03:10] so i can't ask anything that you want to discuss do it here if you want something like out of slack
+[00:03:10 - 00:03:14] you think that it's not comfortable you like telegram whatsapp or whatever you can do it
+[00:03:14 - 00:03:22] but this is our official channel of communication okay uh about the project do you have any questions
+[00:03:22 - 00:03:29] have any question now i'm not dive deep into details it's just will be too heavy for you
+[00:03:31 - 00:03:32] i assume it's yes
+[00:03:37 - 00:03:43] sorry what is it card and text tag for the project uh yeah this is what next steps we will discuss
+[00:03:43 - 00:03:54] about the project generally uh like about figma videos how we'll do it no okay let's go then
+[00:03:54 - 00:04:07] to text tag one minute um i think this one uh huh okay
+[00:04:24 - 00:04:27] okay so what we will use
+[00:04:34 - 00:04:39] okay i just play that okay i remember okay so what we will use we will use react so actually
+[00:04:39 - 00:04:40] everything that you use for a test task it will be the same so really everything we will do is that
+[00:04:40 - 00:04:42] we will have integration um and you have which php requests we will also have you need to go into
+[00:04:42 - 00:04:43] or you can also see analysts that work with dm there because they're alternate or every single
+[00:04:43 - 00:04:43] so in the github development you can go into and see what are the personal choice meets at comoke
+[00:04:43 - 00:04:43] whatever you do your file number i forgot to mention about management of engagement
+[00:04:43 - 00:04:44] um so they can also use the password okay it's important for everyone on the se theories
+[00:04:44 - 00:04:44] so we'll do the same one and ask if you have unique questions which we don't know and they're �跑an
+[00:04:44 - 00:04:51] React, Redux Toolkit, Material UI, it's not mandatory, or Style Component, so you can
+[00:04:51 - 00:04:58] use any library that you want, but it's important that you discuss it with the team, because
+[00:04:58 - 00:05:03] if everybody knows how to use Style Component and you decide to go with Material UI, which
+[00:05:03 - 00:05:08] is not very comfortable to work with Style Component, maybe it will be not the best decision.
+[00:05:08 - 00:05:13] But general requirements, it's React, Redux Toolkit, it's mandatory.
+[00:05:13 - 00:05:19] For backend, we will use Nest, we will use TYPO-RM, and our database will be MySQL.
+[00:05:19 - 00:05:26] That's because it's a little bit easier to set up than Postgres.
+[00:05:26 - 00:05:27] What else?
+[00:05:27 - 00:05:28] I will send this document...
+[00:05:28 - 00:05:39] Oh, it will actually let me do it right away, I think it should have public access.
+[00:05:39 - 00:05:40] What else?
+[00:05:40 - 00:05:41] One minute.
+[00:05:41 - 00:05:42] Aha, Git.
+[00:05:42 - 00:05:43] Let's...
+[00:05:43 - 00:05:44] Few...
+[00:05:44 - 00:05:45] Few...
+[00:05:45 - 00:05:46] Few...
+[00:05:46 - 00:05:50] Few...
+[00:05:50 - 00:05:51] Few...
+[00:05:51 - 00:05:52] Few...
+[00:05:52 - 00:06:01] Sentences about Git, because it's very common mistake, since I thought that it's not...
+[00:06:01 - 00:06:04] Like with AI it becomes everything easy, but no.
+[00:06:04 - 00:06:07] So how you will work.
+[00:06:07 - 00:06:09] Now I will need...
+[00:06:09 - 00:06:17] So when you will, like, meet your team, understand who is who, I need that each team provide
+[00:06:17 - 00:06:18] me one frontend.
+[00:06:18 - 00:06:19] I'm gonna...
+[00:06:19 - 00:06:24] front-end and one backend developer from each team.
+[00:06:32 - 00:06:34] It doesn't mean that you will be front-end always.
+[00:06:34 - 00:06:40] So, front-end.
+[00:06:42 - 00:06:43] It doesn't mean that you will front-end only
+[00:06:43 - 00:06:44] or backend only.
+[00:06:44 - 00:06:48] I just need somebody for setup template.
+[00:06:48 - 00:06:50] So I will send you the rules,
+[00:06:50 - 00:06:52] how to setup template general,
+[00:06:52 - 00:06:54] because it will not be possible
+[00:06:54 - 00:06:55] that multiple people doing it.
+[00:06:55 - 00:06:58] So I just need that again.
+[00:06:58 - 00:07:01] Each team provide me a person name who will do front-end
+[00:07:01 - 00:07:04] and person name who will do backend template setup.
+[00:07:06 - 00:07:09] What this person will do?
+[00:07:09 - 00:07:12] He will create, like he will do all the work
+[00:07:12 - 00:07:13] in the master branch.
+[00:07:13 - 00:07:16] And when I will say that all fine,
+[00:07:16 - 00:07:18] like you will send it to my review.
+[00:07:18 - 00:07:20] I will say all fine or not fine,
+[00:07:20 - 00:07:22] but anyway, in some point it should be fine.
+[00:07:22 - 00:07:25] Then you create a developer branch.
+[00:07:26 - 00:07:29] And after that, all the working is developer branch
+[00:07:29 - 00:07:30] is like your main branch.
+[00:07:30 - 00:07:32] You forget about master forever.
+[00:07:32 - 00:07:35] Like never not push directly,
+[00:07:35 - 00:07:37] not push through the developer branch,
+[00:07:37 - 00:07:39] not push through your other branch.
+[00:07:39 - 00:07:43] So never like master is close until we have release.
+[00:07:43 - 00:07:47] Release for us is like at the end of the project
+[00:07:47 - 00:07:49] when you will say that it's ready.
+[00:07:49 - 00:07:52] So from developer branch, you'll create your branch.
+[00:07:52 - 00:07:57] For example, feature out or I don't have a recommendation
+[00:07:57 - 00:07:58] about name.
+[00:07:58 - 00:08:03] It just nice when they are look more or less same,
+[00:08:03 - 00:08:05] but it's really doesn't matter.
+[00:08:05 - 00:08:08] It's more of matter that each time from develop,
+[00:08:08 - 00:08:11] you make a branch and work on this branch.
+[00:08:11 - 00:08:14] What also important.
+[00:08:14 - 00:08:17] So, so we have remote project, which on GitHub,
+[00:08:17 - 00:08:18] you have local projects.
+[00:08:18 - 00:08:22] So you create a branch locally, then you push remote branch
+[00:08:22 - 00:08:28] the remote project so it's become available in GitHub because we will use GitHub and after that
+[00:08:28 - 00:08:35] you create a pull request so you never push directly a branch to the develop branch if you
+[00:08:35 - 00:08:42] don't know what is PR or pull request just read it it's not something like difficult it's two buttons
+[00:08:42 - 00:08:51] in the GitHub repository uh yeah I think that's that's what I want to highlight because it's like
+[00:08:51 - 00:08:58] each time like each time there is somebody who pushed to develop without PR so don't be that
+[00:08:58 - 00:09:11] person just not good okay uh one minute what also I want um okay let's see what is it
+[00:09:16 - 00:09:22] okay ah it's actually instruction it's old one but yeah it's hard to
+[00:09:23 - 00:09:24] to use
+[00:09:24 - 00:09:27] PR but I think you can find it by your own
+[00:09:31 - 00:09:37] uh-huh okay also I want to highlight a few items let me send this
+[00:09:47 - 00:09:53] also as a common mistake which you will do everybody do it's
+[00:09:55 - 00:10:00] this file one minute I also send you the link to it
+[00:10:00 - 00:10:05] uh does it know how to make a link
+[00:10:07 - 00:10:19] this one so what this file is about is about what is PR and what I expect from you from PR
+[00:10:19 - 00:10:25] this is actually always will be your biggest issue or and the most critical it will be in the first
+[00:10:26 - 00:10:32] first two uh two weeks so all this rules so if you use some AI
+[00:10:33 - 00:10:37] connected to uvs code or whatever you use then you can just give it to
+[00:10:37 - 00:10:46] to it and you will have a nice code if no you just need to check that all these rules are followed
+[00:10:46 - 00:10:53] they are very simple like try cache if it's a sync operation no magic number magic number if
+[00:10:53 - 00:11:00] you will put somewhere there like eight what is eight why eight so we don't have like eight of 52
+[00:11:00 - 00:11:03] what is 52 so you always need to have a constant so if you don't have like eight of 52 what is 52 so you always need to have a constant you always need to have a constant
+[00:11:04 - 00:11:10] like okay you can read it so no console log like uh a lot of you actually have
+[00:11:10 - 00:11:17] n file in git repo it's like prohibited like never never it's so unsecure so you always
+[00:11:17 - 00:11:23] should have an example I will send these rules for for those who will set up template but
+[00:11:23 - 00:11:28] this is really important because it's very difficult to delete anything from git history
+[00:11:28 - 00:11:33] okay so anyway they are quite straightforward if you will read them
+[00:11:33 - 00:11:40] carefully it's not too many of them like five here nine here 15 here okay so it's not many
+[00:11:40 - 00:11:49] but what I want to pay attention is here we have PR rules which a lot of of you didn't pay attention
+[00:11:49 - 00:11:59] for it and here we have PR rules is what I expect from you in the PR description request
+[00:12:00 - 00:12:03] I hope I can do actually it here because
+[00:12:04 - 00:12:05] um
+[00:12:07 - 00:12:35] actually here is only one branch cool I can do it here um okay okay here I don't have permission
+[00:12:35 - 00:12:43] okay so then when you will do it you'll see so when you will do pull request you will have here
+[00:12:43 - 00:12:51] like somewhere here like a description box and on that description box I expect that like if it's
+[00:12:51 - 00:12:52] front end changes
+[00:12:52 - 00:12:58] I expect that you are attached to the screenshot so if the end UI changes like because on front
+[00:12:58 - 00:13:02] end usually what you are doing you're working on the screens if you're working on the screen that
+[00:13:02 - 00:13:08] you have something to show so this screenshot should be attached to the PR and if you're
+[00:13:08 - 00:13:15] doing backend and these backend changes include database changes so I expect that you connect
+[00:13:15 - 00:13:22] database schema here it's one of the example where you can do this database schema but most
+[00:13:22 - 00:13:32] of the most of the clients like dbiver php myadmin or like actually i'm not sure about pagadmin but
+[00:13:32 - 00:13:39] anyway most of these ui tools they have something like create a schema and they will create the
+[00:13:39 - 00:13:46] schema for you without any extra work so just read about it it shouldn't be difficult but it's
+[00:13:46 - 00:13:50] important that you connect screenshot to the database because it's very often the blocker
+[00:13:50 - 00:13:55] that i return you appear and i said no i don't approve the pair
+[00:13:56 - 00:14:04] because you didn't follow the rules and then you you will see you will like it means that
+[00:14:05 - 00:14:11] you will become a blocker for your team because your pair will not be will not be measured
+[00:14:12 - 00:14:20] uh they should include template of the checklist yeah and this one also like everybody
+[00:14:20 - 00:14:29] forget so in this document just please click this stuff there are really not a lot of rules
+[00:14:30 - 00:14:36] just spend i don't know half an hour read them remember where to look for what and that's all
+[00:14:37 - 00:14:44] um yeah first first week will be a lot of confusion but but it's just part of the process
+[00:14:45 - 00:14:50] okay good let me check the question look like and whether any
+[00:14:50 - 00:14:54] architecture decision already in place would be aware of
+[00:14:54 - 00:15:00] no architectural decisions except template so the people who will be set up template

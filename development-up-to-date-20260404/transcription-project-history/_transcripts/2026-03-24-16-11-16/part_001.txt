@@ -1,0 +1,115 @@
+[00:00:00 - 00:00:06] database structure i assume it will be very similar but generally i think like it's based
+[00:00:06 - 00:00:12] based on your based on the team who will be responsible for each kind of task it will be
+[00:00:12 - 00:00:17] the specific description of the identification listen in the layout identification method
+[00:00:18 - 00:00:26] it was the about with the frameworks should we describe it them separately like hipaa does that
+[00:00:26 - 00:00:37] gdpr does that actually uh it does does it yeah i think the because sorry all i should prepare
+[00:00:37 - 00:00:45] this description which requirements for each one um it looks quite difficult to read it
+[00:00:46 - 00:00:54] in the under safe however if you need something just define quantity result name remove replace
+[00:00:54 - 00:00:55] data burst
+[00:00:57 - 00:01:02] is this one i don't know what does it mean okay i will double check this instruction i will check
+[00:01:02 - 00:01:09] does it does it does not have any like difficult naming uh but generally like all her like i'll
+[00:01:09 - 00:01:15] connect with her because she need to prepare like what what are the rules for each of of
+[00:01:15 - 00:01:23] these categories so if it's bad described because at least i don't understand some wording um i will
+[00:01:23 - 00:01:26] talk to her and i will try to to do better
+[00:01:28 - 00:01:40] because she's not quite busy by sword i will try to back with by soldi okay i will i think i
+[00:01:40 - 00:01:46] will make a video just to make it quicker or she will send the video as she should actually did she
+[00:01:47 - 00:01:51] because i didn't check the video that i sent to you she didn't explain it no
+[00:01:52 - 00:01:57] basically i saw them that was just as i understood your explanation
+[00:01:57 - 00:02:04] video nothing no no it was not mine it was her because i i didn't prepare this this task like
+[00:02:04 - 00:02:08] uh i from technical point of view i understand how it's work but from business point of sight
+[00:02:08 - 00:02:14] uh she was responsible for um for creating all the description and she records the video so that's
+[00:02:14 - 00:02:21] why i just double checked so there was no mention about how each group is working um i don't really
+[00:02:21 - 00:02:27] remember the description sorry sorry to interrupt no there was no information like this so we had
+[00:02:27 - 00:02:35] videos from olga right and uh there was just the preview like uh how they used it okay okay
+[00:02:37 - 00:02:45] okay okay okay there was any i'd apparently make a note because it's kind of a very okay yeah yeah
+[00:02:45 - 00:02:50] i know that it's like information um yeah because this is what your task okay
+[00:02:51 - 00:02:55] okay by so's day because i think tomorrow she will spend time to it so by so's day i will try
+[00:02:55 - 00:03:00] to go back to you with a little bit more more details about what is the difference between
+[00:03:00 - 00:03:06] each category uh okay the layout provides the ability to start a free tile does this
+[00:03:06 - 00:03:17] mean that you need to create from a payment system um yeah no general no
+[00:03:17 - 00:03:23] i think this would just like from ai generated uh landing it was just for you to give ideas
+[00:03:23 - 00:03:32] like how landing can look like but i think i think because i think it will be good to practice to
+[00:03:32 - 00:03:46] have some stripe connection it's very easy to connect um to have this checkbox um okay let's
+[00:03:46 - 00:03:51] let's left for for now like payment not as priority i think it will be good to add but
+[00:03:51 - 00:03:57] let's see how you will go so after one month we will see where are you are you finish authorization
+[00:03:58 - 00:04:05] or utilization and based on that we will decide will we make a subscription or no
+[00:04:06 - 00:04:09] yeah let's do like that because i don't want to overload you
+[00:04:11 - 00:04:21] with the data is this text recognition uh yeah like yeah i don't know there was the option to
+[00:04:21 - 00:04:27] upload pdf and work uh word documents so basically that was a question we already discussed it with
+[00:04:28 - 00:04:35] and maybe if there would be a time we could add functionality on pdf and award documents
+[00:04:37 - 00:04:42] because sometimes yeah okay okay okay you can take out the text from pdf at least
+[00:05:02 - 00:05:10] there are some free libraries which you can use for pdf okay if you're stuck on it i'm okay to go
+[00:05:10 - 00:05:15] with doc but i think pdf will be really useful because people very rarely use
+[00:05:16 - 00:05:21] like docs in most cases i think it will be pdf like in real case scenario
+[00:05:23 - 00:05:27] uh yeah it will be easy for me if you would just turn on your microphone and say what
+[00:05:27 - 00:05:33] what you want to ask because uh i lost in all these tabs well basically that's from the green
+[00:05:33 - 00:05:43] team i guess uh i think we have a few more questions now uh uh this was double this was a
+[00:05:43 - 00:05:45] double ah it's the same with the libraries
+[00:05:46 - 00:05:53] but okay man let's just go without that common what is in mfarf
+[00:05:53 - 00:05:57] sorry okay okay yeah but i see some questions i think
+[00:05:58 - 00:06:03] use part first to login in magic no magic link the the purpose of magic link is no
+[00:06:04 - 00:06:09] uh no password if you you can't forget password because you don't have passport
+[00:06:09 - 00:06:14] so you just some validation through the magic link is going through the email because
+[00:06:14 - 00:06:21] if link came to your email it's um it's more trustful i know it doesn't make sense
+[00:06:22 - 00:06:28] so that's right no no password no forgot password you just enter your email go to your email click
+[00:06:28 - 00:06:39] on the link login this is how it's work yeah just just turn on your microphone and say okay
+[00:06:39 - 00:06:46] so i think our team has uh one more uh question about the kind of business side of the app
+[00:06:47 - 00:06:54] in the line in the ui pages that you provided there is the part with choosing the framework
+[00:06:54 - 00:07:02] of compliance and there's those three options already there and there is also custom option
+[00:07:02 - 00:07:11] what does that option suppose to do like choose uh does it yeah yeah you can choose like store
+[00:07:11 - 00:07:19] three at the same time or create own yeah this is what i should explain in the video
+[00:07:19 - 00:07:27] in the sense that she she didn't uh so let's uh let's go back with this on our own
+[00:07:27 - 00:07:34] so they because maybe even delete it okay so i thought they will go back if there's still
+[00:07:34 - 00:07:36] left question after that you can have a call or chat with me
+[00:07:42 - 00:07:52] so i don't know okay anything else
+[00:07:59 - 00:08:00] yes
+[00:08:01 - 00:08:20] disappear hi hi can you hear me yeah yeah um i have a more of a general question it's not like a
+[00:08:20 - 00:08:26] project specific do do your endurance at your company do they typically develop features
+[00:08:26 - 00:08:34] end-to-end like as full stacks or do they focus on one side of yeah full stack no that's why we
+[00:08:34 - 00:08:44] give uh pass full stack uh test task and that's why i suggest that uh like it's it's more for pm
+[00:08:44 - 00:08:50] and how you're gonna organize it in the team but i suggest that you take some feature and
+[00:08:50 - 00:08:56] you do it fully like back and then front end it's much more easy to manage it's much more easy to
+[00:08:56 - 00:09:04] take responsibility if ever something broken okay okay makes sense what about the it's yeah again it's
+[00:09:04 - 00:09:12] it's about your company do you in your comp what what um software development methodology do you
+[00:09:12 - 00:09:20] use or if you don't use any maybe just a hawk um do you use any any sort of agile or anything like
+[00:09:20 - 00:09:31] that would you would you yeah yeah i think about in development go with the milestone so it's not
+[00:09:31 - 00:09:37] really so we do something similar that i try to keep
+[00:09:37 - 00:09:45] week for prepare usually like around three weeks but we usually have for much more complicated
+[00:09:45 - 00:09:50] so you don't understand how it's working and things are special about these points
+[00:09:51 - 00:09:59] uh then we put it into some other estimation um then we make uh split two milestones
+[00:10:00 - 00:10:04] go milestone by milestone and also you can fall back to it which were similar
+[00:10:06 - 00:10:07] you're also working
+[00:10:08 - 00:10:15] it's usually on support because um okay it's more connected to the business uh but okay
+[00:10:18 - 00:10:19] okay this connection
+[00:10:26 - 00:11:56] do it or no like rise of the internet no sounds like okay okay does it better or is it the same
+[00:11:57 - 00:12:05] yeah it's much better okay yeah let me repeat how we work so we usually make discovery
+[00:12:06 - 00:12:09] so it's phase where we gather all the requirements that needed
+[00:12:10 - 00:12:14] after that we split everything to the milestones use the milestones take two weeks
+[00:12:14 - 00:12:17] it's very similar to sprint but um
+[00:12:20 - 00:12:26] yeah but not not as agile i would say like that we use agile usually in the
+[00:12:26 - 00:12:31] uh support so one project is already ongoing so it's not from the scratch but when it's
+[00:12:31 - 00:12:38] continue then it's usually more flexible and we have like kind of sprints sometimes monthly
+[00:12:38 - 00:12:43] sprint sometimes the weak sprint is base of the project really a lot of stuff depend on the
+[00:12:43 - 00:12:52] customer and how he wants reporting system something like that here we will have maybe more
+[00:12:53 - 00:12:56] traditional agile because you could not give estimation for
+[00:12:56 - 00:13:02] months I think it's like you have a lot of mistake but I highly recommend you to
+[00:13:02 - 00:13:08] start doing it if even if you do it totally wrong just because by the end of
+[00:13:08 - 00:13:11] the internship for me it's very important like your ability to estimate
+[00:13:11 - 00:13:26] the task yeah okay thank you thank you hi this is Mira so I'm the project
+[00:13:26 - 00:13:34] manager for our team and I just don't know if your agenda follows now for your
+[00:13:34 - 00:13:39] questions or you would like to show us something however I have a question if
+[00:13:39 - 00:13:47] we could review our questions from our team and also I prepared like general
+[00:13:47 - 00:13:54] plan that you asked for if we could like start with that so I didn't get start
+[00:13:54 - 00:13:56] with what was general plan
+[00:13:56 - 00:13:56] okay
+[00:13:56 - 00:14:06] yeah well actually I sent to orange team so you can check yeah so up to you
+[00:14:06 - 00:14:18] you can start with any of them I just you check what you write here right my
+[00:14:18 - 00:14:26] question is did you check this file absolutely I've created it we had like
+[00:14:26 - 00:14:28] we gathered many questions
+[00:14:28 - 00:14:36] and I decided that I'm gonna just for this call I prepared like more like
+[00:14:36 - 00:14:42] general questions for first month also like from the first screen so we
+[00:14:42 - 00:14:52] already start the development for the next week and yes so if that's okay
+[00:14:52 - 00:14:56] hmm because I guess that also you covered some information with alexander
+[00:14:56 - 00:14:56] y'all if you demonstrate it in joining or in the round process something that is going to happen with elisa when were you gonna provide that kind of know we already talked about the lobby everything I saw your view very much think of where her application is Gonna be ready to be a patient
+[00:14:56 - 00:14:58] and that's who wants to finalmente
+[00:14:58 - 00:14:59] with Alexander.

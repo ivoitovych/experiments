@@ -1,0 +1,347 @@
+[00:00:00 - 00:00:03] Okay, everybody, sorry for waiting for me.
+[00:00:04 - 00:00:08] Let's start from business side, like questions that you have,
+[00:00:09 - 00:00:11] and then we will go back to this back-end review.
+[00:00:17 - 00:00:21] It's Q&A session, so does anybody want to start?
+[00:00:25 - 00:00:28] If no, then we are good to go.
+[00:00:40 - 00:00:43] Yeah, you just can turn on your microphone.
+[00:00:43 - 00:00:50] Okay, I think all the teams have their respective questions.
+[00:00:50 - 00:00:53] I'm just trying to send you over the Slack.
+[00:00:54 - 00:00:57] Please, my team have prepared a list.
+[00:00:58 - 00:00:59] It's loading right now.
+[00:01:00 - 00:01:01] Green team, okay.
+[00:01:02 - 00:01:04] Which document can you ping me?
+[00:01:06 - 00:01:08] I sent you a message.
+[00:01:10 - 00:01:12] There's no private message here.
+[00:01:12 - 00:01:13] We use only like...
+[00:01:13 - 00:01:14] common chats.
+[00:01:14 - 00:01:17] We can use it in some, I don't know, like very personal information,
+[00:01:17 - 00:01:20] but generally better that everybody will be on the same page,
+[00:01:20 - 00:01:23] so most of the time it's useful.
+[00:01:23 - 00:01:26] Okay, let me share my screen, and let's go through the questions.
+[00:01:28 - 00:01:31] Okay, we need to make a data scheme.
+[00:01:31 - 00:01:33] It's not a technical question.
+[00:01:34 - 00:01:35] Okay, do you have business questions?
+[00:01:36 - 00:01:37] Business questions?
+[00:01:38 - 00:01:39] Let me check.
+[00:01:39 - 00:01:41] About the product, everything clear?
+[00:01:42 - 00:01:43] You are ready for...
+[00:01:43 - 00:01:46] Basically, the thing was to...
+[00:01:46 - 00:01:48] The only thing was to clarify.
+[00:01:48 - 00:01:51] My team asked about the magic link.
+[00:01:51 - 00:01:54] Should it be the only option to register in the app,
+[00:01:54 - 00:02:02] or can we use another methods like using Apple and Google account and random email?
+[00:02:02 - 00:02:06] Let's stick as requirements magic link.
+[00:02:06 - 00:02:10] If you will have time or if you will want to do it,
+[00:02:10 - 00:02:12] you can do it as extra.
+[00:02:12 - 00:02:14] Anything that extra is always good.
+[00:02:14 - 00:02:16] But let's focus on the basic,
+[00:02:16 - 00:02:21] because it's very often when team start doing something like site,
+[00:02:21 - 00:02:23] and then they didn't finish the core.
+[00:02:24 - 00:02:29] So that's why, again, like anything additional is always good,
+[00:02:29 - 00:02:32] but core is important and always priority.
+[00:02:35 - 00:02:37] Okay, if no business question,
+[00:02:37 - 00:02:39] and you understand how the product works,
+[00:02:39 - 00:02:40] then we can go through this one.
+[00:02:40 - 00:02:42] We need to make a data schema,
+[00:02:42 - 00:02:43] so we know what we are doing to start the database.
+[00:02:44 - 00:02:46] This is question or it's...
+[00:02:46 - 00:02:48] I didn't see question.
+[00:02:48 - 00:02:53] It was a list of remarks and questions that my team prepared,
+[00:02:53 - 00:02:55] and I aggregated them into a list.
+[00:02:55 - 00:02:58] So if question, do you need to make a data schema?
+[00:02:58 - 00:03:00] Yes, you need to make a data schema.
+[00:03:00 - 00:03:04] We probably need to create some sort of list of server endpoints.
+[00:03:04 - 00:03:06] What data would...
+[00:03:06 - 00:03:10] Yeah, data endpoints is like everything that you will do during next three months.
+[00:03:10 - 00:03:13] So it's doing server endpoints.
+[00:03:14 - 00:03:20] Could you also help us picture the scale of our apps API?
+[00:03:22 - 00:03:24] I'm not sure how it's possible to do it.
+[00:03:24 - 00:03:29] Usually, again, this is your three months work to make these endpoints
+[00:03:29 - 00:03:31] to get this front end.
+[00:03:31 - 00:03:34] So it's like, it's what development mean.
+[00:03:34 - 00:03:36] Can you make any schema now?
+[00:03:36 - 00:03:39] You can, if you want, you can send to my proof,
+[00:03:39 - 00:03:42] but usually you just go piece by piece.
+[00:03:42 - 00:03:43] So you, I don't...
+[00:03:43 - 00:03:45] You create schema and endpoints for it.
+[00:03:45 - 00:03:47] You take, I don't know, file upload,
+[00:03:47 - 00:03:50] you create schema and database for it, and so on.
+[00:03:50 - 00:03:53] I think it's more easier, especially as all of you are juniors.
+[00:03:53 - 00:03:56] I don't think that you see how the project will look at the end
+[00:03:56 - 00:03:59] from the code point of view.
+[00:03:59 - 00:04:01] Actually, it's first time, I think,
+[00:04:01 - 00:04:06] internship were like AI in such high level.
+[00:04:06 - 00:04:11] I think even the previous one was not so good.
+[00:04:11 - 00:04:12] It was like...
+[00:04:12 - 00:04:14] I don't know, like half a year ago.
+[00:04:14 - 00:04:16] So during this half a year, a lot of things changed.
+[00:04:16 - 00:04:19] So maybe this time it will be very different.
+[00:04:19 - 00:04:22] Maybe it will be faster or better or something like that.
+[00:04:22 - 00:04:27] But anyway, it's better doing these small steps
+[00:04:27 - 00:04:30] because, again, it's your first experience.
+[00:04:30 - 00:04:31] Okay.
+[00:04:31 - 00:04:34] More specific tasks might be creating endpoint for send SMS.
+[00:04:34 - 00:04:36] It shows the one of the landing page.
+[00:04:36 - 00:04:39] I remember that we discussed front end.
+[00:04:39 - 00:04:41] Can you explain this?
+[00:04:42 - 00:04:51] There was a button on one of the landings on the example we had.
+[00:04:51 - 00:04:52] I'm not sure.
+[00:04:52 - 00:04:54] Maybe it was AI generated.
+[00:04:54 - 00:04:56] Let's check.
+[00:04:56 - 00:05:01] It's over here.
+[00:05:01 - 00:05:03] Yeah.
+[00:05:03 - 00:05:09] Because it just mock up, so everything should be double checked.
+[00:05:09 - 00:05:10] Okay.
+[00:05:10 - 00:05:11] Let me see.
+[00:05:12 - 00:05:17] There was a button like contacting with the support team
+[00:05:17 - 00:05:20] or send us a message, something like that.
+[00:05:20 - 00:05:25] Yeah, could be.
+[00:05:25 - 00:05:26] Can you point me?
+[00:05:26 - 00:05:29] That's the landing page?
+[00:05:29 - 00:05:31] Yeah, one of the landing page.
+[00:05:31 - 00:05:33] It's a little bit...
+[00:05:33 - 00:05:35] Contact sales, retrial.
+[00:05:35 - 00:05:36] Contact sales?
+[00:05:36 - 00:05:42] That was the third question.
+[00:05:42 - 00:05:43] Yeah, let's have it.
+[00:05:43 - 00:05:47] So just create something simple form and send email.
+[00:05:47 - 00:05:50] So do not create some super admin site or something like that.
+[00:05:50 - 00:05:53] So if somebody click contact sales, create some form.
+[00:05:53 - 00:05:55] What is usually in form?
+[00:05:55 - 00:05:57] I don't know.
+[00:05:57 - 00:06:00] Like name, email, phone, maybe a message.
+[00:06:00 - 00:06:01] Oh, email and message.
+[00:06:01 - 00:06:02] So something simple.
+[00:06:02 - 00:06:06] And when user feel it, send this data to some email.
+[00:06:06 - 00:06:08] For now, it doesn't matter which one.
+[00:06:08 - 00:06:12] If you hard code it or make it configurable, it's based on you.
+[00:06:12 - 00:06:15] But yeah, let's do something simple.
+[00:06:15 - 00:06:16] Contact us.
+[00:06:16 - 00:06:22] Yeah, I think it's quite important, I assume.
+[00:06:22 - 00:06:30] We can do send the same stuff, just it will have different naming.
+[00:06:30 - 00:06:31] So let's do the same.
+[00:06:31 - 00:06:37] So like email text and it will send to some specific email.
+[00:06:37 - 00:06:40] Totally the same functionality.
+[00:06:40 - 00:06:46] I think this will be good because you will have email sending for magic link.
+[00:06:46 - 00:06:48] And here, yes, I think this will be good practice.
+[00:06:48 - 00:06:50] Yeah, let's left it.
+[00:06:50 - 00:06:51] Okay.
+[00:06:51 - 00:06:54] What else we have here?
+[00:06:54 - 00:06:56] You send it in general chat.
+[00:06:56 - 00:07:03] Yes, I saw.
+[00:07:03 - 00:07:04] Okay, sorry.
+[00:07:04 - 00:07:09] Somebody connecting.
+[00:07:09 - 00:07:10] Okay.
+[00:07:10 - 00:07:14] And now since it seems we're doing before our sync certification,
+[00:07:14 - 00:07:17] and the third day call says that I should code magic link.
+[00:07:17 - 00:07:18] No, this is what you ask, yeah?
+[00:07:18 - 00:07:20] When the app sends email to user.
+[00:07:20 - 00:07:23] Clicking with the app logged in seems not too hard.
+[00:07:23 - 00:07:24] Yeah.
+[00:07:24 - 00:07:28] It's not a very common approach, this magic link.
+[00:07:28 - 00:07:33] If you never used it before, never saw how it used before,
+[00:07:33 - 00:07:37] it's actually totally the same as you just described it.
+[00:07:37 - 00:07:40] So user click.
+[00:07:40 - 00:07:43] I just think, can I quickly show you somewhere?
+[00:07:43 - 00:07:44] But I think no.
+[00:07:44 - 00:07:45] Okay.
+[00:07:45 - 00:07:48] So user click like login.
+[00:07:48 - 00:07:50] Enter his email.
+[00:07:50 - 00:07:51] To email, he get the link.
+[00:07:51 - 00:07:52] He click a link.
+[00:07:52 - 00:07:53] He go to the website.
+[00:07:53 - 00:07:57] But he's already login.
+[00:07:57 - 00:07:58] Yeah, like that.
+[00:07:58 - 00:08:01] From technical point of view, yeah, some investigation needed.
+[00:08:01 - 00:08:03] I don't think he will stuck here.
+[00:08:03 - 00:08:06] But let's see.
+[00:08:06 - 00:08:09] About initial backlog of task for backend.
+[00:08:09 - 00:08:14] I expect from list tomorrow.
+[00:08:14 - 00:08:17] Yeah.
+[00:08:17 - 00:08:19] This is you should decide internally.
+[00:08:19 - 00:08:20] Okay.
+[00:08:20 - 00:08:22] I general, I have general recommendation.
+[00:08:22 - 00:08:29] So do not, how to say, do not take everything in once.
+[00:08:29 - 00:08:30] Concentrated feature.
+[00:08:30 - 00:08:32] So separate some feature.
+[00:08:32 - 00:08:35] And ideally, like for you as PM, dedicate it to one person.
+[00:08:35 - 00:08:38] Because it will be much more easy to control for you.
+[00:08:38 - 00:08:43] Because when on the like daily calls, you will ask, what are you doing?
+[00:08:43 - 00:08:45] And you said that I done endpoint.
+[00:08:45 - 00:08:46] What is endpoint?
+[00:08:46 - 00:08:47] How to check it?
+[00:08:47 - 00:08:48] It's not possible.
+[00:08:48 - 00:08:50] But when you will have a small frontend and backend connected.
+[00:08:50 - 00:08:51] So you understand.
+[00:08:51 - 00:08:52] I click this button.
+[00:08:52 - 00:08:53] I want to see this one.
+[00:08:53 - 00:08:54] So, yes.
+[00:08:54 - 00:08:55] Backend and frontend work.
+[00:08:55 - 00:08:58] But when it's dedicated to one person, it will be easy for you to control.
+[00:08:58 - 00:09:02] But again, you will, you can play with it and see how it works in practice.
+[00:09:02 - 00:09:09] But my suggestion, create highlight feature stories.
+[00:09:09 - 00:09:11] And dedicate it to the developer.
+[00:09:11 - 00:09:14] And ask developer for him to say what task.
+[00:09:14 - 00:09:15] I don't know.
+[00:09:15 - 00:09:17] I need to create this backend and frontend.
+[00:09:17 - 00:09:19] I need to connect backend to frontend.
+[00:09:19 - 00:09:20] I need to create backend to frontend.
+[00:09:20 - 00:09:22] I need to create backend data schema.
+[00:09:22 - 00:09:24] And all this stuff.
+[00:09:24 - 00:09:29] So, developer should say you what exactly task he needs.
+[00:09:29 - 00:09:34] And this is approach which I usually still going.
+[00:09:34 - 00:09:39] Later on, it become more like, how to say, like differently.
+[00:09:39 - 00:09:42] Because you will have bugs, features, and some mixes.
+[00:09:42 - 00:09:43] Somebody have time.
+[00:09:43 - 00:09:45] Somebody don't have time.
+[00:09:45 - 00:09:47] So, it will become more mixed.
+[00:09:47 - 00:09:49] But in the beginning, it's like general approach.
+[00:09:49 - 00:09:51] It's work perfect for me.
+[00:09:51 - 00:09:52] Okay.
+[00:09:52 - 00:09:55] That comes to mind is Friday calls.
+[00:09:55 - 00:09:58] That question I already asked you.
+[00:09:58 - 00:09:59] Yeah.
+[00:09:59 - 00:10:00] Yeah.
+[00:10:00 - 00:10:03] So, any libraries that you think is needed, please.
+[00:10:03 - 00:10:04] Yeah.
+[00:10:04 - 00:10:08] Because ideally, ideally, check the license.
+[00:10:08 - 00:10:10] Because they usually have like public license.
+[00:10:10 - 00:10:12] Most of the libraries they have.
+[00:10:12 - 00:10:15] Because usually if they don't have public license, they are paid.
+[00:10:15 - 00:10:17] Again, in most cases.
+[00:10:17 - 00:10:19] And they very often have public license.
+[00:10:19 - 00:10:23] If even it's like it could be commercial like paid.
+[00:10:23 - 00:10:28] But for such purpose like for training, they could be free.
+[00:10:28 - 00:10:30] So, it's more like recommendation.
+[00:10:30 - 00:10:34] For now, it's not really like needed.
+[00:10:34 - 00:10:38] But if you will check it, this will be good practice for the future.
+[00:10:38 - 00:10:40] Okay.
+[00:10:40 - 00:10:41] Front end.
+[00:10:41 - 00:10:45] There will be any additional techniques for the site?
+[00:10:45 - 00:10:46] No.
+[00:10:46 - 00:10:48] Everything that you will have is template.
+[00:10:48 - 00:10:49] Rest.
+[00:10:49 - 00:10:51] You can decide by yourself.
+[00:10:51 - 00:10:56] If you stuck something or need some advice, you can write me, ping me and say, Luda, I
+[00:10:56 - 00:10:57] have this option.
+[00:10:57 - 00:10:58] I have this option.
+[00:10:58 - 00:10:59] Which option is better?
+[00:10:59 - 00:11:04] Or if you need some call, you also can ping me and I will try to find the time.
+[00:11:04 - 00:11:08] But generally, I think it's fine that you will make mistake.
+[00:11:08 - 00:11:10] You will make bad solutions.
+[00:11:10 - 00:11:13] And finally, you will understand why it was bad.
+[00:11:13 - 00:11:16] And next time, you will not do like that.
+[00:11:16 - 00:11:17] Okay.
+[00:11:17 - 00:11:18] Next one.
+[00:11:18 - 00:11:25] What form will we get patient of initial data for static feedbacks, etc.?
+[00:11:25 - 00:11:26] Okay.
+[00:11:26 - 00:11:27] Can you point this screen?
+[00:11:27 - 00:11:28] Is it?
+[00:11:28 - 00:11:36] Basically, the question was that the purpose of the app itself is to generate covered data
+[00:11:36 - 00:11:38] from patient information.
+[00:11:38 - 00:11:40] Basically, we need like ammunition.
+[00:11:40 - 00:11:46] What's the database or a number of files that would be used to check if the data is
+[00:11:46 - 00:11:52] used to check if the app is working properly?
+[00:11:52 - 00:11:53] Basically.
+[00:11:53 - 00:11:54] This example.
+[00:11:54 - 00:11:55] Okay.
+[00:11:55 - 00:11:56] This example.
+[00:11:56 - 00:11:57] This is.
+[00:11:57 - 00:11:58] Okay.
+[00:11:58 - 00:11:59] You can use this one to check.
+[00:11:59 - 00:12:00] Okay.
+[00:12:00 - 00:12:01] I don't know.
+[00:12:01 - 00:12:02] Maybe I will ask to create something else.
+[00:12:02 - 00:12:03] But I don't have like very specific documents.
+[00:12:03 - 00:12:04] Okay.
+[00:12:04 - 00:12:05] It should be more general.
+[00:12:05 - 00:12:11] So, if the, again, if you, I'm not sure, did you check what is HIPAA, GDPR or like
+[00:12:11 - 00:12:13] actually, I don't know what is it.
+[00:12:13 - 00:12:16] For example, for HIPAA, it's medical compliance.
+[00:12:16 - 00:12:17] It means that you could not.
+[00:12:17 - 00:12:24] You could not share like emails, names, security number, because as you said, they have security
+[00:12:24 - 00:12:25] number.
+[00:12:25 - 00:12:27] So, it's like private information.
+[00:12:27 - 00:12:29] So, the script should see that.
+[00:12:29 - 00:12:30] Okay.
+[00:12:30 - 00:12:31] Here is security number.
+[00:12:31 - 00:12:32] I need to hide it.
+[00:12:32 - 00:12:33] And there is a library.
+[00:12:33 - 00:12:34] I don't know.
+[00:12:34 - 00:12:35] Did you pay attention to it or no?
+[00:12:35 - 00:12:43] I sent it to the chat during our initial call, which you need to use for it.
+[00:12:43 - 00:12:44] It is on Python.
+[00:12:44 - 00:12:46] I know that it's not any one specialization.
+[00:12:46 - 00:12:47] This Python script.
+[00:12:47 - 00:12:48] But it's already in the Docker container.
+[00:12:48 - 00:12:49] And it's very quickly to set up.
+[00:12:49 - 00:12:50] I don't think it's a big deal.
+[00:12:50 - 00:12:51] Sorry.
+[00:12:51 - 00:12:52] Where is it?
+[00:12:52 - 00:12:53] Database.
+[00:12:53 - 00:12:54] I don't know.
+[00:12:54 - 00:12:55] Here, I think.
+[00:12:55 - 00:12:56] Yeah.
+[00:12:56 - 00:12:57] Library that we will use.
+[00:12:57 - 00:12:58] This one.
+[00:12:58 - 00:12:59] It's actually this.
+[00:12:59 - 00:13:00] What actually it's do, it's change.
+[00:13:00 - 00:13:01] It's actually.
+[00:13:01 - 00:13:02] Is it even happening?
+[00:13:02 - 00:13:03] Yeah.
+[00:13:03 - 00:13:04] Yeah.
+[00:13:04 - 00:13:05] Yeah.
+[00:13:05 - 00:13:06] Yeah.
+[00:13:06 - 00:13:07] Yeah.
+[00:13:07 - 00:13:08] Yeah.
+[00:13:08 - 00:13:09] Yeah.
+[00:13:09 - 00:13:10] Yeah.
+[00:13:10 - 00:13:11] Yeah.
+[00:13:11 - 00:13:12] Yeah.
+[00:13:12 - 00:13:13] Yeah.
+[00:13:13 - 00:13:14] Yeah.
+[00:13:14 - 00:13:15] Yeah.
+[00:13:15 - 00:13:16] Yeah.
+[00:13:16 - 00:13:17] Yeah.
+[00:13:17 - 00:13:18] Yeah.
+[00:13:18 - 00:13:19] Yeah.
+[00:13:19 - 00:13:20] Yeah.
+[00:13:20 - 00:13:21] Actually, demo.
+[00:13:21 - 00:13:22] This is.
+[00:13:22 - 00:13:23] Yeah.
+[00:13:23 - 00:13:25] But this library, we have been expired because they prototype very look like what we need.
+[00:13:25 - 00:13:27] We just need it with a better design.
+[00:13:27 - 00:13:30] So you can check it deeper.
+[00:13:30 - 00:13:34] I think this is could be kind of bottleneck because it's going to be the first time when
+[00:13:34 - 00:13:37] you like see something that and how to connect them.
+[00:13:37 - 00:13:41] So just try to investigate as much as you can and what will be not clear.
+[00:13:41 - 00:13:43] Connect me.
+[00:13:43 - 00:13:45] I think I will need.
+[00:13:45 - 00:13:49] I will need somebody from each team
+[00:13:49 - 00:13:51] who will want to set up the server.
+[00:13:51 - 00:13:52] We will provide the servers
+[00:13:52 - 00:13:56] and this library should be deployed from Docker container.
+[00:13:56 - 00:13:58] Yeah, again, something not trivial.
+[00:13:58 - 00:14:00] I know that it could be a bottleneck,
+[00:14:00 - 00:14:02] but I think we could handle it.
+[00:14:02 - 00:14:04] And it shouldn't be really block you
+[00:14:04 - 00:14:06] because there are still a lot of front end to do.
+[00:14:06 - 00:14:09] So if even you will stuck on this,
+[00:14:10 - 00:14:12] no for weeks, for a week,
+[00:14:12 - 00:14:14] because if longer I will do it by myself.
+[00:14:15 - 00:14:19] Then like team still will have more to do.
+[00:14:20 - 00:14:22] Okay, hope it's clear.
+[00:14:22 - 00:14:26] Let's go back to, I'm sorry.
+[00:14:26 - 00:14:30] What was that?
+[00:14:30 - 00:14:31] I have a record of the meeting.
+[00:14:31 - 00:14:33] So if somebody from my answer is not clear,
+[00:14:33 - 00:14:34] you will have the transcription
+[00:14:34 - 00:14:37] and you can read it, translate and so on.
+[00:14:39 - 00:14:44] Okay, information about get patient.
+[00:14:44 - 00:14:46] Yeah, so then like no strict form.
+[00:14:46 - 00:14:47] It's planned.
+[00:14:47 - 00:14:51] The important that like you need to detect
+[00:14:51 - 00:14:54] what from all the stacks is sensitive data.
+[00:14:54 - 00:14:56] Information about which entry you create
+[00:14:56 - 00:14:58] reminds the database it's your decision.
+[00:14:58 - 00:15:00] Like both team will have different.
