@@ -1,0 +1,37 @@
+[00:30:00 - 00:30:07] [CTO] give them some basic rules rest like depend on you. I want that you make your own mistake and then
+[00:30:08 - 00:30:14] [CTO] if this if it will not work you will see that it does not work. If it's something critical I will
+[00:30:14 - 00:30:20] [CTO] highlight it but I will highlight it after you will done because in other case you will not
+[00:30:20 - 00:30:28] [CTO] understand why your solution is not working. Okay I think that's all from my side oh even half an
+[00:30:28 - 00:30:38] [CTO] hour okay it's quite quite good speed. Do you have any questions for me now? Now you can ask about
+[00:30:38 - 00:30:44] [CTO] technical one like everything like technical non-technical and maybe some admin process
+[00:30:45 - 00:30:57] [CTO] because I think I cover everything that I plan. Going developmentals no no preference
+[00:30:57 - 00:31:03] [CTO] no the only thing that we will have github and we will have
+[00:31:04 - 00:31:11] [CTO] and that's all actually in template rest based on you. The only thing that but it's also will be
+[00:31:11 - 00:31:18] [CTO] during setup templates that pay attention that you yes lean configure right because it's very often
+[00:31:18 - 00:31:26] [CTO] a big issue that somebody configured yes lean somebody no and then there are a lot of like
+[00:31:26 - 00:31:33] [CTO] I would say design mistakes yeah which does not connect it to logic but you spend time to fix them
+[00:31:39 - 00:31:40] [CTO] okay.
+[00:31:43 - 00:31:49] [CTO] Okay good I know that most of the information I provided you didn't understand so again please
+[00:31:49 - 00:31:56] [CTO] make a call inside your team think about some plan like I will send you now all the information about
+[00:31:56 - 00:32:04] [CTO] the project that I have think about the plan think about what what you can do like how you
+[00:32:04 - 00:32:12] [CTO] split this responsibility especially now when like you are in investigation phase and try to do the best to
+[00:32:13 - 00:32:15] [CTO] prepare some questions for the Wednesday.
+[00:32:18 - 00:32:26] [CTO] Yeah again give me please two people from each team who will set up template and I need
+[00:32:28 - 00:32:32] [CTO] hold on a minute I need time slot for Wednesday but I am afraid to ask you
+[00:32:32 - 00:32:42] [CTO] so maybe it's better for me to just say it for you now it's five in key with six
+[00:32:43 - 00:32:44] [CTO] five
+[00:32:48 - 00:32:52] [CTO] Does five key of time of work for most?
+[00:32:52 - 00:33:01] [CTO] Okay you can answer me like you can like sit together think about it and if 5 pm work for most
+[00:33:01 - 00:33:02] [CTO] then I will
+[00:33:04 - 00:33:05] [CTO] Wednesday.
+[00:33:06 - 00:33:18] [CTO] When Wednesday yeah and I even watch the serial but okay still have some mistake.
+[00:33:18 - 00:33:19] [CTO] Okay 5 pm.
+[00:33:19 - 00:33:19] [CTO] What is 5 pm work for most?
+[00:33:19 - 00:33:25] [CTO] Wednesday, please put some emoji, yes, something that I understand that you are okay or not
+[00:33:25 - 00:33:34] [CTO] okay. So in this case, we will just make this voting. I post it in the Slack. Yeah, okay.
+[00:33:35 - 00:33:40] [CTO] Yeah, then from my side, that's all. I will post you information about the project. And
+[00:33:40 - 00:33:46] [CTO] on Wednesday, I will set up the call. From your side, like, organize, please, yourself
+[00:33:46 - 00:33:56] [CTO] and think about, like, what should you do to start development in one day. Good? Super.
+[00:33:56 - 00:34:02] [CTO] Thank you very much for your attention. I hope I will get you closer during this three
+[00:34:02 - 00:34:10] [CTO] months. I don't hope. I know about it. I know a lot of new stuff from you. And yeah, see
+[00:34:10 - 00:34:13] [CTO] you on Wednesday. Thank you, everybody. Yeah, bye.

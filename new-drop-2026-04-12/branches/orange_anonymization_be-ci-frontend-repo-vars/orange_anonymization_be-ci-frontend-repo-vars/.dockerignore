@@ -1,0 +1,17 @@
+node_modules
+dist
+*.tsbuildinfo
+npm-debug.log
+.env
+.git
+.gitignore
+.dockerignore
+Dockerfile
+docker-compose.yml
+README.md
+coverage
+.vscode
+*.md
+
+# Ensure frontend-dist is included in the Docker build context
+!frontend-dist

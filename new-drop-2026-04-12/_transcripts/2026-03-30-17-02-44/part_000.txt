@@ -1,0 +1,188 @@
+[00:01:02 - 00:01:05] [Olexandr] Okay, while we are waiting, let's, we have the last template.
+[00:01:06 - 00:01:08] [Lyudmila] Alexander, I see that you're already here.
+[00:01:08 - 00:01:12] [Lyudmila] Let's check what is, maybe you can help me.
+[00:01:12 - 00:01:16] [Lyudmila] So, first one, why layout is from lowercase and not from the uppercase?
+[00:01:20 - 00:01:24] [Olexandr] I always vote in lowercase.
+[00:01:25 - 00:01:26] [Lyudmila] But this one is uppercase.
+[00:01:32 - 00:01:37] [Lyudmila] So, just decide which way you will go and, like, everything should be the same.
+[00:01:38 - 00:01:41] [Lyudmila] Okay, the next one is, can you help me understand where you,
+[00:01:42 - 00:01:43] [Lyudmila] use loading spinner?
+[00:01:44 - 00:01:48] [Lyudmila] Because I go to the page, I don't see it, but maybe it's missing.
+[00:01:48 - 00:01:51] [Olexandr] It was in the previous version.
+[00:01:51 - 00:01:52] [Olexandr] Okay, so if.
+[00:01:52 - 00:01:54] [Olexandr] But you start delete the pages.
+[00:01:54 - 00:01:56] [Lyudmila] Yeah, okay, if it's not used, please delete.
+[00:01:58 - 00:02:02] [Lyudmila] So, according to instruction, I just ask to create,
+[00:02:04 - 00:02:07] [Lyudmila] so let's go maybe together because we need to have it ready.
+[00:02:08 - 00:02:12] [Lyudmila] Create example of a page and example of reusable component.
+[00:02:14 - 00:02:22] [Lyudmila] So, the idea was to show how it should look like.
+[00:02:22 - 00:02:26] [Lyudmila] So, if it's not work, so if it's not used anywhere, just delete it
+[00:02:26 - 00:02:29] [Lyudmila] and create something that you can import to the page
+[00:02:29 - 00:02:31] [Lyudmila] and show how the import to the page work.
+[00:02:31 - 00:02:36] [Lyudmila] Because it's important for me, I want to see, did you connect aliases or no?
+[00:02:38 - 00:02:43] [Lyudmila] So, anything that's not used here, delete and create example component
+[00:02:43 - 00:02:45] [Lyudmila] and import it to the page, any of them.
+[00:02:48 - 00:02:52] [Lyudmila] Yeah, I don't think we need to pay just one is enough, but okay, let's left as it is.
+[00:02:55 - 00:02:56] [Olexandr] Constance, I think it's fine.
+[00:02:59 - 00:03:04] [Lyudmila] And no hardcoded values, please delete it.
+[00:03:04 - 00:03:08] [Lyudmila] If needed, just show some error, but don't hardcode it.
+[00:03:21 - 00:03:24] [Olexandr] Okay, about this image, will we use it anywhere?
+[00:03:25 - 00:03:33] [Lyudmila] It's really sad, I would not feel it.
+[00:03:33 - 00:03:39] [Lyudmila] Okay, this one is fine, but the rest I would not feel because maybe nobody will use it.
+[00:03:40 - 00:03:40] [Lyudmila] Okay.
+[00:03:40 - 00:03:46] [Lyudmila] Maybe it will not need it, so I would rather put responsibility to add this constants
+[00:03:47 - 00:03:51] [Lyudmila] to the person who will actually implement the feature, because I have no idea
+[00:03:51 - 00:03:52] [Lyudmila] in which way it will be implemented.
+[00:03:55 - 00:03:59] [Lyudmila] So, again, I would rather delete and clean all the stuff.
+[00:03:59 - 00:04:02] [Lyudmila] So, the idea of the template, it shows some example.
+[00:04:02 - 00:04:07] [Lyudmila] Each developer will implement own features in own way.
+[00:04:08 - 00:04:12] [Lyudmila] So, it does make sense to put something that will never be used.
+[00:04:12 - 00:04:18] [Lyudmila] Okay, so please, clean constant, just left only what is used now in the project.
+[00:04:19 - 00:04:21] [Lyudmila] And delete, please, hardcoded value.
+[00:04:21 - 00:04:22] [Lyudmila] Okay, so this is.
+[00:04:22 - 00:04:25] [Olexandr] Left two pages or delete one.
+[00:04:25 - 00:04:26] [Olexandr] No, it's fine.
+[00:04:26 - 00:04:30] [Lyudmila] Like, I see the dashboard, we'll have a dashboard and we'll have ours, so it's okay.
+[00:04:32 - 00:04:34] [Lyudmila] Okay. Okay, let's left it.
+[00:04:35 - 00:04:40] [Lyudmila] As long as team will understand what is it and will not, yes, it's fine.
+[00:04:40 - 00:04:42] [Lyudmila] Okay, but the services are still the same.
+[00:04:43 - 00:04:43] [Lyudmila] Identification is the same.
+[00:04:43 - 00:04:46] [Lyudmila] Service, I'm not sure if it will be used or it will be separate.
+[00:04:46 - 00:04:55] [Lyudmila] I think the dashboard and the identificator service could have the same store, maybe different.
+[00:04:56 - 00:04:59] [Lyudmila] But anyway, let's delete everything and left maybe all service,
+[00:05:00 - 00:05:03] [Lyudmila] or mock service, because anyway, we don't have nothing.
+[00:05:03 - 00:05:05] [Lyudmila] So, yeah, just delete everything that is not used.
+[00:05:06 - 00:05:07] [Lyudmila] Maybe one example.
+[00:05:09 - 00:05:12] [Lyudmila] Store, okay, store, I think it's clean.
+[00:05:13 - 00:05:14] [Lyudmila] No, it's the same.
+[00:05:15 - 00:05:16] [Lyudmila] So, this one should be deleted.
+[00:05:16 - 00:05:21] [Lyudmila] I don't know, this should be deleted, because you have a dashboard page, but you didn't connect.
+[00:05:21 - 00:05:27] [Lyudmila] So, the idea was that you create, okay, so you create a page, but actually, the store never used.
+[00:05:27 - 00:05:35] [Lyudmila] So, as you already have ours reducer, so just connect something to this ours page, this page is ours,
+[00:05:35 - 00:05:38] [Lyudmila] just to show the example how store is connected here.
+[00:05:40 - 00:05:41] [Olexandr] Okay.
+[00:05:41 - 00:05:42] [Lyudmila] As well as reusable.
+[00:05:42 - 00:05:43] [Lyudmila] Okay.
+[00:05:43 - 00:05:46] [Lyudmila] So, yeah, you make everything too complicated.
+[00:05:47 - 00:05:51] [Lyudmila] Okay, this is fine, this is fine, about styles, okay, what is here?
+[00:05:52 - 00:05:53] [Lyudmila] Okay, it's all good.
+[00:05:54 - 00:05:57] [Lyudmila] Ah, you have all this, it's okay, let's look right.
+[00:05:58 - 00:06:04] [Lyudmila] So, yeah, just clean, please, and left only what is needed or something with example, because, yeah,
+[00:06:06 - 00:06:09] [Lyudmila] it's when something's not finished, nobody will use it.
+[00:06:09 - 00:06:15] [Lyudmila] It's a bigger chance that, like, when somebody will take the task, they will create everything from the scratch.
+[00:06:15 - 00:06:19] [Lyudmila] So, it would be just a garbage, which nobody will clean.
+[00:06:20 - 00:06:21] [Lyudmila] So, make the template cleaner.
+[00:06:21 - 00:06:23] [Lyudmila] If you can do it today, great.
+[00:06:23 - 00:06:30] [Lyudmila] If you could not do it, let me know, then I will take template from other team, and you will go on with it.
+[00:06:30 - 00:06:32] [Olexandr] We'll do it after the meeting.
+[00:06:32 - 00:06:33] [Lyudmila] Okay, perfect.
+[00:06:34 - 00:06:34] [Lyudmila] Great.
+[00:06:34 - 00:06:43] [Lyudmila] I think we have not a lot of people, but I think it will be enough to, ah, no, 15, okay, it's more than enough.
+[00:06:44 - 00:06:44] [Lyudmila] Okay.
+[00:06:44 - 00:06:46] [Lyudmila] What today is the purpose of this call?
+[00:06:46 - 00:06:54] [Lyudmila] The purpose of this call is to, like, have this point where we understand that we start development.
+[00:06:55 - 00:07:02] [Lyudmila] And because of that, we have some new rules which appear, and first is a demo call.
+[00:07:03 - 00:07:06] [Lyudmila] So, we will have each two week a demo call.
+[00:07:07 - 00:07:14] [Lyudmila] It's when each team prepare what was done during previous, like, two weeks, one and a half week, and show it.
+[00:07:15 - 00:07:17] [Lyudmila] Like, what you will present, you define by yourself.
+[00:07:17 - 00:07:21] [Lyudmila] So, it's based on your speed, based on your capacity, based on your knowledge.
+[00:07:23 - 00:07:29] [Lyudmila] It will be each day at 6 p.m.
+[00:07:30 - 00:07:31] [Lyudmila] Kiev time.
+[00:07:31 - 00:07:33] [Lyudmila] I will send invite to everybody.
+[00:07:36 - 00:07:36] [Lyudmila] Yeah.
+[00:07:37 - 00:07:41] [Lyudmila] Because I won't left Friday for maybe some planning.
+[00:07:41 - 00:07:45] [Lyudmila] I will send invite, so you will have invite for each source day.
+[00:07:45 - 00:07:48] [Lyudmila] So, like, one week no demo, one week demo.
+[00:07:48 - 00:07:49] [Lyudmila] One week no demo, one week demo.
+[00:07:51 - 00:07:51] [Lyudmila] Okay.
+[00:07:51 - 00:07:52] [Lyudmila] Let me do it now.
+[00:07:58 - 00:08:04] [Lyudmila] If somebody could not attend, just let know the PM or in general chat row that, sorry, I could not attend.
+[00:08:05 - 00:08:08] [Lyudmila] Because I understand that it could happen.
+[00:08:08 - 00:08:10] [Lyudmila] But generally try to attend.
+[00:08:10 - 00:08:13] [Lyudmila] It's the only meeting which required from my side.
+[00:08:14 - 00:08:14] [Lyudmila] Okay.
+[00:08:15 - 00:08:17] [Lyudmila] So, let me create for 9.
+[00:08:19 - 00:08:20] [Lyudmila] It's 6.
+[00:08:20 - 00:08:22] [Lyudmila] 6 p.m.
+[00:08:22 - 00:08:32] [Olexandr] And repeat each two week.
+[00:08:38 - 00:08:38] [Lyudmila] Okay.
+[00:08:38 - 00:08:42] [Lyudmila] I think everybody have invite just now.
+[00:08:42 - 00:08:43] [Lyudmila] Yeah.
+[00:08:49 - 00:08:50] [Lyudmila] Okay.
+[00:08:50 - 00:08:51] [Lyudmila] Good.
+[00:08:51 - 00:08:52] [Lyudmila] Item first done.
+[00:08:52 - 00:08:54] [Lyudmila] Next item is PR.
+[00:08:55 - 00:08:57] [Lyudmila] So, let's try.
+[00:08:57 - 00:09:01] [Lyudmila] So, I hope you check what is PR.
+[00:09:02 - 00:09:06] [Lyudmila] So, now, like, any changes you should do from...
+[00:09:06 - 00:09:08] [Lyudmila] Let me share my screen.
+[00:09:08 - 00:09:10] [Lyudmila] I just typed in general chat.
+[00:09:10 - 00:09:12] [Lyudmila] So, everybody will see it.
+[00:09:12 - 00:09:15] [Lyudmila] So, any changes from develop branch.
+[00:09:15 - 00:09:20] [Lyudmila] At least one template will be finished because we still have one template which is not approved.
+[00:09:20 - 00:09:23] [Lyudmila] But anything like rest was approved.
+[00:09:23 - 00:09:25] [Lyudmila] It means that develop branch was created.
+[00:09:26 - 00:09:33] [Lyudmila] If didn't, please, who was responsible for template create develop branch because by this time it should be in place.
+[00:09:33 - 00:09:34] [Lyudmila] So, develop branch created.
+[00:09:35 - 00:09:36] [Lyudmila] You create your branch from develop branch.
+[00:09:36 - 00:09:39] [Lyudmila] And create pull request.
+[00:09:40 - 00:09:47] [Lyudmila] Pull request should be done when task finish.
+[00:09:48 - 00:09:49] [Lyudmila] Let's see.
+[00:09:49 - 00:09:51] [Lyudmila] Like, maybe if this will be too...
+[00:09:52 - 00:09:56] [Lyudmila] Because ideally I want to see your pull request each, like, I don't know, two, three days.
+[00:09:58 - 00:10:05] [Lyudmila] But if you will see the task will take too much time, maybe we will create request each day.
+[00:10:05 - 00:10:05] [Lyudmila] Okay.
+[00:10:05 - 00:10:06] [Lyudmila] So, for now, it's like that.
+[00:10:07 - 00:10:07] [Lyudmila] So, you create.
+[00:10:08 - 00:10:09] [Lyudmila] Pull request when task finish.
+[00:10:10 - 00:10:12] [Lyudmila] So, let's check your pull request before me.
+[00:10:12 - 00:10:14] [Lyudmila] You have here the rules for pull request.
+[00:10:15 - 00:10:16] [Lyudmila] One minute.
+[00:10:16 - 00:10:17] [Lyudmila] Let me remind why is it.
+[00:10:20 - 00:10:21] [Lyudmila] That was a Google doc file.
+[00:10:22 - 00:10:23] [Lyudmila] I think this one.
+[00:10:23 - 00:10:24] [Lyudmila] No.
+[00:10:24 - 00:10:25] [Lyudmila] Not this one.
+[00:10:27 - 00:10:28] [Olexandr] This one.
+[00:10:32 - 00:10:33] [Lyudmila] Nothing too complicated.
+[00:10:34 - 00:10:39] [Lyudmila] Ideally, you have this list in your pull request where you make a check marks.
+[00:10:39 - 00:10:42] [Lyudmila] And this is the list of what is requirements for me.
+[00:10:42 - 00:10:44] [Lyudmila] The rest of the requirements I will just see.
+[00:10:45 - 00:10:45] [Lyudmila] Check your logic.
+[00:10:46 - 00:10:51] [Lyudmila] If you still don't know what pull request, just check with, like, Google, ChatGPT.
+[00:10:51 - 00:10:54] [Lyudmila] It's not difficult to do it.
+[00:10:55 - 00:10:56] [Lyudmila] Next one.
+[00:10:56 - 00:11:01] [Lyudmila] So, when you create pull request in your group, like, green team or a team, you write the message
+[00:11:01 - 00:11:02] [Lyudmila] something like that.
+[00:11:05 - 00:11:06] [Lyudmila] Where is me?
+[00:11:08 - 00:11:09] [Lyudmila] Okay.
+[00:11:09 - 00:11:09] [Lyudmila] Mila.
+[00:11:11 - 00:11:11] [Lyudmila] Please.
+[00:11:11 - 00:11:11] [Lyudmila] Okay.
+[00:11:12 - 00:11:21] [Lyudmila] and here should be https github i don't know what is github and there's two requests i don't want
+[00:11:21 - 00:11:26] [Lyudmila] to see something like that this look like so this is the message that i expect from you um
+[00:11:27 - 00:11:35] [Lyudmila] i have from one minute if it was not deleted channels okay it was deleted
+[00:11:37 - 00:11:47] [Lyudmila] okay then i will not show you how it's look like it happened one minute
+[00:11:49 - 00:12:06] [Olexandr] something with my computer sorry one minute guys yeah look like i need to restart slack
+[00:12:18 - 00:12:28] [Lyudmila] okay it's work yeah so i could not show sorry sorry technical issue
+[00:12:30 - 00:12:37] [Lyudmila] okay okay weird okay i can go back to showing the screen uh
+[00:12:39 - 00:12:47] [Lyudmila] okay so you send this message like that in general uh sorry not in general in your team uh slack
+[00:12:48 - 00:12:55] [Lyudmila] usually when i check it i left you a comments in the thread something like i know left comment
+[00:12:58 - 00:13:05] [Lyudmila] or approved so this is what you will see so if left comments it means that you are fixing
+[00:13:05 - 00:13:13] [Lyudmila] your like commits for requests until you will be approved if you approved you can click match button
+[00:13:13 - 00:13:18] [Lyudmila] you will see it's in the for request one minute do i have any
+[00:13:20 - 00:13:27] [Lyudmila] uh yeah okay i don't have example so we'll go without example so if it's approved you click
+[00:13:27 - 00:13:34] [Lyudmila] match button if it's left comment then you need to make a fix according to the comments all the
+[00:13:34 - 00:13:37] [Lyudmila] comments are left in the pull request not in the slack so you will see it right away
+[00:13:38 - 00:13:56] [Lyudmila] so the only things that i ask you is left reaction um here comments reaction could be i don't know like
+[00:13:57 - 00:14:06] [Lyudmila] like this one or this one why because sometimes list is too big and you miss something but when
+[00:14:06 - 00:14:11] [Lyudmila] you put reaction it means that you read the message so it's high chance that you didn't
+[00:14:11 - 00:14:18] [Lyudmila] miss anything so that's why please uh left reaction and if anything that you that you want
+[00:14:18 - 00:14:22] [Lyudmila] if you do not agree with any comments you can just left your comments and say i don't agree
+[00:14:22 - 00:14:26] [Lyudmila] i don't know it's better approach or i don't agree here is the article i don't agree
+[00:14:27 - 00:14:33] [Lyudmila] this is what chat gpt say so on so it's it's fine just just i need something to understand that you
+[00:14:33 - 00:14:41] [Lyudmila] read it um and i think that's all so yeah so when it's approved you match and this becoming the
+[00:14:41 - 00:14:47] [Lyudmila] develop branch and next task so always from develop branch never make a branch from other
+[00:14:47 - 00:14:54] [Lyudmila] branch because then you will have a mess and yeah you will need to figure out this mess i really
+[00:14:55 - 00:14:57] [Lyudmila] so this will be complicated for you so
+[00:14:57 - 00:14:59] [Lyudmila] any task that you start doing doing

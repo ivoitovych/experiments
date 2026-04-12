@@ -1,0 +1,249 @@
+[00:30:00 - 00:30:02] [PM orange team] so maybe we could skip some questions because
+[00:30:02 - 00:30:07] [PM orange team] i wasn't able to connect like right away when you started the meeting sorry about that
+[00:30:12 - 00:30:21] [PM orange team] okay okay so uh would you like to start with the questions you open the file yeah yeah yeah okay
+[00:30:21 - 00:30:30] [PM orange team] great so uh about the scope um again if i missed something at the beginning of the call uh so we
+[00:30:30 - 00:30:38] [PM orange team] can skip those questions just mention it please um so about the expected outcome uh about the
+[00:30:38 - 00:30:46] [PM orange team] functional mvp and uh demo prototypes so um for let's say first month uh especially like first
+[00:30:46 - 00:30:54] [PM orange team] sprint we will have like two weeks sprint um what is the key like uh for demo call
+[00:30:54 - 00:31:00] [PM orange team] should we show you like um let's say logging authentication works
+[00:31:01 - 00:31:08] [CTO] you please stop on this more but it's based on you like it's it's you need to prepare a plan
+[00:31:08 - 00:31:16] [CTO] for me and say what you will show me on the first demo like okay yeah like you would not ask customer
+[00:31:16 - 00:31:21] [CTO] like what do you expect to have to first demo he will say i want to see the product and you say no
+[00:31:21 - 00:31:26] [CTO] it will take six months so you should need to come to customer and say okay this is our plan this is
+[00:31:26 - 00:31:30] [CTO] what i will show you on first demo this is what i will show you on second demo and yeah
+[00:31:31 - 00:31:37] [CTO] so i i cannot because i don't know like how quick are you like uh what is like somebody
+[00:31:37 - 00:31:42] [CTO] in the team maybe more of the team more advanced in the back end or maybe front end
+[00:31:42 - 00:31:47] [CTO] maybe you will do backhand front end but you will not have time to connect it because i don't know
+[00:31:48 - 00:31:56] [CTO] like everybody knew and lost so i could not answer it okay what are non-negotiable features
+[00:31:56 - 00:32:00] [CTO] mvp i have no idea what is not negotiable features
+[00:32:02 - 00:32:10] [PM orange team] well this means that basically the one that we were represented in the video with olga
+[00:32:11 - 00:32:20] [PM orange team] also in sigma so this is i would say like the basic feature so we have authentication we log in
+[00:32:20 - 00:32:31] [PM orange team] we have emails the link then we upload file we have some analytical data and we are able to export
+[00:32:32 - 00:32:36] [PM orange team] So basically, these are general features that must be there.
+[00:32:37 - 00:32:45] [PM orange team] And the question was more like you mentioned about the payment
+[00:32:45 - 00:32:48] [PM orange team] for demo version, right?
+[00:32:52 - 00:32:54] [PM orange team] If we should add some more features.
+[00:32:54 - 00:32:57] [CTO] Yeah, I truly say I just don't know how to answer this question.
+[00:32:57 - 00:32:59] [CTO] So when you ask me, do you need payment or no,
+[00:32:59 - 00:33:01] [CTO] I can say do you need payment or no.
+[00:33:01 - 00:33:05] [CTO] But what is not included, I don't know.
+[00:33:06 - 00:33:08] [CTO] Like upload pictures is not included.
+[00:33:08 - 00:33:13] [CTO] So it's so many features that are not included that I don't know.
+[00:33:13 - 00:33:19] [CTO] So if you have some doubts about or if you can send me everything
+[00:33:19 - 00:33:23] [CTO] that you understand how this works, I can approve that, yes, it is.
+[00:33:23 - 00:33:26] [CTO] Or I don't know, you missed something or this shouldn't be here.
+[00:33:27 - 00:33:28] [CTO] I can do it.
+[00:33:28 - 00:33:33] [CTO] But say generally what is not included is too many things
+[00:33:33 - 00:33:34] [CTO] which are not included.
+[00:33:35 - 00:33:38] [CTO] So if you have acceptance criteria for like a plan
+[00:33:38 - 00:33:39] [CTO] or anything like that, I can approve that.
+[00:33:39 - 00:33:41] [CTO] If you have anything like in detail that, yeah, I can review it.
+[00:33:42 - 00:33:44] [CTO] But sorry, it's too general questions.
+[00:33:47 - 00:33:49] [CTO] Yeah, what should you do for the first demo week?
+[00:33:49 - 00:33:50] [CTO] The same questions as the first one.
+[00:33:50 - 00:33:54] [CTO] If scope is contained, what's the first feature to the priority design?
+[00:33:54 - 00:33:57] [CTO] Based on you, you can sit with the team and think, okay,
+[00:33:57 - 00:34:00] [CTO] what will be easy for you to do or you think is more logical to do.
+[00:34:02 - 00:34:03] [CTO] Like try to play.
+[00:34:03 - 00:34:05] [CTO] If you will make mistake, no problem.
+[00:34:06 - 00:34:08] [CTO] Usually it's just a start.
+[00:34:09 - 00:34:14] [CTO] If you will lucky, you will like, you will find the right feature right away.
+[00:34:14 - 00:34:19] [CTO] If you're not lucky, then like you will add up during next week.
+[00:34:20 - 00:34:22] [CTO] Who is the primary user of the platform?
+[00:34:23 - 00:34:26] [CTO] Like people who need to anonymize the data.
+[00:34:27 - 00:34:28] [CTO] Who is that?
+[00:34:28 - 00:34:30] [CTO] It's people who usually who try to train AI.
+[00:34:31 - 00:34:32] [CTO] It could be maybe developers.
+[00:34:32 - 00:34:34] [CTO] It could be doctors very often.
+[00:34:34 - 00:34:36] [CTO] Actually, it's very often doctors.
+[00:34:36 - 00:34:38] [CTO] It could be nurses in less.
+[00:34:39 - 00:34:41] [CTO] It's very often R&D offices.
+[00:34:41 - 00:34:43] [CTO] So it's people who work.
+[00:34:43 - 00:34:46] [CTO] Yeah, they have medical education, but they do not.
+[00:34:46 - 00:34:52] [CTO] They're not doctors just because they do not have practice or have some parts of the practice.
+[00:34:53 - 00:34:57] [CTO] So I would say that platform like that more often use people like that.
+[00:34:59 - 00:35:01] [CTO] What is a core use case?
+[00:35:01 - 00:35:02] [CTO] Okay, sorry.
+[00:35:05 - 00:35:06] [CTO] I disappear again.
+[00:35:07 - 00:35:08] [PM orange team] I'm sorry.
+[00:35:08 - 00:35:09] [PM orange team] I just lost connection.
+[00:35:09 - 00:35:10] [PM orange team] I couldn't hear anything.
+[00:35:10 - 00:35:11] [PM orange team] But that's okay.
+[00:35:11 - 00:35:12] [PM orange team] I'm just back.
+[00:35:12 - 00:35:13] [PM orange team] I'm so sorry.
+[00:35:14 - 00:35:16] [CTO] But do you hear me fine?
+[00:35:16 - 00:35:17] [PM orange team] Yes.
+[00:35:17 - 00:35:17] [PM orange team] Now?
+[00:35:17 - 00:35:17] [PM orange team] No.
+[00:35:17 - 00:35:18] [PM orange team] Good.
+[00:35:18 - 00:35:18] [PM orange team] Yes.
+[00:35:18 - 00:35:19] [PM orange team] Thank you.
+[00:35:22 - 00:35:24] [CTO] Okay, repeat the last question.
+[00:35:24 - 00:35:25] [CTO] The last answer.
+[00:35:26 - 00:35:30] [PM orange team] Actually, you move to just navigate me, please.
+[00:35:30 - 00:35:33] [PM orange team] So you're talking about core user core.
+[00:35:34 - 00:35:34] [CTO] Yeah.
+[00:35:34 - 00:35:37] [CTO] So primary user of the platform you ask for they.
+[00:35:38 - 00:35:41] [CTO] So this is this is usually like.
+[00:35:41 - 00:35:49] [CTO] Developers, it's medical staff, it's somebody from usually R&D, from time is doctors.
+[00:35:52 - 00:36:08] [CTO] I don't know, like, who else they all have medical education, but not all of them are like, practically study medicine is could be also people from laboratory, because they have a lot of data.
+[00:36:08 - 00:36:10] [CTO] So they're very often connected to AI training.
+[00:36:11 - 00:36:12] [CTO] Yeah, sounds like that.
+[00:36:13 - 00:36:15] [CTO] What is core use case for MVP?
+[00:36:16 - 00:36:19] [CTO] The re-identification on the full pipeline?
+[00:36:19 - 00:36:20] [CTO] So what is full pipeline?
+[00:36:22 - 00:36:27] [PM orange team] Well, I guess it's more of the project readiness of itself.
+[00:36:28 - 00:36:40] [PM orange team] So data certification as well, not just the identification, where we convert the data and export it.
+[00:36:42 - 00:36:44] [CTO] So it's more like.
+[00:36:45 - 00:36:47] [CTO] I didn't get you.
+[00:36:47 - 00:36:48] [CTO] Can you rephrase my business question?
+[00:36:50 - 00:37:10] [PM orange team] Yes. So by this question, I mean, like, for the first phase, for the first months, but I guess you already answered it at the beginning, because for the first months of our project, should we like, let's say, cover the identification only or the full pipeline?
+[00:37:10 - 00:37:15] [PM orange team] So it means like synthetic data analyzing as well.
+[00:37:16 - 00:37:18] [CTO] As you decide.
+[00:37:19 - 00:37:21] [PM orange team] Yeah, yeah, I already got this.
+[00:37:21 - 00:37:23] [PM orange team] So it depends on how it works, right?
+[00:37:24 - 00:37:25] [CTO] Yeah.
+[00:37:25 - 00:37:28] [CTO] So this is what I expect you in three months.
+[00:37:29 - 00:37:32] [CTO] If you can do it in one month, perfect, you're genius.
+[00:37:32 - 00:37:34] [CTO] Like, it's very cool.
+[00:37:34 - 00:37:35] [CTO] I will be impressed.
+[00:37:36 - 00:37:38] [CTO] Karma, five stars.
+[00:37:39 - 00:37:40] [CTO] I don't know what else.
+[00:37:41 - 00:37:43] [CTO] But this will be really cool.
+[00:37:44 - 00:37:46] [CTO] But what exactly you will take as priority?
+[00:37:46 - 00:37:46] [CTO] Yeah.
+[00:37:46 - 00:37:47] [CTO] What is less priority?
+[00:37:49 - 00:37:50] [CTO] It's based on you.
+[00:37:50 - 00:37:54] [CTO] This is what management is about, at least in my understanding.
+[00:37:55 - 00:37:57] [CTO] What is the minimum end-to-end flow we must support?
+[00:37:58 - 00:37:59] [CTO] Sorry, I didn't get it.
+[00:38:01 - 00:38:03] [CTO] What is maximum end-to-end flow?
+[00:38:05 - 00:38:07] [CTO] What is average end-to-end flow?
+[00:38:07 - 00:38:12] [PM orange team] No, but I guess that you already answered this question as well at the beginning.
+[00:38:12 - 00:38:14] [CTO] It's just very general questions for me.
+[00:38:14 - 00:38:16] [CTO] So if you have something more specific, I don't know.
+[00:38:17 - 00:38:18] [CTO] Like, am I understand right?
+[00:38:18 - 00:38:19] [CTO] That user doing this, this, this.
+[00:38:20 - 00:38:22] [CTO] Then I can approve or disapprove.
+[00:38:22 - 00:38:24] [CTO] But we're just like explaining the project.
+[00:38:24 - 00:38:25] [CTO] I didn't understand.
+[00:38:25 - 00:38:26] [CTO] So should I explain the project again?
+[00:38:27 - 00:38:31] [CTO] Or what exactly you expect from this question?
+[00:38:32 - 00:38:34] [designer orange team] Well, I'm going to talk to you.
+[00:38:34 - 00:38:36] [designer orange team] This is Natalia from Orange Team.
+[00:38:36 - 00:38:36] [designer orange team] Yeah.
+[00:38:37 - 00:38:43] [designer orange team] So maybe Mira meant edge cases, for example, error screens.
+[00:38:44 - 00:38:46] [designer orange team] If token expires, for example.
+[00:38:46 - 00:38:47] [designer orange team] Of course.
+[00:38:47 - 00:38:48] [CTO] Of course.
+[00:38:48 - 00:38:48] [CTO] Yeah.
+[00:38:48 - 00:38:50] [CTO] That's all you need to think about these cases.
+[00:38:51 - 00:38:52] [CTO] There are no strict answers.
+[00:38:52 - 00:39:00] [CTO] So it's brainstorming of the team and thinking about what user can do wrong.
+[00:39:00 - 00:39:02] [CTO] And yeah, this should be covered.
+[00:39:02 - 00:39:05] [CTO] At least during the demo, I always try to broke something.
+[00:39:06 - 00:39:08] [CTO] So try to be one step ahead.
+[00:39:11 - 00:39:11] [CTO] Okay.
+[00:39:11 - 00:39:12] [CTO] Sorry.
+[00:39:12 - 00:39:15] [designer orange team] Can I also add to the previous question?
+[00:39:16 - 00:39:16] [CTO] Yeah.
+[00:39:18 - 00:39:21] [designer orange team] I want just to clarify for myself.
+[00:39:21 - 00:39:25] [designer orange team] So you sent us Figma screens.
+[00:39:25 - 00:39:25] [designer orange team] Yeah.
+[00:39:26 - 00:39:29] [designer orange team] With like step three, for example.
+[00:39:29 - 00:39:36] [designer orange team] Where we can, for example, is per entity type method configuration planned?
+[00:39:36 - 00:39:41] [designer orange team] So for example, when you choose HIPAA.
+[00:39:41 - 00:39:42] [designer orange team] Yeah.
+[00:39:42 - 00:39:42] [designer orange team] Yeah.
+[00:39:43 - 00:39:43] [CTO] Yeah.
+[00:39:44 - 00:39:46] [designer orange team] Is it pre-identified?
+[00:39:46 - 00:39:47] [designer orange team] Is it pre-identified all entities?
+[00:39:47 - 00:39:54] [designer orange team] Or we can manually switch some entities like this one you can change, another one you can
+[00:39:54 - 00:39:58] [designer orange team] change, or it will be like a pipeline identified in advance.
+[00:39:59 - 00:40:01] [CTO] What is entity?
+[00:40:01 - 00:40:01] [CTO] This one?
+[00:40:01 - 00:40:05] [designer orange team] I mean, for example, name, person, time and date.
+[00:40:05 - 00:40:05] [designer orange team] Yeah.
+[00:40:05 - 00:40:05] [designer orange team] Yeah.
+[00:40:06 - 00:40:08] [CTO] So everything should be detected and shown as a list.
+[00:40:09 - 00:40:11] [CTO] So any sensitive information is shown.
+[00:40:11 - 00:40:15] [CTO] And then user should manually select or unselect.
+[00:40:15 - 00:40:17] [CTO] Based on what he want anonymize.
+[00:40:18 - 00:40:24] [designer orange team] But firstly, the system will help the user to pre-identify that entities will be changed.
+[00:40:25 - 00:40:25] [CTO] Yes.
+[00:40:25 - 00:40:25] [CTO] Okay.
+[00:40:25 - 00:40:25] [CTO] Yes.
+[00:40:25 - 00:40:27] [CTO] Because system also can make mistake.
+[00:40:28 - 00:40:32] [CTO] Because it's not always obvious that some numbers, for example, is social security number.
+[00:40:33 - 00:40:38] [CTO] Maybe just some, I don't know, some code of an application ID.
+[00:40:38 - 00:40:42] [CTO] But system thinks that it's authentication.
+[00:40:43 - 00:40:43] [CTO] Sorry.
+[00:40:43 - 00:40:44] [CTO] It's a security number.
+[00:40:45 - 00:40:51] [CTO] So you understand that, no, it's just ID of the document and it's not something private.
+[00:40:51 - 00:40:52] [CTO] If you get what I mean.
+[00:40:54 - 00:40:54] [designer orange team] Thanks.
+[00:40:55 - 00:40:56] [CTO] So, yeah.
+[00:40:56 - 00:40:57] [CTO] So generally like that.
+[00:40:58 - 00:41:00] [CTO] It shouldn't be automatically replaced.
+[00:41:01 - 00:41:11] [CTO] All the data which was found in this document should be shown for user and user should decide
+[00:41:11 - 00:41:14] [CTO] which he want to hide and which is not.
+[00:41:14 - 00:41:17] [CTO] So finally, it's still a responsibility of the user to anonymize data.
+[00:41:18 - 00:41:19] [designer orange team] Thank you so much.
+[00:41:19 - 00:41:22] [designer orange team] And while you're just on the screen, short question again.
+[00:41:22 - 00:41:30] [designer orange team] So if you scroll a little bit higher, like above, you will see, for example, that the
+[00:41:30 - 00:41:35] [designer orange team] identification settings, you will see a drop down, synthetic realistic fake data.
+[00:41:36 - 00:41:42] [designer orange team] Is that the same feature that we can see on the left side bar, synthetic data, or it's
+[00:41:42 - 00:41:43] [designer orange team] kind of different a little bit?
+[00:41:46 - 00:41:51] [CTO] It's the same, it's just all I wanted to show you what is underneath.
+[00:41:53 - 00:41:54] [PM orange team] Okay, thank you.
+[00:41:56 - 00:42:02] [CTO] Yeah, so this again, it's wireframe because for me, I think maybe it's too much for user.
+[00:42:03 - 00:42:05] [CTO] Maybe it's better to split it to three steps.
+[00:42:05 - 00:42:12] [CTO] So it's more like designer, like UX, UI designer, like it's full team brainstorming.
+[00:42:12 - 00:42:18] [CTO] But I don't recommend you just like think a little bit about the user.
+[00:42:18 - 00:42:18] [CTO] What will be easier?
+[00:42:19 - 00:42:26] [CTO] What will be more understandable for him to understand to get or like make this process easier?
+[00:42:26 - 00:42:29] [CTO] So UX, UI, maybe a little bit more UX.
+[00:42:30 - 00:42:34] [designer orange team] And the user download the document in watch type.
+[00:42:35 - 00:42:40] [designer orange team] It will be documented like JSON document or PDF file.
+[00:42:40 - 00:42:42] [designer orange team] Or it upload.
+[00:42:42 - 00:42:44] [designer orange team] It's up to us to decide which type of document.
+[00:42:45 - 00:42:46] [designer orange team] No, no, no, it's for me.
+[00:42:47 - 00:42:51] [CTO] Let's take PDF because PDF is the most used format.
+[00:42:51 - 00:42:56] [designer orange team] But if you want to drop your file to upload, you can use just TXT files, yeah?
+[00:42:58 - 00:43:01] [CTO] Actually, I think it's also will be good to have PDF.
+[00:43:02 - 00:43:03] [designer orange team] Same, same, yeah?
+[00:43:04 - 00:43:04] [CTO] Yeah.
+[00:43:05 - 00:43:05] [designer orange team] Okay.
+[00:43:05 - 00:43:06] [designer orange team] PDF, TXT, doc.
+[00:43:06 - 00:43:09] [designer orange team] What about Excel type?
+[00:43:09 - 00:43:10] [designer orange team] No, also no.
+[00:43:10 - 00:43:11] [CTO] No.
+[00:43:12 - 00:43:14] [CTO] Because it will be difficult to show it to you here.
+[00:43:14 - 00:43:16] [CTO] So you could not just show it as a plain text.
+[00:43:16 - 00:43:17] [CTO] So let's keep PDF.
+[00:43:17 - 00:43:22] [CTO] But I think, you know, docs, PDF, as mentioned before.
+[00:43:22 - 00:43:26] [CTO] Maybe TXT, it will be good.
+[00:43:27 - 00:43:30] [CTO] No, JSON, no, it's very rare.
+[00:43:31 - 00:43:31] [CTO] Okay.
+[00:43:31 - 00:43:31] [CTO] Yeah.
+[00:43:32 - 00:43:32] [CTO] Yeah.
+[00:43:33 - 00:43:36] [CTO] Actually, TXT also, I don't think that somebody used TXT.
+[00:43:37 - 00:43:39] [CTO] Let's just stick on PDF and docs.
+[00:43:41 - 00:43:41] [designer orange team] Okay.
+[00:43:41 - 00:43:42] [designer orange team] Okay.
+[00:43:46 - 00:43:47] [CTO] Next one.
+[00:43:47 - 00:43:48] [CTO] Is magic zone notification?
+[00:43:48 - 00:43:49] [CTO] This is we discuss.
+[00:43:50 - 00:43:52] [CTO] What happens after session expires?
+[00:43:52 - 00:43:53] [CTO] Logout.
+[00:43:54 - 00:43:57] [CTO] Can user right the cache immediately?
+[00:43:57 - 00:43:59] [CTO] Can you explain what is right?
+[00:43:59 - 00:43:59] [CTO] Yes.
+[00:43:59 - 00:44:00] [CTO] How to authenticate?
+[00:44:00 - 00:44:03] [PM orange team] So, for example, the session is expired.
+[00:44:03 - 00:44:11] [PM orange team] And then the user can enter, follow the same magic link and reenter the session or we'll
+[00:44:11 - 00:44:15] [PM orange team] need to wait like 10 minutes or like 30 minutes to.
+[00:44:15 - 00:44:35] [CTO] re-enter? No, you just login again and login again. Okay, so there's no, there's no, like, time limit? No, black user? No, my first time I've heard about such. No, no. What is a fallback flow for Xpire? What is fallback flow?
+[00:44:37 - 00:44:46] [PM orange team] Well, let's say, for example, if user had this email with the link and by mistake
+[00:44:46 - 00:44:55] [PM orange team] just delete it. So, for example, to enter the platform again, to login, she will
+[00:44:55 - 00:44:59] [PM orange team] just need to use her email and then she can use her profile as well.

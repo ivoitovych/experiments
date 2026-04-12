@@ -1,0 +1,90 @@
+[00:00:27 - 00:00:35] [CTO] Let's start. So, my name is Lyudmila. I will work with you like all these three months.
+[00:00:36 - 00:00:45] [CTO] I will be like your curator, like maybe mentor, the person who will check your progress and
+[00:00:46 - 00:00:51] [CTO] if you will need advice, I will give it to you. Most of communication with me will be
+[00:00:51 - 00:00:58] [CTO] in English, just because it's very important for me that your English skills are in advanced level.
+[00:01:00 - 00:01:06] [CTO] But internally in the teams you can have it as you want. Today you will have a lot of information.
+[00:01:06 - 00:01:12] [CTO] It's fine if you will not remember everything, but I highly recommend to make some records,
+[00:01:13 - 00:01:20] [CTO] like there are a lot of AI tools. That should be my bot, but I'm not sure why it's not here,
+[00:01:20 - 00:01:21] [CTO] so I'm waiting for
+[00:01:22 - 00:01:28] [CTO] permission from my team. Okay, let me try again to invite him.
+[00:01:31 - 00:02:13] [CTO] Sorry, one minute. Okay, while I'm waiting for...
+[00:02:16 - 00:02:24] [CTO] Okay, sorry, one minute. I see Zenbit tech, somebody from Zenbit.
+[00:02:25 - 00:02:34] [CTO] Yulia, does it count? I don't understand, is it Yulia or Olya? Zenbit tech, I see that you are here.
+[00:02:44 - 00:02:49] [CTO] Okay, so, please, somebody make a record for future, so be helpful.
+[00:02:50 - 00:02:55] [CTO] So, what we will have during these three months? We will have two teams. I see you already,
+[00:02:56 - 00:03:01] [CTO] I hope you already added to the slack, and you already see in which team you are. If you're not
+[00:03:01 - 00:03:07] [CTO] yet in the team, don't worry, like today during the day, maybe tomorrow morning somebody from my side
+[00:03:07 - 00:03:09] [CTO] will like add you to the needed one.
+[00:03:09 - 00:03:16] [CTO] run. Both teams will have the same project. I today will give a brief explanation what
+[00:03:16 - 00:03:20] [CTO] is it and actually next two weeks it's not about the programming, it's about understanding
+[00:03:20 - 00:03:29] [CTO] what is it and what should you do. So next week it will be fully preparation week. You
+[00:03:29 - 00:03:37] [CTO] will have two teams because I expect this competitor competition, like somebody will
+[00:03:37 - 00:03:42] [CTO] be better, somebody will be not as good. So you will understand that, okay, you can do
+[00:03:42 - 00:03:50] [CTO] better or you still need to be the best because like other team are very close to you. Okay,
+[00:03:50 - 00:04:02] [CTO] what else? One minute. Okay. We will have a demo calls each two weeks. This is mandatory.
+[00:04:03 - 00:04:08] [CTO] Rest of the calls that you will have internally are based on you. I highly recommend today
+[00:04:08 - 00:04:10] [CTO] or tomorrow. Have internal calls.
+[00:04:10 - 00:04:15] [CTO] All together inside the team just to meet each other, like understand who are who, which
+[00:04:15 - 00:04:21] [CTO] roles you are. On the internship we have developers, PM and designers. As long as I know and maybe
+[00:04:21 - 00:04:27] [CTO] K will be later, but for now, let's expect that there will be no K. We will emulate like
+[00:04:27 - 00:04:36] [CTO] real scenario. So this will be fully how we work inside. And it's in my interest because
+[00:04:36 - 00:04:41] [CTO] when you will go to the work, you need to like, nothing should be like, you know, you
+[00:04:41 - 00:04:48] [CTO] need to be an expert to both for you, at least from organization point of view. Okay. What
+[00:04:48 - 00:04:58] [CTO] else I want generally said should go to more. Okay. What skills I'm looking for first is
+[00:04:58 - 00:05:05] [CTO] teamwork because I understand that everybody buys his own, but if you will not work as
+[00:05:05 - 00:05:10] [CTO] a team, it will not work. Like your team will be failed. Like if you will work alone, like
+[00:05:10 - 00:05:11] [CTO] everybody failed.
+[00:05:12 - 00:05:18] [CTO] Okay. So it's, it's just based on my practice. Dynamic and improvement. English, code quality
+[00:05:18 - 00:05:26] [CTO] and proactivity. Yeah. I think what quality to gather was like now AI, HRGPT, co-pilot
+[00:05:26 - 00:05:33] [CTO] and all this stuff shouldn't be an issue, but at least it should show the positive dynamic.
+[00:05:33 - 00:05:40] [CTO] English is kind of basic. So you need to understand that this is what I'm saying. And proactivity
+[00:05:40 - 00:05:42] [CTO] it's more of a, I think it's the most important thing that you can do. You can do it, you can
+[00:05:42 - 00:05:48] [CTO] about i will talk about it during the internship but mostly it's about that you are looking for
+[00:05:48 - 00:05:55] [CTO] solution and then came to me not looking for advice right away so it's so here you are will be
+[00:05:55 - 00:06:00] [CTO] like i will not navigate you so you will do own mistake you will try to understand why you've
+[00:06:00 - 00:06:07] [CTO] done this mistake you will try to do better next time and try to analyze okay what i can do next
+[00:06:07 - 00:06:14] [CTO] time better and if something's super critical then i like jump in and try to to help you to
+[00:06:14 - 00:06:23] [CTO] solve it uh okay cause okay generally from general that's all please let me know if you have any
+[00:06:23 - 00:06:29] [CTO] questions if you don't i will jump into the project if you have i am happy to to answer
+[00:06:29 - 00:06:39] [CTO] no questions perfect actually the project will be i think quite could be a little bit
+[00:06:39 - 00:06:40] [CTO] uh
+[00:06:40 - 00:06:51] [CTO] , difficult uh sorry one minute let me try again to uh connect my chatbot because i want to share
+[00:06:51 - 00:07:01] [CTO] my screen and it will be good no no okay can you do a little bit different i will now uh i create
+[00:07:01 - 00:07:08] [CTO] new link because my chatbot go only to my invites so i will create new link and i will send you here
+[00:07:08 - 00:07:12] [CTO] in the chat and we will just reconnect to new new conference i don't think it will be a big issue
+[00:07:12 - 00:07:13] [CTO] um
+[00:07:14 - 00:07:58] [CTO] one minute okay okay i just in the chat send the link please reconnect there and uh we will
+[00:07:58 - 00:10:26] [CTO] continue there okay not taker is here so should be fine it's even two not taker okay two is better
+[00:10:26 - 00:10:36] [CTO] than zero uh good hope everybody reconnected um i'm sharing my screen and i will try briefly
+[00:10:36 - 00:10:39] [CTO] explain what is it also after the call
+[00:10:46 - 00:10:47] [CTO] okay sharing sharing
+[00:10:50 - 00:11:22] [CTO] green let's see it one minute let me close because i think i freeze okay finishing so
+[00:11:23 - 00:11:30] [CTO] what we will do uh our company mostly work with healthcare projects and what healthcare projects
+[00:11:30 - 00:11:35] [CTO] mean and what is the difference with any other projects that you will have in your life it's
+[00:11:35 - 00:11:41] [CTO] mostly regulation there are a lot of regulations which is around like when you work with it a lot
+[00:11:41 - 00:11:48] [CTO] they are not sounds like difficult it's look like even obvious uh but i know that in the first
+[00:11:48 - 00:11:53] [CTO] thought it could be a little bit strange so what we will do in the like during next three months
+[00:11:53 - 00:12:01] [CTO] from the project point of view we will create okay no let's talk about a little bit before that other
+[00:12:02 - 00:12:11] [CTO] um yeah okay what we'll create we will create the system which we will take some database like
+[00:12:12 - 00:12:19] [CTO] for example medicaid delta data of the patient for example like name address like diagnosis
+[00:12:20 - 00:12:25] [CTO] medication so i think nobody from us wants that this information would be public yeah so when we
+[00:12:25 - 00:12:33] [CTO] go to the doctor it should be private but ai should have data for training and it's very
+[00:12:33 - 00:12:41] [CTO] difficult to train ai with the data which like we need no not like that before trains ai we need to
+[00:12:42 - 00:12:50] [CTO] make it like i would say anonymize so this is what this project will do so uh yeah there is some
+[00:12:50 - 00:12:56] [CTO] landing page it's beautiful but it's not what is the main point okay i think this is the main
+[00:12:56 - 00:13:03] [CTO] feature which we have so we will uh select which compliance we have like for now it's for you just
+[00:13:03 - 00:13:11] [CTO] strange wording but it just means hipaa is for us gdpr is europe custom it's custom and ccpa actually
+[00:13:13 - 00:13:19] [CTO] some other country i assume or maybe it's also europe anyway so there are a few like general
+[00:13:19 - 00:13:24] [CTO] regulations which are most popular then we will increase text to upload the documents it doesn't
+[00:13:24 - 00:13:32] [CTO] really matter and based on the regulation a system will understand okay which data is sensitive
+[00:13:33 - 00:13:40] [CTO] so here is sensitive like patient id social security i don't know like name it's sensitive one
+[00:13:44 - 00:13:54] [CTO] so the user can check okay which uh which data of this he want anonymized and which not by anonymize
+[00:13:54 - 00:14:03] [CTO] i mean just a change to fake one um he select to unselect it and after that we generate
+[00:14:03 - 00:14:12] [CTO] like this kind of output so we just replace sensitive data with
+[00:14:13 - 00:14:13] [CTO] actually
+[00:14:14 - 00:14:18] [CTO] with some mock data i'm not sure yeah i think it's with some mock data
+[00:14:20 - 00:14:27] [CTO] ah yeah so you generate kind of template so where should be uh like where should
+[00:14:28 - 00:14:36] [CTO] mock data be set it and this template we also insert in the system and get um get
+[00:14:38 - 00:14:45] [CTO] mock data so get not real data let's say like that so all this so idea is that we can get real patient
+[00:14:46 - 00:14:54] [CTO] data replace the names like i don't know emails edges and like diagnosis i don't
+[00:14:54 - 00:14:59] [CTO] know how many times he go to the doctor all the stuff are still valid but

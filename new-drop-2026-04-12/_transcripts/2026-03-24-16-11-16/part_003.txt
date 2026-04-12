@@ -1,0 +1,217 @@
+[00:45:00 - 00:45:09] [PM orange team] uh as like previously or uh because she used her email before and she will not be able to like uh
+[00:45:10 - 00:45:19] [CTO] login no no it's so because super simple like uh okay one minute i think i have somewhere this
+[00:45:20 - 00:45:24] [CTO] no just you just put login and you get link if you delete this email you again
+[00:45:24 - 00:45:31] [CTO] at the email and uh okay sorry i just um last internship were done very good
+[00:45:32 - 00:45:40] [CTO] uh very good project yeah so we put it as portfolio on our website this was really cool
+[00:45:40 - 00:45:49] [CTO] and they do something not not similar but uh one minute do we have the link here
+[00:45:54 - 00:45:59] [CTO] sorry if i ever found i will show you how this work but i don't see any
+[00:45:59 - 00:46:12] [CTO] links here um ah okay here uh let's say if backend does not broken
+[00:46:14 - 00:46:21] [CTO] then you can see how magic link work okay i put my email i click sign in
+[00:46:21 - 00:46:29] [CTO] okay and does something happened because last time it was broken i think okay now it's not work okay
+[00:46:29 - 00:46:37] [CTO] i will not show it to you uh but it's okay i'll check it later but this stuff is like i put the
+[00:46:37 - 00:46:45] [CTO] link i send in uh if nothing came to my email or i don't know i delete it i again click sign in and
+[00:46:45 - 00:46:53] [PM orange team] i can get email so as simple as that okay so there's no like forgot password or uh whatever
+[00:46:53 - 00:47:01] [PM orange team] like uh and there will be no like uh problem to enter uh with the same email if we previously
+[00:47:01 - 00:47:07] [PM orange team] send uh the link it just changes the link and that's we we have a new link to use right
+[00:47:07 - 00:47:18] [CTO] okay good thank you yes this is the full idea of this yeah this is the idea of uh of magic link
+[00:47:20 - 00:47:28] [CTO] okay look like certificate inspired uh okay good thank you what what email should we use
+[00:47:30 - 00:47:39] [CTO] um provider okay use whatever is easy for you because um it doesn't really matter i just want
+[00:47:39 - 00:47:40] [CTO] that you try it
+[00:47:41 - 00:47:47] [CTO] try sending mail configure all the stuff select again which is simple usually in the
+[00:47:47 - 00:47:52] [CTO] interview people use just google with login password it's not the best approach not the
+[00:47:52 - 00:47:57] [CTO] best it's we never use it in the real projects but at least you will have some knowledge how to
+[00:47:58 - 00:48:02] [CTO] to connect um emails if you can do something more advanced please
+[00:48:03 - 00:48:08] [CTO] it's no requirement there uh what is the final list of client framework for mvp
+[00:48:10 - 00:48:11] [CTO] no list
+[00:48:11 - 00:48:15] [CTO] not final not the final i don't have list so everything that i had
+[00:48:15 - 00:48:25] [CTO] i provide the front end and the camp okay uh i provided to
+[00:48:27 - 00:48:33] [CTO] s template and that's all uh everything else depends on you what you decide what is more
+[00:48:33 - 00:48:41] [CTO] priority okay thank you you can have a lot okay uh do framework require different logic only eye
+[00:48:41 - 00:48:49] [CTO] selection uh i'm not sure that you understand what this framework mean what is framework
+[00:48:50 - 00:48:58] [PM orange team] uh well i understand what framework uh means but maybe i could ask natalia ah you mean sorry you
+[00:48:58 - 00:49:06] [CTO] mean this frame do you mean this for option the gdpr what is this one uh yes i guess that's it's
+[00:49:06 - 00:49:10] [CTO] more about that okay sorry sorry sorry this is my understanding
+[00:49:11 - 00:49:14] [CTO] Uh-huh, sorry, what is the finalist compliance for us?
+[00:49:14 - 00:49:22] [CTO] Okay, because I usually call framework is like React, Node.js, Express, this is frameworks for me.
+[00:49:22 - 00:49:22] [CTO] Okay.
+[00:49:23 - 00:49:30] [CTO] Okay, sorry. Yeah, this question, answer to this question, sorry, I just didn't know that it's called framework.
+[00:49:30 - 00:49:36] [CTO] We usually call it compliance and like just compliance without framework, that's why I was confused, sorry.
+[00:49:36 - 00:49:38] [CTO] So yeah, I will provide this answer by .
+[00:49:38 - 00:49:44] [CTO] Actually, guys, we have 4 p.m., I still have some time, like maybe a couple of minutes to continue,
+[00:49:44 - 00:49:46] [CTO] but if somebody needs to go, you can go.
+[00:49:50 - 00:49:51] [CTO] Sorry, okay.
+[00:49:53 - 00:49:55] [CTO] Do framework require different logic?
+[00:49:55 - 00:50:01] [CTO] Yeah, there are some will be different logic, but again, I will ask that all have prepared the specific requirements for it
+[00:50:01 - 00:50:05] [CTO] in the video format or the doc format to avoid any confusions.
+[00:50:06 - 00:50:09] [CTO] Yeah, and I think everything connects to framework.
+[00:50:09 - 00:50:10] [CTO] A little bit.
+[00:50:10 - 00:50:11] [CTO] So let's go back on Thursday.
+[00:50:11 - 00:50:16] [CTO] If I will not answer anything, we will make additional call or documentation.
+[00:50:16 - 00:50:19] [CTO] Fully automated require user validation editing.
+[00:50:19 - 00:50:24] [CTO] User validation, this is what we just talked about.
+[00:50:24 - 00:50:26] [CTO] So this is actually user validation.
+[00:50:28 - 00:50:36] [CTO] Actually, I think maybe it will be also good to have option like add item because, okay, maybe this will be too advanced for you.
+[00:50:37 - 00:50:40] [CTO] Because I assume that maybe some data will be not.
+[00:50:41 - 00:50:41] [CTO] Catched.
+[00:50:42 - 00:50:45] [CTO] And we need to think about how to add them.
+[00:50:48 - 00:50:52] [CTO] Yeah, I think if you can think about some suggestion will be great.
+[00:50:52 - 00:50:54] [CTO] If not, we can discuss later.
+[00:50:54 - 00:51:01] [CTO] But I think it could happen when some data will be not detected by the library and we need to somehow handle it.
+[00:51:01 - 00:51:04] [CTO] Does behavior need to change based on selected framework?
+[00:51:05 - 00:51:06] [CTO] I think it's not about behavior.
+[00:51:06 - 00:51:09] [CTO] It's about data, which is, which will be.
+[00:51:10 - 00:51:11] [CTO] Detected here.
+[00:51:14 - 00:51:15] [CTO] Because they're very similar.
+[00:51:15 - 00:51:18] [CTO] I actually, I will check with Olga.
+[00:51:19 - 00:51:20] [CTO] Why she, okay.
+[00:51:20 - 00:51:26] [CTO] No, I know why she separated because there are some still difference, but there are not many difference.
+[00:51:26 - 00:51:28] [CTO] I think maybe it's a couple of fields.
+[00:51:31 - 00:51:33] [CTO] Or single global MFMVP.
+[00:51:34 - 00:51:34] [CTO] Okay.
+[00:51:35 - 00:51:37] [CTO] Per entity anonymization method.
+[00:51:38 - 00:51:39] [CTO] Need per entity.
+[00:51:39 - 00:51:41] [CTO] Or single global method.
+[00:51:44 - 00:51:48] [CTO] What is per entity is framework or what is entity?
+[00:51:48 - 00:51:50] [designer orange team] I think that you have already answered that question.
+[00:51:51 - 00:51:52] [designer orange team] So that was my question.
+[00:51:52 - 00:51:52] [designer orange team] Yeah.
+[00:51:52 - 00:51:56] [designer orange team] So you previously answered that you can change every entity separately.
+[00:51:57 - 00:51:58] [PM orange team] Yes.
+[00:51:58 - 00:51:58] [PM orange team] Yeah.
+[00:51:59 - 00:52:00] [PM orange team] Yeah, it was answered.
+[00:52:04 - 00:52:05] [CTO] Okay.
+[00:52:05 - 00:52:06] [CTO] Sorry.
+[00:52:08 - 00:52:13] [CTO] Is confidence threshold configuration require confidence threshold?
+[00:52:13 - 00:52:13] [CTO] Okay.
+[00:52:15 - 00:52:15] [CTO] Confidence threshold.
+[00:52:18 - 00:52:19] [CTO] Confidence threshold.
+[00:52:20 - 00:52:21] [CTO] No, I don't know.
+[00:52:21 - 00:52:22] [CTO] What is it?
+[00:52:26 - 00:52:27] [CTO] Did it disappear?
+[00:52:34 - 00:52:35] [CTO] One, two, three.
+[00:52:35 - 00:52:35] [designer orange team] No, no.
+[00:52:35 - 00:52:36] [designer orange team] You're here.
+[00:52:36 - 00:52:36] [designer orange team] We.
+[00:52:36 - 00:52:37] [designer orange team] Okay.
+[00:52:37 - 00:52:38] [designer orange team] Yeah.
+[00:52:38 - 00:52:41] [designer orange team] I think that just nobody can answer the question.
+[00:52:41 - 00:52:42] [CTO] So nobody knows.
+[00:52:42 - 00:52:43] [CTO] Okay.
+[00:52:43 - 00:52:44] [CTO] So it's not valid.
+[00:52:45 - 00:52:47] [CTO] But if you will remember, what is it?
+[00:52:47 - 00:52:53] [CTO] So you just rephrase it in like normal, simple five years old person question.
+[00:52:55 - 00:52:55] [CTO] Okay.
+[00:52:55 - 00:52:56] [CTO] What input form is it?
+[00:52:56 - 00:52:57] [CTO] Input formats are required for MVP.
+[00:52:57 - 00:52:59] [CTO] Input formats are...
+[00:52:59 - 00:53:00] [CTO] It's dependent on input.
+[00:53:00 - 00:53:02] [CTO] I'm not sure which input we have here.
+[00:53:04 - 00:53:04] [CTO] Like text.
+[00:53:05 - 00:53:05] [CTO] Text.
+[00:53:05 - 00:53:06] [CTO] No validation.
+[00:53:06 - 00:53:06] [CTO] No validation.
+[00:53:07 - 00:53:08] [CTO] I think it's doubled down here.
+[00:53:08 - 00:53:09] [CTO] No validation.
+[00:53:11 - 00:53:11] [CTO] I don't know.
+[00:53:12 - 00:53:12] [CTO] Email validation.
+[00:53:13 - 00:53:13] [CTO] Okay.
+[00:53:13 - 00:53:14] [CTO] Just email validation.
+[00:53:14 - 00:53:16] [CTO] I don't think we have a lot of inputs here.
+[00:53:19 - 00:53:19] [CTO] Which...
+[00:53:19 - 00:53:20] [CTO] Oh, maybe this one.
+[00:53:20 - 00:53:20] [CTO] Okay.
+[00:53:21 - 00:53:22] [CTO] It should be required...
+[00:53:22 - 00:53:23] [CTO] Oh, yeah.
+[00:53:23 - 00:53:25] [CTO] It's actually in the contact us form.
+[00:53:25 - 00:53:26] [CTO] I didn't notice.
+[00:53:26 - 00:53:27] [CTO] Yeah.
+[00:53:27 - 00:53:27] [CTO] Yeah.
+[00:53:27 - 00:53:31] [CTO] So yeah, just required, required, required, required.
+[00:53:32 - 00:53:36] [CTO] Just give me suggestions and I will check if I'm okay with that.
+[00:53:36 - 00:53:37] [PM orange team] Oh, sorry.
+[00:53:37 - 00:53:38] [PM orange team] Can you hear me?
+[00:53:38 - 00:53:39] [PM orange team] Hello?
+[00:53:39 - 00:53:39] [PM orange team] Yeah.
+[00:53:40 - 00:53:40] [PM orange team] Yes.
+[00:53:40 - 00:53:41] [PM orange team] Sorry.
+[00:53:41 - 00:53:45] [PM orange team] About the previous question about confidence threshold.
+[00:53:47 - 00:53:52] [PM orange team] So yeah, by that question, I mean, we have this...
+[00:53:53 - 00:53:55] [PM orange team] If you go back to Figma.
+[00:53:57 - 00:54:05] [PM orange team] And when you input data and before you, let's say, export and do anything with that, if
+[00:54:05 - 00:54:07] [PM orange team] you go back to Figma, maybe, please.
+[00:54:07 - 00:54:07] [PM orange team] Yeah.
+[00:54:08 - 00:54:08] [PM orange team] Yeah.
+[00:54:08 - 00:54:13] [PM orange team] So basically, we need to see this input data.
+[00:54:14 - 00:54:17] [PM orange team] If you go back to that screen.
+[00:54:18 - 00:54:18] [CTO] Sorry.
+[00:54:18 - 00:54:19] [CTO] To which one?
+[00:54:19 - 00:54:19] [CTO] Here?
+[00:54:19 - 00:54:19] [CTO] Yes.
+[00:54:19 - 00:54:20] [PM orange team] This.
+[00:54:20 - 00:54:20] [PM orange team] Yes.
+[00:54:20 - 00:54:22] [PM orange team] And you see here below.
+[00:54:22 - 00:54:23] [PM orange team] Before analyze.
+[00:54:27 - 00:54:29] [PM orange team] Below, a little bit below.
+[00:54:30 - 00:54:31] [PM orange team] Yes, before analyze button.
+[00:54:31 - 00:54:32] [PM orange team] Yeah.
+[00:54:33 - 00:54:41] [CTO] I think this item should be provided by library, which I have here because I think it was taken
+[00:54:41 - 00:54:43] [CTO] from ZEIT.
+[00:54:43 - 00:54:43] [CTO] You see?
+[00:54:43 - 00:54:46] [CTO] This is what was taken from here.
+[00:54:46 - 00:54:51] [CTO] So if you will, during development, we will see that something is not able to come because
+[00:54:51 - 00:54:54] [CTO] we check it only based on ZEIT demo.
+[00:54:54 - 00:55:01] [CTO] So if there's something we're not able to do, then we will just keep it for now.
+[00:55:01 - 00:55:05] [CTO] Like, let's see how like how it's work.
+[00:55:06 - 00:55:11] [CTO] The idea of this one, from my understanding, is how confident which data was selected.
+[00:55:11 - 00:55:16] [CTO] Because, as I said, it could miss something or it can highlight something that is not needed.
+[00:55:16 - 00:55:22] [CTO] So it's I'm not sure. I don't think they could use AI because this would be too expensive.
+[00:55:22 - 00:55:32] [CTO] I think there are just some algorithm, but maybe it's based on, how to say, I forgot the word.
+[00:55:32 - 00:55:35] [CTO] But is it required to have it?
+[00:55:35 - 00:55:38] [CTO] Yes, it would be good to have. Of course, it would be good to have.
+[00:55:38 - 00:55:44] [CTO] Because there could be some difficult documents which have a lot of numbers.
+[00:55:45 - 00:55:51] [CTO] And yeah, some confidence could be lower. And this means that users need to check more deeper.
+[00:55:51 - 00:55:52] [CTO] So usually they just look.
+[00:55:52 - 00:55:53] [CTO] So if it's not good enough, they just look.
+[00:55:53 - 00:55:56] [CTO] If it's like 100 confidence, they usually don't really care.
+[00:55:56 - 00:55:59] [CTO] Like, just select everything by default.
+[00:55:59 - 00:56:03] [CTO] If it's low, they usually pay more attention.
+[00:56:03 - 00:56:04] [PM orange team] Yeah, yeah.
+[00:56:04 - 00:56:12] [PM orange team] And also Olga, she mentioned in her video that we should remove this pattern where we have like 70% above it.
+[00:56:12 - 00:56:16] [PM orange team] We have this like clicking on off.
+[00:56:16 - 00:56:19] [PM orange team] Yeah, preserve document structure.
+[00:56:20 - 00:56:22] [PM orange team] She said to remove it. That's okay, right?
+[00:56:22 - 00:56:23] [CTO] Yeah, yeah.
+[00:56:23 - 00:56:23] [PM orange team] Okay.
+[00:56:23 - 00:56:24] [CTO] Yeah.
+[00:56:25 - 00:56:29] [CTO] I think she'd make this screenshot from website or from AI.
+[00:56:29 - 00:56:31] [CTO] So again, it's not fully true.
+[00:56:31 - 00:56:33] [CTO] So that's why you need design.
+[00:56:33 - 00:56:37] [CTO] You need like review it or send it to my review.
+[00:56:38 - 00:56:42] [CTO] And like before start developing at least.
+[00:56:43 - 00:56:44] [CTO] Yeah.
+[00:56:44 - 00:56:47] [CTO] So you need to have the design before start working on this design.
+[00:56:47 - 00:56:49] [CTO] And the design should be approved.
+[00:56:50 - 00:56:51] [CTO] Sorry, guys.
+[00:56:51 - 00:56:51] [CTO] I need to go.
+[00:56:51 - 00:56:52] [CTO] Let me.
+[00:56:53 - 00:56:54] [CTO] I in couple hours will be available.
+[00:56:55 - 00:56:57] [CTO] And I will go through this question in the video format.
+[00:56:58 - 00:56:59] [CTO] I will send you to you.
+[00:57:00 - 00:57:00] [CTO] You can.
+[00:57:00 - 00:57:05] [CTO] I don't know if you scan chat GPT or whatever to get transcription of it and get it with the text.
+[00:57:05 - 00:57:09] [CTO] And if one more call needed, I will be available in source day.
+[00:57:10 - 00:57:11] [PM orange team] Okay.
+[00:57:11 - 00:57:11] [PM orange team] Okay.
+[00:57:11 - 00:57:12] [PM orange team] Thank you, Elena.
+[00:57:12 - 00:57:13] [PM orange team] Thank you, everybody.
+[00:57:13 - 00:57:14] [CTO] Thank you.
+[00:57:14 - 00:57:19] [CTO] And for code templates who is waiting for me, I will return to it today.
+[00:57:20 - 00:57:21] [CTO] Also later.
+[00:57:22 - 00:57:23] Okay.
+[00:57:23 - 00:57:23] [CTO] Okay.
+[00:57:23 - 00:57:23] [CTO] Sorry.
+[00:57:23 - 00:57:24] [CTO] Thank you.
+[00:57:24 - 00:57:24] [CTO] Thank you.
+[00:57:24 - 00:57:25] [CTO] Bye.
+[00:57:25 - 00:57:25] [CTO] Thank you.
+[00:57:26 - 00:57:26] [CTO] Bye.

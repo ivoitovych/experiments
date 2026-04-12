@@ -1,0 +1,241 @@
+[00:15:00 - 00:15:08] [Lyudmila] develop branch it's it's my high recommendation yeah you if you will not do it i will see it and
+[00:15:08 - 00:15:18] [Lyudmila] like you will work with consequences um yeah that's all what this call was for any questions
+[00:15:18 - 00:15:33] [Lyudmila] general no general specific no we are good good then please uh everybody are free except sorry
+[00:15:33 - 00:15:41] [Lyudmila] one minute where it's mid p.m except orange team please orange team left because we need to figure
+[00:15:41 - 00:15:46] [Lyudmila] out what you are should do and because from what from my investigation you don't have any plan
+[00:15:47 - 00:15:56] [Lyudmila] so let's stay and decide to not yeah to make some plan yes thank you everybody the rest is
+[00:15:56 - 00:15:57] [Lyudmila] it's free to go
+[00:16:35 - 00:16:37] [Lyudmila] five people okay guys
+[00:16:37 - 00:16:42] [Lyudmila] Yes, I understood that there is no board, there is nothing like that, right? Because no one responded to my message.
+[00:16:44 - 00:16:46] [Lyudmila] Did you have any planning or something like that?
+[00:16:47 - 00:16:51] [Lyudmila] No, there was planning, but it was supposed to be today.
+[00:16:51 - 00:16:52] [Lyudmila] I just realized that ...
+[00:16:53 - 00:16:54] [Lyudmila] There was nothing, right?
+[00:16:54 - 00:16:56] [Lyudmila] ... the meeting went away or what?
+[00:16:56 - 00:16:57] [Lyudmila] Yes, yes.
+[00:16:57 - 00:17:00] [Lyudmila] Well, she was supposed to create a dashboard, well ...
+[00:17:01 - 00:17:05] [Lyudmila] Okay. So, do you remember that there were questions for everyone, or did you not discuss it?
+[00:17:05 - 00:17:06] [Lyudmila] Well, Vova, in what format was the planning?
+[00:17:08 - 00:17:11] [Lyudmila] We discussed what we should do for the sprint.
+[00:17:12 - 00:17:12] [Lyudmila] Yes, yes.
+[00:17:13 - 00:17:14] [Lyudmila] We haven't distributed the tasks yet.
+[00:17:14 - 00:17:17] [Lyudmila] And what were the plans to do for the sprint?
+[00:17:21 - 00:17:23] [Lyudmila] Authentication, part of the landing.
+[00:17:24 - 00:17:26] [Lyudmila] Because we rely on the design.
+[00:17:27 - 00:17:31] [Lyudmila] Yes, yes, I found it strange, because I looked at the design, and there was nothing like that.
+[00:17:31 - 00:17:33] [Lyudmila] Well, like, the design went the other way.
+[00:17:36 - 00:17:37] [Lyudmila] So, okay.
+[00:17:37 - 00:17:40] [Lyudmila] That is, authentication and landing are what you planned for the sprint.
+[00:17:42 - 00:17:43] [Lyudmila] Yes, of course.
+[00:17:43 - 00:17:44] [Lyudmila] And everything started from scratch.
+[00:17:46 - 00:17:47] [Lyudmila] Aha, okay.
+[00:17:53 - 00:18:01] [Lyudmila] So, Natasha, please tell me, did the task give you an APM, or did you set the priority yourself, and she just told you to do it?
+[00:18:03 - 00:18:10] [Natalia] No, there was a meeting with the team, and they told me, as we decided, that in order for everyone to have work, no one was waiting for anyone.
+[00:18:11 - 00:18:14] [Natalia] From the landing, I only make contact form, this table that you approved.
+[00:18:15 - 00:18:15] [Natalia] Yes.
+[00:18:15 - 00:18:22] [Natalia] And then I had to do this authentication on the link, magic link.
+[00:18:23 - 00:18:29] [Natalia] And we decided that as soon as I finish it, I will make this dashboard.
+[00:18:30 - 00:18:30] [Lyudmila] Okay.
+[00:18:30 - 00:18:34] [Lyudmila] No, just those designs that you have on the film, they are completely different.
+[00:18:35 - 00:18:38] [Lyudmila] Or did you just start doing it, and then you had planning?
+[00:18:39 - 00:18:41] [Natalia] I started with the first wizard.
+[00:18:41 - 00:18:42] [Natalia] It was our first meeting.
+[00:18:43 - 00:18:44] [Natalia] Wizard is my new compliance card.
+[00:18:45 - 00:19:03] [Natalia] Then we had the second meeting, at which we decided that I, with this hand, will stop other developers, so it's better for me to start with the contact form on the landing and start authorization on the link.
+[00:19:04 - 00:19:05] [Lyudmila] Oh, this is contact us.
+[00:19:06 - 00:19:07] [Lyudmila] Oh, I thought it was authorization.
+[00:19:07 - 00:19:08] [Lyudmila] Yes, okay.
+[00:19:09 - 00:19:11] [Natalia] Authorization is what you get.
+[00:19:11 - 00:19:13] [Natalia] I started with this, then I dropped it.
+[00:19:13 - 00:19:15] [Natalia] And I made this magic link.
+[00:19:15 - 00:19:19] [Natalia] This is when you click on the Get Started button on the landing page and go to this screen.
+[00:19:20 - 00:19:20] [Lyudmila] That's it.
+[00:19:20 - 00:19:21] [Lyudmila] Okay, I don't know.
+[00:19:21 - 00:19:23] [Lyudmila] I must have slept when I recorded your message.
+[00:19:24 - 00:19:25] [Lyudmila] I think so.
+[00:19:26 - 00:19:26] [Natalia] I think so.
+[00:19:27 - 00:19:31] [Natalia] I wrote it down for you, I thought maybe I didn't understand something.
+[00:19:31 - 00:19:32] [Lyudmila] Okay, okay.
+[00:19:32 - 00:19:33] [Lyudmila] I don't know.
+[00:19:33 - 00:19:33] [Lyudmila] Okay, okay.
+[00:19:33 - 00:19:37] [Lyudmila] I was, well, I think I switched, but I didn't switch.
+[00:19:38 - 00:19:38] [Natalia] Yes, everything is fine.
+[00:19:38 - 00:19:39] [Natalia] That's it.
+[00:19:39 - 00:19:39] [Natalia] Okay, good.
+[00:19:40 - 00:19:42] [Natalia] This screen is when you click on Get Started.
+[00:19:42 - 00:19:44] [Natalia] And you get to these screens.
+[00:19:44 - 00:19:47] [Natalia] And here it shows different states of input.
+[00:19:47 - 00:19:49] [Lyudmila] Oh, super, super cool.
+[00:19:49 - 00:19:50] [Lyudmila] Super.
+[00:19:50 - 00:19:50] [Lyudmila] We have this.
+[00:19:50 - 00:19:52] [Lyudmila] We have a contact form.
+[00:19:52 - 00:19:52] [Lyudmila] We don't have a landing.
+[00:19:53 - 00:19:54] [Lyudmila] This is probably what we need.
+[00:19:54 - 00:19:57] [Natalia] Yes, I'll do the landing in the middle for the guys.
+[00:19:58 - 00:20:00] [Natalia] I still have the morning, so I have two days.
+[00:20:00 - 00:20:02] [Natalia] I'll send the landing in the middle.
+[00:20:03 - 00:20:06] [Natalia] First you, Orange Team, then Tegano, right?
+[00:20:06 - 00:20:10] [Natalia] I wanted to ask how it happens, how do you confirm the design?
+[00:20:11 - 00:20:13] [Natalia] Do I have to tag you and that's it?
+[00:20:13 - 00:20:13] [Natalia] Yes.
+[00:20:14 - 00:20:19] [Lyudmila] No, as long as there is no PM, then yes, Tegano is better for me.
+[00:20:19 - 00:20:22] [Lyudmila] Well, in short, ideally, leave me a link and, like, what is it?
+[00:20:23 - 00:20:23] [Lyudmila] Well, I don't know.
+[00:20:23 - 00:20:24] [Lyudmila] Ah, okay.
+[00:20:24 - 00:20:25] [Lyudmila] Leave me a link, like a landing page.
+[00:20:26 - 00:20:31] [Lyudmila] If there is something super cool, well, like you have some transitions here, then you can record some small videos.
+[00:20:31 - 00:20:32] [Lyudmila] Okay.
+[00:20:32 - 00:20:35] [Lyudmila] When you have a PM, you will discuss it there and the PM will have to communicate with me.
+[00:20:35 - 00:20:36] [Lyudmila] But for now, let's do it this way.
+[00:20:36 - 00:20:37] [Lyudmila] Yes, okay.
+[00:20:37 - 00:20:38] [Lyudmila] Well, everything is not so bad then.
+[00:20:38 - 00:20:39] [Lyudmila] Then I only have such a question.
+[00:20:40 - 00:20:44] [Lyudmila] I asked when you were doing the planning, do you know what someone is taking?
+[00:20:44 - 00:20:48] [Lyudmila] Or let's go through it again now and determine what someone is doing.
+[00:20:50 - 00:20:52] [Lyudmila] This is already up to the developer team.
+[00:20:56 - 00:20:57] [Lyudmila] Yes, in my opinion.
+[00:20:58 - 00:21:02] [Ihor] Well, I plan to choose authorization for myself.
+[00:21:02 - 00:21:03] [Ihor] Uh-huh.
+[00:21:03 - 00:21:04] [Ihor] On the magic link.
+[00:21:05 - 00:21:05] [Lyudmila] Uh-huh.
+[00:21:06 - 00:21:07] [Lyudmila] Okay.
+[00:21:07 - 00:21:09] [Lyudmila] And when are you talking about authorization?
+[00:21:10 - 00:21:13] [Lyudmila] Do you mean front-end, back-end, email connection?
+[00:21:13 - 00:21:15] [Lyudmila] And what do you mean when you are talking about authorization?
+[00:21:16 - 00:21:18] [Ihor] Well, first I will do back-end.
+[00:21:18 - 00:21:19] [Ihor] Uh-huh.
+[00:21:20 - 00:21:21] [Ihor] Do endpoint.
+[00:21:21 - 00:21:22] [Ihor] Uh-huh.
+[00:21:22 - 00:21:25] [Ihor] Then when the JVT token will be issued.
+[00:21:26 - 00:21:26] [Ihor] Uh-huh.
+[00:21:28 - 00:21:31] [Ihor] Well, then when there is a design, I will start doing it.
+[00:21:32 - 00:21:32] [Ihor] There is a design.
+[00:21:32 - 00:21:33] [Ihor] There is a design.
+[00:21:36 - 00:21:39] [Ihor] This week I plan to do the backend, and for the next one I will do the design.
+[00:21:43 - 00:21:44] [Lyudmila] Come on, it's been a long time.
+[00:21:46 - 00:21:48] [Lyudmila] I certainly knew that.
+[00:21:49 - 00:21:50] [Ihor] Well, I don't know, so ...
+[00:21:50 - 00:21:51] [Lyudmila] No, well, the charge of pay is not very high.
+[00:21:55 - 00:21:57] [Lyudmila] Well, I heard about it.
+[00:21:57 - 00:21:59] [Lyudmila] Yes, with such plans, we will now kill a few people.
+[00:22:00 - 00:22:02] [Lyudmila] So, okay, then let's do this.
+[00:22:02 - 00:22:03] [Lyudmila] You take, okay, endpoints, database.
+[00:22:04 - 00:22:09] [Lyudmila] Well, because you need a token that you will send to the post office, you need to save it somewhere, right?
+[00:22:10 - 00:22:10] [Ihor] Yes.
+[00:22:10 - 00:22:12] [Lyudmila] Plus, you need a user ...
+[00:22:14 - 00:22:17] [Lyudmila] By the way, we haven't talked about it yet.
+[00:22:17 - 00:22:18] [Lyudmila] Okay, let's do this for now.
+[00:22:18 - 00:22:20] [Lyudmila] So, all the same, you will have to save this token in the database.
+[00:22:20 - 00:22:22] [Lyudmila] And you will have to make a UI.
+[00:22:22 - 00:22:23] [Lyudmila] Come on, yes.
+[00:22:24 - 00:22:25] [Lyudmila] Now, I need to go to the database.
+[00:22:32 - 00:22:43] [Lyudmila] Of course, we need to create a service that will accept what is there, a token and an email and send a link with a token to this email.
+[00:22:44 - 00:22:45] [Lyudmila] That's how it should be.
+[00:22:45 - 00:22:47] [Lyudmila] In short, someone who will do it.
+[00:22:47 - 00:22:48] [Lyudmila] There are those who wish.
+[00:22:50 - 00:22:51] [Lyudmila] There are no those who wish.
+[00:22:51 - 00:22:52] [Lyudmila] Okay.
+[00:22:53 - 00:22:54] [Ihor] We will choose.
+[00:22:54 - 00:22:58] [Ihor] But if I resist the endpoint and the JVT token, then I will try.
+[00:22:59 - 00:23:00] [Lyudmila] No, well, if you resist, then yes.
+[00:23:00 - 00:23:02] [Lyudmila] And if not, that's it, you don't resist.
+[00:23:03 - 00:23:03] [Ihor] Of course.
+[00:23:06 - 00:23:07] [Lyudmila] Someone else, parallel to the parallel.
+[00:23:08 - 00:23:09] [Lyudmila] You will have to work there.
+[00:23:09 - 00:23:12] [Lyudmila] Because all the same, it will be necessary to accept this JVT token on the frontend.
+[00:23:14 - 00:23:16] [Lyudmila] Well, you are Videslav, right?
+[00:23:16 - 00:23:17] [Lyudmila] That is, you made a UI, you are Videslav.
+[00:23:18 - 00:23:21] [Lyudmila] Then a person goes through this JVT and you also need to show what it looks like.
+[00:23:21 - 00:23:23] [Lyudmila] By the way, I think that ...
+[00:23:25 - 00:23:26] [Lyudmila] Wait a minute, I got confused about the design.
+[00:23:27 - 00:23:28] [Lyudmila] What is the design here?
+[00:23:29 - 00:23:34] [Lyudmila] So, I assume that when a person goes through, he will probably go to the dashboard right away.
+[00:23:35 - 00:23:35] [Lyudmila] Yes.
+[00:23:40 - 00:23:47] [Lyudmila] So, we need a page, Natasha, we need a blank page, in short.
+[00:23:48 - 00:23:55] [Natalia] Yes, I'll do MC State, I just didn't have time, it's filled in, it will still be MC State with tooltips.
+[00:23:56 - 00:23:58] [Lyudmila] Yes, what are tooltips?
+[00:23:58 - 00:24:04] [Natalia] And this is when you point an arrow at some chart and it tells you where you are and what it means.
+[00:24:05 - 00:24:13] [Lyudmila] Ah, yes, okay, it's good, but I think it needs to be filled in, and when it comes in for the first time, you need to show it, like, you don't have any data.
+[00:24:14 - 00:24:21] [Natalia] I plan for these charts to be in default, gray with zero values.
+[00:24:22 - 00:24:28] [Lyudmila] No, no, no, no, we don't understand, okay, but what is 185?
+[00:24:28 - 00:24:33] [Lyudmila] Even if it's gray, it can make the user sad, like, what is 98%?
+[00:24:33 - 00:24:35] [Natalia] No, it's now…
+[00:24:35 - 00:24:38] [Natalia] It's like a mockup, you know, when there is already some information, when the user is not the first.
+[00:24:39 - 00:24:48] [Natalia] And if it's a new user, a banner will appear, let's say, a new user, and all the values will be just zeros, that is, they will be zeros.
+[00:24:50 - 00:24:59] [Lyudmila] Ah, that's how you want to do it. Well, okay, you can try it, you can do it like this, I would just say, like, no data to show, like, start using the app, or something like that.
+[00:24:59 - 00:25:01] [Lyudmila] Well, you can, well, in short, you need to check, because I didn't see anything in zeros.
+[00:25:02 - 00:25:04] [Natalia] I was just thinking about the developers and how they would be more sensitive.
+[00:25:04 - 00:25:14] [Natalia] So, I thought that if the layout and all these frames remain the same, there will simply be zero values and a hint for the user that, since you are new, the date is empty.
+[00:25:18 - 00:25:20] [Natalia] No, it's necessary from the user's point of view.
+[00:25:21 - 00:25:32] [Lyudmila] Well, at least, well, like, yes, it's right for the developer to ask some things, but I just think that from the user's point of view, it will be strange for him to see zero values.
+[00:25:33 - 00:25:40] [Lyudmila] Because it's okay, where there are numbers, it's like, okay, but the chart will be completely empty, everything will be empty here, there will also be only these ones.
+[00:25:40 - 00:25:43] [Lyudmila] They just, well, it will seem to be empty, in fact, when there will be nothing.
+[00:25:44 - 00:25:47] [Natalia] Oh, look, I don't know if I can make two options.
+[00:25:47 - 00:25:51] [Natalia] Let's make two options, and we'll see how it will definitely look.
+[00:25:51 - 00:25:52] [Natalia] Okay, okay.
+[00:25:52 - 00:25:52] [Natalia] It's not difficult for me.
+[00:25:53 - 00:25:53] [Lyudmila] Let's do it this way.
+[00:25:53 - 00:26:01] [Lyudmila] Well, in any case, when you need to redirect links, you can at least display some kind of a hello world page here, and display these things here.
+[00:26:02 - 00:26:02] [Lyudmila] Well, a menu.
+[00:26:03 - 00:26:06] [Lyudmila] I'm talking about the authorization of the UI.
+[00:26:08 - 00:26:09] [Lyudmila] No, I don't know.
+[00:26:09 - 00:26:10] [Lyudmila] Okay, that's it for now.
+[00:26:11 - 00:26:15] [Lyudmila] So, okay, there are no email requests, so we'll have Mark.
+[00:26:18 - 00:26:19] [Lyudmila] So, Mark, what do you need to do?
+[00:26:19 - 00:26:25] [Lyudmila] Well, first of all, you need to write a function that will receive an email and what we have there, a token.
+[00:26:26 - 00:26:29] [Lyudmila] Oh, a token.
+[00:26:30 - 00:26:37] [Lyudmila] And, in principle, nothing, no, return, well, I don't know, you can probably not return anything, we'll see.
+[00:26:38 - 00:26:46] [Lyudmila] And it will send, in fact, a link, it will send something like, well, in this case, you have a localhost, something like that.
+[00:26:46 - 00:26:48] [Lyudmila] Oh, http.
+[00:26:50 - 00:26:51] [Lyudmila] What is there?
+[00:26:51 - 00:26:58] [Lyudmila] There is a localhost, there is a localhost, there are three thousand, some kind of, this is the meaning, I have to get from env.
+[00:26:58 - 00:27:02] [Lyudmila] Well, like, this thing is a frontend, a path.
+[00:27:03 - 00:27:09] [Lyudmila] And something like login, I don't know, and here is this token.
+[00:27:10 - 00:27:13] [Lyudmila] In general, in this format, which one will need to send.
+[00:27:14 - 00:27:17] [Lyudmila] There, if there is something, some change, then we will send it.
+[00:27:19 - 00:27:23] [Lyudmila] Well, we have a question, like, query parameter, token equals there.
+[00:27:27 - 00:27:29] [Lyudmila] Query parameter, token equals there.
+[00:27:29 - 00:27:32] [Lyudmila] Oh, you, like, instead of a login, like, here is a token to write.
+[00:27:33 - 00:27:35] [Lyudmila] Oh, you want it like this, I understand.
+[00:27:35 - 00:27:36] [Lyudmila] You, like, like this.
+[00:27:36 - 00:27:39] [Lyudmila] Well, in fact, they rarely write now.
+[00:27:39 - 00:27:39] [Lyudmila] Yes.
+[00:27:40 - 00:27:43] [Lyudmila] Well, like, I understand that it's a little easier for parsing, I understand, like this.
+[00:27:44 - 00:27:49] [Lyudmila] Well, it's easier for parsing, but for the user, these things, like, it's better not to do this.
+[00:27:49 - 00:27:51] [Lyudmila] Well, like, what is sent to the email, it's better not to do it in this format.
+[00:27:52 - 00:27:53] [Lyudmila] Better to do it in the token format.
+[00:27:53 - 00:27:57] [Lyudmila] There, token, there, slash.
+[00:27:57 - 00:27:58] [Lyudmila] Well, in short, it's better to do it in this format.
+[00:28:00 - 00:28:01] [Lyudmila] Well, it's more trustful.
+[00:28:01 - 00:28:08] [Lyudmila] Well, if you pay attention to what kind of links come to your mail for verification and all that, then you will very rarely see a question mark.
+[00:28:08 - 00:28:09] [Lyudmila] Like, you'll always see it in this format.
+[00:28:10 - 00:28:10] [Lyudmila] Yes.
+[00:28:11 - 00:28:12] [Lyudmila] I don't look at it at all.
+[00:28:12 - 00:28:12] [Lyudmila] What?
+[00:28:13 - 00:28:15] [Lyudmila] I don't look at that link at all, just.
+[00:28:15 - 00:28:18] [Lyudmila] Well, that's just the reason to start looking.
+[00:28:19 - 00:28:23] [Lyudmila] Well, like, the whole experience of development is to start paying attention to these things.
+[00:28:23 - 00:28:24] [Lyudmila] So, I'm not the kind of person who never sent any kind of link.
+[00:28:25 - 00:28:26] [Lyudmila] So, okay.
+[00:28:26 - 00:28:27] [Lyudmila] What was the question there?
+[00:28:27 - 00:28:30] [Lyudmila] Mark, you can just turn on the microphone and talk.
+[00:28:31 - 00:28:31] [Lyudmila] Yes.
+[00:28:31 - 00:28:32] [Lyudmila] I had a question.
+[00:28:32 - 00:28:35] [Lyudmila] And from which mail should we send a user or link?
+[00:28:36 - 00:28:36] [Lyudmila] Create one.
+[00:28:37 - 00:28:38] [Lyudmila] Well, that's a good question.
+[00:28:38 - 00:28:39] [Lyudmila] Just create one.
+[00:28:39 - 00:28:43] [Lyudmila] The simplest way is, like, create some kind of Google Mail.
+[00:28:44 - 00:28:45] [Lyudmila] Some kind of one, I don't know.
+[00:28:45 - 00:28:48] [Lyudmila] Zenbeat, Intersheet, Green Team, Hello World, something like that.
+[00:28:49 - 00:28:51] [Lyudmila] And there, you send the login by the address.
+[00:28:51 - 00:29:03] [Lyudmila] If you can do something more secure, at least not with login and password, but through a token, then it will be great.
+[00:29:03 - 00:29:11] [Lyudmila] If you can include a service, it will be even cooler that the services allow you to draw templates yourself.
+[00:29:11 - 00:29:20] [Lyudmila] Well, how the email itself will look like. And by the way, yes, this is a good thing that you will need to write the email text yourself.
+[00:29:20 - 00:29:37] [Lyudmila] You create a template that is, like, hello, not hello, user, but, like, I don't know, what can you do, like, here is your link for verification.
+[00:29:39 - 00:29:41] [Lyudmila] By the way, this is a very good point.
+[00:29:42 - 00:29:45] [Lyudmila] We will need to, I don't forget it yet, I leave it in the comments.
+[00:29:46 - 00:29:48] [Lyudmila] This is probably the next priority.
+[00:29:49 - 00:29:53] [Lyudmila] In short, the next priority, let's call it two, I don't know.
+[00:29:53 - 00:29:57] [Lyudmila] We will need an email template.
+[00:29:59 - 00:29:59] [Lyudmila] What does it mean?

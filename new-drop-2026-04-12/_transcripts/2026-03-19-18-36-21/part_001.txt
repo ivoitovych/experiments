@@ -1,0 +1,222 @@
+[00:15:00 - 00:15:05] [CTO] information which is connected to a specific user and is sensitive is not shown to anyone.
+[00:15:06 - 00:15:15] [CTO] And when we get this data, when we will replace finally this output with fake data,
+[00:15:16 - 00:15:24] [CTO] we can use the data, for example, for training AI. We will show some extra charts
+[00:15:26 - 00:15:31] [CTO] and dashboard, like login system. Actually, I think login system was not shown here,
+[00:15:31 - 00:15:35] [CTO] but don't worry, you have designer, you have PM, and you have five developers,
+[00:15:35 - 00:15:38] [CTO] so you will figure out how the rest of the applications work.
+[00:15:40 - 00:15:47] [CTO] So what I will send, I will send you the SIGMA. Also here is very big description about
+[00:15:49 - 00:15:53] [CTO] rules validation. Also I will send you three videos that
+[00:15:54 - 00:15:54] [CTO] was pre-made.
+[00:15:54 - 00:16:03] [CTO] For you to check and more deep understand all this stuff. And your task for next week will be
+[00:16:03 - 00:16:11] [CTO] to check all of this and try to make some general plan. Actually, for me, it's more important that
+[00:16:11 - 00:16:16] [CTO] you prepare the questions. Because in one week, what is in one week we will have? In one week,
+[00:16:16 - 00:16:22] [CTO] like around 30, we will have, we need to start development. So during next week, you need to
+[00:16:22 - 00:16:24] [CTO] prepare as much as needed.
+[00:16:24 - 00:16:30] [CTO] For you to, like, I don't know, questions for me, I don't know, backlog, what do you need,
+[00:16:30 - 00:16:38] [CTO] like rest of the stuff. To be sure that on 30, you start actual development. This will be your,
+[00:16:39 - 00:16:46] [CTO] like, your task for next week. I suggest to have a call next week somewhere on Wednesday.
+[00:16:47 - 00:16:56] [CTO] I think Wednesday is not too... Okay, Wednesday. Okay, Wednesday.
+[00:16:56 - 00:17:02] [CTO] I could make it available for you on Wednesday. We can communicate in Slack what time is better.
+[00:17:03 - 00:17:08] [CTO] So you, like, so you will have something called in case something needed from me.
+[00:17:10 - 00:17:18] [CTO] If anything else, we will communicate in Slack. Most of the communication will be in your team
+[00:17:18 - 00:17:27] [CTO] chat. Sorry, where is it? So most communication in the team chat. If something general, I
+[00:17:27 - 00:17:34] [CTO] put it here. If you need some communication between the team, you also can use here. Please do not
+[00:17:34 - 00:17:41] [CTO] write me a private message because I usually don't read them. I won't, because it's also, like, kind
+[00:17:41 - 00:17:50] [CTO] of wrong. We never talk with the customer in the private messages. And even with team member, we
+[00:17:50 - 00:17:56] [CTO] try to do it in the general chats. Because if there are any conflicts or some unpredictable situation,
+[00:17:56 - 00:17:57] [CTO] it's not going to be in the chat. So if there are any conflicts, it's going to be in the chat. So
+[00:17:57 - 00:17:58] [CTO] if there are any conflicts, it's going to be in the chat. So it's much more easy to see the history
+[00:17:58 - 00:18:03] [CTO] in the chat than in private conversation, ask for a screenshot and all this stuff.
+[00:18:03 - 00:18:09] [CTO] So I can ask anything that you want to discuss, do it here. If you want something, like,
+[00:18:09 - 00:18:13] [CTO] out of Slack, you think that it's not comfortable, you like Telegram, WhatsApp, whatever,
+[00:18:13 - 00:18:17] [CTO] you can do it. But this is our official channel of communication.
+[00:18:19 - 00:18:27] [CTO] Okay. About the project. Do you have any questions now? I'm not dive deep into details. It's
+[00:18:27 - 00:18:38] [CTO] just a little bit too heavy for you. I assume it's yes. Sorry, what is it?
+[00:18:38 - 00:18:44] [CTO] Current tech stack for the project. Yeah, this is what next steps we will discuss. About the project
+[00:18:44 - 00:18:54] [CTO] generally. Like, about Figma, videos, how we'll do it. No? Okay. Let's go then to tech stack.
+[00:18:55 - 00:19:00] [CTO] One minute. I think this one.
+[00:19:06 - 00:19:27] [CTO] Uh-huh. Okay. Mm-hmm. Mm-hmm. Mm-hmm. Okay. So what we will use?
+[00:19:33 - 00:19:38] [CTO] Okay. I just split it. Okay. I remember. Okay. So what we will use? We will use React.
+[00:19:38 - 00:19:45] [CTO] So actually, everything that you use for a test task, it will be the same. So React, Redux toolkit,
+[00:19:46 - 00:19:51] [CTO] material UI, it's not mandatory or style components. So you can use any
+[00:19:51 - 00:19:56] [CTO] library that you want. But it's important that you discuss it with the team. Because
+[00:19:57 - 00:20:03] [CTO] if everybody know how to use style component, and you decide to go with material UI, which
+[00:20:03 - 00:20:07] [CTO] not very comfortable to work with style component, maybe it will be not the best decision.
+[00:20:07 - 00:20:13] [CTO] But generally requirements, it's React, Redux toolkit. It's mandatory. For backend,
+[00:20:13 - 00:20:21] [CTO] we will use Nest. We will use TypeRM. And our database will be MySQL. That's because it's a
+[00:20:21 - 00:20:22] [CTO] little bit easier to search. It's a little bit easier to search. It's a little bit easier to
+[00:20:22 - 00:20:29] [CTO] set up than Postgres. What else? I will send this document. Oh, it will actually let me do it
+[00:20:29 - 00:20:41] [CTO] right away. I think it should have public access. What else? One minute.
+[00:20:43 - 00:21:01] [CTO] Uh-huh. Git. Let's few sentences about Git. Because it's very common mistake. And if I thought that it's not
+[00:21:01 - 00:21:08] [CTO] with AI everything becomes easy, but no. So how will you work? Now I will need...
+[00:21:09 - 00:21:17] [CTO] So when you will meet your team, understand who is who, I need that each team provide me one
+[00:21:20 - 00:21:33] [CTO] front-end and one backend developer from each team. It doesn't mean that you will be front-end always.
+[00:21:41 - 00:21:45] [CTO] It doesn't mean that you will frontend only or backend only, I just need somebody for
+[00:21:45 - 00:21:45] [CTO] setup template.
+[00:21:48 - 00:21:54] [CTO] So I will send you the rules how to setup template general, because it will not be possible
+[00:21:54 - 00:21:55] [CTO] that multiple people doing it.
+[00:21:55 - 00:22:01] [CTO] So I just need that again, each team provide me a person name who will do frontend and
+[00:22:01 - 00:22:04] [CTO] person name who will do backend template setup.
+[00:22:06 - 00:22:13] [CTO] What this person will do, he will create like he will do all the work in the master branch.
+[00:22:13 - 00:22:18] [CTO] And when I will say that all fine, like you will send it to my review, I will say all
+[00:22:18 - 00:22:19] [CTO] fine or not fine.
+[00:22:20 - 00:22:24] [CTO] But anyway, in some point, it should be fine, then you create a developer branch.
+[00:22:25 - 00:22:30] [CTO] And after that, all the work in its developer branch is like your main branch, you forget
+[00:22:30 - 00:22:31] [CTO] about master forever.
+[00:22:32 - 00:22:34] [CTO] Like never not push the rest.
+[00:22:34 - 00:22:38] [CTO] Correctly, not push through the developer branch, not push through your other branch.
+[00:22:38 - 00:22:43] [CTO] So never like master is close until we have release.
+[00:22:43 - 00:22:48] [CTO] Release for us is like at the end of the project when you will say that it's ready.
+[00:22:49 - 00:22:54] [CTO] So from developer branch, you will create your branch, for example, feature house, or
+[00:22:55 - 00:23:03] [CTO] I don't have a recommendation about name, it just nice when they look more or less same,
+[00:23:03 - 00:23:04] [CTO] but it's really doesn't matter.
+[00:23:04 - 00:23:11] [CTO] It's more matter that each time from develop, you make a branch and work on this branch.
+[00:23:12 - 00:23:17] [CTO] What also important, so we have remote project, which on GitHub, you have local projects.
+[00:23:17 - 00:23:23] [CTO] So you create a branch locally, then you push remote branch to the remote project.
+[00:23:23 - 00:23:27] [CTO] So it's become available in GitHub, because we will use GitHub.
+[00:23:27 - 00:23:30] [CTO] And after that, you create pull request.
+[00:23:30 - 00:23:34] [CTO] So you never push directly a branch to the developer branch.
+[00:23:35 - 00:23:39] [CTO] If you don't know what is PR or pull request, just read it.
+[00:23:39 - 00:23:41] [CTO] It's not something like difficult.
+[00:23:41 - 00:23:44] [CTO] It's two buttons in the GitHub repository.
+[00:23:46 - 00:23:53] [CTO] Yeah, I think that's what I want to highlight because it's like each time, like each time
+[00:23:53 - 00:23:57] [CTO] there is somebody who pushed to develop without PR.
+[00:23:57 - 00:23:58] [CTO] So don't be that person.
+[00:23:59 - 00:24:01] [CTO] Just not good.
+[00:24:03 - 00:24:03] [CTO] Okay.
+[00:24:04 - 00:24:05] [CTO] One minute.
+[00:24:05 - 00:24:06] [CTO] What also I want?
+[00:24:06 - 00:24:07] [CTO] Okay.
+[00:24:09 - 00:24:10] [CTO] Let's see.
+[00:24:10 - 00:24:11] [CTO] What is it?
+[00:24:15 - 00:24:16] [CTO] Okay.
+[00:24:17 - 00:24:18] [CTO] She's actually stuck.
+[00:24:19 - 00:24:26] [CTO] It's old one, but yeah, it's hard to, to use PR, but they think you can find it by
+[00:24:26 - 00:24:27] [CTO] your own.
+[00:24:31 - 00:24:32] [CTO] Okay.
+[00:24:34 - 00:24:36] [CTO] Also, I want to highlight few items.
+[00:24:47 - 00:24:48] [CTO] Also as a common mistake.
+[00:24:49 - 00:24:52] [CTO] Which you will do, everybody do.
+[00:24:54 - 00:24:55] [CTO] It's this file.
+[00:24:57 - 00:24:58] [CTO] One minute.
+[00:24:58 - 00:25:00] [CTO] I also send you the link to it.
+[00:25:02 - 00:25:05] [CTO] Does it know how to make a link?
+[00:25:07 - 00:25:07] [CTO] This one.
+[00:25:11 - 00:25:14] [CTO] So, what this file is about.
+[00:25:14 - 00:25:18] [CTO] It's about what is PR and what I expect from you from PR.
+[00:25:19 - 00:25:19] [CTO] This is actually...
+[00:25:19 - 00:25:24] [CTO] All this will be your biggest issue and the most critical is will be in the next session.
+[00:25:24 - 00:25:28] [CTO] in the first two weeks.
+[00:25:29 - 00:25:30] [CTO] So all this rules,
+[00:25:30 - 00:25:34] [CTO] so if you use some AI connected to your VS Code
+[00:25:34 - 00:25:35] [CTO] or whatever you use,
+[00:25:35 - 00:25:38] [CTO] then you can just give it to it
+[00:25:38 - 00:25:39] [CTO] and you will have a nice code.
+[00:25:40 - 00:25:43] [CTO] If not, you just need to check
+[00:25:43 - 00:25:45] [CTO] that all these rules are followed.
+[00:25:46 - 00:25:47] [CTO] They're very simple,
+[00:25:47 - 00:25:50] [CTO] like try catch if it's a sync operation.
+[00:25:50 - 00:25:52] [CTO] No magic number.
+[00:25:52 - 00:25:54] [CTO] Magic number if you will put somewhere there,
+[00:25:54 - 00:25:55] [CTO] like eight.
+[00:25:55 - 00:25:56] [CTO] What is eight?
+[00:25:56 - 00:25:56] [CTO] Why eight?
+[00:25:57 - 00:26:00] [CTO] So we don't have like eight of 52.
+[00:26:00 - 00:26:01] [CTO] What is 52?
+[00:26:01 - 00:26:02] [CTO] So you always need to have a constant.
+[00:26:04 - 00:26:06] [CTO] Like, okay, you can read it.
+[00:26:06 - 00:26:07] [CTO] So no console log,
+[00:26:07 - 00:26:12] [CTO] like a lot of you actually have end file in Git repo.
+[00:26:12 - 00:26:13] [CTO] It's like prohibited,
+[00:26:14 - 00:26:15] [CTO] like never, never.
+[00:26:15 - 00:26:16] [CTO] It's so unsecure.
+[00:26:16 - 00:26:18] [CTO] So you always should have an example.
+[00:26:19 - 00:26:22] [CTO] I will send this rules for those who will set up template,
+[00:26:23 - 00:26:24] [CTO] but this is,
+[00:26:24 - 00:26:24] [CTO] this is really important
+[00:26:24 - 00:26:27] [CTO] because it's very difficult to delete anything
+[00:26:27 - 00:26:28] [CTO] from Git history.
+[00:26:28 - 00:26:29] [CTO] Okay.
+[00:26:29 - 00:26:31] [CTO] So anyway, they're quite straightforward.
+[00:26:32 - 00:26:33] [CTO] If you will read them carefully,
+[00:26:33 - 00:26:35] [CTO] it's not too many of them,
+[00:26:35 - 00:26:38] [CTO] like five here, nine here, 15 here.
+[00:26:39 - 00:26:40] [CTO] Okay. So it's not many.
+[00:26:40 - 00:26:42] [CTO] But what I want to pay attention is here,
+[00:26:42 - 00:26:43] [CTO] we have PR rules,
+[00:26:43 - 00:26:50] [CTO] which a lot of you didn't pay attention for it.
+[00:26:50 - 00:26:54] [CTO] And here we have PR rules is what I expect from you
+[00:26:54 - 00:26:58] [CTO] in the PR description.
+[00:26:58 - 00:26:59] [CTO] So I'm going to skip the request.
+[00:26:59 - 00:27:02] [CTO] I hope I can do actually it here,
+[00:27:02 - 00:27:10] [CTO] because it's good to visit the only one branch here.
+[00:27:10 - 00:27:12] [CTO] Actually here is only one branch.
+[00:27:14 - 00:27:14] [CTO] Cool.
+[00:27:14 - 00:27:17] [CTO] I can do it here.
+[00:27:32 - 00:27:33] [CTO] Okay.
+[00:27:33 - 00:27:35] [CTO] Okay. Here I don't have permission.
+[00:27:35 - 00:27:35] [CTO] Okay.
+[00:27:35 - 00:27:38] [CTO] So then when you will do it,
+[00:27:38 - 00:27:39] [CTO] you'll see.
+[00:27:39 - 00:27:41] [CTO] So when you will do pull request,
+[00:27:42 - 00:27:43] [CTO] you will have here,
+[00:27:43 - 00:27:44] [CTO] like somewhere here,
+[00:27:44 - 00:27:45] [CTO] like a description box.
+[00:27:46 - 00:27:48] [CTO] And on that description box,
+[00:27:48 - 00:27:50] [CTO] I expect that like,
+[00:27:50 - 00:27:52] [CTO] if it's front-end changes,
+[00:27:52 - 00:27:55] [CTO] I expect that you attach screenshot.
+[00:27:55 - 00:27:57] [CTO] So if there are any UI changes,
+[00:27:57 - 00:27:58] [CTO] like, because on front-end,
+[00:27:58 - 00:27:59] [CTO] usually what you are doing,
+[00:27:59 - 00:28:00] [CTO] you're working on the screens.
+[00:28:00 - 00:28:02] [CTO] If you're working on the screens,
+[00:28:02 - 00:28:04] [CTO] you have something to show.
+[00:28:04 - 00:28:07] [CTO] So this screenshot should be attached to the PR.
+[00:28:07 - 00:28:08] [CTO] And if you're doing backend,
+[00:28:08 - 00:28:12] [CTO] and this backend changes include database changes.
+[00:28:12 - 00:28:16] [CTO] So I expect that you connect database schema.
+[00:28:17 - 00:28:19] [CTO] Here, it's one of the example,
+[00:28:19 - 00:28:21] [CTO] where you can do this database schema,
+[00:28:21 - 00:28:24] [CTO] but most of the clients,
+[00:28:25 - 00:28:25] [CTO] like the viewer,
+[00:28:27 - 00:28:28] [CTO] PHP, my admin,
+[00:28:29 - 00:28:29] [CTO] or like,
+[00:28:30 - 00:28:32] [CTO] I'm not sure about admin,
+[00:28:32 - 00:28:33] [CTO] but anyway,
+[00:28:33 - 00:28:35] [CTO] most of this UI tools,
+[00:28:35 - 00:28:37] [CTO] they have something like create a schema,
+[00:28:38 - 00:28:40] [CTO] and they will create the schema for you
+[00:28:40 - 00:28:41] [CTO] without any extra work.
+[00:28:42 - 00:28:44] [CTO] So just read about it.
+[00:28:44 - 00:28:45] [CTO] It shouldn't be difficult,
+[00:28:45 - 00:28:46] [CTO] but it's important.
+[00:28:46 - 00:28:48] [CTO] It's important that you connect screenshot to the database,
+[00:28:48 - 00:28:50] [CTO] because it's very often the blocker
+[00:28:50 - 00:28:52] [CTO] that I return you a PR,
+[00:28:52 - 00:28:54] [CTO] and I say, no, I don't approve the PR,
+[00:28:55 - 00:28:57] [CTO] because you didn't follow the rules.
+[00:28:58 - 00:29:01] [CTO] And then you will see,
+[00:29:01 - 00:29:03] [CTO] you will, like,
+[00:29:03 - 00:29:07] [CTO] it means that you will become a blocker for your team,
+[00:29:07 - 00:29:11] [CTO] because your PR will not be measured.
+[00:29:13 - 00:29:15] [CTO] They should include template of the checklist.
+[00:29:16 - 00:29:17] [CTO] Yeah.
+[00:29:17 - 00:29:19] [CTO] And this one also,
+[00:29:19 - 00:29:20] [CTO] like everybody forget.
+[00:29:22 - 00:29:23] [CTO] So in this document,
+[00:29:24 - 00:29:27] [CTO] just please click this stuff.
+[00:29:27 - 00:29:29] [CTO] There are really not a lot of rules.
+[00:29:30 - 00:29:32] [CTO] Just spend, I don't know,
+[00:29:32 - 00:29:33] [CTO] half an hour, read them,
+[00:29:33 - 00:29:35] [CTO] remember where to look for what,
+[00:29:35 - 00:29:36] [CTO] and that's all.
+[00:29:38 - 00:29:38] [CTO] Yeah.
+[00:29:38 - 00:29:40] [CTO] First week will be a lot of confusion,
+[00:29:40 - 00:29:44] [CTO] but it's just part of the process.
+[00:29:45 - 00:29:46] [CTO] Okay, good.
+[00:29:46 - 00:29:47] [CTO] Let me check the question.
+[00:29:47 - 00:29:52] [CTO] Look like any architecture decision already in place
+[00:29:52 - 00:29:55] [CTO] would be aware of no architectural decisions,
+[00:29:55 - 00:29:56] [CTO] except template.
+[00:29:56 - 00:29:59] [CTO] So the people who will be set up template,

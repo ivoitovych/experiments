@@ -1,0 +1,295 @@
+[00:00:00 - 00:00:03] [CTO] Okay, everybody, sorry for waiting for me.
+[00:00:03 - 00:00:08] [CTO] Let's start from business side, like questions that you have,
+[00:00:08 - 00:00:11] [CTO] and then we will go back to this back-end review.
+[00:00:17 - 00:00:20] [CTO] It's Q&A session, so does anybody want to start?
+[00:00:25 - 00:00:28] [CTO] If no, then we are good to go.
+[00:00:40 - 00:00:43] [CTO] Yeah, you just can turn on your microphone.
+[00:00:43 - 00:00:50] [PM green team] Okay, I think all the teams have their respective questions.
+[00:00:50 - 00:00:53] [PM green team] I'm just trying to send you over the Slack.
+[00:00:54 - 00:00:57] [PM green team] Please, my team have prepared a list.
+[00:00:57 - 00:00:59] [PM green team] It's loading right now.
+[00:01:00 - 00:01:01] [CTO] Green team, okay.
+[00:01:01 - 00:01:04] [CTO] Which document can you ping me?
+[00:01:06 - 00:01:08] [PM green team] I sent you a message.
+[00:01:10 - 00:01:12] [CTO] There's no private message here.
+[00:01:12 - 00:01:13] [CTO] We use only common chats.
+[00:01:14 - 00:01:17] [CTO] We can use it in some, I don't know, like very personal information,
+[00:01:17 - 00:01:20] [CTO] but generally better that everybody will be on the same page,
+[00:01:20 - 00:01:22] [CTO] so most of the time it's used.
+[00:01:23 - 00:01:25] [CTO] Okay, let me share my screen.
+[00:01:25 - 00:01:26] [CTO] Let's go through the questions.
+[00:01:28 - 00:01:30] [CTO] Okay, we need to make a data scheme.
+[00:01:31 - 00:01:32] [CTO] It's not a technical question.
+[00:01:34 - 00:01:35] [CTO] Okay, do you have business questions?
+[00:01:36 - 00:01:37] [PM green team] Business questions?
+[00:01:38 - 00:01:39] [PM green team] Let me check.
+[00:01:39 - 00:01:40] [CTO] About the product, everything clear?
+[00:01:42 - 00:01:43] [PM green team] You are ready for Monday?
+[00:01:43 - 00:01:45] [PM green team] Basically, the thing was to...
+[00:01:45 - 00:01:51] [PM green team] The only thing was to clarify, my team asked about the magic link.
+[00:01:51 - 00:02:01] [PM green team] Should it be the only option to register in the app or can we use another methods like using Apple and Google account and random email?
+[00:02:02 - 00:02:13] [CTO] Let's stick like, let's stick as requirements magic link if, like, if you will have time or if you will want to do it, you can do it as extra, like anything that extra is always good.
+[00:02:14 - 00:02:15] [CTO] But let's focus on the magic link.
+[00:02:15 - 00:02:21] [CTO] I think, it's very basic because it's very often when team start doing something like site,
+[00:02:21 - 00:02:23] [CTO] and then they didn't finish the core.
+[00:02:23 - 00:02:32] [CTO] So that's why, again, like anything additional is always good, but core is important and always priority.
+[00:02:34 - 00:02:40] [CTO] Okay, if no business question and you understand how the product works, then we can go through this one.
+[00:02:40 - 00:02:44] [CTO] We need to make a data schema so we know what we are doing to start the database.
+[00:02:44 - 00:02:45] [CTO] This is question or it's...
+[00:02:48 - 00:02:53] [PM green team] Sorry, it was a list of remarks and questions that my team prepared and I aggregated them
+[00:02:53 - 00:02:54] [PM green team] into a list.
+[00:02:55 - 00:02:58] [CTO] So if question, do you need to make a data schema?
+[00:02:58 - 00:02:59] [CTO] Yes, you need to make a data schema.
+[00:03:00 - 00:03:06] [CTO] We probably need to create some sort of list of server endpoints, what data would...
+[00:03:06 - 00:03:09] [CTO] Yeah, data endpoints, it's like everything that you will do during the next three months.
+[00:03:10 - 00:03:13] [CTO] So it's doing server endpoints.
+[00:03:15 - 00:03:19] [CTO] Could you also help us picture the scale of our apps API?
+[00:03:22 - 00:03:24] [CTO] I'm not sure how it's possible to do it.
+[00:03:24 - 00:03:30] [CTO] Usually, again, this is your three months work to make these endpoints to get this front
+[00:03:30 - 00:03:30] [CTO] end.
+[00:03:31 - 00:03:33] [CTO] So it's like, it's what development mean.
+[00:03:33 - 00:03:35] [CTO] Can you make any schema now?
+[00:03:35 - 00:03:41] [CTO] You can, if you want, you can send to my proof, but usually you just go piece by piece.
+[00:03:41 - 00:03:42] [CTO] So you, I don't...
+[00:03:42 - 00:03:43] [CTO] Take authorization, you create schema.
+[00:03:43 - 00:03:45] [CTO] And then points for it.
+[00:03:45 - 00:03:48] [CTO] You take, I don't know, file upload, you create schema and database for it.
+[00:03:48 - 00:03:49] [CTO] And so on.
+[00:03:49 - 00:03:52] [CTO] I think it's more easier, especially as all of you are juniors.
+[00:03:52 - 00:03:57] [CTO] I don't think that you see how the project will look at the end from the code point of
+[00:03:57 - 00:03:57] [CTO] view.
+[00:03:58 - 00:04:06] [CTO] Actually, it's first time I think internship where like AI in such high level, I think
+[00:04:06 - 00:04:09] [CTO] even the previous one was not so good.
+[00:04:10 - 00:04:13] [CTO] It was like, I don't know, like half a year ago.
+[00:04:13 - 00:04:15] [CTO] So during this half a year, a lot of things changed.
+[00:04:16 - 00:04:18] [CTO] So maybe this time it will be very different.
+[00:04:18 - 00:04:21] [CTO] Maybe it will be faster or better or something like that.
+[00:04:22 - 00:04:29] [CTO] But anyway, I better doing this small steps because again, it's your first experience.
+[00:04:30 - 00:04:31] [CTO] Okay.
+[00:04:31 - 00:04:36] [CTO] More specific tasks might be creating point for send SMS from the one of the landing page.
+[00:04:36 - 00:04:38] [CTO] I remember that we discussed front end.
+[00:04:39 - 00:04:40] [CTO] Can you explain this?
+[00:04:43 - 00:04:49] [PM green team] There was a button on the one of the landings on the example we have.
+[00:04:51 - 00:04:52] [CTO] Not sure.
+[00:04:52 - 00:04:53] [CTO] Maybe it was AI generated.
+[00:04:53 - 00:04:54] [CTO] Let's check.
+[00:04:55 - 00:04:56] [CTO] It's here.
+[00:05:00 - 00:05:00] [CTO] Yeah.
+[00:05:02 - 00:05:04] [CTO] Because it just mock up.
+[00:05:04 - 00:05:06] [CTO] So like everything should be double checked.
+[00:05:08 - 00:05:08] [CTO] Okay.
+[00:05:09 - 00:05:10] [CTO] Let me see.
+[00:05:11 - 00:05:12] [PM green team] There was a button.
+[00:05:12 - 00:05:18] [PM green team] Like contacting with the support team or send us a message, something like that.
+[00:05:19 - 00:05:20] [CTO] Yeah.
+[00:05:20 - 00:05:20] [CTO] Could be.
+[00:05:25 - 00:05:26] [CTO] Can you point me?
+[00:05:26 - 00:05:27] [CTO] That's the landing page.
+[00:05:29 - 00:05:29] [PM green team] Yeah.
+[00:05:29 - 00:05:30] [PM green team] One of the landing page.
+[00:05:31 - 00:05:34] [CTO] It's a little bit contact sales, retrial.
+[00:05:34 - 00:05:35] [CTO] Contact sales?
+[00:05:35 - 00:05:36] [CTO] Yeah.
+[00:05:36 - 00:05:37] [PM green team] That was the third section.
+[00:05:40 - 00:05:40] [CTO] Yeah.
+[00:05:41 - 00:05:43] [CTO] Let's have it.
+[00:05:43 - 00:05:46] [CTO] So just create something simple form and send email.
+[00:05:47 - 00:05:49] [CTO] So do not create some super admin site, something like that.
+[00:05:49 - 00:05:54] [CTO] So if somebody click contact sales, create some form, what is usually informed?
+[00:05:54 - 00:05:55] [CTO] What do you like?
+[00:05:55 - 00:05:56] [CTO] I don't know.
+[00:05:56 - 00:05:59] [CTO] Like name, email, phone, maybe a message.
+[00:05:59 - 00:06:00] [CTO] Oh, email and message.
+[00:06:00 - 00:06:01] [CTO] So something simple.
+[00:06:01 - 00:06:05] [CTO] And when user fill it, send this data to some email.
+[00:06:05 - 00:06:07] [CTO] For now, it doesn't matter which one.
+[00:06:07 - 00:06:11] [CTO] If you hard code it or make it configurable, it's based on you.
+[00:06:12 - 00:06:13] [CTO] But yeah, let's do something simple.
+[00:06:14 - 00:06:15] [CTO] Contact us.
+[00:06:15 - 00:06:17] [CTO] It's important, I assume.
+[00:06:18 - 00:06:29] [CTO] We can do send the same stuff, just it will have different naming.
+[00:06:29 - 00:06:30] [CTO] So let's do the same.
+[00:06:31 - 00:06:36] [CTO] So like email, text, and it will send to some specific email.
+[00:06:36 - 00:06:38] [CTO] Like totally the same functionality.
+[00:06:39 - 00:06:44] [CTO] I think it will be good because you will have email sending for magic link.
+[00:06:45 - 00:06:47] [CTO] And here, yes, I think it will be good practice.
+[00:06:47 - 00:06:48] [CTO] So yeah, let's left it.
+[00:06:50 - 00:06:50] [CTO] Okay.
+[00:06:50 - 00:06:51] [CTO] Okay.
+[00:06:51 - 00:06:52] [CTO] Let's see what else we have here.
+[00:06:54 - 00:06:55] [CTO] You send it in general chat.
+[00:06:55 - 00:06:56] [CTO] Yes, I saw.
+[00:07:02 - 00:07:05] [CTO] On the case, there is somebody connecting.
+[00:07:09 - 00:07:09] [CTO] Okay.
+[00:07:10 - 00:07:13] [CTO] And now send the same thing before our single certification.
+[00:07:15 - 00:07:18] [CTO] No, this is what you asked.
+[00:07:18 - 00:07:18] [CTO] Yeah.
+[00:07:18 - 00:07:20] [CTO] When the app send, we're not using it.
+[00:07:20 - 00:07:23] [CTO] Clicking with the app logged in seems not too hard.
+[00:07:24 - 00:07:24] [CTO] Yeah.
+[00:07:24 - 00:07:28] [CTO] It's not a very common approach, this magic link.
+[00:07:28 - 00:07:35] [CTO] If you never used it before, never saw how it used before, it's actually totally same
+[00:07:35 - 00:07:37] [CTO] as you just described it.
+[00:07:37 - 00:07:38] [CTO] So user click.
+[00:07:40 - 00:07:43] [CTO] I just think, can I quickly show you somewhere?
+[00:07:43 - 00:07:44] [CTO] But I think no.
+[00:07:44 - 00:07:45] [CTO] Okay.
+[00:07:45 - 00:07:50] [CTO] So user click, like login, enter his email.
+[00:07:50 - 00:07:51] [CTO] To email, he get the link.
+[00:07:51 - 00:07:52] [CTO] He click a link.
+[00:07:52 - 00:07:55] [CTO] He go to the website, but he's already logged in.
+[00:07:57 - 00:07:58] [CTO] Yeah, like that.
+[00:07:58 - 00:08:01] [CTO] From technical point of view, yeah, some investigation needed.
+[00:08:01 - 00:08:03] [CTO] I don't think he will stuck here.
+[00:08:03 - 00:08:04] [CTO] But let's see.
+[00:08:06 - 00:08:09] [CTO] About initial backlog of task for backend.
+[00:08:10 - 00:08:13] [CTO] I expect from list tomorrow.
+[00:08:14 - 00:08:15] [PM green team] That was, yeah.
+[00:08:17 - 00:08:19] [CTO] This is you should decide internally.
+[00:08:19 - 00:08:20] [PM green team] Okay.
+[00:08:20 - 00:08:23] [CTO] I general, I have general recommendation.
+[00:08:23 - 00:08:28] [CTO] So do not, I would say, do not take
+[00:08:28 - 00:08:30] [CTO] everything in once, concentrated feature.
+[00:08:30 - 00:08:31] [CTO] So separate some feature.
+[00:08:32 - 00:08:36] [CTO] And ideally, like for you as PM, dedicate it to one person.
+[00:08:36 - 00:08:39] [CTO] Because it will be much more easy to control for you.
+[00:08:39 - 00:08:43] [CTO] Because when on the like daily calls, you will ask, what are you doing?
+[00:08:44 - 00:08:45] [CTO] And you said that I done endpoint.
+[00:08:45 - 00:08:46] [CTO] What is endpoint?
+[00:08:46 - 00:08:47] [CTO] How to check it?
+[00:08:47 - 00:08:48] [CTO] It's not possible.
+[00:08:48 - 00:08:51] [CTO] But when you will have a small frontend and backend connected.
+[00:08:51 - 00:08:52] [CTO] So you understand, I click this button.
+[00:08:53 - 00:08:54] [CTO] I want to see this one.
+[00:08:54 - 00:08:55] [CTO] So yes, backend and frontend work.
+[00:08:56 - 00:08:58] [CTO] But when it's dedicated to one person, it will be easy for you to connect.
+[00:08:58 - 00:08:58] [CTO] To control.
+[00:08:59 - 00:09:03] [CTO] But again, you will, you can play with it and see how it's working in practice.
+[00:09:03 - 00:09:09] [CTO] But my suggestion, create highlight feature stories.
+[00:09:10 - 00:09:12] [CTO] And dedicate it to the developer.
+[00:09:12 - 00:09:15] [CTO] And ask developer for him to say what task.
+[00:09:15 - 00:09:15] [CTO] I don't know.
+[00:09:16 - 00:09:18] [CTO] I need to create this button on frontend.
+[00:09:18 - 00:09:20] [CTO] I need to connect backend to frontend.
+[00:09:20 - 00:09:21] [CTO] I need to create backend data schema.
+[00:09:22 - 00:09:22] [CTO] And all this stuff.
+[00:09:24 - 00:09:28] [CTO] So developer should say you what exactly task he needs.
+[00:09:29 - 00:09:33] [CTO] And this is approach which I usually still going.
+[00:09:34 - 00:09:37] [CTO] Later on, it's become more like, how to say?
+[00:09:38 - 00:09:39] [CTO] Like differently.
+[00:09:39 - 00:09:42] [CTO] Because you will have box features and some mixes.
+[00:09:42 - 00:09:43] [CTO] Somebody have time.
+[00:09:43 - 00:09:45] [CTO] Somebody don't have time.
+[00:09:45 - 00:09:46] [CTO] So it's become more mixed.
+[00:09:47 - 00:09:50] [CTO] But in the beginning, it's like general approach.
+[00:09:50 - 00:09:51] [CTO] It's worked perfect for me.
+[00:09:52 - 00:09:56] [CTO] That comes to mind is, Friday calls.
+[00:09:56 - 00:09:57] [CTO] You are allowed to use it.
+[00:09:57 - 00:09:58] [PM green team] That question I already asked you.
+[00:09:58 - 00:09:59] [CTO] Yeah, yeah.
+[00:10:00 - 00:10:02] [CTO] So any libraries that you think is needed, please.
+[00:10:04 - 00:10:08] [CTO] Yeah, because ideally, ideally, check the license.
+[00:10:09 - 00:10:11] [CTO] Because they usually have like public license.
+[00:10:11 - 00:10:12] [CTO] Most of the libraries they have.
+[00:10:12 - 00:10:15] [CTO] Because usually if they don't have public license, they are paid.
+[00:10:16 - 00:10:17] [CTO] Again, in most cases.
+[00:10:18 - 00:10:20] [CTO] And they very often having license.
+[00:10:20 - 00:10:23] [CTO] If even it's like it could be commercial like paid.
+[00:10:23 - 00:10:29] [CTO] But for such purpose like for training, they could be free.
+[00:10:29 - 00:10:30] [CTO] So it's more like recommendation.
+[00:10:31 - 00:10:34] [CTO] For now, it's not really like needed.
+[00:10:34 - 00:10:37] [CTO] But if you will check it, this will be good practice for the future.
+[00:10:39 - 00:10:39] [CTO] Okay.
+[00:10:41 - 00:10:41] [CTO] Front end.
+[00:10:42 - 00:10:44] [CTO] There will be any additional techniques for the site?
+[00:10:45 - 00:10:46] [CTO] No.
+[00:10:46 - 00:10:48] [CTO] Everything that you will have is template.
+[00:10:49 - 00:10:50] [CTO] Rest, you can decide by yourself.
+[00:10:51 - 00:10:55] [CTO] If you stuck something or need some advice, you can write me, ping me and say, Luda,
+[00:10:55 - 00:10:57] [CTO] I have this option.
+[00:10:57 - 00:10:57] [CTO] I have this option.
+[00:10:57 - 00:10:58] [CTO] Which option is better?
+[00:10:59 - 00:11:03] [CTO] Or if you need some call, you also can ping me and I will try to find the time.
+[00:11:03 - 00:11:08] [CTO] But generally, I think it's fine that you will make mistake.
+[00:11:08 - 00:11:10] [CTO] You will make bad solutions.
+[00:11:10 - 00:11:12] [CTO] And finally, you will understand why it was bad.
+[00:11:13 - 00:11:15] [CTO] And next time, you will not do like that.
+[00:11:16 - 00:11:17] [CTO] Okay.
+[00:11:17 - 00:11:18] [CTO] Next one.
+[00:11:19 - 00:11:23] [CTO] What form will we get patient of initial data for static feedbacks, et cetera?
+[00:11:26 - 00:11:26] [CTO] Okay.
+[00:11:26 - 00:11:27] [CTO] Can you point the screen?
+[00:11:27 - 00:11:27] [CTO] Is it?
+[00:11:29 - 00:11:30] [PM green team] Basically, the question.
+[00:11:30 - 00:11:37] [PM green team] The question was that the purpose of the app itself is to generate covered data from
+[00:11:37 - 00:11:38] [PM green team] patient information.
+[00:11:39 - 00:11:40] [PM green team] Basically, we need like ammunition.
+[00:11:41 - 00:11:49] [PM green team] What's the database or a number of files that would be used to check if the app is working
+[00:11:49 - 00:11:49] [PM green team] properly?
+[00:11:52 - 00:11:53] [PM green team] Basically, this example.
+[00:11:53 - 00:11:54] [CTO] Okay.
+[00:11:54 - 00:11:55] [CTO] This example.
+[00:11:55 - 00:11:55] [CTO] This is okay.
+[00:11:55 - 00:11:57] [CTO] You can use this one to check.
+[00:11:57 - 00:11:59] [CTO] I don't know.
+[00:11:59 - 00:12:01] [CTO] Maybe I will actually repeat it to create something else.
+[00:12:01 - 00:12:03] [CTO] But I don't have like very specific documents.
+[00:12:03 - 00:12:05] [CTO] It should be more general.
+[00:12:05 - 00:12:08] [CTO] So if again, if you I'm not sure.
+[00:12:08 - 00:12:12] [CTO] Did you check what is HIPAA, GDPR or like actually CCPA?
+[00:12:12 - 00:12:13] [CTO] I don't know.
+[00:12:13 - 00:12:13] [CTO] What is it?
+[00:12:13 - 00:12:16] [CTO] For example, for HIPAA, it's medical compliance.
+[00:12:16 - 00:12:22] [CTO] It means that you could not share like emails, names, security number because as you said,
+[00:12:23 - 00:12:24] [CTO] they have security number.
+[00:12:24 - 00:12:26] [CTO] So it's like private information.
+[00:12:26 - 00:12:30] [CTO] So the script should see that, okay, here is security number.
+[00:12:30 - 00:12:30] [CTO] I need to hide it.
+[00:12:32 - 00:12:33] [CTO] And there is a library.
+[00:12:33 - 00:12:33] [CTO] I don't know.
+[00:12:34 - 00:12:35] [CTO] Did you pay attention to it or no?
+[00:12:35 - 00:12:43] [CTO] I sent it to the chat during our initial call, which you need to use for it.
+[00:12:43 - 00:12:44] [CTO] It is on Python.
+[00:12:44 - 00:12:49] [CTO] I know that it's not any one specialization, this Python script, but it's already in the
+[00:12:49 - 00:12:52] [CTO] Docker container and it's very quickly to set up.
+[00:12:54 - 00:12:57] [CTO] And with ChatGPT, I don't think it will be a big deal.
+[00:12:57 - 00:12:57] [CTO] Sorry.
+[00:12:57 - 00:13:00] [CTO] Why is it in the database?
+[00:13:02 - 00:13:02] [CTO] I don't know.
+[00:13:03 - 00:13:03] [CTO] I think.
+[00:13:04 - 00:13:07] [CTO] Yeah, libraries that we will use for this one.
+[00:13:08 - 00:13:10] [CTO] It's actually this...
+[00:13:11 - 00:13:14] [CTO] What actually it's doing, it's a change.
+[00:13:14 - 00:13:16] [CTO] If they even have a demo.
+[00:13:17 - 00:13:18] [CTO] Actually, demo, this is...
+[00:13:18 - 00:13:25] [CTO] Yeah, by this library, we have been expired because the prototype very look like what
+[00:13:25 - 00:13:25] [CTO] we need.
+[00:13:25 - 00:13:27] [CTO] We just need it with a better design.
+[00:13:28 - 00:13:30] [CTO] So you can check it deeper.
+[00:13:30 - 00:13:32] [CTO] I think this could be kind of bottleneck because...
+[00:13:33 - 00:13:37] [CTO] It could be a first time when you see something like that and how to connect them.
+[00:13:37 - 00:13:39] [CTO] So just try to investigate as much as you can.
+[00:13:40 - 00:13:41] [CTO] And what will be not clear, connect me.
+[00:13:43 - 00:13:50] [CTO] I think I will need somebody from each team who will want to set up the server.
+[00:13:50 - 00:13:55] [CTO] We will provide the servers and this library should be deployed from Docker container.
+[00:13:56 - 00:13:57] [CTO] Yeah, again, something not trivial.
+[00:13:57 - 00:14:01] [CTO] I know that it could be a bottleneck, but I think we could handle it.
+[00:14:02 - 00:14:02] [CTO] And it should be...
+[00:14:02 - 00:14:05] [CTO] Really block you because there are still a lot of front end to do.
+[00:14:05 - 00:14:14] [CTO] So if even you will stuck on this for a week, because if longer, I will do it by myself,
+[00:14:16 - 00:14:18] [CTO] then team still will have more to do.
+[00:14:20 - 00:14:20] [CTO] Okay.
+[00:14:21 - 00:14:22] [CTO] Hope it's clear.
+[00:14:22 - 00:14:23] [CTO] Let's go back to...
+[00:14:24 - 00:14:25] [CTO] Oh, sorry.
+[00:14:27 - 00:14:31] [CTO] I have a record of the meeting.
+[00:14:31 - 00:14:35] [CTO] So if somebody from my answer is not clear, you will have the transcription and you can
+[00:14:35 - 00:14:37] [CTO] read it, translate it, and so on.
+[00:14:38 - 00:14:39] [CTO] Okay.
+[00:14:40 - 00:14:44] [CTO] Information about get patient data.
+[00:14:44 - 00:14:44] [CTO] Yeah.
+[00:14:44 - 00:14:46] [CTO] So there are no strict form.
+[00:14:46 - 00:14:48] [CTO] It's plain text.
+[00:14:48 - 00:14:53] [CTO] The importance that you need to detect what from all this text is sensitive data.
+[00:14:54 - 00:14:58] [CTO] Information about which entity you create reminds the database it's your decision.
+[00:14:58 - 00:14:59] [CTO] Both teams will have different...

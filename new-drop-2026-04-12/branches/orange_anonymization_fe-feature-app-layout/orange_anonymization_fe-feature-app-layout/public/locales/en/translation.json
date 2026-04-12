@@ -1,0 +1,319 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "reset": "Reset",
+    "search": "Search",
+    "noData": "No data available",
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address"
+  },
+  "nav": {
+    "brand": "Clinical Data Studio",
+    "solutions": "Solutions",
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us",
+    "getStarted": "Get Started",
+    "dashboard": "Dashboard",
+    "deIdentify": "De-Identify",
+    "syntheticData": "Synthetic Data",
+    "settings": "Settings",
+    "logout": "Logout",
+    "menuOpen": "Open navigation menu",
+    "menuClose": "Close navigation menu"
+  },
+  "sidebar": {
+    "brand": "De-ID Studio",
+    "brandSubtitle": "De-ID & Synthesis",
+    "signOut": "Sign out"
+  },
+  "header": {
+    "dashboard": {
+      "title": "Dashboard",
+      "subtitle": "Track your de-identification activity"
+    },
+    "deIdentify": {
+      "title": "New Analysis",
+      "subtitle": "Configure your anonymization pipeline"
+    },
+    "syntheticData": {
+      "title": "Synthetic Data",
+      "subtitle": "Generate synthetic datasets"
+    }
+  },
+  "landing": {
+    "hero": {
+      "badge": "HIPAA & GDPR Compliant",
+      "title": "Protect Patient Privacy with Intelligent De-Identification",
+      "subtitle": "Transform clinical text containing sensitive patient data into fully anonymized, HIPAA-compliant records — powered by Microsoft Presidio.",
+      "cta": {
+        "primary": "Start De-Identifying",
+        "secondary": "View Documentation"
+      },
+      "codeChrome": "clinical_note.txt → presidio analyzer"
+    },
+    "trust": {
+      "title": "Trusted by Healthcare Organizations",
+      "hipaa": {
+        "label": "HIPAA Compliant",
+        "description": "Full HIPAA Safe Harbor compliance"
+      },
+      "gdpr": {
+        "label": "GDPR Certified",
+        "description": "EU data protection standards"
+      },
+      "accuracy": {
+        "label": "99.9% Accuracy",
+        "description": "Industry-leading PII detection"
+      },
+      "uptime": {
+        "label": "99.99% Uptime",
+        "description": "Enterprise-grade reliability"
+      }
+    },
+    "features": {
+      "title": "Protect Patient Privacy",
+      "subtitle": "Enterprise-grade tools for healthcare data anonymization",
+      "cards": {
+        "detection": {
+          "title": "Intelligent PII Detection",
+          "description": "Automatically detect names, SSNs, addresses, diagnoses, and 20+ other PII entity types using Microsoft Presidio's ML-powered analyzer."
+        },
+        "anonymization": {
+          "title": "Flexible Anonymization",
+          "description": "Replace, redact, hash, or encrypt sensitive entities. Configure anonymization strategies per entity type for granular control."
+        },
+        "synthetic": {
+          "title": "Synthetic Data Generation",
+          "description": "Generate realistic replacement data that preserves statistical properties of the original dataset for research and testing."
+        },
+        "audit": {
+          "title": "Full Audit Trail",
+          "description": "Every de-identification operation is logged with timestamps, user details, and transformation records for compliance reporting."
+        }
+      }
+    },
+    "compliance": {
+      "title": "Built for Compliance",
+      "subtitle": "Meet the strictest healthcare data regulations",
+      "hipaa": {
+        "title": "HIPAA Safe Harbor",
+        "description": "Remove all 18 HIPAA identifiers automatically. Our system maps directly to PHI categories defined in 45 CFR § 164.514(b)."
+      },
+      "gdpr": {
+        "title": "GDPR Article 89",
+        "description": "Pseudonymization and anonymization techniques aligned with GDPR research exemptions and data minimization principles."
+      },
+      "hitech": {
+        "title": "HITECH Act",
+        "description": "Breach notification compliance and enhanced privacy protections for electronic health information."
+      }
+    },
+    "about": {
+      "title": "About Clinical Data Studio",
+      "subtitle": "Built by healthcare data engineers, for healthcare data engineers",
+      "description": "Clinical Data Studio solves the real challenge of working with sensitive patient data in research and development environments. We combine the power of Microsoft Presidio with an intuitive interface to make HIPAA compliance achievable for every healthcare organization.",
+      "stats": {
+        "documents": "Documents Processed",
+        "entities": "PII Entities Detected",
+        "organizations": "Organizations Trust Us",
+        "compliance": "Compliance Rate"
+      }
+    },
+    "contact": {
+      "title": "Contact Us",
+      "subtitle": "Have questions? We'd love to hear from you.",
+      "form": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email Address",
+        "organization": "Organization",
+        "message": "Message",
+        "messagePlaceholder": "Tell us about your use case...",
+        "submit": "Send Message",
+        "submitting": "Sending...",
+        "success": "Thank you! We'll be in touch soon.",
+        "validation": {
+          "firstNameRequired": "First name is required",
+          "lastNameRequired": "Last name is required",
+          "emailRequired": "Email address is required",
+          "emailInvalid": "Please enter a valid email address",
+          "messageRequired": "Message is required",
+          "messageMin": "Message must be at least 20 characters"
+        }
+      }
+    },
+    "footer": {
+      "copyright": "© {{year}} Clinical Data Studio. All rights reserved.",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    }
+  },
+  "auth": {
+    "title": "Welcome Back",
+    "subtitle": "Sign in to Clinical Data Studio",
+    "email": "Email Address",
+    "emailPlaceholder": "you@organization.com",
+    "requestLink": "Send Magic Link",
+    "requesting": "Sending...",
+    "checkEmail": "Check your email",
+    "linkSent": "We've sent a magic link to {{email}}. Click the link to sign in.",
+    "resend": "Resend link",
+    "validation": {
+      "emailRequired": "Email address is required",
+      "emailInvalid": "Please enter a valid email address"
+    },
+    "errors": {
+      "requestFailed": "Failed to send magic link. Please try again.",
+      "verifyFailed": "Invalid or expired magic link."
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Overview of your de-identification activity",
+    "metrics": {
+      "totalDocuments": "Total Documents",
+      "entitiesDetected": "Entities Detected",
+      "anonymizationRate": "Anonymization Rate",
+      "syntheticRecords": "Synthetic Records"
+    },
+    "recentActivity": {
+      "title": "Recent Activity",
+      "noActivity": "No recent activity",
+      "columns": {
+        "document": "Document",
+        "status": "Status",
+        "entities": "Entities",
+        "date": "Date"
+      }
+    },
+    "chart": {
+      "activityTitle": "Processing Activity (Last 30 Days)",
+      "entityDistribution": "Entity Type Distribution",
+      "documents": "Documents",
+      "entities": "Entities"
+    }
+  },
+  "deIdentify": {
+    "title": "De-Identify Clinical Text",
+    "subtitle": "Detect and anonymize PII in clinical documents",
+    "steps": {
+      "selectFramework": "Select Framework",
+      "inputText": "Input Text",
+      "settings": "Settings",
+      "results": "Results"
+    },
+    "framework": {
+      "title": "Choose Compliance Framework",
+      "hipaa": {
+        "label": "HIPAA Safe Harbor",
+        "description": "Remove all 18 HIPAA PHI identifiers"
+      },
+      "gdpr": {
+        "label": "GDPR Anonymization",
+        "description": "EU-compliant anonymization for research"
+      },
+      "custom": {
+        "label": "Custom Entity Selection",
+        "description": "Choose specific entity types to detect"
+      }
+    },
+    "input": {
+      "title": "Enter Clinical Text",
+      "label": "Clinical Text",
+      "placeholder": "Paste clinical notes, discharge summaries, or any clinical text containing patient information...",
+      "sampleText": "Load Sample Text",
+      "characterCount": "{{count}} characters",
+      "validation": {
+        "required": "Please enter clinical text to analyze",
+        "minLength": "Text must be at least 50 characters"
+      }
+    },
+    "settings": {
+      "title": "Anonymization Settings",
+      "strategy": "Strategy",
+      "strategies": {
+        "replace": "Replace with placeholder",
+        "redact": "Redact (remove entirely)",
+        "hash": "Replace with hash",
+        "encrypt": "Encrypt value",
+        "synthetic": "Replace with synthetic data"
+      },
+      "entityTypes": "Entity Types to Detect",
+      "confidence": "Minimum Confidence Score",
+      "language": "Language"
+    },
+    "results": {
+      "title": "De-Identification Results",
+      "original": "Original Text",
+      "anonymized": "Anonymized Text",
+      "entities": "Detected Entities",
+      "entityColumns": {
+        "type": "Entity Type",
+        "text": "Original Value",
+        "replacement": "Replacement",
+        "confidence": "Confidence",
+        "position": "Position"
+      },
+      "download": "Download Results",
+      "processAnother": "Process Another Document",
+      "stats": {
+        "entitiesFound": "{{count}} entities found",
+        "processingTime": "Processed in {{time}}ms"
+      }
+    }
+  },
+  "syntheticData": {
+    "title": "Synthetic Data Generation",
+    "subtitle": "Generate realistic synthetic patient records",
+    "settings": {
+      "title": "Generation Settings",
+      "recordCount": "Number of Records",
+      "recordCountHelper": "Generate between 1 and 1000 records",
+      "entityTypes": "Entity Types to Generate",
+      "locale": "Locale / Region",
+      "locales": {
+        "en_US": "English (US)",
+        "en_GB": "English (UK)",
+        "es_ES": "Spanish (Spain)",
+        "de_DE": "German",
+        "fr_FR": "French"
+      },
+      "generate": "Generate Synthetic Data",
+      "generating": "Generating...",
+      "validation": {
+        "recordCountRequired": "Record count is required",
+        "recordCountMin": "Minimum 1 record",
+        "recordCountMax": "Maximum 1000 records"
+      }
+    },
+    "results": {
+      "title": "Generated Records",
+      "download": "Download CSV",
+      "downloadJson": "Download JSON",
+      "columns": {
+        "index": "#",
+        "entityType": "Entity Type",
+        "value": "Generated Value",
+        "locale": "Locale"
+      },
+      "noData": "No synthetic data generated yet"
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "network": "Network error. Please check your connection.",
+    "unauthorized": "You are not authorized to perform this action.",
+    "notFound": "The requested resource was not found.",
+    "serverError": "Server error. Please try again later.",
+    "presidioUnavailable": "Presidio service is currently unavailable. Please try again."
+  }
+}

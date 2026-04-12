@@ -1,0 +1,163 @@
+[00:15:00 - 00:15:06] [CTO] database structure i assume it will be very similar but generally i think like it's based
+[00:15:06 - 00:15:12] [CTO] based on your based on the team who will be responsible for each kind of task it will be
+[00:15:12 - 00:15:16] [CTO] that specific description of the identification listen in the layout identification method
+[00:15:17 - 00:15:25] [PM green team] it was the about with the frameworks should we describe it them separately like hipaa does that
+[00:15:25 - 00:15:37] [CTO] gdpr does that actually uh it does does it yeah i think the because sorry all i should prepare
+[00:15:37 - 00:15:45] [CTO] this description which requirements for each one um this looks quite difficult to read it
+[00:15:46 - 00:15:53] [CTO] in the under safe however if you need some justifying quantity result name remove replace
+[00:15:53 - 00:15:58] [CTO] data burst okay this one i just
+[00:15:58 - 00:16:02] [CTO] know what does it mean okay i will double check this instruction i will check does it
+[00:16:02 - 00:16:10] [CTO] it does not have any like difficult naming uh but generally like all her like i'll connect with her
+[00:16:10 - 00:16:18] [CTO] because she need to prepare like what what are the rules for each of of these categories so if it's
+[00:16:18 - 00:16:24] [CTO] bad described because at least i don't understand some wording um i will talk to her and i will try
+[00:16:24 - 00:16:28] [CTO] to to do better um better okay sure
+[00:16:28 - 00:16:35] [CTO] description i think i will back to one minute because she is now quite busy by sos day i
+[00:16:35 - 00:16:42] [CTO] will try to back with by sourds okay i will i think i will make a video just to make it quicker
+[00:16:43 - 00:16:48] [CTO] or she will send the video as she actually did she um because i didn't check the videos that
+[00:16:48 - 00:16:56] [PM green team] i sent to you she didn't explain it no uh basically i saw them that was just as i understood your
+[00:16:56 - 00:16:59] [PM green team] explanation on the video nothing no no i just said it by default basically i saw them that was just as i understood your explanation on the video nothing no no it's natural you know you0
+[00:16:59 - 00:17:05] [CTO] was not mine it was her because i i didn't prepare this this task like uh i from technical point of
+[00:17:05 - 00:17:11] [CTO] view i understand how it's work but from business point of sight uh she was responsible for um for
+[00:17:11 - 00:17:15] [CTO] creating all the description and she records the video so that's why i just double checked
+[00:17:15 - 00:17:22] [CTO] so there was no mentioning about how each group is working um i don't really remember the description
+[00:17:22 - 00:17:28] [PM orange team] sorry sorry to interrupt no there was no information like this so we had videos from
+[00:17:28 - 00:17:35] [PM orange team] olga right and uh there was just the preview like uh how they used it okay okay
+[00:17:35 - 00:17:45] [PM green team] okay okay okay there was any i'd apparently make a note because it's kind of a very okay yeah yeah
+[00:17:45 - 00:17:51] [CTO] i know that it's like information um yeah because this is what you have to ask okay okay by slow's
+[00:17:51 - 00:17:52] [CTO] day because i think too much
+[00:17:52 - 00:17:56] [CTO] of she will spend time to it so basically i will try to go back to you with a little bit
+[00:17:56 - 00:18:04] [CTO] more more details about what is the difference between each category uh okay the layout provides
+[00:18:04 - 00:18:09] [CTO] the ability to start a free tile does this mean that you need to create from a payment system
+[00:18:12 - 00:18:19] [CTO] um you know generally no i think this would just like some ai generated
+[00:18:20 - 00:18:25] [CTO] landing it was just for you to give idea like how landing could look like
+[00:18:26 - 00:18:32] [CTO] i think um i think because i think it will be good to practice to have
+[00:18:32 - 00:18:39] [CTO] some stripe connection it's very easy to connect um to have this checkbox
+[00:18:41 - 00:18:51] [CTO] um okay let's let's left for for now like payment not as priority i think it will be good to add
+[00:18:51 - 00:18:56] [CTO] but let's see how you will go so after one month we will see where are you are you finished
+[00:18:56 - 00:19:01] [CTO] authorization or you you didn't get your authorization and based on that we will
+[00:19:01 - 00:19:09] [CTO] decide will you make a subscription or no yeah let's do like that because i don't want to overload
+[00:19:09 - 00:19:20] [CTO] you with the data is this text recognition uh yeah like yeah i don't know there was the option
+[00:19:20 - 00:19:27] [PM green team] to upload pdf and work uh word documents so basically that was a question we already
+[00:19:27 - 00:19:32] [PM green team] discussed it with the team and maybe if there would be a time we could add functionality on
+[00:19:33 - 00:19:42] [PM green team] pdf and award documents because yeah okay okay okay you can take out the text from pdf at least
+[00:19:43 - 00:20:09] [CTO] there are some free libraries which you can use for pdf okay if you stuck on it
+[00:20:09 - 00:20:13] [CTO] i'm going to go with doc but i think pdf will be really useful
+[00:20:13 - 00:20:20] [CTO] because people very rarely use like docs in most cases i think it's for the pdf like in real case
+[00:20:23 - 00:20:27] [CTO] uh yeah it will be easy for me if you just turn on your microphone and say what
+[00:20:27 - 00:20:32] [CTO] what you want to ask because uh i lost in all the stops well basically that's
+[00:20:32 - 00:20:37] [CTO] from the green team i guess uh i think we have a few more questions now
+[00:20:38 - 00:20:45] [PM green team] uh this was double this was a double ah the same with the libraries
+[00:20:45 - 00:20:51] [CTO] okay okay yeah but i see some questions i think in the chat
+[00:20:51 - 00:20:54] [CTO] i use part for this and login in magic lab
+[00:20:55 - 00:21:04] [CTO] the purpose of magic link is no password. You can't forget password because you don't have
+[00:21:04 - 00:21:10] [CTO] password. So you just some validation through the magic link is going through the email because
+[00:21:10 - 00:21:18] [CTO] so you have password from your email that's why if link came to your email it's more trustful.
+[00:21:22 - 00:21:28] [CTO] No password, no forgot password. You just enter your email, go to your email, click on the link,
+[00:21:28 - 00:21:41] [CTO] login. This is how it works. Yeah, please just turn on your microphone. Okay, so I think our team has
+[00:21:41 - 00:21:50] [dev green team] one more question about the kind of business side of the app. In the UI pages that you provided
+[00:21:50 - 00:21:51] [dev green team] there is
+[00:21:51 - 00:21:58] [dev green team] the part with choosing the framework of compliance and there's those three options
+[00:21:59 - 00:22:06] [dev green team] already there and there is also custom option. What does that option supposed to do?
+[00:22:07 - 00:22:13] [dev green team] Like choose, does it mean that you can choose like two or three at the same time or create own?
+[00:22:16 - 00:22:22] [CTO] Yeah, this is what Ola should explain in the video but I understand that she didn't. So
+[00:22:23 - 00:22:24] [CTO] let's
+[00:22:25 - 00:22:33] [CTO] go back to this on Thursday because maybe even delete it. Okay, so I thought they will go back.
+[00:22:33 - 00:22:36] [CTO] If there's still left question after that you can have a call or chat.
+[00:22:40 - 00:22:52] [CTO] Sorry, I don't know. Okay, anything else?
+[00:22:59 - 00:23:00] [dev2 green team] Yes, I also have a question.
+[00:23:08 - 00:23:10] [CTO] Did it disappear?
+[00:23:11 - 00:23:11] [dev2 green team] Hi.
+[00:23:11 - 00:23:11] [dev2 green team] Hi.
+[00:23:11 - 00:23:12] [dev2 green team] Hi, can you hear me?
+[00:23:15 - 00:23:15] [CTO] Yeah.
+[00:23:16 - 00:23:16] [dev2 green team] Yeah.
+[00:23:17 - 00:23:21] [dev2 green team] I have more of a general question. It's not like project specific.
+[00:23:21 - 00:23:27] [dev2 green team] Do your interns at your company, do they typically develop features end-to-end like
+[00:23:27 - 00:23:32] [dev2 green team] as full stacks or do they focus on one side of the...
+[00:23:32 - 00:23:32] [dev2 green team] Yeah, full stack.
+[00:23:33 - 00:23:41] [CTO] No, full stack. That's why we give it full stack test task and that's why I suggest that
+[00:23:42 - 00:23:42] [CTO] like...
+[00:23:43 - 00:23:49] [CTO] It's more for PM and how you organize it in the team but I suggest that you take some
+[00:23:49 - 00:23:55] [CTO] feature and you do it fully like back-end and front-end. It's much more easy to manage. It's
+[00:23:55 - 00:23:58] [CTO] much more easy to take responsibility if ever something broken.
+[00:23:59 - 00:24:06] [dev2 green team] Okay, okay. Makes sense. What about the... It's, yeah, again, it's about your company.
+[00:24:07 - 00:24:14] [dev2 green team] Do you in your comp... What software development methodology do you use or if you don't use...
+[00:24:14 - 00:24:22] [dev2 green team] Any, maybe just at home. Do you use any sort of agile or anything like that? Would you just... Yeah.
+[00:24:25 - 00:24:28] [CTO] Yeah, I think...
+[00:24:29 - 00:24:33] [CTO] Go with the milestone, so it's not really...
+[00:24:33 - 00:24:37] [CTO] So we do something similar that I try to prepare.
+[00:24:40 - 00:24:44] [CTO] But we really have for much more complicated.
+[00:24:44 - 00:24:46] [CTO] So you don't understand...
+[00:24:46 - 00:24:50] [CTO] Ask question about these points.
+[00:24:51 - 00:24:53] [CTO] Then we put it into some estimation.
+[00:24:55 - 00:25:01] [CTO] Then we make split to milestones, go milestone by milestone.
+[00:25:01 - 00:25:04] [CTO] And also you can which were similar.
+[00:25:05 - 00:25:09] [CTO] We also working with screens, but it's usually on support because...
+[00:25:10 - 00:25:12] [CTO] Okay, it's more connected to the business model.
+[00:25:14 - 00:25:15] [CTO] But okay.
+[00:25:15 - 00:25:17] [CTO] It's how it usually works.
+[00:25:18 - 00:25:19] [CTO] Okay, I promise connection.
+[00:25:20 - 00:25:21] [CTO] Let me double check.
+[00:25:26 - 00:25:26] [CTO] Do it...
+[00:25:26 - 00:25:27] [CTO] I don't know.
+[00:25:27 - 00:25:30] [CTO] I try to stop the internet.
+[00:25:31 - 00:25:32] [CTO] No.
+[00:25:32 - 00:25:33] [CTO] Sounds like a...
+[00:25:33 - 00:25:34] [CTO] Okay, one minute.
+[00:26:54 - 00:26:56] [CTO] Okay, does it better or is it the same?
+[00:26:57 - 00:26:58] [dev2 green team] Yeah, it's much better.
+[00:26:58 - 00:26:59] [CTO] Okay, perfect.
+[00:27:00 - 00:27:00] [CTO] So...
+[00:27:00 - 00:27:02] [CTO] Yeah, let me repeat how we work.
+[00:27:02 - 00:27:05] [CTO] So we usually make discovery.
+[00:27:05 - 00:27:09] [CTO] So it's phase where we gather all the requirements that needed.
+[00:27:09 - 00:27:12] [CTO] After that, we split everything to the milestones.
+[00:27:12 - 00:27:14] [CTO] Usually milestones take two weeks.
+[00:27:14 - 00:27:22] [CTO] It's very similar to sprint, but yeah, but not as agile.
+[00:27:22 - 00:27:23] [CTO] I would say like that.
+[00:27:23 - 00:27:27] [CTO] We use agile usually in the support.
+[00:27:27 - 00:27:29] [CTO] So one project is already ongoing.
+[00:27:29 - 00:27:31] [CTO] So it's not from the scratch, but when it's continue.
+[00:27:32 - 00:27:33] [CTO] Then it's usually more flexible.
+[00:27:33 - 00:27:40] [CTO] And we have like kind of sprints, sometimes monthly sprints, sometimes two week sprints.
+[00:27:40 - 00:27:41] [CTO] It's based on the project.
+[00:27:41 - 00:27:46] [CTO] Really a lot of stuff depend on the customer and how he want reporting system.
+[00:27:47 - 00:27:48] [CTO] Sounds like that.
+[00:27:49 - 00:27:56] [CTO] Here we will have maybe more traditional agile because you could not give estimation first
+[00:27:56 - 00:27:56] [CTO] month.
+[00:27:57 - 00:28:02] [CTO] I think it's like you have a lot of mistake, but I highly recommend you to start doing
+[00:28:02 - 00:28:09] [CTO] it if even if you do it totally wrong, just because by the end of the internship for me,
+[00:28:09 - 00:28:09] [CTO] it's very important.
+[00:28:09 - 00:28:10] [CTO] Like your ability.
+[00:28:10 - 00:28:12] [CTO] To estimate the task.
+[00:28:15 - 00:28:15] [dev2 green team] Yeah.
+[00:28:15 - 00:28:16] [dev2 green team] Okay.
+[00:28:16 - 00:28:16] [dev2 green team] Thank you.
+[00:28:17 - 00:28:17] [dev2 green team] Thank you.
+[00:28:17 - 00:28:20] [PM orange team] Hi, Ludmila.
+[00:28:21 - 00:28:24] [PM orange team] Hi, this is Mira.
+[00:28:24 - 00:28:32] [PM orange team] So I'm the project manager for our team, and I just don't know if your agenda follows
+[00:28:32 - 00:28:37] [PM orange team] now for your questions or you would like to show us something.
+[00:28:37 - 00:28:44] [PM orange team] However, I have a question if we could review our questions from our team and also prepared
+[00:28:46 - 00:28:51] [PM orange team] kind of like general plan that you asked for, if we could like start with that.
+[00:28:53 - 00:28:55] [CTO] So I didn't get start with what was general plan?
+[00:28:57 - 00:29:02] [PM orange team] Yeah, well, actually, I sent to orange team so you can check documents.
+[00:29:03 - 00:29:03] [PM orange team] Yeah.
+[00:29:05 - 00:29:06] [PM orange team] So up to you.
+[00:29:06 - 00:29:08] [PM orange team] You can start with any of them.
+[00:29:09 - 00:29:10] [CTO] I just did.
+[00:29:12 - 00:29:14] [CTO] You check what you write here, right?
+[00:29:17 - 00:29:19] [CTO] My question is, did you check this?
+[00:29:19 - 00:29:22] [PM orange team] Yes, absolutely.
+[00:29:23 - 00:29:24] [PM orange team] I've created it.
+[00:29:24 - 00:29:32] [PM orange team] So we had like we gathered many questions and I decided that I'm going to just for this
+[00:29:32 - 00:29:39] [PM orange team] call, I prepared like more like general questions for first month.
+[00:29:40 - 00:29:41] [PM orange team] Also, like for the first screen.
+[00:29:42 - 00:29:45] [PM orange team] So we already start the development for the next week.
+[00:29:45 - 00:29:47] [PM orange team] And yeah.
+[00:29:47 - 00:29:48] So.
+[00:29:49 - 00:29:49] [PM orange team] Yeah.
+[00:29:49 - 00:29:50] [PM orange team] That's okay.
+[00:29:50 - 00:29:51] [CTO] Yes, absolutely.
+[00:29:53 - 00:29:55] [PM orange team] Because I get that.
+[00:29:56 - 00:29:58] [PM orange team] Also, you covered some information with Alexander.
