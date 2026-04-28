@@ -2335,15 +2335,227 @@ Jeff Bezos's framing: decisions are either **one-way doors** (irreversible or ex
 
 ### 12.5 Versioning Strategy
 
-*[Section 12.5 — to be filled]*
+#### 12.5.1 Software Versioning
+
+**Backend & Frontend:** Semantic Versioning (`MAJOR.MINOR.PATCH`).
+
+| Bump | When |
+|------|------|
+| MAJOR | Breaking API change, incompatible DB migration |
+| MINOR | New feature, backward-compatible |
+| PATCH | Bug fix, no behavior change |
+
+#### 12.5.2 API Versioning
+
+**Path-based:** `/api/v1/...`, `/api/v2/...` when needed (Section 8.8).
+
+**v1 is implicit (current):** `/api/...` with no version.
+
+**Promotion to v2 triggered by:**
+- Breaking response shape change
+- Renamed/removed endpoints
+- Authentication mechanism change
+
+**Coexistence policy:** When v2 ships, v1 supported for ≥3 months. Sunset announcement at deprecation, deletion at removal.
+
+#### 12.5.3 Database Schema Versioning
+
+**Mechanism:** TypeORM migrations.
+
+**Each schema change:**
+1. Generate migration file with timestamp
+2. Implement `up()` and `down()`
+3. Test on local + staging before production
+4. Run as part of deploy (CI step — currently a gap)
+5. Migrations are **immutable once merged** to main
+
+**Backward-compatible migration pattern:**
+1. Deploy 1: Add new column as nullable
+2. Backfill data
+3. Deploy 2: Code uses new column
+4. Deploy 3: Make column NOT NULL
+5. Deploy 4 (after window): Remove old column
+
+This pattern allows zero-downtime DB changes.
+
+#### 12.5.4 Contract Versioning (Internal)
+
+| Contract | Versioning |
+|----------|------------|
+| Event payload (`job.run`) | Add fields freely; breaking changes need new event type |
+| Inter-module function calls | Service interface changes need PR review |
+| Config schema | Document changes in CHANGELOG |
+| ENV variables | Renaming is breaking; deprecate first |
+
+#### 12.5.5 Library Versioning
+
+**Strategy:**
+- Pin **major** versions in `package.json` (e.g., `^7.0.0` for MUI 7)
+- Use `package-lock.json` for reproducibility
+- Renovate / Dependabot bumps weekly (planned)
+- Major bumps require ADR + extensive testing
 
 ### 12.6 Feature Flags & Config-Driven Behavior
 
-*[Section 12.6 — to be filled]*
+#### 12.6.1 Why Feature Flags?
+
+| Goal | How flags help |
+|------|----------------|
+| Decouple deploy from release | Deploy code dark; flip flag when ready |
+| Canary releases | Enable for 5% of users; observe; expand |
+| A/B testing | Show variant A vs B per user |
+| Quick rollback | Flip flag instead of redeploying |
+| Gradual rollout | Per-environment, per-user, per-tenant |
+
+#### 12.6.2 Categories of Configurability
+
+| Category | Example | Storage |
+|----------|---------|---------|
+| **Environment config** | DB URL, SMTP host | `.env` / Heroku Config Vars |
+| **Feature toggles** | "Enable GDPR framework" | Config or remote service |
+| **Operational toggles** | "Enable Presidio fallback mode" | Remote (hot-reloadable) |
+| **Experimentation** | "Show dashboard variant B" | Remote, per-user |
+| **Killswitches** | "Disable file upload globally" | Remote, immediate effect |
+
+#### 12.6.3 v1 Approach
+
+For v1, **environment-based flags via ConfigService**. Simple boolean env vars:
+
+```typescript
+// .env
+FEATURE_GDPR=false
+FEATURE_SYNTHETIC_DATA=false
+FEATURE_DASHBOARD=true
+```
+
+```typescript
+// config
+features: {
+  gdpr: configService.get<boolean>('FEATURE_GDPR'),
+  syntheticData: configService.get<boolean>('FEATURE_SYNTHETIC_DATA'),
+  dashboard: configService.get<boolean>('FEATURE_DASHBOARD'),
+}
+```
+
+**Limitation:** Requires redeploy to flip. Fine for v1.
+
+#### 12.6.4 v2 Approach (Planned)
+
+Move to a remote feature flag service:
+- LaunchDarkly (commercial)
+- Unleash (open-source, self-host)
+- ConfigCat (mid-tier)
+
+Hot-reloadable, per-user targeting, audit log of flag changes.
+
+#### 12.6.5 Where We Use Configurability Today
+
+| Behavior | Configuration |
+|----------|---------------|
+| CORS origin | `CORS_ORIGIN` env |
+| Presidio URLs | `PRESIDIO_ANALYZER_URL`, `PRESIDIO_ANONYMIZER_URL` |
+| JWT secret/expiry | `JWT_SECRET`, `JWT_EXPIRES_IN` |
+| SMTP credentials | `MAIL_USER`, `MAIL_PASS`, `MAIL_HOST`, etc. |
+| Database connection | `DB_*` env vars |
+| Dev synchronize | `DB_SYNCHRONIZE` (false in production) |
+
+**Rule:** Never hardcode environment-specific values. Always go through `ConfigService`.
+
+#### 12.6.6 Frontend Feature Flags
+
+**Today:** Hardcoded constants in `constants/index.ts`.
+
+**Future (v2):**
+- Server-rendered config delivered via `/api/config` on app load
+- React context provider for flags
+- Hooks: `useFeatureFlag('gdpr')` returns boolean
 
 ### 12.7 Refactoring Practices
 
-*[Section 12.7 — to be filled]*
+#### 12.7.1 Continuous Refactoring
+
+**Principle:** Refactoring is a continuous activity, not a separate phase.
+
+**Boy Scout rule:** Leave code cleaner than you found it. When touching a file, fix nearby issues.
+
+#### 12.7.2 When to Refactor
+
+| Trigger | Action |
+|---------|--------|
+| Same change in 3+ places | Extract abstraction (Rule of Three) |
+| Function exceeds ~30 lines | Consider splitting |
+| Function has 5+ parameters | Group into object |
+| Class exceeds ~300 lines | Likely violating SRP — consider split |
+| Cyclomatic complexity > 10 | Refactor |
+| Comment explaining "why" | Maybe; comments are fine. Comment explaining "what" — rename instead. |
+| Tests test implementation, not behavior | Refactor tests first |
+
+#### 12.7.3 Strangler Fig Pattern
+
+For replacing legacy code (or future v2 modules), use the **Strangler Fig**:
+
+```
+Old code      ████████████████
+New code      ░░░░░░░░░░░░░░░░
+
+Step 1: Build new code alongside
+Old code      ████████████████
+New code      ████░░░░░░░░░░░░
+
+Step 2: Route new traffic to new code
+Old code      ████████████████
+New code      ████████░░░░░░░░
+
+Step 3: Migrate old data
+Old code      ████░░░░░░░░░░░░
+New code      ████████████░░░░
+
+Step 4: Old code retired
+Old code      ░░░░░░░░░░░░░░░░
+New code      ████████████████
+```
+
+**Benefits:** Always-running system; no Big Bang switchover; rollback trivial during transitions.
+
+#### 12.7.4 Refactor Checklist
+
+Before merging a refactor PR:
+
+- [ ] Tests pass (existing tests prove behavior preserved)
+- [ ] No new public API surface added (refactor != new feature)
+- [ ] Tested manually if visible to users
+- [ ] PR description explains motivation
+- [ ] Changes are small enough to review (>500 lines = split into smaller PRs)
+- [ ] No unrelated changes mixed in (one concern per PR)
+
+#### 12.7.5 Identified Refactoring Backlog
+
+These are known refactors waiting to happen:
+
+| Refactor | Priority | Estimated cost |
+|----------|----------|----------------|
+| Reconcile dual JWT guards (auth.guard.ts vs jwt-auth.guard.ts) | High | Half day |
+| Resolve User entity ↔ migration drift | High | Half day |
+| Fix Presidio config key naming (`ANALYZER_URL` → `presidio.analyzerUrl`) | High | 30 minutes |
+| Fix SMTP config key naming (`SMTP_HOST` → `MAIL_HOST`) | High | 30 minutes |
+| Remove duplicate ContactFormDto (auth/dto vs email/dto) | Medium | 1 hour |
+| Fix DashboardController dual registration | Medium | 30 minutes |
+| Move `EventEmitterModule.forRoot()` from JobsModule to AppModule | Low | 1 hour |
+| Replace `setTimeout` watchdog with persistent queue (BullMQ) | Low (v2) | 1 day |
+| Extract Presidio entity-type mapping into config | Low | 2 hours |
+
+**Schedule:** First 4 in Sprint 3 P0. Others later.
+
+### 12.8 Documentation as Code
+
+This Design Document is in the repo (`DESIGN-DOCUMENT.md`), versioned with code, reviewed via PR. Architectural changes require this document to be updated.
+
+**Living artifacts:**
+- This document
+- ADRs in `docs/adr/`
+- README.md (operational)
+- API docs (auto-generated from Swagger)
+- Code comments where the "why" is non-obvious
 
 ---
 
