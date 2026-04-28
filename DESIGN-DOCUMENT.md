@@ -2128,19 +2128,210 @@ This document formalizes that intent.
 
 ### 12.1 Design Principles for Change
 
-*[Section 12.1 — to be filled]*
+Software architecture is not just about today's design — it's about how easily it changes when reality changes. This system is designed to remain **agile** even as it grows.
+
+#### Core Principles
+
+| Principle | Application in Our System |
+|-----------|---------------------------|
+| **Modular boundaries** | NestJS modules + frontend feature folders. Each module has a clear responsibility and a stable interface. Replacing a module's internals doesn't ripple. |
+| **Dependency Inversion** | Services depend on abstractions (interfaces, repositories), not concrete implementations. Presidio is behind `PresidioService`; SMTP is behind `EmailSenderService`. |
+| **Adapter Pattern at boundaries** | All external systems (Presidio, SMTP, eventually KMS) wrapped in our own classes. Switching providers means changing one file. |
+| **Configuration over code** | `ConfigService` not `process.env` in business code. Add a knob, not an `if`. |
+| **Composition over inheritance** | NestJS DI by composition. React hooks compose. No deep class hierarchies. |
+| **Explicit over implicit** | Types explicit, error paths explicit, ownership explicit. Future developers can read the code and know what it does. |
+| **Small, frequent changes** | 1 task = 1 commit = 1 PR. Easier to review, easier to revert, easier to merge. |
+| **Test pyramid** | Heavy unit tests support fearless refactoring. (Sprint 3+ goal.) |
+
+#### Anti-Patterns We Avoid
+
+| Anti-pattern | Why bad | Our defense |
+|--------------|---------|-------------|
+| God classes | Hard to test, hard to change | Keep services <300 lines; split when growing |
+| Coupling via shared state | Surprising changes propagate | Pure functions where possible; explicit DI |
+| Magic constants | Hard to find when changing | Named constants; ESLint rule (per Git rules) |
+| Wide interfaces | Hard to maintain | DTOs scoped per use case; not "kitchen sink" objects |
+| Circular dependencies | Tangled coupling | NestJS detects at startup; we never break this |
+| Implicit ordering | Bugs from execution order | Explicit awaits, explicit phases |
 
 ### 12.2 Stability vs Agility Boundary
 
-*[Section 12.2 — to be filled]*
+Not everything in the system can change at the same speed. We classify components by their **stability tier**:
+
+```
+┌────────────────────────────────────────────────────────────┐
+│   TIER 1 — STABLE (rarely change)                           │
+│                                                              │
+│   ─ HTTP API contracts                                       │
+│   ─ JSON event schemas (job.run payload)                     │
+│   ─ Database schema (migrations only)                        │
+│   ─ Authentication contract (JWT shape)                      │
+│   ─ Compliance design (HIPAA Safe Harbor mappings)           │
+│                                                              │
+│   Change procedure: Migration / versioning / deprecation     │
+└────────────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────────┐
+│   TIER 2 — SEMI-STABLE (change with deliberation)            │
+│                                                              │
+│   ─ Service interfaces                                       │
+│   ─ Module boundaries                                        │
+│   ─ Cross-module dependencies                                │
+│   ─ Frontend route structure                                 │
+│   ─ Redux store shape                                        │
+│                                                              │
+│   Change procedure: ADR + code review                        │
+└────────────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────────┐
+│   TIER 3 — FLEXIBLE (change freely with tests)               │
+│                                                              │
+│   ─ Service internals                                        │
+│   ─ Component rendering                                       │
+│   ─ Styles and theming                                        │
+│   ─ Validation rules                                          │
+│   ─ Test fixtures                                             │
+│                                                              │
+│   Change procedure: PR + tests                               │
+└────────────────────────────────────────────────────────────┘
+```
+
+**Key insight:** What's stable should be **purposefully** stable, not accidentally. Stable contracts enable rapid change in the flexible tier.
+
+#### Stability Tier Examples
+
+**Tier 1 (stable):**
+- `POST /api/auth/login` request body: `{ email: string }`. Changing this breaks all clients. **Versioning required.**
+- `User.id` is UUID. Changing to integer breaks every reference. **Migration required.**
+
+**Tier 2 (semi-stable):**
+- `JobsService.processJob` — internal but used by event listener. Changing signature requires updating listener. **ADR + review.**
+- Sidebar navigation items — visible to users; changing requires UX consideration. **Review.**
+
+**Tier 3 (flexible):**
+- `formatScore(score)` — pure utility. Change implementation freely. **Tests verify behavior.**
+- Color palette in `theme.ts` — visual refresh anytime.
 
 ### 12.3 Architectural Decision Records (ADRs)
 
-*[Section 12.3 — to be filled]*
+#### What is an ADR?
+
+An ADR is a **short document** capturing a single architectural decision: context, options considered, decision, consequences.
+
+#### When to write an ADR
+
+| Trigger | Example |
+|---------|---------|
+| New external dependency | "Use Microsoft Presidio for PII detection" |
+| Changed module boundary | "Split JobsModule into JobsModule + ResultsModule" |
+| New cross-cutting concern | "Use redux-persist for wizard state" |
+| Reversal of prior decision | "Switch from MUI 6 to MUI 7" |
+| Major versioning event | "Bump API to v2" |
+| Trade-off worth documenting | "Use localStorage for JWT despite XSS risk" |
+
+#### ADR Template
+
+```markdown
+# ADR-NNNN: <Short title>
+
+**Status:** Proposed | Accepted | Superseded by ADR-MMMM
+**Date:** YYYY-MM-DD
+**Authors:** ...
+
+## Context
+
+What's the situation? What forces are at play?
+
+## Options Considered
+
+1. Option A — pros/cons
+2. Option B — pros/cons
+3. Option C — pros/cons
+
+## Decision
+
+We chose Option B because...
+
+## Consequences
+
+- Positive: ...
+- Negative: ...
+- Reversibility: How hard to revert?
+
+## References
+
+- Code: <path>
+- Discussion: <meeting / chat link>
+```
+
+#### ADR Storage
+
+```
+docs/
+└── adr/
+    ├── 0001-magic-link-authentication.md
+    ├── 0002-redux-toolkit-for-state.md
+    ├── 0003-microsoft-presidio-for-nlp.md
+    ├── 0004-heroku-container-registry-deploy.md
+    ├── 0005-no-phi-in-database.md
+    ├── 0006-localstorage-for-jwt.md
+    └── README.md (index)
+```
+
+**Convention:** Numbered chronologically. Once accepted, **immutable** — superseding ADRs reference the prior one. This creates a decision history.
+
+#### Backfilling ADRs
+
+The decisions captured in this document (Section 6, 7, 8, 10) should be backfilled as ADRs in Sprint 3 or 4.
 
 ### 12.4 Reversibility & Two-Way Doors
 
-*[Section 12.4 — to be filled]*
+Jeff Bezos's framing: decisions are either **one-way doors** (irreversible or expensive to reverse) or **two-way doors** (cheap to undo). Treat each accordingly.
+
+#### Our One-Way Doors
+
+| Decision | Why hard to reverse |
+|----------|---------------------|
+| Database schema in production | Migrations + downtime |
+| Public API contract | External clients break |
+| User-facing UX flows | User retraining cost |
+| Authentication mechanism | Forces all users to re-login |
+| Hosting provider | Migration project |
+
+**Treatment:** Slow down. Get reviews. Write ADRs. Consider future scenarios.
+
+#### Our Two-Way Doors
+
+| Decision | Why cheap to reverse |
+|----------|----------------------|
+| Internal class structures | Refactoring with tests |
+| CSS / theming | Visual revert |
+| Test framework choice | Tests can be migrated |
+| Specific Presidio strategies | Configuration-driven |
+| Library minor versions | Bump and test |
+
+**Treatment:** Move fast. Try it. If wrong, revert.
+
+#### Strategies to Make Doors Two-Way
+
+| Technique | Effect |
+|-----------|--------|
+| **Wrap external dependencies in adapters** | Swapping providers becomes a one-file change |
+| **Feature flags for new behavior** | Toggle on/off without redeploy |
+| **Canary deployments** | Test in production with limited blast radius |
+| **Blue/green deployments** | Instant rollback |
+| **Migrate via dual-write or shadow read** | Validate new path before cutover |
+| **API versioning** | Deprecate old version slowly |
+| **Backward-compatible migrations** | Add nullable, then backfill, then make required (3 deploys) |
+
+#### Decision Reversal Procedure
+
+1. **Document new context** — what changed since the original decision?
+2. **Write a superseding ADR** — references the prior ADR
+3. **Plan migration path** — gradual if one-way, immediate if two-way
+4. **Communicate** — to team + stakeholders if user-visible
+5. **Execute and observe** — keep old path warm until confidence
+6. **Clean up** — remove old code/data after deprecation period
 
 ### 12.5 Versioning Strategy
 
