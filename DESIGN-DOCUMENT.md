@@ -2776,7 +2776,245 @@ For real PHI v2: cost grows substantially (HIPAA-eligible hosting, BAAs, monitor
 
 ## 14. Quality, Observability, Performance
 
-*[Section 14 — to be filled]*
+### 14.1 Quality Attributes (Non-Functional Requirements)
+
+| Attribute | Target | Why |
+|-----------|--------|-----|
+| **Functional correctness** | ≥90% Safe Harbor identifier detection on test corpus | Core product value |
+| **Reliability** | 99% uptime in v1 (Heroku SLA permitting) | Acceptable for MVP |
+| **Performance — API latency** | P95 < 500 ms (excluding Presidio calls) | Snappy UX |
+| **Performance — De-identification** | < 30 seconds for 5 MB text | User patience threshold |
+| **Performance — Wizard navigation** | < 200 ms perceived | Smooth feel |
+| **Security** | No critical CVEs in production deps | Continuous |
+| **Compliance** | Audit-trail PDF for every job | Legal evidence |
+| **Privacy** | No PHI in logs, no PHI in DB | HIPAA, GDPR |
+| **Maintainability** | Test coverage ≥80% on services | Refactor with confidence |
+| **Accessibility** | WCAG 2.1 AA on user-facing pages | Inclusive UX |
+| **Internationalization** | i18n-ready for any locale | Global users |
+| **Observability** | Structured logs + alerts on errors | Operate confidently |
+
+### 14.2 Performance Design
+
+#### 14.2.1 Backend Performance
+
+| Concern | Strategy |
+|---------|----------|
+| Database queries | Index on `userId` for jobs/users; UUID PKs |
+| N+1 queries | Use TypeORM `relations` array explicitly; avoid eager loading |
+| JSON columns | Indexed paths (MySQL JSON expression indexes) for hot queries |
+| Long-running jobs | Async via EventEmitter; client polls |
+| Connection pooling | TypeORM default pool size; tune per Heroku tier |
+| Caching | None in v1 (no proven hot paths); add when measured |
+
+#### 14.2.2 Frontend Performance
+
+| Concern | Strategy |
+|---------|----------|
+| Bundle size | Code splitting via React.lazy + Suspense per route |
+| Asset delivery | Vite production build + Heroku CDN |
+| Re-renders | React.memo, useMemo, useCallback where measured-needed |
+| Form performance | react-hook-form (uncontrolled inputs) |
+| Polling overhead | Stop polling when status terminal; planned: exponential backoff |
+| Image optimization | SVG for icons; planned: lazy-load images |
+
+#### 14.2.3 Presidio Performance
+
+| Concern | Strategy |
+|---------|----------|
+| Cold start | Keep containers warm in production |
+| Throughput | Horizontal scaling — multiple analyzer instances behind LB |
+| Long requests | Backend timeout (30s); watchdog (5min) for stuck jobs |
+| Resource sizing | Right-size Fargate task (memory > CPU for spaCy) |
+
+### 14.3 Performance Budgets
+
+Targets for each user-facing operation:
+
+| Operation | P50 | P95 | Hard cap |
+|-----------|----|-----|----------|
+| Page load (cold) | 2s | 4s | 8s |
+| Page navigation (warm) | 100ms | 300ms | 1s |
+| Login (Magic Link request) | 200ms | 500ms | 2s |
+| Login (verify token) | 300ms | 700ms | 3s |
+| De-identify 1KB | 5s | 15s | 30s |
+| De-identify 100KB | 10s | 25s | 60s |
+| De-identify 1MB | 20s | 60s | 180s |
+| PDF download | 1s | 3s | 10s |
+| Dashboard load | 500ms | 1.5s | 5s |
+
+**Enforcement:** Real User Monitoring (planned) tracks against budgets. CI performance tests for backend (k6 or Artillery) planned for v2.
+
+### 14.4 Scalability
+
+#### Vertical scaling
+- Heroku dyno tiers: Hobby → Standard → Performance → Enterprise. Bump as needed.
+
+#### Horizontal scaling
+- Stateless API: any number of dynos
+- Database: read replicas as load grows
+- Presidio: multiple analyzer instances behind load balancer
+- Concurrency: NestJS handles many concurrent requests; bottleneck is DB/Presidio
+
+#### Bottleneck Analysis
+1. **Presidio** is the slowest component — highest scaling priority
+2. **Database** moderate; index well, scale read replicas
+3. **NestJS app** rarely the bottleneck; can scale freely
+
+### 14.5 Reliability Patterns
+
+| Pattern | Where Applied |
+|---------|---------------|
+| **Retry with backoff** | Presidio calls (planned) |
+| **Circuit breaker** | Presidio outages — fail fast (planned) |
+| **Timeout** | All external calls (HTTP timeouts) |
+| **Graceful degradation** | If email fails, surface to user (don't crash) |
+| **Health checks** | `/health` endpoint per service |
+| **Readiness vs liveness** | Liveness: process alive. Readiness: dependencies up. |
+| **Watchdog** | 5-min timeout on stuck jobs |
+| **Idempotency keys** | For critical operations (planned for v2) |
+
+### 14.6 Observability Stack (Aspirational v2)
+
+```
+Frontend (errors)
+    ▼
+Sentry (error tracking)
+
+Backend (logs)
+    ▼
+NestJS Logger → JSON
+    ▼
+Stdout → Heroku Logplex → Papertrail (search) + Datadog (metrics + APM)
+
+Backend (metrics)
+    ▼
+@willsoto/nestjs-prometheus
+    ▼
+/metrics endpoint
+    ▼
+Datadog scraper
+
+Backend (traces)
+    ▼
+OpenTelemetry SDK
+    ▼
+Datadog APM (traces + flame graphs)
+
+Database
+    ▼
+Slow query log → Papertrail
+RDS Performance Insights (v2 cloud)
+
+Browser
+    ▼
+RUM (Datadog Real User Monitoring)
+```
+
+### 14.7 Quality Gates
+
+A change cannot reach production unless:
+
+- [ ] All tests pass
+- [ ] Coverage ≥ baseline
+- [ ] Lint passes
+- [ ] Type check passes
+- [ ] No critical CVE in deps
+- [ ] Code review approved (≥1 senior)
+- [ ] PR description includes change rationale
+- [ ] Schema migrations tested (if any)
+- [ ] Manual QA on staging (for UI-touching changes)
+- [ ] Performance unchanged or better (no obvious regressions)
+
+### 14.8 Definition of Done (Aligned with Section 12)
+
+A feature is **done** when:
+
+- [ ] Code merged to develop via PR
+- [ ] Unit tests written and passing
+- [ ] Integration tests covering happy path
+- [ ] Manual QA on local environment
+- [ ] Demo'd on standup
+- [ ] Swagger documentation updated (if API surface)
+- [ ] User-facing strings i18n-keyed (FE)
+- [ ] Accessibility checked (FE)
+- [ ] Logged appropriately
+- [ ] No secrets/PHI in logs
+- [ ] No `console.log` left in code
+- [ ] No magic numbers/hardcoded values
+
+### 14.9 Continuous Improvement
+
+**Quarterly architecture review:**
+- Review this document
+- Update for new decisions
+- Identify new ADRs needed
+- Refactoring backlog grooming
+
+**Monthly metrics review:**
+- Performance vs budgets
+- Error rates
+- User feedback themes
+- Cost per user / per request
+
+**Per-sprint retrospective:**
+- What went well architecturally?
+- Where did the design slow us down?
+- What do we want to change for next sprint?
+
+---
+
+## Appendix A: Glossary
+
+| Term | Definition |
+|------|------------|
+| **PHI** | Protected Health Information — patient-identifying data under HIPAA |
+| **PII** | Personally Identifiable Information |
+| **HIPAA** | Health Insurance Portability and Accountability Act (USA) |
+| **GDPR** | General Data Protection Regulation (EU) |
+| **DPA** | UK Data Protection Act |
+| **FADP** | Swiss Federal Act on Data Protection |
+| **Safe Harbor** | HIPAA method: remove 18 specified identifier types |
+| **Expert Determination** | HIPAA method: expert certifies low re-identification risk |
+| **De-identification** | Process of removing/masking PHI from data |
+| **Anonymization** | Stronger form of de-identification (irreversible) |
+| **Pseudonymization** | Reversible de-identification using a key |
+| **Magic Link** | Passwordless auth: email contains one-time login URL |
+| **Presidio** | Microsoft's open-source PII detection toolkit |
+| **NER** | Named Entity Recognition — ML technique for entity detection |
+| **JWT** | JSON Web Token — bearer token for API authentication |
+| **DTO** | Data Transfer Object — validated input shape |
+| **ADR** | Architectural Decision Record |
+| **STRIDE** | Spoofing, Tampering, Repudiation, Info Disclosure, DoS, Elevation of Privilege |
+| **CSP** | Content Security Policy — browser XSS defense |
+| **HSTS** | HTTP Strict Transport Security — forces HTTPS |
+| **IDOR** | Insecure Direct Object Reference — auth bug class |
+| **WORM** | Write-Once-Read-Many — immutable storage |
+| **BAA** | Business Associate Agreement — HIPAA legal contract |
+| **DPIA** | Data Protection Impact Assessment — GDPR risk analysis |
+| **DSR** | Data Subject Request — GDPR user rights request |
+| **RPO** | Recovery Point Objective — max data loss window |
+| **RTO** | Recovery Time Objective — max recovery time |
+
+## Appendix B: References
+
+- [Microsoft Presidio docs](https://microsoft.github.io/presidio/)
+- HIPAA Privacy Rule: 45 CFR § 164.514
+- GDPR Article 25 — Privacy by Design
+- NestJS docs (https://nestjs.com)
+- Vite docs (https://vitejs.dev)
+- Threat modeling: STRIDE
+- Twelve-Factor App (https://12factor.net) — config, logs, processes principles
+
+## Appendix C: Open Questions
+
+- [ ] Final hosting decision for production Presidio (Heroku vs AWS Fargate)
+- [ ] BAA strategy if real PHI workloads materialize
+- [ ] Custom Presidio recognizers for HIPAA identifiers 8, 9, 12, 13, 16
+- [ ] Synthetic Data module — defer or build in v1?
+- [ ] Multi-tenant model for v2 (single shared DB or per-tenant?)
+- [ ] Audit log retention storage (DB column vs separate WORM store)
+- [ ] Backup encryption key management
+- [ ] Retention policy automation (background job? cron? scheduled function?)
 
 ---
 
