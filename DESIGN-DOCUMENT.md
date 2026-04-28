@@ -1088,7 +1088,158 @@ This shape is enforced by `HttpExceptionFilter`. The `timestamp` and `path` make
 
 ## 9. Compliance Design
 
-*[Section 9 — to be filled]*
+This section describes how the architecture supports the four compliance frameworks. Compliance is **designed-in**, not bolted-on.
+
+### 9.1 Frameworks Supported
+
+| Framework | Region | Method(s) | Status (Apr 2026) |
+|-----------|--------|-----------|---------------------|
+| **HIPAA** | USA | Safe Harbor (default) + Expert Determination | Implemented |
+| **GDPR** | EU | Risk-level (Low/Medium/High) | UI placeholder; logic in progress |
+| **UK DPA** | UK | Aligned with GDPR | Planned |
+| **Swiss FADP** | Switzerland | Aligned with GDPR | Planned |
+
+### 9.2 HIPAA Safe Harbor — 18 Identifier Types
+
+HIPAA Safe Harbor (45 CFR § 164.514(b)(2)) requires removal of 18 specific identifier types. Our system maps each to Microsoft Presidio recognizer types:
+
+| # | HIPAA Identifier | Presidio Type | Notes |
+|--:|-----------------|----------------|-------|
+| 1 | Names | `PERSON` | First, last, full names |
+| 2 | Geographic subdivisions smaller than state | `LOCATION` | Street, city, county, ZIP-3 |
+| 3 | Dates (DOB, admission, etc.) | `DATE_TIME` | Year-only allowed if ≤89 years old |
+| 4 | Telephone numbers | `PHONE_NUMBER` | |
+| 5 | Fax numbers | `PHONE_NUMBER` | (No separate Presidio recognizer) |
+| 6 | Email addresses | `EMAIL_ADDRESS` | |
+| 7 | Social Security numbers | `US_SSN` | |
+| 8 | Medical record numbers | `MEDICAL_RECORD_NUMBER` (custom) | **Note:** not standard Presidio. Future: register custom recognizer. |
+| 9 | Health plan beneficiary numbers | `US_HEALTH_NUMBER` (custom) | Same note as above. |
+| 10 | Account numbers | `US_BANK_NUMBER` | |
+| 11 | Certificate/license numbers | `US_PASSPORT`/`US_DRIVER_LICENSE` | Approximate mapping |
+| 12 | Vehicle identifiers (VIN) | (no native Presidio match) | Needs custom recognizer |
+| 13 | Device identifiers (serial #s) | (no native Presidio match) | Needs custom recognizer |
+| 14 | Web URLs | `URL` | |
+| 15 | IP addresses | `IP_ADDRESS` | |
+| 16 | Biometric identifiers | (no native Presidio match) | Needs custom recognizer |
+| 17 | Full-face photographs | (text-only, N/A) | Out of scope (we are text-only) |
+| 18 | Any other unique identifying number/code | (general-purpose) | Custom rules |
+
+**Known gaps in current implementation:**
+- Items 8, 9, 12, 13, 16: Presidio doesn't recognize these natively. Current code maps them to nonexistent recognizer names → silently skipped at runtime.
+- **Action required:** Either register custom Presidio recognizers, or document these as out-of-scope and require manual review.
+
+### 9.3 HIPAA Expert Determination
+
+Alternative to Safe Harbor: a qualified expert applies statistical methods to determine that re-identification risk is "very small."
+
+**Our implementation:**
+- User selects Expert Determination in Step 3 of wizard
+- Custom entity selection becomes editable
+- User chooses which 18 identifiers to apply
+- User adjusts confidence threshold per entity
+- Output PDF documents the expert's choices for compliance evidence
+
+**Note:** Our system **does not** perform statistical risk analysis. It **enables** an expert to apply their analysis. The expert is the user; we are the tool.
+
+### 9.4 GDPR Risk Levels (Planned)
+
+GDPR doesn't define rigid identifier lists like HIPAA, but maps to risk-based reasoning. Our planned UX:
+
+| Level | Entities Removed | Use Case |
+|-------|------------------|----------|
+| **Low** | Direct identifiers only (name, email, phone, SSN-equivalents) | Sharing within a research consortium with strong legal agreements |
+| **Medium** | Direct + quasi-identifiers (dates, locations, IPs) | Public research datasets |
+| **High** | All possibly-identifying data | Maximum anonymization; closer to HIPAA Safe Harbor |
+
+This is a **simplification** of GDPR's actual requirements. A formal Data Protection Impact Assessment (DPIA) is the user's responsibility.
+
+### 9.5 Audit Trail (Compliance Evidence)
+
+Every job produces a downloadable PDF that serves as compliance evidence:
+
+```
+[Header: "De-Identification Audit Trail"]
+─────────────────────────────────────────
+Job ID:           550e8400-e29b-41d4-a716-446655440000
+User:             analyst@example.com
+Timestamp:        2026-04-28 14:32:11 UTC
+Document Hash:    sha256:abc...  (planned)
+
+[Framework Section]
+─────────────────────────────────────────
+Framework:        HIPAA
+Method:           Safe Harbor
+Threshold:        Balanced (0.5)
+
+[Identifier Coverage]
+─────────────────────────────────────────
+✓ PERSON              detected: 12  applied: 12 (Redact)
+✓ DATE_TIME           detected: 4   applied: 4  (Redact)
+✓ US_SSN              detected: 2   applied: 2  (Redact)
+✗ MEDICAL_RECORD_NUMBER (recognizer not available)
+...
+
+[Original Excerpt]
+─────────────────────────────────────────
+"Patient John Smith, DOB 03/15/1948, was..."
+
+[Anonymized Output]
+─────────────────────────────────────────
+"Patient <PERSON>, DOB <DATE_TIME>, was..."
+
+[Processing Metadata]
+─────────────────────────────────────────
+Engine:           Microsoft Presidio v2.x
+Processing time:  3.2 seconds
+Strategy:         Redact
+```
+
+**Why a PDF and not just JSON?**
+- PDFs are easier for non-technical compliance officers
+- PDFs can be printed, signed, archived
+- PDFs are tamper-evident (with future digital signatures)
+
+### 9.6 Compliance Boundaries — What We Do NOT Cover
+
+These are user responsibilities, not platform responsibilities:
+
+| Out-of-Scope | Why |
+|--------------|-----|
+| Statistical re-identification risk analysis | Requires domain expert; tool can't certify |
+| Business Associate Agreement with Microsoft (Presidio) | User's legal department |
+| Patient consent management | User's consent management system |
+| Encryption key management for HIPAA | User's KMS |
+| Multi-party data agreements | User's legal department |
+| Audit log immutability (WORM storage) | Hosting decision (planned for production) |
+
+We provide **automation and evidence generation**. We do **not** provide legal certification.
+
+### 9.7 Compliance-Driven Design Decisions
+
+| Design Decision | Compliance Driver |
+|-----------------|-------------------|
+| No PHI in DB | Minimize breach surface (HIPAA, GDPR) |
+| Anonymized text in DB | Safe (no PHI by definition) |
+| 1-hour JWT lifetime | Minimum-necessary access (HIPAA security rule) |
+| Email-only auth (no SMS, no SSO) | Reduce data shared (privacy by design, GDPR Art. 25) |
+| Audit-trail PDF on every job | "Accountability" principle (GDPR Art. 5) |
+| HTTPS only in production | Encryption in transit (HIPAA, GDPR, etc.) |
+| `select: false` on sensitive User fields (planned) | Defense in depth |
+| Minimum-necessary fields in DTOs | GDPR data minimization |
+| 90-day retention default | Aligned with research-norm retention (configurable) |
+
+### 9.8 Future Compliance Work
+
+| Item | Driver |
+|------|--------|
+| Custom Presidio recognizers for MRN, VIN, device IDs | Close HIPAA identifier gaps |
+| Encryption at rest (column-level) | HIPAA security rule §164.312(a)(2)(iv) |
+| Audit log table (immutable) | HIPAA §164.312(b) |
+| Digital signatures on PDFs | Tamper evidence |
+| BAA-friendly hosting (HIPAA-eligible cloud tier) | Required for real PHI workloads |
+| GDPR DSR (Data Subject Request) endpoints | Right to access, erasure |
+| Cookie consent banner | GDPR ePrivacy Directive |
+| DPIA template | GDPR Art. 35 |
 
 ---
 
