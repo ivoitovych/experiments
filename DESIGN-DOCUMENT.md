@@ -1247,15 +1247,146 @@ We provide **automation and evidence generation**. We do **not** provide legal c
 
 ### 10.1 Multi-Layer Security Model
 
-*[Section 10.1 — to be filled]*
+Security is built in **defense-in-depth** layers. No single layer is trusted to provide complete protection — each compensates for failures in others.
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│   LAYER 1 — NETWORK SECURITY                                        │
+│   HTTPS-only, CORS, security headers, port hardening                │
+└────────────────────────────────────────────────────────────────────┘
+              ▲ if breached, attacker still hits...
+              │
+┌────────────────────────────────────────────────────────────────────┐
+│   LAYER 2 — AUTHENTICATION                                          │
+│   Magic Link, JWT, short-lived tokens                               │
+└────────────────────────────────────────────────────────────────────┘
+              ▲ if breached, still must pass...
+              │
+┌────────────────────────────────────────────────────────────────────┐
+│   LAYER 3 — AUTHORIZATION                                           │
+│   Resource ownership checks, role guards (planned)                  │
+└────────────────────────────────────────────────────────────────────┘
+              ▲ if breached, must still get past...
+              │
+┌────────────────────────────────────────────────────────────────────┐
+│   LAYER 4 — INPUT VALIDATION                                        │
+│   DTO validation, file MIME/size checks, SQL injection prevention   │
+└────────────────────────────────────────────────────────────────────┘
+              ▲ even if validated, data is still...
+              │
+┌────────────────────────────────────────────────────────────────────┐
+│   LAYER 5 — DATA PROTECTION                                         │
+│   No PHI in DB, encryption, secrets management                      │
+└────────────────────────────────────────────────────────────────────┘
+              ▲ all of which is...
+              │
+┌────────────────────────────────────────────────────────────────────┐
+│   LAYER 6 — AUDIT & LOGGING                                         │
+│   Detect, alert, attribute. Compliance evidence.                    │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+**Principle:** A successful attack requires breaching multiple layers. Mistakes in one layer do not catastrophically compromise the system.
 
 ### 10.2 Layer 1: Network Security
 
-*[Section 10.2 — to be filled]*
+| Control | Decision | Status |
+|---------|----------|:------:|
+| **HTTPS only in production** | All traffic over TLS 1.2+. Heroku terminates TLS. | Achieved via Heroku |
+| **HTTP→HTTPS redirect** | Forced by Heroku for `*.herokuapp.com`; configure for custom domain | Default |
+| **HSTS header** | `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload` (planned) | Gap |
+| **CORS** | `Access-Control-Allow-Origin` = configured frontend domain only. Credentials enabled. | Achieved (configurable) |
+| **CSP header** | Strict Content-Security-Policy; report-only initially (planned) | Gap |
+| **X-Frame-Options** | `DENY` to prevent clickjacking | Gap |
+| **X-Content-Type-Options** | `nosniff` | Gap |
+| **Referrer-Policy** | `strict-origin-when-cross-origin` | Gap |
+| **DB port not exposed** | MySQL only on internal Docker network in production | Achieved |
+| **Presidio not exposed** | Internal-only on Docker network | Achieved (where deployed) |
+| **Rate limiting** | 100 req/min per IP for `/auth/*`; per-user limits elsewhere (planned) | Gap |
+
+**Decision Rationale:**
+- HTTPS is non-negotiable for HIPAA. Heroku gives us TLS for free.
+- CORS configurable because we deploy to multiple environments (local, staging, prod).
+- Security headers will be added once we move from Heroku-default to a reverse proxy or middleware layer.
 
 ### 10.3 Layer 2: Authentication
 
-*[Section 10.3 — to be filled]*
+#### 10.3.1 Magic Link Design
+
+**Why Magic Link, not passwords?**
+
+| Factor | Password | Magic Link |
+|--------|----------|------------|
+| Phishing resistance | Low (users reuse passwords) | High (single-use tokens) |
+| Storage burden | Hash + salt + rotation policy | Token + expiry |
+| Reset flow | Required (forgot password) | Login *is* reset |
+| User friction | Memorize password | Click email link |
+| Account enumeration | Login form leaks valid emails | Can be designed to not leak |
+| Best for | Frequent login | Occasional login (clinical use case) |
+
+**Decision:** Magic Link wins on attack surface and user experience for our user base (clinical staff, occasional logins).
+
+#### 10.3.2 Magic Link Flow Security
+
+```
+1. User enters email
+2. Backend generates a UUIDv4 token  (≥122 bits of entropy)
+3. Token stored hashed (SHA-256) — original sent only to email
+4. Token TTL: 15 minutes
+5. Token is single-use (consumed on verification)
+6. Email contains link with token in URL fragment OR query
+7. On verify:
+   - Lookup user by token hash
+   - Check expiry
+   - Issue JWT
+   - Invalidate token (rotate)
+```
+
+**Decisions:**
+- **UUIDv4 over short codes:** UUIDs are 122 bits — brute force is infeasible. Short codes (e.g., 6-digit) need rate limiting.
+- **Hashed storage:** If DB leaks, attackers can't immediately log in as users.
+- **15-min TTL:** Balances UX (slow inboxes) and security (smaller exposure window).
+- **Single-use:** Replay protection.
+
+**Current implementation gap:** Token storage may be plaintext in some snapshots. Hashed storage is the design intent.
+
+#### 10.3.3 JWT Design
+
+| Property | Value |
+|----------|-------|
+| Algorithm | HS256 (symmetric, server-only secret) |
+| Issuer | `clinical-deid-portal` |
+| Audience | `clinical-deid-portal` |
+| Subject | User UUID |
+| Expiry | 1 hour |
+| Refresh | None (re-login required) |
+| Revocation | Stateless — relies on short expiry. Future: deny-list for emergency revocation. |
+| Storage on client | localStorage |
+
+**localStorage vs httpOnly cookie tradeoff:**
+
+| Storage | XSS exposure | CSRF exposure | Implementation cost |
+|---------|--------------|---------------|---------------------|
+| localStorage | High (JS can read) | None | Low |
+| httpOnly cookie | None | High (need CSRF token) | Higher (CSRF infra) |
+
+**Decision:** localStorage in v1, accepting XSS risk because:
+1. We have strict CSP planned to mitigate XSS
+2. Short JWT expiry (1h) limits impact
+3. Higher dev velocity for MVP
+
+For v2 (production with real PHI workloads), consider httpOnly cookies with SameSite=Strict.
+
+#### 10.3.4 Auth Flow Security Properties
+
+| Property | How Achieved |
+|----------|--------------|
+| **No passwords transmitted** | Email-only |
+| **Token freshness** | 15-min Magic Link, 1-hr JWT |
+| **Token theft mitigation** | Short expiry; future: device binding |
+| **Email enumeration prevention** | Backend always returns 200 to `/auth/login` regardless of email validity (planned; current implementation may differ) |
+| **Brute force resistance** | Rate limiting (planned), 122-bit tokens |
+| **Session fixation prevention** | New JWT issued per verification; no session ID reuse |
 
 ### 10.4 Layer 3: Authorization
 
