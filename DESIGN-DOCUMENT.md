@@ -1715,15 +1715,154 @@ STRIDE = Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Ser
 
 ### 11.1 Test Pyramid & Coverage Targets
 
-*[Section 11.1 — to be filled]*
+```
+                    ┌─────────────────┐
+                    │      E2E        │   ← few, slow, expensive (5-10 critical paths)
+                    │    smoke         │
+                    └─────────────────┘
+                ┌────────────────────────┐
+                │     INTEGRATION         │  ← module/API-level tests
+                │   API contract tests    │
+                │   DB integration tests  │
+                └────────────────────────┘
+            ┌────────────────────────────────┐
+            │            UNIT                 │  ← many, fast, isolated
+            │   Service unit tests            │
+            │   React component tests         │
+            │   Pure function tests           │
+            └────────────────────────────────┘
+```
+
+**Pyramid principle:** More unit tests, fewer integration tests, fewest e2e tests. Each layer is faster and more numerous than the one above.
+
+#### Coverage Targets
+
+| Layer | Target | Why |
+|-------|--------|-----|
+| **Unit tests** | 80% line coverage on services, slices, utils | Foundation; cheap to maintain |
+| **Component tests** | 60% on UI components | Not all UI is worth testing; prioritize stateful components |
+| **Integration tests** | All API endpoints (happy path + auth failure) | Contract verification |
+| **E2E** | 5-10 critical user journeys | High value, high cost; reserve for important flows |
+| **Smoke** | 1-3 essential post-deploy checks | Verify deployment didn't break basics |
+
+**Critical user journeys for E2E:**
+1. Magic Link sign-in
+2. De-identification end-to-end (HIPAA, Safe Harbor)
+3. PDF export
+4. Session expiration flow
+5. Contact form submission
+
+**Coverage target maturity:**
+- **MVP launch:** 50% on services, all critical journeys covered
+- **v2:** 80% on services, 60% on UI, all journeys covered
+- **Enforced via CI:** Coverage report fails build if it drops more than 5% vs main branch
 
 ### 11.2 Tooling Decisions
 
-*[Section 11.2 — to be filled]*
+| Concern | Backend | Frontend | Rationale |
+|---------|---------|----------|-----------|
+| **Test runner** | Jest | Vitest | Jest is NestJS standard. Vitest matches our Vite tooling and is much faster than Jest in ESM. |
+| **Assertions** | Built-in `expect` | Built-in `expect` | Both compatible APIs |
+| **Mocking** | Jest's `jest.fn()` + NestJS `Test.createTestingModule` | Vitest's `vi.fn()` + `vi.mock()` | Idiomatic per framework |
+| **HTTP mocking (FE)** | — | axios-mock-adapter | Mock at axios level for service tests |
+| **Component rendering (FE)** | — | @testing-library/react | Standard, accessibility-friendly |
+| **DOM env (FE)** | — | jsdom | Standard for unit tests |
+| **E2E** | — | Playwright (recommended) | Cross-browser; better than Cypress for our needs |
+| **API integration** | supertest | — | Standard NestJS testing approach |
+| **Database in tests** | In-memory SQLite (TypeORM) | — | Fast; no external dependencies |
+| **Coverage** | Jest --coverage (Istanbul) | Vitest --coverage (c8) | Built-in |
+| **Watch mode** | jest --watch | vitest (default watch) | Fast feedback loop |
+
+**Why two different runners?**
+- Vitest is significantly faster in ESM contexts (where Vite is the bundler)
+- Jest has the most mature NestJS testing infrastructure
+- Maintenance overhead of two runners is low; configurations are isolated
 
 ### 11.3 File Placement & Naming Conventions
 
-*[Section 11.3 — to be filled]*
+#### Backend (Jest)
+
+```
+backend/
+├── src/
+│   ├── modules/
+│   │   ├── auth/
+│   │   │   ├── auth.controller.ts
+│   │   │   ├── auth.controller.spec.ts        ← unit/integration test alongside source
+│   │   │   ├── auth.service.ts
+│   │   │   └── auth.service.spec.ts
+│   │   └── jobs/
+│   │       ├── jobs.service.ts
+│   │       ├── jobs.service.spec.ts
+│   │       ├── presidio.service.ts
+│   │       └── presidio.service.spec.ts
+│   └── common/
+│       └── filters/
+│           ├── http-exception.filter.ts
+│           └── http-exception.filter.spec.ts
+└── test/                                      ← end-to-end / smoke / integration
+    ├── smoke.ts                                ← post-deploy smoke
+    ├── auth.e2e-spec.ts                       ← e2e per feature
+    ├── jobs.e2e-spec.ts
+    └── jest-e2e.json                          ← e2e Jest config
+```
+
+**Convention:**
+- `*.spec.ts` adjacent to source — unit/integration
+- `test/*.e2e-spec.ts` — full e2e
+- `test/smoke.ts` — post-deploy verification
+
+#### Frontend (Vitest)
+
+```
+frontend/
+├── src/
+│   ├── components/
+│   │   ├── business/
+│   │   │   └── deIdentity/
+│   │   │       ├── CustomizedStepper.tsx
+│   │   │       └── CustomizedStepper.test.tsx  ← test alongside component
+│   │   └── common/
+│   │       ├── PageLoader.tsx
+│   │       └── PageLoader.test.tsx
+│   ├── store/
+│   │   ├── auth/
+│   │   │   ├── auth.slice.ts
+│   │   │   └── auth.slice.test.ts
+│   │   └── slices/
+│   │       ├── jobsSlice.ts
+│   │       └── jobsSlice.test.ts
+│   ├── services/
+│   │   ├── api.ts
+│   │   └── api.test.ts
+│   ├── utils/
+│   │   ├── formatters.ts
+│   │   └── formatters.test.ts
+│   └── pages/
+│       └── Auth/
+│           ├── index.tsx
+│           ├── useAuthForm.ts
+│           └── useAuthForm.test.ts
+└── e2e/                                        ← Playwright
+    ├── auth.spec.ts
+    ├── deidentify.spec.ts
+    └── playwright.config.ts
+```
+
+**Convention:**
+- `*.test.ts` / `*.test.tsx` — unit/component tests, alongside source
+- `e2e/*.spec.ts` — Playwright tests (separate folder; can run independently)
+- `vitest.config.ts` at root — explicitly excludes e2e folder
+
+#### Naming
+
+| Pattern | Use |
+|---------|-----|
+| `<unit>.spec.ts` (BE) | Backend unit/integration |
+| `<unit>.test.ts` / `.tsx` (FE) | Frontend unit/component |
+| `<feature>.e2e-spec.ts` (BE) | Full backend e2e |
+| `<journey>.spec.ts` (FE) | Frontend Playwright e2e |
+| `smoke.ts` | Post-deploy smoke |
 
 ### 11.4 Mocking Strategy
 
