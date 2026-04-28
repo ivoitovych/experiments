@@ -508,7 +508,170 @@ Flow:
 
 ## 5. Functional Architecture
 
-*[Section 5 — to be filled]*
+This section describes **what the system does**, decomposed into modules and their responsibilities. It is technology-agnostic — implementation details are in Section 6.
+
+### 5.1 Module Boundaries
+
+The system is decomposed into seven functional modules, each with a clear responsibility and a stable interface:
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                      AUTHENTICATION                                  │
+│  Issue Magic Links, verify them, mint JWTs, validate JWTs           │
+│  Boundary: Owns user session lifecycle. No business data.           │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│                      USER MANAGEMENT                                 │
+│  Upsert users, retrieve profile, manage roles (planned)             │
+│  Boundary: Owns User identity. No PHI.                              │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│                      EMAIL DELIVERY                                  │
+│  Send Magic Link, contact form notifications, auto-replies          │
+│  Boundary: Owns SMTP integration. Templates are inputs.             │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│                  DE-IDENTIFICATION (CORE)                            │
+│  Manage Job lifecycle, orchestrate Presidio, persist results        │
+│  Boundary: Owns the Job entity and pipeline.                        │
+│  Sub-components:                                                     │
+│    ─ Wizard state management                                         │
+│    ─ File upload + parsing                                           │
+│    ─ Presidio Analyzer client                                        │
+│    ─ Presidio Anonymizer client                                      │
+│    ─ Results assembly + PDF export                                   │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│                      DASHBOARD                                       │
+│  Aggregate metrics, recent activity                                  │
+│  Boundary: Read-only view over Jobs and Users.                      │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│                      SYNTHETIC DATA (PLANNED)                        │
+│  Generate fake clinical records via Faker.js                        │
+│  Boundary: Independent of De-Identification module.                 │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│                      COMMON / CROSS-CUTTING                          │
+│  Guards, decorators, exception filters, interceptors                 │
+│  Boundary: Reusable across feature modules.                         │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+### 5.2 Module Responsibilities Matrix
+
+| Module | Owns | Reads | Calls | Emits Events |
+|--------|------|-------|-------|--------------|
+| **Auth** | JWT signing/verification, Magic Link tokens | User (via UserService) | Email (for delivery) | — |
+| **Users** | User entity (id, email) | — | — | — |
+| **Email** | SMTP transport, templates | — | External SMTP | — |
+| **De-Identification** | Job entity, pipeline state | User (via decorator) | Presidio Analyzer + Anonymizer | `'job.run'` |
+| **Dashboard** | — | Job, User | — | — |
+| **Synthetic Data** (planned) | SyntheticRecord entity | — | Faker.js (in-process) | — |
+| **Common** | Filters, guards, decorators | Request context | — | — |
+
+### 5.3 Inter-Module Dependencies
+
+```
+                    ┌────────────┐
+                    │   AUTH     │◄─────────────┐
+                    └──┬─────────┘              │
+                       │                         │ uses guard
+                       ▼                         │
+                    ┌────────────┐              │
+                    │   USERS    │              │
+                    └──┬─────────┘              │
+                       ▲                         │
+                       │ resolves user           │
+                       │                         │
+                    ┌──┴─────────┐              │
+                    │   EMAIL    │◄─── Auth uses for Magic Link delivery
+                    └────────────┘
+                       
+                    ┌────────────┐
+                    │ DE-IDENT   │── uses guard ───► AUTH
+                    └──┬─────────┘── reads user ───► USERS
+                       │── calls ──► PRESIDIO (external)
+                       ▼
+                    ┌────────────┐
+                    │ DASHBOARD  │── reads ────► JOBS, USERS
+                    └────────────┘
+
+DEPENDENCY DIRECTION:
+   Higher-level features depend on lower-level ones.
+   No circular dependencies.
+   Common is leaf-level, depended-upon by all.
+```
+
+### 5.4 Frontend Composition
+
+The frontend is structured by **page**, with shared components:
+
+```
+Public:
+  ─ LandingLayout
+    ─ LandingHeader, Hero, Stats, Features, Compliance, CTA, FAQ, Footer
+  ─ Contact (form)
+  ─ NotFound (404)
+
+Auth:
+  ─ AuthLayout
+    ─ LoginPage      (Magic Link request)
+    ─ TokenPage       (token verification handler)
+    ─ Inactivity      (session expired)
+
+Authenticated (under MainLayout):
+  ─ MainLayout
+    ─ Sidebar (navigation)
+    ─ Header (user info)
+    ─ Dashboard (planned)
+    ─ DeIdentify
+      ─ CustomizedStepper
+        ─ Step 1: Compliance
+        ─ Step 2: DataInput
+        ─ Step 3: Configuration
+        ─ Step 4: ReviewAndRun
+    ─ SyntheticData (planned)
+```
+
+### 5.5 Cross-Cutting Concerns
+
+These cut across modules and are factored into the Common layer:
+
+| Concern | Implementation |
+|---------|----------------|
+| **Authentication enforcement** | JwtAuthGuard, applied per-controller |
+| **User context propagation** | `@CurrentUser()` parameter decorator |
+| **Error formatting** | Global HttpExceptionFilter |
+| **Response envelope** | TransformInterceptor (designed, not currently global) |
+| **Validation** | Global ValidationPipe (whitelist + forbidNonWhitelisted) |
+| **Logging** | NestJS Logger per service (structured logs planned) |
+| **Configuration** | ConfigService (no `process.env` access in business code) |
+
+### 5.6 Functional Boundaries — What's Inside vs Outside
+
+**Inside the system (we own):**
+- All NestJS modules
+- Frontend SPA
+- MySQL database
+- Docker compose orchestration
+- CI/CD scripts
+
+**Outside the system (we depend on):**
+- Microsoft Presidio (Analyzer + Anonymizer) — versioned containers
+- SMTP provider — pluggable (Gmail / SES / Postmark)
+- Heroku platform — deployment target
+- GitHub Actions — CI runner
+- (Future) Cloud KMS for encryption keys
+- (Future) Object storage (S3) for large file uploads
+
+This boundary is enforced by **adapter pattern**: PresidioService is an adapter, EmailSenderService is an adapter. Replacing either should not require changes outside that adapter.
 
 ---
 
