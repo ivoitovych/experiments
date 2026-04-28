@@ -931,7 +931,158 @@ These policies are **proposed** and require legal review before production deplo
 
 ## 8. API Design
 
-*[Section 8 — to be filled]*
+### 8.1 API Style
+
+**Decision:** RESTful HTTP/JSON with Swagger/OpenAPI documentation.
+
+**Rationale:** REST is well-understood, tooling is universal, OpenAPI generates client types. GraphQL was considered but rejected for v1 — overkill for our endpoint count, and team less familiar.
+
+### 8.2 URL Conventions
+
+```
+Base URL:           /api
+Authentication:     /api/auth/*
+Users:              /api/users/*
+Jobs:               /api/jobs/*
+Results (renders):  /app/results/*    ← legacy from earlier design; should normalize to /api/results in v1.1
+Email:              /api/email/*
+Dashboard:          /app/dashboard    ← same comment
+```
+
+**Conventions:**
+- Resource names: plural nouns (`/jobs`, `/users`)
+- Sub-resources: nested under parent (`/jobs/:id/run`, `/jobs/:id/upload`)
+- Actions on a resource (non-CRUD): POST with verb (`/jobs/:id/run` rather than `PUT /jobs/:id?action=run`)
+- IDs: UUIDs in path
+
+### 8.3 HTTP Methods
+
+| Method | Use |
+|--------|-----|
+| GET | Read; idempotent; cacheable |
+| POST | Create; non-idempotent; returns 201 |
+| PATCH | Partial update; returns 200 |
+| PUT | Full replacement (not currently used) |
+| DELETE | Remove (planned for retention purges) |
+
+### 8.4 Authentication & Authorization
+
+**Authentication:** Bearer JWT in `Authorization: Bearer <token>` header.
+
+**Token issuance:** `POST /api/auth/login` (Magic Link) → email → `POST /api/auth/verify` → JWT.
+
+**Token lifetime:** 1 hour. Refresh: re-login (no refresh tokens in v1 — simplification).
+
+**Authorization:** Per-resource ownership. Each Job has a `userId`; service-layer guards reject access if `req.user.id !== job.userId`.
+
+**Decision:** No role-based access in v1. All authenticated users have analyst role implicitly. Roles are designed-for (User entity has `role` field) but not enforced. v2 will add admin/analyst/viewer.
+
+### 8.5 Response Envelope
+
+**Decision:** Domain objects returned directly (no wrapper). Errors use shared schema.
+
+**Success (2xx):**
+```json
+{
+  "id": "uuid",
+  "status": "completed",
+  ...
+}
+```
+
+**Error (4xx/5xx):**
+```json
+{
+  "statusCode": 400,
+  "message": "...",
+  "error": "Bad Request",
+  "timestamp": "2026-04-28T10:00:00.000Z",
+  "path": "/api/jobs"
+}
+```
+
+This shape is enforced by `HttpExceptionFilter`. The `timestamp` and `path` make logs/debugging easier.
+
+### 8.6 Validation & Error Codes
+
+**Validation:** Global `ValidationPipe` with:
+- `whitelist: true` — strips unknown fields
+- `forbidNonWhitelisted: true` — rejects unknown fields with 400
+- `transform: true` — transforms plain objects to class instances
+
+**Standard error codes:**
+
+| Status | Use | Example |
+|--------|-----|---------|
+| 400 | Validation error, malformed payload | `email` is not valid email |
+| 401 | Missing or invalid JWT | Token expired |
+| 403 | Authenticated but not authorized | Accessing another user's job |
+| 404 | Resource not found | Job UUID does not exist |
+| 409 | Conflict (rare; not used yet) | — |
+| 422 | Unprocessable entity (semantic validation) | (Reserved) |
+| 429 | Rate limited (planned) | Too many magic-link requests |
+| 500 | Server error | Unhandled exception |
+| 503 | Upstream unavailable | Presidio container down |
+
+### 8.7 Pagination, Filtering, Sorting
+
+**v1 minimal:** Most endpoints return all records for current user (small per-user dataset).
+
+**Future:**
+- `?page=1&pageSize=20` for list endpoints
+- `?status=completed` for filtering
+- `?sort=createdAt:desc` for sorting
+
+### 8.8 API Versioning
+
+**Decision:** Path-based versioning when needed.
+
+**v1:** `/api/...` (unversioned, implicit v1)
+
+**v2:** `/api/v2/...` when breaking changes are needed.
+
+**Rationale:** Path-based is simplest for SPA + curl; works with caching; visible in logs. Header-based versioning is more elegant but creates more debugging friction.
+
+**Backward compatibility window:** Once a v2 ships, v1 endpoints supported for ≥3 months.
+
+### 8.9 Documentation (Swagger / OpenAPI)
+
+**Single source of truth:** code-first via NestJS `@ApiOperation`, `@ApiResponse`, `@ApiBody`.
+
+**Available at:** `GET /api/docs` (Swagger UI) and `GET /api/docs-json` (OpenAPI JSON for client codegen).
+
+**Per Git rules:** Every endpoint must document at least one 2xx, one 4xx, one 5xx response.
+
+### 8.10 Public API Endpoints (Current State)
+
+| Method | Path | Auth | Purpose |
+|--------|------|:----:|---------|
+| POST | `/api/auth/login` | — | Request Magic Link by email |
+| GET  | `/api/auth/verify` | — | (Some implementations have this for token redirection) |
+| POST | `/api/auth/verify` | — | Exchange Magic Link token for JWT |
+| GET  | `/api/users/me` | JWT | Current user profile |
+| POST | `/api/jobs` | JWT | Create draft job |
+| GET  | `/api/jobs/latest-draft` | JWT | Resume the user's latest in-progress draft |
+| GET  | `/api/jobs/:id` | JWT | Read job (poll for status) |
+| PATCH | `/api/jobs/:id` | JWT | Update wizardState |
+| POST | `/api/jobs/:id/upload` | JWT | Upload text file (multipart) |
+| POST | `/api/jobs/:id/run` | JWT | Trigger async pipeline |
+| GET  | `/app/results/:id` | JWT | Render results JSON |
+| GET  | `/app/results/:id/export/pdf` | JWT | Download PDF audit |
+| GET  | `/app/results/:id/export/json` | JWT | Download JSON |
+| GET  | `/app/dashboard` | JWT | Dashboard metrics |
+| POST | `/api/email/contact` | — | Submit contact form |
+
+### 8.11 Cross-cutting API Concerns
+
+| Concern | Approach |
+|---------|----------|
+| **Idempotency** | GET, PATCH naturally idempotent. POST `/jobs/:id/run` is **not** idempotent — running twice would re-process. Consider idempotency keys in v2. |
+| **Concurrency** | TypeORM optimistic locking via `updatedAt` (planned). |
+| **Long-running ops** | `/jobs/:id/run` returns 202-style: returns immediately, work happens async. Client polls. (Future: WebSocket or Server-Sent Events.) |
+| **Large uploads** | Multipart `/jobs/:id/upload`, max 5 MB. Stored to disk briefly, then validated and discarded after parsing. |
+| **Rate limiting** | Not implemented. Planned: per-user, per-endpoint via `@nestjs/throttler`. |
+| **CORS** | Configured per-environment via `CORS_ORIGIN` env var. Production: app domain only. |
 
 ---
 
