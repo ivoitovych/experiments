@@ -1,0 +1,240 @@
+[Luisa] are ready you should be ready hi everyone i would like to present our orange team now i share my
+
+[Lyudmila] screen so you guys don't want to present the work we will be present but not present present
+[Lyudmila] okay okay cool cool we don't see nothing i'm not sure okay okay okay alexander i think you've done
+[Lyudmila] some very good job because you are today very positive i don't know like when i connect with
+[Lyudmila] the call he was so like smiling and i said okay he definitely have something cool to show he is
+[Lyudmila] positive all the time uh okay yeah it's good it's good but if it's also like have some good
+[Lyudmila] progress it's like double good uh louisa do you have any issues maybe i will start from the design
+
+[Natalia] side and then yeah please i will try again
+
+[Lyudmila] let's use english uh try to like go to the settings and add permission like it's a common
+
+[Natalia] issue yeah yeah we see your screen can i start here so to save all our time i will start from
+[Natalia] the design side um so now i would like to represent you our first step uh how i see on that screen in
+[Natalia] a little bit different way uh so um after clicking button analyze um user will be moved to the next
+[Natalia] page which will look like that so first you will see here the title of the page and the name of the
+[Natalia] document and status bar which will show you the number of entities uh processed entities and score
+[Natalia] you will see the document that will be original screen and will be highlighted just that
+[Natalia] identifiers that system could analyze and on the right side of the screen you will see detected
+[Natalia] entities and two types of sorting so one and it's kind of drop down and you can
+[Natalia] see like different ways of sorting and chips so you can all chips with title all will be
+[Natalia] default active and but you can turn off that and choose another one
+[Natalia] and here you will see the entities which were identified so when you hover uh some of cards
+[Natalia] you will see a kind of just a moment i have some issues so when you hover the card you will see
+[Natalia] that you can um redact uh the card and put some information inside
+[Natalia] like if you want to change the name for example or email you just click here
+[Natalia] into the input and click the button save and it should be shown on that screen
+[Natalia] identify they identified a screen so you can see the top bar just up the screen and you can just
+[Natalia] turn between screens very easily uh also you can see the different colors of the cards so this one
+[Natalia] it's kind of default included but you can easily exclude the card also if you put this button
+[Natalia] for example i will try to show you here exclude and you will see how card will change it will be
+[Natalia] it will have like a title unchanged and if you turn the ident the identified screen you will see
+[Natalia] kind of email i'm just dashboard but recently you talked about uh
+[Natalia] So we will think about that with our team again, because I think that information will be saved on frontend, yeah.
+[Natalia] Maybe we will refuse from this idea, I'm sorry.
+
+[Lyudmila] I don't see any security issue, but I have more questions about user experience.
+[Lyudmila] So this renaming stuff, yeah, when you edit something,
+[Lyudmila] it's like a dummy data or just renaming of the field in this identified document?
+[Lyudmila] For example, if I had, I don't know, a name Smith, should I change it to, I don't know,
+[Lyudmila] detected name? Or should I change it to Luda? What is the purpose? Because I'm not sure that I...
+
+[Natalia] It's that if you don't like how the system will
+[Natalia] change the name, you can change it to Luda.
+[Natalia] But if you want to change the data and you want to put your exact name or some numbers, or
+[Natalia] I don't know, it can be like a different address, you can leave it or change on your own address,
+[Natalia] I don't know. So different purpose, I just thought maybe it could be useful to interact with the
+
+[Lyudmila] document instantly. Yeah, I just think it's the next step.
+[Lyudmila] It's this data, how to say, like synthetic data. It's for synthetic data more useful.
+[Lyudmila] Here in this step...
+
+[Natalia] Maybe we will move this feature to the next step, why not?
+
+[Lyudmila] Yeah, for next step, it makes sense. Here, at least when I hear, I like that you're
+[Lyudmila] thinking differently, and it's very often very good cache, and I like it more than it was
+[Lyudmila] originally in my mind. But this one, yeah, this edit feature, I like that you put it in the side.
+[Lyudmila] I think it will be much more clear.
+[Lyudmila] We can navigate. But about this edit, not sure. And let's go back to this like crumb, so like
+[Lyudmila] this bubbles in the top. So Emma understands that this filters is limited, so we always will have
+
+[Natalia] this, I don't know, eight, six types. So no, for my side, my thought was kind of
+[Natalia] that chips shown which systems identified into this document. So if it would be a bigger document
+[Natalia] with a bigger number of entities, the system will show that all due to HIPAA restrictions,
+[Natalia] it should be 18. So due to this document, it's 12.
+[Natalia] Yeah, we know that...
+[Natalia] Developers can get all these types, right?
+[Natalia] Yeah, yeah, yeah. It's just example exact for this document. So in this document, 12.
+[Natalia] So here are 12 chips and 12 cards.
+
+[Lyudmila] Okay, and if more, it will be like...
+
+[Natalia] Yeah, you can scroll until the end, or if it will be long list, you can just sort by chips.
+[Natalia] So you can put...
+
+[Lyudmila] No, no, I'm only talking about this bubble. So we have now like eight, if it will have more.
+[Lyudmila] So it will be just extra row, or it will be scrollable side by side.
+
+[Natalia] So as I know, due to HIPAA restrictions, it should be 18.
+[Natalia] Yeah, so 18.
+[Natalia] Okay.
+
+[Lyudmila] Yeah, but in design, you have like not 18, you have one, two, three, like eight.
+
+[Natalia] 12. Now 12, because there are identified 12 in this document.
+[Natalia] When we'll have...
+[Natalia] Yeah, so...
+[Natalia] Ah, it will be... This frame is raw, so you will have the one more... It's like a layout.
+[Natalia] You will have one more line.
+
+[Lyudmila] Ah, raw. One more line. Okay.
+[Lyudmila] Yeah.
+[Lyudmila] Okay. Yeah, okay. So all this fine. I like it.
+[Lyudmila] The only things that I think this editing are not useful here, I don't really see use case.
+
+[Natalia] Ah, and also you can exclude. So yeah.
+[Natalia] Yeah, yeah. Exclude is fine.
+[Natalia] Exclude is fine. Yeah. Okay.
+[Natalia] Yeah, exclude is fine. Only this edit.
+[Natalia] Okay. Maybe I will try to apply editing in the next screen. Thank you for your attention.
+[Natalia] Yeah. Okay. Thank you.
+
+[Luisa] Luisa, did you figure out?
+[Luisa] Yes. Now I try again.
+
+[Lyudmila] Yeah, this permission stuff is always annoying when I... It's not very often. It's usually when you bought a new...
+[Lyudmila] Your computer or, I don't know, a reinstalled system, but now it's always tricky for me.
+
+[Luisa] I want to start by showing you what we had before.
+[Luisa] It's our last version of our app.
+[Luisa] And now we have...
+
+[Lyudmila] Oh, nice.
+
+[Luisa] ...design.
+[Luisa] Yeah, it looks fancy.
+[Luisa] And the design has...
+[Luisa] ...also changed since this was deployed.
+[Luisa] And we have search landing with stats blocks.
+[Luisa] There we have compliance frameworks.
+[Luisa] And we have FAQ section.
+[Luisa] Then our next step is get started.
+[Luisa] And we can sign in.
+[Luisa] We check our mail.
+[Luisa] We have see dashboard.
+[Luisa] Also, I want to show our token.
+
+[Lyudmila] Token means that your register is not needed.
+[Lyudmila] Not needed.
+[Lyudmila] Okay. Okay.
+
+[Luisa] Okay.
+
+[Lyudmila] It's better go to the sign-in page now.
+[Lyudmila] Like, if you're in the top in the URL, you will put, like, login and sign in.
+[Lyudmila] I think login.
+
+[Olexandr] We didn't have it previously in the previous session.
+[Olexandr] Ah, we tested it.
+[Olexandr] Okay.
+
+[Lyudmila] Then it's fine.
+[Lyudmila] Okay, good.
+
+[Luisa] Also, if we try expired token, we...
+[Luisa] Okay, wow.
+[Luisa] ...one errors get.
+[Luisa] Mm-hmm.
+[Luisa] Also, if we, when we, if user navigate to a road that doesn't exist, we get 404 error.
+[Luisa] Mm-hmm.
+[Luisa] Mm-hmm.
+[Luisa] Mm-hmm.
+[Luisa] Also, I can show our API.
+[Luisa] I can show API documentation.
+[Luisa] Mm-hmm.
+[Luisa] Slugger.
+[Luisa] Mm-hmm.
+[Luisa] You can see the structure.
+[Luisa] Mm-hmm.
+[Luisa] Yeah, okay.
+[Luisa] We are good with sluggers.
+[Luisa] Mm-hmm.
+[Luisa] And now, I want that Alexander show his part of code work.
+
+[Olexandr] Mm-hmm.
+[Olexandr] Okay.
+[Olexandr] Okay, well, we get started.
+[Olexandr] My task was his identity.
+[Olexandr] And the identity backend and frontend.
+[Olexandr] Now, I show how it works.
+[Olexandr] It works now only for HIPAA because other frameworks will be implemented in the next step.
+[Olexandr] Now, we choose HIPAA.
+[Olexandr] Continue.
+[Olexandr] We have two ways or put here text or upload files.
+[Olexandr] I choose upload file.
+[Olexandr] Because it's easier.
+[Olexandr] You can delete it.
+[Olexandr] Or in this step, if you, for example, lose internet connection or your token expired
+[Olexandr] or you download the page, you can start with the second step.
+[Olexandr] Okay.
+[Olexandr] Click next.
+[Olexandr] Choose the method.
+[Olexandr] We have two methods, safe harbor and
+[Olexandr] Mm-hmm.
+[Olexandr] If we choose safe harbor, we have entities.
+[Olexandr] Or you cannot fix it.
+[Olexandr] uh but if you choose this you can something change
+[Olexandr] okay next step you can choose the strategy default is redact but you can choose
+[Olexandr] other strategies and language default is english now instead of slider we have
+[Olexandr] three and recommended is balanced you can choose balance e analyze now we have this page but it's
+[Olexandr] not now like in figma because figma prepared just before the demo this page and we will fix
+
+[Lyudmila] this page on the next speak okay actually look great the only thing is is drop down
+[Lyudmila] drop down so like uh like decrease the area and then like expand and decrease it can you just you
+[Lyudmila] make it this no no this one drop downs you can just make it this regular drop down yeah like
+[Lyudmila] here yeah like you click and you see it's like not over usually the downs are hover over but
+
+[Olexandr] in your case it just decrease it's like a drop down it's like the accordion i used this yeah but
+
+[Lyudmila] in this case
+[Lyudmila] uh i i don't see it really makes sense to make here at cardical one i think it should be like
+[Lyudmila] a regular drop down this looks nice really nice it just um a bit confusing why so many
+[Lyudmila] moving parts like just hover over will be enough uh okay all right um let's start
+[Lyudmila] ah so it's connected to backend we can see yes of course
+
+[Olexandr] of course i like it
+[Olexandr] we can this that's copy and some here or download and we have such document
+[Olexandr] yes okay okay from my site that's all okay
+
+[Lyudmila] alexander can you show contact us form okay and contact us we fix it template
+[Lyudmila] that's yeah okay you mean email template yes
+
+[Olexandr] because the last time it was not good actually i remember i don't know does this connected to
+
+[Lyudmila] each team so once you send contact us form it will be good to send to this user to email like
+[Lyudmila] confirmation that your request can have been like received uh like somebody from support team will
+[Lyudmila] connect you soon you know
+[Lyudmila] like it's very often happened so if i send like left something in contact form i should get
+[Lyudmila] approval that my email have been received it's common approach but i think nobody show it so
+[Lyudmila] i'm not sure that you you you think about it yeah design looks nice i like it okay that's all
+[Lyudmila] all on my side yeah okay thank you i i know i was happy i i would also proud of such work
+[Lyudmila] really good that's all for our team okay perfect um okay then from my side yeah i like the demos
+[Lyudmila] like quite good progress um yeah actually very good progress it's once person like a lot of work
+[Lyudmila] is done um from my side next thursday in the same time i will
+[Lyudmila] create a call for pm we need some q a session because i don't really no i i just don't like
+[Lyudmila] like how the communication work i think it's awful it might be inside the team all good because i
+[Lyudmila] like the demo so i think there is at least some coordination look fine but from a client
+[Lyudmila] perspective it just like up it's totally for cup for for any team uh from development point of view
+[Lyudmila] uh one minute
+[Lyudmila] i think i had some some very common i think from development it's more or less fine
+[Lyudmila] yeah okay from development and don't have any changes
+[Lyudmila] uh for pm yeah i'll send invite you for next one day so sorry so they same time we will make it
+[Lyudmila] once if needed we will repeat it like once in two weeks for development please from today send
+[Lyudmila] pr for review same as we had before first to your teammates then for me um
+[Lyudmila] if any question to me please mention it into the like your team chat
+[Lyudmila] i check it every day not very often truly but checked um maybe any question to me now
+[Lyudmila] no okay thank you very much it was a great great work um yeah you know
+[Lyudmila] the next sprint yeah everybody have a good night evening thank you bye thank you thank you thank you
+[Lyudmila] bye
