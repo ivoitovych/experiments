@@ -318,7 +318,191 @@ Heroku app (single container: NestJS serves SPA + API)
 
 ## 4. User Journeys
 
-*[Section 4 — to be filled]*
+These journeys describe end-to-end user-facing flows. They drive component design and identify cross-system contracts.
+
+### 4.1 Journey: First-Time Sign-In (Magic Link)
+
+```
+ACTOR: New user (unauthenticated)
+GOAL:  Get into the application using only an email address
+
+┌─────────────────────────────────────────────────────────────────────┐
+│ Step 1. User opens https://app.example.com (Landing page)            │
+│         Sees Hero, Features, Compliance, FAQ. Clicks "Get Started". │
+├─────────────────────────────────────────────────────────────────────┤
+│ Step 2. User redirected to /auth/login                               │
+│         Sees email-only form (no password fields).                   │
+│         Enters email → Yup validation → Submit.                      │
+│         FE → POST /api/auth/login { email }                          │
+├─────────────────────────────────────────────────────────────────────┤
+│ Step 3. BE: AuthService → upsert User by email → sign JWT            │
+│         BE: EmailModule sends Magic Link email to user.              │
+│         FE: Shows "Check your inbox" view with Resend option.        │
+├─────────────────────────────────────────────────────────────────────┤
+│ Step 4. User opens email, clicks Sign-In button.                     │
+│         Browser opens /auth/verify/token/:token                      │
+│         FE: TokenPage extracts token from URL.                       │
+│         FE: dispatch(verifyMagicLink(token))                         │
+│             → POST /api/auth/verify { token }                        │
+│             ← { accessToken: "..." }                                  │
+│         FE: Stores accessToken + sessionStartedAt in localStorage.   │
+│             → GET /api/users/me  (with Bearer)                       │
+│             ← { id, email, createdAt }                                │
+│         FE: dispatch(setUser(...))                                   │
+├─────────────────────────────────────────────────────────────────────┤
+│ Step 5. FE redirects to /app (Dashboard).                            │
+│         User is now authenticated. Session = 1 hour from now.        │
+└─────────────────────────────────────────────────────────────────────┘
+
+Failure paths:
+- Invalid email format → form validation, no API call
+- Email not deliverable → user sees "check inbox" but no email arrives
+  (no anti-enumeration in current design — see Security section)
+- Token expired (>15 min) or invalid → /auth/login with error
+- Token consumed already → same as expired
+- Network failure during /verify → user sees error, can retry
+```
+
+### 4.2 Journey: De-identify a Document (Happy Path)
+
+```
+ACTOR: Authenticated user (Clinical Data Analyst)
+GOAL:  De-identify clinical text using HIPAA Safe Harbor and download a PDF
+
+┌─────────────────────────────────────────────────────────────────────┐
+│ Step 1. User clicks "De-Identify" in sidebar → /app/de-identify     │
+│         FE: GET /api/jobs/latest-draft                               │
+│             ← Either existing draft OR creates new draft via POST   │
+├─────────────────────────────────────────────────────────────────────┤
+│ Step 2. WIZARD STEP 1 — Compliance                                   │
+│         Sees framework selector: HIPAA / GDPR / UK DPA / Swiss FADP │
+│         Selects HIPAA. Clicks Next.                                  │
+│         FE: PATCH /api/jobs/:id { wizardState: { framework } }      │
+├─────────────────────────────────────────────────────────────────────┤
+│ Step 3. WIZARD STEP 2 — DataInput                                    │
+│         Choice: paste text OR drag-drop file (txt/json/csv ≤5MB).   │
+│         Validates 50-5000 chars (Yup).                               │
+│         FE saves text to localOriginalTexts (sessionStorage).        │
+│         FE: PATCH /api/jobs/:id { wizardState: { input, fileName } }│
+│         (For file upload: POST /api/jobs/:id/upload — multipart)    │
+├─────────────────────────────────────────────────────────────────────┤
+│ Step 4. WIZARD STEP 3 — Configuration                                │
+│         HIPAA branch: select Method (Safe Harbor or Expert Determ.).│
+│         Safe Harbor: 18 entities locked, default strategy = Redact. │
+│         Expert: user toggles entities, selects per-entity strategy. │
+│         Selects threshold preset: Conservative/Balanced/Aggressive. │
+│         Selects language (default English).                          │
+│         FE: PATCH /api/jobs/:id { wizardState: { configSettings } } │
+├─────────────────────────────────────────────────────────────────────┤
+│ Step 5. WIZARD STEP 4 — Review & Run                                 │
+│         User clicks "Analyze".                                       │
+│         FE: POST /api/jobs/:id/run                                   │
+│         BE: emits 'job.run' event → processJob() async               │
+│           1) Maps HIPAA entities → Presidio entity types             │
+│           2) POST {analyzerUrl}/analyze                              │
+│           3) POST {anonymizerUrl}/anonymize                          │
+│           4) UPDATE jobs SET status=COMPLETED, anonymizedText, ...  │
+│         FE polls GET /api/jobs/:id every 2s                          │
+│         When status=COMPLETED:                                       │
+│           FE: GET /app/results/:id                                   │
+│         Shows side-by-side: original (with highlights) | anonymized.│
+├─────────────────────────────────────────────────────────────────────┤
+│ Step 6. EXPORT                                                       │
+│         User clicks Download → drop-up menu: Text or PDF.            │
+│         For PDF: GET /app/results/:id/export/pdf                     │
+│         BE: PDFKit generates branded compliance report:              │
+│           - Title, Date, Framework, Method                           │
+│           - Original vs Anonymized text                              │
+│           - Per-entity audit table (count, score)                    │
+│           - HIPAA 18 identifiers checklist with applied/skipped     │
+│           - Processing metadata                                       │
+│         User downloads PDF.                                          │
+└─────────────────────────────────────────────────────────────────────┘
+
+Failure paths:
+- Network drop mid-wizard → user can resume via getLatestDraft (state in BE + sessionStorage)
+- Token expires during wizard → 401 → redirect to /session-expired → re-login → resume
+- Presidio call fails → job marked FAILED → user sees error in Step 4 → can Retry
+- Job stuck PROCESSING > 5 min → watchdog marks FAILED → user can Retry
+```
+
+### 4.3 Journey: Session Expiration
+
+```
+ACTOR: Authenticated user past 1-hour session
+GOAL:  Get back into the app gracefully without losing in-progress work
+
+Trigger paths:
+A) Background poll in MainLayout (every 30s) detects sessionStartedAt + 1h ≤ now
+B) API call returns 401 (token expired)
+C) User opens app after long pause → ProtectedRoute checks expiration
+
+Flow:
+┌─────────────────────────────────────────────────────────────────────┐
+│ 1. Detection (any of A/B/C above)                                    │
+│ 2. FE: dispatch(logout()) — clears localStorage, store               │
+│ 3. FE: navigate(ROUTES.SESSION_EXPIRED)                              │
+│ 4. /session-expired page renders branded illustration + CTA          │
+│    "Your session has expired. Sign in again."                        │
+│ 5. User clicks → /auth/login                                         │
+│ 6. After successful re-login → /app/dashboard                        │
+│    BUT in-flight Wizard state? If draft existed in DB, getLatestDraft│
+│    restores it. Original text in sessionStorage may persist.         │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+### 4.4 Journey: Compliance Officer Reviewing an Audit Trail
+
+```
+ACTOR: Compliance Officer (different user, may have analyst role)
+GOAL:  Verify that a specific document was de-identified correctly per HIPAA
+
+Flow:
+1. Officer logs in (Magic Link) — own account
+2. Navigates to /app/dashboard (planned) → sees recent jobs list
+3. Clicks a job → Results view
+4. Reviews framework, method, entity counts
+5. Clicks Download PDF
+6. PDF includes:
+   - Job ID (UUID — for traceability)
+   - User (analyst's email)
+   - Timestamp
+   - Framework: HIPAA, Method: Safe Harbor
+   - 18-identifier checklist with detection counts
+   - Processing duration, model version (Presidio)
+7. PDF is signed/timestamped (planned for v2)
+```
+
+### 4.5 Journey: Generate Synthetic Data (Planned)
+
+This journey is **planned but not implemented**. Captured here as design intent.
+
+```
+ACTOR: Researcher
+GOAL:  Generate synthetic patient records resembling real distribution
+
+Flow:
+1. Navigate /app/synthetic-data
+2. Configure: number of records, locale, entity types to generate
+3. Submit → BE generates via Faker.js → returns CSV/JSON
+4. Download
+```
+
+### 4.6 Journey: Contact-Form Inquiry
+
+```
+ACTOR: Anonymous visitor (from Landing page)
+GOAL:  Send inquiry to support
+
+Flow:
+1. /contact form: first name, last name, email, company, message
+2. Yup validation on submit
+3. POST /api/email/contact
+4. BE: ContactForm DTO → EmailSenderService.sendContactForm()
+   a) Notify admin (admin-notification template)
+   b) Auto-reply receipt to user (contact-receipt template) ← Sprint 3 task
+5. FE shows "Submitted" success state
+```
 
 ---
 
