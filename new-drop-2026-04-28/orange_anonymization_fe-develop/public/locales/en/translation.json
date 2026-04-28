@@ -1,0 +1,563 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "reset": "Reset",
+    "search": "Search",
+    "noData": "No data available",
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "or": "or",
+    "copy": "Copy",
+    "download": "Download",
+    "retry": "Retry",
+    "continue": "Continue",
+    "finish": "Finish",
+    "analyze": "Analyze"
+  },
+  "nav": {
+    "brand": "Clinical Data Studio",
+    "landing-brand": "De-ID Studio",
+    "solutions": "Solutions",
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us",
+    "getStarted": "Get Started",
+    "dashboard": "Dashboard",
+    "deIdentify": "De-Identify",
+    "syntheticData": "Synthetic Data",
+    "settings": "Settings",
+    "logout": "Logout",
+    "logoutDialog": {
+      "title": "Sign out?",
+      "message": "You will be signed out of your account.",
+      "reassurance": "You can sign back in at any time.",
+      "cancel": "Cancel",
+      "confirm": "Sign out"
+    },
+    "menuOpen": "Open navigation menu",
+    "menuClose": "Close navigation menu"
+  },
+  "sidebar": {
+    "brand": "De-ID Studio",
+    "brandSubtitle": "De-ID & Synthesis",
+    "signOut": "Sign out"
+  },
+  "header": {
+    "dashboard": {
+      "title": "Dashboard",
+      "subtitle": "Track your de-identification activity"
+    },
+    "deIdentify": {
+      "title": "New Analysis",
+      "subtitle": "Configure your anonymization pipeline"
+    },
+    "syntheticData": {
+      "title": "Synthetic Data",
+      "subtitle": "Generate synthetic datasets"
+    }
+  },
+  "landing": {
+    "nav": {
+      "brand": "De-ID Studio",
+      "solutions": "Solutions",
+      "contactUs": "Contact Us",
+      "getStarted": "Get started"
+    },
+    "hero": {
+      "title": "Clinical Data De-Identification & Synthesis Studio",
+      "subtitle": "Enterprise-grade PII detection and anonymization for healthcare organizations",
+      "cta": "Get started",
+      "trustBadges": {
+        "hipaa": "HIPAA Compliant",
+        "gdpr": "GDPR Certified",
+        "accuracy": "99.9% Accuracy"
+      }
+    },
+    "stats": {
+      "accuracy": { "value": "99.9%", "label": "Detection Accuracy" },
+      "identifiers": { "value": "18", "label": "HIPAA Identifiers Covered" },
+      "processingTime": { "value": "< 1 min", "label": "Average Processing Time" },
+      "compliance": { "value": "100%", "label": "Compliance Coverage" }
+    },
+    "features": {
+      "title": "Protect Patient Privacy Without Compromising Data Value",
+      "subtitle": "Comprehensive tools for healthcare organizations to securely manage clinical data",
+      "cards": {
+        "detection": {
+          "title": "Deep Signal Detection",
+          "description": "Align with global regulations through a single adaptive compliance layer."
+        },
+        "synthetic": {
+          "title": "Synthetic Intelligence Layer",
+          "description": "Generate high-fidelity synthetic datasets that preserve patterns — without exposing real identities."
+        },
+        "compliance": {
+          "title": "Unified Compliance Engine",
+          "description": "Align with global regulations through a single adaptive compliance layer."
+        },
+        "privacy": {
+          "title": "Adaptive Privacy Shield",
+          "description": "Continuously anonymize and protect data while maintaining analytical value."
+        }
+      }
+    },
+    "dataIntelligence": {
+      "title": "From Data Intelligence to Compliance",
+      "subtitle": "Seamlessly transition from data intelligence to regulatory compliance with built-in frameworks tailored to your industry."
+    },
+    "complianceFrameworks": {
+      "title": "Built for Compliance",
+      "subtitle": "Choose from industry-standard regulatory frameworks or create your own custom compliance profile",
+      "frameworks": {
+        "gdpr": {
+          "badge": "EU GDPR",
+          "title": "General Data Protection Regulation",
+          "entities": "11 entity types"
+        },
+        "hipaa": {
+          "badge": "HIPAA",
+          "title": "Health Insurance Portability and Accountability Act",
+          "entities": "17 entity types"
+        },
+        "ukDpa": {
+          "badge": "UK DPA",
+          "title": "UK Data Protection and Investigatory Powers",
+          "entities": "9 entity types"
+        },
+        "swissDsg": {
+          "badge": "Swiss DSG",
+          "title": "Swiss Federal Act on Data Protection",
+          "entities": "8 entity types"
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Protect Your Clinical Data?",
+      "subtitle": "Start de-identifying and synthesizing healthcare data in minutes with our enterprise-grade platform",
+      "button": "Get started"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Got questions? We've got answers. Find everything you need to know about using our platform, plans, and features.",
+      "items": {
+        "industries": {
+          "question": "Do you have GDPR complience?",
+          "answer": "Yes. Clinical Data Studio fully supports GDPR requirements for personal data protection. Our platform automatically detects and anonymizes PII according to GDPR standards, ensuring your organization meets EU data protection obligations while maintaining full data utility for analysis and research."
+        },
+        "customSolutions": {
+          "question": "Do you have HIPPA complience?",
+          "answer": "Yes. We provide full HIPAA compliance support with two de-identification methods: Safe Harbor (removing all 18 PHI identifiers) and Expert Determination (statistical risk-based approach with justification). Both methods produce audit-ready compliance reports accepted by healthcare regulatory bodies."
+        },
+        "support": {
+          "question": "Can I export the anonymized or synthetic data after processing?",
+          "answer": "Yes. After processing, you can download your anonymized or synthetic data in PDF format. A compliance report with full audit trail is also available for download directly from the results screen."
+        },
+        "implementation": {
+          "question": "What are the pricing plans?",
+          "answer": "We offer a free trial so you can explore the platform before purchasing. For enterprise pricing and volume-based plans, reach out to our team and we'll find the best option for your organization."
+        }
+      }
+    },
+    "contact": {
+      "title": "Contact Us",
+      "subtitle": "Have questions? We'd love to hear from you.",
+      "info": {
+        "question": "Have questions about data anonymization or compliance?",
+        "hereToHelp": "We're here to help.",
+        "description": "Our team of experts is ready to help you navigate HIPAA, GDPR, and other privacy regulations.",
+        "responseTime": "We respond within 24 hours",
+        "email": "info@deid.studio"
+      },
+      "form": {
+        "title": "Send us a message",
+        "description": "We'll get back to you within 24 hours",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email Address",
+        "organization": "Organization",
+        "message": "Message",
+        "messagePlaceholder": "Tell us about your use case...",
+        "submit": "Send Message",
+        "submitting": "Sending...",
+        "success": "Thank you for reaching out",
+        "sent": "Message sent!",
+        "successSubtitle": "We'll get back to you within 24 hours.",
+        "backToForm": "Back to form",
+        "validation": {
+          "firstNameRequired": "First name is required",
+          "lastNameRequired": "Last name is required",
+          "emailRequired": "Email address is required",
+          "emailInvalid": "Please enter a valid email address",
+          "messageRequired": "Message is required",
+          "messageMin": "Message must be at least 20 characters"
+        }
+      }
+    },
+    "footer": {
+      "copyright": "© 2026 Clinical Data Studio. All rights reserved.",
+      "description": "Enterprise-grade clinical data de-identification and synthetic data generation platform",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "sections": {
+        "product": "PRODUCT",
+        "resources": "RESOURCES",
+        "company": "COMPANY"
+      },
+      "links": {
+        "features": "Features",
+        "pricing": "Pricing",
+        "integrations": "Integrations",
+        "documentation": "Documentation",
+        "guides": "Guides",
+        "blog": "Blog",
+        "support": "Support",
+        "about": "About",
+        "careers": "Careers",
+        "contact": "Contact",
+        "legal": "Legal"
+      }
+    }
+  },
+  "auth": {
+    "title": "Sign in to De-ID Studio",
+    "subtitle": "Enter your email to receive a sign-in link",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "requestLink": "Send Magic Link",
+    "requesting": "Sending...",
+    "checkEmail": "Check your inbox",
+    "linkSent": "We sent a sign-in link to <email>{{email}}</email>",
+    "didntReceive": "Didn't receive it? Check spam or",
+    "resend": "Resend link",
+    "backToSignIn": "Back to Sign in",
+    "branding": {
+      "name": "De-ID Studio",
+      "tagline": "De-ID & Synthesis"
+    },
+    "back": "Back",
+    "validation": {
+      "emailRequired": "Enter valid email"
+    },
+    "errors": {
+      "requestFailed": "Failed to send magic link. Please try again.",
+      "verifyFailed": "Invalid or expired magic link."
+    }
+  },
+  "inactivity": {
+    "title": "Your session has expired",
+    "descriptionLineOne": "Your session timed out due to inactivity.",
+    "descriptionLineTwo": "Please sign in again to continue.",
+    "signInAgain": "Sign in again",
+    "branding": {
+      "name": "De-ID Studio",
+      "tagline": "De-ID & Synthesis",
+      "logoAlt": "De-ID Studio logo",
+      "illustrationAlt": "Session expired"
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist or may have been moved.",
+    "home": "Go to home",
+    "branding": {
+      "name": "De-ID Studio",
+      "tagline": "De-ID & Synthesis",
+      "logoAlt": "De-ID Studio logo",
+      "illustrationAlt": "404"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Overview of your de-identification activity",
+    "metrics": {
+      "totalDocuments": "Total Documents",
+      "entitiesDetected": "Entities Detected",
+      "anonymizationRate": "Anonymization Rate",
+      "syntheticRecords": "Synthetic Records"
+    },
+    "recentActivity": {
+      "title": "Recent Activity",
+      "noActivity": "No recent activity",
+      "columns": {
+        "document": "Document",
+        "status": "Status",
+        "entities": "Entities",
+        "date": "Date"
+      }
+    },
+    "chart": {
+      "activityTitle": "Processing Activity (Last 30 Days)",
+      "entityDistribution": "Entity Type Distribution",
+      "documents": "Documents",
+      "entities": "Entities"
+    }
+  },
+  "deIdentify": {
+    "title": "De-Identify Clinical Text",
+    "subtitle": "Detect and anonymize PII in clinical documents",
+    "languageSelect": {
+      "search": "Search language...",
+      "recentlyUsed": "RECENTLY USED",
+      "allLanguages": "ALL LANGUAGES",
+      "noLanguages": "No languages found",
+      "autoDetected": "Auto-detected"
+    },
+    "steps": {
+      "compliance": "Compliance",
+      "dataInput": "Data Input",
+      "configuration": "Configuration",
+      "reviewAndRun": "Review & Run"
+    },
+    "framework": {
+      "title": "Select Compliance Framework",
+      "subtitle": "Ensure all data handling meets regulatory requirements.",
+      "hipaa": {
+        "title": "HIPAA",
+        "description": "Safe Harbor / Expert Determination",
+        "tag": "US Healthcare"
+      },
+      "euGdpr": {
+        "title": "EU GDPR",
+        "description": "General Data Protection Regulation",
+        "tag": "European Union"
+      },
+      "ukGdpr": {
+        "title": "UK GDPR",
+        "description": "UK General Data Protection Regulation",
+        "tag": "United Kingdom"
+      },
+      "swissFadp": {
+        "title": "Swiss FADP",
+        "description": "Federal Act on Data Protection",
+        "tag": "Switzerland"
+      }
+    },
+    "input": {
+      "title": "Enter Your Data",
+      "subtitle": "Paste text or upload a file to anonymize",
+      "label": "Clinical Text",
+      "placeholder": "Paste your text here — minimum 50 characters required",
+      "sampleText": "Load Sample Text",
+      "characterCount": "{{count}} / 5,000 characters",
+      "tabs": {
+        "text": "Enter Text",
+        "file": "Upload File"
+      },
+      "upload": {
+        "title": "Upload your file",
+        "dragDrop": "Drag & drop",
+        "replace": "Replace file",
+        "browse": "Browse file",
+        "supported": "Supported formats: .txt, .pdf — max 5 MB",
+        "required": "Upload a file to continue"
+      },
+      "validation": {
+        "required": "Please enter clinical text to analyze",
+        "minLength": "Text must be at least 50 characters",
+        "tooLong": "Text cannot exceed 5000 characters",
+        "unsupportedFormat": "Unsupported format. Please upload .txt or .pdf",
+        "fileTooLarge": "File is too large. Max size is 5 MB"
+      }
+    },
+    "settings": {
+      "title": "Configure De-Identification",
+      "subtitle": "Choose how patient data will be anonymized under HIPAA",
+      "sections": {
+        "method": "1. Choose Method",
+        "identifiers": "2. Applied Identifiers",
+        "output": "3. Output Settings"
+      },
+      "method": {
+        "safeHarbor": {
+          "title": "Safe Harbor",
+          "description": "Automatically removes all 18 HIPAA identifiers",
+          "comment": "Best for standard HIPAA workflows"
+        },
+        "expertDetermination": {
+          "title": "Expert Determination",
+          "description": "Customize which identifiers to remove",
+          "comment": "Requires expert validation before use"
+        },
+        "recommended": "Recommended"
+      },
+      "detection": {
+        "title": "Detection sensitivity",
+        "subtitle": "Controls how carefully the system detects sensitive data.",
+        "recommended": "Recommended",
+        "recommendedNote": "Balanced is recommended for most documents.",
+        "thresholds": {
+          "conservative": {
+            "title": "Conservative",
+            "description": "Fewer false alerts",
+            "info": "Detects only obvious identifiers. Best for structured data."
+          },
+          "balanced": {
+            "title": "Balanced",
+            "description": "Recommended for most documents",
+            "info": "Detects most sensitive entities while keeping false positives manageable."
+          },
+          "aggressive": {
+            "title": "Aggressive",
+            "description": "Catches potentially sensitive data",
+            "info": "Catches potentially sensitive data — may include false positives"
+          }
+        }
+      },
+      "strategies": {
+        "title": "Strategy",
+        "categories": {
+          "remove": "REMOVE",
+          "replace": "REPLACE",
+          "protect": "PROTECT"
+        },
+        "redact": {
+          "title": "Redact — Remove entirely",
+          "description": "Replaces data with [REDACTED]"
+        },
+        "replace": {
+          "title": "Replace — Use placeholder",
+          "description": "Uses labels like [NAME], [DATE]"
+        },
+        "synthetic": {
+          "title": "Synthetic — Generate fake values",
+          "description": "Generates realistic fake values"
+        },
+        "mask": {
+          "title": "Mask — Hide partially",
+          "description": "Hides parts of the value"
+        },
+        "hash": {
+          "title": "Hash — Encrypt irreversibly",
+          "description": "Converts to irreversible hash, preserves uniqueness"
+        }
+      },
+      "entityTypes": "Entity Types to Detect",
+      "confidence": "Minimum Confidence Score",
+      "language": "Language",
+      "languageSelect": {
+        "autoDetected": "Auto-detected",
+        "search": "Search language...",
+        "recentlyUsed": "RECENTLY USED",
+        "allLanguages": "ALL LANGUAGES",
+        "noLanguages": "No languages found"
+      },
+      "identifiers": {
+        "title": "All 18 HIPAA identifiers will be removed",
+        "description": "This includes names, dates, contact details, account numbers, medical identifiers, biometric data, and other HIPAA-defined identifiers.",
+        "customize": "Customize identifiers",
+        "fixed": "18 identifiers included",
+        "customizeSubtitle": "Select which identifiers you want to remove",
+        "fixedSubtitle": "All identifiers are fixed in Safe Harbor mode",
+        "expertTooltip": "Switch to Expert Determination to customize",
+        "groups": {
+          "personal": "PERSONAL INFORMATION",
+          "contact": "CONTACT INFORMATION",
+          "location": "LOCATION DATA",
+          "financial": "FINANCIAL INFORMATION",
+          "medical": "MEDICAL IDENTIFIERS",
+          "technical": "TECHNICAL IDENTIFIERS",
+          "biometric": "BIOMETRIC & UNIQUE"
+        },
+        "items": {
+          "names": "Names",
+          "dates": "Dates",
+          "fax": "Fax",
+          "email": "Email",
+          "phone": "Phone",
+          "address": "Address",
+          "geographic": "Geographic data",
+          "ssn": "SSN",
+          "account": "Account number",
+          "medical": "Medical record",
+          "health": "Health plan",
+          "beneficiary": "Beneficiary",
+          "ip": "IP address",
+          "device": "Device ID",
+          "url": "URL",
+          "fingerprints": "Fingerprints",
+          "photos": "Face photos",
+          "vehicle": "Vehicle ID",
+          "certificate": "Certificate"
+        }
+      }
+    },
+    "results": {
+      "title": "De-Identification Results",
+      "analyzing": "Analyzing...",
+      "failed": "Anonymization Failed",
+      "retry": "Retry",
+      "original": "Original Text",
+      "originalSubtitle": "Original text with detected entities highlighted",
+      "anonymized": "Anonymized Text",
+      "anonymizedSubtitle": "De-identified text",
+      "entities": "Detected Entities",
+      "entityColumns": {
+        "type": "Entity Type",
+        "text": "Original Value",
+        "replacement": "Replacement",
+        "confidence": "Confidence",
+        "position": "Position"
+      },
+      "download": "Download",
+      "copy": "Copy",
+      "processAnother": "Process Another Document",
+      "stats": {
+        "entitiesFound": "{{count}} entities found",
+        "processingTime": "Processed in {{time}}ms"
+      }
+    }
+  },
+  "syntheticData": {
+    "title": "Synthetic Data Generation",
+    "subtitle": "Generate realistic synthetic patient records",
+    "settings": {
+      "title": "Generation Settings",
+      "recordCount": "Number of Records",
+      "recordCountHelper": "Generate between 1 and 1000 records",
+      "entityTypes": "Entity Types to Generate",
+      "locale": "Locale / Region",
+      "locales": {
+        "en_US": "English (US)",
+        "en_GB": "English (UK)",
+        "es_ES": "Spanish (Spain)",
+        "de_DE": "German",
+        "fr_FR": "French"
+      },
+      "generate": "Generate Synthetic Data",
+      "generating": "Generating...",
+      "validation": {
+        "recordCountRequired": "Record count is required",
+        "recordCountMin": "Minimum 1 record",
+        "recordCountMax": "Maximum 1000 records"
+      }
+    },
+    "results": {
+      "title": "Generated Records",
+      "download": "Download CSV",
+      "downloadJson": "Download JSON",
+      "columns": {
+        "index": "#",
+        "entityType": "Entity Type",
+        "value": "Generated Value",
+        "locale": "Locale"
+      },
+      "noData": "No synthetic data generated yet"
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "network": "Network error. Please check your connection.",
+    "unauthorized": "You are not authorized to perform this action.",
+    "notFound": "The requested resource was not found.",
+    "serverError": "Server error. Please try again later.",
+    "presidioUnavailable": "Presidio service is currently unavailable. Please try again."
+  }
+}

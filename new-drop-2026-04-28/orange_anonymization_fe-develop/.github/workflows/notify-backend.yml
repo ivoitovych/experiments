@@ -1,0 +1,18 @@
+name: Notify backend to redeploy
+
+on:
+  push:
+    branches: [develop]
+
+jobs:
+  notify:
+    name: Trigger backend unified build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger backend deployment workflow
+        run: |
+          curl -sf -X POST \
+            -H "Authorization: token ${{ secrets.GH_PAT }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/ZenBit-Tech/orange_anonymization_be/actions/workflows/unified-build.yml/dispatches" \
+            -d '{"ref":"dev"}'
