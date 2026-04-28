@@ -677,7 +677,134 @@ This boundary is enforced by **adapter pattern**: PresidioService is an adapter,
 
 ## 6. Technical Architecture
 
-*[Section 6 — to be filled]*
+This section documents **technology choices and patterns**, with rationale.
+
+### 6.1 Technology Stack — Decision Table
+
+| Layer | Technology | Version | Rationale | Alternatives Rejected |
+|-------|-----------|---------|-----------|----------------------|
+| **Frontend framework** | React | 19 | Most familiar to team; vast ecosystem; strong TypeScript support | Vue (smaller team experience), Svelte (less mature ecosystem) |
+| **Frontend bundler** | Vite | 7 | Fast HMR, modern tooling, ESM-native | Webpack (slower DX), Parcel (less common) |
+| **Frontend state** | Redux Toolkit + redux-persist | 2.x | Predictable state for complex wizard, sessionStorage persistence for in-progress draft | Zustand/Jotai (smaller scale, but team familiar with RTK), MobX (rejected: imperative model conflicts with RSC) |
+| **UI library** | Material UI (MUI) | 7 | Accessible, themable, dense ecosystem; medical-software aesthetic | Chakra (smaller component set), Tailwind alone (slower for complex UI) |
+| **Forms** | react-hook-form + Yup | 7.x / 1.x | Performant (uncontrolled), schema-based validation | Formik (more re-renders), zod (later candidate) |
+| **i18n** | react-i18next + http-backend | 14.x / 2.x | De-facto standard for React i18n; lazy-load translation files | react-intl (more verbose), Lingui (smaller community) |
+| **PDF rendering** | pdfjs-dist | latest | Display PDFs in-app (planned for receipt preview) | PDFKit-only (server-side only) |
+| **Backend framework** | NestJS | 10 | Modular DI architecture; class-based; built-in Swagger; TypeScript-first | Express alone (no structure), Fastify (less ecosystem at our scale) |
+| **ORM** | TypeORM | 0.3 | Decorator-based; works well with Nest; schema-first or code-first | Prisma (additional generation step), Sequelize (older API) |
+| **Database** | MySQL | 8 | Familiar; widely supported on Heroku; sufficient for scale | PostgreSQL (better JSON, but team chose MySQL), SQLite (no clustering) |
+| **Authentication** | Passport JWT + custom Magic Link | 4 / — | Industry-standard JWT pattern; passwordless reduces attack surface | Auth0/Clerk (cost), session cookies (CSRF complexity) |
+| **PII engine** | Microsoft Presidio | latest | Open-source, pre-trained, used in production | AWS Comprehend Medical (cost, lock-in), Google DLP (lock-in) |
+| **Email** | nodemailer + @nestjs-modules/mailer | 6 / 2 | Flexible SMTP; works with any provider | SendGrid SDK (lock-in), AWS SES SDK (lock-in for v1) |
+| **Container** | Docker / docker-compose | 24+ | Standard packaging; reproducible local + production | LXC (heavier), no containers (envrionment drift) |
+| **CI/CD** | GitHub Actions | — | Free for public repos; native GitHub integration | CircleCI / GitLab CI (more setup), Jenkins (overhead) |
+| **Hosting** | Heroku Container Registry | — | Simple; Docker-native; cheap for MVP | AWS Fargate (more setup), DigitalOcean App Platform (similar but team chose Heroku) |
+| **Test framework** | Vitest (FE) + Jest (BE) | 1.x / 29 | Vitest matches Vite; Jest is standard for NestJS | Mocha (older API), Playwright (e2e only) |
+
+### 6.2 Architectural Patterns
+
+**Backend:**
+
+| Pattern | Where Applied | Why |
+|---------|---------------|-----|
+| **Modular Monolith** | Whole NestJS app | Single deployable unit, but internal modules with clear boundaries. Fits team size. |
+| **Dependency Injection** | NestJS-wide | Testability, loose coupling, swap implementations |
+| **Repository Pattern** | TypeORM `Repository<Entity>` injection | Persistence abstraction |
+| **Adapter Pattern** | PresidioService, EmailSenderService | Wrap external APIs behind own interface |
+| **Event-Driven** | EventEmitter2 for `'job.run'` | Async processing without blocking HTTP request |
+| **Pipeline / Chain** | Job processing (analyze → resolve overlaps → anonymize → save) | Clear sequential steps, easy to extend |
+| **DTO Validation** | class-validator decorators | Centralized input validation at boundary |
+| **Global Filter** | HttpExceptionFilter | Uniform error response shape |
+| **Strategy Pattern** | Anonymization operators (replace, redact, hash, mask) | Pluggable algorithms |
+
+**Frontend:**
+
+| Pattern | Where Applied | Why |
+|---------|---------------|-----|
+| **Container/Presentational split** | `pages/` vs `components/` | Separation of routing/state from UI |
+| **Custom Hooks** | useAuth, useMainLayout, useSidebar | Logic reuse, separation from rendering |
+| **Slice Pattern** | Redux Toolkit slices | Co-located reducers, actions, selectors |
+| **Thunks** | Async API calls | Encapsulate loading/error states |
+| **Lazy Loading** | React.lazy + Suspense | Code-splitting per route |
+| **Selector Pattern** | `selectIsAuthenticated`, `selectAuthInitialized` | Memoized derived state |
+| **Mappers** | `auth.mappers.ts` (UserResponse → User) | API/domain decoupling |
+
+### 6.3 Module Layering (Backend)
+
+```
+┌──────────────────────────────────────────────────────┐
+│                     CONTROLLER                        │  ← HTTP boundary
+│   - Routing, Swagger annotations, guards, DTOs        │
+│   - Translates HTTP ↔ Service                         │
+└─────────────────┬─────────────────────────────────────┘
+                  │ depends on
+                  ▼
+┌──────────────────────────────────────────────────────┐
+│                     SERVICE                           │  ← Business logic
+│   - Use-case orchestration                            │
+│   - Cross-entity transactions                         │
+│   - Calls repositories and adapters                   │
+└─────────────────┬─────────────────────────────────────┘
+                  │ depends on
+                  ▼
+┌──────────────────────────────────────────────────────┐
+│                  REPOSITORY / ADAPTER                 │  ← Persistence + External
+│   - TypeORM Repository<Entity>                        │
+│   - HTTP adapters (PresidioService, EmailSender)      │
+└──────────────────────────────────────────────────────┘
+```
+
+**Rule:** Higher layers depend on lower layers, never vice versa. Controllers never instantiate adapters directly.
+
+### 6.4 Frontend Layering
+
+```
+┌──────────────────────────────────────────────────────┐
+│                       PAGES                           │  ← Route handlers
+│   - Lazy-loaded                                        │
+│   - Compose layouts + components                      │
+└─────────────────┬─────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────────────────┐
+│                    COMPONENTS                         │  ← Reusable UI
+│   - business/        (feature-specific)              │
+│   - common/          (cross-feature: PageLoader, UI) │
+│   - layouts/         (Sidebar, Header, MainLayout)   │
+└─────────────────┬─────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────────────────┐
+│                       STORE                           │  ← Redux Toolkit
+│   - slices/          (state + reducers)              │
+│   - thunks           (async actions)                 │
+│   - selectors        (memoized derived state)        │
+└─────────────────┬─────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────────────────┐
+│                     SERVICES                          │  ← API clients
+│   - api.ts                                            │
+│   - jobsService, authService, etc.                   │
+└──────────────────────────────────────────────────────┘
+```
+
+### 6.5 Coding Standards
+
+| Rule | Enforcement |
+|------|-------------|
+| TypeScript strict mode | tsconfig `"strict": true` |
+| No `any` | ESLint rule (per Git rules document) |
+| No `process.env` in business code | ESLint rule; use `ConfigService` |
+| Conventional commits | Husky + commitlint (planned) |
+| Prettier formatting | Pre-commit (Husky + lint-staged) |
+| 1 task = 1 commit = 1 PR | Team agreement (Apr 2) |
+| PR reviewed before merge | Process rule (Mar 30, restored Apr 23) |
+| Swagger annotations on every endpoint | Per Git rules |
+| Yup schema for every form | FE convention |
+| i18n keys for every visible string | FE convention |
+| UUIDs as primary keys | DB convention |
+| ESM imports (no CommonJS in source) | Vite default; tsconfig `"module": "ESNext"` |
 
 ---
 
