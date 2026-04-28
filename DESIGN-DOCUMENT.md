@@ -29,7 +29,68 @@
 
 ## 1. Document Overview
 
-*[Section 1 — to be filled]*
+### 1.1 Purpose
+
+This document defines the **architectural blueprint** for the Clinical Data De-Identification Portal — a web platform that automatically detects and masks Protected Health Information (PHI) in clinical text data, in compliance with HIPAA, GDPR, UK DPA, and Swiss FADP regulations.
+
+It serves as the **single source of truth** for:
+- What we are building (product vision and scope)
+- How the pieces fit together (architecture)
+- Why specific decisions were made (rationale)
+- How quality, security, and compliance are achieved (cross-cutting concerns)
+
+### 1.2 Audience
+
+| Audience | Primary Use |
+|----------|-------------|
+| **Engineers (current and new)** | Onboarding, implementation guidance, decision context |
+| **Project Manager** | Scope, dependencies, risk identification, roadmap input |
+| **Stakeholder / CTO (Lyudmyla)** | Validation that architecture matches product intent |
+| **Code reviewers** | Reference for what "consistent with design" means |
+| **Security/compliance reviewers** | Verification that compliance and security are designed-in, not bolted-on |
+
+### 1.3 Scope
+
+**In scope:**
+- Core de-identification workflow (upload → analyze → anonymize → results)
+- Magic Link authentication, JWT-based API authorization
+- Multi-framework compliance (HIPAA Safe Harbor / Expert Determination, GDPR risk levels, UK DPA, Swiss FADP)
+- Synthetic data generation (planned, not yet built)
+- Dashboard with metrics
+- PDF compliance report export
+- Multi-environment deployment (local, staging, production)
+
+**Out of scope (explicitly):**
+- On-premise deployment (cloud-only)
+- Real-time streaming de-identification (batch only)
+- Multi-tenant SaaS isolation (single-tenant per deployment for v1)
+- ML model training (we use pre-trained Microsoft Presidio recognizers)
+- Mobile native apps (responsive web only)
+
+### 1.4 Status & Maturity
+
+| Aspect | Status |
+|--------|--------|
+| Document version | **0.1 — Draft** |
+| Authoritativeness | **Aspirational + descriptive.** Documents both what exists today and what should exist. |
+| Approval | Pending review by Lyudmyla |
+| Implementation alignment | ~58% as of 2026-04-28 |
+
+This document is a **living artifact**. It is expected to be updated as architecture evolves. See [Section 12 — Architectural Agility](#12-architectural-agility) for the change procedure.
+
+### 1.5 Document Conventions
+
+- **Decision tables** use the format: *Option / Chosen Y/N / Rationale*
+- **Diagrams** are ASCII for portability and version-control friendliness
+- **Code references** use repository-relative paths: `backend/src/modules/auth/auth.service.ts:62`
+- **Quotes from team** are clearly attributed to the source meeting
+- **🔴 / 🟠 / 🟡 / 🟢** denote severity (critical / high / medium / low)
+
+### 1.6 Change History
+
+| Version | Date | Author | Summary |
+|---------|------|--------|---------|
+| 0.1 | 2026-04-28 | Architecture team | Initial draft — captures current state + intended design |
 
 ---
 
