@@ -1866,15 +1866,261 @@ frontend/
 
 ### 11.4 Mocking Strategy
 
-*[Section 11.4 — to be filled]*
+#### 11.4.1 Backend Mocking
+
+**NestJS testing pattern:**
+
+```typescript
+// pseudo-code
+const module = await Test.createTestingModule({
+  providers: [
+    JobsService,
+    { provide: PresidioService, useValue: mockPresidioService },
+    { provide: getRepositoryToken(Job), useValue: mockJobRepo },
+  ],
+}).compile();
+
+const service = module.get<JobsService>(JobsService);
+```
+
+**What to mock:**
+
+| Dependency | Mock | Reason |
+|------------|------|--------|
+| External APIs (Presidio, SMTP) | Yes | Determinism + speed |
+| Database repositories | Yes (for unit tests) | Speed |
+| Database (real) | No (for integration tests) | Verify SQL |
+| Time (Date, setTimeout) | Yes | Determinism |
+| File I/O | Yes | Speed |
+| ConfigService | Sometimes | Inject test values |
+| Logger | Yes (silent) | Avoid log noise |
+
+**What NOT to mock:**
+
+- Pure functions in code under test
+- The class being tested
+- Simple value objects (DTOs)
+
+#### 11.4.2 Frontend Mocking
+
+**Vitest patterns:**
+
+```typescript
+// API mocking via axios-mock-adapter
+const mock = new MockAdapter(api);
+mock.onPost('/auth/login').reply(200, { message: 'Magic link sent' });
+
+// Module mocking
+vi.mock('@/services/jobsService');
+
+// Hook mocking
+vi.mock('@/hooks/useAuth', () => ({
+  useAuth: () => ({ user: mockUser, login: vi.fn() }),
+}));
+
+// Time mocking
+vi.useFakeTimers();
+vi.setSystemTime(new Date('2026-04-28'));
+```
+
+**Component testing principle:** Test behavior, not implementation. Use `@testing-library/react` queries (`getByRole`, `getByLabelText`) over CSS selectors.
+
+#### 11.4.3 Test Data Strategy
+
+**Decision:** Inline test data in tests where small; shared fixtures in `__fixtures__/` for reused data.
+
+```
+backend/
+├── src/modules/jobs/
+│   ├── jobs.service.spec.ts
+│   └── __fixtures__/
+│       ├── sample-job.fixture.ts
+│       └── presidio-responses.fixture.ts
+```
+
+**Avoid:** Large JSON files in tests (hard to maintain). Generate via factory functions.
+
+#### 11.4.4 Stable Tests Principle
+
+**Rules to keep tests reliable:**
+- No `Math.random()`, `Date.now()` in test inputs without mocking
+- No external network calls
+- No file system writes outside test temp dirs
+- Idempotent: running twice gives same result
+- Independent: order of tests doesn't matter
+- Fast: <10ms per unit test, <500ms per integration test
 
 ### 11.5 CI/CD Integration
 
-*[Section 11.5 — to be filled]*
+#### 11.5.1 Pipeline Stages
+
+```
+┌──────────────┐
+│  PR opened   │
+└──────┬───────┘
+       │
+       ▼
+┌──────────────────┐
+│  Lint & Format   │  ESLint, Prettier — fast (<30s)
+└──────┬───────────┘
+       │
+       ▼
+┌──────────────────┐
+│   Type check     │  tsc --noEmit — fast (<60s)
+└──────┬───────────┘
+       │
+       ▼
+┌──────────────────┐
+│   Unit tests     │  Jest / Vitest — fast (<2 min)
+└──────┬───────────┘
+       │
+       ▼
+┌──────────────────┐
+│ Integration tests│  Including DB tests — medium (<5 min)
+└──────┬───────────┘
+       │
+       ▼
+┌──────────────────┐
+│      Build       │  Docker images, FE bundle — medium
+└──────┬───────────┘
+       │
+       ▼
+┌──────────────────┐
+│  Security scan   │  npm audit, Semgrep, secret scan — fast
+└──────┬───────────┘
+       │
+       ▼
+   Merge → develop
+       │
+       ▼
+┌──────────────────┐
+│  Deploy preview  │  Heroku review app
+└──────┬───────────┘
+       │
+       ▼
+┌──────────────────┐
+│   E2E tests      │  Playwright — slow (5-10 min)
+└──────┬───────────┘
+       │
+       ▼
+┌──────────────────┐
+│  Deploy staging  │  Heroku staging
+└──────┬───────────┘
+       │
+       ▼
+┌──────────────────┐
+│  Smoke tests     │  Post-deploy verification
+└──────┬───────────┘
+       │
+       ▼
+   Manual approval
+       │
+       ▼
+┌──────────────────┐
+│ Deploy production│
+└──────────────────┘
+```
+
+#### 11.5.2 Pipeline Rules
+
+| Rule | Enforcement |
+|------|-------------|
+| All PRs must have passing unit tests | GitHub branch protection |
+| Coverage cannot drop >5% | Coverage report comparison |
+| All PRs must have passing lint | GitHub branch protection |
+| All PRs must have passing type check | GitHub branch protection |
+| Integration tests on develop branch | GitHub Actions |
+| E2E tests before staging deploy | GitHub Actions |
+| Smoke tests after every deploy | GitHub Actions |
+| Production deploy requires approval | Heroku pipeline |
+
+#### 11.5.3 Test Performance Budget
+
+| Stage | Target Duration | Action if Exceeded |
+|-------|-----------------|---------------------|
+| Lint | <30s | Investigate slow rules |
+| Type check | <60s | Reduce project graph |
+| Unit tests | <2 min | Profile slow tests |
+| Integration tests | <5 min | Parallelize / split |
+| E2E tests | <15 min | Reduce scope or parallelize |
+| Total CI | <20 min | High priority to fix |
 
 ### 11.6 Current State & Remediation Path
 
-*[Section 11.6 — to be filled]*
+#### 11.6.1 Honest Assessment
+
+As of 2026-04-28, the project has:
+
+| Test Type | Status |
+|-----------|:------:|
+| Backend unit tests | **0 (no spec files)** |
+| Frontend unit tests | **0 (no test files)** |
+| Integration tests | **0** |
+| E2E tests | **0** |
+| Smoke tests | **0 (file referenced but missing)** |
+| Test framework configured (BE) | Partial (Jest config in package.json) |
+| Test framework configured (FE) | **Missing** (Vitest not in devDependencies) |
+| Coverage reporting | Not configured |
+| CI test stage | Not present |
+
+This is the **single largest technical risk** in the project. Three sprints of feature delivery without tests means every refactor is high-risk.
+
+This was openly acknowledged on April 24:
+
+> Olexandr: *"локально є якісь тести, але вони не покривають весь проект"*
+
+> Team consensus: *"ми вже третій спринт будемо робити розробку, а тестів ще ніяких"*
+
+#### 11.6.2 Why It Happened
+
+| Reason | Honest assessment |
+|--------|------------------|
+| Pressure to demo features | Real, but should not have lasted 3 sprints |
+| Unclear test architecture | Resolved by this document |
+| No CI enforcement | Resolved by adding CI gates |
+| No reference test patterns | Resolved by writing examples |
+
+#### 11.6.3 Remediation Plan
+
+**Sprint 3 (current):**
+
+| Week | Task | Owner |
+|------|------|-------|
+| 1 | Install Vitest + @testing-library on FE; install jest config validation on BE | Anyone |
+| 1 | Write 5 reference tests on FE (1 component, 1 slice, 1 service, 1 thunk, 1 hook) | Lead dev |
+| 1 | Write 5 reference tests on BE (1 service, 1 controller, 1 guard, 1 filter, 1 e2e) | Lead dev |
+| 2 | Each new feature PR must include tests | Team |
+| 2 | Add CI test stage (test job in unified-build.yml) | DevOps |
+| 2 | Add coverage gate (no decrease >5%) | DevOps |
+
+**Sprint 4:**
+- Backfill tests on critical paths (auth, jobs pipeline, Presidio adapter)
+- Add Playwright e2e for the 5 critical user journeys
+- Reach 50% line coverage on services
+
+**Sprint 5:**
+- Reach 80% line coverage on services
+- Add smoke test post-deploy
+- Document test patterns in `CONTRIBUTING.md`
+
+#### 11.6.4 Test Coverage Aspiration vs Reality
+
+| Layer | Aspirational (this design) | Today | Sprint 3 end | Sprint 4 end |
+|-------|:--------------------------:|:-----:|:------------:|:------------:|
+| Service unit | 80% | 0% | 30% | 60% |
+| Component | 60% | 0% | 20% | 40% |
+| Integration | 100% endpoints | 0% | 50% | 90% |
+| E2E | 5-10 journeys | 0 | 1 | 5 |
+| Smoke | 1-3 checks | 0 | 1 | 3 |
+
+#### 11.6.5 Cultural Lever
+
+The team has agreed (April 23 demo aftermath):
+- PR review reinstated (teammate first, then Lyudmyla)
+- 1 task = 1 commit = 1 PR
+- *"PR cannot be merged without passing tests"* — to be added to Definition of Done
+
+This document formalizes that intent.
 
 ---
 
