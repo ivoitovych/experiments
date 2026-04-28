@@ -173,7 +173,146 @@ These shape design decisions:
 
 ## 3. System Overview
 
-*[Section 3 — to be filled]*
+### 3.1 High-Level Architecture
+
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                              END USER                                   │
+│                       (browser, desktop or mobile)                      │
+└────────────────────────────────┬───────────────────────────────────────┘
+                                  │ HTTPS
+                                  ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│   FRONTEND TIER                                                         │
+│   React 19 + Vite + Redux Toolkit + MUI 7 + react-i18next               │
+│   ─ Landing page (public)                                               │
+│   ─ Auth flow (Magic Link)                                              │
+│   ─ De-Identify Wizard (4 steps)                                        │
+│   ─ Dashboard (planned)                                                 │
+│   ─ Synthetic Data (planned)                                            │
+└────────────────────────────────┬───────────────────────────────────────┘
+                                  │  REST API (/api/*)
+                                  │  Bearer JWT
+                                  ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│   BACKEND TIER                                                          │
+│   NestJS 10 + TypeORM + Passport JWT                                    │
+│   ─ AuthModule       (Magic Link issuance + JWT verification)           │
+│   ─ UsersModule      (user upsert, profile)                             │
+│   ─ EmailModule      (SMTP, magic-link template, contact form)          │
+│   ─ JobsModule       (wizard state, async pipeline, results)            │
+│   ─ DashboardModule  (metrics aggregation)                              │
+│   ─ Common           (guards, filters, decorators, interceptors)        │
+└─────────┬─────────────────────────────────────────────────┬─────────────┘
+          │                                                  │
+          ▼                                                  ▼
+┌─────────────────────────┐               ┌──────────────────────────────┐
+│  DATA TIER              │               │  PII PROCESSING TIER         │
+│  MySQL 8                │               │  Microsoft Presidio          │
+│  ─ users                │               │  ─ Analyzer  (port 5001)     │
+│  ─ jobs                 │               │  ─ Anonymizer (port 5002)    │
+│  ─ documents            │               │  Containerized (Docker)      │
+│  (Note: only            │               │  Pre-trained spaCy NER       │
+│   metadata persists,    │               │                              │
+│   no raw PHI)           │               │                              │
+└─────────────────────────┘               └──────────────────────────────┘
+
+  Cross-cutting:
+  ┌──────────────────────────────────────────────────────────────────────┐
+  │  Infrastructure: Docker, docker-compose, Heroku, GitHub Actions CI   │
+  │  Observability: NestJS Logger, structured logs (planned)             │
+  └──────────────────────────────────────────────────────────────────────┘
+```
+
+### 3.2 Key Components
+
+| Component | Responsibility | Technology |
+|-----------|----------------|-----------|
+| **Frontend SPA** | All UI interactions, client-side state, routing | React 19, Vite, Redux Toolkit, MUI 7 |
+| **Backend API** | Business logic, persistence, integrations, security | NestJS 10, TypeORM, Express |
+| **MySQL Database** | Persistent storage for users, jobs, results metadata | MySQL 8, InnoDB |
+| **Presidio Analyzer** | NER detection of PII entities in text | Microsoft Presidio, spaCy, FastAPI |
+| **Presidio Anonymizer** | Application of anonymization operators (replace/redact/hash/mask) | Microsoft Presidio, FastAPI |
+| **Email Provider (SMTP)** | Magic-link delivery, contact form receipts | Gmail SMTP / Postmark / SendGrid (configurable) |
+| **CI/CD Pipeline** | Automated build, test, deploy | GitHub Actions, Heroku Container Registry |
+
+### 3.3 Cross-Component Data Flow (De-identification)
+
+```
+1.  User pastes/uploads text in Wizard Step 2
+        │
+        ▼
+2.  Frontend stores text locally (localOriginalTexts in sessionStorage)
+    PATCH /api/jobs/:id  { wizardState }
+        │
+        ▼
+3.  User selects framework, entities, strategy in Step 3
+    PATCH /api/jobs/:id  { wizardState }
+        │
+        ▼
+4.  User clicks "Run Analysis" in Step 4
+    POST /api/jobs/:id/run
+        │
+        ▼
+5.  Backend emits 'job.run' event
+    @OnEvent('job.run') processJob() runs asynchronously
+        │
+        ▼
+6.  processJob() calls Presidio Analyzer:
+    POST {analyzerUrl}/analyze  { text, language, entities, score_threshold }
+    ←  RecognizerResult[]  (entity_type, start, end, score)
+        │
+        ▼
+7.  processJob() calls Presidio Anonymizer:
+    POST {anonymizerUrl}/anonymize  { text, analyzer_results, anonymizers }
+    ←  { text: anonymized, items: [...] }
+        │
+        ▼
+8.  Backend persists job record (status=COMPLETED, processingTime, metadata)
+    Note: original text NOT persisted (privacy-by-design)
+        │
+        ▼
+9.  Frontend (Wizard Step 4) polls GET /api/jobs/:id every 2s
+    Detects status === COMPLETED
+        │
+        ▼
+10. Frontend fetches GET /app/results/:id
+    Displays original (left) | anonymized (right) with highlights
+        │
+        ▼
+11. User clicks "Download PDF"
+    GET /app/results/:id/export/pdf
+    ← Branded compliance audit-trail PDF
+```
+
+### 3.4 Deployment Topology
+
+**Local development:**
+```
+docker-compose up -d
+├── back              (NestJS, port 3000)
+├── mysql             (port 3307→3306)
+├── presidio-analyzer (port 5001→3000)
+└── presidio-anonymizer (port 5002→3000)
+
+Frontend: npm run dev  (Vite, port 5173, proxies /api → :3000)
+```
+
+**Production (Heroku):**
+```
+GitHub push to develop (FE)
+   ↓ notify-backend.yml
+   ↓ repository_dispatch
+GitHub Actions (BE) — unified-build.yml
+   ↓ checkout BE + FE (via GH_PAT)
+   ↓ build FE → frontend-dist/
+   ↓ build BE
+   ↓ docker build → push to Heroku Container Registry
+   ↓ heroku container:release
+Heroku app (single container: NestJS serves SPA + API)
+```
+
+**Limitation:** Presidio containers are **not deployed** to production yet. This is a known gap (see Section 13).
 
 ---
 
