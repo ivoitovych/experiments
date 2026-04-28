@@ -1578,11 +1578,136 @@ Examples:
 
 ### 10.7 Layer 6: Audit & Logging
 
-*[Section 10.7 — to be filled]*
+#### 10.7.1 What We Log
+
+| Event | Severity | Where Stored |
+|-------|----------|--------------|
+| Magic Link requested | INFO | Application log |
+| Magic Link verified (login) | INFO | Application log + AuditLog (planned) |
+| Magic Link expired/invalid | WARN | Application log |
+| 401 unauthorized | WARN | Application log + AuditLog |
+| 403 forbidden | WARN | Application log + AuditLog (high importance) |
+| Job created | INFO | Application log + AuditLog |
+| Job run | INFO | Application log + AuditLog |
+| Job completed | INFO | Application log |
+| Job failed | ERROR | Application log + alerts (planned) |
+| Presidio call failure | ERROR | Application log + alerts |
+| Email send failure | ERROR | Application log + alerts |
+| Unhandled exception | ERROR | Application log + alerts |
+| File upload rejected | WARN | Application log |
+
+#### 10.7.2 What We Do NOT Log
+
+- **PHI text** — never logged (would defeat the purpose)
+- **JWT tokens** — never logged
+- **Magic Link tokens** (raw) — never logged. Only hashed token IDs.
+- **Email passwords / SMTP creds** — sanitized
+- **Database queries with bind values** (in production)
+
+#### 10.7.3 Log Format
+
+**Decision:** Structured JSON logs (planned). Currently NestJS default formatter.
+
+```json
+{
+  "timestamp": "2026-04-28T14:32:11.123Z",
+  "level": "info",
+  "context": "AuthService",
+  "message": "Magic link verified",
+  "userId": "uuid",
+  "requestId": "uuid",
+  "ip": "x.x.x.x",
+  "userAgent": "..."
+}
+```
+
+#### 10.7.4 Audit Log (Planned)
+
+Separate **immutable** audit table for compliance:
+
+```
+AuditLog
+─────────
+id                  UUID PK
+userId              UUID FK
+action              enum (login, job_run, job_view, export_pdf, ...)
+resourceType        enum (job, user, ...)
+resourceId          UUID
+ip                  varchar
+userAgent           varchar
+timestamp           datetime (immutable)
+metadata            json (action-specific)
+```
+
+**Properties:**
+- Append-only (no UPDATE, no DELETE)
+- Retention: 7 years (HIPAA-compliant)
+- Indexed for compliance queries
+
+#### 10.7.5 Detection & Alerting
+
+**Planned production alerts:**
+- 5+ failed login attempts from same IP in 5 minutes
+- 3+ 403s from same user in 1 minute (privilege escalation attempt)
+- Any unhandled 500 error (immediate)
+- Job pipeline failures (rate-limited alert)
+- Disk usage > 80%, memory > 85%
+
+#### 10.7.6 Log Retention
+
+| Log Type | Retention | Storage |
+|----------|-----------|---------|
+| Application logs | 30 days | Heroku Logplex / Papertrail |
+| Audit logs | 7 years | Database (immutable table) |
+| Access logs | 90 days | CDN / Heroku |
+| Backup logs | 30 days | Same as backups |
 
 ### 10.8 Threat Model (STRIDE)
 
-*[Section 10.8 — to be filled]*
+STRIDE = Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege.
+
+| Threat | Example | Mitigation | Layer |
+|--------|---------|------------|:-----:|
+| **S — Spoofing** | Attacker tries to log in as another user | Magic Link tokens (122-bit random); JWT signature verification | 2 |
+| **S — Spoofing** | Attacker fakes a request from frontend | CORS + JWT bearer requirement | 1, 2 |
+| **T — Tampering** | Attacker modifies a JWT to claim admin | HS256 signature with strong server-only secret; reject on signature mismatch | 2 |
+| **T — Tampering** | Attacker modifies wizardState in transit | HTTPS prevents transit tampering | 1 |
+| **T — Tampering** | Attacker writes to another user's job | Service-layer ownership check | 3 |
+| **R — Repudiation** | User denies running a job | Audit log per action with timestamp + user | 6 |
+| **R — Repudiation** | User denies signing in at a given time | Audit log of login events | 6 |
+| **I — Information Disclosure** | Attacker reads another user's results via guessed UUID | UUID v4 + ownership check | 3 |
+| **I — Information Disclosure** | DB breach exposes PHI | No PHI in DB by design | 5 |
+| **I — Information Disclosure** | Logs leak sensitive data | Sanitized logs (no PHI, no tokens, no secrets) | 5, 6 |
+| **I — Information Disclosure** | Email enumeration via login form | Login always returns 200 (planned) | 2 |
+| **I — Information Disclosure** | Source code leaks secrets | `.env` in `.gitignore`; secret scanner (planned) | 5 |
+| **D — Denial of Service** | Flood `/auth/login` to exhaust SMTP quota | Rate limiting per IP (planned) | 1 |
+| **D — Denial of Service** | Massive file upload | 5 MB max enforced by Multer | 4 |
+| **D — Denial of Service** | Slow Presidio call hangs request | Timeout + watchdog (5 min for processing) | — |
+| **D — Denial of Service** | Many concurrent jobs exhaust DB connections | Connection pooling; rate limit | 1 |
+| **E — Elevation of Privilege** | User modifies own role to admin | Role not exposed in user-facing DTOs | 3 |
+| **E — Elevation of Privilege** | Stolen JWT used past expiry | Short JWT lifetime (1h) | 2 |
+
+### 10.9 Security Process
+
+**Pre-merge:**
+- Code review checklist includes security questions
+- ESLint rules block known dangerous patterns
+- Dependency audit (`npm audit`) on every CI run (planned)
+
+**Pre-deploy:**
+- Secret scanning (planned)
+- SAST (planned, e.g., Semgrep)
+- Dependency vulnerability scan
+
+**Production:**
+- Continuous monitoring (planned)
+- Quarterly threat-model review
+- Annual penetration test (when product reaches PHI scale)
+
+**Incident response:**
+- Documented runbook (planned)
+- Defined severity levels
+- Communication plan (internal + external if required by law)
 
 ---
 
