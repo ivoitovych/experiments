@@ -1390,15 +1390,191 @@ For v2 (production with real PHI workloads), consider httpOnly cookies with Same
 
 ### 10.4 Layer 3: Authorization
 
-*[Section 10.4 — to be filled]*
+#### 10.4.1 Authorization Model
+
+**v1 model:** Resource ownership.
+
+Every Job has a `userId`. Service-layer guards reject access if `req.user.id !== job.userId`. This prevents **IDOR** (Insecure Direct Object Reference) — the most common API authorization bug.
+
+```typescript
+// Pseudocode of the pattern
+async getJob(jobId: string, requestingUserId: string) {
+  const job = await this.repo.findOneByOrFail({ id: jobId });
+  if (job.userId !== requestingUserId) {
+    throw new ForbiddenException('Access denied');
+  }
+  return job;
+}
+```
+
+**Decision:** Authorization is enforced in **service layer**, not just guards. Reasons:
+1. Guards can be bypassed if a developer forgets `@UseGuards(...)`
+2. Service-layer checks survive controller refactors
+3. Service-layer checks work for non-HTTP entry points (events, scheduled jobs)
+
+#### 10.4.2 Roles (Designed, Not Enforced)
+
+The User entity has a `role` field designed for:
+
+| Role | Permissions (planned) |
+|------|----------------------|
+| `viewer` | Read jobs, read results. No mutation. |
+| `analyst` | Default. Create/run jobs, download results. |
+| `admin` | All analyst permissions + manage users + access all jobs in tenant |
+
+**Status:** Field exists in design; not yet wired to guards. v2 work.
+
+#### 10.4.3 IDOR Prevention Checklist
+
+For every endpoint that accepts a resource ID:
+
+- [ ] Service-layer ownership check before returning data
+- [ ] Service-layer ownership check before mutation
+- [ ] No guessable IDs (UUID v4, not auto-increment)
+- [ ] Error responses don't leak existence (use 403 or 404 consistently)
+- [ ] List endpoints filter by `userId` automatically
+
+#### 10.4.4 Inconsistencies to Fix
+
+**Current code has two competing JWT guards** with different payload shapes:
+
+- `auth/guards/auth.guard.ts` — payload: `{sub, email}`
+- `auth/guards/jwt-auth.guard.ts` — payload: `{id, email}`
+
+Some controllers use `req.user.sub`, others `req.user.id`. **Resolution:** Pick one; the Passport-based guard is more idiomatic. Migrate all controllers to `{id, email}`.
 
 ### 10.5 Layer 4: Input Validation
 
-*[Section 10.5 — to be filled]*
+#### 10.5.1 Validation Boundary
+
+**Decision:** Validate at the **edge** (controller boundary). Inner code trusts validated data.
+
+#### 10.5.2 Validation Stack (Backend)
+
+```
+Incoming request
+       │
+       ▼
+NestJS ValidationPipe (global)
+   - whitelist: true             ← strips unknown fields
+   - forbidNonWhitelisted: true  ← rejects unknown fields
+   - transform: true             ← class instances
+       │
+       ▼
+DTO with class-validator decorators
+   @IsEmail(), @IsString(), @IsUUID(), @MaxLength(), etc.
+       │
+       ▼
+Custom service-layer validation (where needed)
+       │
+       ▼
+TypeORM (parameterized queries → SQL injection-safe)
+```
+
+#### 10.5.3 Specific Inputs & Their Validators
+
+| Input | Validation |
+|-------|-----------|
+| Email | `@IsEmail()` + `@MaxLength(254)` |
+| User-provided text | `@MinLength(50) @MaxLength(5000)` (per Sprint 2 wizard) |
+| File upload | MIME whitelist (`text/plain`, `application/json`, `text/csv`); max 5 MB; magic-byte check (planned) |
+| UUIDs | `@IsUUID('4')` |
+| Framework | `@IsIn(['hipaa','gdpr','uk_dpi','swiss_fadp'])` |
+| Method | `@IsIn(['Safe Harbor','Expert Determination'])` |
+| Strategy | `@IsIn(['Redact','Replace','Hash','Mask','Synthetic'])` |
+| Threshold preset | `@IsIn(['Conservative','Balanced','Aggressive'])` |
+| Language | `@IsIn(ALL_LANGUAGES)` (~32 ISO codes) |
+
+#### 10.5.4 SQL Injection
+
+**Mitigation:** TypeORM parameterizes all queries by default. We use `repository.findOneBy({ id })` and `QueryBuilder.where('x = :y', { y })` exclusively. No string concatenation in queries.
+
+#### 10.5.5 XSS
+
+**Mitigation:**
+- React escapes by default — no `dangerouslySetInnerHTML` allowed
+- Email templates: HTML-escape user-provided values (already in templates)
+- CSP planned (Layer 1)
+
+#### 10.5.6 File Upload Risks
+
+| Risk | Mitigation |
+|------|-----------|
+| Malicious file content | Parse only as text; never execute |
+| Path traversal | Multer's filename sanitization |
+| Disk filling | 5 MB max per upload + cleanup after parsing |
+| Polyglot files | MIME + magic-byte check (planned) |
+| Embedded scripts in CSV | We treat CSV as text, never as Excel — no formula execution |
+
+#### 10.5.7 Wizard State JSON Validation
+
+`wizardState` is stored as JSON (per Section 7.3) but **must be validated** before write. Use Yup schema mirroring on FE; class-validator nested DTO on BE.
 
 ### 10.6 Layer 5: Data Protection
 
-*[Section 10.6 — to be filled]*
+#### 10.6.1 Classification
+
+| Data Type | Classification | Persistent? | Encryption Required |
+|-----------|----------------|:-----------:|:--------------------:|
+| Email | PII | Yes (User) | At rest (production) |
+| User UUID | Internal | Yes | No |
+| **Original PHI text** | **PHI** | **No** | (Doesn't apply — not stored) |
+| Anonymized text | Non-PHI | Yes (Job) | At rest (defense in depth) |
+| JWT secret | Secret | No (env var) | KMS or env-encrypted |
+| SMTP password | Secret | No (env var) | KMS or env-encrypted |
+| ENCRYPTION_KEY | Secret | No (env var) | KMS |
+| Audit logs | Internal | Yes (planned) | At rest |
+
+#### 10.6.2 Encryption at Rest
+
+**Database-level:**
+- Production: enable Heroku Postgres/MySQL encryption (or migrate to RDS with KMS)
+- Local dev: not encrypted (acceptable; no real PHI)
+
+**Application-level (planned for v2):**
+- Anonymized text: column-level encryption with rotated keys
+- Email: optional column-level encryption
+
+**Decision:** Defer column-level to v2. v1 relies on database-level + access control.
+
+#### 10.6.3 Encryption in Transit
+
+- All client → server: HTTPS (Heroku-terminated)
+- Server → SMTP: STARTTLS or implicit TLS
+- Server → Presidio: HTTPS in production (currently HTTP local; planned)
+- Server → Database: TLS to Heroku DB; local dev plaintext
+
+#### 10.6.4 Secrets Management
+
+**Current:** Environment variables (`.env`, Heroku Config Vars).
+
+**Rules:**
+- Never commit secrets (`.env` in `.gitignore`)
+- Never log secrets (sanitize log output)
+- Rotate secrets every 90 days (manual; planned: vault integration)
+- Different secrets per environment
+
+**Future:** Migrate to a secret manager (Heroku has built-in; AWS Secrets Manager / HashiCorp Vault for self-host).
+
+#### 10.6.5 Data Minimization
+
+**Principle:** Collect and persist only what's needed.
+
+Examples:
+- We don't store user names initially — only email. Add only when there's a use case.
+- We don't store IP addresses (planned: in audit logs only)
+- File uploads aren't kept — parsed in-memory then discarded
+- Original text isn't persisted — held only in user's sessionStorage
+
+#### 10.6.6 Backup & Restore
+
+**Backups:** Heroku-managed daily snapshots (paid tier).
+
+**Encryption:** Backups encrypted at rest by Heroku.
+
+**Retention:** 30 days rolling.
+
+**Test restore:** Quarterly drill (procedure to be documented).
 
 ### 10.7 Layer 6: Audit & Logging
 
