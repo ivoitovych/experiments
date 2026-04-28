@@ -2561,7 +2561,216 @@ This Design Document is in the repo (`DESIGN-DOCUMENT.md`), versioned with code,
 
 ## 13. Infrastructure & Deployment
 
-*[Section 13 — to be filled]*
+### 13.1 Environments
+
+| Environment | Purpose | Where | Data |
+|-------------|---------|-------|------|
+| **Local development** | Developer workstations | docker-compose | Synthetic only |
+| **CI** | Test runs | GitHub Actions runners | Ephemeral; fresh per run |
+| **Review apps** | PR previews (planned) | Heroku review apps | Synthetic; ephemeral |
+| **Staging** | Pre-production validation (planned) | Heroku | Synthetic + selected real-shape |
+| **Production** | End-user access | Heroku | Real (PHI handling possible) |
+
+### 13.2 Local Development
+
+```yaml
+# docker-compose.yml — local infrastructure
+services:
+  back:               # NestJS app
+    build: .
+    ports: ["3000:3000"]
+  mysql:              # MySQL 8
+    image: mysql:8
+    ports: ["3307:3306"]
+    healthcheck: ...
+  presidio-analyzer:  # Presidio NER
+    image: mcr.microsoft.com/presidio-analyzer
+    ports: ["5001:3000"]
+  presidio-anonymizer:# Presidio anonymizer
+    image: mcr.microsoft.com/presidio-anonymizer
+    ports: ["5002:3000"]
+```
+
+**Frontend:** Run separately (`npm run dev` on port 5173, proxies `/api` to `localhost:3000`).
+
+**Why this split?** Frontend hot-reload is dramatically faster outside Docker on most hosts.
+
+### 13.3 Containerization
+
+#### Backend Dockerfile
+
+```dockerfile
+# Multi-stage build
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+FROM node:20-alpine AS production
+WORKDIR /app
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/frontend-dist ./frontend-dist
+COPY package*.json ./
+EXPOSE 3000
+CMD ["node", "dist/main"]
+```
+
+**Decisions:**
+- Multi-stage: smaller production image (no devDependencies, no source)
+- Alpine: minimal attack surface
+- Frontend bundled into backend image: single deployable
+
+#### Presidio Containers
+
+We use **upstream Microsoft images** unchanged. Custom Dockerfiles in `presidio/{analyzer,anonymizer}/` are passthroughs reserved for future customization (e.g., custom recognizers).
+
+### 13.4 CI/CD Pipeline
+
+#### Repository structure
+
+```
+GitHub:
+├── orange_anonymization_be       (backend repo)
+│   └── .github/workflows/
+│       └── unified-build.yml     ← main pipeline
+└── orange_anonymization_fe       (frontend repo)
+    └── .github/workflows/
+        └── notify-backend.yml    ← cross-repo trigger
+```
+
+#### Cross-repo trigger flow
+
+```
+Developer pushes to FE develop
+        │
+        ▼
+notify-backend.yml runs
+        │
+        ▼
+curl with GH_PAT → POST /repos/<be>/dispatches
+   { event_type: "frontend-updated" }
+        │
+        ▼
+unified-build.yml triggered (event: repository_dispatch)
+   - Checkout BE repo
+   - Checkout FE repo (with GH_PAT, configured branch)
+   - Build FE → frontend-dist/
+   - Build BE
+   - Upload artifact
+        │
+        ▼
+Deploy job
+   - Download artifact
+   - Build Docker image (with frontend-dist included)
+   - Push to Heroku Container Registry
+   - heroku container:release
+        │
+        ▼
+Production updated
+```
+
+#### CI/CD Decisions
+
+| Question | Decision | Rationale |
+|----------|----------|-----------|
+| Single repo or two? | Two | Different teams, different release cadence (FE iterates faster) |
+| Where to build the unified image? | In BE repo's CI | Backend serves the frontend; deployment unit is one container |
+| How does FE trigger BE? | `repository_dispatch` via GH_PAT | Decouples repos while still chaining |
+| Configurable repo names? | Yes (via repo Variables) | Allows org transfers, forks |
+| Tests in CI? | Not yet (gap) | Sprint 3 priority |
+
+### 13.5 Deployment Targets
+
+#### v1: Heroku Container Registry
+
+| Component | Choice | Rationale |
+|-----------|--------|-----------|
+| Compute | Heroku Container Registry | Simple Docker-based deploys; familiar to team |
+| Database | Heroku MySQL (JawsDB or ClearDB add-on) | Managed; daily backups; easy scaling |
+| TLS | Heroku-managed | Free; auto-renew |
+| DNS | Custom domain via CNAME | Standard |
+| Logs | Heroku Logplex → Papertrail | Standard add-on |
+| **Presidio in production?** | **Not yet** | Critical gap — see Section 13.6 |
+
+#### v2 considerations
+
+When real PHI workloads materialize:
+
+| Concern | v2 Choice |
+|---------|-----------|
+| HIPAA-eligible hosting | AWS (with BAA) or Heroku Shield |
+| Database | Amazon RDS with KMS encryption |
+| Container orchestration | ECS Fargate or Kubernetes (EKS) |
+| Secrets | AWS Secrets Manager |
+| Observability | Datadog or New Relic |
+| WAF | CloudFront + AWS WAF |
+| BAA agreements | Required with AWS, Microsoft (Presidio), and any other PHI processor |
+
+### 13.6 Presidio in Production — Open Question
+
+**Current state:** Presidio runs locally via docker-compose. Production deployment lacks Presidio.
+
+**Options:**
+
+| Option | Pros | Cons |
+|--------|------|------|
+| Deploy Presidio sidecars on Heroku | Same platform | Heroku not optimal for ML inference |
+| Deploy Presidio on separate provider (AWS Fargate / Lightsail) | Better resource control | Two ops surfaces |
+| Use Microsoft Azure managed Presidio | Vendor support | Multi-cloud complexity |
+| Build custom inference service | Full control | High effort |
+
+**Recommendation:** AWS Fargate task (or ECS) with internal load balancer; backend reaches Presidio via VPC peering or public HTTPS with mutual TLS. **ADR required before implementation.**
+
+### 13.7 Configuration Management
+
+| Config | Source | Notes |
+|--------|--------|-------|
+| Local dev | `.env` (gitignored) | Copy from `.env.example` |
+| CI | GitHub Secrets | Per-repo |
+| Heroku | Heroku Config Vars | Per-app |
+| Future cloud | AWS Secrets Manager | Per-environment |
+
+**Rule:** No secrets in repo. No environment-specific values in code.
+
+### 13.8 Observability (Planned)
+
+**v1 minimal:**
+- NestJS Logger → stdout → Heroku Logplex
+- Papertrail for log search
+
+**v2 production:**
+- Structured JSON logs
+- APM: Datadog or New Relic
+- Metrics: request rate, error rate, P50/P95/P99 latency
+- Tracing: OpenTelemetry, distributed tracing across BE → Presidio
+- Dashboards: deployment health, business metrics
+- Alerts: error rate > 1%, P95 latency > 5s, DB connection pool exhaustion
+
+### 13.9 Disaster Recovery
+
+| Scenario | Mitigation | RPO | RTO |
+|----------|-----------|:---:|:---:|
+| Database corruption | Daily backups + point-in-time recovery | 24h | 2h |
+| Heroku outage | Multi-region (v2 only) | — | TBD |
+| Compromised secret | Rotate; revoke deployed instances | — | 1h |
+| Mistaken delete | Soft-delete pattern + audit log | 0 | minutes |
+| Migration breaks production | Blue/green deploy + immediate rollback | 0 | 5min |
+| Compromised dev workstation | Code in repo; revoke developer creds | — | hours |
+
+### 13.10 Cost Considerations
+
+For MVP v1:
+- Heroku Hobby/Standard dyno: ~$25/mo
+- MySQL add-on: ~$10/mo
+- SMTP (Gmail or Postmark Free): $0
+- GitHub Actions: free for public; ~$0 for our usage
+
+Total v1: <$50/mo. Acceptable for an internship project.
+
+For real PHI v2: cost grows substantially (HIPAA-eligible hosting, BAAs, monitoring). Estimate $500-2000/mo.
 
 ---
 
