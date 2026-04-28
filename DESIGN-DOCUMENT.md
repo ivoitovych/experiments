@@ -810,7 +810,122 @@ This section documents **technology choices and patterns**, with rationale.
 
 ## 7. Data Design
 
-*[Section 7 — to be filled]*
+### 7.1 Persistence Strategy
+
+**Privacy-by-design principles applied:**
+
+| Principle | Application |
+|-----------|-------------|
+| **Minimize PHI in persistent storage** | Original text is **never persisted** to DB. It lives only in transient memory during processing or in client-side sessionStorage (`localOriginalTexts` in Redux-persist). |
+| **Encrypt at rest where unavoidable** | Anonymized text in DB is post-PHI-removal, but should still be encrypted at rest in production (planned). |
+| **Audit before content** | Job records persist metadata (status, timing, framework, entity counts) but not raw content. |
+| **Data lifecycle defined** | Job records eligible for purge after retention window (TBD with legal). |
+
+### 7.2 Logical Entity Model
+
+```
+                ┌─────────────────────────────┐
+                │            User              │
+                │─────────────────────────────│
+                │ id              UUID  (PK)   │
+                │ email           varchar(UQ)  │
+                │ firstName       varchar      │  ← in migration; missing in entity
+                │ lastName        varchar      │  ← drift to fix
+                │ role            enum         │  ← drift to fix
+                │ isActive        boolean      │  ← drift to fix
+                │ magicLinkToken  varchar      │  ← drift to fix (or remove if JWT-only)
+                │ createdAt       datetime     │
+                │ updatedAt       datetime     │
+                └────────────┬────────────────┘
+                             │ 1:N
+                             ▼
+                ┌─────────────────────────────┐
+                │             Job              │
+                │─────────────────────────────│
+                │ id              UUID  (PK)   │
+                │ userId          UUID  (FK)   │
+                │ status          enum         │  draft | processing | completed | failed
+                │ framework       varchar      │  hipaa | gdpr | uk_dpi | swiss_fadp
+                │ wizardState     json         │  flexible blob for wizard
+                │ anonymizedText  text         │  result text (post-PHI)
+                │ processingTime  int (ms)     │
+                │ analysisMetadata json        │  entity counts, scores
+                │ errorMessage    varchar?     │
+                │ createdAt       datetime     │
+                │ updatedAt       datetime     │
+                │                              │
+                │ NOT PERSISTED:                │
+                │  ─ originalText (PHI!)       │  ← intentional. carried in event payload only.
+                └─────────────────────────────┘
+
+   Future:
+   ┌────────────────────────┐    ┌──────────────────────────┐
+   │   SyntheticRecord      │    │   AuditLog (planned)     │
+   │   id, userId, type,    │    │   id, userId, action,    │
+   │   payload, createdAt   │    │   resourceType, ts, ip   │
+   └────────────────────────┘    └──────────────────────────┘
+```
+
+### 7.3 Schema Decisions
+
+**Why JSON for `wizardState`?**
+
+The wizard state is **deeply variable** by framework: HIPAA has Safe Harbor vs Expert Determination, each with different shapes; GDPR has risk levels and entity sets. Using a strict columnar schema would either explode column count or require many sub-tables. JSON gives flexibility, with the cost that we lose schema validation at the DB level — mitigated by Yup validation on the FE and class-validator DTOs on the BE.
+
+**Why `wizardState.input` instead of column?**
+
+For privacy: we explicitly do NOT want long-form PHI text in a column with default backups. Storing it inside JSON makes it possible to wipe quickly via JSON path operations during retention purges.
+
+**Why store `anonymizedText` then?**
+
+Because anonymized text is **post-de-identification** — by definition no PHI. It's safe to persist for re-export, audit-trail rendering, and dashboard previews.
+
+### 7.4 Entity ↔ Migration Drift (Known Issue)
+
+**Current state:** `User` TypeORM entity has 4 fields; migration creates 10 columns.
+
+This drift is a **known issue** introduced before April 12 and not yet remediated. See [Section 12 — Architectural Agility](#12-architectural-agility) for the procedural fix.
+
+**Resolution plan:**
+1. Add missing fields to entity (firstName, lastName, role, isActive, etc.)
+2. OR remove unused columns from migration
+3. Decide which based on whether features (roles, names) are actually planned
+
+### 7.5 Migrations
+
+| Convention | Decision |
+|------------|----------|
+| **Migration tool** | TypeORM CLI |
+| **Naming** | `<timestamp>-<DescriptiveName>.ts` |
+| **Storage** | `backend/src/database/migrations/` |
+| **Run on deploy** | Should run in CI pre-deploy step (gap: not yet integrated) |
+| **Rollback** | Each migration must implement `down()` |
+| **Synchronize** | Disabled in production (`DB_SYNCHRONIZE=false`); enabled in local dev |
+
+**Status:** Migration `1710000000000-InitialSchema.ts` exists but lacks the `jobs` table. This must be added.
+
+### 7.6 Data Retention & Lifecycle
+
+| Entity | Retention Policy (proposed) |
+|--------|-----------------------------|
+| **User** | Indefinite while active. Hard-delete on user request (GDPR right to erasure). |
+| **Job** (status=COMPLETED) | 90 days, then hard-delete. Configurable per deployment. |
+| **Job** (status=FAILED) | 30 days for diagnostics, then delete. |
+| **Job** (status=DRAFT) | 7 days idle, then delete to clean up abandoned wizards. |
+| **AuditLog** (planned) | 7 years (HIPAA-compliant). |
+
+These policies are **proposed** and require legal review before production deployment.
+
+### 7.7 Data Privacy Decisions
+
+| Decision | Rationale |
+|----------|-----------|
+| **No PHI in DB** | Smallest blast radius if DB is compromised |
+| **Original text in sessionStorage only** | Survives page refreshes during wizard, cleared on logout/expiration |
+| **Anonymized text in DB** | Safe (no PHI by definition) |
+| **JWT in localStorage** | Standard practice; mitigated by 1-hour expiry; tradeoff vs httpOnly cookie complexity |
+| **Email in DB** | Required for Magic Link delivery; minimum-necessary |
+| **No analytics on PHI** | Forbidden by HIPAA — no tracking pixels on de-id results pages |
 
 ---
 
