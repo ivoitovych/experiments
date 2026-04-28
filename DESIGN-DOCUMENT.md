@@ -96,7 +96,78 @@ This document is a **living artifact**. It is expected to be updated as architec
 
 ## 2. Product Vision & Goals
 
-*[Section 2 — to be filled]*
+### 2.1 Problem Statement
+
+Healthcare and research organizations need to share clinical text data (patient discharge summaries, medical notes, research datasets) for collaborative work, but data protection regulations (HIPAA in the US, GDPR in the EU) prohibit disclosure of personally identifiable information.
+
+Current practice — manual redaction by medical staff — is:
+- **Slow:** Hours per document
+- **Expensive:** Skilled labor at clinical rates
+- **Error-prone:** A single missed identifier can trigger seven-figure compliance fines
+- **Unscalable:** Cannot handle research datasets with thousands of records
+
+### 2.2 Vision Statement
+
+> **A self-serve web platform that lets healthcare organizations de-identify clinical text in minutes, not hours, with verifiable compliance to HIPAA, GDPR, UK DPA, and Swiss FADP.**
+
+### 2.3 Target Users
+
+| Persona | Role | Primary Need |
+|---------|------|--------------|
+| **Clinical Data Analyst** | Hospital/research IT | Bulk-process text datasets for research partnerships |
+| **Compliance Officer** | Hospital legal/governance | Auditable evidence that PHI was removed per HIPAA Safe Harbor |
+| **Researcher** | Academic / pharma | Receive de-identified data sets for analysis |
+| **Solo Practitioner** | Individual clinic | Occasional de-identification for case sharing or publication |
+
+**Not a target user (yet):**
+- Real-time clinical workflows (we are batch-oriented)
+- Multi-hospital aggregation platforms (single-tenant for v1)
+- Imaging / DICOM data (text only)
+
+### 2.4 Product Goals
+
+| Goal | Success Criterion (v1 MVP) |
+|------|----------------------------|
+| **G1: Functional de-identification** | User uploads ≤5 MB text → all 18 HIPAA Safe Harbor identifiers detected and replaced with chosen strategy |
+| **G2: Multi-framework support** | User can select HIPAA / GDPR / UK DPA / Swiss FADP and receive correctly scoped de-identification |
+| **G3: Auditable compliance** | Every job produces an exportable PDF audit trail with framework, method, entity counts, processing metadata |
+| **G4: Frictionless authentication** | User signs in via email Magic Link in ≤3 clicks; no password management |
+| **G5: Self-service onboarding** | A new user can land, sign in, and complete first de-identification in <10 minutes |
+| **G6: Compliance-grade security** | All PHI handling adheres to industry security baselines (TLS in transit, encryption at rest, audit logs) |
+
+### 2.5 Non-Goals (v1)
+
+These are deliberately excluded:
+
+| Non-Goal | Rationale |
+|----------|-----------|
+| Custom compliance frameworks beyond the 4 supported | Lyudmyla decision (Mar 27): scope creep risk; HIPAA/GDPR/UK/Swiss cover ≥95% of target market |
+| Storing original PHI text in DB | Privacy-by-design: original text only in transient memory or `localOriginalTexts` (sessionStorage) |
+| User registration with passwords | Magic Link only — fewer attack vectors |
+| Real-time API integration with EHR systems | Web UI only for v1; API access is internal |
+| ML model fine-tuning | Use Microsoft Presidio's pre-trained models as-is |
+| Multi-language UI initially | English only; i18n infrastructure is in place but other languages deferred |
+| Edit-detected-entity feature | Lyudmyla on demo (Apr 23): "for synthetic data more useful, here in this step it's not" — moved to Synthetic Data feature |
+
+### 2.6 Success Metrics
+
+For the MVP launch:
+
+- **Time to first de-identification:** <10 minutes (from landing to first download)
+- **De-identification accuracy:** ≥90% Safe Harbor identifier detection on test corpus
+- **Job processing time:** <30 seconds for 5 MB text
+- **Demo readiness:** Working end-to-end flow on staging server
+- **Stakeholder satisfaction:** Lyudmyla's positive demo feedback (achieved Sprint 2 demo: *"actually very good progress"*)
+
+### 2.7 Strategic Constraints
+
+These shape design decisions:
+
+- **Internship project context:** Team capacity is ~4-5 part-time developers, ~4 hours/day each. Architecture must be approachable, not enterprise-grade complex.
+- **Single reviewer (Lyudmyla):** PR review is a known bottleneck; architecture should minimize cross-cutting changes.
+- **Privacy by design:** No PHI in DB. Original text only in transient memory and client-side sessionStorage.
+- **Cloud-first:** Heroku for v1 deployment. Architecture must containerize cleanly.
+- **No ML training:** Reuse Microsoft Presidio. We integrate, not train.
 
 ---
 
