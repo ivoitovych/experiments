@@ -43,6 +43,13 @@ on **all** of: GitHub web view, mdBook + MathJax, and Pandoc.
 - **Do not** use `\operatorname{}` — GitHub's MathJax rejects it with
   "macro is not allowed". Use `\mathrm{}` instead, e.g. `\mathrm{tr}`,
   `\mathrm{Var}`, `\mathrm{rank}`.
+- **Matrix row breaks**: GitHub's Markdown processor consumes `\\` before
+  passing math to MathJax, so a single `\\` inside `\begin{pmatrix} ... \end{pmatrix}`
+  collapses the matrix into a row vector. Write `\\\\` in source for every
+  row break.
+- **Set braces**: similarly, `\{` and `\}` get unescaped to `{` `}` before
+  MathJax sees them, which makes the braces invisible. Write `\\{` and
+  `\\}` in source whenever you want visible set braces (e.g. `\\{0,1\\}^n`).
 - Number equations manually if needed: end the line with `\quad (1.3.1)`
   or similar.
 - Avoid heavy math inside Markdown tables — escapes get fragile.
