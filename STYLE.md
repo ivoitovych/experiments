@@ -21,9 +21,11 @@ mdBook, Pandoc, and other Markdown toolchains. Follow them in every file.
 Every chapter file begins with:
 
 1. A top-level `# Chapter N. Title` heading.
-2. A navigation line: `[← Previous] · [Table of Contents] · [Next →]`.
-3. Numbered section headings: `## N.1 Section Title`, `## N.2 ...`.
-4. The same navigation line at the bottom.
+2. A blockquoted status block:
+   `> **Status:** stub · **Phase:** N · **Sections drafted:** 0 / M`.
+3. A navigation line: `[← Previous] · [Table of Contents] · [Next →]`.
+4. Numbered section headings: `## N.1 Section Title`, `## N.2 ...`.
+5. The same navigation line at the bottom.
 
 Use `---` (horizontal rule) before the trailing nav block to separate it
 from chapter content.
