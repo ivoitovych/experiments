@@ -67,12 +67,15 @@ multiplies the entire state by the same $e^{i\theta}$ and cancels from every
 probability — for any outcome $x$,
 
 $$
-|\langle x | e^{i\theta}\psi\rangle|^2 = |e^{i\theta}|^2\, |\langle x|\psi\rangle|^2
+\bigl|\langle x | (e^{i\theta} |\psi\rangle)\bigr|^2
+= |e^{i\theta}|^2\, |\langle x|\psi\rangle|^2
 = |\langle x|\psi\rangle|^2,
 $$
 
-so global phase is physically irrelevant. A **relative phase** changes the
-phase *relation* between components of a superposition. It can leave
+so global phase is physically irrelevant. A phase is not "hidden
+probability"; it is information about how amplitudes will interfere under
+later unitary transformations. A **relative phase** changes the phase
+*relation* between components of a superposition. It can leave
 measurement probabilities unchanged in the current basis but become
 observable after interference or a change of basis. As a concrete example,
 the two states $(|0\rangle + |1\rangle)/\sqrt{2}$ and
@@ -248,7 +251,10 @@ $$
 This is one operator-level way to view many overlaps and expectation-value
 expressions. The expectation value of an observable $A$ in a state $\rho$
 is $\langle A\rangle_\rho = \mathrm{tr}(\rho A)$ — visibly the
-Hilbert–Schmidt inner product of $\rho^\dagger = \rho$ and $A$. The induced
+Hilbert–Schmidt inner product of $\rho^\dagger = \rho$ and $A$. When $A$ is
+Hermitian this expectation value is real; for a general (non-Hermitian) $A$,
+$\mathrm{tr}(\rho A)$ is a complex operator overlap rather than a directly
+observable average. The induced
 **Hilbert–Schmidt norm** (Frobenius norm) is
 $\|A\|_{\mathrm{HS}} = \sqrt{\mathrm{tr}(A^\dagger A)}$. Some quantities
 introduced later, such as mixed-state fidelity and trace distance, are
@@ -285,8 +291,9 @@ both normal; the converse is false.
 **Positive semidefinite**: a Hermitian operator $A$ is **positive
 semidefinite**, written $A \succeq 0$, if $\langle v | A | v\rangle \ge 0$ for
 every $v$, equivalently all eigenvalues of $A$ are nonnegative. The two
-conditions are the same because in an eigenbasis of a Hermitian $A$,
-$\langle v | A | v\rangle = \sum_i \lambda_i\, |v_i|^2$; nonnegative
+conditions are the same because, expanding $|v\rangle = \sum_i c_i |e_i\rangle$
+in an eigenbasis of $A$ with eigenvalues $\lambda_i$,
+$\langle v | A | v\rangle = \sum_i \lambda_i\, |c_i|^2$; nonnegative
 eigenvalues are exactly what forces every quadratic form to be nonnegative. We bake
 Hermiticity into the definition; some authors define positivity directly
 through the quadratic form and then *prove* Hermiticity over $\mathbb{C}$.
@@ -495,9 +502,15 @@ that printed-order matching, this book's leftmost tensor factor corresponds
 to Qiskit's most-significant printed qubit, and the string labels point at
 opposite qubits: this book's $|10\rangle$ means "first (most significant)
 qubit is $1$, second is $0$"; Qiskit's printed `10` means "qubit $1$ is
-$1$, qubit $0$ is $0$." That is the same basis vector. If instead you
-identify the first tensor factor with Qiskit's `q_0`, then a hand-derived
-matrix needs an explicit SWAP/permutation before it lines up with code.
+$1$, qubit $0$ is $0$." That is the same basis vector.
+
+> **Rule of thumb.** To match this book's tensor order with Qiskit's
+> statevector indices *without* inserting any permutation, map the
+> leftmost tensor factor of $|x_1 \cdots x_n\rangle$ to Qiskit's
+> *highest-numbered* qubit label. For two qubits: book factor 1 ↔ `q_1`,
+> book factor 2 ↔ `q_0`. If instead you map book factor 1 ↔ `q_0`,
+> insert an explicit SWAP (or qubit-label permutation) when comparing
+> hand-derived matrices with code.
 
 The tensor product of operators acts componentwise:
 
@@ -713,6 +726,9 @@ amplitudes.
 > coordinates the *same* vector is $H\, (a, b)^T$ — a passive relabelling.
 > Applying $H$ as a *gate* is a different physical operation; it just
 > happens to be described by the same matrix because $H = H^\dagger$.
+> The Hadamard is unusually forgiving in this respect: for a general
+> basis-change unitary $U$, the direction of $U$ versus $U^\dagger$
+> matters and the two readings do not collapse to the same matrix.
 
 Diagonalizing an operator is a basis change that makes it diagonal. Many
 algorithm-design tricks amount to finding a basis in which a hard
@@ -861,8 +877,10 @@ $\mathbb{C}^N$.
 > with $F_N^{(+)} = (F_N^{(-)})^\dagger$. **In this book "the QFT" always
 > means $F_N \equiv F_N^{(-)}$.** Current Qiskit's `QFTGate` implements the
 > opposite, positive-exponent convention $F_N^{(+)}$, so Qiskit's `QFTGate`
-> corresponds to the *inverse* of our $F_N$, and Qiskit's inverse-QFT
-> object matches our $F_N$. (Older code may use the now-deprecated
+> corresponds to the *inverse* of our $F_N$, and Qiskit's inverse of
+> `QFTGate` matches our $F_N$ — up to the same bit-ordering and final-swap
+> conventions discussed in §4.8, which QFT circuits often expose as an
+> optional terminal swap layer. (Older code may use the now-deprecated
 > `qiskit.circuit.library.QFT` blueprint circuit; new code should prefer
 > `QFTGate` or Qiskit's QFT synthesis functions.) If a later algorithm
 > uses the opposite QFT sign, every controlled-phase angle and every
@@ -1030,11 +1048,14 @@ the rest of the book:
    different properties.** The Pauli matrices happen to satisfy several at
    once; generic operators do not, and conflating these classes leads to
    real bugs.
-10. **A change of basis changes coordinates, not the vector or operator
-    itself.** $|\psi\rangle$ has the same physical meaning before and after
-    you apply $U^\dagger$ to its coordinates; it is the *representation*
-    that changes. Confusing state, representation, and measurement basis is
-    a common source of phantom bugs in circuit derivations.
+10. **A passive change of basis changes coordinates, not the vector or
+    operator itself.** If the new basis vectors are the columns of $U$, then
+    the coordinate vector of $|\psi\rangle$ changes as $v_f = U^\dagger v_e$,
+    but the abstract vector is the same. This is different from *actively*
+    applying $U^\dagger$ as a quantum gate, which physically changes the
+    state before measurement. The formulas look identical (§4.10); the
+    semantics do not, and conflating them is one of the most common sources
+    of phantom bugs in circuit derivations.
 11. **The measurement basis is part of the experiment.** The same state can
     produce different classical distributions under different measurement
     bases; probabilities are not properties of the state vector alone, they
