@@ -52,13 +52,15 @@ outcome $1$ is $|\beta|^2$. These amplitudes can add, cancel, and rotate —
 which is why interference, the engine of quantum speedups, exists.
 
 A real-valued probabilistic computer cannot have negative probabilities. A
-quantum computer has amplitudes that can carry any phase, and the modulus
-squared determines what is observed. A **global phase** multiplies the entire
-state by the same $e^{i\theta}$ and cancels from every probability; it is
-physically irrelevant. A **relative phase** changes the weighting between
-components of a superposition and can become observable after interference or
-a change of basis. This distinction is responsible for a large fraction of
-the "this looks wrong, but it's right" moments in early quantum computing.
+quantum computer carries complex amplitudes; amplitudes are *not* signed
+probabilities, they are complex coordinates whose squared moduli become
+probabilities only after a measurement basis is chosen. A **global phase**
+multiplies the entire state by the same $e^{i\theta}$ and cancels from every
+probability; it is physically irrelevant. A **relative phase** changes the
+weighting between components of a superposition and can become observable
+after interference or a change of basis. This distinction is responsible for
+a large fraction of the "this looks wrong, but it's right" moments in early
+quantum computing.
 
 ## 4.2 Vector Spaces
 
@@ -74,9 +76,10 @@ independent spanning set; its size is the **dimension** of $V$.
 
 For an $n$-qubit register, the state space is $\mathbb{C}^{2^n}$. The
 dimension doubles every time you add a qubit. Strictly speaking, this is the
-ambient vector space; a physical *pure state* is represented by a normalized
-nonzero vector, with vectors differing only by a global phase treated as the
-same physical state. Chapter 5 makes this precise.
+ambient vector space; a physical *pure state* is a **ray** in the Hilbert
+space, conventionally represented by a normalized nonzero vector, with
+vectors differing only by a global phase treated as the same physical state.
+Chapter 5 makes this precise.
 
 This exponential growth explains why generic classical simulation of quantum
 systems is hard. It does not by itself give a quantum speedup: useful
@@ -92,7 +95,7 @@ strings $x \in \\{0,1\\}^n$, written $|x\rangle$. We will call this the
 > bit, so $|x\rangle$ sits at the *zero-based index*
 > $\sum_{i=1}^{n} x_i\, 2^{n-i}$ in any column-vector representation, and
 > $|x\rangle = |x_1\rangle |x_2\rangle \cdots |x_n\rangle$ as a tensor
-> product (§4.9). Some software frameworks use the opposite convention; the
+> product (§4.8). Some software frameworks use the opposite convention; the
 > tensor-product section gives the explicit warning.
 
 ## 4.3 Inner Products, Norms, and Orthonormal Bases
@@ -171,12 +174,13 @@ $$
 \langle A, B\rangle_{\mathrm{HS}} = \mathrm{tr}(A^\dagger B).
 $$
 
-This is the inner product behind comparisons of states, observables, channels,
-and measurement effects (overlaps, fidelities, expectation values). Density
-matrices are Hermitian, so $\rho^\dagger = \rho$ and the Hilbert–Schmidt
-inner product collapses to
+This is the inner product behind many useful overlaps and expectation-value
+formulas. Density matrices are Hermitian, so $\rho^\dagger = \rho$ and the
+Hilbert–Schmidt inner product collapses to
 $\langle \rho, \sigma\rangle_{\mathrm{HS}} = \mathrm{tr}(\rho\, \sigma)$
-without an explicit dagger.
+without an explicit dagger. Some quantities introduced later, such as
+mixed-state fidelity and trace distance, are *not* simply Hilbert–Schmidt
+inner products, but they share the same operator-level viewpoint.
 
 ## 4.5 Hermitian, Unitary, Normal, and Positive Operators
 
@@ -185,10 +189,12 @@ Four operator classes appear constantly in quantum computing.
 **Hermitian** (self-adjoint): $A^\dagger = A$. Eigenvalues are real;
 eigenvectors belonging to distinct eigenvalues are orthogonal, and within any
 degenerate eigenspace one can choose an orthonormal basis (§4.6). In ideal
-**projective measurement**, observables (energy, spin component, position)
-are represented by Hermitian operators and the possible outcomes are the
-eigenvalues. More general measurements are described later by POVMs
-(Chapter 11).
+**projective measurement**, observables are represented by Hermitian
+operators and the possible outcomes are the eigenvalues. In the
+finite-dimensional models used throughout this book, observables (energy,
+spin component) are Hermitian matrices; continuous observables such as
+position require the infinite-dimensional machinery postponed to Chapter 32.
+More general measurements are described later by POVMs (Chapter 11).
 
 **Unitary**: $U^\dagger U = U U^\dagger = I$, equivalently $U^{-1} = U^\dagger$.
 Preserves the inner product, $\langle U u, U v\rangle = \langle u, v\rangle$,
@@ -208,8 +214,11 @@ semidefinite**, written $A \succeq 0$, if $\langle v | A | v\rangle \ge 0$ for
 every $v$, equivalently all eigenvalues of $A$ are nonnegative. Positive
 semidefinite operators are the linear-algebraic home of probabilities in
 quantum mechanics: **density matrices** ($\rho \succeq 0$ with
-$\mathrm{tr}\,\rho = 1$), **measurement effects** in a POVM, fidelities and
-trace distances, and canonical square roots all live in this cone.
+$\mathrm{tr}\,\rho = 1$), POVM **measurement effects**, and canonical square
+roots live in this cone. Other quantitative notions — fidelity, trace
+distance, distinguishability bounds — are built *from* PSD states, PSD
+effects, and positive square roots, even when the final quantity is a scalar
+or a norm rather than a PSD operator.
 
 Sanity checks:
 
@@ -237,7 +246,8 @@ Sanity checks:
 A nonzero $v \in V$ is an **eigenvector** of $A$ with **eigenvalue**
 $\lambda \in \mathbb{C}$ when $A v = \lambda v$. The eigenvalues are the
 roots of $\det(A - \lambda I) = 0$, the **characteristic polynomial** of $A$.
-An $n \times n$ matrix has $n$ eigenvalues counted with multiplicity.
+Over $\mathbb{C}$, an $n \times n$ matrix has $n$ eigenvalues counted with
+algebraic multiplicity.
 
 For the operator classes from §4.5:
 
@@ -299,10 +309,11 @@ The two most important instances in quantum computing:
 - **Time evolution.** For a *time-independent* Hamiltonian $H$ (Hermitian) and
   time $t$, the unitary $U(t) = e^{-i H t / \hbar}$ is computed from the
   spectral decomposition of $H$ as $U(t) = \sum_i e^{-i \lambda_i t / \hbar} P_i$.
-  Simulating dynamics reduces to diagonalizing $H$ when feasible — which it
-  generally is not, hence the entire field of Hamiltonian simulation
-  (Chapter 16). Time-dependent Hamiltonians require time-ordered exponentials,
-  handled separately.
+  Algorithmic quantum computing usually sets $\hbar = 1$, so this formula
+  appears later as $U(t) = e^{-i H t}$. Simulating dynamics reduces to
+  diagonalizing $H$ when feasible — which it generally is not, hence the
+  entire field of Hamiltonian simulation (Chapter 16). Time-dependent
+  Hamiltonians require time-ordered exponentials, handled separately.
 - **Square roots and inverses.** For a *positive semidefinite Hermitian* $A$
   the square root is canonical: $\sqrt{A} = \sum_i \sqrt{\lambda_i}\, P_i$
   with the nonnegative real branch. For more general normal operators choosing
@@ -316,77 +327,7 @@ When $A$ is Hermitian, the eigenvalues are real and $f(A)$ is Hermitian for
 real-valued $f$; if $f$ has unit-modulus values (like $e^{i\,\cdot}$), $f(A)$
 is unitary. This is exactly how observables generate gates.
 
-## 4.8 Singular Values and the Singular Value Decomposition
-
-Not every useful matrix is normal, square, or diagonalizable by a unitary
-similarity transformation. For a general complex matrix
-$A \in \mathbb{C}^{m \times n}$ the **singular value decomposition (SVD)** is
-
-$$
-A = U\, \Sigma\, V^\dagger,
-$$
-
-where $U \in \mathbb{C}^{m \times m}$ and $V \in \mathbb{C}^{n \times n}$
-are unitary and $\Sigma$ is a rectangular diagonal matrix with nonnegative
-real entries $\sigma_1 \ge \sigma_2 \ge \cdots \ge 0$ on the diagonal. The
-$\sigma_i$ are the **singular values** of $A$; they are the square roots of
-the eigenvalues of the positive semidefinite operator $A^\dagger A$.
-
-Singular values measure how much $A$ stretches vectors, independent of any
-basis. Two derived quantities show up constantly in quantum computing:
-
-- The **operator norm** (spectral norm) is
-  $\|A\| = \sup_{\|v\| = 1} \|A v\| = \sigma_1$, the largest singular
-  value. It bounds the worst-case amplification by $A$.
-- The **trace norm** (nuclear norm) is
-  $\|A\|_1 = \mathrm{tr}\sqrt{A^\dagger A} = \sum_i \sigma_i$. The trace
-  distance between two density matrices, $\tfrac{1}{2}\|\rho - \sigma\|_1$,
-  is the operational distance between quantum states.
-
-For a square invertible matrix the **condition number** is
-$\kappa(A) = \sigma_{\max}(A) / \sigma_{\min}(A)$. It measures how
-ill-posed the linear system $A x = b$ is — small $\kappa$ is well-conditioned,
-large $\kappa$ means numerical error gets amplified. The HHL algorithm's
-asymptotic cost depends explicitly on $\kappa$.
-
-SVD appears repeatedly in the rest of the book:
-
-- **Schmidt decomposition.** Every pure bipartite state
-  $|\psi\rangle \in V \otimes W$ admits the form
-  $|\psi\rangle = \sum_i s_i\, |u_i\rangle |v_i\rangle$ with
-  $s_i \ge 0$, $\sum_i s_i^2 = 1$, and orthonormal $\{|u_i\rangle\}$,
-  $\{|v_i\rangle\}$. This is the SVD of the coefficient matrix of
-  $|\psi\rangle$. The state is a product state iff exactly one $s_i$ is
-  nonzero; otherwise it is entangled, and the $s_i$ quantify how much.
-  Chapter 7 develops this.
-- **Block encodings and QSVT.** Modern algorithms such as quantum signal
-  processing, qubitization, and the quantum singular value transformation
-  (Chapter 16) act on the singular values of a matrix embedded inside a
-  larger unitary. The SVD is the spectrum these techniques actually
-  transform.
-- **HHL and related algorithms.** The original HHL algorithm (§15.5) is
-  stated for Hermitian positive definite $A$, where eigenvalues and
-  singular values coincide; it implements $A^{-1}|b\rangle$ by mapping each
-  eigenvalue $\lambda_i$ to $1/\lambda_i$. For general non-Hermitian linear
-  systems, modern block-encoding and singular-value-transformation methods
-  act on singular values directly, $\sigma_i \mapsto 1/\sigma_i$ on the
-  corresponding singular vector. In both cases conditioning ($\kappa$), not
-  size, is the dominant cost parameter.
-
-For normal $A$ with spectral decomposition $A = W \Lambda W^\dagger$, the
-singular values are $|\lambda_i|$, and an SVD can be chosen in the same
-eigenbasis: $\Sigma = |\Lambda|$, $V = W$, and $U = W D$, where
-$D_{ii} = \lambda_i / |\lambda_i|$ for nonzero eigenvalues (arbitrary phases
-on the kernel). In this sense the SVD separates the *magnitudes* of the
-eigenvalues from their *phases*; for non-normal or rectangular operators it
-is the strictly more general tool.
-
-The SVD also yields the **polar decomposition**: every square $A$ factors as
-$A = W\, |A|$ with $|A| = \sqrt{A^\dagger A}$ positive semidefinite and $W$
-unitary (or a partial isometry when $A$ is rank-deficient). This is the
-operator analogue of writing a complex number as $z = e^{i\theta} |z|$.
-
-## 4.9 Tensor Products
+## 4.8 Tensor Products
 
 The state space of a composite system is the **tensor product** of the
 component state spaces. If $V$ has basis $\\{e_i\\}_{i=1}^{m}$ and $W$ has
@@ -471,7 +412,7 @@ $$
 |\Phi^+\rangle = \frac{|00\rangle + |11\rangle}{\sqrt{2}}
 $$
 
-is the smallest concrete example of an entangled state.
+is the smallest nontrivial bipartite example of an entangled pure state.
 
 > **Sanity check.** Show that $|\Phi^+\rangle$ cannot be written as
 > $|u\rangle \otimes |v\rangle$ for any single-qubit $|u\rangle, |v\rangle$.
@@ -480,7 +421,7 @@ is the smallest concrete example of an entangled state.
 > in the $\\{|0\rangle, |1\rangle\\}$ basis has rank two.
 
 Sharper structural information about how entangled a bipartite pure state is
-comes from the **Schmidt decomposition** (§4.8): every
+comes from the **Schmidt decomposition** (§4.9): every
 $|\psi\rangle \in V \otimes W$ admits the form
 $|\psi\rangle = \sum_i s_i\, |u_i\rangle |v_i\rangle$ with $s_i \ge 0$, and
 $|\psi\rangle$ is a product state iff exactly one $s_i$ is nonzero. Chapter 7
@@ -489,6 +430,82 @@ develops this in detail.
 *Takeaway:* the tensor product is where multi-qubit systems stop being just
 collections of independent qubits and start being computational resources in
 their own right.
+
+## 4.9 Singular Values and the Singular Value Decomposition
+
+Not every useful matrix is normal, square, or diagonalizable by a unitary
+similarity transformation. For a general complex matrix
+$A \in \mathbb{C}^{m \times n}$ the **singular value decomposition (SVD)** is
+
+$$
+A = U\, \Sigma\, V^\dagger,
+$$
+
+where $U \in \mathbb{C}^{m \times m}$ and $V \in \mathbb{C}^{n \times n}$
+are unitary and $\Sigma$ is a rectangular diagonal matrix with nonnegative
+real entries $\sigma_1 \ge \sigma_2 \ge \cdots \ge 0$ on the diagonal. The
+$\sigma_i$ are the **singular values** of $A$; they are the square roots of
+the eigenvalues of the positive semidefinite operator $A^\dagger A$.
+
+Singular values are invariant under unitary changes of basis on either side
+and measure the principal stretching factors of $A$. Two derived quantities
+show up constantly in quantum computing:
+
+- The **operator norm** (spectral norm) is
+  $\|A\| = \sup_{\|v\| = 1} \|A v\| = \sigma_1$, the largest singular
+  value. It bounds the worst-case amplification by $A$.
+- The **trace norm** (nuclear norm) is
+  $\|A\|_1 = \mathrm{tr}\sqrt{A^\dagger A} = \sum_i \sigma_i$. The trace
+  distance between two density matrices, $\tfrac{1}{2}\|\rho - \sigma\|_1$,
+  is the operational distance between quantum states.
+
+For a square invertible matrix the **condition number** is
+$\kappa(A) = \sigma_{\max}(A) / \sigma_{\min}(A)$. It measures how
+ill-posed the linear system $A x = b$ is — small $\kappa$ is well-conditioned,
+large $\kappa$ means numerical error gets amplified. The HHL algorithm's
+asymptotic cost depends explicitly on $\kappa$.
+
+SVD appears repeatedly in the rest of the book:
+
+- **Schmidt decomposition.** Every pure bipartite state
+  $|\psi\rangle \in V \otimes W$ admits the form
+  $|\psi\rangle = \sum_i s_i\, |u_i\rangle |v_i\rangle$ with
+  $s_i \ge 0$, $\sum_i s_i^2 = 1$, and orthonormal $\{|u_i\rangle\}$,
+  $\{|v_i\rangle\}$. This is the SVD of the coefficient matrix of
+  $|\psi\rangle$. The state is a product state iff exactly one $s_i$ is
+  nonzero; otherwise it is entangled, and the $s_i$ quantify how much.
+  Chapter 7 develops this.
+- **Block encodings and QSVT.** Modern algorithms such as quantum signal
+  processing, qubitization, and the quantum singular value transformation
+  (Chapter 16) act on the singular values of a matrix embedded inside a
+  larger unitary. The SVD is the spectrum these techniques actually
+  transform.
+- **HHL and related algorithms.** The original HHL algorithm (§15.5) is
+  stated for Hermitian positive definite $A$, where eigenvalues and
+  singular values coincide; it implements $A^{-1}|b\rangle$ by mapping each
+  eigenvalue $\lambda_i$ to $1/\lambda_i$. For general non-Hermitian linear
+  systems, block-encoding and singular-value-transformation methods operate
+  on the SVD structure: roughly, they transform singular values
+  $\sigma_i \mapsto 1/\sigma_i$ while mapping between the associated right
+  and left singular-vector subspaces. The exact statement depends on the
+  block encoding and on how the input and output spaces are embedded. In
+  both cases conditioning ($\kappa$), not size, is the dominant cost
+  parameter.
+
+For normal $A$ with spectral decomposition $A = W \Lambda W^\dagger$, the
+singular values are $|\lambda_i|$, and an SVD can be chosen in the same
+eigenbasis: $\Sigma = |\Lambda|$, $V = W$, and $U = W D$, where
+$D_{ii} = \lambda_i / |\lambda_i|$ for nonzero eigenvalues (arbitrary phases
+on the kernel). In this sense the SVD separates the *magnitudes* of the
+eigenvalues from their *phases*; for non-normal or rectangular operators it
+is the strictly more general tool.
+
+The SVD also yields the **polar decomposition**: every square $A$ factors as
+$A = W\, |A|$ with $|A| = \sqrt{A^\dagger A}$ positive semidefinite. If $A$
+is invertible, $W$ is unitary and unique. If $A$ is rank-deficient, the
+canonical polar factor is a partial isometry; in finite dimensions it can be
+extended to a unitary, but the extension is not unique on the kernel. This
+is the operator analogue of writing a complex number as $z = e^{i\theta} |z|$.
 
 ## 4.10 Change of Basis
 
@@ -535,8 +552,10 @@ Infinite-dimensional Hilbert spaces appear in two contexts:
    important physical models, such as lattice spin systems and qubit arrays,
    are finite-dimensional from the start.
 
-For the rest of the book, treat "Hilbert space" as shorthand for "the relevant
-$\mathbb{C}^{2^n}$" unless we say otherwise.
+For most of this book, "Hilbert space" means the finite-dimensional complex
+inner-product space appropriate to the register being discussed — usually
+$\mathbb{C}^{2^n}$ for an $n$-qubit register, but also ancilla spaces,
+qudit-dimension spaces, and truncated mode spaces — unless we say otherwise.
 
 ## 4.12 Dirac Notation
 
@@ -558,14 +577,19 @@ readable.
 
 The translation between Dirac notation and column/row vectors is mechanical:
 
-| Dirac notation | Matrix / vector notation | Type signature |
-|---|---|---|
-| $\|\psi\rangle$ | column vector $\psi$ | $n \times 1$ |
-| $\langle\phi\|$ | row vector $\phi^\dagger$ | $1 \times n$ |
-| $\langle\phi\|\psi\rangle$ | scalar $\phi^\dagger \psi$ | $1 \times 1$ |
-| $\|\psi\rangle\langle\phi\|$ | rank-one matrix $\psi \phi^\dagger$ | $n \times n$ |
-| $A\|\psi\rangle$ | matrix-vector product $A \psi$ | $n \times 1$ |
-| $\langle\phi\| A \|\psi\rangle$ | scalar $\phi^\dagger A \psi$ | $1 \times 1$ |
+- $|\psi\rangle$ corresponds to a column vector $\psi$ of shape $n \times 1$.
+- $\langle\phi|$ corresponds to the row vector $\phi^\dagger$ of shape $1 \times n$.
+- $\langle\phi|\psi\rangle$ corresponds to the scalar $\phi^\dagger \psi$
+  (shape $1 \times 1$).
+- $|\psi\rangle\langle\phi|$ corresponds to the rank-one matrix
+  $\psi\, \phi^\dagger$ of shape $n \times n$.
+- $A|\psi\rangle$ corresponds to the matrix-vector product $A\psi$
+  (shape $n \times 1$).
+- $\langle\phi| A |\psi\rangle$ corresponds to the scalar $\phi^\dagger A \psi$
+  (shape $1 \times 1$).
+
+This "type signature" view is enough to catch most Dirac-vs-matrix bugs
+mechanically.
 
 The computational basis kets are $|0\rangle, |1\rangle$ for a single qubit and
 $|x\rangle$ for $x \in \\{0,1\\}^n$ for $n$ qubits. We use the convention
@@ -638,10 +662,13 @@ Key properties:
   rotation in the other.
 
 The classical fast Fourier transform (FFT) computes a length-$N$ DFT in
-$O(N \log N)$ time. Let $N = 2^n$. With this sign convention, the exact
-**quantum Fourier transform (QFT)** is this same unitary realized as a
-quantum circuit on $n = \log_2 N$ qubits, and the standard textbook
-construction uses $O(n^2) = O((\log N)^2)$ elementary gates. Circuit depth depends on the allowed parallelism, gate set,
+$O(N \log N)$ time. Let $N = 2^n$. In this book, **"QFT"** means the unitary
+with the same sign convention as the DFT above, realized as a quantum
+circuit on $n = \log_2 N$ qubits; the standard textbook construction uses
+$O(n^2) = O((\log N)^2)$ elementary gates. Some texts call the
+opposite-sign unitary the QFT and this one the inverse QFT — always check
+the exponent when comparing formulas, especially inside quantum phase
+estimation. Circuit depth depends on the allowed parallelism, gate set,
 and qubit connectivity; the $O(n^2)$ estimate above is a gate-count
 statement, not a depth statement.
 
@@ -710,10 +737,10 @@ Two quantum-mechanical extensions return in Chapter 12:
    state, once reduced states are introduced (Chapter 5).
 2. **Holevo bound.** Classical information is encoded not by a single density
    matrix but by an *ensemble* $\\{p_x, \rho_x\\}$ — a classical distribution
-   over messages, each transmitted as a quantum state $\rho_x$. The receiver
-   sees the average state $\rho = \sum_x p_x \rho_x$. The classical mutual
-   information that any measurement can extract is bounded by the **Holevo
-   quantity**
+   over messages $X$, each transmitted as a quantum state $\rho_x$. The
+   receiver sees the average state $\rho = \sum_x p_x \rho_x$. For *any*
+   measurement producing classical outcome $Y$, the accessible classical
+   mutual information $I(X; Y)$ is bounded by the **Holevo quantity**
 
    $$
    \chi = S(\rho) - \sum_x p_x\, S(\rho_x).
@@ -730,15 +757,16 @@ density matrix formalism is in place (§5.10).
 
 One classical fact that quantum algorithms inherit unchanged: a quantum
 measurement returns a *sample* from a probability distribution determined by
-the state. Estimating a Bernoulli outcome probability to additive error
-$\epsilon$ with constant confidence requires $\Theta(1/\epsilon^2)$
-independent samples by standard concentration bounds (Hoeffding, Chernoff);
-confidence $1 - \delta$ adds a $\log(1/\delta)$ factor. Quantum algorithms can
-sometimes reduce the number of *queries* to a black-box function or the
-*depth* of the circuit being sampled, but the statistics of the final
-measurement results obey ordinary probability theory. This is why
-shot-budget accounting is a first-class concern when running on real
-hardware (Part X).
+the state. If all you can do is prepare the state, measure it, and repeat
+independently, estimating a Bernoulli outcome probability to additive error
+$\epsilon$ with constant confidence requires $\Theta(1/\epsilon^2)$ shots by
+standard concentration bounds (Hoeffding, Chernoff); confidence $1 - \delta$
+adds a $\log(1/\delta)$ factor. Coherent subroutines such as **amplitude
+estimation** can improve query complexity to roughly $O(1/\epsilon)$ under
+stronger access assumptions (Chapter 14), but the final observed data are
+still classical samples, and once you have them they must be interpreted with
+ordinary probability theory. This is why shot-budget accounting is a
+first-class concern when running on real hardware (Part X).
 
 ## 4.15 Common Traps
 
@@ -763,6 +791,14 @@ the rest of the book:
 7. **Unitary evolution is the closed-system picture.** Measurement, reset,
    and noise are not unitary, and they enter the formalism through
    density matrices and quantum channels (Chapters 5, 11, 18).
+8. **Eigenvalues and singular values are not the same in general.** They
+   coincide for positive semidefinite Hermitian operators and agree in
+   modulus for normal ones; the SVD is the safer tool for non-normal or
+   rectangular matrices.
+9. **"Hermitian," "unitary," "normal," and "positive semidefinite" are
+   different properties.** The Pauli matrices happen to satisfy several at
+   once; generic operators do not, and conflating these classes leads to
+   real bugs.
 
 ## 4.16 Bridge to Chapter 5
 
