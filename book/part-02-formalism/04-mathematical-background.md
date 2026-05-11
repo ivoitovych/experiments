@@ -346,14 +346,16 @@ $$
 [A, B] = AB - BA.
 $$
 
-Operators **commute** when $[A, B] = 0$. In finite dimensions, a family of
-commuting normal operators can be **simultaneously diagonalized**: there is
-one orthonormal basis in which they are all diagonal (we will see this fall
-out of spectral decomposition in §4.7). In quantum mechanics this is the
-linear-algebraic reason that compatible observables admit common
-eigenstates and can be assigned sharp values simultaneously. Noncommuting
-operators in general cannot, and their order matters in circuits, in
-Hamiltonian simulation (Trotterization, §16.2), and in the Pauli algebra.
+Operators **commute** when $[A, B] = 0$. In finite dimensions, a
+**pairwise commuting** family of normal operators can be **simultaneously
+diagonalized**: there is one orthonormal basis in which all of them are
+diagonal (we will see this fall out of spectral decomposition in §4.7). In
+quantum mechanics this is the linear-algebraic reason that compatible
+observables admit a **common eigenbasis** — and so states in that basis
+can have sharp values for all of them at once. Noncommuting observables
+generally do not admit such a common eigenbasis, and their order matters
+in circuits, in Hamiltonian simulation (Trotterization, §16.2), and in
+the Pauli algebra.
 
 For the single-qubit Pauli matrices,
 
@@ -383,8 +385,8 @@ For the operator classes from §4.5:
 - **Hermitian** operators have real eigenvalues and an orthonormal eigenbasis.
   Distinct eigenvalues yield orthogonal eigenvectors automatically; within a
   degenerate eigenspace you can orthonormalize freely.
-- **Unitary** operators have unit-modulus eigenvalues $\\{e^{i\theta_k}\\}$ and
-  an orthonormal eigenbasis.
+- **Unitary** operators are normal, so they have an orthonormal eigenbasis;
+  their eigenvalues are unit-modulus, $\\{e^{i\theta_k}\\}$.
 - **Normal** operators have an orthonormal eigenbasis, possibly with complex
   eigenvalues.
 
@@ -426,8 +428,9 @@ $$
 This is the **spectral decomposition**. Each $P_i$ is Hermitian
 ($P_i^\dagger = P_i$) and idempotent ($P_i^2 = P_i$) — an orthogonal projector.
 Each $P_i$ groups together *all* eigenvectors belonging to the eigenvalue
-$\lambda_i$, so its rank equals the multiplicity of $\lambda_i$ and is not
-necessarily one. For a non-degenerate eigenvalue $\lambda_i$ with
+$\lambda_i$, so its rank equals the **geometric multiplicity** of
+$\lambda_i$ — which for normal operators coincides with the algebraic
+multiplicity (§4.6) — and is not necessarily one. For a non-degenerate eigenvalue $\lambda_i$ with
 *normalized* eigenvector $|v_i\rangle$, the projector is rank-one:
 $P_i = |v_i\rangle\langle v_i|$.
 
@@ -697,10 +700,10 @@ SVD appears repeatedly in the rest of the book:
   $\{|v_i\rangle\}$. This is the SVD of the coefficient matrix of
   $|\psi\rangle$. The number of nonzero $s_i$ is the **Schmidt rank**; the
   state is a product iff the Schmidt rank is one, and otherwise it is
-  entangled. The full Schmidt spectrum $\{s_i\}$ determines every standard
-  pure-state bipartite entanglement measure used later (Chapter 7); a
-  single scalar "amount of entanglement" is a derived quantity, not one of
-  the $s_i$ themselves.
+  entangled. The full Schmidt spectrum $\{s_i\}$ is the raw data from which
+  the standard pure-state bipartite entanglement measures used later
+  (Chapter 7) are derived; a single scalar "amount of entanglement" is a
+  derived quantity, not one of the $s_i$ themselves.
 - **Block encodings and QSVT** (preview only — Chapter 16). Modern
   algorithms such as quantum signal processing, qubitization, and the
   quantum singular value transformation act on the singular values of a
@@ -760,8 +763,9 @@ predictably:
   $A_f = U^\dagger A_e U$ in the $f$-basis (and $A_e = U A_f U^\dagger$
   the other way).
 
-In quantum computing this is constant practice. Measurement in a basis whose
-basis vectors are the columns of a unitary $U$ is implemented by applying
+In quantum computing this is constant practice. If the columns of a
+unitary $U$ are the desired measurement basis written in *computational
+coordinates*, then measurement in that basis is implemented by applying
 $U^\dagger$ and then measuring in the computational basis. For the Hadamard
 basis $\\{|+\rangle, |-\rangle\\}$, $H^\dagger = H$, so this just means
 applying $H$ — and the action is mechanical: $H|+\rangle = |0\rangle$ and
@@ -810,8 +814,9 @@ standard in quantum mechanics, not because finiteness is in doubt.
 Infinite-dimensional Hilbert spaces appear in two contexts:
 
 1. **Continuous-variable quantum computing** (Chapter 32): position/momentum
-   degrees of freedom, modes of light, harmonic oscillators. The state space
-   is $L^2(\mathbb{R})$.
+   degrees of freedom, modes of light, harmonic oscillators. The state
+   space is, for example, $L^2(\mathbb{R})$ for one continuous degree of
+   freedom; multiple modes use $L^2(\mathbb{R}^n)$ or Fock space.
 2. **Hamiltonians of physical systems** being simulated by a quantum computer
    (Chapter 28): many systems — particles in space, electromagnetic field
    modes, harmonic oscillators — have infinite-dimensional Hilbert spaces,
@@ -895,8 +900,10 @@ $$
 with coefficients $\langle i | \psi \rangle$. This is the workhorse trick of
 bra-ket manipulation.
 
-A common shorthand: when a Hermitian operator $A$ has spectral decomposition
-$A = \sum_i \lambda_i |v_i\rangle\langle v_i|$, the outer-product form is
+A common shorthand: after choosing an orthonormal eigenbasis (one entry per
+eigenvector, with degenerate eigenspaces orthonormalized as in §4.6), a
+Hermitian operator $A$ has the spectral decomposition
+$A = \sum_i \lambda_i |v_i\rangle\langle v_i|$. The outer-product form is
 manifestly Hermitian and diagonal in the $\\{|v_i\rangle\\}$ basis.
 
 **Source convention.** Throughout this book we write Dirac notation with
@@ -943,7 +950,14 @@ $\mathbb{C}^N$.
 > code may use the now-deprecated `qiskit.circuit.library.QFT` blueprint
 > circuit; new code should prefer `QFTGate` or Qiskit's QFT synthesis
 > functions. Re-check the convention against current Qiskit documentation
-> when you translate formulas into code.) If a later algorithm
+> when you translate formulas into code.)
+>
+> Before comparing a formula from this book with Qiskit output, check
+> three things independently:
+>
+> 1. exponent sign (this section);
+> 2. final-swap / bit-reversal convention (§4.8);
+> 3. qubit-label-to-tensor-factor mapping (§4.8). If a later algorithm
 > uses the opposite QFT sign, every controlled-phase angle and every
 > phase-estimation readout formula needs to be conjugated accordingly —
 > sign errors in QFT and quantum phase estimation are a classic source
@@ -969,8 +983,11 @@ F_N |j\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \omega^{-jk}\, |k\rangle,
 $$
 
 i.e., the same unitary as the DFT above, realized as a quantum circuit on
-$n = \log_2 N$ qubits; the standard textbook construction uses
-$O(n^2) = O((\log N)^2)$ elementary gates. Some texts call the
+$n = \log_2 N$ qubits; the standard *exact* construction uses
+$O(n^2) = O((\log N)^2)$ elementary gates. Approximate variants reduce
+this further by dropping very small controlled rotations below a chosen
+threshold, at the cost of bounded approximation error; we return to this
+in Chapter 14. Some texts call the
 opposite-sign unitary the QFT and this one the inverse QFT — always check
 the exponent when comparing formulas, especially inside quantum phase
 estimation.
