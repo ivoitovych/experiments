@@ -460,9 +460,9 @@ The two most important instances in quantum computing:
   via this calculus, under additional assumptions about Hermitian embedding,
   conditioning, and efficient state preparation.
 
-When $A$ is Hermitian, the eigenvalues are real and $f(A)$ is Hermitian for
-real-valued $f$; if $f$ has unit-modulus values (like $e^{i\,\cdot}$), $f(A)$
-is unitary. This is the finite-dimensional spectral-calculus reason why
+When $A$ is Hermitian, the eigenvalues are real and $f(A)$ is Hermitian
+when $f$ is real-valued on the spectrum; if $f$ has unit-modulus values on
+the spectrum (like $e^{i\,\cdot}$), $f(A)$ is unitary. This is the finite-dimensional spectral-calculus reason why
 Hermitian observables and Hamiltonians generate unitary gates via
 exponentiation.
 
@@ -651,6 +651,22 @@ $|\psi\rangle = \sum_i s_i\, |u_i\rangle |v_i\rangle$ with $s_i \ge 0$, and
 $|\psi\rangle$ is a product state iff exactly one $s_i$ is nonzero. Chapter 7
 develops this in detail.
 
+A related operation we will use throughout the rest of the book is the
+**partial trace**, which extracts the state of a subsystem from a state of
+the whole. On product operators it is defined by
+
+$$
+\mathrm{tr}_W(A \otimes B) = A\, \mathrm{tr}(B), \qquad
+\mathrm{tr}_V(A \otimes B) = \mathrm{tr}(A)\, B,
+$$
+
+and extended linearly to general bipartite operators. The result is a
+linear map on operators that yields the operator on the remaining factor.
+Chapter 5 uses this to define the **reduced density matrix** of a
+subsystem inside a larger composite system; for an entangled pure state
+the reduced state is generally mixed, which is exactly how entanglement
+makes itself visible inside one subsystem.
+
 *Takeaway:* the tensor product is where multi-qubit systems stop being just
 collections of independent qubits and start being computational resources in
 their own right.
@@ -836,7 +852,8 @@ Hilbert spaces. It is not new mathematics — every bra-ket statement translates
 directly into matrix algebra — but it makes the structure of quantum mechanics
 readable.
 
-- A **ket** $|\psi\rangle$ is a column vector in $\mathbb{C}^n$.
+- A **ket** $|\psi\rangle$ is an abstract state vector; after a basis is
+  chosen it is *represented* by a column vector in $\mathbb{C}^n$.
 - A **bra** $\langle\phi|$ is the adjoint of the ket $|\phi\rangle$, i.e., a
   row vector. The bra map is **anti-linear**:
 
@@ -1070,26 +1087,29 @@ fine to read this material as a *preview* and return after Chapter 5:
    $$
 
    measured in bits, with the convention $0 \log 0 = 0$ applied to the
-   eigenvalues of $\rho$. For a pure state $S = 0$; entanglement of a pure
+   eigenvalues of $\rho$. For a pure density matrix
+   $\rho = |\psi\rangle\langle\psi|$, $S(\rho) = 0$; entanglement of a pure
    bipartite state is captured by the von Neumann entropy of either reduced
    state, once reduced states are introduced (Chapter 5).
 2. **Holevo bound.** Classical information is encoded not by a single density
    matrix but by an *ensemble* $\\{p_x, \rho_x\\}$ — a classical distribution
    over messages $X$, each transmitted as a quantum state $\rho_x$. The
    receiver sees the average state $\rho = \sum_x p_x \rho_x$. For *any*
-   measurement producing classical outcome $Y$, the accessible classical
+   measurement producing classical outcome $Y$, the resulting classical
    mutual information $I(X; Y)$ is bounded by the **Holevo quantity**
 
    $$
    \chi = S(\rho) - \sum_x p_x\, S(\rho_x).
    $$
 
-   For an ensemble of pure states this reduces to $\chi = S(\rho)$. In
-   particular $\chi$ is generally far smaller than the number of complex
-   amplitudes used to describe the underlying quantum states — the
-   information-theoretic ceiling behind the standard warning that a
-   quantum state with exponentially many amplitudes cannot simply be
-   "read out" as exponentially many classical numbers.
+   Consequently the **accessible information** — the supremum of $I(X; Y)$
+   over all measurements — is itself at most $\chi$. For an ensemble of
+   pure states this reduces to $\chi = S(\rho)$. In particular $\chi$ is
+   generally far smaller than the number of complex amplitudes used to
+   describe the underlying quantum states — the information-theoretic
+   ceiling behind the standard warning that a quantum state with
+   exponentially many amplitudes cannot simply be "read out" as
+   exponentially many classical numbers.
 
 For now, treat Shannon entropy as the background you need for noisy-channel
 arguments and information bounds; the quantum extensions arrive once the
@@ -1098,11 +1118,12 @@ density matrix formalism is in place (§5.10).
 One classical fact that quantum algorithms inherit unchanged: a quantum
 measurement returns a *sample* from a probability distribution determined by
 the state, not direct access to the underlying complex amplitudes. Whatever
-you eventually report is an empirical frequency from repeated trials. If all you can do is prepare the state, measure it, and repeat
-independently, estimating a Bernoulli outcome probability to additive error
-$\epsilon$ with constant confidence requires $\Theta(1/\epsilon^2)$ shots by
-standard concentration bounds (Hoeffding, Chernoff); confidence $1 - \delta$
-adds a $\log(1/\delta)$ factor. Coherent subroutines such as **amplitude
+you eventually report is an empirical frequency from repeated trials. In
+the worst case, if all you can do is prepare the state, measure it, and
+repeat independently, estimating an unknown Bernoulli outcome probability
+to additive error $\epsilon$ with constant confidence requires
+$\Theta(1/\epsilon^2)$ shots by standard concentration bounds (Hoeffding,
+Chernoff); confidence $1 - \delta$ adds a $\log(1/\delta)$ factor. Coherent subroutines such as **amplitude
 estimation** can improve query complexity to roughly $O(1/\epsilon)$ under
 stronger access assumptions (Chapter 14), but the final observed data are
 still classical samples, and once you have them they must be interpreted with
@@ -1159,12 +1180,18 @@ the rest of the book:
     mapping between the two is a convention you choose explicitly, and a
     matrix that is correct under one mapping needs a SWAP or permutation
     under the other.
+13. **A ket and its coordinate vector are not the same level of
+    description.** $|\psi\rangle$ is an abstract state; the column vector
+    you write down is its *representation in a chosen basis*. The same
+    state has different coordinate columns in different bases, even
+    though it is the same physical thing.
 
 ## 4.16 Bridge to Chapter 5
 
 The objects in this chapter — vectors, inner products, Hermitian operators,
-unitaries, projectors, tensor products, and the positive trace-one matrices
-that will become density matrices — are the mathematical scaffolding. Chapter 5 turns them into the *postulates of
+unitaries, projectors, tensor products, and the positive semidefinite,
+trace-one operators that will become density matrices — are the
+mathematical scaffolding. Chapter 5 turns them into the *postulates of
 quantum mechanics for computing*:
 
 - Normalized rays in $\mathbb{C}^{2^n}$ become **pure states**.
