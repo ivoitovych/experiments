@@ -98,6 +98,18 @@ strings $x \in \\{0,1\\}^n$, written $|x\rangle$. We will call this the
 > product (§4.8). Some software frameworks use the opposite convention; the
 > tensor-product section gives the explicit warning.
 
+For two qubits this convention gives the index mapping
+
+- $|00\rangle$ — index $0$,
+- $|01\rangle$ — index $1$,
+- $|10\rangle$ — index $2$,
+- $|11\rangle$ — index $3$.
+
+> **Sanity check.** Verify that $|10\rangle$ sits at index $2$ in this
+> book's convention, and compare with how a framework of your choice
+> stores or prints the same two-qubit state. The mismatch (if any) is the
+> framework's qubit-indexing convention, not a bug in the math.
+
 ## 4.3 Inner Products, Norms, and Orthonormal Bases
 
 The **inner product** on $\mathbb{C}^n$ is
@@ -110,6 +122,17 @@ This convention is **conjugate-linear in the first argument** and linear in
 the second, which is the physics convention. (Mathematicians often write the
 opposite — both are valid; the quantum computing literature is consistent and
 we follow it.) The induced **norm** is $\|v\| = \sqrt{\langle v, v\rangle}$.
+
+For notation, this book reserves single bars and double bars for distinct
+roles:
+
+- $|z|$ is the complex modulus of a scalar $z$.
+- $\|v\|$ is the vector 2-norm.
+- $\|A\|$ without a subscript is the operator (spectral) norm of an operator
+  $A$ — the largest singular value (§4.9).
+- $\|A\|_1 = \mathrm{tr}\sqrt{A^\dagger A}$ is the trace norm.
+- $|A| = \sqrt{A^\dagger A}$ is the *operator absolute value* used in the
+  polar decomposition (§4.9), not a scalar.
 
 Two vectors are **orthogonal** when $\langle u, v\rangle = 0$. A basis
 $\\{e_1, \dots, e_n\\}$ is **orthonormal** when $\langle e_i, e_j\rangle = \delta_{ij}$.
@@ -163,9 +186,20 @@ Two distinguished operators are worth naming up front:
 - The **identity operator** $I$ satisfies $I v = v$ for every $v$. In any
   basis it is the diagonal matrix with ones on the diagonal. Equations like
   $U^\dagger U = I$ and $\sum_i P_i = I$ recur throughout the book.
-- A **projector** is an operator with $P^2 = P$. If additionally $P^\dagger = P$
-  it is an **orthogonal projector**; orthogonal projectors represent
-  subspaces and reappear as measurement operators in §4.6.
+- A **projector** is an operator with $P^2 = P$. If additionally
+  $P^\dagger = P$ it is an **orthogonal projector**: it keeps the
+  component of any vector that lies inside its image and removes the
+  component orthogonal to it. Orthogonal projectors represent subspaces
+  and reappear as measurement operators in §4.6. A non-orthogonal idempotent
+  also satisfies $P^2 = P$ but projects along a chosen direction that need
+  not be perpendicular to its image.
+
+> **Sanity check.** Verify that $P = |0\rangle\langle 0|$ satisfies $P^2 = P$
+> and $P^\dagger = P$ — it is an orthogonal projector onto the
+> $|0\rangle$ axis. Then check that
+> $Q = \begin{pmatrix} 1 & 1 \\\\ 0 & 0 \end{pmatrix}$ satisfies $Q^2 = Q$
+> but $Q^\dagger \ne Q$ — it is an idempotent that projects onto the same
+> image but along a non-orthogonal direction.
 
 Operators themselves form a complex vector space, and that space carries an
 inner product of its own — the **Hilbert–Schmidt inner product**
@@ -174,13 +208,13 @@ $$
 \langle A, B\rangle_{\mathrm{HS}} = \mathrm{tr}(A^\dagger B).
 $$
 
-This is the inner product behind many useful overlaps and expectation-value
-formulas. Density matrices are Hermitian, so $\rho^\dagger = \rho$ and the
-Hilbert–Schmidt inner product collapses to
-$\langle \rho, \sigma\rangle_{\mathrm{HS}} = \mathrm{tr}(\rho\, \sigma)$
-without an explicit dagger. Some quantities introduced later, such as
-mixed-state fidelity and trace distance, are *not* simply Hilbert–Schmidt
-inner products, but they share the same operator-level viewpoint.
+This is one operator-level way to view many overlaps and expectation-value
+expressions. The expectation value of an observable $A$ in a state $\rho$
+is $\langle A\rangle_\rho = \mathrm{tr}(\rho A)$ — visibly the
+Hilbert–Schmidt inner product of $\rho^\dagger = \rho$ and $A$. Some
+quantities introduced later, such as mixed-state fidelity and trace
+distance, are *not* literal Hilbert–Schmidt inner products, but they share
+the same operator-level viewpoint.
 
 ## 4.5 Hermitian, Unitary, Normal, and Positive Operators
 
@@ -327,6 +361,13 @@ When $A$ is Hermitian, the eigenvalues are real and $f(A)$ is Hermitian for
 real-valued $f$; if $f$ has unit-modulus values (like $e^{i\,\cdot}$), $f(A)$
 is unitary. This is exactly how observables generate gates.
 
+For **non-normal** matrices the picture changes: eigenvectors need not span
+the space, the eigenbasis need not be orthonormal, and a clean spectral
+decomposition may fail entirely (Jordan form is the linear-algebra repair).
+This is one reason the SVD (§4.9) is the more robust tool whenever
+non-normal or rectangular matrices appear — block encodings, classical data
+embeddings, and many of the structured maps inside quantum algorithms.
+
 ## 4.8 Tensor Products
 
 The state space of a composite system is the **tensor product** of the
@@ -402,11 +443,11 @@ global phase. Otherwise it is **entangled**. For pure states, "product" and
 "separable" are used interchangeably. For *mixed* states, "separable" has a
 broader meaning — a convex mixture of product states — and the gap between
 "separable" and "product" is one of the recurring subtleties of bipartite
-quantum information (Chapter 12). With respect
-to the natural continuous measure on the unit sphere of $\mathbb{C}^{mn}$,
-the separable states form a measure-zero set — almost every state is
-entangled, which is what makes many-qubit state spaces so much richer than
-products of single-qubit spaces. The Bell state
+quantum information (Chapter 12). The measure-zero claim below refers to the
+*pure-state* meaning only. Among pure states, with respect to the natural continuous measure on the
+unit sphere of $V \otimes W$, product/separable states form a measure-zero
+subset — almost every pure state is entangled, which is what makes
+many-qubit state spaces so much richer than products of single-qubit spaces. The Bell state
 
 $$
 |\Phi^+\rangle = \frac{|00\rangle + |11\rangle}{\sqrt{2}}
@@ -480,17 +521,17 @@ SVD appears repeatedly in the rest of the book:
   (Chapter 16) act on the singular values of a matrix embedded inside a
   larger unitary. The SVD is the spectrum these techniques actually
   transform.
-- **HHL and related algorithms.** The original HHL algorithm (§15.5) is
-  stated for Hermitian positive definite $A$, where eigenvalues and
-  singular values coincide; it implements $A^{-1}|b\rangle$ by mapping each
-  eigenvalue $\lambda_i$ to $1/\lambda_i$. For general non-Hermitian linear
-  systems, block-encoding and singular-value-transformation methods operate
-  on the SVD structure: roughly, they transform singular values
-  $\sigma_i \mapsto 1/\sigma_i$ while mapping between the associated right
-  and left singular-vector subspaces. The exact statement depends on the
-  block encoding and on how the input and output spaces are embedded. In
-  both cases conditioning ($\kappa$), not size, is the dominant cost
-  parameter.
+- **HHL and related algorithms.** In the simplest Hermitian positive-definite
+  presentation of HHL (§15.5), eigenvalues and singular values coincide, so
+  the algorithm implements a map proportional to $A^{-1}|b\rangle$ by
+  transforming $\lambda_i \mapsto 1/\lambda_i$ on the eigenvectors. More
+  general Hermitian formulations allow signed eigenvalues bounded away from
+  zero; non-Hermitian systems are typically handled by embedding $A$ inside
+  a larger Hermitian matrix, or by block-encoding and
+  singular-value-transformation methods that act on the SVD structure
+  directly, $\sigma_i \mapsto 1/\sigma_i$ while mapping between the right
+  and left singular-vector subspaces. In all cases conditioning ($\kappa$),
+  not size, is the dominant cost parameter.
 
 For normal $A$ with spectral decomposition $A = W \Lambda W^\dagger$, the
 singular values are $|\lambda_i|$, and an SVD can be chosen in the same
@@ -506,6 +547,13 @@ is invertible, $W$ is unitary and unique. If $A$ is rank-deficient, the
 canonical polar factor is a partial isometry; in finite dimensions it can be
 extended to a unitary, but the extension is not unique on the kernel. This
 is the operator analogue of writing a complex number as $z = e^{i\theta} |z|$.
+
+> **Sanity check.** Compute the singular values of $X$ (Pauli), $S$ (phase
+> gate), and $|0\rangle\langle 0|$. Unitary matrices have all singular
+> values equal to $1$, so $X$ and $S$ both have $\sigma = (1, 1)$. The
+> rank-one projector $|0\rangle\langle 0|$ has singular values $(1, 0)$.
+> Notice how this distinguishes the *unitary*, *Hermitian*, and *projector*
+> properties even though all three matrices are $2 \times 2$.
 
 ## 4.10 Change of Basis
 
@@ -566,7 +614,14 @@ readable.
 
 - A **ket** $|\psi\rangle$ is a column vector in $\mathbb{C}^n$.
 - A **bra** $\langle\phi|$ is the adjoint of the ket $|\phi\rangle$, i.e., a
-  row vector.
+  row vector. The bra map is **anti-linear**:
+
+  $$
+  \langle a\phi + b\chi | = \overline{a}\, \langle\phi| + \overline{b}\, \langle\chi|.
+  $$
+
+  This is the most common source of slow-burn errors in Dirac calculations —
+  distributing a bra over a sum should always carry the complex conjugates.
 - The **inner product** $\langle\phi|\psi\rangle$ is a scalar,
   $\sum_i \overline{\phi_i}\, \psi_i$.
 - The **outer product** $|\psi\rangle\langle\phi|$ is the matrix with entries
@@ -663,8 +718,15 @@ Key properties:
 
 The classical fast Fourier transform (FFT) computes a length-$N$ DFT in
 $O(N \log N)$ time. Let $N = 2^n$. In this book, **"QFT"** means the unitary
-with the same sign convention as the DFT above, realized as a quantum
-circuit on $n = \log_2 N$ qubits; the standard textbook construction uses
+$F_N$ on $\mathbb{C}^N$ that acts on computational-basis states by
+
+$$
+F_N |j\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \omega^{-jk}\, |k\rangle,
+\qquad \omega = e^{2\pi i / N},
+$$
+
+i.e., the same unitary as the DFT above, realized as a quantum circuit on
+$n = \log_2 N$ qubits; the standard textbook construction uses
 $O(n^2) = O((\log N)^2)$ elementary gates. Some texts call the
 opposite-sign unitary the QFT and this one the inverse QFT — always check
 the exponent when comparing formulas, especially inside quantum phase
@@ -757,7 +819,8 @@ density matrix formalism is in place (§5.10).
 
 One classical fact that quantum algorithms inherit unchanged: a quantum
 measurement returns a *sample* from a probability distribution determined by
-the state. If all you can do is prepare the state, measure it, and repeat
+the state, not direct access to the underlying complex amplitudes. Whatever
+you eventually report is an empirical frequency from repeated trials. If all you can do is prepare the state, measure it, and repeat
 independently, estimating a Bernoulli outcome probability to additive error
 $\epsilon$ with constant confidence requires $\Theta(1/\epsilon^2)$ shots by
 standard concentration bounds (Hoeffding, Chernoff); confidence $1 - \delta$
@@ -799,6 +862,11 @@ the rest of the book:
    different properties.** The Pauli matrices happen to satisfy several at
    once; generic operators do not, and conflating these classes leads to
    real bugs.
+10. **A change of basis changes coordinates, not the vector or operator
+    itself.** $|\psi\rangle$ has the same physical meaning before and after
+    you apply $U^\dagger$ to its coordinates; it is the *representation*
+    that changes. Confusing state, representation, and measurement basis is
+    a common source of phantom bugs in circuit derivations.
 
 ## 4.16 Bridge to Chapter 5
 
