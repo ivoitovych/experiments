@@ -1,14 +1,16 @@
 # Chapter 4. Mathematical Background for Quantum Computing
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 15 / 15
+> **Status:** draft · **Phase:** 1 · **Sections drafted:** 16 / 16
 
 [← Previous: Chapter 3](../part-01-orientation/03-physical-intuition.md) · [Table of Contents](../../README.md) · [Next: Chapter 5 →](05-postulates.md)
 
 This chapter is a refresher, not a textbook treatment. It assumes you have
 seen linear algebra and probability before and re-establishes only the pieces
-that the rest of the book leans on, in the conventions used throughout. If a
-topic here is unfamiliar, work through a standard reference — Strang, Axler,
-or Nielsen and Chuang's Appendix A — and return.
+that the rest of the book leans on, in the conventions used throughout. The
+goal is not to make you fluent in all of linear algebra — it is to make every
+later quantum-computing formula type-check in your head. If a topic here is
+unfamiliar, work through a standard reference — Strang, Axler, or Nielsen and
+Chuang's Appendix A — and return.
 
 Three points to keep in mind:
 
@@ -46,9 +48,12 @@ speedups, exists.
 
 A real-valued probabilistic computer cannot have negative probabilities. A
 quantum computer has amplitudes that can carry any phase, and the modulus
-squared determines what is observed. A global phase has no observable effect
-on any measurement, but relative phases between components can affect later
-interference and measurement statistics.
+squared determines what is observed. A **global phase** multiplies the entire
+state by the same $e^{i\theta}$ and cancels from every probability; it is
+physically irrelevant. A **relative phase** changes the weighting between
+components of a superposition and can become observable after interference or
+a change of basis. This distinction is responsible for a large fraction of
+the "this looks wrong, but it's right" moments in early quantum computing.
 
 ## 4.2 Vector Spaces
 
@@ -74,8 +79,16 @@ algorithms exploit structure, interference, and restricted measurements, not
 the size of the state space alone.
 
 The **standard basis** of $\mathbb{C}^{2^n}$ is indexed by length-$n$ bit
-strings: $\\{|0 \cdots 0\rangle, |0 \cdots 01\rangle, \dots, |1 \cdots 1\rangle\\}$.
-We will call this the **computational basis**.
+strings $x \in \\{0,1\\}^n$, written $|x\rangle$. We will call this the
+**computational basis**.
+
+> **Ordering convention.** Throughout this book the bit string
+> $x = x_1 x_2 \cdots x_n$ is interpreted with $x_1$ as the most significant
+> bit, so $|x\rangle$ sits at position $\sum_{i=1}^{n} x_i\, 2^{n-i}$ in any
+> column-vector representation, and $|x\rangle = |x_1\rangle |x_2\rangle
+> \cdots |x_n\rangle$ as a tensor product (§4.9). Some software frameworks
+> use the opposite convention; the tensor-product section gives the explicit
+> warning.
 
 ## 4.3 Inner Products, Norms, and Orthonormal Bases
 
@@ -94,13 +107,19 @@ Two vectors are **orthogonal** when $\langle u, v\rangle = 0$. A basis
 $\\{e_1, \dots, e_n\\}$ is **orthonormal** when $\langle e_i, e_j\rangle = \delta_{ij}$.
 Any vector $v$ then decomposes as $v = \sum_i \langle e_i, v\rangle\, e_i$,
 and Gram–Schmidt converts any basis into an orthonormal one. In Dirac notation
-(§4.11) this same decomposition becomes
+(§4.12) this same decomposition becomes
 $|\psi\rangle = \sum_i |i\rangle \langle i | \psi \rangle$, the projection of
 $|\psi\rangle$ onto each basis ket.
 
 *Takeaway:* conjugation in the first slot is the rule that makes
 $\langle \psi | \psi \rangle$ a non-negative real number. Forgetting it is one
 of the most common sources of sign and phase errors in quantum calculations.
+
+> **Sanity check.** For $u = (1, i)^T$ and $v = (1, 1)^T$,
+> $\langle u, v\rangle = \overline{1}\cdot 1 + \overline{i}\cdot 1 = 1 - i$,
+> while $\langle v, u\rangle = 1 + i$ — the conjugate. Swapping arguments
+> conjugates the result; $\langle u, u\rangle = 1 + 1 = 2$ is real and
+> non-negative.
 
 The Cauchy–Schwarz inequality, $|\langle u, v\rangle| \le \|u\| \cdot \|v\|$,
 holds with equality iff $u, v$ are linearly dependent. In quantum mechanics it
@@ -131,15 +150,38 @@ Useful identities:
 Trace and determinant are basis-independent invariants. We use the trace
 constantly when computing expectation values and partial traces.
 
-## 4.5 Hermitian, Unitary, and Normal Operators
+Two distinguished operators are worth naming up front:
+
+- The **identity operator** $I$ satisfies $I v = v$ for every $v$. In any
+  basis it is the diagonal matrix with ones on the diagonal. Equations like
+  $U^\dagger U = I$ and $\sum_i P_i = I$ recur throughout the book.
+- A **projector** is an operator with $P^2 = P$. If additionally $P^\dagger = P$
+  it is an **orthogonal projector**; orthogonal projectors represent
+  subspaces and reappear as measurement operators in §4.6.
+
+Operators themselves form a complex vector space, and that space carries an
+inner product of its own — the **Hilbert–Schmidt inner product**
+
+$$
+\langle A, B\rangle_{\mathrm{HS}} = \mathrm{tr}(A^\dagger B).
+$$
+
+This is the inner product behind comparisons of states, observables, channels,
+and measurement effects (overlaps, fidelities, expectation values). For
+density matrices $\rho, \sigma$, $\mathrm{tr}(\rho\, \sigma)$ is the
+Hilbert–Schmidt inner product of $\rho$ and $\sigma$.
+
+## 4.5 Hermitian, Unitary, Normal, and Positive Operators
 
 Three classes of operators dominate quantum computing.
 
 **Hermitian** (self-adjoint): $A^\dagger = A$. Eigenvalues are real;
 eigenvectors belonging to distinct eigenvalues are orthogonal, and within any
-degenerate eigenspace one can choose an orthonormal basis (§4.6). Physical
-observables (energy, spin component, position) correspond to Hermitian
-operators; measurement outcomes are exactly the eigenvalues.
+degenerate eigenspace one can choose an orthonormal basis (§4.6). In ideal
+**projective measurement**, observables (energy, spin component, position)
+are represented by Hermitian operators and the possible outcomes are the
+eigenvalues. More general measurements are described later by POVMs
+(Chapter 11).
 
 **Unitary**: $U^\dagger U = U U^\dagger = I$, equivalently $U^{-1} = U^\dagger$.
 Preserves the inner product, $\langle U u, U v\rangle = \langle u, v\rangle$,
@@ -153,6 +195,14 @@ introduced in Chapter 5 and developed in Chapter 18.
 **Normal**: $A A^\dagger = A^\dagger A$. The class of operators that admit a
 spectral decomposition in some orthonormal basis. Hermitian and unitary are
 both normal; the converse is false.
+
+**Positive semidefinite**: a Hermitian operator $A$ is **positive
+semidefinite**, written $A \succeq 0$, if $\langle v | A | v\rangle \ge 0$ for
+every $v$, equivalently all eigenvalues of $A$ are nonnegative. Positive
+semidefinite operators are the linear-algebraic home of probabilities in
+quantum mechanics: **density matrices** ($\rho \succeq 0$ with
+$\mathrm{tr}\,\rho = 1$), **measurement effects** in a POVM, fidelities and
+trace distances, and canonical square roots all live in this cone.
 
 Sanity checks:
 
@@ -169,6 +219,11 @@ Sanity checks:
   $H|1\rangle = |-\rangle$.
 - The phase gate $S = \begin{pmatrix} 1 & 0 \\\\ 0 & i \end{pmatrix}$ is unitary
   but **not** Hermitian. Its eigenvalues are $1$ and $i$.
+
+> **Sanity check.** Verify $H^\dagger H = I$ and compute $H|0\rangle$ and
+> $H|1\rangle$. Which basis does $H$ map the computational basis to? Now
+> check that $|0\rangle\langle 0|$ is positive semidefinite by exhibiting
+> its eigenvalues.
 
 ## 4.6 Eigenvalues and Eigenvectors
 
@@ -194,16 +249,23 @@ operators the two coincide and the eigenspaces span $V$.
 
 In quantum mechanics, for a **projective measurement** of a Hermitian
 observable the projector $P_\lambda$ onto the eigenspace of $\lambda$ is the
-measurement-outcome operator. The probability of obtaining outcome $\lambda$
-on input $|\psi\rangle$ is $\langle \psi | P_\lambda | \psi\rangle$, and when
-this is strictly positive the post-measurement state is
-$P_\lambda |\psi\rangle / \sqrt{\langle \psi | P_\lambda | \psi\rangle}$. More
-general measurements (POVMs, generalized measurements) are covered in
+measurement-outcome operator. For a normalized state $|\psi\rangle$ the
+probability of outcome $\lambda$ is $\langle \psi | P_\lambda | \psi\rangle$,
+and when $\langle \psi | P_\lambda | \psi\rangle > 0$ the post-measurement
+state is $P_\lambda |\psi\rangle / \sqrt{\langle \psi | P_\lambda | \psi\rangle}$.
+More general measurements (POVMs, generalized measurements) are covered in
 Chapters 11–12.
+
+> **Sanity check.** Let $P_0 = |0\rangle\langle 0|$ and
+> $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ with
+> $|\alpha|^2 + |\beta|^2 = 1$. Compute $\langle\psi|P_0|\psi\rangle$ and the
+> post-measurement state. Check that the answer is what the Born rule says
+> for measuring the first computational-basis outcome.
 
 ## 4.7 Spectral Decomposition
 
-If $A$ is normal with distinct eigenvalues $\lambda_1, \dots, \lambda_k$ and
+If $A$ is normal with distinct *spectral values* $\lambda_1, \dots, \lambda_k$
+(the distinct numbers appearing as eigenvalues, ignoring multiplicities) and
 corresponding orthogonal projectors $P_1, \dots, P_k$ onto the eigenspaces,
 then
 
@@ -247,7 +309,65 @@ When $A$ is Hermitian, the eigenvalues are real and $f(A)$ is Hermitian for
 real-valued $f$; if $f$ has unit-modulus values (like $e^{i\,\cdot}$), $f(A)$
 is unitary. This is exactly how observables generate gates.
 
-## 4.8 Tensor Products
+## 4.8 Singular Values and the Singular Value Decomposition
+
+Not every useful matrix is normal, square, or diagonalizable by a unitary
+similarity transformation. For a general complex matrix
+$A \in \mathbb{C}^{m \times n}$ the **singular value decomposition (SVD)** is
+
+$$
+A = U\, \Sigma\, V^\dagger,
+$$
+
+where $U \in \mathbb{C}^{m \times m}$ and $V \in \mathbb{C}^{n \times n}$
+are unitary and $\Sigma$ is a rectangular diagonal matrix with nonnegative
+real entries $\sigma_1 \ge \sigma_2 \ge \cdots \ge 0$ on the diagonal. The
+$\sigma_i$ are the **singular values** of $A$; they are the square roots of
+the eigenvalues of the positive semidefinite operator $A^\dagger A$.
+
+Singular values measure how much $A$ stretches vectors, independent of any
+basis. Two derived quantities show up constantly in quantum computing:
+
+- The **operator norm** (spectral norm) is
+  $\|A\| = \sup_{\|v\| = 1} \|A v\| = \sigma_1$, the largest singular
+  value. It bounds the worst-case amplification by $A$.
+- The **trace norm** (nuclear norm) is
+  $\|A\|_1 = \mathrm{tr}\sqrt{A^\dagger A} = \sum_i \sigma_i$. The trace
+  distance between two density matrices, $\tfrac{1}{2}\|\rho - \sigma\|_1$,
+  is the operational distance between quantum states.
+
+For a square invertible matrix the **condition number** is
+$\kappa(A) = \sigma_{\max}(A) / \sigma_{\min}(A)$. It measures how
+ill-posed the linear system $A x = b$ is — small $\kappa$ is well-conditioned,
+large $\kappa$ means numerical error gets amplified. The HHL algorithm's
+asymptotic cost depends explicitly on $\kappa$.
+
+SVD appears repeatedly in the rest of the book:
+
+- **Schmidt decomposition.** Every pure bipartite state
+  $|\psi\rangle \in V \otimes W$ admits the form
+  $|\psi\rangle = \sum_i s_i\, |u_i\rangle |v_i\rangle$ with
+  $s_i \ge 0$, $\sum_i s_i^2 = 1$, and orthonormal $\{|u_i\rangle\}$,
+  $\{|v_i\rangle\}$. This is the SVD of the coefficient matrix of
+  $|\psi\rangle$. The state is a product state iff exactly one $s_i$ is
+  nonzero; otherwise it is entangled, and the $s_i$ quantify how much.
+  Chapter 7 develops this.
+- **Block encodings and QSVT.** Modern algorithms such as quantum signal
+  processing, qubitization, and the quantum singular value transformation
+  (Chapter 16) act on the singular values of a matrix embedded inside a
+  larger unitary. The SVD is the spectrum these techniques actually
+  transform.
+- **HHL and related algorithms.** Inverting $A$ on a quantum state amounts
+  to mapping each singular value $\sigma_i$ to $1 / \sigma_i$ on the
+  corresponding singular vector, which is why conditioning, not size, is
+  the dominant cost parameter (§15.5).
+
+For normal $A$, the singular values are the absolute values of the
+eigenvalues, and $U$, $V$ can be chosen so that $U V^\dagger$ reproduces the
+spectral decomposition. SVD is the strict generalization to operators that
+need not be square or normal.
+
+## 4.9 Tensor Products
 
 The state space of a composite system is the **tensor product** of the
 component state spaces. If $V$ has basis $\\{e_i\\}_{i=1}^{m}$ and $W$ has
@@ -309,21 +429,38 @@ Useful identities:
 - $\mathrm{tr}(A \otimes B) = \mathrm{tr}(A) \cdot \mathrm{tr}(B)$
 - If $A$ is $m \times m$ and $B$ is $n \times n$, then $\det(A \otimes B) = (\det A)^n (\det B)^m$.
 
-A vector in $V \otimes W$ is **product (separable)** if it equals $u \otimes v$
-for some $u \in V$ and $v \in W$; otherwise it is **entangled**. With respect
+A nonzero pure state in $V \otimes W$ is **product (separable)** if it can
+be written as $u \otimes v$ for some $u \in V$ and $v \in W$, up to
+normalization and global phase. Otherwise it is **entangled**. With respect
 to the natural continuous measure on the unit sphere of $\mathbb{C}^{mn}$,
 the separable states form a measure-zero set — almost every state is
 entangled, which is what makes many-qubit state spaces so much richer than
 products of single-qubit spaces. The Bell state
-$(|00\rangle + |11\rangle)/\sqrt{2}$ is the smallest concrete example: it
-cannot be written as $|u\rangle \otimes |v\rangle$ for any single-qubit
-$|u\rangle, |v\rangle$ (Chapter 7).
+
+$$
+|\Phi^+\rangle = \frac{|00\rangle + |11\rangle}{\sqrt{2}}
+$$
+
+is the smallest concrete example of an entangled state.
+
+> **Sanity check.** Show that $|\Phi^+\rangle$ cannot be written as
+> $|u\rangle \otimes |v\rangle$ for any single-qubit $|u\rangle, |v\rangle$.
+> One quick way: any product state has at most rank-one coefficient matrix
+> $C_{ij} = \alpha_i \beta_j$; the coefficient matrix of $|\Phi^+\rangle$
+> in the $\\{|0\rangle, |1\rangle\\}$ basis has rank two.
+
+Sharper structural information about how entangled a bipartite pure state is
+comes from the **Schmidt decomposition** (§4.8): every
+$|\psi\rangle \in V \otimes W$ admits the form
+$|\psi\rangle = \sum_i s_i\, |u_i\rangle |v_i\rangle$ with $s_i \ge 0$, and
+$|\psi\rangle$ is a product state iff exactly one $s_i$ is nonzero. Chapter 7
+develops this in detail.
 
 *Takeaway:* the tensor product is where multi-qubit systems stop being just
 collections of independent qubits and start being computational resources in
 their own right.
 
-## 4.9 Change of Basis
+## 4.10 Change of Basis
 
 If $\\{e_i\\}$ and $\\{f_i\\}$ are two orthonormal bases related by a unitary $U$,
 with $f_j = \sum_i U_{ij} e_i$, then vectors and operators transform
@@ -346,7 +483,7 @@ Traces, determinants, eigenvalues, ranks, and norms are basis-independent;
 matrix entries are not. When you write a matrix, you have already chosen a
 basis — remember which.
 
-## 4.10 Hilbert Spaces
+## 4.11 Hilbert Spaces
 
 A **Hilbert space** is a complete inner-product space — every Cauchy sequence
 converges. In finite dimensions every inner-product space is automatically
@@ -370,7 +507,7 @@ Infinite-dimensional Hilbert spaces appear in two contexts:
 For the rest of the book, treat "Hilbert space" as shorthand for "the relevant
 $\mathbb{C}^{2^n}$" unless we say otherwise.
 
-## 4.11 Dirac Notation
+## 4.12 Dirac Notation
 
 The Dirac (bra-ket) notation is a convention for working in finite-dimensional
 Hilbert spaces. It is not new mathematics — every bra-ket statement translates
@@ -388,9 +525,23 @@ readable.
   $\langle\phi| A |\psi\rangle$ is the **matrix element** of $A$ between
   $|\phi\rangle$ and $|\psi\rangle$.
 
+The translation between Dirac notation and column/row vectors is mechanical:
+
+| Dirac notation | Matrix / vector notation |
+|---|---|
+| $\|\psi\rangle$ | column vector $\psi$ |
+| $\langle\phi\|$ | row vector $\phi^\dagger$ |
+| $\langle\phi\|\psi\rangle$ | scalar $\phi^\dagger \psi$ |
+| $\|\psi\rangle\langle\phi\|$ | rank-one matrix $\psi \phi^\dagger$ |
+| $A\|\psi\rangle$ | matrix-vector product $A \psi$ |
+| $\langle\phi\| A \|\psi\rangle$ | scalar $\phi^\dagger A \psi$ |
+
 The computational basis kets are $|0\rangle, |1\rangle$ for a single qubit and
-$|x\rangle$ for $x \in \\{0,1\\}^n$ for $n$ qubits, with the convention
-$|x\rangle = |x_1\rangle |x_2\rangle \cdots |x_n\rangle$. The standard basis
+$|x\rangle$ for $x \in \\{0,1\\}^n$ for $n$ qubits. We use the convention
+$|x\rangle = |x_1\rangle |x_2\rangle \cdots |x_n\rangle$ with $x_1$ the most
+significant bit, fixed once in §4.2; software frameworks may use the opposite
+ordering, and translating to code requires checking each framework's
+qubit-indexing rule. The standard basis
 vectors of $\mathbb{C}^2$ are
 
 $$
@@ -420,7 +571,7 @@ explicit `\langle` and `\rangle`, e.g., `|\psi\rangle`, `\langle\phi|`,
 `\braket{}{}` macros — they require the MathJax `physics` package, which is
 not loaded by the GitHub Markdown renderer.
 
-## 4.12 Fourier Transform Basics
+## 4.13 Fourier Transform Basics
 
 The **discrete Fourier transform (DFT)** of a vector $f \in \mathbb{C}^N$ is
 
@@ -450,7 +601,8 @@ Key properties:
 - **Unitarity.** $F^\dagger F = I$, so the DFT preserves inner products and
   norms.
 - **Convolution theorem.** Pointwise multiplication in one domain corresponds
-  to circular convolution in the other.
+  to circular convolution in the other, up to normalization factors that
+  depend on the chosen DFT convention.
 - **Shift–phase duality.** Translation in one domain corresponds to a phase
   rotation in the other.
 
@@ -477,10 +629,14 @@ phase or period information needs to be extracted.
 *Takeaway:* the QFT accelerates the *unitary*, not the *information transfer*.
 It is a structured-data tool, not a general-purpose amplitude dump.
 
-We return to the QFT in §14.5 and to its modern descendants (qubitization,
-QSP, QSVT) in Chapter 16.
+We return to the QFT in §14.5, to **quantum phase estimation** in §15.4, and
+to the broader family of **spectral-transformation techniques** —
+qubitization, quantum signal processing (QSP), and the quantum singular
+value transformation (QSVT) — in Chapter 16. These are not literal
+descendants of the QFT, but they share its core idea: act on the spectrum
+of an operator inside a quantum register, then read out structured features.
 
-## 4.13 Probability and Information Theory Refresher
+## 4.14 Probability and Information Theory Refresher
 
 A discrete probability distribution $p$ on outcomes $\\{x_1, \dots, x_n\\}$
 satisfies $p(x_i) \ge 0$ and $\sum_i p(x_i) = 1$. The **expectation** of a
@@ -511,10 +667,15 @@ Two quantum-mechanical extensions return in Chapter 12:
 
 1. **Von Neumann entropy.** Replace the diagonal-entry distribution by the
    spectrum of a density matrix:
-   $S(\rho) = -\mathrm{tr}(\rho \log \rho)$. For a pure state $S = 0$;
-   entanglement of a pure bipartite state is captured by the von Neumann
-   entropy of either reduced state, once reduced states are introduced
-   (Chapter 5).
+
+   $$
+   S(\rho) = -\mathrm{tr}(\rho \log_2 \rho),
+   $$
+
+   measured in bits, with the convention $0 \log 0 = 0$ applied to the
+   eigenvalues of $\rho$. For a pure state $S = 0$; entanglement of a pure
+   bipartite state is captured by the von Neumann entropy of either reduced
+   state, once reduced states are introduced (Chapter 5).
 2. **Holevo bound.** Classical information is encoded not by a single density
    matrix but by an *ensemble* $\\{p_x, \rho_x\\}$ — a classical distribution
    over messages, each transmitted as a quantum state $\rho_x$. The receiver
@@ -535,7 +696,18 @@ For now, treat Shannon entropy as the background you need for noisy-channel
 arguments and information bounds; the quantum extensions arrive once the
 density matrix formalism is in place (§5.10).
 
-## 4.14 Common Traps
+One classical fact that quantum algorithms inherit unchanged: a quantum
+measurement returns a *sample* from a probability distribution determined by
+the state. Estimating any outcome probability to additive error $\epsilon$
+with high confidence requires $\Theta(1/\epsilon^2)$ independent samples by
+standard concentration bounds (Hoeffding, Chernoff). Quantum algorithms can
+sometimes reduce the number of *queries* to a black-box function or the
+*depth* of the circuit being sampled, but the statistics of the final
+measurement results obey ordinary probability theory. This is why
+shot-budget accounting is a first-class concern when running on real
+hardware (Part X).
+
+## 4.15 Common Traps
 
 A short checklist of mistakes that quietly waste hours when working through
 the rest of the book:
@@ -559,7 +731,7 @@ the rest of the book:
    and noise are not unitary, and they enter the formalism through
    density matrices and quantum channels (Chapters 5, 11, 18).
 
-## 4.15 Bridge to Chapter 5
+## 4.16 Bridge to Chapter 5
 
 The objects in this chapter — vectors, inner products, Hermitian operators,
 unitaries, projectors, tensor products, density matrices — are the
