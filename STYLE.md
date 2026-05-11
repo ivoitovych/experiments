@@ -40,6 +40,9 @@ on **all** of: GitHub web view, mdBook + MathJax, and Pandoc.
   instead of `\ket{\psi}`, `\bra{\phi}`, `\braket{\phi}{\psi}`.
 - **Do not** use `\label{}`, `\ref{}`, `\tag{}`, or `\newcommand{}`
   (no global macros across files; GitHub's renderer ignores most of these).
+- **Do not** use `\operatorname{}` — GitHub's MathJax rejects it with
+  "macro is not allowed". Use `\mathrm{}` instead, e.g. `\mathrm{tr}`,
+  `\mathrm{Var}`, `\mathrm{rank}`.
 - Number equations manually if needed: end the line with `\quad (1.3.1)`
   or similar.
 - Avoid heavy math inside Markdown tables — escapes get fragile.

@@ -108,8 +108,8 @@ Useful identities:
 - $(AB)^\dagger = B^\dagger A^\dagger$
 - $(A^\dagger)^\dagger = A$
 - $\det(A^\dagger) = \overline{\det A}$
-- $\operatorname{tr}(A^\dagger) = \overline{\operatorname{tr}(A)}$
-- $\operatorname{tr}(AB) = \operatorname{tr}(BA)$ (cyclic property)
+- $\mathrm{tr}(A^\dagger) = \overline{\mathrm{tr}(A)}$
+- $\mathrm{tr}(AB) = \mathrm{tr}(BA)$ (cyclic property)
 
 Trace and determinant are basis-independent invariants. We use the trace
 constantly when computing expectation values and partial traces.
@@ -252,7 +252,7 @@ Useful identities:
 
 - $(A \otimes B)(C \otimes D) = (A C) \otimes (B D)$
 - $(A \otimes B)^\dagger = A^\dagger \otimes B^\dagger$
-- $\operatorname{tr}(A \otimes B) = \operatorname{tr}(A) \cdot \operatorname{tr}(B)$
+- $\mathrm{tr}(A \otimes B) = \mathrm{tr}(A) \cdot \mathrm{tr}(B)$
 - If $A$ is $m \times m$ and $B$ is $n \times n$, then $\det(A \otimes B) = (\det A)^n (\det B)^m$.
 
 A vector in $V \otimes W$ is **product (separable)** if it equals $u \otimes v$
@@ -389,7 +389,7 @@ QSP, QSVT) in Chapter 16.
 A discrete probability distribution $p$ on outcomes $\{x_1, \dots, x_n\}$
 satisfies $p(x_i) \ge 0$ and $\sum_i p(x_i) = 1$. The **expectation** of a
 real-valued function $g$ is $\mathbb{E}[g] = \sum_i p(x_i)\, g(x_i)$, and the
-**variance** is $\operatorname{Var}[g] = \mathbb{E}[g^2] - \mathbb{E}[g]^2$.
+**variance** is $\mathrm{Var}[g] = \mathbb{E}[g^2] - \mathbb{E}[g]^2$.
 
 For two random variables $X, Y$, the **joint distribution** is $p(x, y)$, the
 **marginal** is $p(x) = \sum_y p(x, y)$, and the **conditional** is
@@ -412,7 +412,7 @@ Two quantum-mechanical extensions return in Chapter 12:
 
 1. **Von Neumann entropy.** Replace the diagonal-entry distribution by the
    spectrum of a density matrix:
-   $S(\rho) = -\operatorname{tr}(\rho \log \rho)$. For a pure state $S = 0$;
+   $S(\rho) = -\mathrm{tr}(\rho \log \rho)$. For a pure state $S = 0$;
    entanglement of a pure bipartite state is captured by the von Neumann
    entropy of either reduced state.
 2. **Holevo bound.** No measurement scheme can extract more than $S(\rho)$

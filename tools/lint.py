@@ -8,7 +8,7 @@ Checks every Markdown file under book/ for:
   - Resolvable relative links to .md files
   - No use of the MathJax `physics` package macros (\\ket, \\bra, \\braket)
   - No use of LaTeX features GitHub does not render (\\label, \\ref, \\tag,
-    \\newcommand)
+    \\newcommand, \\operatorname)
   - No _TODO_ placeholders in files with status past `outlined`
 
 Also checks README.md links resolve and that no file in the repo mentions
@@ -32,7 +32,14 @@ def fail(path, msg: str) -> None:
 
 
 FORBIDDEN_MACROS = [r"\ket{", r"\bra{", r"\braket{", r"\Ket{", r"\Bra{"]
-FORBIDDEN_LATEX = [r"\label{", r"\ref{", r"\tag{", r"\newcommand{", r"\renewcommand{"]
+FORBIDDEN_LATEX = [
+    r"\label{",
+    r"\ref{",
+    r"\tag{",
+    r"\newcommand{",
+    r"\renewcommand{",
+    r"\operatorname{",
+]
 FORBIDDEN_MENTIONS = [
     "Claude",
     "claude.ai",
