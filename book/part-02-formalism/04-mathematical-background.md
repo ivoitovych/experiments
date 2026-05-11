@@ -56,8 +56,18 @@ quantum computer carries complex amplitudes; amplitudes are *not* signed
 probabilities, they are complex coordinates whose squared moduli become
 probabilities only after a measurement basis is chosen. A **global phase**
 multiplies the entire state by the same $e^{i\theta}$ and cancels from every
-probability; it is physically irrelevant. A **relative phase** changes the
-weighting between components of a superposition and can become observable
+probability — for any outcome $x$,
+
+$$
+|\langle x | e^{i\theta}\psi\rangle|^2 = |e^{i\theta}|^2\, |\langle x|\psi\rangle|^2
+= |\langle x|\psi\rangle|^2,
+$$
+
+so global phase is physically irrelevant. A **relative phase** changes the
+phase *relation* between components of a superposition. It can leave
+measurement probabilities unchanged in the current basis (the states
+$(|0\rangle + |1\rangle)/\sqrt{2}$ and $(|0\rangle - |1\rangle)/\sqrt{2}$
+both give $1/2$ on computational-basis measurement) but become observable
 after interference or a change of basis. This distinction is responsible for
 a large fraction of the "this looks wrong, but it's right" moments in early
 quantum computing.
@@ -76,10 +86,11 @@ independent spanning set; its size is the **dimension** of $V$.
 
 For an $n$-qubit register, the state space is $\mathbb{C}^{2^n}$. The
 dimension doubles every time you add a qubit. Strictly speaking, this is the
-ambient vector space; a physical *pure state* is a **ray** in the Hilbert
-space, conventionally represented by a normalized nonzero vector, with
-vectors differing only by a global phase treated as the same physical state.
-Chapter 5 makes this precise.
+ambient vector space; a physical *pure state* is a **ray**: an equivalence
+class of nonzero vectors under multiplication by any nonzero complex scalar.
+Once we choose normalized representatives, the remaining equivalence is
+multiplication by a global phase $e^{i\theta}$. Chapter 5 makes this
+precise.
 
 This exponential growth explains why generic classical simulation of quantum
 systems is hard. It does not by itself give a quantum speedup: useful
@@ -186,12 +197,13 @@ Two distinguished operators are worth naming up front:
 - The **identity operator** $I$ satisfies $I v = v$ for every $v$. In any
   basis it is the diagonal matrix with ones on the diagonal. Equations like
   $U^\dagger U = I$ and $\sum_i P_i = I$ recur throughout the book.
-- A **projector** is an operator with $P^2 = P$. If additionally
-  $P^\dagger = P$ it is an **orthogonal projector**: it keeps the
-  component of any vector that lies inside its image and removes the
-  component orthogonal to it. Orthogonal projectors represent subspaces
-  and reappear as measurement operators in §4.6. A non-orthogonal idempotent
-  also satisfies $P^2 = P$ but projects along a chosen direction that need
+- An **idempotent** is an operator $P$ with $P^2 = P$; in finite-dimensional
+  linear algebra such operators are commonly called **projectors**. If
+  additionally $P^\dagger = P$ it is an **orthogonal projector**: it keeps
+  the component of any vector that lies inside its image and removes the
+  component orthogonal to it. Orthogonal projectors represent subspaces and
+  reappear as measurement operators in §4.6. A non-orthogonal idempotent
+  still satisfies $P^2 = P$ but projects along a chosen direction that need
   not be perpendicular to its image.
 
 > **Sanity check.** Verify that $P = |0\rangle\langle 0|$ satisfies $P^2 = P$
@@ -211,10 +223,12 @@ $$
 This is one operator-level way to view many overlaps and expectation-value
 expressions. The expectation value of an observable $A$ in a state $\rho$
 is $\langle A\rangle_\rho = \mathrm{tr}(\rho A)$ — visibly the
-Hilbert–Schmidt inner product of $\rho^\dagger = \rho$ and $A$. Some
-quantities introduced later, such as mixed-state fidelity and trace
-distance, are *not* literal Hilbert–Schmidt inner products, but they share
-the same operator-level viewpoint.
+Hilbert–Schmidt inner product of $\rho^\dagger = \rho$ and $A$. The induced
+**Hilbert–Schmidt norm** (Frobenius norm) is
+$\|A\|_{\mathrm{HS}} = \sqrt{\mathrm{tr}(A^\dagger A)}$. Some quantities
+introduced later, such as mixed-state fidelity and trace distance, are
+*not* literal Hilbert–Schmidt inner products, but they share the same
+operator-level viewpoint.
 
 ## 4.5 Hermitian, Unitary, Normal, and Positive Operators
 
@@ -245,14 +259,16 @@ both normal; the converse is false.
 
 **Positive semidefinite**: a Hermitian operator $A$ is **positive
 semidefinite**, written $A \succeq 0$, if $\langle v | A | v\rangle \ge 0$ for
-every $v$, equivalently all eigenvalues of $A$ are nonnegative. Positive
-semidefinite operators are the linear-algebraic home of probabilities in
-quantum mechanics: **density matrices** ($\rho \succeq 0$ with
-$\mathrm{tr}\,\rho = 1$), POVM **measurement effects**, and canonical square
-roots live in this cone. Other quantitative notions — fidelity, trace
-distance, distinguishability bounds — are built *from* PSD states, PSD
-effects, and positive square roots, even when the final quantity is a scalar
-or a norm rather than a PSD operator.
+every $v$, equivalently all eigenvalues of $A$ are nonnegative. We bake
+Hermiticity into the definition; some authors define positivity directly
+through the quadratic form and then *prove* Hermiticity over $\mathbb{C}$.
+Positive semidefinite operators are the linear-algebraic home of
+probabilities in quantum mechanics: **density matrices** ($\rho \succeq 0$
+with $\mathrm{tr}\,\rho = 1$), POVM **measurement effects**, and canonical
+square roots live in this cone. Other quantitative notions — fidelity,
+trace distance, distinguishability bounds — are built *from* PSD states,
+PSD effects, and positive square roots, even when the final quantity is a
+scalar or a norm rather than a PSD operator.
 
 Sanity checks:
 
@@ -311,7 +327,7 @@ Chapters 11–12.
 > $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ with
 > $|\alpha|^2 + |\beta|^2 = 1$. Compute $\langle\psi|P_0|\psi\rangle$ and the
 > post-measurement state. Check that the answer is what the Born rule says
-> for measuring the first computational-basis outcome.
+> for obtaining computational-basis outcome $0$.
 
 ## 4.7 Spectral Decomposition
 
@@ -328,8 +344,8 @@ $$
 
 This is the **spectral decomposition**. Each $P_i$ is Hermitian
 ($P_i^\dagger = P_i$) and idempotent ($P_i^2 = P_i$) — an orthogonal projector.
-For non-degenerate eigenvalues the projector is rank-one:
-$P_i = |v_i\rangle\langle v_i|$.
+For a non-degenerate eigenvalue $\lambda_i$ with *normalized* eigenvector
+$|v_i\rangle$, the projector is rank-one: $P_i = |v_i\rangle\langle v_i|$.
 
 The spectral decomposition gives a **functional calculus**: for any function
 $f : \mathbb{C} \to \mathbb{C}$ defined on the spectrum of $A$,
@@ -359,7 +375,9 @@ The two most important instances in quantum computing:
 
 When $A$ is Hermitian, the eigenvalues are real and $f(A)$ is Hermitian for
 real-valued $f$; if $f$ has unit-modulus values (like $e^{i\,\cdot}$), $f(A)$
-is unitary. This is exactly how observables generate gates.
+is unitary. This is the finite-dimensional spectral-calculus reason why
+Hermitian observables and Hamiltonians generate unitary gates via
+exponentiation.
 
 For **non-normal** matrices the picture changes: eigenvectors need not span
 the space, the eigenbasis need not be orthonormal, and a clean spectral
@@ -404,19 +422,28 @@ $|a\rangle |b\rangle$ or $|ab\rangle$ once the order of subsystems is fixed.
 
 > **Endian warning.** This book uses the convention
 > $|x_1 x_2 \cdots x_n\rangle = |x_1\rangle |x_2\rangle \cdots |x_n\rangle$
-> with $x_1$ as the most significant bit (§4.2). Qiskit, in contrast, uses
-> little-endian qubit indexing: qubit $0$ is the least significant bit for
-> integer interpretation, and printed bit strings place bit $n-1$ on the
-> left and bit $0$ on the right. So a Qiskit printout `01` means qubit $1$
-> holds $0$ and qubit $0$ holds $1$. When you hand-derive a two-qubit gate
-> and paste the matrix into Qiskit, both the *tensor-factor order* and the
-> *qubit-label-to-integer-index* mapping must be reconciled. Whenever you
-> compare a hand derivation to code, separately confirm:
+> with $x_1$ as the most significant bit (§4.2). Qiskit has several related
+> but *distinct* ordering conventions that the reader has to track separately:
 >
-> 1. tensor-factor order in the product $|q\rangle \otimes |r\rangle$,
-> 2. which qubit label is the most significant,
-> 3. how printed bit strings are read,
-> 4. how integer indices into the amplitude array map back to bit strings.
+> 1. **Circuit-diagram order.** Qiskit places qubit $0$ at the top of a
+>    circuit drawing by default.
+> 2. **Integer-interpretation order.** Qiskit is little-endian: qubit $0$
+>    is the *least* significant bit of the integer represented by a basis
+>    state.
+> 3. **Printed-string order.** When Qiskit prints a bit string, the
+>    most-significant bit (bit $n-1$ in its labelling) is on the *left*
+>    and bit $0$ is on the *right*. So a Qiskit printout `01` means qubit
+>    $1$ holds $0$ and qubit $0$ holds $1$.
+> 4. **Statevector-index order.** Amplitude index $x$ in a Qiskit
+>    statevector corresponds to the computational basis state $|x\rangle$
+>    with $x$ interpreted using rules (2) and (3) above.
+>
+> When you hand-derive a two-qubit gate and paste the matrix into Qiskit,
+> *all four* of these mappings must be reconciled. Whenever you compare a
+> hand derivation to code, separately confirm: tensor-factor order in
+> $|q\rangle \otimes |r\rangle$; which qubit label is the most significant;
+> how printed bit strings are read; how integer indices into the amplitude
+> array map back to bit strings.
 
 The tensor product of operators acts componentwise:
 
@@ -428,6 +455,14 @@ In matrix form,
 
 $$
 A \otimes B = \begin{pmatrix} A_{11} B & A_{12} B & \cdots \\\\ A_{21} B & A_{22} B & \cdots \\\\ \vdots & & \ddots \end{pmatrix}.
+$$
+
+A small worked example using this book's ordering convention: $X \otimes I$
+acts as $X$ on the first qubit and leaves the second untouched, so
+
+$$
+(X \otimes I)|10\rangle = |00\rangle, \qquad
+(X \otimes I)|01\rangle = |11\rangle.
 $$
 
 Useful identities:
@@ -445,7 +480,8 @@ broader meaning — a convex mixture of product states — and the gap between
 "separable" and "product" is one of the recurring subtleties of bipartite
 quantum information (Chapter 12). The measure-zero claim below refers to the
 *pure-state* meaning only. Among pure states, with respect to the natural continuous measure on the
-unit sphere of $V \otimes W$, product/separable states form a measure-zero
+unit sphere of $V \otimes W$ and for nontrivial bipartitions
+($\dim V, \dim W \ge 2$), product/separable states form a measure-zero
 subset — almost every pure state is entangled, which is what makes
 many-qubit state spaces so much richer than products of single-qubit spaces. The Bell state
 
@@ -459,7 +495,9 @@ is the smallest nontrivial bipartite example of an entangled pure state.
 > $|u\rangle \otimes |v\rangle$ for any single-qubit $|u\rangle, |v\rangle$.
 > One quick way: any product state has at most rank-one coefficient matrix
 > $C_{ij} = \alpha_i \beta_j$; the coefficient matrix of $|\Phi^+\rangle$
-> in the $\\{|0\rangle, |1\rangle\\}$ basis has rank two.
+> in the $\\{|0\rangle, |1\rangle\\}$ basis is
+> $C = \tfrac{1}{\sqrt{2}} \begin{pmatrix} 1 & 0 \\\\ 0 & 1 \end{pmatrix}$,
+> which has rank two.
 
 Sharper structural information about how entangled a bipartite pure state is
 comes from the **Schmidt decomposition** (§4.9): every
@@ -483,10 +521,12 @@ A = U\, \Sigma\, V^\dagger,
 $$
 
 where $U \in \mathbb{C}^{m \times m}$ and $V \in \mathbb{C}^{n \times n}$
-are unitary and $\Sigma$ is a rectangular diagonal matrix with nonnegative
-real entries $\sigma_1 \ge \sigma_2 \ge \cdots \ge 0$ on the diagonal. The
-$\sigma_i$ are the **singular values** of $A$; they are the square roots of
-the eigenvalues of the positive semidefinite operator $A^\dagger A$.
+are unitary and $\Sigma$ is an $m \times n$ rectangular diagonal matrix
+with nonnegative real entries $\sigma_1 \ge \sigma_2 \ge \cdots \ge 0$ on
+the diagonal. There are $\min(m, n)$ singular values in total, with zeros
+padding the rectangular diagonal as needed. The $\sigma_i$ are the
+**singular values** of $A$; they are the square roots of the eigenvalues
+of the positive semidefinite operator $A^\dagger A$.
 
 Singular values are invariant under unitary changes of basis on either side
 and measure the principal stretching factors of $A$. Two derived quantities
@@ -530,8 +570,10 @@ SVD appears repeatedly in the rest of the book:
   a larger Hermitian matrix, or by block-encoding and
   singular-value-transformation methods that act on the SVD structure
   directly, $\sigma_i \mapsto 1/\sigma_i$ while mapping between the right
-  and left singular-vector subspaces. In all cases conditioning ($\kappa$),
-  not size, is the dominant cost parameter.
+  and left singular-vector subspaces. Conditioning ($\kappa$) is one of
+  the dominant cost parameters in these algorithms, alongside state
+  preparation, block-encoding or sparsity access, precision, and the cost
+  of extracting the desired classical information from the output state.
 
 For normal $A$ with spectral decomposition $A = W \Lambda W^\dagger$, the
 singular values are $|\lambda_i|$, and an SVD can be chosen in the same
@@ -545,8 +587,10 @@ The SVD also yields the **polar decomposition**: every square $A$ factors as
 $A = W\, |A|$ with $|A| = \sqrt{A^\dagger A}$ positive semidefinite. If $A$
 is invertible, $W$ is unitary and unique. If $A$ is rank-deficient, the
 canonical polar factor is a partial isometry; in finite dimensions it can be
-extended to a unitary, but the extension is not unique on the kernel. This
-is the operator analogue of writing a complex number as $z = e^{i\theta} |z|$.
+extended to a unitary, but the extension is not unique on the kernel.
+Rectangular polar decompositions also exist, but the square case is enough
+for this chapter. This is the operator analogue of writing a complex number
+as $z = e^{i\theta} |z|$.
 
 > **Sanity check.** Compute the singular values of $X$ (Pauli), $S$ (phase
 > gate), and $|0\rangle\langle 0|$. Unitary matrices have all singular
@@ -570,9 +614,25 @@ In quantum computing this is constant practice. Measurement in a basis whose
 basis vectors are the columns of a unitary $U$ is implemented by applying
 $U^\dagger$ and then measuring in the computational basis. For the Hadamard
 basis $\\{|+\rangle, |-\rangle\\}$, $H^\dagger = H$, so this just means
-applying $H$. Diagonalizing an operator is a basis change that makes it
-diagonal. Many algorithm-design tricks amount to finding a basis in which a
-hard computation is easy.
+applying $H$ — and the action is mechanical: $H|+\rangle = |0\rangle$ and
+$H|-\rangle = |1\rangle$, so a state previously in a Hadamard-basis
+superposition becomes a computational-basis superposition with the same
+amplitudes.
+
+> **Active vs passive.** There are two related but distinct uses of
+> $U^\dagger$ here. As a *passive* change of coordinates,
+> $v_f = U^\dagger v_e$ describes the *same* vector in a new basis — the
+> physical state is unchanged. As an *active* circuit operation, applying
+> the gate $U^\dagger$ physically changes the state before a
+> computational-basis measurement. The formulas look the same because
+> measuring in the $U$-basis is *equivalent* to actively rotating the
+> state by $U^\dagger$ and then measuring in the standard basis. Mixing
+> the two readings is one of the most common sources of phantom bugs in
+> circuit derivations.
+
+Diagonalizing an operator is a basis change that makes it diagonal. Many
+algorithm-design tricks amount to finding a basis in which a hard
+computation is easy.
 
 Traces, determinants, eigenvalues, ranks, and the unitarily invariant norms
 used in this book (vector 2-norm, operator norm, trace norm, Hilbert–Schmidt
@@ -626,6 +686,8 @@ readable.
   $\sum_i \overline{\phi_i}\, \psi_i$.
 - The **outer product** $|\psi\rangle\langle\phi|$ is the matrix with entries
   $\psi_i \overline{\phi_j}$. It is rank one if $|\psi\rangle, |\phi\rangle \ne 0$.
+  Its adjoint flips the two sides:
+  $\bigl(|\psi\rangle\langle\phi|\bigr)^\dagger = |\phi\rangle\langle\psi|$.
 - An operator $A$ acts on a ket: $A|\psi\rangle$. The scalar
   $\langle\phi| A |\psi\rangle$ is the **matrix element** of $A$ between
   $|\phi\rangle$ and $|\psi\rangle$.
@@ -701,10 +763,13 @@ $\mathbb{C}^N$.
 
 > **Sign convention.** Different communities choose opposite signs in the
 > exponent. In this book the forward transform carries $\omega^{-jk}$ and the
-> inverse carries $\omega^{+jk}$. When comparing formulas with other quantum
-> computing texts, check whether their "QFT" corresponds to our transform or
-> its inverse — sign-convention errors in QFT and quantum phase estimation are
-> a classic source of off-by-a-conjugate bugs.
+> inverse carries $\omega^{+jk}$. Qiskit's documented `QFT` class uses the
+> opposite, positive-exponent convention, so the unitary called `QFT` in
+> Qiskit corresponds to the *inverse* of our $F_N$, and Qiskit's inverse-QFT
+> object matches our $F_N$. When comparing formulas with other quantum
+> computing texts or with Qiskit code, check the sign convention alongside
+> the bit-ordering convention — sign errors in QFT and quantum phase
+> estimation are a classic source of off-by-a-conjugate bugs.
 
 Key properties:
 
@@ -808,10 +873,12 @@ Two quantum-mechanical extensions return in Chapter 12:
    \chi = S(\rho) - \sum_x p_x\, S(\rho_x).
    $$
 
-   For an ensemble of pure states this reduces to $\chi = S(\rho)$. This is
-   the information-theoretic ceiling behind the standard warning that a
-   quantum state with exponentially many amplitudes cannot simply be "read out"
-   as exponentially many classical numbers.
+   For an ensemble of pure states this reduces to $\chi = S(\rho)$. In
+   particular $\chi$ is generally far smaller than the number of complex
+   amplitudes used to describe the underlying quantum states — the
+   information-theoretic ceiling behind the standard warning that a
+   quantum state with exponentially many amplitudes cannot simply be
+   "read out" as exponentially many classical numbers.
 
 For now, treat Shannon entropy as the background you need for noisy-channel
 arguments and information bounds; the quantum extensions arrive once the
