@@ -39,7 +39,7 @@ Three points to keep in mind:
 A complex number is $z = a + ib$ with $a, b \in \mathbb{R}$ and $i^2 = -1$.
 Its **conjugate** is $\overline{z} = a - ib$ and its **modulus** is
 $|z| = \sqrt{z \overline{z}} = \sqrt{a^2 + b^2}$. The **polar form**
-$z = r\, e^{i\theta}$ with $r = |z|$ and $\theta = \arg(z)$ separates magnitude
+$z = r\\, e^{i\theta}$ with $r = |z|$ and $\theta = \arg(z)$ separates magnitude
 from phase, and the identity $e^{i\theta} = \cos\theta + i \sin\theta$ shows
 that multiplying by $e^{i\theta}$ is a rotation of the complex plane by angle
 $\theta$.
@@ -68,7 +68,7 @@ probability — for any outcome $x$,
 
 $$
 \bigl|\langle x | (e^{i\theta} |\psi\rangle)\bigr|^2
-= |e^{i\theta}|^2\, |\langle x|\psi\rangle|^2
+= |e^{i\theta}|^2\\, |\langle x|\psi\rangle|^2
 = |\langle x|\psi\rangle|^2,
 $$
 
@@ -84,8 +84,8 @@ computational-basis outcome — they are indistinguishable in that basis. But
 applying a Hadamard gate maps them to
 
 $$
-H\,\frac{|0\rangle + |1\rangle}{\sqrt{2}} = |0\rangle, \qquad
-H\,\frac{|0\rangle - |1\rangle}{\sqrt{2}} = |1\rangle,
+H\\,\frac{|0\rangle + |1\rangle}{\sqrt{2}} = |0\rangle, \qquad
+H\\,\frac{|0\rangle - |1\rangle}{\sqrt{2}} = |1\rangle,
 $$
 
 after which a computational-basis measurement distinguishes them perfectly.
@@ -100,7 +100,7 @@ and scalar multiplication satisfying the standard eight axioms. For us, $V$
 is almost always $\mathbb{C}^n$ for some finite $n$.
 
 A **linear combination** of vectors $\\{v_1, \dots, v_k\\}$ with coefficients
-$c_i \in \mathbb{C}$ is $\sum_i c_i\, v_i$. The vectors are **linearly
+$c_i \in \mathbb{C}$ is $\sum_i c_i\\, v_i$. The vectors are **linearly
 independent** if no nontrivial combination equals zero, and they **span** the
 subspace of all their linear combinations. A **basis** is a linearly
 independent spanning set; its size is the **dimension** of $V$.
@@ -124,14 +124,14 @@ systems is hard. It does not by itself give a quantum speedup: useful
 algorithms exploit structure, interference, and restricted measurements, not
 the size of the state space alone.
 
-The **standard basis** of $\mathbb{C}^{2^n}$ is indexed by length-$n$ bit
-strings $x \in \\{0,1\\}^n$, written $|x\rangle$. We will call this the
+The **standard basis** of $\mathbb{C}^{2^n}$ is indexed by bit strings of
+length $n$, $x \in \\{0,1\\}^n$, written $|x\rangle$. We will call this the
 **computational basis**.
 
 > **Ordering convention.** Throughout this book the bit string
 > $x = x_1 x_2 \cdots x_n$ is interpreted with $x_1$ as the most significant
 > bit, so $|x\rangle$ sits at the *zero-based index*
-> $\sum_{i=1}^{n} x_i\, 2^{n-i}$ in any column-vector representation, and
+> $\sum_{i=1}^{n} x_i\\, 2^{n-i}$ in any column-vector representation, and
 > $|x\rangle = |x_1\rangle |x_2\rangle \cdots |x_n\rangle$ as a tensor
 > product (§4.8). Some software frameworks use the opposite convention; the
 > tensor-product section gives the explicit warning.
@@ -153,7 +153,7 @@ For two qubits this convention gives the index mapping
 The **inner product** on $\mathbb{C}^n$ is
 
 $$
-\langle u, v \rangle = \sum_{i=1}^n \overline{u_i}\, v_i.
+\langle u, v \rangle = \sum_{i=1}^n \overline{u_i}\\, v_i.
 $$
 
 This convention is **conjugate-linear in the first argument** and linear in
@@ -177,7 +177,7 @@ other, we write $\|A\|_{\mathrm{op}}$ for emphasis.
 
 Two vectors are **orthogonal** when $\langle u, v\rangle = 0$. A basis
 $\\{e_1, \dots, e_n\\}$ is **orthonormal** when $\langle e_i, e_j\rangle = \delta_{ij}$.
-Any vector $v$ then decomposes as $v = \sum_i \langle e_i, v\rangle\, e_i$,
+Any vector $v$ then decomposes as $v = \sum_i \langle e_i, v\rangle\\, e_i$,
 and Gram–Schmidt converts any basis into an orthonormal one. In Dirac notation
 (§4.12) this same decomposition becomes
 $|\psi\rangle = \sum_i |i\rangle \langle i | \psi \rangle$, the projection of
@@ -199,15 +199,20 @@ underlies fidelity bounds and inequalities on measurement statistics.
 
 ## 4.4 Matrices and Linear Operators
 
-A **linear operator** $A : V \to V$ satisfies $A(au + bv) = a\, Au + b\, Av$.
+A **linear operator** $A : V \to V$ satisfies $A(au + bv) = a\\, Au + b\\, Av$.
 Once you fix an orthonormal basis $\\{e_i\\}$, $A$ is represented by a matrix
 with entries $A_{ij} = \langle e_i, A e_j\rangle$. Acting on a column vector
 of coefficients is the usual matrix-vector product.
 
 The **adjoint** (Hermitian transpose, conjugate transpose) of $A$ is the
-operator $A^\dagger$ with matrix entries $(A^\dagger)_{ij} = \overline{A_{ji}}$.
-It satisfies $\langle u, A v\rangle = \langle A^\dagger u, v\rangle$, which is
-the defining property of the adjoint independent of basis.
+operator $A^\dagger$ with matrix entries
+
+$$
+(A^\dagger)_{ij} = \overline{A_{ji}}.
+$$
+
+It satisfies $\langle u, A v\rangle = \langle A^\dagger u, v\rangle$, which
+is the defining property of the adjoint independent of basis.
 
 Useful identities:
 
@@ -305,13 +310,13 @@ semidefinite**, written $A \succeq 0$, if $\langle v | A | v\rangle \ge 0$ for
 every $v$, equivalently all eigenvalues of $A$ are nonnegative. The two
 conditions are the same because, expanding $|v\rangle = \sum_i c_i |e_i\rangle$
 in an eigenbasis of $A$ with eigenvalues $\lambda_i$,
-$\langle v | A | v\rangle = \sum_i \lambda_i\, |c_i|^2$; nonnegative
+$\langle v | A | v\rangle = \sum_i \lambda_i\\, |c_i|^2$; nonnegative
 eigenvalues are exactly what forces every quadratic form to be nonnegative. We bake
 Hermiticity into the definition; some authors define positivity directly
 through the quadratic form and then *prove* Hermiticity over $\mathbb{C}$.
 Positive semidefinite operators are the linear-algebraic home of
 probabilities in quantum mechanics: **density matrices** ($\rho \succeq 0$
-with $\mathrm{tr}\,\rho = 1$), POVM **measurement effects** ($0 \preceq E_i
+with $\mathrm{tr}\\,\rho = 1$), POVM **measurement effects** ($0 \preceq E_i
 \preceq I$ for each effect, with $\sum_i E_i = I$ for a complete POVM), and
 canonical square roots live in this cone. Other quantitative notions — fidelity,
 trace distance, distinguishability bounds — are built *from* PSD states,
@@ -420,9 +425,9 @@ $\lambda_1, \dots, \lambda_k$ and corresponding orthogonal projectors
 $P_1, \dots, P_k$ onto the eigenspaces, then
 
 $$
-A = \sum_{i=1}^{k} \lambda_i\, P_i, \qquad
+A = \sum_{i=1}^{k} \lambda_i\\, P_i, \qquad
 \sum_{i=1}^{k} P_i = I, \qquad
-P_i P_j = \delta_{ij}\, P_i.
+P_i P_j = \delta_{ij}\\, P_i.
 $$
 
 This is the **spectral decomposition**. Each $P_i$ is Hermitian
@@ -438,7 +443,7 @@ The spectral decomposition gives a **functional calculus**: for any function
 $f : \mathbb{C} \to \mathbb{C}$ defined on the spectrum of $A$,
 
 $$
-f(A) = \sum_{i=1}^{k} f(\lambda_i)\, P_i.
+f(A) = \sum_{i=1}^{k} f(\lambda_i)\\, P_i.
 $$
 
 The two most important instances in quantum computing:
@@ -452,7 +457,7 @@ The two most important instances in quantum computing:
   entire field of Hamiltonian simulation (Chapter 16). Time-dependent
   Hamiltonians require time-ordered exponentials, handled separately.
 - **Square roots and inverses.** For a *positive semidefinite Hermitian* $A$
-  the square root is canonical: $\sqrt{A} = \sum_i \sqrt{\lambda_i}\, P_i$
+  the square root is canonical: $\sqrt{A} = \sum_i \sqrt{\lambda_i}\\, P_i$
   with the nonnegative real branch. For more general normal operators choosing
   a square root requires choosing branches on the spectrum. The inverse is
   $A^{-1} = \sum_i \lambda_i^{-1} P_i$ whenever every eigenvalue is nonzero.
@@ -462,7 +467,7 @@ The two most important instances in quantum computing:
 
 When $A$ is Hermitian, the eigenvalues are real and $f(A)$ is Hermitian
 when $f$ is real-valued on the spectrum; if $f$ has unit-modulus values on
-the spectrum (like $e^{i\,\cdot}$), $f(A)$ is unitary. This is the finite-dimensional spectral-calculus reason why
+the spectrum (like $e^{i\\,\cdot}$), $f(A)$ is unitary. This is the finite-dimensional spectral-calculus reason why
 Hermitian observables and Hamiltonians generate unitary gates via
 exponentiation.
 
@@ -647,7 +652,7 @@ is the smallest nontrivial bipartite example of an entangled pure state.
 Sharper structural information about how entangled a bipartite pure state is
 comes from the **Schmidt decomposition** (§4.9): every
 $|\psi\rangle \in V \otimes W$ admits the form
-$|\psi\rangle = \sum_i s_i\, |u_i\rangle |v_i\rangle$ with $s_i \ge 0$, and
+$|\psi\rangle = \sum_i s_i\\, |u_i\rangle |v_i\rangle$ with $s_i \ge 0$, and
 $|\psi\rangle$ is a product state iff exactly one $s_i$ is nonzero. Chapter 7
 develops this in detail.
 
@@ -656,8 +661,8 @@ A related operation we will use throughout the rest of the book is the
 the whole. On product operators it is defined by
 
 $$
-\mathrm{tr}_W(A \otimes B) = A\, \mathrm{tr}(B), \qquad
-\mathrm{tr}_V(A \otimes B) = \mathrm{tr}(A)\, B,
+\mathrm{tr}_W(A \otimes B) = A\\, \mathrm{tr}(B), \qquad
+\mathrm{tr}_V(A \otimes B) = \mathrm{tr}(A)\\, B,
 $$
 
 and extended linearly to general bipartite operators. The result is a
@@ -678,7 +683,7 @@ similarity transformation. For a general complex matrix
 $A \in \mathbb{C}^{m \times n}$ the **singular value decomposition (SVD)** is
 
 $$
-A = U\, \Sigma\, V^\dagger,
+A = U\\, \Sigma\\, V^\dagger,
 $$
 
 where $U \in \mathbb{C}^{m \times m}$ and $V \in \mathbb{C}^{n \times n}$
@@ -711,12 +716,12 @@ SVD appears repeatedly in the rest of the book:
 
 - **Schmidt decomposition.** Every pure bipartite state
   $|\psi\rangle \in V \otimes W$ admits the form
-  $|\psi\rangle = \sum_i s_i\, |u_i\rangle |v_i\rangle$ with
-  $s_i \ge 0$, $\sum_i s_i^2 = 1$, and orthonormal $\{|u_i\rangle\}$,
-  $\{|v_i\rangle\}$. This is the SVD of the coefficient matrix of
+  $|\psi\rangle = \sum_i s_i\\, |u_i\rangle |v_i\rangle$ with
+  $s_i \ge 0$, $\sum_i s_i^2 = 1$, and orthonormal $\\{|u_i\rangle\\}$,
+  $\\{|v_i\rangle\\}$. This is the SVD of the coefficient matrix of
   $|\psi\rangle$. The number of nonzero $s_i$ is the **Schmidt rank**; the
   state is a product iff the Schmidt rank is one, and otherwise it is
-  entangled. The full Schmidt spectrum $\{s_i\}$ is the raw data from which
+  entangled. The full Schmidt spectrum $\\{s_i\\}$ is the raw data from which
   the standard pure-state bipartite entanglement measures used later
   (Chapter 7) are derived; a single scalar "amount of entanglement" is a
   derived quantity, not one of the $s_i$ themselves.
@@ -749,7 +754,7 @@ eigenvalues from their *phases*; for non-normal or rectangular operators it
 is the strictly more general tool.
 
 The SVD also yields the **polar decomposition**: every square $A$ factors as
-$A = U_p\, |A|$ with $|A| = \sqrt{A^\dagger A}$ positive semidefinite (we
+$A = U_p\\, |A|$ with $|A| = \sqrt{A^\dagger A}$ positive semidefinite (we
 write $U_p$ rather than $W$ here to avoid clashing with the eigenbasis
 unitary $W$ above). If $A$ is invertible, $U_p$ is unitary and unique. If
 $A$ is rank-deficient, the canonical polar factor is a partial isometry; in
@@ -802,7 +807,7 @@ amplitudes.
 >
 > Concretely: if $|\psi\rangle = a|+\rangle + b|-\rangle$, then in the
 > Hadamard basis its coordinate vector is $(a, b)^T$. In computational
-> coordinates the *same* vector is $H\, (a, b)^T$ — a passive relabelling.
+> coordinates the *same* vector is $H\\, (a, b)^T$ — a passive relabelling.
 > Applying $H$ as a *gate* is a different physical operation; it just
 > happens to be described by the same matrix because $H = H^\dagger$.
 > The Hadamard is unusually forgiving in this respect: for a general
@@ -858,13 +863,13 @@ readable.
   row vector. The bra map is **anti-linear**:
 
   $$
-  \langle a\phi + b\chi | = \overline{a}\, \langle\phi| + \overline{b}\, \langle\chi|.
+  \langle a\phi + b\chi | = \overline{a}\\, \langle\phi| + \overline{b}\\, \langle\chi|.
   $$
 
   This is the most common source of slow-burn errors in Dirac calculations —
   distributing a bra over a sum should always carry the complex conjugates.
 - The **inner product** $\langle\phi|\psi\rangle$ is a scalar,
-  $\sum_i \overline{\phi_i}\, \psi_i$.
+  $\sum_i \overline{\phi_i}\\, \psi_i$.
 - The **outer product** $|\psi\rangle\langle\phi|$ is the matrix with entries
   $\psi_i \overline{\phi_j}$. It is rank one if $|\psi\rangle, |\phi\rangle \ne 0$.
   Its adjoint flips the two sides:
@@ -883,7 +888,7 @@ The translation between Dirac notation and column/row vectors is mechanical:
 - $\langle\phi|\psi\rangle$ corresponds to the scalar $\phi^\dagger \psi$
   (shape $1 \times 1$).
 - $|\psi\rangle\langle\phi|$ corresponds to the rank-one matrix
-  $\psi\, \phi^\dagger$ of shape $n \times n$.
+  $\psi\\, \phi^\dagger$ of shape $n \times n$.
 - $A|\psi\rangle$ corresponds to the matrix-vector product $A\psi$
   (shape $n \times 1$).
 - $\langle\phi| A |\psi\rangle$ corresponds to the scalar $\phi^\dagger A \psi$
@@ -911,7 +916,7 @@ that expression in the chosen basis. Acting on a state gives the basis
 expansion
 
 $$
-|\psi\rangle = I\, |\psi\rangle = \sum_i |i\rangle \langle i | \psi \rangle,
+|\psi\rangle = I\\, |\psi\rangle = \sum_i |i\rangle \langle i | \psi \rangle,
 $$
 
 with coefficients $\langle i | \psi \rangle$. This is the workhorse trick of
@@ -934,14 +939,14 @@ not loaded by the GitHub Markdown renderer.
 The **discrete Fourier transform (DFT)** of a vector $f \in \mathbb{C}^N$ is
 
 $$
-\hat{f}_k = \frac{1}{\sqrt{N}} \sum_{j=0}^{N-1} f_j\, \omega^{-jk}, \qquad
+\hat{f}_k = \frac{1}{\sqrt{N}} \sum_{j=0}^{N-1} f_j\\, \omega^{-jk}, \qquad
 \omega = e^{2\pi i / N},
 $$
 
 with the inverse
 
 $$
-f_j = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \hat{f}_k\, \omega^{jk}.
+f_j = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \hat{f}_k\\, \omega^{jk}.
 $$
 
 The $1/\sqrt{N}$ normalization makes the DFT a unitary transformation of
@@ -952,9 +957,9 @@ $\mathbb{C}^N$.
 > $F_N^{(-)}$ and $F_N^{(+)}$ when the distinction matters:
 >
 > $$
-> F_N^{(-)} |j\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \omega^{-jk}\, |k\rangle,
+> F_N^{(-)} |j\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \omega^{-jk}\\, |k\rangle,
 > \qquad
-> F_N^{(+)} |j\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \omega^{+jk}\, |k\rangle,
+> F_N^{(+)} |j\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \omega^{+jk}\\, |k\rangle,
 > $$
 >
 > with $F_N^{(+)} = (F_N^{(-)})^\dagger$. **In this book "the QFT" always
@@ -995,7 +1000,7 @@ $O(N \log N)$ time. Let $N = 2^n$. In this book, **"QFT"** means the unitary
 $F_N$ on $\mathbb{C}^N$ that acts on computational-basis states by
 
 $$
-F_N |j\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \omega^{-jk}\, |k\rangle,
+F_N |j\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \omega^{-jk}\\, |k\rangle,
 \qquad \omega = e^{2\pi i / N},
 $$
 
@@ -1052,7 +1057,7 @@ of an operator inside a quantum register, then read out structured features.
 
 A discrete probability distribution $p$ on outcomes $\\{x_1, \dots, x_n\\}$
 satisfies $p(x_i) \ge 0$ and $\sum_i p(x_i) = 1$. The **expectation** of a
-real-valued function $g$ is $\mathbb{E}[g] = \sum_i p(x_i)\, g(x_i)$, and the
+real-valued function $g$ is $\mathbb{E}[g] = \sum_i p(x_i)\\, g(x_i)$, and the
 **variance** is $\mathrm{Var}[g] = \mathbb{E}[g^2] - \mathbb{E}[g]^2$.
 
 For two random variables $X, Y$, the **joint distribution** is $p(x, y)$, the
@@ -1099,7 +1104,7 @@ fine to read this material as a *preview* and return after Chapter 5:
    mutual information $I(X; Y)$ is bounded by the **Holevo quantity**
 
    $$
-   \chi = S(\rho) - \sum_x p_x\, S(\rho_x).
+   \chi = S(\rho) - \sum_x p_x\\, S(\rho_x).
    $$
 
    Consequently the **accessible information** — the supremum of $I(X; Y)$
