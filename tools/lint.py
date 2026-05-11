@@ -58,6 +58,30 @@ STATUS_RE = re.compile(r"\*\*Status:\*\*\s*(\w+)")
 FENCED_RE = re.compile(r"```.*?```", re.DOTALL)
 INLINE_CODE_RE = re.compile(r"`[^`\n]+`")
 
+# GitHub's Markdown processor unescapes backslash sequences inside `$...$`
+# and `$$...$$` math before MathJax sees them. So `\\`, `\{`, `\}`, and
+# `\,` in the source must be written `\\\\`, `\\{`, `\\}`, and `\\,` to
+# survive. We detect any non-escaped occurrences inside math contexts.
+MATH_INLINE_RE = re.compile(r"(?<!\$)\$[^\$\n]+\$")
+MATH_DISPLAY_RE = re.compile(r"\$\$.*?\$\$", re.DOTALL)
+# `\\` not part of `\\\\` and not followed by `,{}` (which are themselves
+# intentional escapes \\, \\{ \\} that happen to start with `\\`).
+BAD_SINGLE_BS = re.compile(r"(?<!\\)\\\\(?![\\,{}])")
+BAD_BRACE = re.compile(r"(?<!\\)\\[{}]")                 # `\{` or `\}` not preceded by `\`
+BAD_THIN_SPACE = re.compile(r"(?<!\\)\\,")               # `\,` not preceded by `\`
+
+
+def check_math_blocks(rel, content: str) -> None:
+    """Flag GitHub-Markdown escape hazards inside math delimiters."""
+    for m in list(MATH_INLINE_RE.finditer(content)) + list(MATH_DISPLAY_RE.finditer(content)):
+        block = m.group(0)
+        if BAD_SINGLE_BS.search(block):
+            fail(rel, r"math contains single `\\` — use `\\\\` (GitHub eats one backslash)")
+        if BAD_BRACE.search(block):
+            fail(rel, r"math contains bare `\{` or `\}` — use `\\{` / `\\}` (GitHub eats one backslash)")
+        if BAD_THIN_SPACE.search(block):
+            fail(rel, r"math contains bare `\,` — use `\\,` (GitHub eats the backslash and the thin space renders as `,`)")
+
 
 def strip_code(content: str) -> str:
     """Remove fenced and inline code spans so forbidden-pattern checks
@@ -95,6 +119,8 @@ def check_book_file(md: pathlib.Path) -> None:
     for macro in FORBIDDEN_LATEX:
         if macro in prose:
             fail(rel, f"forbidden LaTeX feature {macro!r}")
+
+    check_math_blocks(rel, content)
 
     m = STATUS_RE.search(content)
     if m:
