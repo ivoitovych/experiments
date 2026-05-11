@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 26](../part-10-practice-and-era/26-practical-access-and-hands-on-work.md) · [Table of Contents](../../README.md) · [Next: Chapter 28 →](28-scientific-computing-and-physical-simulation.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 5 · **Sections drafted:** 0 / 6
 
 ## 27.1 Shor's Impact on RSA
 

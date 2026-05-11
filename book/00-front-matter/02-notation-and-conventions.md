@@ -2,7 +2,7 @@
 
 [← Previous: Recommended / Assumed Background and Self-Check](01-background-and-self-check.md) · [Table of Contents](../../README.md) · [Next: Chapter 1 →](../part-01-orientation/01-why-quantum-computing-exists.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 1 · **Sections drafted:** 0 / 7
 
 ## Mathematical Notation
 

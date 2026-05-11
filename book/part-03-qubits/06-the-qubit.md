@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 5](../part-02-formalism/05-postulates.md) · [Table of Contents](../../README.md) · [Next: Chapter 7 →](07-multiple-qubits-and-entanglement.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 1 · **Sections drafted:** 0 / 10
 
 ## 6.1 Basis States
 

@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 35](35-interpretational-and-conceptual-pitfalls.md) · [Table of Contents](../../README.md) · [Next: Chapter 37 →](37-endgame.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 6 · **Sections drafted:** 0 / 8
 
 ## 36.1 Hype Detection
 

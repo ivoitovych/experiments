@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 15](15-landmark-quantum-algorithms.md) · [Table of Contents](../../README.md) · [Next: Chapter 17 →](../part-07-complexity/17-complexity-theory.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 3 · **Sections drafted:** 0 / 8
 
 ## 16.1 Hamiltonian Simulation
 

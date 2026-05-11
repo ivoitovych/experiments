@@ -2,7 +2,7 @@
 
 [← Previous: Preface](00-preface.md) · [Table of Contents](../../README.md) · [Next: Notation and Conventions →](02-notation-and-conventions.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 6 · **Sections drafted:** 0 / 7
 
 ## Required: Programming Proficiency
 

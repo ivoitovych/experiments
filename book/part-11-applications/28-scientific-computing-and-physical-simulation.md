@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 27](27-cryptography-and-security.md) · [Table of Contents](../../README.md) · [Next: Chapter 29 →](29-optimization-finance-and-industrial.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 5 · **Sections drafted:** 0 / 8
 
 ## 28.1 Quantum Chemistry
 

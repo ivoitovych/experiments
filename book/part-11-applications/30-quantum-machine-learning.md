@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 29](29-optimization-finance-and-industrial.md) · [Table of Contents](../../README.md) · [Next: Chapter 31 →](31-quantum-sensing-metrology-and-tomography.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 5 · **Sections drafted:** 0 / 7
 
 ## 30.1 Quantum Neural Networks
 

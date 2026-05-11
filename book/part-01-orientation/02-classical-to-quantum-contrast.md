@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 1](01-why-quantum-computing-exists.md) · [Table of Contents](../../README.md) · [Next: Chapter 3 →](03-physical-intuition.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 6 · **Sections drafted:** 0 / 7
 
 ## 2.1 Bits vs. Qubits
 

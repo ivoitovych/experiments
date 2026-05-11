@@ -2,7 +2,7 @@
 
 [← Previous: Appendix D. Suggested Reading and Reference Papers](appendix-d-suggested-reading.md) · [Table of Contents](../../README.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 6 · **Sections drafted:** 0 / 7
 
 ## Core Terms
 

@@ -20,6 +20,11 @@ Each chapter is a separate Markdown file under [`book/`](book/). Click any
 chapter title below to read it. Math is written in LaTeX and renders natively
 in the GitHub web viewer.
 
+## Writing progress
+
+See [PROGRESS.md](PROGRESS.md) for per-chapter status and the phase-by-phase
+writing plan.
+
 ## Source conventions
 
 See [STYLE.md](STYLE.md) for math, notation, and file conventions used

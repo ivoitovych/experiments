@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 32](32-adjacent-computational-models.md) · [Table of Contents](../../README.md) · [Next: Chapter 34 →](../part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 5 · **Sections drafted:** 0 / 6
 
 ## 33.1 Quantum Teleportation
 

@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 33](../part-12-adjacent-models/33-quantum-communication-and-networking.md) · [Table of Contents](../../README.md) · [Next: Chapter 35 →](35-interpretational-and-conceptual-pitfalls.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 6 · **Sections drafted:** 0 / 9
 
 ## 34.1 Linear Systems and State-Space Thinking
 

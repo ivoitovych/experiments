@@ -10,10 +10,14 @@ per chapter, front-matter section, and appendix, with prev/next navigation.
 from __future__ import annotations
 import os
 import pathlib
+import sys
 import textwrap
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BOOK = ROOT / "book"
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from phases import PHASE_BY_FILE  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Structure: linear order matters (drives prev/next nav and master TOC).
@@ -888,10 +892,17 @@ def render_chapter_stub(e: dict, prev_e: dict | None, next_e: dict | None) -> st
             section_md_parts.append(f"## {s}\n\n_TODO_\n")
     sections_md = "\n".join(section_md_parts)
 
+    phase = PHASE_BY_FILE.get(e["file"], "?")
+    total_sections = len(e["sections"])
+    status_block = (
+        f"> **Status:** stub · **Phase:** {phase} · "
+        f"**Sections drafted:** 0 / {total_sections}"
+    )
+
     return (
         f"{heading(e)}\n\n"
+        f"{status_block}\n\n"
         f"{nav}\n\n"
-        f"> *Status: stub — to be drafted.*\n\n"
         f"{sections_md}\n"
         f"---\n\n"
         f"{nav}\n"

@@ -2,7 +2,7 @@
 
 [← Previous: Notation and Conventions](../00-front-matter/02-notation-and-conventions.md) · [Table of Contents](../../README.md) · [Next: Chapter 2 →](02-classical-to-quantum-contrast.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 6 · **Sections drafted:** 0 / 6
 
 ## 1.1 Limits of Classical Computing
 

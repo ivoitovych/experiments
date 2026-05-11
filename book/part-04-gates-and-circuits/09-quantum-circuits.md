@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 8](08-quantum-gates.md) · [Table of Contents](../../README.md) · [Next: Chapter 10 →](10-core-quantum-phenomena.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 2 · **Sections drafted:** 0 / 13
 
 ## 9.1 Circuit Diagrams and Conventions
 

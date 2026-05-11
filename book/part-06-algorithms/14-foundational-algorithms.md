@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 13](13-quantum-algorithms-mindset.md) · [Table of Contents](../../README.md) · [Next: Chapter 15 →](15-landmark-quantum-algorithms.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 3 · **Sections drafted:** 0 / 9
 
 ## 14.1 Deutsch's Algorithm
 

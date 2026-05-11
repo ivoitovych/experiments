@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 24](../part-09-hardware-and-software/24-classical-simulation-of-quantum-systems.md) · [Table of Contents](../../README.md) · [Next: Chapter 26 →](26-practical-access-and-hands-on-work.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 5 · **Sections drafted:** 0 / 6
 
 ## 25.1 Definition of NISQ
 

@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 31](../part-11-applications/31-quantum-sensing-metrology-and-tomography.md) · [Table of Contents](../../README.md) · [Next: Chapter 33 →](33-quantum-communication-and-networking.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 5 · **Sections drafted:** 0 / 6
 
 ## 32.1 Adiabatic Quantum Computation
 

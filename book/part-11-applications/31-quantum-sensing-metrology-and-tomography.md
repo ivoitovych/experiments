@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 30](30-quantum-machine-learning.md) · [Table of Contents](../../README.md) · [Next: Chapter 32 →](../part-12-adjacent-models/32-adjacent-computational-models.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 5 · **Sections drafted:** 0 / 6
 
 ## 31.1 Quantum-Enhanced Sensing
 

@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 7](../part-03-qubits/07-multiple-qubits-and-entanglement.md) · [Table of Contents](../../README.md) · [Next: Chapter 9 →](09-quantum-circuits.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 2 · **Sections drafted:** 0 / 14
 
 ## 8.1 Reversibility and Unitary Evolution
 
