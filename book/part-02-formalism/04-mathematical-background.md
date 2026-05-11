@@ -114,6 +114,11 @@ represent a state). Once we choose normalized representatives, the
 remaining equivalence is multiplication by a global phase $e^{i\theta}$.
 Chapter 5 makes this precise.
 
+> **Convention.** In calculations, a ket used as a *state vector* is
+> assumed normalized unless explicitly stated otherwise. If $v \ne 0$ is
+> just a mathematical vector, the corresponding normalized state
+> representative is $|v\rangle / \|v\|$.
+
 This exponential growth explains why generic classical simulation of quantum
 systems is hard. It does not by itself give a quantum speedup: useful
 algorithms exploit structure, interference, and restricted measurements, not
@@ -249,12 +254,19 @@ $$
 $$
 
 This is one operator-level way to view many overlaps and expectation-value
-expressions. The expectation value of an observable $A$ in a state $\rho$
-is $\langle A\rangle_\rho = \mathrm{tr}(\rho A)$ — visibly the
-Hilbert–Schmidt inner product of $\rho^\dagger = \rho$ and $A$. When $A$ is
-Hermitian this expectation value is real; for a general (non-Hermitian) $A$,
-$\mathrm{tr}(\rho A)$ is a complex operator overlap rather than a directly
-observable average. The induced
+expressions. As a *preview* — density matrices are properly introduced in
+Chapter 5 — the expectation value of an observable $A$ in a state $\rho$ is
+
+$$
+\langle A\rangle_\rho = \mathrm{tr}(\rho A),
+$$
+
+visibly the Hilbert–Schmidt inner product of $\rho^\dagger = \rho$ and $A$.
+When $A$ is Hermitian this expectation value is real; for a general
+(non-Hermitian) $A$, $\mathrm{tr}(\rho A)$ is a complex operator overlap
+rather than a directly observable average. For now the only important
+takeaway is that *trace expressions let us treat operators themselves as
+vectors in an operator space*. The induced
 **Hilbert–Schmidt norm** (Frobenius norm) is
 $\|A\|_{\mathrm{HS}} = \sqrt{\mathrm{tr}(A^\dagger A)}$. Some quantities
 introduced later, such as mixed-state fidelity and trace distance, are
@@ -326,6 +338,37 @@ Sanity checks:
 > $H|1\rangle$. Which basis does $H$ map the computational basis to? Now
 > check that $|0\rangle\langle 0|$ is positive semidefinite by exhibiting
 > its eigenvalues.
+
+One last operator-algebra notation will reappear constantly. The
+**commutator** of two operators is
+
+$$
+[A, B] = AB - BA.
+$$
+
+Operators **commute** when $[A, B] = 0$. In finite dimensions, a family of
+commuting normal operators can be **simultaneously diagonalized**: there is
+one orthonormal basis in which they are all diagonal (we will see this fall
+out of spectral decomposition in §4.7). In quantum mechanics this is the
+linear-algebraic reason that compatible observables admit common
+eigenstates and can be assigned sharp values simultaneously. Noncommuting
+operators in general cannot, and their order matters in circuits, in
+Hamiltonian simulation (Trotterization, §16.2), and in the Pauli algebra.
+
+For the single-qubit Pauli matrices,
+
+$$
+[X, Y] = 2iZ, \qquad [Y, Z] = 2iX, \qquad [Z, X] = 2iY,
+$$
+
+and the products themselves are
+
+$$
+XY = iZ, \qquad YX = -iZ.
+$$
+
+So even on one qubit, matrix multiplication is not just arithmetic
+decoration — the order of operators carries physical content.
 
 ## 4.6 Eigenvalues and Eigenvectors
 
@@ -544,10 +587,25 @@ $$
 (X \otimes I)|01\rangle = |11\rangle.
 $$
 
-If you compare with a Qiskit calculation of `X` on `q0`, you should expect
-to see $I \otimes X$ under this book's tensor-factor order — the
-software-label-to-tensor-factor mapping is a separate decision from the
-linear algebra.
+By contrast,
+
+$$
+I \otimes X = \begin{pmatrix}
+0 & 1 & 0 & 0 \\\\
+1 & 0 & 0 & 0 \\\\
+0 & 0 & 0 & 1 \\\\
+0 & 0 & 1 & 0
+\end{pmatrix},
+\qquad
+(I \otimes X)|00\rangle = |01\rangle, \quad
+(I \otimes X)|10\rangle = |11\rangle.
+$$
+
+Seeing both matrices side by side is often the fastest way to debug a
+tensor-order mismatch. If you compare with a Qiskit calculation of `X` on
+`q0`, you should expect to see $I \otimes X$ under this book's
+tensor-factor order — the software-label-to-tensor-factor mapping is a
+separate decision from the linear algebra.
 
 Useful identities:
 
@@ -643,13 +701,14 @@ SVD appears repeatedly in the rest of the book:
   pure-state bipartite entanglement measure used later (Chapter 7); a
   single scalar "amount of entanglement" is a derived quantity, not one of
   the $s_i$ themselves.
-- **Block encodings and QSVT.** Modern algorithms such as quantum signal
-  processing, qubitization, and the quantum singular value transformation
-  (Chapter 16) act on the singular values of a matrix embedded inside a
-  larger unitary. The SVD is the spectrum these techniques actually
-  transform.
-- **HHL and related algorithms.** In the simplest Hermitian positive-definite
-  presentation of HHL (§15.5), eigenvalues and singular values coincide, so
+- **Block encodings and QSVT** (preview only — Chapter 16). Modern
+  algorithms such as quantum signal processing, qubitization, and the
+  quantum singular value transformation act on the singular values of a
+  matrix embedded inside a larger unitary. The SVD is the spectrum these
+  techniques actually transform.
+- **HHL and related algorithms** (preview only — §15.5). In the simplest
+  Hermitian positive-definite presentation of HHL, eigenvalues and
+  singular values coincide, so
   the algorithm implements a map proportional to $A^{-1}|b\rangle$ by
   transforming $\lambda_i \mapsto 1/\lambda_i$ on the eigenvectors. More
   general Hermitian formulations allow signed eigenvalues bounded away from
@@ -875,14 +934,16 @@ $\mathbb{C}^N$.
 > $$
 >
 > with $F_N^{(+)} = (F_N^{(-)})^\dagger$. **In this book "the QFT" always
-> means $F_N \equiv F_N^{(-)}$.** Current Qiskit's `QFTGate` implements the
-> opposite, positive-exponent convention $F_N^{(+)}$, so Qiskit's `QFTGate`
-> corresponds to the *inverse* of our $F_N$, and Qiskit's inverse of
-> `QFTGate` matches our $F_N$ — up to the same bit-ordering and final-swap
-> conventions discussed in §4.8, which QFT circuits often expose as an
-> optional terminal swap layer. (Older code may use the now-deprecated
-> `qiskit.circuit.library.QFT` blueprint circuit; new code should prefer
-> `QFTGate` or Qiskit's QFT synthesis functions.) If a later algorithm
+> means $F_N \equiv F_N^{(-)}$.** As of Qiskit's 2.x documentation,
+> `QFTGate` implements the opposite, positive-exponent convention
+> $F_N^{(+)}$, so Qiskit's `QFTGate` corresponds to the *inverse* of our
+> $F_N$, and Qiskit's inverse of `QFTGate` matches our $F_N$ — up to the
+> same bit-ordering and final-swap conventions discussed in §4.8, which
+> QFT circuits often expose as an optional terminal swap layer. (Older
+> code may use the now-deprecated `qiskit.circuit.library.QFT` blueprint
+> circuit; new code should prefer `QFTGate` or Qiskit's QFT synthesis
+> functions. Re-check the convention against current Qiskit documentation
+> when you translate formulas into code.) If a later algorithm
 > uses the opposite QFT sign, every controlled-phase angle and every
 > phase-estimation readout formula needs to be conjugated accordingly —
 > sign errors in QFT and quantum phase estimation are a classic source
@@ -912,7 +973,21 @@ $n = \log_2 N$ qubits; the standard textbook construction uses
 $O(n^2) = O((\log N)^2)$ elementary gates. Some texts call the
 opposite-sign unitary the QFT and this one the inverse QFT — always check
 the exponent when comparing formulas, especially inside quantum phase
-estimation. Circuit depth depends on the allowed parallelism, gate set,
+estimation.
+
+> **Sanity check.** Take $N = 4$, so $\omega = i$. Under this book's
+> convention,
+>
+> $$
+> F_4 |1\rangle = \tfrac{1}{2}\bigl(|0\rangle + \omega^{-1}|1\rangle
+> + \omega^{-2}|2\rangle + \omega^{-3}|3\rangle\bigr)
+> = \tfrac{1}{2}\bigl(|0\rangle - i|1\rangle - |2\rangle + i|3\rangle\bigr).
+> $$
+>
+> Under the opposite-sign convention $F_4^{(+)}|1\rangle$ would be the
+> complex conjugate of this. If a Qiskit `QFTGate` calculation gives you
+> the conjugate of the above, that is the sign convention talking, not a
+> bug. Circuit depth depends on the allowed parallelism, gate set,
 and qubit connectivity; the $O(n^2)$ estimate above is a gate-count
 statement, not a depth statement.
 
