@@ -27,6 +27,13 @@ Three points to keep in mind:
    `\rangle` so the source renders on GitHub, mdBook, and Pandoc alike.
    You should write your own derivations the same way.
 
+> **How to read this chapter.** Most of the material here is core for
+> Chapter 5: §§4.1–4.8, §§4.10–4.12, and the sampling paragraph of §4.14
+> deserve a careful first read. §4.9 (Singular Values and SVD), §4.13
+> (Fourier and QFT), and the Holevo / amplitude-estimation preview in
+> §4.14 are written so that you can skim them on a first pass and return
+> when the corresponding algorithm chapters need them.
+
 ## 4.1 Complex Numbers and Probability Amplitudes
 
 A complex number is $z = a + ib$ with $a, b \in \mathbb{R}$ and $i^2 = -1$.
@@ -65,12 +72,22 @@ $$
 
 so global phase is physically irrelevant. A **relative phase** changes the
 phase *relation* between components of a superposition. It can leave
-measurement probabilities unchanged in the current basis (the states
-$(|0\rangle + |1\rangle)/\sqrt{2}$ and $(|0\rangle - |1\rangle)/\sqrt{2}$
-both give $1/2$ on computational-basis measurement) but become observable
-after interference or a change of basis. This distinction is responsible for
-a large fraction of the "this looks wrong, but it's right" moments in early
-quantum computing.
+measurement probabilities unchanged in the current basis but become
+observable after interference or a change of basis. As a concrete example,
+the two states $(|0\rangle + |1\rangle)/\sqrt{2}$ and
+$(|0\rangle - |1\rangle)/\sqrt{2}$ both give probability $1/2$ for each
+computational-basis outcome — they are indistinguishable in that basis. But
+applying a Hadamard gate maps them to
+
+$$
+H\,\frac{|0\rangle + |1\rangle}{\sqrt{2}} = |0\rangle, \qquad
+H\,\frac{|0\rangle - |1\rangle}{\sqrt{2}} = |1\rangle,
+$$
+
+after which a computational-basis measurement distinguishes them perfectly.
+This kind of phase-revealing basis change is responsible for a large
+fraction of the "this looks wrong, but it's right" moments in early quantum
+computing.
 
 ## 4.2 Vector Spaces
 
@@ -145,6 +162,9 @@ roles:
 - $|A| = \sqrt{A^\dagger A}$ is the *operator absolute value* used in the
   polar decomposition (§4.9), not a scalar.
 
+When the spectral norm and the operator absolute value appear close to each
+other, we write $\|A\|_{\mathrm{op}}$ for emphasis.
+
 Two vectors are **orthogonal** when $\langle u, v\rangle = 0$. A basis
 $\\{e_1, \dots, e_n\\}$ is **orthonormal** when $\langle e_i, e_j\rangle = \delta_{ij}$.
 Any vector $v$ then decomposes as $v = \sum_i \langle e_i, v\rangle\, e_i$,
@@ -204,7 +224,10 @@ Two distinguished operators are worth naming up front:
   component orthogonal to it. Orthogonal projectors represent subspaces and
   reappear as measurement operators in §4.6. A non-orthogonal idempotent
   still satisfies $P^2 = P$ but projects along a chosen direction that need
-  not be perpendicular to its image.
+  not be perpendicular to its image. In this book, whenever we say
+  "projector" in a *measurement* context — projective measurement, spectral
+  decomposition of an observable, projector onto an eigenspace — we always
+  mean an orthogonal projector unless stated otherwise.
 
 > **Sanity check.** Verify that $P = |0\rangle\langle 0|$ satisfies $P^2 = P$
 > and $P^\dagger = P$ — it is an orthogonal projector onto the
@@ -264,8 +287,9 @@ Hermiticity into the definition; some authors define positivity directly
 through the quadratic form and then *prove* Hermiticity over $\mathbb{C}$.
 Positive semidefinite operators are the linear-algebraic home of
 probabilities in quantum mechanics: **density matrices** ($\rho \succeq 0$
-with $\mathrm{tr}\,\rho = 1$), POVM **measurement effects**, and canonical
-square roots live in this cone. Other quantitative notions — fidelity,
+with $\mathrm{tr}\,\rho = 1$), POVM **measurement effects** ($0 \preceq E_i
+\preceq I$ for each effect, with $\sum_i E_i = I$ for a complete POVM), and
+canonical square roots live in this cone. Other quantitative notions — fidelity,
 trace distance, distinguishability bounds — are built *from* PSD states,
 PSD effects, and positive square roots, even when the final quantity is a
 scalar or a norm rather than a PSD operator.
@@ -317,11 +341,13 @@ operators the two coincide and the eigenspaces span $V$.
 In quantum mechanics, for a **projective measurement** of a Hermitian
 observable the projector $P_\lambda$ onto the eigenspace of $\lambda$ is the
 measurement-outcome operator. For a normalized state $|\psi\rangle$ the
-probability of outcome $\lambda$ is $\langle \psi | P_\lambda | \psi\rangle$,
-and when $\langle \psi | P_\lambda | \psi\rangle > 0$ the post-measurement
-state is $P_\lambda |\psi\rangle / \sqrt{\langle \psi | P_\lambda | \psi\rangle}$.
-More general measurements (POVMs, generalized measurements) are covered in
-Chapters 11–12.
+probability of outcome $\lambda$ is $\langle \psi | P_\lambda | \psi\rangle$.
+Conditioned on that outcome having actually occurred — that is, only when
+$\langle \psi | P_\lambda | \psi\rangle > 0$ — the post-measurement state is
+$P_\lambda |\psi\rangle / \sqrt{\langle \psi | P_\lambda | \psi\rangle}$.
+Outcomes with zero probability never happen and do not have a
+post-measurement state. More general measurements (POVMs, generalized
+measurements) are covered in Chapters 11–12.
 
 > **Sanity check.** Let $P_0 = |0\rangle\langle 0|$ and
 > $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ with
@@ -344,8 +370,11 @@ $$
 
 This is the **spectral decomposition**. Each $P_i$ is Hermitian
 ($P_i^\dagger = P_i$) and idempotent ($P_i^2 = P_i$) — an orthogonal projector.
-For a non-degenerate eigenvalue $\lambda_i$ with *normalized* eigenvector
-$|v_i\rangle$, the projector is rank-one: $P_i = |v_i\rangle\langle v_i|$.
+Each $P_i$ groups together *all* eigenvectors belonging to the eigenvalue
+$\lambda_i$, so its rank equals the multiplicity of $\lambda_i$ and is not
+necessarily one. For a non-degenerate eigenvalue $\lambda_i$ with
+*normalized* eigenvector $|v_i\rangle$, the projector is rank-one:
+$P_i = |v_i\rangle\langle v_i|$.
 
 The spectral decomposition gives a **functional calculus**: for any function
 $f : \mathbb{C} \to \mathbb{C}$ defined on the spectrum of $A$,
@@ -444,6 +473,19 @@ $|a\rangle |b\rangle$ or $|ab\rangle$ once the order of subsystems is fixed.
 > $|q\rangle \otimes |r\rangle$; which qubit label is the most significant;
 > how printed bit strings are read; how integer indices into the amplitude
 > array map back to bit strings.
+
+For quick reference, here is how each two-qubit basis state lines up under
+the two conventions (qubits labelled $q_0, q_1$):
+
+- This book's $|x_1 x_2\rangle$ with $x_1$ MSB: $|00\rangle \to 0$,
+  $|01\rangle \to 1$, $|10\rangle \to 2$, $|11\rangle \to 3$.
+- Qiskit's printed string `q_1 q_0`, $q_0$ LSB: `00` $\to 0$,
+  `01` $\to 1$, `10` $\to 2$, `11` $\to 3$.
+
+The *integer indices* coincide, but the *string labels* point at opposite
+qubits: this book's $|10\rangle$ means "first (most significant) qubit is
+$1$, second is $0$"; Qiskit's `10` means "qubit $1$ is $1$, qubit $0$ is
+$0$." That is the same basis vector, just read from the opposite end.
 
 The tensor product of operators acts componentwise:
 
@@ -584,13 +626,14 @@ eigenvalues from their *phases*; for non-normal or rectangular operators it
 is the strictly more general tool.
 
 The SVD also yields the **polar decomposition**: every square $A$ factors as
-$A = W\, |A|$ with $|A| = \sqrt{A^\dagger A}$ positive semidefinite. If $A$
-is invertible, $W$ is unitary and unique. If $A$ is rank-deficient, the
-canonical polar factor is a partial isometry; in finite dimensions it can be
-extended to a unitary, but the extension is not unique on the kernel.
-Rectangular polar decompositions also exist, but the square case is enough
-for this chapter. This is the operator analogue of writing a complex number
-as $z = e^{i\theta} |z|$.
+$A = U_p\, |A|$ with $|A| = \sqrt{A^\dagger A}$ positive semidefinite (we
+write $U_p$ rather than $W$ here to avoid clashing with the eigenbasis
+unitary $W$ above). If $A$ is invertible, $U_p$ is unitary and unique. If
+$A$ is rank-deficient, the canonical polar factor is a partial isometry; in
+finite dimensions it can be extended to a unitary, but the extension is not
+unique on the kernel. Rectangular polar decompositions also exist, but the
+square case is enough for this chapter. This is the operator analogue of
+writing a complex number as $z = e^{i\theta} |z|$.
 
 > **Sanity check.** Compute the singular values of $X$ (Pauli), $S$ (phase
 > gate), and $|0\rangle\langle 0|$. Unitary matrices have all singular
@@ -629,6 +672,12 @@ amplitudes.
 > state by $U^\dagger$ and then measuring in the standard basis. Mixing
 > the two readings is one of the most common sources of phantom bugs in
 > circuit derivations.
+>
+> Concretely: if $|\psi\rangle = a|+\rangle + b|-\rangle$, then in the
+> Hadamard basis its coordinate vector is $(a, b)^T$. In computational
+> coordinates the *same* vector is $H\, (a, b)^T$ — a passive relabelling.
+> Applying $H$ as a *gate* is a different physical operation; it just
+> happens to be described by the same matrix because $H = H^\dagger$.
 
 Diagonalizing an operator is a basis change that makes it diagonal. Many
 algorithm-design tricks amount to finding a basis in which a hard
@@ -688,6 +737,9 @@ readable.
   $\psi_i \overline{\phi_j}$. It is rank one if $|\psi\rangle, |\phi\rangle \ne 0$.
   Its adjoint flips the two sides:
   $\bigl(|\psi\rangle\langle\phi|\bigr)^\dagger = |\phi\rangle\langle\psi|$.
+  The special case $|\psi\rangle\langle\psi|$ is a rank-one orthogonal
+  projector exactly when $|\psi\rangle$ is normalized, and it is the
+  pure-state density matrix that returns in Chapter 5.
 - An operator $A$ acts on a ket: $A|\psi\rangle$. The scalar
   $\langle\phi| A |\psi\rangle$ is the **matrix element** of $A$ between
   $|\phi\rangle$ and $|\psi\rangle$.
@@ -762,14 +814,17 @@ The $1/\sqrt{N}$ normalization makes the DFT a unitary transformation of
 $\mathbb{C}^N$.
 
 > **Sign convention.** Different communities choose opposite signs in the
-> exponent. In this book the forward transform carries $\omega^{-jk}$ and the
-> inverse carries $\omega^{+jk}$. Qiskit's documented `QFT` class uses the
-> opposite, positive-exponent convention, so the unitary called `QFT` in
-> Qiskit corresponds to the *inverse* of our $F_N$, and Qiskit's inverse-QFT
-> object matches our $F_N$. When comparing formulas with other quantum
-> computing texts or with Qiskit code, check the sign convention alongside
-> the bit-ordering convention — sign errors in QFT and quantum phase
-> estimation are a classic source of off-by-a-conjugate bugs.
+> exponent. In this book the forward transform carries $\omega^{-jk}$ and
+> the inverse carries $\omega^{+jk}$. Current Qiskit's `QFTGate` uses the
+> opposite, positive-exponent convention, so the unitary that Qiskit's
+> `QFTGate` implements corresponds to the *inverse* of our $F_N$, and its
+> inverse matches our $F_N$. (Older code may use the now-deprecated
+> `qiskit.circuit.library.QFT` blueprint circuit; new code should prefer
+> `QFTGate` or Qiskit's QFT synthesis functions.) When comparing formulas
+> with other quantum computing texts or with Qiskit code, always check
+> the sign convention alongside the bit-ordering convention — sign errors
+> in QFT and quantum phase estimation are a classic source of
+> off-by-a-conjugate bugs.
 
 Key properties:
 
@@ -849,7 +904,9 @@ uncertainty about the other.
 Unless stated otherwise, entropy logarithms in this book are base 2 and
 entropies are measured in bits.
 
-Two quantum-mechanical extensions return in Chapter 12:
+Two quantum-mechanical extensions return in Chapter 12. They use the
+density-matrix formalism introduced in Chapter 5, so on a first pass it is
+fine to read this material as a *preview* and return after Chapter 5:
 
 1. **Von Neumann entropy.** Replace the diagonal-entry distribution by the
    spectrum of a density matrix:
@@ -934,6 +991,11 @@ the rest of the book:
     you apply $U^\dagger$ to its coordinates; it is the *representation*
     that changes. Confusing state, representation, and measurement basis is
     a common source of phantom bugs in circuit derivations.
+11. **The measurement basis is part of the experiment.** The same state can
+    produce different classical distributions under different measurement
+    bases; probabilities are not properties of the state vector alone, they
+    are properties of the pair (state, measurement). This is what made the
+    Hadamard-basis distinction in §4.1 possible.
 
 ## 4.16 Bridge to Chapter 5
 
@@ -952,7 +1014,8 @@ quantum mechanics for computing*:
 
 With those postulates in hand the rest of the book — qubits, gates,
 measurement theory, algorithms, error correction, hardware — has a clean
-mathematical interface to talk to.
+mathematical interface to talk to. The next chapter is where the
+mathematical objects of this chapter acquire physical meaning.
 
 ---
 
