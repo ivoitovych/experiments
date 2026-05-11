@@ -54,7 +54,7 @@ A **complex vector space** $V$ has scalars in $\mathbb{C}$, vector addition,
 and scalar multiplication satisfying the standard eight axioms. For us, $V$
 is almost always $\mathbb{C}^n$ for some finite $n$.
 
-A **linear combination** of vectors $\{v_1, \dots, v_k\}$ with coefficients
+A **linear combination** of vectors $\\{v_1, \dots, v_k\\}$ with coefficients
 $c_i \in \mathbb{C}$ is $\sum_i c_i\, v_i$. The vectors are **linearly
 independent** if no nontrivial combination equals zero, and they **span** the
 subspace of all their linear combinations. A **basis** is a linearly
@@ -66,7 +66,7 @@ exponential state-space growth that motivates quantum computing — and the
 exponential cost of simulating it classically without exploitable structure.
 
 The **standard basis** of $\mathbb{C}^{2^n}$ is indexed by length-$n$ bit
-strings: $\{|0 \cdots 0\rangle, |0 \cdots 01\rangle, \dots, |1 \cdots 1\rangle\}$.
+strings: $\\{|0 \cdots 0\rangle, |0 \cdots 01\rangle, \dots, |1 \cdots 1\rangle\\}$.
 We will call this the **computational basis**.
 
 ## 4.3 Inner Products, Norms, and Orthonormal Bases
@@ -83,7 +83,7 @@ opposite — both are valid; the quantum computing literature is consistent and
 we follow it.) The induced **norm** is $\|v\| = \sqrt{\langle v, v\rangle}$.
 
 Two vectors are **orthogonal** when $\langle u, v\rangle = 0$. A basis
-$\{e_1, \dots, e_n\}$ is **orthonormal** when $\langle e_i, e_j\rangle = \delta_{ij}$.
+$\\{e_1, \dots, e_n\\}$ is **orthonormal** when $\langle e_i, e_j\rangle = \delta_{ij}$.
 Any vector $v$ then decomposes as $v = \sum_i \langle e_i, v\rangle\, e_i$,
 and Gram–Schmidt converts any basis into an orthonormal one.
 
@@ -94,7 +94,7 @@ underlies fidelity bounds and inequalities on measurement statistics.
 ## 4.4 Matrices and Linear Operators
 
 A **linear operator** $A : V \to V$ satisfies $A(au + bv) = a\, Au + b\, Av$.
-Once you fix an orthonormal basis $\{e_i\}$, $A$ is represented by a matrix
+Once you fix an orthonormal basis $\\{e_i\\}$, $A$ is represented by a matrix
 with entries $A_{ij} = \langle e_i, A e_j\rangle$. Acting on a column vector
 of coefficients is the usual matrix-vector product.
 
@@ -125,7 +125,7 @@ eigenvalues.
 
 **Unitary**: $U^\dagger U = U U^\dagger = I$, equivalently $U^{-1} = U^\dagger$.
 Preserves the inner product, $\langle U u, U v\rangle = \langle u, v\rangle$,
-and therefore the norm. Eigenvalues lie on the unit circle, $\{e^{i\theta}\}$.
+and therefore the norm. Eigenvalues lie on the unit circle, $\\{e^{i\theta}\\}$.
 **Every quantum gate is a unitary**; closed-system time evolution is unitary.
 
 **Normal**: $A A^\dagger = A^\dagger A$. The class of operators that admit a
@@ -134,13 +134,13 @@ both normal; the converse is false.
 
 Sanity checks:
 
-- Pauli $X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ is Hermitian and
+- Pauli $X = \begin{pmatrix} 0 & 1 \\\\ 1 & 0 \end{pmatrix}$ is Hermitian and
   unitary; $X^2 = I$, eigenvalues $\pm 1$.
-- Pauli $Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$ is Hermitian and
+- Pauli $Y = \begin{pmatrix} 0 & -i \\\\ i & 0 \end{pmatrix}$ is Hermitian and
   unitary, eigenvalues $\pm 1$, with complex off-diagonal entries.
-- The Hadamard $H = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
+- The Hadamard $H = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 & 1 \\\\ 1 & -1 \end{pmatrix}$
   is Hermitian and unitary; $H^2 = I$.
-- The phase gate $S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}$ is unitary
+- The phase gate $S = \begin{pmatrix} 1 & 0 \\\\ 0 & i \end{pmatrix}$ is unitary
   but **not** Hermitian. Its eigenvalues are $1$ and $i$.
 
 ## 4.6 Eigenvalues and Eigenvectors
@@ -155,12 +155,12 @@ For the operator classes from §4.5:
 - **Hermitian** operators have real eigenvalues and an orthonormal eigenbasis.
   Distinct eigenvalues yield orthogonal eigenvectors automatically; within a
   degenerate eigenspace you can orthonormalize freely.
-- **Unitary** operators have unit-modulus eigenvalues $\{e^{i\theta_k}\}$ and
+- **Unitary** operators have unit-modulus eigenvalues $\\{e^{i\theta_k}\\}$ and
   an orthonormal eigenbasis.
 - **Normal** operators have an orthonormal eigenbasis, possibly with complex
   eigenvalues.
 
-The **eigenspace** of $\lambda$ is $\{v : A v = \lambda v\}$; its dimension
+The **eigenspace** of $\lambda$ is $\\{v : A v = \lambda v\\}$; its dimension
 is the **geometric multiplicity**. The order of $\lambda$ as a root of the
 characteristic polynomial is the **algebraic multiplicity**. For normal
 operators the two coincide and the eigenspaces span $V$.
@@ -215,9 +215,9 @@ is unitary. This is exactly how observables generate gates.
 ## 4.8 Tensor Products
 
 The state space of a composite system is the **tensor product** of the
-component state spaces. If $V$ has basis $\{e_i\}_{i=1}^{m}$ and $W$ has
-basis $\{f_j\}_{j=1}^{n}$, then $V \otimes W$ is the $mn$-dimensional space
-with basis $\{e_i \otimes f_j\}$.
+component state spaces. If $V$ has basis $\\{e_i\\}_{i=1}^{m}$ and $W$ has
+basis $\\{f_j\\}_{j=1}^{n}$, then $V \otimes W$ is the $mn$-dimensional space
+with basis $\\{e_i \otimes f_j\\}$.
 
 The defining property is bilinearity:
 
@@ -245,7 +245,7 @@ $$
 In matrix form,
 
 $$
-A \otimes B = \begin{pmatrix} A_{11} B & A_{12} B & \cdots \\ A_{21} B & A_{22} B & \cdots \\ \vdots & & \ddots \end{pmatrix}.
+A \otimes B = \begin{pmatrix} A_{11} B & A_{12} B & \cdots \\\\ A_{21} B & A_{22} B & \cdots \\\\ \vdots & & \ddots \end{pmatrix}.
 $$
 
 Useful identities:
@@ -262,7 +262,7 @@ many-qubit state spaces so much richer than products of single-qubit spaces.
 
 ## 4.9 Change of Basis
 
-If $\{e_i\}$ and $\{f_i\}$ are two orthonormal bases related by a unitary $U$,
+If $\\{e_i\\}$ and $\\{f_i\\}$ are two orthonormal bases related by a unitary $U$,
 with $f_j = \sum_i U_{ij} e_i$, then vectors and operators transform
 predictably:
 
@@ -272,7 +272,7 @@ predictably:
   $A_f = U^\dagger A_e U$ in the $f$-basis.
 
 In quantum computing this is constant practice. Measurement in the Hadamard
-basis $\{|+\rangle, |-\rangle\}$ is, operationally, applying $H$ and then
+basis $\\{|+\rangle, |-\rangle\\}$ is, operationally, applying $H$ and then
 measuring in the computational basis. Diagonalizing an operator is a basis
 change that makes it diagonal. Many algorithm-design tricks amount to finding
 a basis in which a hard computation is easy.
@@ -321,13 +321,13 @@ readable.
   "phi $A$ psi".
 
 The computational basis kets are $|0\rangle, |1\rangle$ for a single qubit and
-$|x\rangle$ for $x \in \{0,1\}^n$ for $n$ qubits, with the convention
+$|x\rangle$ for $x \in \\{0,1\\}^n$ for $n$ qubits, with the convention
 $|x\rangle = |x_1\rangle |x_2\rangle \cdots |x_n\rangle$. The standard basis
 vectors of $\mathbb{C}^2$ are
 
 $$
-|0\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \qquad
-|1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}.
+|0\rangle = \begin{pmatrix} 1 \\\\ 0 \end{pmatrix}, \qquad
+|1\rangle = \begin{pmatrix} 0 \\\\ 1 \end{pmatrix}.
 $$
 
 The identity decomposes as $I = \sum_i |i\rangle\langle i|$ — the **resolution
@@ -337,7 +337,7 @@ manipulation.
 
 A common shorthand: when a Hermitian operator $A$ has spectral decomposition
 $A = \sum_i \lambda_i |v_i\rangle\langle v_i|$, the outer-product form is
-manifestly Hermitian and diagonal in the $\{|v_i\rangle\}$ basis.
+manifestly Hermitian and diagonal in the $\\{|v_i\rangle\\}$ basis.
 
 **Source convention.** Throughout this book we write Dirac notation with
 explicit `\langle` and `\rangle`, e.g., `|\psi\rangle`, `\langle\phi|`,
@@ -386,7 +386,7 @@ QSP, QSVT) in Chapter 16.
 
 ## 4.13 Probability and Information Theory Refresher
 
-A discrete probability distribution $p$ on outcomes $\{x_1, \dots, x_n\}$
+A discrete probability distribution $p$ on outcomes $\\{x_1, \dots, x_n\\}$
 satisfies $p(x_i) \ge 0$ and $\sum_i p(x_i) = 1$. The **expectation** of a
 real-valued function $g$ is $\mathbb{E}[g] = \sum_i p(x_i)\, g(x_i)$, and the
 **variance** is $\mathrm{Var}[g] = \mathbb{E}[g^2] - \mathbb{E}[g]^2$.
