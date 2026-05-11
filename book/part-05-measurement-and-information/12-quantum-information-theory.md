@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 11](11-measurement-theory.md) · [Table of Contents](../../README.md) · [Next: Chapter 13 →](../part-06-algorithms/13-quantum-algorithms-mindset.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 2 · **Sections drafted:** 0 / 11
 
 ## 12.1 Quantum Channels
 

@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 19](../part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md) · [Table of Contents](../../README.md) · [Next: Chapter 21 →](21-quantum-control-and-electronics.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 4 · **Sections drafted:** 0 / 12
 
 ## 20.1 Superconducting Qubits
 

@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 12](../part-05-measurement-and-information/12-quantum-information-theory.md) · [Table of Contents](../../README.md) · [Next: Chapter 14 →](14-foundational-algorithms.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 3 · **Sections drafted:** 0 / 7
 
 ## 13.1 Amplitude Manipulation
 

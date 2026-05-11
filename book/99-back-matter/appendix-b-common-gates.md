@@ -2,7 +2,7 @@
 
 [← Previous: Appendix A. Notation Reference](appendix-a-notation-reference.md) · [Table of Contents](../../README.md) · [Next: Appendix C. Useful Identities and Decompositions →](appendix-c-identities-and-decompositions.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 2 · **Sections drafted:** 0 / 9
 
 ## Pauli Gates
 

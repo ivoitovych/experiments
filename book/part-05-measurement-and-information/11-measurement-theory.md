@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 10](../part-04-gates-and-circuits/10-core-quantum-phenomena.md) · [Table of Contents](../../README.md) · [Next: Chapter 12 →](12-quantum-information-theory.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 2 · **Sections drafted:** 0 / 7
 
 ## 11.1 Projective Measurements
 

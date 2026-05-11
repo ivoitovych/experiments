@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 23](23-quantum-programming-compilation-and-tooling.md) · [Table of Contents](../../README.md) · [Next: Chapter 25 →](../part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 4 · **Sections drafted:** 0 / 15
 
 ## 24.1 Why Classical Simulation Matters
 

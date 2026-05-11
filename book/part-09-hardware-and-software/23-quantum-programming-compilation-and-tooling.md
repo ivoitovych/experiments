@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 22](22-hardware-engineering-metrics.md) · [Table of Contents](../../README.md) · [Next: Chapter 24 →](24-classical-simulation-of-quantum-systems.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 4 · **Sections drafted:** 0 / 15
 
 ## 23.1 Circuit Description Languages
 

@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 21](21-quantum-control-and-electronics.md) · [Table of Contents](../../README.md) · [Next: Chapter 23 →](23-quantum-programming-compilation-and-tooling.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 4 · **Sections drafted:** 0 / 10
 
 ## 22.1 Qubit Count
 

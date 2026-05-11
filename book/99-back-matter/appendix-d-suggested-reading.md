@@ -2,7 +2,7 @@
 
 [← Previous: Appendix C. Useful Identities and Decompositions](appendix-c-identities-and-decompositions.md) · [Table of Contents](../../README.md) · [Next: Appendix E. Glossary →](appendix-e-glossary.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 6 · **Sections drafted:** 0 / 8
 
 ## Introductory Texts
 

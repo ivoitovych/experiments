@@ -2,7 +2,7 @@
 
 [Table of Contents](../../README.md) · [Next: Recommended / Assumed Background and Self-Check →](01-background-and-self-check.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 6 · **Sections drafted:** 0 / 8
 
 ## Why This Book Exists
 

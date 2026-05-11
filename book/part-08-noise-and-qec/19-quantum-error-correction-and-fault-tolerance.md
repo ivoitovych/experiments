@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 18](18-noise-decoherence-and-errors.md) · [Table of Contents](../../README.md) · [Next: Chapter 20 →](../part-09-hardware-and-software/20-quantum-hardware-platforms.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 4 · **Sections drafted:** 0 / 23
 
 ## 19.1 Why Quantum Error Correction Is Harder Than Classical
 

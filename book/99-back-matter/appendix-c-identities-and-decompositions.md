@@ -2,7 +2,7 @@
 
 [← Previous: Appendix B. Common Gates and Their Matrices](appendix-b-common-gates.md) · [Table of Contents](../../README.md) · [Next: Appendix D. Suggested Reading and Reference Papers →](appendix-d-suggested-reading.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 2 · **Sections drafted:** 0 / 6
 
 ## Pauli Algebra
 

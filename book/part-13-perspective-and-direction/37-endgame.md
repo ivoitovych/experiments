@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 36](36-how-to-judge-claims.md) · [Table of Contents](../../README.md) · [Next: Appendix A. Notation Reference →](../99-back-matter/appendix-a-notation-reference.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 6 · **Sections drafted:** 0 / 9
 
 ## 37.1 What Quantum Computers Are Actually Good For
 

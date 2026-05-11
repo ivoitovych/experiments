@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 17](../part-07-complexity/17-complexity-theory.md) · [Table of Contents](../../README.md) · [Next: Chapter 19 →](19-quantum-error-correction-and-fault-tolerance.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 4 · **Sections drafted:** 0 / 18
 
 ## 18.1 Sources of Noise
 

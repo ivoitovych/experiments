@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 3](../part-01-orientation/03-physical-intuition.md) · [Table of Contents](../../README.md) · [Next: Chapter 5 →](05-postulates.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 1 · **Sections drafted:** 0 / 13
 
 ## 4.1 Complex Numbers and Probability Amplitudes
 

@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 6](06-the-qubit.md) · [Table of Contents](../../README.md) · [Next: Chapter 8 →](../part-04-gates-and-circuits/08-quantum-gates.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 1 · **Sections drafted:** 0 / 13
 
 ## 7.1 Tensor-Product State Construction
 

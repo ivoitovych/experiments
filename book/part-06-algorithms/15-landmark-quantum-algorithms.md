@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 14](14-foundational-algorithms.md) · [Table of Contents](../../README.md) · [Next: Chapter 16 →](16-modern-algorithmic-frontier.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 3 · **Sections drafted:** 0 / 10
 
 ## 15.1 Grover's Algorithm
 

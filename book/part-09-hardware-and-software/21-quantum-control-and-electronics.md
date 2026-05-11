@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 20](20-quantum-hardware-platforms.md) · [Table of Contents](../../README.md) · [Next: Chapter 22 →](22-hardware-engineering-metrics.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 4 · **Sections drafted:** 0 / 14
 
 ## 21.1 Pulse Shaping
 

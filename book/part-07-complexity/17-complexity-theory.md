@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 16](../part-06-algorithms/16-modern-algorithmic-frontier.md) · [Table of Contents](../../README.md) · [Next: Chapter 18 →](../part-08-noise-and-qec/18-noise-decoherence-and-errors.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 3 · **Sections drafted:** 0 / 13
 
 ## 17.1 P, NP, NP-Complete, and BPP
 

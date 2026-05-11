@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 4](04-mathematical-background.md) · [Table of Contents](../../README.md) · [Next: Chapter 6 →](../part-03-qubits/06-the-qubit.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 1 · **Sections drafted:** 0 / 14
 
 ## 5.1 Quantum States
 

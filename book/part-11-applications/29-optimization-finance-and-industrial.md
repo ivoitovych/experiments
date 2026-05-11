@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 28](28-scientific-computing-and-physical-simulation.md) · [Table of Contents](../../README.md) · [Next: Chapter 30 →](30-quantum-machine-learning.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 5 · **Sections drafted:** 0 / 6
 
 ## 29.1 Combinatorial Optimization
 

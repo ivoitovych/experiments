@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 2](02-classical-to-quantum-contrast.md) · [Table of Contents](../../README.md) · [Next: Chapter 4 →](../part-02-formalism/04-mathematical-background.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 6 · **Sections drafted:** 0 / 10
 
 ## 3.1 Quantization
 

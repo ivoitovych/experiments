@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 9](09-quantum-circuits.md) · [Table of Contents](../../README.md) · [Next: Chapter 11 →](../part-05-measurement-and-information/11-measurement-theory.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 2 · **Sections drafted:** 0 / 7
 
 ## 10.1 Superposition as State Representation
 

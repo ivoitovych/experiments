@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 25](25-nisq-and-early-fault-tolerant-era.md) · [Table of Contents](../../README.md) · [Next: Chapter 27 →](../part-11-applications/27-cryptography-and-security.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 5 · **Sections drafted:** 0 / 7
 
 ## 26.1 Simulators vs. Real Hardware
 

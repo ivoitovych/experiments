@@ -2,7 +2,7 @@
 
 [← Previous: Chapter 34](34-bridging-to-familiar-engineering-ideas.md) · [Table of Contents](../../README.md) · [Next: Chapter 36 →](36-how-to-judge-claims.md)
 
-> *Status: stub — to be drafted.*
+> **Status:** stub · **Phase:** 6 · **Sections drafted:** 0 / 6
 
 ## 35.1 What Superposition Does Not Mean
 
