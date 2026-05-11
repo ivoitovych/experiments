@@ -60,8 +60,9 @@ which is why interference, the engine of quantum speedups, exists.
 
 A real-valued probabilistic computer cannot have negative probabilities. A
 quantum computer carries complex amplitudes; amplitudes are *not* signed
-probabilities, they are complex coordinates whose squared moduli become
-probabilities only after a measurement basis is chosen. A **global phase**
+probabilities (they live in the complex plane, not on the real line) — they
+are complex coordinates whose squared moduli become probabilities only after
+a measurement basis is chosen. A **global phase**
 multiplies the entire state by the same $e^{i\theta}$ and cancels from every
 probability — for any outcome $x$,
 
@@ -357,10 +358,10 @@ measurements) are covered in Chapters 11–12.
 
 ## 4.7 Spectral Decomposition
 
-If $A$ is normal with distinct *spectral values* $\lambda_1, \dots, \lambda_k$
-(the distinct numbers appearing as eigenvalues, ignoring multiplicities) and
-corresponding orthogonal projectors $P_1, \dots, P_k$ onto the eigenspaces,
-then
+If $A$ is normal with distinct *spectral values* (distinct eigenvalues —
+the distinct numbers appearing as eigenvalues, ignoring multiplicities)
+$\lambda_1, \dots, \lambda_k$ and corresponding orthogonal projectors
+$P_1, \dots, P_k$ onto the eigenspaces, then
 
 $$
 A = \sum_{i=1}^{k} \lambda_i\, P_i, \qquad
