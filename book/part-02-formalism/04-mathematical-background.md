@@ -39,12 +39,17 @@ $\theta$.
 
 In the standard formulation of quantum mechanics used for quantum computing,
 complex numbers are not a notational convenience but a structural ingredient.
-The state of a qubit is described by two complex amplitudes $\alpha, \beta$
-satisfying the normalization condition $|\alpha|^2 + |\beta|^2 = 1$, and the
-**Born rule** says that the probability of obtaining outcome $0$ on measurement
-is $|\alpha|^2$ and of outcome $1$ is $|\beta|^2$. These amplitudes can add,
-cancel, and rotate — which is why interference, the engine of quantum
-speedups, exists.
+The state of a qubit is
+
+$$
+|\psi\rangle = \alpha |0\rangle + \beta |1\rangle,
+$$
+
+with complex amplitudes $\alpha, \beta$ satisfying the normalization
+condition $|\alpha|^2 + |\beta|^2 = 1$. The **Born rule** says that the
+probability of obtaining outcome $0$ on measurement is $|\alpha|^2$ and of
+outcome $1$ is $|\beta|^2$. These amplitudes can add, cancel, and rotate —
+which is why interference, the engine of quantum speedups, exists.
 
 A real-valued probabilistic computer cannot have negative probabilities. A
 quantum computer has amplitudes that can carry any phase, and the modulus
@@ -84,11 +89,11 @@ strings $x \in \\{0,1\\}^n$, written $|x\rangle$. We will call this the
 
 > **Ordering convention.** Throughout this book the bit string
 > $x = x_1 x_2 \cdots x_n$ is interpreted with $x_1$ as the most significant
-> bit, so $|x\rangle$ sits at position $\sum_{i=1}^{n} x_i\, 2^{n-i}$ in any
-> column-vector representation, and $|x\rangle = |x_1\rangle |x_2\rangle
-> \cdots |x_n\rangle$ as a tensor product (§4.9). Some software frameworks
-> use the opposite convention; the tensor-product section gives the explicit
-> warning.
+> bit, so $|x\rangle$ sits at the *zero-based index*
+> $\sum_{i=1}^{n} x_i\, 2^{n-i}$ in any column-vector representation, and
+> $|x\rangle = |x_1\rangle |x_2\rangle \cdots |x_n\rangle$ as a tensor
+> product (§4.9). Some software frameworks use the opposite convention; the
+> tensor-product section gives the explicit warning.
 
 ## 4.3 Inner Products, Norms, and Orthonormal Bases
 
@@ -167,13 +172,15 @@ $$
 $$
 
 This is the inner product behind comparisons of states, observables, channels,
-and measurement effects (overlaps, fidelities, expectation values). For
-density matrices $\rho, \sigma$, $\mathrm{tr}(\rho\, \sigma)$ is the
-Hilbert–Schmidt inner product of $\rho$ and $\sigma$.
+and measurement effects (overlaps, fidelities, expectation values). Density
+matrices are Hermitian, so $\rho^\dagger = \rho$ and the Hilbert–Schmidt
+inner product collapses to
+$\langle \rho, \sigma\rangle_{\mathrm{HS}} = \mathrm{tr}(\rho\, \sigma)$
+without an explicit dagger.
 
 ## 4.5 Hermitian, Unitary, Normal, and Positive Operators
 
-Three classes of operators dominate quantum computing.
+Four operator classes appear constantly in quantum computing.
 
 **Hermitian** (self-adjoint): $A^\dagger = A$. Eigenvalues are real;
 eigenvectors belonging to distinct eigenvalues are orthogonal, and within any
@@ -357,15 +364,27 @@ SVD appears repeatedly in the rest of the book:
   (Chapter 16) act on the singular values of a matrix embedded inside a
   larger unitary. The SVD is the spectrum these techniques actually
   transform.
-- **HHL and related algorithms.** Inverting $A$ on a quantum state amounts
-  to mapping each singular value $\sigma_i$ to $1 / \sigma_i$ on the
-  corresponding singular vector, which is why conditioning, not size, is
-  the dominant cost parameter (§15.5).
+- **HHL and related algorithms.** The original HHL algorithm (§15.5) is
+  stated for Hermitian positive definite $A$, where eigenvalues and
+  singular values coincide; it implements $A^{-1}|b\rangle$ by mapping each
+  eigenvalue $\lambda_i$ to $1/\lambda_i$. For general non-Hermitian linear
+  systems, modern block-encoding and singular-value-transformation methods
+  act on singular values directly, $\sigma_i \mapsto 1/\sigma_i$ on the
+  corresponding singular vector. In both cases conditioning ($\kappa$), not
+  size, is the dominant cost parameter.
 
-For normal $A$, the singular values are the absolute values of the
-eigenvalues, and $U$, $V$ can be chosen so that $U V^\dagger$ reproduces the
-spectral decomposition. SVD is the strict generalization to operators that
-need not be square or normal.
+For normal $A$ with spectral decomposition $A = W \Lambda W^\dagger$, the
+singular values are $|\lambda_i|$, and an SVD can be chosen in the same
+eigenbasis: $\Sigma = |\Lambda|$, $V = W$, and $U = W D$, where
+$D_{ii} = \lambda_i / |\lambda_i|$ for nonzero eigenvalues (arbitrary phases
+on the kernel). In this sense the SVD separates the *magnitudes* of the
+eigenvalues from their *phases*; for non-normal or rectangular operators it
+is the strictly more general tool.
+
+The SVD also yields the **polar decomposition**: every square $A$ factors as
+$A = W\, |A|$ with $|A| = \sqrt{A^\dagger A}$ positive semidefinite and $W$
+unitary (or a partial isometry when $A$ is rank-deficient). This is the
+operator analogue of writing a complex number as $z = e^{i\theta} |z|$.
 
 ## 4.9 Tensor Products
 
@@ -401,14 +420,21 @@ $$
 The notation $|a\rangle \otimes |b\rangle$ is often abbreviated to
 $|a\rangle |b\rangle$ or $|ab\rangle$ once the order of subsystems is fixed.
 
-> **Endian warning.** The convention above fixes an ordering of subsystems: the
-> left factor varies slowest in the resulting Kronecker product. Quantum
-> software frameworks do not all agree on this. Qiskit displays statevectors
-> with the *rightmost* qubit as the most significant, so its $|01\rangle$ in
-> two-qubit notation corresponds to the index that other tools label
-> $|10\rangle$. Whenever you compare a hand derivation with code output —
-> especially for multi-qubit gates and entangled states — confirm the
-> framework's bit-order convention first.
+> **Endian warning.** This book uses the convention
+> $|x_1 x_2 \cdots x_n\rangle = |x_1\rangle |x_2\rangle \cdots |x_n\rangle$
+> with $x_1$ as the most significant bit (§4.2). Qiskit, in contrast, uses
+> little-endian qubit indexing: qubit $0$ is the least significant bit for
+> integer interpretation, and printed bit strings place bit $n-1$ on the
+> left and bit $0$ on the right. So a Qiskit printout `01` means qubit $1$
+> holds $0$ and qubit $0$ holds $1$. When you hand-derive a two-qubit gate
+> and paste the matrix into Qiskit, both the *tensor-factor order* and the
+> *qubit-label-to-integer-index* mapping must be reconciled. Whenever you
+> compare a hand derivation to code, separately confirm:
+>
+> 1. tensor-factor order in the product $|q\rangle \otimes |r\rangle$,
+> 2. which qubit label is the most significant,
+> 3. how printed bit strings are read,
+> 4. how integer indices into the amplitude array map back to bit strings.
 
 The tensor product of operators acts componentwise:
 
@@ -429,9 +455,13 @@ Useful identities:
 - $\mathrm{tr}(A \otimes B) = \mathrm{tr}(A) \cdot \mathrm{tr}(B)$
 - If $A$ is $m \times m$ and $B$ is $n \times n$, then $\det(A \otimes B) = (\det A)^n (\det B)^m$.
 
-A nonzero pure state in $V \otimes W$ is **product (separable)** if it can
-be written as $u \otimes v$ for some $u \in V$ and $v \in W$, up to
-normalization and global phase. Otherwise it is **entangled**. With respect
+A nonzero pure state in $V \otimes W$ is **product** if it can be written as
+$u \otimes v$ for some $u \in V$ and $v \in W$, up to normalization and
+global phase. Otherwise it is **entangled**. For pure states, "product" and
+"separable" are used interchangeably. For *mixed* states, "separable" has a
+broader meaning — a convex mixture of product states — and the gap between
+"separable" and "product" is one of the recurring subtleties of bipartite
+quantum information (Chapter 12). With respect
 to the natural continuous measure on the unit sphere of $\mathbb{C}^{mn}$,
 the separable states form a measure-zero set — almost every state is
 entangled, which is what makes many-qubit state spaces so much richer than
@@ -479,9 +509,10 @@ applying $H$. Diagonalizing an operator is a basis change that makes it
 diagonal. Many algorithm-design tricks amount to finding a basis in which a
 hard computation is easy.
 
-Traces, determinants, eigenvalues, ranks, and norms are basis-independent;
-matrix entries are not. When you write a matrix, you have already chosen a
-basis — remember which.
+Traces, determinants, eigenvalues, ranks, and the unitarily invariant norms
+used in this book (vector 2-norm, operator norm, trace norm, Hilbert–Schmidt
+norm) are basis-independent; matrix entries are not. When you write a
+matrix, you have already chosen a basis — remember which.
 
 ## 4.11 Hilbert Spaces
 
@@ -527,14 +558,14 @@ readable.
 
 The translation between Dirac notation and column/row vectors is mechanical:
 
-| Dirac notation | Matrix / vector notation |
-|---|---|
-| $\|\psi\rangle$ | column vector $\psi$ |
-| $\langle\phi\|$ | row vector $\phi^\dagger$ |
-| $\langle\phi\|\psi\rangle$ | scalar $\phi^\dagger \psi$ |
-| $\|\psi\rangle\langle\phi\|$ | rank-one matrix $\psi \phi^\dagger$ |
-| $A\|\psi\rangle$ | matrix-vector product $A \psi$ |
-| $\langle\phi\| A \|\psi\rangle$ | scalar $\phi^\dagger A \psi$ |
+| Dirac notation | Matrix / vector notation | Type signature |
+|---|---|---|
+| $\|\psi\rangle$ | column vector $\psi$ | $n \times 1$ |
+| $\langle\phi\|$ | row vector $\phi^\dagger$ | $1 \times n$ |
+| $\langle\phi\|\psi\rangle$ | scalar $\phi^\dagger \psi$ | $1 \times 1$ |
+| $\|\psi\rangle\langle\phi\|$ | rank-one matrix $\psi \phi^\dagger$ | $n \times n$ |
+| $A\|\psi\rangle$ | matrix-vector product $A \psi$ | $n \times 1$ |
+| $\langle\phi\| A \|\psi\rangle$ | scalar $\phi^\dagger A \psi$ | $1 \times 1$ |
 
 The computational basis kets are $|0\rangle, |1\rangle$ for a single qubit and
 $|x\rangle$ for $x \in \\{0,1\\}^n$ for $n$ qubits. We use the convention
@@ -607,11 +638,12 @@ Key properties:
   rotation in the other.
 
 The classical fast Fourier transform (FFT) computes a length-$N$ DFT in
-$O(N \log N)$ time. Let $N = 2^n$. The exact **quantum Fourier transform
-(QFT)** is the same unitary realized as a quantum circuit on $n = \log_2 N$
-qubits, and the standard textbook construction uses $O(n^2) = O((\log N)^2)$
-elementary gates. Circuit depth depends on the allowed parallelism, gate set,
-and qubit connectivity; the figure above counts gate count, not depth.
+$O(N \log N)$ time. Let $N = 2^n$. With this sign convention, the exact
+**quantum Fourier transform (QFT)** is this same unitary realized as a
+quantum circuit on $n = \log_2 N$ qubits, and the standard textbook
+construction uses $O(n^2) = O((\log N)^2)$ elementary gates. Circuit depth depends on the allowed parallelism, gate set,
+and qubit connectivity; the $O(n^2)$ estimate above is a gate-count
+statement, not a depth statement.
 
 This is *not* a drop-in exponentially faster FFT for arbitrary classical data:
 
@@ -698,9 +730,10 @@ density matrix formalism is in place (§5.10).
 
 One classical fact that quantum algorithms inherit unchanged: a quantum
 measurement returns a *sample* from a probability distribution determined by
-the state. Estimating any outcome probability to additive error $\epsilon$
-with high confidence requires $\Theta(1/\epsilon^2)$ independent samples by
-standard concentration bounds (Hoeffding, Chernoff). Quantum algorithms can
+the state. Estimating a Bernoulli outcome probability to additive error
+$\epsilon$ with constant confidence requires $\Theta(1/\epsilon^2)$
+independent samples by standard concentration bounds (Hoeffding, Chernoff);
+confidence $1 - \delta$ adds a $\log(1/\delta)$ factor. Quantum algorithms can
 sometimes reduce the number of *queries* to a black-box function or the
 *depth* of the circuit being sampled, but the statistics of the final
 measurement results obey ordinary probability theory. This is why
@@ -734,8 +767,8 @@ the rest of the book:
 ## 4.16 Bridge to Chapter 5
 
 The objects in this chapter — vectors, inner products, Hermitian operators,
-unitaries, projectors, tensor products, density matrices — are the
-mathematical scaffolding. Chapter 5 turns them into the *postulates of
+unitaries, projectors, tensor products, and the positive trace-one matrices
+that will become density matrices — are the mathematical scaffolding. Chapter 5 turns them into the *postulates of
 quantum mechanics for computing*:
 
 - Normalized rays in $\mathbb{C}^{2^n}$ become **pure states**.
