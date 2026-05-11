@@ -58,8 +58,8 @@ probability of obtaining outcome $0$ on measurement is $|\alpha|^2$ and of
 outcome $1$ is $|\beta|^2$. These amplitudes can add, cancel, and rotate —
 which is why interference, the engine of quantum speedups, exists.
 
-A real-valued probabilistic computer cannot have negative probabilities. A
-quantum computer carries complex amplitudes; amplitudes are *not* signed
+An ordinary probabilistic computer cannot assign negative literal
+probabilities to outcomes. A quantum computer carries complex amplitudes; amplitudes are *not* signed
 probabilities (they live in the complex plane, not on the real line) — they
 are complex coordinates whose squared moduli become probabilities only after
 a measurement basis is chosen. A **global phase**
@@ -105,10 +105,11 @@ independent spanning set; its size is the **dimension** of $V$.
 For an $n$-qubit register, the state space is $\mathbb{C}^{2^n}$. The
 dimension doubles every time you add a qubit. Strictly speaking, this is the
 ambient vector space; a physical *pure state* is a **ray**: an equivalence
-class of nonzero vectors under multiplication by any nonzero complex scalar.
-Once we choose normalized representatives, the remaining equivalence is
-multiplication by a global phase $e^{i\theta}$. Chapter 5 makes this
-precise.
+class of nonzero vectors under multiplication by any nonzero complex scalar
+(the zero vector is excluded because it cannot be normalized and does not
+represent a state). Once we choose normalized representatives, the
+remaining equivalence is multiplication by a global phase $e^{i\theta}$.
+Chapter 5 makes this precise.
 
 This exponential growth explains why generic classical simulation of quantum
 systems is hard. It does not by itself give a quantum speedup: useful
@@ -283,7 +284,10 @@ both normal; the converse is false.
 
 **Positive semidefinite**: a Hermitian operator $A$ is **positive
 semidefinite**, written $A \succeq 0$, if $\langle v | A | v\rangle \ge 0$ for
-every $v$, equivalently all eigenvalues of $A$ are nonnegative. We bake
+every $v$, equivalently all eigenvalues of $A$ are nonnegative. The two
+conditions are the same because in an eigenbasis of a Hermitian $A$,
+$\langle v | A | v\rangle = \sum_i \lambda_i\, |v_i|^2$; nonnegative
+eigenvalues are exactly what forces every quadratic form to be nonnegative. We bake
 Hermiticity into the definition; some authors define positivity directly
 through the quadratic form and then *prove* Hermiticity over $\mathbb{C}$.
 Positive semidefinite operators are the linear-algebraic home of
@@ -483,10 +487,17 @@ the two conventions (qubits labelled $q_0, q_1$):
 - Qiskit's printed string `q_1 q_0`, $q_0$ LSB: `00` $\to 0$,
   `01` $\to 1$, `10` $\to 2$, `11` $\to 3$.
 
-The *integer indices* coincide, but the *string labels* point at opposite
-qubits: this book's $|10\rangle$ means "first (most significant) qubit is
-$1$, second is $0$"; Qiskit's `10` means "qubit $1$ is $1$, qubit $0$ is
-$0$." That is the same basis vector, just read from the opposite end.
+The integer indices coincide *only* when this book's two tensor factors
+$|x_1 x_2\rangle$ are matched with Qiskit's printed order `q_1 q_0` (most
+significant on the left), not with the circuit-list order `(q_0, q_1)` that
+a programmer instinctively writes when they call `QuantumCircuit(2)`. Under
+that printed-order matching, this book's leftmost tensor factor corresponds
+to Qiskit's most-significant printed qubit, and the string labels point at
+opposite qubits: this book's $|10\rangle$ means "first (most significant)
+qubit is $1$, second is $0$"; Qiskit's printed `10` means "qubit $1$ is
+$1$, qubit $0$ is $0$." That is the same basis vector. If instead you
+identify the first tensor factor with Qiskit's `q_0`, then a hand-derived
+matrix needs an explicit SWAP/permutation before it lines up with code.
 
 The tensor product of operators acts componentwise:
 
@@ -501,12 +512,29 @@ A \otimes B = \begin{pmatrix} A_{11} B & A_{12} B & \cdots \\\\ A_{21} B & A_{22
 $$
 
 A small worked example using this book's ordering convention: $X \otimes I$
-acts as $X$ on the first qubit and leaves the second untouched, so
+acts as $X$ on the first qubit and leaves the second untouched. In matrix
+form,
+
+$$
+X \otimes I = \begin{pmatrix}
+0 & 0 & 1 & 0 \\\\
+0 & 0 & 0 & 1 \\\\
+1 & 0 & 0 & 0 \\\\
+0 & 1 & 0 & 0
+\end{pmatrix},
+$$
+
+which acts on basis states as
 
 $$
 (X \otimes I)|10\rangle = |00\rangle, \qquad
 (X \otimes I)|01\rangle = |11\rangle.
 $$
+
+If you compare with a Qiskit calculation of `X` on `q0`, you should expect
+to see $I \otimes X$ under this book's tensor-factor order — the
+software-label-to-tensor-factor mapping is a separate decision from the
+linear algebra.
 
 Useful identities:
 
@@ -596,9 +624,12 @@ SVD appears repeatedly in the rest of the book:
   $|\psi\rangle = \sum_i s_i\, |u_i\rangle |v_i\rangle$ with
   $s_i \ge 0$, $\sum_i s_i^2 = 1$, and orthonormal $\{|u_i\rangle\}$,
   $\{|v_i\rangle\}$. This is the SVD of the coefficient matrix of
-  $|\psi\rangle$. The state is a product state iff exactly one $s_i$ is
-  nonzero; otherwise it is entangled, and the $s_i$ quantify how much.
-  Chapter 7 develops this.
+  $|\psi\rangle$. The number of nonzero $s_i$ is the **Schmidt rank**; the
+  state is a product iff the Schmidt rank is one, and otherwise it is
+  entangled. The full Schmidt spectrum $\{s_i\}$ determines every standard
+  pure-state bipartite entanglement measure used later (Chapter 7); a
+  single scalar "amount of entanglement" is a derived quantity, not one of
+  the $s_i$ themselves.
 - **Block encodings and QSVT.** Modern algorithms such as quantum signal
   processing, qubitization, and the quantum singular value transformation
   (Chapter 16) act on the singular values of a matrix embedded inside a
@@ -650,9 +681,12 @@ with $f_j = \sum_i U_{ij} e_i$, then vectors and operators transform
 predictably:
 
 - A vector with coefficients $v_e$ in the $e$-basis has coefficients
-  $v_f = U^\dagger v_e$ in the $f$-basis.
+  $v_f = U^\dagger v_e$ in the $f$-basis. Equivalently,
+  $v_e = U v_f$ — the two directions are inverses, as you would expect
+  from a unitary change of orthonormal basis.
 - An operator with matrix $A_e$ in the $e$-basis has matrix
-  $A_f = U^\dagger A_e U$ in the $f$-basis.
+  $A_f = U^\dagger A_e U$ in the $f$-basis (and $A_e = U A_f U^\dagger$
+  the other way).
 
 In quantum computing this is constant practice. Measurement in a basis whose
 basis vectors are the columns of a unitary $U$ is implemented by applying
@@ -815,17 +849,26 @@ The $1/\sqrt{N}$ normalization makes the DFT a unitary transformation of
 $\mathbb{C}^N$.
 
 > **Sign convention.** Different communities choose opposite signs in the
-> exponent. In this book the forward transform carries $\omega^{-jk}$ and
-> the inverse carries $\omega^{+jk}$. Current Qiskit's `QFTGate` uses the
-> opposite, positive-exponent convention, so the unitary that Qiskit's
-> `QFTGate` implements corresponds to the *inverse* of our $F_N$, and its
-> inverse matches our $F_N$. (Older code may use the now-deprecated
+> exponent. To make this unambiguous we will sometimes write
+> $F_N^{(-)}$ and $F_N^{(+)}$ when the distinction matters:
+>
+> $$
+> F_N^{(-)} |j\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \omega^{-jk}\, |k\rangle,
+> \qquad
+> F_N^{(+)} |j\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \omega^{+jk}\, |k\rangle,
+> $$
+>
+> with $F_N^{(+)} = (F_N^{(-)})^\dagger$. **In this book "the QFT" always
+> means $F_N \equiv F_N^{(-)}$.** Current Qiskit's `QFTGate` implements the
+> opposite, positive-exponent convention $F_N^{(+)}$, so Qiskit's `QFTGate`
+> corresponds to the *inverse* of our $F_N$, and Qiskit's inverse-QFT
+> object matches our $F_N$. (Older code may use the now-deprecated
 > `qiskit.circuit.library.QFT` blueprint circuit; new code should prefer
-> `QFTGate` or Qiskit's QFT synthesis functions.) When comparing formulas
-> with other quantum computing texts or with Qiskit code, always check
-> the sign convention alongside the bit-ordering convention — sign errors
-> in QFT and quantum phase estimation are a classic source of
-> off-by-a-conjugate bugs.
+> `QFTGate` or Qiskit's QFT synthesis functions.) If a later algorithm
+> uses the opposite QFT sign, every controlled-phase angle and every
+> phase-estimation readout formula needs to be conjugated accordingly —
+> sign errors in QFT and quantum phase estimation are a classic source
+> of off-by-a-conjugate bugs.
 
 Key properties:
 
@@ -997,6 +1040,12 @@ the rest of the book:
     bases; probabilities are not properties of the state vector alone, they
     are properties of the pair (state, measurement). This is what made the
     Hadamard-basis distinction in §4.1 possible.
+12. **Tensor-product notation and software qubit labels are not the same
+    thing.** A formula like $A \otimes B$ names *tensor factors*; a
+    framework call like `qc.x(0)` names a *software qubit label*. The
+    mapping between the two is a convention you choose explicitly, and a
+    matrix that is correct under one mapping needs a SWAP or permutation
+    under the other.
 
 ## 4.16 Bridge to Chapter 5
 
