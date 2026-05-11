@@ -48,6 +48,18 @@ FORBIDDEN_MENTIONS = [
 LINK_RE = re.compile(r"\]\(([^)]+\.md)(?:#[^)]*)?\)")
 STATUS_RE = re.compile(r"\*\*Status:\*\*\s*(\w+)")
 
+FENCED_RE = re.compile(r"```.*?```", re.DOTALL)
+INLINE_CODE_RE = re.compile(r"`[^`\n]+`")
+
+
+def strip_code(content: str) -> str:
+    """Remove fenced and inline code spans so forbidden-pattern checks
+    don't false-positive on documentation that mentions the forbidden
+    construct (e.g. STYLE.md describing what NOT to use)."""
+    content = FENCED_RE.sub("", content)
+    content = INLINE_CODE_RE.sub("", content)
+    return content
+
 
 def check_book_file(md: pathlib.Path) -> None:
     rel = md.relative_to(ROOT)
@@ -68,12 +80,13 @@ def check_book_file(md: pathlib.Path) -> None:
         if not target.exists():
             fail(rel, f"dead link to {target_str}")
 
+    prose = strip_code(content)
     for macro in FORBIDDEN_MACROS:
-        if macro in content:
+        if macro in prose:
             fail(rel, f"forbidden macro {macro!r} — use raw \\langle/\\rangle")
 
     for macro in FORBIDDEN_LATEX:
-        if macro in content:
+        if macro in prose:
             fail(rel, f"forbidden LaTeX feature {macro!r}")
 
     m = STATUS_RE.search(content)
@@ -107,7 +120,7 @@ def check_forbidden_mentions() -> None:
         if p.exists():
             targets.append(p)
     for p in targets:
-        content = p.read_text(encoding="utf-8")
+        content = strip_code(p.read_text(encoding="utf-8"))
         for term in FORBIDDEN_MENTIONS:
             if term in content:
                 fail(p.relative_to(ROOT), f"forbidden mention: {term!r}")

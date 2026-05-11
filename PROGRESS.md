@@ -9,10 +9,10 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 ## Summary
 
 - **Files total:** 45
-- **Started (past `stub`):** 0 / 45
-- **Completed (`draft` or later):** 0 / 45
+- **Started (past `stub`):** 1 / 45
+- **Completed (`draft` or later):** 1 / 45
 
-- **Phase 1 (Foundations):** started 0/6, completed 0/6
+- **Phase 1 (Foundations):** started 1/6, completed 1/6
 - **Phase 2 (Core mechanics):** started 0/7, completed 0/7
 - **Phase 3 (Algorithms and complexity):** started 0/5, completed 0/5
 - **Phase 4 (Real systems):** started 0/7, completed 0/7
@@ -23,7 +23,7 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 
 - [ ] [Notation and Conventions](book/00-front-matter/02-notation-and-conventions.md) — *stub* — sections 0/7
 - [ ] [Appendix A. Notation Reference](book/99-back-matter/appendix-a-notation-reference.md) — *stub* — sections 0/6
-- [ ] [Chapter 4. Mathematical Background for Quantum Computing](book/part-02-formalism/04-mathematical-background.md) — *stub* — sections 0/13
+- [x] [Chapter 4. Mathematical Background for Quantum Computing](book/part-02-formalism/04-mathematical-background.md) — *draft* — sections 13/13
 - [ ] [Chapter 5. Postulates of Quantum Mechanics for Computing](book/part-02-formalism/05-postulates.md) — *stub* — sections 0/14
 - [ ] [Chapter 6. The Qubit](book/part-03-qubits/06-the-qubit.md) — *stub* — sections 0/10
 - [ ] [Chapter 7. Multiple Qubits and Entanglement](book/part-03-qubits/07-multiple-qubits-and-entanglement.md) — *stub* — sections 0/13
