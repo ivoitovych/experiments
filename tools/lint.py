@@ -168,7 +168,7 @@ def check_forbidden_mentions() -> None:
     # Manuscript content + repo root docs.
     targets: list[pathlib.Path] = []
     targets.extend(sorted((ROOT / "book").rglob("*.md")))
-    for name in ("README.md", "STYLE.md", "PROGRESS.md", "PROCESS.md", "BookDescription.md", "TOC.md", "LICENSE"):
+    for name in ("README.md", "STYLE.md", "PROGRESS.md", "PROCESS.md", "HISTORY.md", "BookDescription.md", "TOC.md", "LICENSE"):
         p = ROOT / name
         if p.exists():
             targets.append(p)
