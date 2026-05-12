@@ -29,6 +29,15 @@ help: ## Show available targets.
 setup: $(VENV)/.installed ## One-time: create .venv, install playwright + chromium.
 
 $(VENV)/.installed:
+	@if ! python3 -c "import ensurepip" >/dev/null 2>&1; then \
+	    echo ""; \
+	    echo "ERROR: python3 venv support is not installed."; \
+	    echo "On Debian/Ubuntu, run:"; \
+	    echo "    sudo apt install python3-venv python3-pip"; \
+	    echo "then retry 'make setup'."; \
+	    echo ""; \
+	    exit 1; \
+	fi
 	$(SYS_PY) -m venv $(VENV)
 	$(PIP) install --upgrade pip
 	$(PIP) install playwright
