@@ -1,6 +1,6 @@
 # Chapter 4. Mathematical Background for Quantum Computing
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 16 / 16
+> **Status:** draft · **Phase:** 1 · **Sections drafted:** 17 / 17
 
 [← Previous: Chapter 3](../part-01-orientation/03-physical-intuition.md) · [Table of Contents](../../README.md) · [Next: Chapter 5 →](05-postulates.md)
 
@@ -59,10 +59,12 @@ outcome $1$ is $|\beta|^2$. These amplitudes can add, cancel, and rotate —
 which is why interference, the engine of quantum speedups, exists.
 
 An ordinary probabilistic computer cannot assign negative literal
-probabilities to outcomes. A quantum computer carries complex amplitudes; amplitudes are *not* signed
-probabilities (they live in the complex plane, not on the real line) — they
-are complex coordinates whose squared moduli become probabilities only after
-a measurement basis is chosen. A **global phase**
+probabilities to outcomes. A quantum computer carries complex amplitudes;
+amplitudes are *not* signed probabilities (they live in the complex plane,
+not on the real line) — they are complex coordinates whose squared moduli
+become probabilities only relative to a *specified measurement*, most
+commonly an orthonormal measurement basis in the early chapters and more
+general measurements (POVMs) later (Chapter 11). A **global phase**
 multiplies the entire state by the same $e^{i\theta}$ and cancels from every
 probability — for any outcome $x$,
 
@@ -263,22 +265,31 @@ $$
 \langle A, B\rangle_{\mathrm{HS}} = \mathrm{tr}(A^\dagger B).
 $$
 
-This is one operator-level way to view many overlaps and expectation-value
-expressions. As a *preview* — density matrices are properly introduced in
-Chapter 5 — the expectation value of an observable $A$ in a state $\rho$ is
+This is one operator-level way to view many overlaps and
+expectation-value expressions. For a normalized pure state
+$|\psi\rangle$, the expectation value of an observable $O$ is the
+familiar bra-ket sandwich
 
 $$
-\langle A\rangle_\rho = \mathrm{tr}(\rho A),
+\langle O\rangle_\psi = \langle\psi| O |\psi\rangle.
 $$
 
-visibly the Hilbert–Schmidt inner product of $\rho^\dagger = \rho$ and $A$.
-When $A$ is Hermitian this expectation value is real; for a general
-(non-Hermitian) $A$, $\mathrm{tr}(\rho A)$ is a complex operator overlap
-rather than a directly observable average. For now the only important
-takeaway is that *trace expressions let us treat operators themselves as
-vectors in an operator space*. The induced
+As a *preview* — density matrices are properly introduced in Chapter 5 —
+this generalizes to
+
+$$
+\langle O\rangle_\rho = \mathrm{tr}(\rho\\, O),
+$$
+
+visibly the Hilbert–Schmidt inner product of $\rho^\dagger = \rho$ and
+$O$. When $O$ is Hermitian this expectation value is real; for a
+general (non-Hermitian) operator the trace expression is a complex
+operator overlap rather than a directly observable average. For now
+the only important takeaway is that *trace expressions let us treat
+operators themselves as vectors in an operator space*. The induced
 **Hilbert–Schmidt norm** (Frobenius norm) is
-$\\|A\\|_{\mathrm{HS}} = \sqrt{\mathrm{tr}(A^\dagger A)}$. Some quantities
+$\\|A\\|_{\mathrm{HS}} = \sqrt{\mathrm{tr}(A^\dagger A)}$, where $A$
+here is any operator, not necessarily an observable. Some quantities
 introduced later, such as mixed-state fidelity and trace distance, are
 *not* literal Hilbert–Schmidt inner products, but they share the same
 operator-level viewpoint.
@@ -485,10 +496,11 @@ The two most important instances in quantum computing:
   conditioning, and efficient state preparation.
 
 When $A$ is Hermitian, the eigenvalues are real and $f(A)$ is Hermitian
-when $f$ is real-valued on the spectrum; if $f$ has unit-modulus values on
-the spectrum (like $e^{i\\,\cdot}$), $f(A)$ is unitary. This is the
-finite-dimensional spectral-calculus reason why Hermitian observables and
-Hamiltonians generate unitary gates via exponentiation.
+when $f$ is real-valued on the spectrum; if $f$ has unit-modulus values
+on the spectrum (like $e^{i\\,\cdot}$), $f(A)$ is unitary. This is the
+finite-dimensional spectral-calculus reason why Hermitian operators can
+serve as generators of one-parameter unitary families $e^{-itA}$;
+Hamiltonians do this physically as the generators of time evolution.
 
 The most important example is the **matrix exponential**. As a power series,
 
@@ -729,6 +741,20 @@ Chapter 5 uses this to define the **reduced density matrix** of a
 subsystem inside a larger composite system; for an entangled pure state
 the reduced state is generally mixed, which is exactly how entanglement
 makes itself visible inside one subsystem.
+
+The Bell state $|\Phi^+\rangle = (|00\rangle + |11\rangle)/\sqrt{2}$
+makes this concrete. The full state is pure, with density matrix
+$|\Phi^+\rangle\langle\Phi^+|$. Tracing out the second qubit gives
+
+$$
+\mathrm{tr}_2\bigl(|\Phi^+\rangle\langle\Phi^+|\bigr)
+= \tfrac{1}{2}\\, |0\rangle\langle 0| + \tfrac{1}{2}\\, |1\rangle\langle 1|,
+$$
+
+which is a maximally mixed single-qubit state. The whole is pure but
+the part is mixed — the smallest example of why reduced density
+matrices are not bookkeeping but the language entanglement actually
+speaks at the subsystem level.
 
 *Takeaway:* the tensor product is where multi-qubit systems stop being just
 collections of independent qubits and start being computational resources in
@@ -1188,12 +1214,16 @@ density matrix formalism is in place (§5.10).
 One classical fact that quantum algorithms inherit unchanged: a quantum
 measurement returns a *sample* from a probability distribution determined by
 the state, not direct access to the underlying complex amplitudes. Whatever
-you eventually report is an empirical frequency from repeated trials. In
-the worst case, if all you can do is prepare the state, measure it, and
-repeat independently, estimating an unknown Bernoulli outcome probability
-to additive error $\epsilon$ with constant confidence requires
-$\Theta(1/\epsilon^2)$ shots by standard concentration bounds (Hoeffding,
-Chernoff); confidence $1 - \delta$ adds a $\log(1/\delta)$ factor. Coherent subroutines such as **amplitude
+you eventually report is an empirical frequency from repeated trials.
+In the worst case — for example for an unknown probability bounded
+away from $0$ and $1$ — if all you can do is prepare the state,
+measure it, and repeat independently, estimating that Bernoulli
+outcome probability to additive error $\epsilon$ with constant
+confidence requires $\Theta(1/\epsilon^2)$ shots by standard
+concentration bounds (Hoeffding, Chernoff); confidence $1 - \delta$
+adds a $\log(1/\delta)$ factor. Extreme-probability cases (very close
+to $0$ or $1$) admit tighter bounds, but the
+distribution-independent worst case is what you should budget for. Coherent subroutines such as **amplitude
 estimation** can improve query complexity to roughly $O(1/\epsilon)$ under
 stronger access assumptions (Chapter 14), but the final observed data are
 still classical samples, and once you have them they must be interpreted with
@@ -1256,7 +1286,31 @@ the rest of the book:
     state has different coordinate columns in different bases, even
     though it is the same physical thing.
 
-## 4.16 Bridge to Chapter 5
+## 4.16 Conventions at a Glance
+
+The conventions are spread across the chapter as they get introduced.
+Here they are collected as a single debugging checklist for moments
+when something does not type-check:
+
+| Topic | Convention in this book |
+|---|---|
+| Inner product | Conjugate-linear in the first argument: $\langle u, v\rangle = \sum_i \overline{u_i}\\, v_i$. |
+| Norm notation | $\\|z\\|$ scalar modulus, $\\|v\\|$ vector 2-norm, $\\|A\\|$ operator (spectral) norm, $\\|A\\|_1$ trace norm, $\\|A\\| = \sqrt{A^\dagger A}$ operator absolute value. |
+| Kets | Abstract state vectors; represented as $n \times 1$ column vectors after a basis is chosen. |
+| Pure states | Normalized unless explicitly stated otherwise; rays under global phase. |
+| Computational basis order | $x_1$ is the most significant bit; $\\|x\rangle$ sits at zero-based index $\sum_i x_i\\, 2^{n-i}$. |
+| Tensor-product order | $\\|x_1 x_2 \cdots x_n\rangle = \\|x_1\rangle \\|x_2\rangle \cdots \\|x_n\rangle$. |
+| Qiskit mapping | Map this book's leftmost tensor factor to Qiskit's *highest-numbered* qubit label, or insert a SWAP. |
+| QFT sign | Convention **QFT-sign-minus**: $F_N\\|j\rangle = N^{-1/2} \sum_k \omega^{-jk}\\, \\|k\rangle$ with $\omega = e^{2\pi i / N}$. Qiskit's `QFTGate` uses the opposite sign. |
+| Hamiltonian evolution | Algorithmic chapters use $\hbar = 1$, so $U(t) = e^{-iHt}$. |
+| Observables | Hermitian operators in the projective-measurement picture; POVMs cover the general case (Chapter 11). |
+| Entropy logs | Base 2; entropies measured in bits unless stated otherwise. |
+| Projectors in measurement contexts | Always orthogonal ($P^2 = P$, $P^\dagger = P$) unless explicitly stated otherwise. |
+
+If a later derivation seems off by a conjugate, a swap, or a sign,
+check this table first before suspecting the math.
+
+## 4.17 Bridge to Chapter 5
 
 The objects in this chapter — vectors, inner products, Hermitian operators,
 unitaries, projectors, tensor products, and the positive semidefinite,

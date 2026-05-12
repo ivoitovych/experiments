@@ -23,7 +23,7 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 
 - [ ] [Notation and Conventions](book/00-front-matter/02-notation-and-conventions.md) — *stub* — sections 0/7
 - [ ] [Appendix A. Notation Reference](book/99-back-matter/appendix-a-notation-reference.md) — *stub* — sections 0/6
-- [x] [Chapter 4. Mathematical Background for Quantum Computing](book/part-02-formalism/04-mathematical-background.md) — *draft* — sections 16/16
+- [x] [Chapter 4. Mathematical Background for Quantum Computing](book/part-02-formalism/04-mathematical-background.md) — *draft* — sections 17/17
 - [ ] [Chapter 5. Postulates of Quantum Mechanics for Computing](book/part-02-formalism/05-postulates.md) — *stub* — sections 0/14
 - [ ] [Chapter 6. The Qubit](book/part-03-qubits/06-the-qubit.md) — *stub* — sections 0/10
 - [ ] [Chapter 7. Multiple Qubits and Entanglement](book/part-03-qubits/07-multiple-qubits-and-entanglement.md) — *stub* — sections 0/13
