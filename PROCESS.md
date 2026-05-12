@@ -96,13 +96,22 @@ look at; the PNGs themselves stay outside the commit process.
 Setup (one-time on the local machine that runs captures):
 
 ```
+sudo apt install python3-venv python3-pip   # Ubuntu/Debian only
 make setup
 ```
 
-That creates a `.venv` at the repo root, installs Playwright into it,
-and downloads Chromium into the shared Playwright cache
-(`~/.cache/ms-playwright/`). The target is idempotent — it touches a
-sentinel after success and becomes a no-op on subsequent runs.
+The apt step is needed on a fresh Ubuntu 24.04 install because
+Python's `venv` module is not bundled with the minimal Python
+package. The Makefile detects this case and prints the exact apt
+command if the package is missing, so an unprepared machine fails
+with a clear message rather than the underlying "ensurepip is not
+available" error.
+
+`make setup` then creates a `.venv` at the repo root, installs
+Playwright into it, and downloads Chromium into the shared
+Playwright cache (`~/.cache/ms-playwright/`). The target is
+idempotent — it touches a sentinel after success and becomes a no-op
+on subsequent runs.
 
 The tool drives a real headless Chromium against the actual GitHub
 blob URL for a given commit, then captures one PNG per section

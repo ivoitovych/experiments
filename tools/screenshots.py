@@ -88,20 +88,55 @@ def capture_chapter(md_path: pathlib.Path, sha: str, out_dir: pathlib.Path) -> N
 
         # Wait for GitHub's client-side math renderer to finish. GitHub ships
         # `<span class="js-inline-math">$...$</span>` and matching display
-        # placeholders, then injects a `<mjx-container>` child once MathJax
-        # has typeset each one.
-        page.wait_for_function(
-            """() => {
-                const placeholders = document.querySelectorAll(
-                    '.js-inline-math, .js-display-math'
-                );
-                if (placeholders.length === 0) return true;
-                return Array.from(placeholders).every(
-                    p => p.querySelector('mjx-container')
-                );
-            }""",
-            timeout=90_000,
-        )
+        # placeholders, then transforms them into typeset math. The exact
+        # output element has changed over time (MathJax `mjx-container`,
+        # SVG `<math>`, custom `<g-math>` etc.), so wait on any of them
+        # and tolerate a timeout — if we cannot detect completion we dump
+        # the actual DOM state and proceed with a fallback delay rather
+        # than failing the whole capture.
+        from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
+        try:
+            page.wait_for_function(
+                """() => {
+                    const placeholders = document.querySelectorAll(
+                        '.js-inline-math, .js-display-math'
+                    );
+                    if (placeholders.length === 0) return true;
+                    const rendered = document.querySelectorAll(
+                        'mjx-container, g-math, math, .katex'
+                    ).length;
+                    // Every placeholder should contain at least one
+                    // rendered math element, OR they should have been
+                    // replaced entirely.
+                    return rendered >= placeholders.length;
+                }""",
+                timeout=30_000,
+            )
+        except PlaywrightTimeoutError:
+            diag = page.evaluate(
+                """() => ({
+                    js_inline: document.querySelectorAll('.js-inline-math').length,
+                    js_display: document.querySelectorAll('.js-display-math').length,
+                    mjx_container: document.querySelectorAll('mjx-container').length,
+                    g_math: document.querySelectorAll('g-math').length,
+                    math_tag: document.querySelectorAll('math').length,
+                    katex: document.querySelectorAll('.katex').length,
+                    sample_placeholder: (() => {
+                        const el = document.querySelector('.js-inline-math, .js-display-math');
+                        return el ? el.outerHTML.slice(0, 400) : null;
+                    })(),
+                })"""
+            )
+            print(
+                f"  WARN math-wait timed out after 30s; DOM state: {diag}",
+                file=sys.stderr,
+            )
+            print(
+                "  proceeding with a 5s fallback delay; screenshots may be "
+                "missing math",
+                file=sys.stderr,
+            )
+            page.wait_for_timeout(5_000)
 
         # Fonts are loaded async and can shift line heights after MathJax
         # already finished; wait for them before clipping.
