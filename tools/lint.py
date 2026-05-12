@@ -86,6 +86,22 @@ def check_math_blocks(rel, content: str) -> None:
             fail(rel, r"math contains bare `\|` — use `\\|` (GitHub eats the backslash and the norm bar collapses to a modulus bar)")
 
 
+def check_nested_display_math(rel, content: str) -> None:
+    """Flag `$$` lines that sit inside a blockquote (`> ` prefix) or an
+    indented list-item continuation. GitHub's display-math block parser
+    does not enter math mode in those contexts and the LaTeX appears as
+    literal text. Inline `$...$` works in those contexts; only the
+    `$$ ... $$` block form breaks."""
+    for n, line in enumerate(content.splitlines(), 1):
+        if line.startswith(">"):
+            inner = line.lstrip("> \t")
+            if inner.startswith("$$"):
+                fail(rel, f"line {n}: `$$` inside a blockquote does not enter math mode on GitHub — pull the equation out of the `>` block")
+                continue
+        if line.startswith("  ") and line.lstrip(" \t").startswith("$$"):
+            fail(rel, f"line {n}: `$$` inside an indented list-item continuation does not enter math mode on GitHub — convert the list to bold-prefixed paragraphs and unindent the equation")
+
+
 def strip_code(content: str) -> str:
     """Remove fenced and inline code spans so forbidden-pattern checks
     don't false-positive on documentation that mentions the forbidden
@@ -124,6 +140,7 @@ def check_book_file(md: pathlib.Path) -> None:
             fail(rel, f"forbidden LaTeX feature {macro!r}")
 
     check_math_blocks(rel, content)
+    check_nested_display_math(rel, content)
 
     m = STATUS_RE.search(content)
     if m:

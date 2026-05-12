@@ -922,14 +922,7 @@ readable.
 - A **ket** $|\psi\rangle$ is an abstract state vector; after a basis is
   chosen it is *represented* by a column vector in $\mathbb{C}^n$.
 - A **bra** $\langle\phi|$ is the adjoint of the ket $|\phi\rangle$, i.e., a
-  row vector. The bra map is **anti-linear**:
-
-  $$
-  \langle a\phi + b\chi | = \overline{a}\\, \langle\phi| + \overline{b}\\, \langle\chi|.
-  $$
-
-  This is the most common source of slow-burn errors in Dirac calculations —
-  distributing a bra over a sum should always carry the complex conjugates.
+  row vector.
 - The **inner product** $\langle\phi|\psi\rangle$ is a scalar,
   $\sum_i \overline{\phi_i}\\, \psi_i$.
 - The **outer product** $|\psi\rangle\langle\phi|$ is the matrix with entries
@@ -942,6 +935,15 @@ readable.
 - An operator $A$ acts on a ket: $A|\psi\rangle$. The scalar
   $\langle\phi| A |\psi\rangle$ is the **matrix element** of $A$ between
   $|\phi\rangle$ and $|\psi\rangle$.
+
+The bra map is **anti-linear** — the most common source of slow-burn
+errors in Dirac calculations:
+
+$$
+\langle a\phi + b\chi | = \overline{a}\\, \langle\phi| + \overline{b}\\, \langle\chi|.
+$$
+
+Distributing a bra over a sum should always carry the complex conjugates.
 
 The translation between Dirac notation and column/row vectors is mechanical:
 
@@ -1014,42 +1016,39 @@ $$
 The $1/\sqrt{N}$ normalization makes the DFT a unitary transformation of
 $\mathbb{C}^N$.
 
-> **Sign convention.** Different communities choose opposite signs in the
-> exponent. To make this unambiguous we will sometimes write
-> $F_N^{(-)}$ and $F_N^{(+)}$ when the distinction matters:
->
-> $$
-> F_N^{(-)} |j\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \omega^{-jk}\\, |k\rangle,
-> \qquad
-> F_N^{(+)} |j\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \omega^{+jk}\\, |k\rangle,
-> $$
->
-> with $F_N^{(+)} = (F_N^{(-)})^\dagger$. We label this choice
-> **Convention QFT-sign-minus**: throughout this book "the QFT" always means
-> $F_N \equiv F_N^{(-)}$. Later algorithm chapters (phase estimation,
-> Shor) reference this convention by name; whenever a library uses the
-> opposite sign, translate by taking the adjoint. As of Qiskit's 2.x
-> documentation,
-> `QFTGate` implements the opposite, positive-exponent convention
-> $F_N^{(+)}$, so Qiskit's `QFTGate` corresponds to the *inverse* of our
-> $F_N$, and Qiskit's inverse of `QFTGate` matches our $F_N$ — up to the
-> same bit-ordering and final-swap conventions discussed in §4.8, which
-> QFT circuits often expose as an optional terminal swap layer. (Older
-> code may use the now-deprecated `qiskit.circuit.library.QFT` blueprint
-> circuit; new code should prefer `QFTGate` or Qiskit's QFT synthesis
-> functions. Re-check the convention against current Qiskit documentation
-> when you translate formulas into code.)
->
-> Before comparing a formula from this book with Qiskit output, check
-> three things independently:
->
-> 1. exponent sign (this section);
-> 2. final-swap / bit-reversal convention (§4.8);
-> 3. qubit-label-to-tensor-factor mapping (§4.8). If a later algorithm
-> uses the opposite QFT sign, every controlled-phase angle and every
-> phase-estimation readout formula needs to be conjugated accordingly —
-> sign errors in QFT and quantum phase estimation are a classic source
-> of off-by-a-conjugate bugs.
+**Sign convention.** Different communities choose opposite signs in the
+exponent. To make this unambiguous we will sometimes write $F_N^{(-)}$ and
+$F_N^{(+)}$ when the distinction matters:
+
+$$
+F_N^{(-)} |j\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \omega^{-jk}\\, |k\rangle,
+\qquad
+F_N^{(+)} |j\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \omega^{+jk}\\, |k\rangle,
+$$
+
+with $F_N^{(+)} = (F_N^{(-)})^\dagger$. We label this choice
+**Convention QFT-sign-minus**: throughout this book "the QFT" always means
+$F_N \equiv F_N^{(-)}$. Later algorithm chapters (phase estimation, Shor)
+reference this convention by name; whenever a library uses the opposite
+sign, translate by taking the adjoint. As of Qiskit's 2.x documentation,
+`QFTGate` implements the opposite, positive-exponent convention
+$F_N^{(+)}$, so Qiskit's `QFTGate` corresponds to the *inverse* of our
+$F_N$, and Qiskit's inverse of `QFTGate` matches our $F_N$ — up to the
+same bit-ordering and final-swap conventions discussed in §4.8, which QFT
+circuits often expose as an optional terminal swap layer. (Older code may
+use the now-deprecated `qiskit.circuit.library.QFT` blueprint circuit; new
+code should prefer `QFTGate` or Qiskit's QFT synthesis functions. Re-check
+the convention against current Qiskit documentation when you translate
+formulas into code.)
+
+Before comparing a formula from this book with Qiskit output, check three
+things independently: (1) exponent sign (this section);
+(2) final-swap / bit-reversal convention (§4.8);
+(3) qubit-label-to-tensor-factor mapping (§4.8). If a later algorithm uses
+the opposite QFT sign, every controlled-phase angle and every
+phase-estimation readout formula needs to be conjugated accordingly —
+sign errors in QFT and quantum phase estimation are a classic source of
+off-by-a-conjugate bugs.
 
 Key properties:
 
@@ -1080,19 +1079,19 @@ opposite-sign unitary the QFT and this one the inverse QFT — always check
 the exponent when comparing formulas, especially inside quantum phase
 estimation.
 
-> **Sanity check.** Take $N = 4$, so $\omega = i$. Under this book's
-> convention,
->
-> $$
-> F_4 |1\rangle = \tfrac{1}{2}\bigl(|0\rangle + \omega^{-1}|1\rangle
-> + \omega^{-2}|2\rangle + \omega^{-3}|3\rangle\bigr)
-> = \tfrac{1}{2}\bigl(|0\rangle - i|1\rangle - |2\rangle + i|3\rangle\bigr).
-> $$
->
-> Under the opposite-sign convention $F_4^{(+)}|1\rangle$ would be the
-> complex conjugate of this. If a Qiskit `QFTGate` calculation gives you
-> the conjugate of the above, that is the sign convention talking, not a
-> bug. Circuit depth depends on the allowed parallelism, gate set,
+**Sanity check.** Take $N = 4$, so $\omega = i$. Under this book's
+convention,
+
+$$
+F_4 |1\rangle
+= \tfrac{1}{2}\bigl(|0\rangle + \omega^{-1}|1\rangle + \omega^{-2}|2\rangle + \omega^{-3}|3\rangle\bigr)
+= \tfrac{1}{2}\bigl(|0\rangle - i|1\rangle - |2\rangle + i|3\rangle\bigr).
+$$
+
+Under the opposite-sign convention $F_4^{(+)}|1\rangle$ would be the
+complex conjugate of this. If a Qiskit `QFTGate` calculation gives you
+the conjugate of the above, that is the sign convention talking, not a
+bug. Circuit depth depends on the allowed parallelism, gate set,
 and qubit connectivity; the $O(n^2)$ estimate above is a gate-count
 statement, not a depth statement.
 
@@ -1148,39 +1147,39 @@ entropies are measured in bits.
 
 Two quantum-mechanical extensions return in Chapter 12. They use the
 density-matrix formalism introduced in Chapter 5, so on a first pass it is
-fine to read this material as a *preview* and return after Chapter 5:
+fine to read this material as a *preview* and return after Chapter 5.
 
-1. **Von Neumann entropy.** Replace the diagonal-entry distribution by the
-   spectrum of a density matrix:
+**Von Neumann entropy.** Replace the diagonal-entry distribution by the
+spectrum of a density matrix:
 
-   $$
-   S(\rho) = -\mathrm{tr}(\rho \log_2 \rho),
-   $$
+$$
+S(\rho) = -\mathrm{tr}(\rho \log_2 \rho),
+$$
 
-   measured in bits, with the convention $0 \log 0 = 0$ applied to the
-   eigenvalues of $\rho$. For a pure density matrix
-   $\rho = |\psi\rangle\langle\psi|$, $S(\rho) = 0$; entanglement of a pure
-   bipartite state is captured by the von Neumann entropy of either reduced
-   state, once reduced states are introduced (Chapter 5).
-2. **Holevo bound.** Classical information is encoded not by a single density
-   matrix but by an *ensemble* $\\{p_x, \rho_x\\}$ — a classical distribution
-   over messages $X$, each transmitted as a quantum state $\rho_x$. The
-   receiver sees the average state $\rho = \sum_x p_x \rho_x$. For *any*
-   measurement producing classical outcome $Y$, the resulting classical
-   mutual information $I(X; Y)$ is bounded by the **Holevo quantity**
+measured in bits, with the convention $0 \log 0 = 0$ applied to the
+eigenvalues of $\rho$. For a pure density matrix
+$\rho = |\psi\rangle\langle\psi|$, $S(\rho) = 0$; entanglement of a pure
+bipartite state is captured by the von Neumann entropy of either reduced
+state, once reduced states are introduced (Chapter 5).
 
-   $$
-   \chi = S(\rho) - \sum_x p_x\\, S(\rho_x).
-   $$
+**Holevo bound.** Classical information is encoded not by a single density
+matrix but by an *ensemble* $\\{p_x, \rho_x\\}$ — a classical distribution
+over messages $X$, each transmitted as a quantum state $\rho_x$. The
+receiver sees the average state $\rho = \sum_x p_x \rho_x$. For *any*
+measurement producing classical outcome $Y$, the resulting classical
+mutual information $I(X; Y)$ is bounded by the **Holevo quantity**
 
-   Consequently the **accessible information** — the supremum of $I(X; Y)$
-   over all measurements — is itself at most $\chi$. For an ensemble of
-   pure states this reduces to $\chi = S(\rho)$. In particular $\chi$ is
-   generally far smaller than the number of complex amplitudes used to
-   describe the underlying quantum states — the information-theoretic
-   ceiling behind the standard warning that a quantum state with
-   exponentially many amplitudes cannot simply be "read out" as
-   exponentially many classical numbers.
+$$
+\chi = S(\rho) - \sum_x p_x\\, S(\rho_x).
+$$
+
+Consequently the **accessible information** — the supremum of $I(X; Y)$
+over all measurements — is itself at most $\chi$. For an ensemble of pure
+states this reduces to $\chi = S(\rho)$. In particular $\chi$ is generally
+far smaller than the number of complex amplitudes used to describe the
+underlying quantum states — the information-theoretic ceiling behind the
+standard warning that a quantum state with exponentially many amplitudes
+cannot simply be "read out" as exponentially many classical numbers.
 
 For now, treat Shannon entropy as the background you need for noisy-channel
 arguments and information bounds; the quantum extensions arrive once the
