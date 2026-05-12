@@ -67,13 +67,13 @@ itself across every chapter that builds on them.
 
 ## Toolchain
 
-| Tool | Purpose |
-|---|---|
-| `scripts/scaffold.py` | Generates the directory tree and stub files from `ENTRIES`. Idempotent — safe to re-run; skips existing files. |
-| `scripts/phases.py` | Single source of truth for the phase mapping. Imported by other scripts. |
-| `scripts/generate_progress.py` | Regenerates `PROGRESS.md` from the status blocks in every manuscript file. Re-run after editing any status. |
-| `tools/lint.py` | Enforces structural and notational invariants. Catches source-detectable rendering bugs (see *Known renderer gotchas* below). |
-| `tools/screenshot.py` | (Planned) Headless-browser capture of GitHub-rendered output for human visual review. See *Screenshot workflow* below. |
+| Tool | Make target | Purpose |
+|---|---|---|
+| `scripts/scaffold.py` | — | Generates the directory tree and stub files from `ENTRIES`. Idempotent — safe to re-run; skips existing files. |
+| `scripts/phases.py` | — | Single source of truth for the phase mapping. Imported by other scripts. |
+| `scripts/generate_progress.py` | `make progress` | Regenerates `PROGRESS.md` from the status blocks in every manuscript file. Re-run after editing any status. |
+| `tools/lint.py` | `make lint` | Enforces structural and notational invariants. Catches source-detectable rendering bugs (see *Known renderer gotchas* below). |
+| `tools/screenshots.py` | `make screenshots CHAPTER=...` | Drives headless Chromium against the GitHub-rendered page to capture per-section PNGs for human visual review. See *Screenshot workflow* below. |
 
 General principle: source-detectable problems are caught by lint;
 render-visible problems are caught by screenshot review. The cheaper
@@ -96,9 +96,13 @@ look at; the PNGs themselves stay outside the commit process.
 Setup (one-time on the local machine that runs captures):
 
 ```
-pip install playwright
-playwright install chromium
+make setup
 ```
+
+That creates a `.venv` at the repo root, installs Playwright into it,
+and downloads Chromium into the shared Playwright cache
+(`~/.cache/ms-playwright/`). The target is idempotent — it touches a
+sentinel after success and becomes a no-op on subsequent runs.
 
 The tool drives a real headless Chromium against the actual GitHub
 blob URL for a given commit, then captures one PNG per section
@@ -111,13 +115,15 @@ Per-chapter review loop:
 1. Edit the Markdown.
 2. Commit and push, so the chapter is reachable at a specific commit
    SHA. (Local diffs do not show up at `github.com/.../blob/<sha>/...`.)
-3. `python3 tools/lint.py` — fast, catches source-detectable bugs.
-4. `python3 tools/screenshots.py <chapter.md>` — writes PNGs under
-   `.artifacts/screenshots/<short-sha>/<chapter-slug>/`.
+3. `make lint` — fast, catches source-detectable bugs.
+4. `make screenshots CHAPTER=book/part-XX-.../NN-...md` — writes PNGs
+   under `.artifacts/screenshots/<short-sha>/<chapter-slug>/`. (Runs
+   `make setup` automatically the first time.)
 5. Open the directory in an image viewer and walk through it.
 6. Fix anything visible. Go back to step 1.
 7. When clean: commit Markdown + lint + tooling. PNGs stay on disk,
-   ignored by git, and can be deleted at will.
+   ignored by git, and can be removed at any time with
+   `make clean-artifacts`.
 
 Baselines for visual regression are deferred until a real miss
 demonstrates the need; every legitimate edit invalidates baselines
