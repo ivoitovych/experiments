@@ -173,7 +173,10 @@ roles:
   polar decomposition (§4.9), not a scalar.
 
 When the spectral norm and the operator absolute value appear close to each
-other, we write $\\|A\\|_{\mathrm{op}}$ for emphasis.
+other, we write $\\|A\\|_{\mathrm{op}}$ for emphasis. The vertical bars in a
+ket $|\psi\rangle$ are syntactically distinct from the bars used for scalar
+modulus $|z|$ and operator absolute value $|A|$, even though they look the
+same — Dirac kets are always paired with a closing `\rangle`.
 
 Two vectors are **orthogonal** when $\langle u, v\rangle = 0$. A basis
 $\\{e_1, \dots, e_n\\}$ is **orthonormal** when $\langle e_i, e_j\rangle = \delta_{ij}$.
@@ -232,8 +235,10 @@ Two distinguished operators are worth naming up front:
 - The **identity operator** $I$ satisfies $I v = v$ for every $v$. In any
   basis it is the diagonal matrix with ones on the diagonal. Equations like
   $U^\dagger U = I$ and $\sum_i P_i = I$ recur throughout the book.
-- An **idempotent** is an operator $P$ with $P^2 = P$; in finite-dimensional
-  linear algebra such operators are commonly called **projectors**. If
+- An **idempotent** is an operator $P$ with $P^2 = P$. In general linear
+  algebra such operators are sometimes called **projectors** or
+  **projections**; in quantum computing, however, "projector" almost always
+  means an *orthogonal* projector unless explicitly stated otherwise. If
   additionally $P^\dagger = P$ it is an **orthogonal projector**: it keeps
   the component of any vector that lies inside its image and removes the
   component orthogonal to it. Orthogonal projectors represent subspaces and
@@ -411,6 +416,19 @@ Outcomes with zero probability never happen and do not have a
 post-measurement state. More general measurements (POVMs, generalized
 measurements) are covered in Chapters 11–12.
 
+The non-degenerate case is the one you will reach for most often. For a
+projective measurement in a nondegenerate orthonormal basis
+$\\{|b_i\rangle\\}$, the projectors are the rank-one outer products
+$P_i = |b_i\rangle\langle b_i|$, and the Born rule reduces to
+
+$$
+p_i = |\langle b_i | \psi\rangle|^2.
+$$
+
+The post-measurement state is then exactly $|b_i\rangle$ up to global phase.
+This rank-one form is the bridge between the projector formalism above and
+the "amplitude squared" recipe used throughout circuit-level calculations.
+
 > **Sanity check.** Let $P_0 = |0\rangle\langle 0|$ and
 > $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ with
 > $|\alpha|^2 + |\beta|^2 = 1$. Compute $\langle\psi|P_0|\psi\rangle$ and the
@@ -440,7 +458,8 @@ multiplicity (§4.6) — and is not necessarily one. For a non-degenerate eigenv
 $P_i = |v_i\rangle\langle v_i|$.
 
 The spectral decomposition gives a **functional calculus**: for any function
-$f : \mathbb{C} \to \mathbb{C}$ defined on the spectrum of $A$,
+$f$ whose values are defined on the spectrum of $A$ (we do not need $f$ to
+be defined on all of $\mathbb{C}$),
 
 $$
 f(A) = \sum_{i=1}^{k} f(\lambda_i)\\, P_i.
@@ -467,9 +486,27 @@ The two most important instances in quantum computing:
 
 When $A$ is Hermitian, the eigenvalues are real and $f(A)$ is Hermitian
 when $f$ is real-valued on the spectrum; if $f$ has unit-modulus values on
-the spectrum (like $e^{i\\,\cdot}$), $f(A)$ is unitary. This is the finite-dimensional spectral-calculus reason why
-Hermitian observables and Hamiltonians generate unitary gates via
-exponentiation.
+the spectrum (like $e^{i\\,\cdot}$), $f(A)$ is unitary. This is the
+finite-dimensional spectral-calculus reason why Hermitian observables and
+Hamiltonians generate unitary gates via exponentiation.
+
+The most important example is the **matrix exponential**. As a power series,
+
+$$
+e^A = \sum_{k=0}^{\infty} \frac{A^k}{k!},
+$$
+
+and for a normal $A$ with spectral decomposition $A = \sum_i \lambda_i P_i$
+the spectral calculus collapses the series to
+
+$$
+e^A = \sum_i e^{\lambda_i}\\, P_i.
+$$
+
+This is the form actually used in Hamiltonian-simulation arguments
+(Chapter 16): the closed-form right-hand side replaces the convergent but
+unwieldy left-hand side whenever $A$ is normal, which Hamiltonians always
+are.
 
 For **non-normal** matrices the picture changes: eigenvectors need not span
 the space, the eigenbasis need not be orthonormal, and a clean spectral
@@ -562,6 +599,27 @@ $1$, qubit $0$ is $0$." That is the same basis vector.
 > book factor 2 ↔ `q_0`. If instead you map book factor 1 ↔ `q_0`,
 > insert an explicit SWAP (or qubit-label permutation) when comparing
 > hand-derived matrices with code.
+
+The tensor product also respects inner products. For product vectors,
+
+$$
+\langle u_1 \otimes v_1,\; u_2 \otimes v_2\rangle
+= \langle u_1, u_2\rangle\\, \langle v_1, v_2\rangle,
+$$
+
+so $\\|u \otimes v\\| = \\|u\\|\\, \\|v\\|$. In particular, a product of two
+normalized single-qubit states is itself normalized — which is why our
+ordering convention can talk about $|x_1\rangle |x_2\rangle \cdots |x_n\rangle$
+as a state vector without writing normalization factors at every step.
+More generally, an $n$-qubit pure state has the expansion
+
+$$
+|\psi\rangle = \sum_{x \in \\{0,1\\}^n} \alpha_x\\, |x\rangle,
+\qquad \sum_x |\alpha_x|^2 = 1,
+$$
+
+where the sum runs over all $2^n$ bit strings and the $\alpha_x$ are the
+complex amplitudes you would actually compute or measure.
 
 The tensor product of operators acts componentwise:
 
@@ -724,7 +782,11 @@ SVD appears repeatedly in the rest of the book:
   entangled. The full Schmidt spectrum $\\{s_i\\}$ is the raw data from which
   the standard pure-state bipartite entanglement measures used later
   (Chapter 7) are derived; a single scalar "amount of entanglement" is a
-  derived quantity, not one of the $s_i$ themselves.
+  derived quantity, not one of the $s_i$ themselves. Concretely, the Bell
+  state $|\Phi^+\rangle$ from §4.8 has coefficient matrix
+  $C = \tfrac{1}{\sqrt{2}}\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \end{pmatrix}$,
+  so its singular values are $(1/\sqrt{2},\\, 1/\sqrt{2})$, Schmidt rank
+  $= 2$, and the state is maximally entangled in this two-qubit setting.
 - **Block encodings and QSVT** (preview only — Chapter 16). Modern
   algorithms such as quantum signal processing, qubitization, and the
   quantum singular value transformation act on the singular values of a
@@ -962,8 +1024,12 @@ $\mathbb{C}^N$.
 > F_N^{(+)} |j\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \omega^{+jk}\\, |k\rangle,
 > $$
 >
-> with $F_N^{(+)} = (F_N^{(-)})^\dagger$. **In this book "the QFT" always
-> means $F_N \equiv F_N^{(-)}$.** As of Qiskit's 2.x documentation,
+> with $F_N^{(+)} = (F_N^{(-)})^\dagger$. We label this choice
+> **Convention QFT-sign-minus**: throughout this book "the QFT" always means
+> $F_N \equiv F_N^{(-)}$. Later algorithm chapters (phase estimation,
+> Shor) reference this convention by name; whenever a library uses the
+> opposite sign, translate by taking the adjoint. As of Qiskit's 2.x
+> documentation,
 > `QFTGate` implements the opposite, positive-exponent convention
 > $F_N^{(+)}$, so Qiskit's `QFTGate` corresponds to the *inverse* of our
 > $F_N$, and Qiskit's inverse of `QFTGate` matches our $F_N$ — up to the
