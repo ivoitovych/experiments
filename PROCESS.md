@@ -193,6 +193,27 @@ identical to a modulus.
 
 Fix: write `\\|` in source for visible double bars.
 
+### `$$ ... $$` inside a blockquote or indented list-item continuation
+
+Symptom: the entire display equation renders as literal LaTeX source —
+the reader sees `$$`, `\rangle`, `\tfrac`, etc. as plain text. In a
+blockquoted sanity check the equation may even break out of the
+quote and inject a stray `•` bullet because the parser misclassifies
+mid-equation lines as list items.
+
+Cause: GitHub's `$$ ... $$` math-block parser refuses to enter math
+mode when the opening `$$` line is prefixed with `>` (blockquote) or
+sits inside an indented continuation of a list item. Inline `$...$`
+*does* work in those contexts; only the block form breaks.
+
+Fix: pull display equations out of blockquotes and list-item
+continuations. For sanity-check or convention boxes, drop the `>`
+prefix and use a bold "**Sanity check.**" / "**Convention.**" label
+on a plain paragraph instead. For numbered or bulleted "preview"
+material with display math, convert to bold-prefixed paragraphs and
+unindent the equations to column zero. Inline math `$...$` is fine
+in any of those contexts; only `$$ ... $$` requires this care.
+
 ### `\operatorname{...}`
 
 Symptom: the rendered output prints
