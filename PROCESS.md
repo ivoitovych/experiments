@@ -83,24 +83,40 @@ things only a human can judge.
 ## Screenshot workflow
 
 Screenshots are *review artifacts*, not source. The repo contains the
-generator (`tools/screenshot.py`) and the conventions for what to
+generator (`tools/screenshots.py`) and the conventions for what to
 look at; the PNGs themselves stay outside the commit process.
 
 | Artifact | Committed? | Location |
 |---|---|---|
-| The generator | yes | `tools/screenshot.py` |
-| Routine review screenshots | no | `book-build/screenshots/` (gitignored via `book-build/`) |
+| The generator | yes | `tools/screenshots.py` |
+| Routine review screenshots | no | `.artifacts/screenshots/<short-sha>/<chapter-slug>/` (gitignored) |
 | Visual-regression baselines | only if needed | `book/<part>/screenshots/golden/` |
 | Release / marketing screenshots | yes | `assets/screenshots/` |
 
+Setup (one-time on the local machine that runs captures):
+
+```
+pip install playwright
+playwright install chromium
+```
+
+The tool drives a real headless Chromium against the actual GitHub
+blob URL for a given commit, then captures one PNG per section
+(header + each `H2`). It needs unrestricted network access to
+`github.com` and `github.githubassets.com` — GitHub's math rendering
+is client-side and the JS bundle lives on the assets CDN.
+
 Per-chapter review loop:
 
-1. Edit Markdown.
-2. `python3 tools/lint.py` — fast, catches source-detectable bugs.
-3. `python3 tools/screenshot.py <chapter>` — generates PNGs under
-   `book-build/screenshots/<sha>/`.
-4. Review PNGs; fix issues; go to 2.
-5. When clean: commit Markdown + lint + tooling. PNGs stay on disk,
+1. Edit the Markdown.
+2. Commit and push, so the chapter is reachable at a specific commit
+   SHA. (Local diffs do not show up at `github.com/.../blob/<sha>/...`.)
+3. `python3 tools/lint.py` — fast, catches source-detectable bugs.
+4. `python3 tools/screenshots.py <chapter.md>` — writes PNGs under
+   `.artifacts/screenshots/<short-sha>/<chapter-slug>/`.
+5. Open the directory in an image viewer and walk through it.
+6. Fix anything visible. Go back to step 1.
+7. When clean: commit Markdown + lint + tooling. PNGs stay on disk,
    ignored by git, and can be deleted at will.
 
 Baselines for visual regression are deferred until a real miss

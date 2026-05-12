@@ -19,6 +19,9 @@ Thumbs.db
 # Build artifacts
 book-build/
 book/_build/
+
+# QA artifacts (screenshot review, etc.)
+.artifacts/
 *.pdf
 *.epub
 *.html
