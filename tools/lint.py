@@ -64,11 +64,12 @@ INLINE_CODE_RE = re.compile(r"`[^`\n]+`")
 # survive. We detect any non-escaped occurrences inside math contexts.
 MATH_INLINE_RE = re.compile(r"(?<!\$)\$[^\$\n]+\$")
 MATH_DISPLAY_RE = re.compile(r"\$\$.*?\$\$", re.DOTALL)
-# `\\` not part of `\\\\` and not followed by `,{}` (which are themselves
-# intentional escapes \\, \\{ \\} that happen to start with `\\`).
-BAD_SINGLE_BS = re.compile(r"(?<!\\)\\\\(?![\\,{}])")
+# `\\` not part of `\\\\` and not followed by `,{}|` (which are themselves
+# intentional escapes \\, \\{ \\} \\| that happen to start with `\\`).
+BAD_SINGLE_BS = re.compile(r"(?<!\\)\\\\(?![\\,{}|])")
 BAD_BRACE = re.compile(r"(?<!\\)\\[{}]")                 # `\{` or `\}` not preceded by `\`
 BAD_THIN_SPACE = re.compile(r"(?<!\\)\\,")               # `\,` not preceded by `\`
+BAD_NORM_BAR = re.compile(r"(?<!\\)\\\|")                # `\|` not preceded by `\`
 
 
 def check_math_blocks(rel, content: str) -> None:
@@ -81,6 +82,8 @@ def check_math_blocks(rel, content: str) -> None:
             fail(rel, r"math contains bare `\{` or `\}` — use `\\{` / `\\}` (GitHub eats one backslash)")
         if BAD_THIN_SPACE.search(block):
             fail(rel, r"math contains bare `\,` — use `\\,` (GitHub eats the backslash and the thin space renders as `,`)")
+        if BAD_NORM_BAR.search(block):
+            fail(rel, r"math contains bare `\|` — use `\\|` (GitHub eats the backslash and the norm bar collapses to a modulus bar)")
 
 
 def strip_code(content: str) -> str:
