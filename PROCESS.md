@@ -179,6 +179,20 @@ for MathJax.
 
 Fix: write `\\,` in source.
 
+### `\|` norm bar
+
+Symptom: every vector and operator norm renders with single bars
+instead of double bars — `\|v\|` shows as `|v|`. The carefully
+designed distinction between modulus, operator norm, trace norm, and
+operator absolute value (single vs double bars) collapses into
+"everything is single bars".
+
+Cause: Markdown drops the backslash from `\|`, leaving a literal `|`
+for MathJax. MathJax then treats the bars as ordinary delimiters
+identical to a modulus.
+
+Fix: write `\\|` in source for visible double bars.
+
 ### `\operatorname{...}`
 
 Symptom: the rendered output prints

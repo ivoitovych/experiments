@@ -117,7 +117,7 @@ Chapter 5 makes this precise.
 > **Convention.** In calculations, a ket used as a *state vector* is
 > assumed normalized unless explicitly stated otherwise. If $v \ne 0$ is
 > just a mathematical vector, the corresponding normalized state
-> representative is $|v\rangle / \|v\|$.
+> representative is $|v\rangle / \\|v\\|$.
 
 This exponential growth explains why generic classical simulation of quantum
 systems is hard. It does not by itself give a quantum speedup: useful
@@ -159,21 +159,21 @@ $$
 This convention is **conjugate-linear in the first argument** and linear in
 the second, which is the physics convention. (Mathematicians often write the
 opposite — both are valid; the quantum computing literature is consistent and
-we follow it.) The induced **norm** is $\|v\| = \sqrt{\langle v, v\rangle}$.
+we follow it.) The induced **norm** is $\\|v\\| = \sqrt{\langle v, v\rangle}$.
 
 For notation, this book reserves single bars and double bars for distinct
 roles:
 
 - $|z|$ is the complex modulus of a scalar $z$.
-- $\|v\|$ is the vector 2-norm.
-- $\|A\|$ without a subscript is the operator (spectral) norm of an operator
+- $\\|v\\|$ is the vector 2-norm.
+- $\\|A\\|$ without a subscript is the operator (spectral) norm of an operator
   $A$ — the largest singular value (§4.9).
-- $\|A\|_1 = \mathrm{tr}\sqrt{A^\dagger A}$ is the trace norm.
+- $\\|A\\|_1 = \mathrm{tr}\sqrt{A^\dagger A}$ is the trace norm.
 - $|A| = \sqrt{A^\dagger A}$ is the *operator absolute value* used in the
   polar decomposition (§4.9), not a scalar.
 
 When the spectral norm and the operator absolute value appear close to each
-other, we write $\|A\|_{\mathrm{op}}$ for emphasis.
+other, we write $\\|A\\|_{\mathrm{op}}$ for emphasis.
 
 Two vectors are **orthogonal** when $\langle u, v\rangle = 0$. A basis
 $\\{e_1, \dots, e_n\\}$ is **orthonormal** when $\langle e_i, e_j\rangle = \delta_{ij}$.
@@ -193,7 +193,7 @@ of the most common sources of sign and phase errors in quantum calculations.
 > conjugates the result; $\langle u, u\rangle = 1 + 1 = 2$ is real and
 > non-negative.
 
-The Cauchy–Schwarz inequality, $|\langle u, v\rangle| \le \|u\| \cdot \|v\|$,
+The Cauchy–Schwarz inequality, $|\langle u, v\rangle| \le \\|u\\| \cdot \\|v\\|$,
 holds with equality iff $u, v$ are linearly dependent. In quantum mechanics it
 underlies fidelity bounds and inequalities on measurement statistics.
 
@@ -273,7 +273,7 @@ rather than a directly observable average. For now the only important
 takeaway is that *trace expressions let us treat operators themselves as
 vectors in an operator space*. The induced
 **Hilbert–Schmidt norm** (Frobenius norm) is
-$\|A\|_{\mathrm{HS}} = \sqrt{\mathrm{tr}(A^\dagger A)}$. Some quantities
+$\\|A\\|_{\mathrm{HS}} = \sqrt{\mathrm{tr}(A^\dagger A)}$. Some quantities
 introduced later, such as mixed-state fidelity and trace distance, are
 *not* literal Hilbert–Schmidt inner products, but they share the same
 operator-level viewpoint.
@@ -699,11 +699,11 @@ and measure the principal stretching factors of $A$. Two derived quantities
 show up constantly in quantum computing:
 
 - The **operator norm** (spectral norm) is
-  $\|A\| = \sup_{\|v\| = 1} \|A v\| = \sigma_1$, the largest singular
+  $\\|A\\| = \sup_{\\|v\\| = 1} \\|A v\\| = \sigma_1$, the largest singular
   value. It bounds the worst-case amplification by $A$.
 - The **trace norm** (nuclear norm) is
-  $\|A\|_1 = \mathrm{tr}\sqrt{A^\dagger A} = \sum_i \sigma_i$. The trace
-  distance between two density matrices, $\tfrac{1}{2}\|\rho - \sigma\|_1$,
+  $\\|A\\|_1 = \mathrm{tr}\sqrt{A^\dagger A} = \sum_i \sigma_i$. The trace
+  distance between two density matrices, $\tfrac{1}{2}\\|\rho - \sigma\\|_1$,
   is the operational distance between quantum states.
 
 For a square invertible matrix the **condition number** is
