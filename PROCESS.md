@@ -193,26 +193,69 @@ identical to a modulus.
 
 Fix: write `\\|` in source for visible double bars.
 
-### `$$ ... $$` inside a blockquote or indented list-item continuation
+### `$$ ... $$` inside a list-item continuation
 
-Symptom: the entire display equation renders as literal LaTeX source —
-the reader sees `$$`, `\rangle`, `\tfrac`, etc. as plain text. In a
-blockquoted sanity check the equation may even break out of the
-quote and inject a stray `•` bullet because the parser misclassifies
-mid-equation lines as list items.
+Symptom: a display equation indented as a continuation paragraph
+under a bulleted or numbered list item renders as literal LaTeX
+source — the reader sees `$$`, `\rangle`, `\tfrac`, etc. as plain
+text. Inside a `+`-led continuation line, a stray bullet `•` may
+also get injected because Markdown reads the `+` as a list marker.
 
-Cause: GitHub's `$$ ... $$` math-block parser refuses to enter math
-mode when the opening `$$` line is prefixed with `>` (blockquote) or
-sits inside an indented continuation of a list item. Inline `$...$`
-*does* work in those contexts; only the block form breaks.
+Cause: GitHub's `$$ ... $$` math-block parser does not enter math
+mode when the opening `$$` line sits inside an indented list-item
+continuation. Inline `$...$` *does* work in that context; only the
+block form breaks.
 
-Fix: pull display equations out of blockquotes and list-item
-continuations. For sanity-check or convention boxes, drop the `>`
-prefix and use a bold "**Sanity check.**" / "**Convention.**" label
-on a plain paragraph instead. For numbered or bulleted "preview"
-material with display math, convert to bold-prefixed paragraphs and
-unindent the equations to column zero. Inline math `$...$` is fine
-in any of those contexts; only `$$ ... $$` requires this care.
+Important correction: earlier rounds of this catalog claimed that
+`$$ ... $$` inside a plain `>` blockquote was also broken. A
+follow-up test sheet
+(`docs/render-tests/math-context-matrix.md`) showed that **display
+math inside a plain blockquote does render correctly** on the
+current GitHub MathJax pipeline. The earlier breakage was probably
+caused by a continuation line starting with `+`, which Markdown
+treats as a list-marker and which therefore broke math mode inside
+the blockquote — not by the blockquote per se. Keep display math
+inside blockquotes if you want the callout-box affordance; just
+avoid `+`-led continuation lines inside the equation.
+
+Fix: pull display equations out of indented list-item continuations.
+Convert the surrounding list to bold-prefixed paragraphs and
+unindent the equations to column zero. Inline math `$...$` remains
+fine in any container.
+
+### Inline `pmatrix` is broken in every container
+
+Symptom: `$A = \begin{pmatrix} 1 & 2 \\\\ 3 & 4 \end{pmatrix}$`
+renders as literal LaTeX source — visible `$`, `\begin{pmatrix}`,
+ampersands, the works. Confirmed at top level, in `>` blockquotes,
+in bulleted lists, in numbered lists, in list-item continuations,
+in nested lists, in table cells, in `<details>` blocks, and in every
+mixed nesting tested.
+
+Cause: GitHub's inline-math parser does not handle the `&` column
+separator and/or the `\\\\` row break inside a `$...$` span. The
+math context exits before MathJax can parse the matrix.
+
+Fix: never use `\begin{pmatrix}` inside inline math `$...$`. Always
+promote matrix expressions to display math `$$ ... $$` on their own
+paragraph. Display math handles `pmatrix` cleanly in every container
+*except* indented list-item continuations (see the previous entry).
+For matrices that would naturally appear inline (e.g., a sanity-check
+matrix in the middle of a sentence), rewrite to put the display math
+on its own line before or after the surrounding prose.
+
+### Norm bars `\\|...\\|` collapse to single bars inside Markdown table cells
+
+Symptom: inside a Markdown table cell, `$\\|v\\|$` renders as `|v|`
+(single bars) rather than `‖v‖` (double bars).
+
+Cause: the `|` characters in `\\|` conflict with the `|` column
+separator of the Markdown table; the table parser eats one bar
+before MathJax sees the math.
+
+Fix: avoid norm bars inside Markdown table cells. Either convert the
+table to a bullet list, or rewrite the cell to use a name (e.g.,
+"operator norm of $A$") instead of the bar notation.
 
 ### `\operatorname{...}`
 
