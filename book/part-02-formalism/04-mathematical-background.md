@@ -254,9 +254,13 @@ Two distinguished operators are worth naming up front:
 > **Sanity check.** Verify that $P = |0\rangle\langle 0|$ satisfies $P^2 = P$
 > and $P^\dagger = P$ — it is an orthogonal projector onto the
 > $|0\rangle$ axis. Then check that
-> $Q = \begin{pmatrix} 1 & 1 \\\\ 0 & 0 \end{pmatrix}$ satisfies $Q^2 = Q$
-> but $Q^\dagger \ne Q$ — it is an idempotent that projects onto the same
-> image but along a non-orthogonal direction.
+>
+> $$
+> Q = \begin{pmatrix} 1 & 1 \\\\ 0 & 0 \end{pmatrix}
+> $$
+>
+> satisfies $Q^2 = Q$ but $Q^\dagger \ne Q$ — it is an idempotent that
+> projects onto the same image but along a non-orthogonal direction.
 
 Operators themselves form a complex vector space, and that space carries an
 inner product of its own — the **Hilbert–Schmidt inner product**
@@ -339,21 +343,33 @@ trace distance, distinguishability bounds — are built *from* PSD states,
 PSD effects, and positive square roots, even when the final quantity is a
 scalar or a norm rather than a PSD operator.
 
-Sanity checks:
+Sanity checks. The Pauli matrices, Hadamard, and phase gate in their
+standard $2 \times 2$ form are
 
-- Pauli $X = \begin{pmatrix} 0 & 1 \\\\ 1 & 0 \end{pmatrix}$ is Hermitian and
-  unitary; $X^2 = I$, eigenvalues $\pm 1$.
-- Pauli $Y = \begin{pmatrix} 0 & -i \\\\ i & 0 \end{pmatrix}$ is Hermitian and
-  unitary, eigenvalues $\pm 1$, with complex off-diagonal entries.
-- Pauli $Z = \begin{pmatrix} 1 & 0 \\\\ 0 & -1 \end{pmatrix}$ is Hermitian and
-  unitary, diagonal in the computational basis with eigenvalues $\pm 1$; it
-  leaves $|0\rangle$ and $|1\rangle$ fixed up to sign and flips the relative
-  phase of any superposition $\alpha|0\rangle + \beta|1\rangle$.
-- The Hadamard $H = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 & 1 \\\\ 1 & -1 \end{pmatrix}$
-  is Hermitian and unitary; $H^2 = I$, and $H|0\rangle = |+\rangle$,
+$$
+X = \begin{pmatrix} 0 & 1 \\\\ 1 & 0 \end{pmatrix}, \qquad
+Y = \begin{pmatrix} 0 & -i \\\\ i & 0 \end{pmatrix}, \qquad
+Z = \begin{pmatrix} 1 & 0 \\\\ 0 & -1 \end{pmatrix},
+$$
+
+$$
+H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \end{pmatrix},
+\qquad
+S = \begin{pmatrix} 1 & 0 \\\\ 0 & i \end{pmatrix}.
+$$
+
+Their salient properties:
+
+- $X$ is Hermitian and unitary; $X^2 = I$, eigenvalues $\pm 1$.
+- $Y$ is Hermitian and unitary, eigenvalues $\pm 1$, with complex
+  off-diagonal entries.
+- $Z$ is Hermitian and unitary, diagonal in the computational basis
+  with eigenvalues $\pm 1$; it leaves $|0\rangle$ and $|1\rangle$
+  fixed up to sign and flips the relative phase of any superposition
+  $\alpha|0\rangle + \beta|1\rangle$.
+- $H$ is Hermitian and unitary; $H^2 = I$, and $H|0\rangle = |+\rangle$,
   $H|1\rangle = |-\rangle$.
-- The phase gate $S = \begin{pmatrix} 1 & 0 \\\\ 0 & i \end{pmatrix}$ is unitary
-  but **not** Hermitian. Its eigenvalues are $1$ and $i$.
+- $S$ is unitary but **not** Hermitian. Its eigenvalues are $1$ and $i$.
 
 > **Sanity check.** Verify $H^\dagger H = I$ and compute $H|0\rangle$ and
 > $H|1\rangle$. Which basis does $H$ map the computational basis to? Now
@@ -716,7 +732,11 @@ is the smallest nontrivial bipartite example of an entangled pure state.
 > One quick way: any product state has at most rank-one coefficient matrix
 > $C_{ij} = \alpha_i \beta_j$; the coefficient matrix of $|\Phi^+\rangle$
 > in the $\\{|0\rangle, |1\rangle\\}$ basis is
-> $C = \tfrac{1}{\sqrt{2}} \begin{pmatrix} 1 & 0 \\\\ 0 & 1 \end{pmatrix}$,
+>
+> $$
+> C = \tfrac{1}{\sqrt{2}} \begin{pmatrix} 1 & 0 \\\\ 0 & 1 \end{pmatrix},
+> $$
+>
 > which has rank two.
 
 Sharper structural information about how entangled a bipartite pure state is
@@ -810,9 +830,10 @@ SVD appears repeatedly in the rest of the book:
   (Chapter 7) are derived; a single scalar "amount of entanglement" is a
   derived quantity, not one of the $s_i$ themselves. Concretely, the Bell
   state $|\Phi^+\rangle$ from §4.8 has coefficient matrix
-  $C = \tfrac{1}{\sqrt{2}}\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \end{pmatrix}$,
-  so its singular values are $(1/\sqrt{2},\\, 1/\sqrt{2})$, Schmidt rank
-  $= 2$, and the state is maximally entangled in this two-qubit setting.
+  $C = \tfrac{1}{\sqrt{2}} I$ (the $2 \times 2$ identity scaled by
+  $1/\sqrt{2}$), so its singular values are
+  $(1/\sqrt{2},\\, 1/\sqrt{2})$, Schmidt rank $= 2$, and the state is
+  maximally entangled in this two-qubit setting.
 - **Block encodings and QSVT** (preview only — Chapter 16). Modern
   algorithms such as quantum signal processing, qubitization, and the
   quantum singular value transformation act on the singular values of a

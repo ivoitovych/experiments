@@ -86,20 +86,32 @@ def check_math_blocks(rel, content: str) -> None:
             fail(rel, r"math contains bare `\|` — use `\\|` (GitHub eats the backslash and the norm bar collapses to a modulus bar)")
 
 
+INLINE_PMATRIX_RE = re.compile(r"\$[^\$\n]*\\begin\{pmatrix\}[^\$\n]*\$")
+
+
 def check_nested_display_math(rel, content: str) -> None:
-    """Flag `$$` lines that sit inside a blockquote (`> ` prefix) or an
-    indented list-item continuation. GitHub's display-math block parser
-    does not enter math mode in those contexts and the LaTeX appears as
-    literal text. Inline `$...$` works in those contexts; only the
-    `$$ ... $$` block form breaks."""
+    """Flag `$$` lines that sit inside an indented list-item continuation.
+    GitHub's display-math block parser does not enter math mode there
+    and the LaTeX appears as literal text.
+
+    Note: a previous version of this rule also flagged `$$` inside `>`
+    blockquotes; a follow-up test sheet showed that display math in a
+    plain blockquote actually renders correctly. Only the indented-list
+    case remains a confirmed breakage."""
     for n, line in enumerate(content.splitlines(), 1):
-        if line.startswith(">"):
-            inner = line.lstrip("> \t")
-            if inner.startswith("$$"):
-                fail(rel, f"line {n}: `$$` inside a blockquote does not enter math mode on GitHub — pull the equation out of the `>` block")
-                continue
         if line.startswith("  ") and line.lstrip(" \t").startswith("$$"):
             fail(rel, f"line {n}: `$$` inside an indented list-item continuation does not enter math mode on GitHub — convert the list to bold-prefixed paragraphs and unindent the equation")
+
+
+def check_inline_pmatrix(rel, content: str) -> None:
+    """Flag inline math that contains `\\begin{pmatrix}`. GitHub's
+    inline-math parser does not handle the `&` column separator or the
+    `\\\\\\\\` row break, so an inline `pmatrix` always renders as
+    literal LaTeX source. Promote the equation to display math `$$...$$`
+    on its own paragraph."""
+    for n, line in enumerate(content.splitlines(), 1):
+        if INLINE_PMATRIX_RE.search(line):
+            fail(rel, f"line {n}: inline `pmatrix` inside `$...$` renders as literal LaTeX on GitHub — move to display math `$$...$$`")
 
 
 def strip_code(content: str) -> str:
@@ -141,6 +153,7 @@ def check_book_file(md: pathlib.Path) -> None:
 
     check_math_blocks(rel, content)
     check_nested_display_math(rel, content)
+    check_inline_pmatrix(rel, content)
 
     m = STATUS_RE.search(content)
     if m:
