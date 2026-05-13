@@ -371,6 +371,100 @@ not by the `>` container.
 
 ---
 
+## M. Matrix-environment isolation (top-level inline)
+
+Section A established that inline `$ ... \begin{pmatrix} ... \end{pmatrix} ... $`
+is broken. This section isolates which feature of the inline-matrix
+form actually trips the parser: the `&` column separator, the
+`\\\\` row break, the `\begin/\end` environment shape, or
+`pmatrix` specifically.
+
+M1 inline pmatrix 1×1 (no `&`, no `\\\\`): $A = \begin{pmatrix} 1 \end{pmatrix}$.
+
+M2 inline pmatrix 1×n (has `&`, no `\\\\`): $A = \begin{pmatrix} 1 & 2 \end{pmatrix}$.
+
+M3 inline pmatrix n×1 (no `&`, has `\\\\`): $A = \begin{pmatrix} 1 \\\\ 2 \end{pmatrix}$.
+
+M4 inline `matrix` (no brackets): $A = \begin{matrix} 1 & 2 \\\\ 3 & 4 \end{matrix}$.
+
+M5 inline `bmatrix` (square brackets): $A = \begin{bmatrix} 1 & 2 \\\\ 3 & 4 \end{bmatrix}$.
+
+M6 inline `Bmatrix` (curly braces): $A = \begin{Bmatrix} 1 & 2 \\\\ 3 & 4 \end{Bmatrix}$.
+
+M7 inline `vmatrix` (single vertical bars): $A = \begin{vmatrix} 1 & 2 \\\\ 3 & 4 \end{vmatrix}$.
+
+M8 inline `Vmatrix` (double vertical bars): $A = \begin{Vmatrix} 1 & 2 \\\\ 3 & 4 \end{Vmatrix}$.
+
+M9 control — display `pmatrix` (known good baseline):
+
+$$
+A = \begin{pmatrix} 1 & 2 \\\\ 3 & 4 \end{pmatrix}.
+$$
+
+Interpretation rules:
+
+- If M1 renders and M2 breaks ⇒ the `&` is the trigger.
+- If M1 renders and M3 breaks ⇒ the `\\\\` is the trigger.
+- If M2 breaks and M3 breaks ⇒ both are triggers, and the rule is
+  "inline math cannot contain either `&` or `\\\\`."
+- If M4–M8 behave identically to M2/M3 ⇒ the bug is general to
+  `\begin{...}` environments in inline math, not specific to
+  `pmatrix`.
+- If only M2/M3 break and M4–M8 work ⇒ the bug is `pmatrix`-specific.
+
+---
+
+## N. Top-level controls for the Section L hypothesis
+
+Section L tests leading-character continuation lines *inside a
+blockquote*. This section tests the same shapes at top level (no
+blockquote), so we can tell whether Bug 4 is blockquote-specific
+or a general property of multi-line `$$ ... $$` blocks.
+
+N1 control — alphanumeric continuation at top level:
+
+$$
+a + b
+= c
+$$
+
+N2 top-level `$$ ... $$` with `+`-led continuation:
+
+$$
+a
++ b
+= c
+$$
+
+N3 top-level `$$ ... $$` with `-`-led continuation:
+
+$$
+a
+- b
+= c
+$$
+
+N4 top-level `$$ ... $$` with `*`-led continuation:
+
+$$
+a
+* b
+= c
+$$
+
+Interpretation rules:
+
+- If N2 (top-level) renders cleanly *and* L2 (blockquoted) breaks
+  ⇒ Bug 4 is blockquote-specific: the parser misclassifies the
+  `+`-led line as a list item only when it appears under a `>`
+  blockquote, where list markers naturally nest.
+- If N2 breaks at top level too ⇒ Bug 4 is general: any `+`-led
+  continuation line inside multi-line `$$ ... $$` breaks math
+  mode, blockquote or not. The lint rule would need to flag the
+  pattern in any block-math context.
+
+---
+
 ## How to report findings
 
 For each cell that renders **broken** (literal `$`, missing math
