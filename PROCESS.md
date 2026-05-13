@@ -178,14 +178,69 @@ lockstep.
 
 Append-only. New entries go at the top.
 
+### 2026-05-12: portability hardening on fresh OS installs
+
+Fresh WSL Ubuntu 24.04 runs surfaced two unstated prerequisites the
+existing setup quietly relied on: `python3-venv` (without which the
+venv module fails with a notoriously unhelpful `ensurepip` error)
+and the Chromium runtime system libraries (`libnspr4`, `libnss3`,
+`libdbus-1-3`, `libatk*`, ...) installed via
+`playwright install-deps chromium`. Both are now first-class in the
+Makefile: `make setup` precheck for the venv module, dedicated
+`make setup-system-deps` target with sudo prompt for the Chromium
+libraries, and a `precheck-chromium` step that refuses to launch
+the screenshot tooling without a working browser and prints the
+exact remedy.
+
+Adjacent decision: artifact-preserving failure semantics for the
+new tools. `tools/render-gist.py` previously deleted the throwaway
+Gist in a `finally` block, which destroyed the artifact most useful
+for manual debugging. Now the gist is preserved on capture failure
+and the URL plus the `gh gist delete` command are printed to stderr.
+
+### 2026-05-12: faster reproducer loop via throwaway Gists
+
+`tools/render-gist.py` and `make render-gist FILE=...` replace the
+"edit → commit → push → open GitHub → screenshot manually" loop
+with a sub-30-second iteration: create a secret Gist from any
+local Markdown file, capture per-section screenshots, then delete
+the gist. No commit noise on the working branch. The open question
+of whether `gist.github.com` renders math identically to repo-blob
+URLs is named explicitly in the bug memo and is the first thing the
+tool's first run answers.
+
+### 2026-05-12: single source of truth for renderer-bug knowledge
+
+`docs/github-markdown-math-bugs.md` is the canonical memo;
+`docs/render-tests/math-context-matrix.md` is its live test sheet.
+The previous "Known renderer gotchas" section in this document
+(170 lines that had grown round by round and partly contradicted
+itself) is trimmed to a 23-line pointer plus a five-step discipline
+for keeping the memo / lint / test sheet in lockstep when new bugs
+surface. The lint rules in `tools/lint.py` and the upstream-feedback
+drafts in `docs/upstream-feedback/` are now derived from the memo
+rather than from rounds-of-conversation memory.
+
+### 2026-05-12: structured test sheet beats narrative diagnosis
+
+After several rounds of bug-by-bug renderer-bug diagnosis produced
+a partly-wrong catalog (notably the over-broad
+"$$ in blockquote is broken" rule), a single structured test sheet
+with 11 containers × 10 math forms and labelled cells (A1…K4)
+overturned two earlier diagnoses, surfaced a new bug
+(inline `pmatrix` broken in every container, including top level),
+and produced an artifact that doubles as internal documentation and
+as a single-page upstream reproducer. The "verify the actual
+rendered output systematically before encoding a rule" pattern is
+now part of the workflow.
+
 ### 2026-05-12: screenshot-review workflow
 
 Screenshots are review artifacts, not source. The generator
-(`tools/screenshot.py`) is committed; generated PNGs live under
-`book-build/screenshots/` and are gitignored along with the rest of
-`book-build/`. Visual-regression baselines are deferred until a real
-miss demonstrates the need. CI is not used; manual local generation
-is the default.
+(`tools/screenshots.py`) is committed; generated PNGs live under
+`.artifacts/screenshots/` and are gitignored. Visual-regression
+baselines are deferred until a real miss demonstrates the need. CI
+is not used; manual local generation is the default.
 
 ### 2026-05-12: process documentation
 
@@ -234,24 +289,42 @@ One short retrospective per chapter, added when the chapter reaches
 
 ### Chapter 4. Mathematical Background for Quantum Computing
 
-- Twelve rounds of review; the chapter is the project's first
-  worked-out example of the review loop.
+- Thirteen narrative review rounds plus a post-round polish pass
+  (conventions table, partial-trace example, observable rename)
+  and then the renderer-bug investigation pass. The chapter is the
+  project's first worked-out example of the full review loop.
 - Rounds 1–2 surfaced real factual gaps: Holevo bound formulation,
   the over-absolute "every quantum gate is unitary", and the
   absence of SVD and PSD treatments.
-- Round 4 included a structural reorder (Tensor Products before SVD)
-  prompted by a reviewer reading the previous order as inverted.
+- Round 4 included a structural reorder (Tensor Products before
+  SVD) prompted by a reviewer reading the previous order as
+  inverted.
 - Round 10 caught a long-standing omission no prior round noticed:
-  commutators and simultaneous diagonalization. Later chapters lean
-  on this constantly; missing it would have hurt every subsequent
-  chapter on Hamiltonians, the Pauli algebra, and Trotterization.
-- The last three rounds were almost entirely polish. The value of
-  iterating that far comes from this being a foundational chapter
-  whose conventions every later chapter inherits.
-- All three GitHub-Markdown renderer gotchas (`\\`, `\{`/`\}`, `\,`)
-  were discovered while drafting this chapter. The lint rules
-  encoding them are now permanent guards for every subsequent
-  chapter; the gotcha catalog above grew from the same work.
+  commutators and simultaneous diagonalization. Later chapters
+  lean on this constantly; missing it would have hurt every
+  subsequent chapter on Hamiltonians, the Pauli algebra, and
+  Trotterization.
+- Round 13 added four missing formulas the chapter's
+  forward-references implicitly assumed: tensor-product inner
+  product and norm, the explicit `n`-qubit expansion, the rank-one
+  Born rule for nondegenerate orthonormal-basis measurement, and
+  the matrix-exponential bridge. The post-round polish added
+  §4.16 "Conventions at a Glance" as a single-screen debugging
+  checklist of the chapter's accumulated conventions.
+- All five GitHub-Markdown renderer gotchas (`\\`, `\{`/`\}`, `\,`,
+  `\|`, inline `pmatrix`) were discovered while drafting this
+  chapter, and the over-broad "$$ in blockquote" rule was
+  identified as an *incorrect* diagnosis only after the structured
+  test sheet was rendered. The lint rules encoding the surviving
+  gotchas are permanent guards for every subsequent chapter; the
+  bug memo and the test sheet are now the single source of truth
+  rather than the per-round commit notes.
 - The "How to read this chapter" callout (core vs skim-first) was
   added in response to reader-load concerns. Consider the pattern
   for any later chapter that exceeds about fifteen sections.
+- The chapter's drafting cycle effectively built the project's
+  whole tooling layer: lint, the screenshot tool, the gist-based
+  reproducer, the bug memo, the test sheet, the upstream-feedback
+  artifacts, the Makefile, and the prereq-detection logic in
+  `make setup` / `make setup-system-deps`. The next chapter
+  inherits all of it for free.
