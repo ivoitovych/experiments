@@ -314,6 +314,63 @@ $$
 
 ---
 
+## L. Hypothesis check: leading character on a continuation line inside blockquote `$$ ... $$`
+
+Section B established that multi-line `$$ ... $$` inside a plain
+blockquote renders. This section tests whether the *content* of a
+continuation line can break math mode anyway. Hypothesis: a
+continuation line whose first non-`>` character is a Markdown list
+marker (`+`, `-`, `*`) is misclassified as a list item by the
+parser and breaks the surrounding math block.
+
+> L1 control — continuation lines start with letters/digits:
+>
+> $$
+> a + b
+> = c
+> $$
+
+> L2 continuation line starts with `+`:
+>
+> $$
+> a
+> + b
+> = c
+> $$
+
+> L3 continuation line starts with `-`:
+>
+> $$
+> a
+> - b
+> = c
+> $$
+
+> L4 continuation line starts with `*`:
+>
+> $$
+> a
+> * b
+> = c
+> $$
+
+> L5 continuation line starts with `>` (sub-blockquote):
+>
+> $$
+> a
+> > b
+> = c
+> $$
+
+If L1 renders cleanly and L2 (or any of L3–L5) breaks, the bug is
+the leading-character-on-continuation rule, not the blockquote
+itself. That would mean the §4.13 sign-convention and `F_4|1⟩`
+sanity-check blocks can be unrolled back into blockquotes — the
+original breakage was caused by a `+`-led equation continuation,
+not by the `>` container.
+
+---
+
 ## How to report findings
 
 For each cell that renders **broken** (literal `$`, missing math
