@@ -30,6 +30,19 @@ writing plan.
 See [STYLE.md](STYLE.md) for math, notation, and file conventions used
 throughout the manuscript.
 
+## Process and toolchain
+
+[PROCESS.md](PROCESS.md) records the working method, the toolchain
+(lint, screenshot capture, gist-based reproducer, progress
+regeneration), and the decision log. [HISTORY.md](HISTORY.md) is the
+chronological narrative of how the project got to its current state,
+including the review-loop and renderer-bug investigation arcs.
+[docs/github-markdown-math-bugs.md](docs/github-markdown-math-bugs.md)
+is the canonical memo describing the GitHub Markdown + MathJax
+rendering bugs the project has encountered and worked around;
+[docs/render-tests/math-context-matrix.md](docs/render-tests/math-context-matrix.md)
+is its live test sheet.
+
 ## License
 
 Dual-licensed: free for non-commercial use under CC BY-NC-ND 4.0; commercial

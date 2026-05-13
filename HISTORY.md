@@ -328,45 +328,239 @@ the comment, and an open question about whether the four
 backslash-eating gotchas deserve a separate combined report (no
 existing Discussion appears to cover all four).
 
+## Phase 8 — The renderer-bug investigation pass
+
+The previous phases solved the "what does Chapter 4 say" problem
+well. They solved the "what does GitHub actually render" problem
+badly — the gotcha catalog was assembled bug by bug from individual
+screenshot accidents, the corresponding lint rules accumulated as
+each bug was caught, and successive rounds of advice drifted in
+different directions because nobody had laid out the bug surface
+*systematically*.
+
+The trigger to do that systematically was direct. After round 13
+the chapter was claimed "verified visually" and the bug catalog
+treated as authoritative. The user then produced screenshots
+showing both a §4.13 `Sanity check` block and a §4.14 numbered list
+rendered as literal LaTeX source — and asked "Do you feel the
+aroma of bullshit?" That was the right question. Several earlier
+diagnoses were based on a single failing example each, not on the
+underlying pattern.
+
+### 8.1 The structured test sheet
+
+`docs/render-tests/math-context-matrix.md` (`5df99ae`) is the
+artifact that fixed this. It enumerates 11 *containers* (top level,
+`>` blockquote, bulleted list inline, bulleted list continuation,
+numbered list inline, numbered list continuation, nested list,
+table cell, `<details>` block, blockquote-inside-bullet,
+bullet-inside-blockquote) times 10 *math forms* (simple inline,
+inline `pmatrix`, inline `\\\\` outside `pmatrix`, inline thin
+space, inline set braces, inline norm bar, display single-line,
+display multi-line, display `pmatrix`, display `aligned`) — every
+cell labelled A1…K4 so the test outputs can be reported as a list
+of broken labels rather than as prose.
+
+Rendering this sheet on GitHub immediately overturned two earlier
+diagnoses and added a new bug:
+
+- **Inline `pmatrix` is broken in every container** (`066f47d`).
+  A2, B2, C2, D2, E2, F2, G2, H2, J2, K2 *all* render
+  `$ A = \begin{pmatrix}...\end{pmatrix} $` as literal LaTeX. The
+  §4.4 sanity-check `Q`-matrix that was blamed on the surrounding
+  blockquote, and all five §4.5 inline Pauli/Hadamard/phase matrices
+  that the round-13 visual review had claimed were rendering, were
+  actually broken because of the inline-math parser, not the
+  containers.
+- **Multi-line `$$...$$` inside a plain `>` blockquote actually
+  works.** B7, B8, B9, B10 all rendered correctly. The earlier
+  "$$ in blockquote does not enter math mode" rule was wrong; the
+  original §4.13 break was almost certainly caused by an equation
+  continuation line beginning with `+` (Section L of the test sheet
+  tests this hypothesis directly), which Markdown reads as a list
+  marker and which therefore breaks math mode inside the blockquote
+  — not the blockquote itself.
+- **Norm bars `\\|v\\|` collapse to single bars `|v|` inside
+  Markdown table cells.** H6 caught this; the `|` characters in
+  `\\|` conflict with the table column separator. Not previously
+  recorded.
+
+### 8.2 Source-level fixes propagated from the new map
+
+`066f47d` followed the new evidence into the manuscript:
+
+- §4.4 sanity check: the `Q`-matrix is now display math inside the
+  same blockquote (we know display-in-blockquote works).
+- §4.5 sanity-check list: the five inline Pauli/Hadamard/phase
+  matrices were moved out of the bullet list into two preceding
+  display blocks. The bullet list now describes properties by name.
+- §4.8 Bell-state sanity check: the coefficient-matrix inline
+  `pmatrix` was promoted to display math inside the blockquote.
+- §4.9 Schmidt example: the inline `pmatrix` was avoided entirely
+  by writing `C = (1/\sqrt{2})\, I` — the scaled identity reads
+  better than the explicit 2×2 in that context anyway.
+
+`tools/lint.py` was simultaneously corrected: the over-broad
+"blockquote `$$`" rule was removed, the indented-list-continuation
+case kept, and a new `check_inline_pmatrix` rule added so that any
+`$...\begin{pmatrix}...$` is caught at source level. Five rules
+total, each now backed by a specific cell in the test sheet.
+
+### 8.3 Single source of truth: the canonical bug memo
+
+`docs/github-markdown-math-bugs.md` (`e8ef21d`) collects everything
+the project knows about GitHub Markdown + MathJax renderer bugs
+into one authoritative file, cell-by-cell justified against the
+test sheet. Five bugs:
+
+1. Markdown unescapes one layer of backslashes in math contexts
+   (the `\\`, `\{`, `\}`, `\,`, `\|` family).
+2. Inline `pmatrix` in every container.
+3. Display math inside an indented list-item continuation.
+4. Plain-blockquote `$$` is fine *except* when a continuation line
+   starts with a Markdown list marker — hypothesis pending Section
+   L confirmation.
+5. Norm bars collapse to single bars inside Markdown table cells.
+
+`PROCESS.md`'s previous "Known renderer gotchas" section was 170
+lines of bug stories that had grown round by round and partly
+contradicted itself. It was trimmed to a 23-line pointer at the
+memo plus a five-step discipline for keeping the memo / lint / test
+sheet in lockstep when new bugs surface. `tools/lint.py`'s header
+comment was also rewritten to cite the memo as the source of truth
+for each rule.
+
+### 8.4 Upstream-feedback artifacts rewritten against the memo
+
+`docs/upstream-feedback/community-122438-comment.md` and
+`community-122438-howto.md` (`1121b7a`) had been drafted before the
+test sheet existed and reflected the old diagnosis. Both were
+rewritten:
+
+- The new comment cites the test sheet URL as a single-page
+  reproducer, enumerates the three confirmed bugs not covered by
+  existing Discussions, and corrects the record on
+  blockquote-`$$` (which the existing Discussion claims is broken
+  and which the test sheet says works under the current renderer).
+- The new howto explains what `community/community #122438` and
+  `#16958` cover and what they do not, and argues — with a
+  non-duplicate-filing rationale — that the inline-`pmatrix` bug
+  is universal enough and unaddressed enough by existing
+  Discussions to deserve a focused new Discussion of its own. The
+  title / category / body for that new Discussion is sketched in
+  the howto so the user can post it from the web UI or via
+  `gh api graphql`.
+
+### 8.5 Faster loop: gist-based reproducer
+
+`tools/render-gist.py` (`c3f075a`) replaces the previous
+"edit → commit → push → open GitHub → screenshot manually" loop
+with `make render-gist FILE=<file.md>`: create a secret GitHub Gist
+from the file, drive headless Chromium against it, capture per-H2
+screenshots, then delete the gist. No commit noise on the working
+branch; sub-30-second iteration once the venv is warmed.
+
+Whether `gist.github.com` renders math identically to
+`github.com/owner/repo/blob/<sha>/...` is the open question that
+the first run of this tool will answer; the script's math-wait
+diagnostic prints clearly enough to distinguish the two cases.
+
+### 8.6 Portability hardening on a fresh WSL Ubuntu 24.04
+
+The user ran the new pipeline against a fresh WSL Ubuntu 24.04
+clone and surfaced two real environment gaps that the existing
+setup did not handle:
+
+- `playwright install chromium` succeeds, but a minimal Ubuntu /
+  WSL install does not ship the system libraries Chromium needs to
+  launch (`libnspr4`, `libnss3`, `libdbus-1-3`, `libatk*`, ...).
+  The binary failed at launch with `error while loading shared
+  libraries: libnspr4.so`.
+- `tools/render-gist.py` was deleting the gist in a `finally`
+  block, so the capture failure also destroyed the artifact the
+  user would have wanted to look at manually.
+
+`64d3b53` addressed both:
+
+- New Makefile target `make setup-system-deps` wraps
+  `sudo playwright install-deps chromium` (one-time, sudo prompt).
+- A new `precheck-chromium` helper target runs `--version` against
+  the installed `chrome-headless-shell`; if it fails to start,
+  `make screenshots` and `make render-gist` refuse to run and print
+  the exact remedy (`make setup-system-deps` or the equivalent
+  sudo command).
+- `render-gist.py` now preserves the gist on capture failure and
+  prints the URL plus the `gh gist delete <id>` command on stderr,
+  so a broken capture leaves the artifact alive for inspection
+  instead of vanishing.
+
 ## Snapshot at this point
 
 | Area | State |
 |---|---|
 | Repository structure | 45 chapter / front-matter / appendix stubs scaffolded; status-block tracking; phase-ordered writing plan |
-| Source-level lint | Structural invariants, forbidden physics macros, forbidden mentions, five renderer-gotcha rules |
-| Screenshot tool | Playwright + Makefile-wrapped; `make screenshots CHAPTER=...` runs end to end |
-| Process documentation | `PROCESS.md` with working method, review loop, toolchain, gotcha catalog, decision log |
-| Upstream feedback | Comment + howto staged under `docs/upstream-feedback/` for `community/community#122438` |
-| Chapter 4 | 16 sections, 13 review rounds, `Status: draft · Sections drafted: 16 / 16`. Ready for transition to `reviewed` and the next chapter |
+| Source-level lint | Structural invariants, forbidden physics macros, forbidden mentions, five renderer-gotcha rules including `check_inline_pmatrix` |
+| Screenshot pipeline | `make screenshots CHAPTER=...` against the live commit; `make render-gist FILE=...` for arbitrary files via throwaway Gists; pre-check refuses to run if Chromium system deps are missing and prints the exact remedy |
+| Bug knowledge | `docs/github-markdown-math-bugs.md` as the canonical memo; `docs/render-tests/math-context-matrix.md` as the live test sheet (Section L pending re-render); `PROCESS.md` reduced to a pointer |
+| Upstream feedback | Comment + howto staged under `docs/upstream-feedback/` for `community/community#122438`, rewritten against the memo; a new-Discussion path for the inline-`pmatrix` bug is sketched in the howto |
+| Chapter 4 | 17 sections (added §4.16 "Conventions at a Glance" in the post-round-13 polish); inline-`pmatrix` instances eliminated; `Status: draft · Sections drafted: 17 / 17`. Ready for transition to `reviewed` once Section L confirms the §4.13 unroll plan |
 | All other chapters | `stub` |
 
 ## Recurring lessons worth carrying forward
 
 - **Foundational chapters earn more review rounds.** Every later
-  chapter inherits Chapter 4's conventions, sanity-check format, and
-  tone. The cost of getting them right pays for itself.
+  chapter inherits Chapter 4's conventions, sanity-check format,
+  and tone. The cost of getting them right pays for itself.
 - **The line between "polish" and "real omission" is fuzzy.**
   Round 10 caught commutators after nine prior rounds had missed
   them. Iterating past the polish threshold is defensible for
   foundational material, less so for downstream chapters.
-- **Source-detectable problems belong in lint; render-visible problems
-  belong in screenshot review.** The cheaper layer should catch what
-  it can. Every new renderer gotcha discovered through screenshots
-  should be encoded as a lint rule so it cannot recur.
-- **Verifying renders requires actually reading them.** A structural
-  pass at fit-to-window scale ("the section is there, the heading is
-  there") is not the same as confirming each equation renders. The
-  `$$`-in-blockquote bug survived a structural pass because raw LaTeX
-  visually resembles dense math notation at small scale.
+- **Source-detectable problems belong in lint; render-visible
+  problems belong in screenshot review.** The cheaper layer should
+  catch what it can. Every new renderer gotcha discovered through
+  screenshots should be encoded as a lint rule so it cannot recur.
+- **Verifying renders requires actually reading them.** A
+  structural pass at fit-to-window scale ("the section is there,
+  the heading is there") is not the same as confirming each
+  equation renders. Several inline-`pmatrix` failures survived
+  structural passes because raw LaTeX visually resembles dense math
+  notation at small scale.
 - **Convention decisions are global commitments.** The QFT
   negative-exponent convention obligates every later chapter on
   phase estimation, Shor's algorithm, controlled-phase signs, and
   Qiskit comparisons. Name conventions explicitly so they can be
   referenced later by name rather than re-derived.
+- **Cheap, exhaustive test sheets beat narrative reasoning when
+  investigating renderer bugs.** Three earlier rounds of bug-by-bug
+  diagnosis produced a partly-wrong catalog. One structured test
+  sheet with labelled cells overturned two of those diagnoses,
+  surfaced a new bug, and produced a single artifact that can serve
+  as both internal documentation and an upstream reproducer.
+- **Single source of truth, not catalog-by-accumulation.** Five
+  rounds of bug discoveries had accumulated into a 170-line gotcha
+  section in `PROCESS.md` that partly contradicted itself. A
+  canonical memo (`docs/github-markdown-math-bugs.md`) backed by a
+  live test sheet is now the single source; `PROCESS.md`, the
+  lint, and the upstream-feedback drafts derive from it.
+- **Don't delete artifacts on failure.** A capture pipeline that
+  drops its inputs in a `finally` clause destroys the evidence the
+  user needs to debug. Failure paths should preserve everything,
+  with the remedy printed to stderr.
+- **Fresh-OS installs are the canonical test for "did setup
+  actually capture everything?"** The WSL Ubuntu 24.04 run
+  surfaced two prerequisites (`python3-venv`,
+  `playwright install-deps chromium`) that a developer machine
+  already had quietly installed. Both are now first-class in the
+  Makefile.
 
 ---
 
 This file will continue to be appended to as later chapters are
 drafted and reviewed. The next planned chapters are 5 (Postulates),
-6 (The Qubit), 7 (Multiple Qubits and Entanglement), with Appendix A
-(Notation Reference) co-evolving alongside.
+6 (The Qubit), 7 (Multiple Qubits and Entanglement), with
+Appendix A (Notation Reference) co-evolving alongside. The
+immediate next concrete step is re-rendering Section L of the test
+sheet to confirm or refute the leading-character-on-continuation
+hypothesis for Bug 4, after which the §4.13 paragraph fixes from
+round 12 will either be unrolled back into blockquotes or left in
+place.
