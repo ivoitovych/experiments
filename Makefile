@@ -61,12 +61,12 @@ screenshots: setup precheck-chromium ## Capture screenshots. Usage: make screens
 	fi
 	$(PY) tools/screenshots.py $(CHAPTER)
 
-render-gist: setup precheck-chromium ## Render any .md via a throwaway Gist. Usage: make render-gist FILE=<path.md>
+render-gist: setup precheck-chromium ## Render any .md via a Gist (kept for inspection). Usage: make render-gist FILE=<path.md> [DELETE=1]
 	@if [ -z "$(FILE)" ]; then \
-	    echo "usage: make render-gist FILE=<path/to/file.md> [KEEP=1]"; \
+	    echo "usage: make render-gist FILE=<path/to/file.md> [DELETE=1]"; \
 	    exit 2; \
 	fi
-	$(PY) tools/render-gist.py $(FILE) $(if $(KEEP),--keep-gist,)
+	$(PY) tools/render-gist.py $(FILE) $(if $(DELETE),--delete-gist,)
 
 .PHONY: precheck-chromium
 precheck-chromium:

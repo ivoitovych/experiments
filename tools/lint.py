@@ -90,7 +90,8 @@ def check_math_blocks(rel, content: str) -> None:
             fail(rel, r"math contains bare `\|` — use `\\|` (GitHub eats the backslash and the norm bar collapses to a modulus bar)")
 
 
-INLINE_PMATRIX_RE = re.compile(r"\$[^\$\n]*\\begin\{pmatrix\}[^\$\n]*\$")
+INLINE_LATEX_ENV_RE = re.compile(r"(?<!\$)\$[^\$\n]*\\begin\{[A-Za-z]+\*?\}[^\$\n]*\$")
+DISPLAY_BLOCK_RE = re.compile(r"^\$\$\s*$.*?^\$\$\s*$", re.MULTILINE | re.DOTALL)
 
 
 def check_nested_display_math(rel, content: str) -> None:
@@ -99,23 +100,55 @@ def check_nested_display_math(rel, content: str) -> None:
     and the LaTeX appears as literal text.
 
     Note: a previous version of this rule also flagged `$$` inside `>`
-    blockquotes; a follow-up test sheet showed that display math in a
-    plain blockquote actually renders correctly. Only the indented-list
+    blockquotes; the test sheet (Section B) showed that display math in
+    a plain blockquote actually renders correctly. Only the indented-list
     case remains a confirmed breakage."""
     for n, line in enumerate(content.splitlines(), 1):
         if line.startswith("  ") and line.lstrip(" \t").startswith("$$"):
             fail(rel, f"line {n}: `$$` inside an indented list-item continuation does not enter math mode on GitHub — convert the list to bold-prefixed paragraphs and unindent the equation")
 
 
-def check_inline_pmatrix(rel, content: str) -> None:
-    """Flag inline math that contains `\\begin{pmatrix}`. GitHub's
-    inline-math parser does not handle the `&` column separator or the
-    `\\\\\\\\` row break, so an inline `pmatrix` always renders as
-    literal LaTeX source. Promote the equation to display math `$$...$$`
-    on its own paragraph."""
+def check_inline_latex_env(rel, content: str) -> None:
+    """Flag inline math that contains `\\begin{...}`. GitHub's inline-math
+    parser does not handle LaTeX environments in any form — `pmatrix`,
+    `matrix`, `bmatrix`, `Bmatrix`, `vmatrix`, `Vmatrix`, `aligned`,
+    `cases`, etc. — including a 1×1 `pmatrix` with no `&` and no `\\\\`.
+    Promote the equation to display math `$$...$$` on its own paragraph.
+
+    Generalised from a narrower `check_inline_pmatrix` after Section M of
+    the test sheet showed that every environment form, including the
+    bare 1×1 `pmatrix`, breaks the inline-math parser."""
     for n, line in enumerate(content.splitlines(), 1):
-        if INLINE_PMATRIX_RE.search(line):
-            fail(rel, f"line {n}: inline `pmatrix` inside `$...$` renders as literal LaTeX on GitHub — move to display math `$$...$$`")
+        if INLINE_LATEX_ENV_RE.search(line):
+            fail(rel, f"line {n}: inline `$ ... \\begin{{...}} ... $` renders as literal LaTeX on GitHub — move to display math `$$ ... $$`")
+
+
+def check_list_marker_continuation(rel, content: str) -> None:
+    """Flag `$$ ... $$` blocks whose inner lines start with a Markdown
+    list/quote marker (`+`, `-`, `*`, `>`). The parser reads the marker
+    as the start of a new block-level construct and breaks math mode.
+    Affects both top-level blocks (Section N) and blockquoted blocks
+    (Section L). Common fix: move the operator to the end of the
+    previous line so the continuation begins with its operand."""
+    for m in DISPLAY_BLOCK_RE.finditer(content):
+        block = m.group(0)
+        lines = block.splitlines()
+        if len(lines) < 3:
+            continue  # single-line $$...$$ has no continuation
+        start_line = content[: m.start()].count("\n") + 1
+        for offset, line in enumerate(lines[1:-1], start=1):
+            stripped = line.lstrip(" \t")
+            # Allow blockquote-prefixed inner lines: a `>` followed by a
+            # space is the marker we are testing for; bare `>` inside
+            # math source comes from quoting / nesting, not from math.
+            if stripped and stripped[0] in "+-*>" and (len(stripped) == 1 or stripped[1] in " \t"):
+                fail(
+                    rel,
+                    f"line {start_line + offset}: line inside `$$...$$` starts with "
+                    f"'{stripped[0]}' — Markdown reads it as a list/quote marker and breaks the math block. "
+                    "Move the operator to the end of the previous line.",
+                )
+                break
 
 
 def strip_code(content: str) -> str:
@@ -157,7 +190,8 @@ def check_book_file(md: pathlib.Path) -> None:
 
     check_math_blocks(rel, content)
     check_nested_display_math(rel, content)
-    check_inline_pmatrix(rel, content)
+    check_inline_latex_env(rel, content)
+    check_list_marker_continuation(rel, content)
 
     m = STATUS_RE.search(content)
     if m:
