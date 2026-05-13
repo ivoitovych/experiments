@@ -14,7 +14,7 @@ manually" cycle.
 Usage:
 
   tools/render-gist.py docs/render-tests/math-context-matrix.md
-  tools/render-gist.py path/to/scratch.md --keep-gist
+  tools/render-gist.py path/to/scratch.md --delete-gist
 
 Setup (one-time, on the local machine that will run captures):
 
@@ -24,7 +24,10 @@ Setup (one-time, on the local machine that will run captures):
   gh auth refresh -s gist   # if not already in scope
 
 The script will print the gist URL it created, the screenshot output
-directory, and the gist URL/id it deleted (or "kept" with --keep-gist).
+directory, and the gist URL/id it kept (or deleted with --delete-gist).
+The gist is kept by default so you can open it in a browser and verify
+the rendering yourself; use --delete-gist if you do not want the
+artifact to persist.
 Output PNGs go under .artifacts/screenshots/gist-<short-id>/<file-stem>/
 which is gitignored along with the rest of .artifacts/.
 
@@ -238,9 +241,9 @@ def main(argv: list[str] | None = None) -> int:
         help="local Markdown file to render",
     )
     ap.add_argument(
-        "--keep-gist",
+        "--delete-gist",
         action="store_true",
-        help="do not delete the gist after capturing (useful when iterating)",
+        help="delete the gist after capturing (default: keep so it can be opened in a browser)",
     )
     args = ap.parse_args(argv)
 
@@ -276,13 +279,16 @@ def main(argv: list[str] | None = None) -> int:
         )
         raise
 
-    if args.keep_gist:
-        print(f"keeping gist (use 'gh gist delete {gid}' when done)")
-    else:
+    if args.delete_gist:
         print(f"deleting gist {gid}")
         delete_gist(gid)
+        print(f"\ndone. open {ART / f'gist-{gid[:8]}'}/ to review.")
+    else:
+        print(f"\nKept gist for inspection (rerun with --delete-gist or DELETE=1 to clean up):")
+        print(f"  open in browser:  {url}")
+        print(f"  delete when done: gh gist delete {gid}")
+        print(f"  local screenshots and report: {ART / f'gist-{gid[:8]}'}/")
 
-    print(f"\ndone. open {ART / f'gist-{gid[:8]}'}/ to review.")
     return 0
 
 

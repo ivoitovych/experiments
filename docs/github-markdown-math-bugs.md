@@ -45,28 +45,38 @@ Workaround: write `\\\\`, `\\{`, `\\}`, `\\,`, `\\|` in source.
 Lint coverage: `BAD_SINGLE_BS`, `BAD_BRACE`, `BAD_THIN_SPACE`,
 `BAD_NORM_BAR` in `tools/lint.py`.
 
-### Bug 2 — Inline `pmatrix` is broken in every container
+### Bug 2 — Inline LaTeX environments are broken in every container
 
-Cell evidence: A2, B2, C2, D2, E2, F2, G2, H2, J2, K2 all render
-inline `$ ... \begin{pmatrix} ... \\\\ ... \end{pmatrix} ... $` as
-literal LaTeX source. No container is safe.
+Cell evidence: A2, B2, C2, D2, E2, F2, G2, H2, J2, K2 (inline
+`pmatrix` in every container) all render as literal LaTeX. The
+Section M isolation, run after the original diagnosis, confirms the
+bug is broader than `pmatrix`:
 
-Root cause: the inline-math parser exits on the `&` column separator
-(or the `\\` row break that survives Bug 1), before MathJax can
-parse the matrix.
+- M1 (1×1 `pmatrix`, no `&`, no `\\\\`) breaks → the column
+  separator and the row break are *not* the trigger.
+- M4 (`matrix`), M5 (`bmatrix`), M6 (`Bmatrix`), M7 (`vmatrix`),
+  M8 (`Vmatrix`) all break → not specific to `pmatrix`.
+- M9 (display `pmatrix`) renders → the bug is in the inline-math
+  parser, not in MathJax's environment support.
 
-Workaround: never use `pmatrix` inside `$...$`. Always promote to
-display math `$$ ... $$` on its own paragraph. Display math handles
-`pmatrix` cleanly in every container except indented list-item
-continuations (see Bug 3).
+Root cause: GitHub's inline-math parser does not handle the
+`\begin{...}` ... `\end{...}` environment form. Any inline math
+containing `\begin{X}` for any environment `X` exits math mode
+and renders as literal LaTeX.
 
-For matrices that would naturally appear in the middle of a
-sentence, rewrite to put the display math on its own line before or
-after the surrounding prose, or replace the matrix with a named
-form (e.g., write `\tfrac{1}{\sqrt 2} I` for the scaled identity
-rather than the explicit 2×2).
+Workaround: never use `\begin{...}` inside `$...$`. Promote to
+display math `$$ ... $$` on its own paragraph. Display math
+handles environments correctly except where Bug 3
+(indented list-item continuations) or Bug 4 (leading-list-marker
+continuations) also apply. For environments that would naturally
+appear in the middle of a sentence, rewrite to put the display
+math on its own line before or after the surrounding prose, or
+replace the matrix with a named form (e.g., write
+`\tfrac{1}{\sqrt 2} I` for the scaled identity rather than the
+explicit 2×2).
 
-Lint coverage: `check_inline_pmatrix` in `tools/lint.py`.
+Lint coverage: `check_inline_latex_env` in `tools/lint.py` —
+matches any `$...\begin{...}...$`, not just `pmatrix`.
 
 ### Bug 3 — `$$ ... $$` inside an indented list-item continuation
 
@@ -86,32 +96,45 @@ needs to be lifted out.
 
 Lint coverage: `check_nested_display_math` in `tools/lint.py`.
 
-### Bug 4 — Blockquote-`$$` is fine, *except* when an equation continuation line starts with a Markdown list marker
+### Bug 4 — A continuation line that starts with a Markdown list marker breaks any `$$ ... $$` block
 
-Cell evidence: B7, B8, B9, B10 all rendered correctly — display math
-inside a plain `>` blockquote works. *But* the §4.13 `F_4|1⟩` sanity
-check originally broke; the only suspicious feature was an equation
-continuation line that began with `+`. Section L of the test sheet
-tests this hypothesis directly:
+Cell evidence: confirmed by Sections L and N. A continuation line
+whose first non-whitespace character is a Markdown list/quote
+marker (`+`, `-`, `*`, `>`) breaks the surrounding `$$...$$` math
+block.
 
-- L1 control (alphanumeric continuation) — expected OK.
-- L2 (`+`-led continuation) — expected to break if hypothesis holds.
-- L3 (`-`-led continuation) — same.
-- L4 (`*`-led continuation) — same.
-- L5 (`>`-led continuation) — sub-blockquote interaction.
+- L1 (alphanumeric continuation, *inside blockquote*) — rendered.
+- L2, L3, L4, L5 (`+`/`-`/`*`/`>`-led continuation, *inside
+  blockquote*) — all broken.
+- N1 (alphanumeric continuation, *top level*) — rendered.
+- N2, N3, N4 (`+`/`-`/`*`-led continuation, *top level*) — all
+  broken.
 
-Status: **partial confirmation pending**. The L-section results
-from a render pass against this commit will settle it; until then
-the rule is conservative.
+The blockquote is incidental. The bug applies to any multi-line
+`$$ ... $$` block, blockquoted or not.
 
-Workaround (until confirmed): pull display math out of blockquotes
-*only* when the equation has a `+`, `-`, `*`, or `>` at the start
-of any source line inside it. The current manuscript has §4.13's
-sign-convention and `F_4|1⟩` sanity-check blocks demoted to plain
-paragraphs as a result of the earlier (over-broad) workaround;
-these can be unrolled back into blockquotes once §L confirms.
+Root cause: when a line that starts with `+`, `-`, `*` (bullet
+markers) or `>` (blockquote marker) appears between the opening
+and closing `$$`, Markdown reads it as the start of a new
+block-level construct and breaks the math block. The list/quote
+marker outranks the math-delimiter parser.
 
-Lint coverage: not currently encoded — needs §L results first.
+Workaround: ensure that no source line inside a `$$ ... $$` block
+begins with `+`, `-`, `*`, or `>`. Common fix: move the operator
+to the end of the previous line so the continuation begins with
+its operand instead.
+
+Original §4.13 manuscript note: the sign-convention and `F_4|1⟩`
+sanity-check blocks were demoted to plain paragraphs in an earlier
+round because the over-broad "$$ in blockquote is broken"
+diagnosis. Now that Bug 4 is precise, both blocks *can* be unrolled
+back into blockquotes — they just need an equation reformat so no
+inner line starts with a list marker. The decision on whether to
+unroll is in the project changelog.
+
+Lint coverage: `check_list_marker_continuation` in `tools/lint.py`
+(walks each `$$...$$` block, flags any inner line starting with
+`+`, `-`, `*`, or `>`).
 
 ### Bug 5 — Norm bars `\\|...\\|` collapse to single bars inside Markdown table cells
 
@@ -146,12 +169,20 @@ context).
 
 - **Does `gist.github.com` render math the same way as repo blob
   URLs do?** Answered yes on the first run of
-  `tools/render-gist.py` against the test sheet
-  (`make render-gist FILE=docs/render-tests/math-context-matrix.md`
-  produced rendered PNGs with no "WARN math-wait timed out"
-  warning, meaning the script's math-wait function found
-  `mjx-container` elements). The gist-based reproducer is therefore
-  the project's primary fast loop for renderer-bug investigation.
+  `tools/render-gist.py` against the test sheet. The gist-based
+  reproducer is therefore the project's primary fast loop for
+  renderer-bug investigation.
+- **Is inline `pmatrix` broken because of `&`, `\\\\`, the
+  environment shape, or `pmatrix` specifically?** Answered by
+  Section M: it's the `\begin{...}` environment shape — every
+  variant (`matrix`, `bmatrix`, `Bmatrix`, `vmatrix`, `Vmatrix`,
+  and a 1×1 `pmatrix` with no `&` and no `\\\\`) breaks. Bug 2 is
+  now stated in those broader terms.
+- **Is Bug 4 (leading-list-marker continuation) blockquote-specific
+  or general?** Answered by Sections L and N: general. Top-level
+  multi-line `$$ ... $$` also breaks if a continuation line begins
+  with `+`, `-`, `*`, or `>`. The lint rule applies to any
+  block-math context.
 
 ## How to use this memo
 
