@@ -1,14 +1,31 @@
-Hit this independently in May 2026 while writing a long-form Markdown book that renders directly on GitHub (math chapters, lots of `$$ ... $$` callouts). Confirming the original repro is still accurate at the time of writing, and adding two practical notes for anyone landing here from a web search.
+Cross-posting an independent reproduction of this bug surface from May 2026, together with three additional cases that do not appear in the original Case 1 / Case 2 / Case 3 examples. We built a structured render-surface test sheet at
 
-**Same bug, two visible flavours.** What our screenshot review surfaced:
+<https://github.com/ivoitovych/experiments/blob/main/docs/render-tests/math-context-matrix.md>
 
-1. `$$ ... $$` inside a `>` blockquote (e.g. a boxed "Sanity check" containing a display equation) — the equation renders as literal `$$`, `\rangle`, `\tfrac` text. In some cases a line that begins with `\omega^{-2}|2\rangle` gets misread by the list parser and an unwanted bullet `•` is injected mid-equation.
-2. `$$ ... $$` indented under a numbered or bulleted list item — same outcome: literal source visible to the reader.
+and an accompanying memo at
 
-In both cases inline `$...$` works fine in the same context; only the block form breaks.
+<https://github.com/ivoitovych/experiments/blob/main/docs/github-markdown-math-bugs.md>
 
-**Practical workaround.** Pulling each display equation *out* of the blockquote / list-item continuation and using a bold-prefixed paragraph (`**Sanity check.**`, `**Sign convention.**`, `**Von Neumann entropy.**`, …) in place of the `>` block or list item is the smallest source-level change that gets the math to render. The cost is losing the boxed-callout affordance for those specific paragraphs; the math is correct, but the visual separation that `>` blockquotes provide is gone.
+mapping the actual matrix of containers × math forms × render outcome.
 
-**Documentation gap.** [GitHub's "Writing mathematical expressions" docs](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions) do not warn that `$$ ... $$` fails inside blockquotes and list-item continuations. Even if the parser itself is not changing soon, mentioning the limitation (and the inline-math workaround) on that docs page would save a lot of debugging time for anyone using GitHub-flavoured Markdown as a primary publishing surface.
+**Confirmed by the test sheet on the current GitHub renderer:**
 
-**Adjacent gotchas in the same family.** While we were chasing this, we hit four more cases where GitHub's Markdown unescapes a backslash before MathJax sees it — `\\` (matrix row breaks collapse to row vectors), `\{` / `\}` (set braces become invisible), `\,` (thin space renders as a literal comma), `\|` (vector and operator norms collapse to modulus bars). The composite picture is that *all* GitHub-only ways math-source can quietly become wrong should probably be on the docs page or in a known-limitations section. Happy to write that up if it helps.
+1. **Block math `$$ ... $$` inside an indented list-item continuation is broken** — cells D8, D9, F8, F9 all render as literal LaTeX source. This is essentially the original Case 3 of this Discussion, reproduced independently and labelled for precise reference.
+
+2. **Inline `$ ... \begin{pmatrix} ... \\\\ ... \end{pmatrix} ... $` is broken in every container** — cells A2, B2, C2, D2, E2, F2, G2, H2, J2, K2 *all* render as literal LaTeX. Including A2, which is the bare top-level case with no container at all. Inline `pmatrix` does not work anywhere; only display `$$ ... $$` does. This is not mentioned in the existing Discussion threads we could find; it is the most universal of the bugs in this family.
+
+3. **Norm bars `\\|v\\|` collapse to single bars `|v|` inside Markdown table cells** — cell H6. The `|` characters in `\\|` conflict with the table column separator. Not specific to math content; it is a Markdown-table / math-delimiter interaction.
+
+**Correction to the previous understanding:**
+
+The original Case 2 of this Discussion says that block math inside a plain `>` blockquote is broken. Our test cells B7–B10 all render correctly under the current renderer — block math, including multi-line, including `pmatrix`, including `aligned`, all work inside a plain blockquote. Case 2 may have been fixed since 2024, or the original break may have been triggered by something more specific. We have an open hypothesis (test sheet Section L) that the *true* trigger is a continuation line inside the equation starting with a Markdown list marker (`+`, `-`, `*`), which the parser misreads as a list item and which breaks math mode inside the blockquote. That would also explain the `•` bullet that sometimes appears injected into the broken render. Section L results are pending.
+
+**What would help on GitHub's side:**
+
+1. Document the limitations on the [Writing mathematical expressions](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions) docs page. Even if the parser is hard to fix, a "Known limitations" section listing the four-or-five contexts where math does not enter math mode would save many people from chasing this themselves.
+
+2. Fix inline `\begin{pmatrix}` parsing. This is by far the most common math-source pattern that silently degrades, because inline matrices are natural to write and the breakage cannot be detected from source without a dedicated check.
+
+3. Treat list-marker-led equation continuations inside blockquote math as math, not as the start of a list — if Section L confirms that diagnosis.
+
+Happy to send the test sheet as a single Markdown file for a minimal reproducer. The matrix is small enough (≈340 lines) to drop directly into a repo and render.
