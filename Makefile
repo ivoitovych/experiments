@@ -20,13 +20,17 @@ PY       := $(VENV)/bin/python
 PIP      := $(VENV)/bin/pip
 SYS_PY   := python3
 
-.PHONY: help setup lint progress screenshots clean-artifacts
+.PHONY: help setup setup-system-deps lint progress screenshots render-gist clean-artifacts
 
 help: ## Show available targets.
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?##/ \
 	    {printf "  %-20s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
 setup: $(VENV)/.installed ## One-time: create .venv, install playwright + chromium.
+
+setup-system-deps: $(VENV)/.installed ## One-time (sudo): install Chromium's system libraries.
+	@echo "Installing Chromium system dependencies via apt (sudo required)..."
+	sudo $(VENV)/bin/playwright install-deps chromium
 
 $(VENV)/.installed:
 	@if ! python3 -c "import ensurepip" >/dev/null 2>&1; then \
@@ -50,19 +54,41 @@ lint: ## Run tools/lint.py — fast, no venv needed.
 progress: ## Regenerate PROGRESS.md from chapter status blocks.
 	$(SYS_PY) scripts/generate_progress.py
 
-screenshots: setup ## Capture screenshots. Usage: make screenshots CHAPTER=<path.md>
+screenshots: setup precheck-chromium ## Capture screenshots. Usage: make screenshots CHAPTER=<path.md>
 	@if [ -z "$(CHAPTER)" ]; then \
 	    echo "usage: make screenshots CHAPTER=<path/to/chapter.md>"; \
 	    exit 2; \
 	fi
 	$(PY) tools/screenshots.py $(CHAPTER)
 
-render-gist: setup ## Render any .md via a throwaway Gist. Usage: make render-gist FILE=<path.md>
+render-gist: setup precheck-chromium ## Render any .md via a throwaway Gist. Usage: make render-gist FILE=<path.md>
 	@if [ -z "$(FILE)" ]; then \
 	    echo "usage: make render-gist FILE=<path/to/file.md> [KEEP=1]"; \
 	    exit 2; \
 	fi
 	$(PY) tools/render-gist.py $(FILE) $(if $(KEEP),--keep-gist,)
+
+.PHONY: precheck-chromium
+precheck-chromium:
+	@chromium_bin=$$(ls -1 $$HOME/.cache/ms-playwright/chromium_headless_shell-*/chrome-headless-shell-linux64/chrome-headless-shell 2>/dev/null | head -1); \
+	if [ -z "$$chromium_bin" ]; then \
+	    chromium_bin=$$(ls -1 $$HOME/.cache/ms-playwright/chromium-*/chrome-linux/chrome 2>/dev/null | head -1); \
+	fi; \
+	if [ -z "$$chromium_bin" ]; then \
+	    echo "WARN: could not locate Chromium binary; skipping pre-check."; \
+	    exit 0; \
+	fi; \
+	if ! "$$chromium_bin" --version >/dev/null 2>&1; then \
+	    echo ""; \
+	    echo "ERROR: Chromium installed by Playwright will not launch."; \
+	    echo "Most likely cause on a fresh Ubuntu/WSL install: missing system libraries."; \
+	    echo "One-time fix (requires sudo):"; \
+	    echo "    make setup-system-deps"; \
+	    echo "or equivalently:"; \
+	    echo "    sudo $(VENV)/bin/playwright install-deps chromium"; \
+	    echo ""; \
+	    exit 1; \
+	fi
 
 clean-artifacts: ## Delete review screenshots under .artifacts/.
 	rm -rf .artifacts/screenshots

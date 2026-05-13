@@ -99,20 +99,26 @@ Setup (one-time on the local machine that runs captures):
 ```
 sudo apt install python3-venv python3-pip   # Ubuntu/Debian only
 make setup
+make setup-system-deps                       # sudo prompt; one-time
 ```
 
-The apt step is needed on a fresh Ubuntu 24.04 install because
-Python's `venv` module is not bundled with the minimal Python
-package. The Makefile detects this case and prints the exact apt
-command if the package is missing, so an unprepared machine fails
-with a clear message rather than the underlying "ensurepip is not
-available" error.
+The first apt step is needed on a fresh Ubuntu 24.04 install
+because Python's `venv` module is not bundled with the minimal
+Python package. The Makefile detects this case and prints the exact
+apt command if it is missing.
 
-`make setup` then creates a `.venv` at the repo root, installs
-Playwright into it, and downloads Chromium into the shared
-Playwright cache (`~/.cache/ms-playwright/`). The target is
-idempotent — it touches a sentinel after success and becomes a no-op
-on subsequent runs.
+`make setup` creates a `.venv` at the repo root, installs Playwright
+into it, and downloads Chromium into the shared Playwright cache
+(`~/.cache/ms-playwright/`). The target is idempotent — it touches a
+sentinel after success and becomes a no-op on subsequent runs.
+
+`make setup-system-deps` runs `sudo playwright install-deps chromium`
+to install the system libraries Chromium needs at launch
+(`libnspr4`, `libnss3`, `libdbus-1-3`, `libatk*`, ...). Without this
+step the binary downloads cleanly but fails to launch with
+`error while loading shared libraries`. The `screenshots` and
+`render-gist` targets pre-check that Chromium can start; if it
+cannot, they refuse to run and print the exact remedy.
 
 The tool drives a real headless Chromium against the actual GitHub
 blob URL for a given commit, then captures one PNG per section
