@@ -255,12 +255,19 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         capture(url, gid, md.name)
-    finally:
-        if args.keep_gist:
-            print(f"keeping gist (use 'gh gist delete {gid}' when done)")
-        else:
-            print(f"deleting gist {gid}")
-            delete_gist(gid)
+    except Exception:
+        print(
+            f"\ncapture failed; KEEPING gist for manual inspection:\n  {url}\n"
+            f"  delete it with: gh gist delete {gid}",
+            file=sys.stderr,
+        )
+        raise
+
+    if args.keep_gist:
+        print(f"keeping gist (use 'gh gist delete {gid}' when done)")
+    else:
+        print(f"deleting gist {gid}")
+        delete_gist(gid)
 
     print(f"\ndone. open {ART / f'gist-{gid[:8]}'}/ to review.")
     return 0
