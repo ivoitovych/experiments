@@ -145,173 +145,27 @@ screenshots as PR artifacts for the maintainer to eyeball.
 
 ## Known renderer gotchas
 
-Each entry is a real bug we have hit on GitHub's MathJax renderer.
-The lint encodes the *pattern*; this section encodes the *story*.
+The full annotated catalogue lives in
+[`docs/github-markdown-math-bugs.md`](docs/github-markdown-math-bugs.md),
+derived directly from the live test sheet at
+`docs/render-tests/math-context-matrix.md`. That memo is the
+single source of truth; the lint rules in `tools/lint.py` and the
+upstream-feedback drafts under `docs/upstream-feedback/` derive
+from it.
 
-### `\\` inside `pmatrix` row breaks
+When you discover a new renderer bug:
 
-Symptom: column vectors and 2×2 matrices render as row vectors —
-`\begin{pmatrix} 1 \\ 0 \end{pmatrix}` shows as `(1 0)`.
+1. Add a cell to `docs/render-tests/math-context-matrix.md`.
+2. Render and confirm the breakage on GitHub.
+3. Add the bug entry to `docs/github-markdown-math-bugs.md`.
+4. Encode a detector in `tools/lint.py` if the pattern is
+   source-detectable.
+5. Cross-check that the manuscript does not silently rely on the
+   broken pattern anywhere.
 
-Cause: GitHub's Markdown processor unescapes one layer of backslashes
-before passing the math to MathJax. `\\` in source becomes `\`, and
-MathJax sees no row separator.
+Doing all five keeps the lint, the memo, and the test sheet in
+lockstep.
 
-Fix: write `\\\\` (four backslashes in source) for every matrix-row
-break.
-
-### `\{` and `\}` for visible set braces
-
-Symptom: `\{0,1\}^n` renders as `0,1^n` — no visible braces.
-
-Cause: same one-layer unescape. `\{` becomes `{`, which MathJax
-treats as an invisible grouping character.
-
-Fix: write `\\{` and `\\}` in source for *visible* braces.
-
-### `\,` thin space
-
-Symptom: `\overline{u_i}\, v_i` renders as `ū_i, v_i` — a literal
-comma where a thin space was intended.
-
-Cause: Markdown drops the backslash from `\,`, leaving a bare comma
-for MathJax.
-
-Fix: write `\\,` in source.
-
-### `\|` norm bar
-
-Symptom: every vector and operator norm renders with single bars
-instead of double bars — `\|v\|` shows as `|v|`. The carefully
-designed distinction between modulus, operator norm, trace norm, and
-operator absolute value (single vs double bars) collapses into
-"everything is single bars".
-
-Cause: Markdown drops the backslash from `\|`, leaving a literal `|`
-for MathJax. MathJax then treats the bars as ordinary delimiters
-identical to a modulus.
-
-Fix: write `\\|` in source for visible double bars.
-
-### `$$ ... $$` inside a list-item continuation
-
-Symptom: a display equation indented as a continuation paragraph
-under a bulleted or numbered list item renders as literal LaTeX
-source — the reader sees `$$`, `\rangle`, `\tfrac`, etc. as plain
-text. Inside a `+`-led continuation line, a stray bullet `•` may
-also get injected because Markdown reads the `+` as a list marker.
-
-Cause: GitHub's `$$ ... $$` math-block parser does not enter math
-mode when the opening `$$` line sits inside an indented list-item
-continuation. Inline `$...$` *does* work in that context; only the
-block form breaks.
-
-Important correction: earlier rounds of this catalog claimed that
-`$$ ... $$` inside a plain `>` blockquote was also broken. A
-follow-up test sheet
-(`docs/render-tests/math-context-matrix.md`) showed that **display
-math inside a plain blockquote does render correctly** on the
-current GitHub MathJax pipeline. The earlier breakage was probably
-caused by a continuation line starting with `+`, which Markdown
-treats as a list-marker and which therefore broke math mode inside
-the blockquote — not by the blockquote per se. Keep display math
-inside blockquotes if you want the callout-box affordance; just
-avoid `+`-led continuation lines inside the equation.
-
-Fix: pull display equations out of indented list-item continuations.
-Convert the surrounding list to bold-prefixed paragraphs and
-unindent the equations to column zero. Inline math `$...$` remains
-fine in any container.
-
-### Inline `pmatrix` is broken in every container
-
-Symptom: `$A = \begin{pmatrix} 1 & 2 \\\\ 3 & 4 \end{pmatrix}$`
-renders as literal LaTeX source — visible `$`, `\begin{pmatrix}`,
-ampersands, the works. Confirmed at top level, in `>` blockquotes,
-in bulleted lists, in numbered lists, in list-item continuations,
-in nested lists, in table cells, in `<details>` blocks, and in every
-mixed nesting tested.
-
-Cause: GitHub's inline-math parser does not handle the `&` column
-separator and/or the `\\\\` row break inside a `$...$` span. The
-math context exits before MathJax can parse the matrix.
-
-Fix: never use `\begin{pmatrix}` inside inline math `$...$`. Always
-promote matrix expressions to display math `$$ ... $$` on their own
-paragraph. Display math handles `pmatrix` cleanly in every container
-*except* indented list-item continuations (see the previous entry).
-For matrices that would naturally appear inline (e.g., a sanity-check
-matrix in the middle of a sentence), rewrite to put the display math
-on its own line before or after the surrounding prose.
-
-### Norm bars `\\|...\\|` collapse to single bars inside Markdown table cells
-
-Symptom: inside a Markdown table cell, `$\\|v\\|$` renders as `|v|`
-(single bars) rather than `‖v‖` (double bars).
-
-Cause: the `|` characters in `\\|` conflict with the `|` column
-separator of the Markdown table; the table parser eats one bar
-before MathJax sees the math.
-
-Fix: avoid norm bars inside Markdown table cells. Either convert the
-table to a bullet list, or rewrite the cell to use a name (e.g.,
-"operator norm of $A$") instead of the bar notation.
-
-### `\operatorname{...}`
-
-Symptom: the rendered output prints
-*"The following macros are not allowed: operatorname"*.
-
-Cause: GitHub's MathJax configuration explicitly disallows
-`\operatorname`.
-
-Fix: `\mathrm{...}` — `\mathrm{tr}`, `\mathrm{Var}`, `\mathrm{rank}`.
-
-### `\label`, `\ref`, `\tag`, `\newcommand`, `\renewcommand`
-
-Cause: the GitHub renderer ignores or rejects these. There is no
-global macro mechanism across files.
-
-Fix: number equations manually (`\quad (1.3.1)`); never define
-macros.
-
-### `physics` package macros (`\ket`, `\bra`, `\braket`)
-
-Cause: the `physics` LaTeX package is not loaded by GitHub MathJax.
-
-Fix: write Dirac notation with raw `\langle` and `\rangle`. This is
-also required for mdBook and Pandoc portability.
-
-### Inline math glued to a hyphen
-
-Symptom: `length-$n$ bit strings` renders with literal dollar signs.
-
-Cause: GitHub's inline-math detector will not enter math mode when
-the opening `$` is glued directly to a non-whitespace character such
-as a hyphen.
-
-Fix: rephrase so the `$` has whitespace next to it
-(`bit strings of length $n$`).
-
-### Multiple `$...$` blocks with subscripts on the same line
-
-Symptom: the second math span renders as literal text with the
-underscores missing — Markdown's italic parser ate them.
-
-Cause: subscripts in adjacent inline-math spans can confuse the
-italic detector when both spans contain `_{...}`.
-
-Fix: promote the second formula to a display equation `$$ ... $$` on
-its own line.
-
-### Markdown tables that contain `|` inside math
-
-Symptom: rows break visually because `|` is the table column
-separator.
-
-Fix: use a bullet list of "left ↔ right" pairs instead of a Markdown
-table whenever the cells contain kets `|ψ⟩`, bras `⟨φ|`, or norms
-`‖v‖`.
 
 ## Decision log
 
