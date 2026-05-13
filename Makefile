@@ -57,5 +57,12 @@ screenshots: setup ## Capture screenshots. Usage: make screenshots CHAPTER=<path
 	fi
 	$(PY) tools/screenshots.py $(CHAPTER)
 
+render-gist: setup ## Render any .md via a throwaway Gist. Usage: make render-gist FILE=<path.md>
+	@if [ -z "$(FILE)" ]; then \
+	    echo "usage: make render-gist FILE=<path/to/file.md> [KEEP=1]"; \
+	    exit 2; \
+	fi
+	$(PY) tools/render-gist.py $(FILE) $(if $(KEEP),--keep-gist,)
+
 clean-artifacts: ## Delete review screenshots under .artifacts/.
 	rm -rf .artifacts/screenshots
