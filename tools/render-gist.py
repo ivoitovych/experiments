@@ -161,6 +161,19 @@ def capture(gist_url: str, gist_id: str, md_name: str) -> pathlib.Path:
             or page.query_selector(".gist-content")
             or page.query_selector(".file")
         )
+
+        # Dump a text report. Rendered math contains no literal `$$`,
+        # `\begin{`, or `\rangle`; broken math does. This lets a human
+        # (or a chat conversation) read the per-cell status in a single
+        # paste without needing to look at every PNG.
+        body_text = body_handle.inner_text() if body_handle else "(article not found)"
+        report_path = out_dir / "report.txt"
+        report_path.write_text(body_text)
+        print(f"\nreport: {report_path.relative_to(ROOT)}")
+        print("  - rendered math shows as Greek/math glyphs (α, ⟨ψ|, ‖v‖, ...)")
+        print("  - broken math shows as literal LaTeX ($A = \\begin{pmatrix} ...)")
+        print(f"  share with: cat {report_path.relative_to(ROOT)}")
+
         if body_handle is None:
             raise RuntimeError("could not find the rendered markdown root on the gist page")
         body_box = body_handle.bounding_box()
