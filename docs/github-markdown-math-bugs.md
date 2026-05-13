@@ -141,10 +141,17 @@ context).
   silently dropped because MathJax discards it inline or because
   GitHub's parser swallows it. The visible behaviour is the same:
   the row-break is a no-op in inline math.
-- Whether GitHub renders math inside `gist.github.com` URLs the
-  same way as inside `github.com/owner/repo/blob/...` URLs. This
-  matters for the gist-based reproducer (`tools/render-gist.py`)
-  and will be answered on first run.
+
+## Open questions answered
+
+- **Does `gist.github.com` render math the same way as repo blob
+  URLs do?** Answered yes on the first run of
+  `tools/render-gist.py` against the test sheet
+  (`make render-gist FILE=docs/render-tests/math-context-matrix.md`
+  produced rendered PNGs with no "WARN math-wait timed out"
+  warning, meaning the script's math-wait function found
+  `mjx-container` elements). The gist-based reproducer is therefore
+  the project's primary fast loop for renderer-bug investigation.
 
 ## How to use this memo
 
