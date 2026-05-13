@@ -58,10 +58,14 @@ STATUS_RE = re.compile(r"\*\*Status:\*\*\s*(\w+)")
 FENCED_RE = re.compile(r"```.*?```", re.DOTALL)
 INLINE_CODE_RE = re.compile(r"`[^`\n]+`")
 
-# GitHub's Markdown processor unescapes backslash sequences inside `$...$`
-# and `$$...$$` math before MathJax sees them. So `\\`, `\{`, `\}`, and
-# `\,` in the source must be written `\\\\`, `\\{`, `\\}`, and `\\,` to
-# survive. We detect any non-escaped occurrences inside math contexts.
+# Renderer-bug detectors. Each rule corresponds to a bug entry in
+# docs/github-markdown-math-bugs.md, which is in turn justified by a
+# cell in docs/render-tests/math-context-matrix.md. Keep them in sync.
+#
+# Bug 1: GitHub's Markdown processor unescapes one layer of backslashes
+# inside `$...$` and `$$...$$` before MathJax sees the math. So `\\`,
+# `\{`, `\}`, `\,`, `\|` in source must be written `\\\\`, `\\{`,
+# `\\}`, `\\,`, `\\|` to survive.
 MATH_INLINE_RE = re.compile(r"(?<!\$)\$[^\$\n]+\$")
 MATH_DISPLAY_RE = re.compile(r"\$\$.*?\$\$", re.DOTALL)
 # `\\` not part of `\\\\` and not followed by `,{}|` (which are themselves
