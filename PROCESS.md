@@ -74,6 +74,7 @@ itself across every chapter that builds on them.
 | `scripts/generate_progress.py` | `make progress` | Regenerates `PROGRESS.md` from the status blocks in every manuscript file. Re-run after editing any status. |
 | `tools/lint.py` | `make lint` | Enforces structural and notational invariants. Catches source-detectable rendering bugs (see *Known renderer gotchas* below). |
 | `tools/screenshots.py` | `make screenshots CHAPTER=...` | Drives headless Chromium against the GitHub-rendered page to capture per-section PNGs for human visual review. See *Screenshot workflow* below. |
+| `tools/render-gist.py` | `make render-gist FILE=...` | Creates a throwaway secret Gist from any local Markdown file, captures per-section screenshots, then deletes the gist. Use for renderer-bug investigation without polluting the working branch. Add `KEEP=1` to keep the gist for further iteration. |
 
 General principle: source-detectable problems are caught by lint;
 render-visible problems are caught by screenshot review. The cheaper
