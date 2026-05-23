@@ -9,12 +9,12 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 ## Summary
 
 - **Files total:** 45
-- **Started (past `stub`):** 13 / 45
-- **Completed (`draft` or later):** 13 / 45
+- **Started (past `stub`):** 17 / 45
+- **Completed (`draft` or later):** 17 / 45
 
-- **Phase 1 (Foundations):** started 9/10, completed 9/10
-- **Phase 2 (Core mechanics):** started 4/6, completed 4/6
-- **Phase 3 (Algorithms and complexity):** started 0/4, completed 0/4
+- **Phase 1 (Foundations):** started 12/13, completed 12/13
+- **Phase 2 (Core mechanics):** started 5/5, completed 5/5
+- **Phase 3 (Algorithms and complexity):** started 0/2, completed 0/2
 - **Phase 4 (Real systems):** started 0/7, completed 0/7
 - **Phase 5 (Practice and applications):** started 0/9, completed 0/9
 - **Phase 6 (Orientation, epistemics, closure):** started 0/9, completed 0/9
@@ -30,7 +30,10 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 - [x] [Chapter 8. Quantum Gates](book/part-04-gates-and-circuits/08-quantum-gates.md) — *draft* — sections 14/14
 - [x] [Chapter 9. Quantum Circuits](book/part-04-gates-and-circuits/09-quantum-circuits.md) — *draft* — sections 13/13
 - [x] [Chapter 10. Core Quantum Phenomena from a Computational View](book/part-04-gates-and-circuits/10-core-quantum-phenomena.md) — *draft* — sections 13/13
+- [x] [Chapter 11. Measurement Theory](book/part-05-measurement-and-information/11-measurement-theory.md) — *draft* — sections 7/7
+- [x] [Chapter 13. The Quantum Algorithms Mindset](book/part-06-algorithms/13-quantum-algorithms-mindset.md) — *draft* — sections 8/8
 - [x] [Chapter 14. Foundational Algorithms](book/part-06-algorithms/14-foundational-algorithms.md) — *draft* — sections 9/9
+- [x] [Chapter 15. Landmark Quantum Algorithms](book/part-06-algorithms/15-landmark-quantum-algorithms.md) — *draft* — sections 10/10
 
 ## Phase 2 — Core mechanics
 
@@ -38,13 +41,10 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 - [x] [Appendix C. Useful Identities and Decompositions](book/99-back-matter/appendix-c-identities-and-decompositions.md) — *draft* — sections 6/6
 - [x] [Appendix D. Suggested Reading and Reference Papers](book/99-back-matter/appendix-d-suggested-reading.md) — *draft* — sections 8/8
 - [x] [Appendix E. Glossary](book/99-back-matter/appendix-e-glossary.md) — *draft* — sections 7/7
-- [ ] [Chapter 11. Measurement Theory](book/part-05-measurement-and-information/11-measurement-theory.md) — *stub* — sections 0/7
-- [ ] [Chapter 12. Quantum Information Theory](book/part-05-measurement-and-information/12-quantum-information-theory.md) — *stub* — sections 0/11
+- [x] [Chapter 12. Quantum Information Theory](book/part-05-measurement-and-information/12-quantum-information-theory.md) — *draft* — sections 13/13
 
 ## Phase 3 — Algorithms and complexity
 
-- [ ] [Chapter 13. The Quantum Algorithms Mindset](book/part-06-algorithms/13-quantum-algorithms-mindset.md) — *stub* — sections 0/7
-- [ ] [Chapter 15. Landmark Quantum Algorithms](book/part-06-algorithms/15-landmark-quantum-algorithms.md) — *stub* — sections 0/10
 - [ ] [Chapter 16. Modern Algorithmic Frontier](book/part-06-algorithms/16-modern-algorithmic-frontier.md) — *stub* — sections 0/8
 - [ ] [Chapter 17. Complexity Theory Around Quantum Computing](book/part-07-complexity/17-complexity-theory.md) — *stub* — sections 0/13
 
