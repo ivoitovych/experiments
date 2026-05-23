@@ -9,15 +9,15 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 ## Summary
 
 - **Files total:** 45
-- **Started (past `stub`):** 34 / 45
-- **Completed (`draft` or later):** 34 / 45
+- **Started (past `stub`):** 35 / 45
+- **Completed (`draft` or later):** 35 / 45
 
 - **Phase 1 (Foundations):** started 17/18, completed 17/18
 - **Phase 2 (Core mechanics):** started 5/5, completed 5/5
 - **Phase 3 (Algorithms and complexity):** started 1/1, completed 1/1
 - **Phase 4 (Real systems):** started 5/5, completed 5/5
 - **Phase 5 (Practice and applications):** started 6/7, completed 6/7
-- **Phase 6 (Orientation, epistemics, closure):** started 0/9, completed 0/9
+- **Phase 6 (Orientation, epistemics, closure):** started 1/9, completed 1/9
 
 ## Phase 1 — Foundations
 
@@ -77,7 +77,7 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 - [ ] [Chapter 1. Why Quantum Computing Exists](book/part-01-orientation/01-why-quantum-computing-exists.md) — *stub* — sections 0/6
 - [ ] [Chapter 2. Classical-to-Quantum Contrast](book/part-01-orientation/02-classical-to-quantum-contrast.md) — *stub* — sections 0/7
 - [ ] [Chapter 3. Physical Intuition Behind Quantum Mechanics](book/part-01-orientation/03-physical-intuition.md) — *stub* — sections 0/10
-- [ ] [Chapter 34. Bridging Quantum Computing to Familiar Engineering Ideas](book/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md) — *stub* — sections 0/9
+- [x] [Chapter 34. Bridging Quantum Computing to Familiar Engineering Ideas](book/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md) — *draft* — sections 9/9
 - [ ] [Chapter 35. Interpretational and Conceptual Pitfalls](book/part-13-perspective-and-direction/35-interpretational-and-conceptual-pitfalls.md) — *stub* — sections 0/6
 - [ ] [Chapter 36. How to Judge Claims in Quantum Computing](book/part-13-perspective-and-direction/36-how-to-judge-claims.md) — *stub* — sections 0/8
 - [ ] [Chapter 37. Endgame](book/part-13-perspective-and-direction/37-endgame.md) — *stub* — sections 0/9
