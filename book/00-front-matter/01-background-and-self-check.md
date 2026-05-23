@@ -36,9 +36,9 @@ background, it is stated, motivated, and either proved or cited.
 ## 1.1 Required: Programming Proficiency
 
 You should be comfortable reading and writing Python at the level of a
-working developer. The book's SDK chapters (Chapter 6, Chapter 19,
-Chapter 24, and the running examples that thread through later
-algorithm chapters) use Python 3 with NumPy and one or two quantum
+working developer. The book's tooling and practice chapters (Chapter 23,
+Chapter 24, Chapter 26, and the running examples that thread through
+later algorithm chapters) use Python 3 with NumPy and one or two quantum
 SDKs. Specifically, you should be at ease with:
 
 - Reading idiomatic Python: list comprehensions, generators, decorators,
@@ -366,7 +366,7 @@ results.
   for where quantum complexity classes sit relative to classical
   ones; you do not need to manipulate the hierarchy yourself.
 - **The class BQP** (bounded-error quantum polynomial time) — this
-  one the book defines from scratch in Chapter 9; recognition of the
+  one the book defines from scratch in Chapter 17; recognition of the
   surrounding classical landscape is what helps.
 - **Promise problems and oracle (black-box) complexity.** Many
   quantum speedups are stated in oracle models; familiarity with the
@@ -415,7 +415,7 @@ assume any of them.
   (Lagrangian / Hamiltonian formulations especially) makes Chapter 3
   (Physical Intuition) and Chapter 16 (Hamiltonian simulation) feel
   natural rather than novel. Electromagnetism at the level of
-  Griffiths is helpful for the hardware chapters (Chapter 22 ff.)
+  Griffiths is helpful for the hardware chapters (Chapter 20 ff.)
   where superconducting qubits, ion traps, and photonic
   implementations get specific. None of this is on the critical path
   for the algorithmic chapters.
@@ -473,7 +473,7 @@ Fourier transforms, sampling theorems, filters, convolutions — a
 sizable fraction of the book will feel familiar. The quantum Fourier
 transform (§4.13 and Chapter 14) is, structurally, an ordinary
 discrete Fourier transform applied to an amplitude vector; phase
-estimation (Chapter 15) is, structurally, frequency estimation of a
+estimation (§14.6) is, structurally, frequency estimation of a
 single complex exponential. The intuitions transfer almost without
 modification: aliasing, windowing, the relationship between time
 resolution and frequency resolution.
@@ -483,7 +483,7 @@ it needs in §4.13 and Chapter 14 from the linear-algebra foundations
 of §1.3, and treats the quantum Fourier transform as a unitary matrix
 first and a frequency-domain transform second. But if you have ever
 written code that does an FFT, the phase-estimation chapters will
-land faster and the quantum-signal-processing chapter (Chapter 17)
+land faster and the quantum-signal-processing material (Chapter 16)
 will feel like a generalization of something you already know rather
 than a new framework.
 

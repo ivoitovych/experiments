@@ -275,8 +275,8 @@ A quantum algorithm is, in essence, a procedure for arranging the
 amplitudes of unwanted answers to interfere destructively and the
 amplitudes of wanted answers to interfere constructively, so that
 a final measurement returns a useful outcome with high probability.
-Grover's search (Chapter 14), the quantum Fourier transform
-(Chapter 13), and the heart of Shor's factoring algorithm
+Grover's search (Chapter 15), the quantum Fourier transform
+(Chapter 14), and the heart of Shor's factoring algorithm
 (Chapter 15) are all variations on this theme. The reason these
 algorithms exist at all is the same reason the Mach-Zehnder
 produces deterministic clicks: amplitudes combine before they
@@ -395,7 +395,7 @@ Two further points about back-action:
 The mathematical compression of this physics — operators that fail
 to commute have eigenbases that are mutually unbiased; measurement
 in one basis randomizes a state that was prepared in another —
-arrives in Chapter 4 (commutators, §4.16) and Chapter 5 (postulates
+arrives in Chapter 4 (commutators, §4.5) and Chapter 5 (postulates
 of measurement, §5.4). The conceptual fact to bring forward from
 this section is simpler: **a quantum measurement is an interaction,
 not a passive reading**, and the interaction reshapes the state.
@@ -441,7 +441,7 @@ Two qubits' Pauli-$Z$ operators commute and can be measured together
 (yielding two classical bits); a qubit's $Z$ and $X$ operators do
 not commute and cannot. The cost of measuring incompatible
 observables on the same state shows up in algorithms like the
-variational quantum eigensolver (Chapter 30), where the Hamiltonian
+variational quantum eigensolver (Chapter 15), where the Hamiltonian
 to be estimated must be decomposed into commuting groups and each
 group measured separately on freshly prepared copies of the state.
 
