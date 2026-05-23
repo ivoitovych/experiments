@@ -9,18 +9,19 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 ## Summary
 
 - **Files total:** 45
-- **Started (past `stub`):** 35 / 45
-- **Completed (`draft` or later):** 35 / 45
+- **Started (past `stub`):** 39 / 45
+- **Completed (`draft` or later):** 39 / 45
 
-- **Phase 1 (Foundations):** started 17/18, completed 17/18
+- **Phase 1 (Foundations):** started 19/20, completed 19/20
 - **Phase 2 (Core mechanics):** started 5/5, completed 5/5
 - **Phase 3 (Algorithms and complexity):** started 1/1, completed 1/1
 - **Phase 4 (Real systems):** started 5/5, completed 5/5
-- **Phase 5 (Practice and applications):** started 6/7, completed 6/7
-- **Phase 6 (Orientation, epistemics, closure):** started 1/9, completed 1/9
+- **Phase 5 (Practice and applications):** started 7/7, completed 7/7
+- **Phase 6 (Orientation, epistemics, closure):** started 2/7, completed 2/7
 
 ## Phase 1 — Foundations
 
+- [x] [Preface](book/00-front-matter/00-preface.md) — *draft* — sections 11/11
 - [ ] [Notation and Conventions](book/00-front-matter/02-notation-and-conventions.md) — *stub* — sections 0/7
 - [x] [Appendix A. Notation Reference](book/99-back-matter/appendix-a-notation-reference.md) — *draft* — sections 6/6
 - [x] [Chapter 4. Mathematical Background for Quantum Computing](book/part-02-formalism/04-mathematical-background.md) — *draft* — sections 17/17
@@ -39,6 +40,7 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 - [x] [Chapter 20. Quantum Hardware Platforms](book/part-09-hardware-and-software/20-quantum-hardware-platforms.md) — *draft* — sections 12/12
 - [x] [Chapter 25. NISQ and the Early Fault-Tolerant Era](book/part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md) — *draft* — sections 6/6
 - [x] [Chapter 26. Practical Access and Hands-On Work](book/part-10-practice-and-era/26-practical-access-and-hands-on-work.md) — *draft* — sections 7/7
+- [x] [Chapter 36. How to Judge Claims in Quantum Computing](book/part-13-perspective-and-direction/36-how-to-judge-claims.md) — *draft* — sections 8/8
 
 ## Phase 2 — Core mechanics
 
@@ -68,16 +70,14 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 - [x] [Chapter 30. Quantum Machine Learning](book/part-11-applications/30-quantum-machine-learning.md) — *draft* — sections 9/9
 - [x] [Chapter 31. Quantum Sensing, Metrology, and Tomography](book/part-11-applications/31-quantum-sensing-metrology-and-tomography.md) — *draft* — sections 6/6
 - [x] [Chapter 32. Adjacent Computational Models](book/part-12-adjacent-models/32-adjacent-computational-models.md) — *draft* — sections 10/10
-- [ ] [Chapter 33. Quantum Communication and Networking](book/part-12-adjacent-models/33-quantum-communication-and-networking.md) — *stub* — sections 0/6
+- [x] [Chapter 33. Quantum Communication and Networking](book/part-12-adjacent-models/33-quantum-communication-and-networking.md) — *draft* — sections 6/6
 
 ## Phase 6 — Orientation, epistemics, closure
 
-- [ ] [Preface](book/00-front-matter/00-preface.md) — *stub* — sections 0/8
 - [ ] [Recommended / Assumed Background and Self-Check](book/00-front-matter/01-background-and-self-check.md) — *stub* — sections 0/7
 - [ ] [Chapter 1. Why Quantum Computing Exists](book/part-01-orientation/01-why-quantum-computing-exists.md) — *stub* — sections 0/6
 - [ ] [Chapter 2. Classical-to-Quantum Contrast](book/part-01-orientation/02-classical-to-quantum-contrast.md) — *stub* — sections 0/7
 - [ ] [Chapter 3. Physical Intuition Behind Quantum Mechanics](book/part-01-orientation/03-physical-intuition.md) — *stub* — sections 0/10
 - [x] [Chapter 34. Bridging Quantum Computing to Familiar Engineering Ideas](book/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md) — *draft* — sections 9/9
-- [ ] [Chapter 35. Interpretational and Conceptual Pitfalls](book/part-13-perspective-and-direction/35-interpretational-and-conceptual-pitfalls.md) — *stub* — sections 0/6
-- [ ] [Chapter 36. How to Judge Claims in Quantum Computing](book/part-13-perspective-and-direction/36-how-to-judge-claims.md) — *stub* — sections 0/8
+- [x] [Chapter 35. Interpretational and Conceptual Pitfalls](book/part-13-perspective-and-direction/35-interpretational-and-conceptual-pitfalls.md) — *draft* — sections 14/14
 - [ ] [Chapter 37. Endgame](book/part-13-perspective-and-direction/37-endgame.md) — *stub* — sections 0/9
