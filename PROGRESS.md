@@ -9,10 +9,10 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 ## Summary
 
 - **Files total:** 45
-- **Started (past `stub`):** 4 / 45
-- **Completed (`draft` or later):** 4 / 45
+- **Started (past `stub`):** 5 / 45
+- **Completed (`draft` or later):** 5 / 45
 
-- **Phase 1 (Foundations):** started 3/6, completed 3/6
+- **Phase 1 (Foundations):** started 4/6, completed 4/6
 - **Phase 2 (Core mechanics):** started 1/7, completed 1/7
 - **Phase 3 (Algorithms and complexity):** started 0/5, completed 0/5
 - **Phase 4 (Real systems):** started 0/7, completed 0/7
@@ -25,7 +25,7 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 - [x] [Appendix A. Notation Reference](book/99-back-matter/appendix-a-notation-reference.md) — *draft* — sections 6/6
 - [x] [Chapter 4. Mathematical Background for Quantum Computing](book/part-02-formalism/04-mathematical-background.md) — *draft* — sections 17/17
 - [x] [Chapter 5. Postulates of Quantum Mechanics for Computing](book/part-02-formalism/05-postulates.md) — *draft* — sections 14/14
-- [ ] [Chapter 6. The Qubit](book/part-03-qubits/06-the-qubit.md) — *stub* — sections 0/10
+- [x] [Chapter 6. The Qubit](book/part-03-qubits/06-the-qubit.md) — *draft* — sections 10/10
 - [ ] [Chapter 7. Multiple Qubits and Entanglement](book/part-03-qubits/07-multiple-qubits-and-entanglement.md) — *stub* — sections 0/13
 
 ## Phase 2 — Core mechanics
