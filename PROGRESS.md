@@ -9,11 +9,11 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 ## Summary
 
 - **Files total:** 45
-- **Started (past `stub`):** 10 / 45
-- **Completed (`draft` or later):** 10 / 45
+- **Started (past `stub`):** 11 / 45
+- **Completed (`draft` or later):** 11 / 45
 
-- **Phase 1 (Foundations):** started 6/7, completed 6/7
-- **Phase 2 (Core mechanics):** started 4/8, completed 4/8
+- **Phase 1 (Foundations):** started 7/8, completed 7/8
+- **Phase 2 (Core mechanics):** started 4/7, completed 4/7
 - **Phase 3 (Algorithms and complexity):** started 0/5, completed 0/5
 - **Phase 4 (Real systems):** started 0/7, completed 0/7
 - **Phase 5 (Practice and applications):** started 0/9, completed 0/9
@@ -28,6 +28,7 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 - [x] [Chapter 6. The Qubit](book/part-03-qubits/06-the-qubit.md) — *draft* — sections 10/10
 - [x] [Chapter 7. Multiple Qubits and Entanglement](book/part-03-qubits/07-multiple-qubits-and-entanglement.md) — *draft* — sections 13/13
 - [x] [Chapter 8. Quantum Gates](book/part-04-gates-and-circuits/08-quantum-gates.md) — *draft* — sections 14/14
+- [x] [Chapter 9. Quantum Circuits](book/part-04-gates-and-circuits/09-quantum-circuits.md) — *draft* — sections 13/13
 
 ## Phase 2 — Core mechanics
 
@@ -35,7 +36,6 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 - [x] [Appendix C. Useful Identities and Decompositions](book/99-back-matter/appendix-c-identities-and-decompositions.md) — *draft* — sections 6/6
 - [x] [Appendix D. Suggested Reading and Reference Papers](book/99-back-matter/appendix-d-suggested-reading.md) — *draft* — sections 8/8
 - [x] [Appendix E. Glossary](book/99-back-matter/appendix-e-glossary.md) — *draft* — sections 7/7
-- [ ] [Chapter 9. Quantum Circuits](book/part-04-gates-and-circuits/09-quantum-circuits.md) — *stub* — sections 0/13
 - [ ] [Chapter 10. Core Quantum Phenomena from a Computational View](book/part-04-gates-and-circuits/10-core-quantum-phenomena.md) — *stub* — sections 0/7
 - [ ] [Chapter 11. Measurement Theory](book/part-05-measurement-and-information/11-measurement-theory.md) — *stub* — sections 0/7
 - [ ] [Chapter 12. Quantum Information Theory](book/part-05-measurement-and-information/12-quantum-information-theory.md) — *stub* — sections 0/11
