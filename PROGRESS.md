@@ -9,14 +9,14 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 ## Summary
 
 - **Files total:** 45
-- **Started (past `stub`):** 19 / 45
-- **Completed (`draft` or later):** 19 / 45
+- **Started (past `stub`):** 28 / 45
+- **Completed (`draft` or later):** 28 / 45
 
-- **Phase 1 (Foundations):** started 14/15, completed 14/15
+- **Phase 1 (Foundations):** started 17/18, completed 17/18
 - **Phase 2 (Core mechanics):** started 5/5, completed 5/5
-- **Phase 3 (Algorithms and complexity):** started 0/1, completed 0/1
-- **Phase 4 (Real systems):** started 0/7, completed 0/7
-- **Phase 5 (Practice and applications):** started 0/8, completed 0/8
+- **Phase 3 (Algorithms and complexity):** started 1/1, completed 1/1
+- **Phase 4 (Real systems):** started 5/5, completed 5/5
+- **Phase 5 (Practice and applications):** started 0/7, completed 0/7
 - **Phase 6 (Orientation, epistemics, closure):** started 0/9, completed 0/9
 
 ## Phase 1 — Foundations
@@ -35,6 +35,9 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 - [x] [Chapter 14. Foundational Algorithms](book/part-06-algorithms/14-foundational-algorithms.md) — *draft* — sections 9/9
 - [x] [Chapter 15. Landmark Quantum Algorithms](book/part-06-algorithms/15-landmark-quantum-algorithms.md) — *draft* — sections 10/10
 - [x] [Chapter 16. Modern Algorithmic Frontier](book/part-06-algorithms/16-modern-algorithmic-frontier.md) — *draft* — sections 8/8
+- [x] [Chapter 18. Noise, Decoherence, and Errors](book/part-08-noise-and-qec/18-noise-decoherence-and-errors.md) — *draft* — sections 18/18
+- [x] [Chapter 20. Quantum Hardware Platforms](book/part-09-hardware-and-software/20-quantum-hardware-platforms.md) — *draft* — sections 12/12
+- [x] [Chapter 25. NISQ and the Early Fault-Tolerant Era](book/part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md) — *draft* — sections 6/6
 - [x] [Chapter 26. Practical Access and Hands-On Work](book/part-10-practice-and-era/26-practical-access-and-hands-on-work.md) — *draft* — sections 7/7
 
 ## Phase 2 — Core mechanics
@@ -47,21 +50,18 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 
 ## Phase 3 — Algorithms and complexity
 
-- [ ] [Chapter 17. Complexity Theory Around Quantum Computing](book/part-07-complexity/17-complexity-theory.md) — *stub* — sections 0/13
+- [x] [Chapter 17. Complexity Theory Around Quantum Computing](book/part-07-complexity/17-complexity-theory.md) — *draft* — sections 13/13
 
 ## Phase 4 — Real systems
 
-- [ ] [Chapter 18. Noise, Decoherence, and Errors](book/part-08-noise-and-qec/18-noise-decoherence-and-errors.md) — *stub* — sections 0/18
-- [ ] [Chapter 19. Quantum Error Correction and Fault Tolerance](book/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md) — *stub* — sections 0/23
-- [ ] [Chapter 20. Quantum Hardware Platforms](book/part-09-hardware-and-software/20-quantum-hardware-platforms.md) — *stub* — sections 0/12
-- [ ] [Chapter 21. Quantum Control and Electronics](book/part-09-hardware-and-software/21-quantum-control-and-electronics.md) — *stub* — sections 0/14
-- [ ] [Chapter 22. Hardware Engineering Metrics](book/part-09-hardware-and-software/22-hardware-engineering-metrics.md) — *stub* — sections 0/10
-- [ ] [Chapter 23. Quantum Programming, Compilation, and Tooling](book/part-09-hardware-and-software/23-quantum-programming-compilation-and-tooling.md) — *stub* — sections 0/15
-- [ ] [Chapter 24. Classical Simulation of Quantum Systems](book/part-09-hardware-and-software/24-classical-simulation-of-quantum-systems.md) — *stub* — sections 0/15
+- [x] [Chapter 19. Quantum Error Correction and Fault Tolerance](book/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md) — *draft* — sections 23/23
+- [x] [Chapter 21. Quantum Control and Electronics](book/part-09-hardware-and-software/21-quantum-control-and-electronics.md) — *draft* — sections 14/14
+- [x] [Chapter 22. Hardware Engineering Metrics](book/part-09-hardware-and-software/22-hardware-engineering-metrics.md) — *draft* — sections 14/14
+- [x] [Chapter 23. Quantum Programming, Compilation, and Tooling](book/part-09-hardware-and-software/23-quantum-programming-compilation-and-tooling.md) — *draft* — sections 15/15
+- [x] [Chapter 24. Classical Simulation of Quantum Systems](book/part-09-hardware-and-software/24-classical-simulation-of-quantum-systems.md) — *draft* — sections 15/15
 
 ## Phase 5 — Practice and applications
 
-- [ ] [Chapter 25. NISQ and the Early Fault-Tolerant Era](book/part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md) — *stub* — sections 0/6
 - [ ] [Chapter 27. Cryptography and Security](book/part-11-applications/27-cryptography-and-security.md) — *stub* — sections 0/6
 - [ ] [Chapter 28. Scientific Computing and Physical Simulation](book/part-11-applications/28-scientific-computing-and-physical-simulation.md) — *stub* — sections 0/8
 - [ ] [Chapter 29. Optimization, Finance, and Industrial Use Cases](book/part-11-applications/29-optimization-finance-and-industrial.md) — *stub* — sections 0/6
