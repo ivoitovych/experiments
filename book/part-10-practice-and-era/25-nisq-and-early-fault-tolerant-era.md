@@ -48,7 +48,7 @@ The takeaway: NISQ machines are wide but shallow. Algorithms designed for the re
 
 ## 25.3 Variational Algorithms in Practice
 
-Variational algorithms — VQE, QAOA, and the broader **variational quantum eigensolver** family (Chapter 17) — were the field's bet that shallow circuits, looped through a classical optimiser, could extract useful information from NISQ devices. The bet has not paid off as cleanly as hoped, but the techniques developed in pursuit of it are part of how anything runs on noisy hardware today.
+Variational algorithms — VQE, QAOA, and the broader **variational** family (§§15.7–15.9) — were the field's bet that shallow circuits, looped through a classical optimiser, could extract useful information from NISQ devices. The bet has not paid off as cleanly as hoped, but the techniques developed in pursuit of it are part of how anything runs on noisy hardware today.
 
 The basic structure is: prepare a parameterised state $|\psi(\vec\theta)\rangle$ with a shallow circuit, measure an expectation value $\langle \psi(\vec\theta) | H | \psi(\vec\theta) \rangle$ for some problem Hamiltonian $H$, feed the value to a classical optimiser, and iterate. The hope was that *expressibility* of the ansatz and *trainability* of the optimiser would suffice to find useful ground states or combinatorial optima, even with imperfect gates, because the variational principle is in some sense robust: any state the circuit prepares gives a valid upper bound on the ground-state energy.
 
