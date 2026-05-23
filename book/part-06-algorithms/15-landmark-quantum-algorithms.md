@@ -24,7 +24,7 @@ The classical reduction (Miller, Rabin): pick a random $a$ coprime to $N$; find 
 
 The quantum order-finding subroutine: prepare two registers of $2n$ and $n$ qubits; apply $H^{\otimes 2n}$ to the first; query $U_a |x\rangle|y\rangle = |x\rangle|a^x y \mod N\rangle$ controlled on the first register; apply the QFT $F_{2^{2n}}$ (in the book's negative-exponent convention, §14.5) to the first register; measure. The measurement returns a value close to a rational $s/r$ with $s \in \\{0, 1, \ldots, r-1\\}$; continued-fraction expansion recovers $r$ with high probability. Total quantum gate count is $O(n^2 \log n \log\log n)$ using Schönhage–Strassen modular exponentiation, dominated by the modular-exponentiation step (the QFT is "only" $O(n^2)$).
 
-The implication, when (if) fault-tolerant quantum computers exist at the relevant scale, is that RSA and the discrete-log family of public-key cryptosystems are broken. This is the motivation for **post-quantum cryptography** (Chapter 26) and for the NIST standardisation effort that finalised CRYSTALS-Kyber and CRYSTALS-Dilithium in 2024.
+The implication, when (if) fault-tolerant quantum computers exist at the relevant scale, is that RSA and the discrete-log family of public-key cryptosystems are broken. This is the motivation for **post-quantum cryptography** (Chapter 27) and for the NIST standardisation effort that finalised CRYSTALS-Kyber and CRYSTALS-Dilithium in 2024.
 
 ## 15.3 Factoring
 
@@ -84,7 +84,7 @@ The **Variational Quantum Eigensolver (VQE)** is the prototype VQA, targeting th
 
 VQE's appeal is that the ansatz can be tailored to the chemistry: **unitary coupled cluster (UCCSD)** uses excitation operators from coupled-cluster theory; **ADAPT-VQE** grows the ansatz one operator at a time based on largest gradient; **hardware-efficient** ansatze ignore chemistry and just minimise depth. UCCSD captures static correlation accurately but has deep circuits; ADAPT-VQE achieves comparable accuracy with shorter circuits at the cost of more classical orchestration.
 
-The practical bottleneck in 2026 is **measurement cost**: a Hamiltonian with $K$ Pauli strings and target precision $\epsilon$ requires $O(K \mathrm{Var}/\epsilon^2)$ shots in the naive scheme. Pauli-string grouping, classical-shadows-based estimation (§11.7), and adaptive measurement allocation reduce this substantially — sometimes by an order of magnitude — but VQE on a 50-orbital active space still requires $10^9$–$10^{12}$ shots, which is several days of real-time device usage. Hardware-noise mitigation via zero-noise extrapolation and probabilistic error cancellation (Chapter 21) tames bias but worsens variance.
+The practical bottleneck in 2026 is **measurement cost**: a Hamiltonian with $K$ Pauli strings and target precision $\epsilon$ requires $O(K \mathrm{Var}/\epsilon^2)$ shots in the naive scheme. Pauli-string grouping, classical-shadows-based estimation (§11.7), and adaptive measurement allocation reduce this substantially — sometimes by an order of magnitude — but VQE on a 50-orbital active space still requires $10^9$–$10^{12}$ shots, which is several days of real-time device usage. Hardware-noise mitigation via zero-noise extrapolation and probabilistic error cancellation (Chapter 18) tames bias but worsens variance.
 
 ## 15.9 Quantum Approximate Optimization Algorithm
 

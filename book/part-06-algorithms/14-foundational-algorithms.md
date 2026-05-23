@@ -72,7 +72,7 @@ Phase estimation is the workhorse subroutine: given a unitary $U$ and an eigenst
 
 Why it works, in one line: the cascade of controlled $U^{2^k}$ writes the phase $\varphi$ into the estimation register in the form $\sum_x e^{2\pi i \varphi x}|x\rangle/\sqrt{2^t}$, which is exactly $F_t^{-1}|2^t \varphi\rangle$ in the book's negative-exponent convention; applying the forward QFT $F_t$ reads $2^t\varphi$ off the register. (With the opposite QFT-sign convention this step is the *inverse* QFT — a frequent source of off-by-a-conjugation bugs.)
 
-The catch lives in the **controlled exponentials** $\mathrm{C}U^{2^k}$. If $U$ is a simple gate, $U^{2^k}$ can be implemented in $O(1)$ gates by squaring. If $U$ is a general unitary, $U^{2^k}$ generally requires $2^k$ applications of $U$, blowing up the gate count. This is why phase estimation is most useful when $U$ admits an efficient power structure (e.g., $U = e^{-iHt}$ via Trotterised simulation, Chapter 15) and not as a universal black-box subroutine. The required precision $t = O(\log(1/\epsilon))$ on the estimation register gives the standard $\epsilon^{-1}$-scaling that distinguishes phase estimation from amplitude estimation.
+The catch lives in the **controlled exponentials** $\mathrm{C}U^{2^k}$. If $U$ is a simple gate, $U^{2^k}$ can be implemented in $O(1)$ gates by squaring. If $U$ is a general unitary, $U^{2^k}$ generally requires $2^k$ applications of $U$, blowing up the gate count. This is why phase estimation is most useful when $U$ admits an efficient power structure (e.g., $U = e^{-iHt}$ via Trotterised simulation, Chapter 16) and not as a universal black-box subroutine. The required precision $t = O(\log(1/\epsilon))$ on the estimation register gives the standard $\epsilon^{-1}$-scaling that distinguishes phase estimation from amplitude estimation.
 
 ## 14.7 Amplitude Amplification
 
@@ -86,7 +86,7 @@ The generalisation does not require the initial state to be a uniform superposit
 
 Amplitude estimation combines Grover's mechanism with phase estimation to *estimate* the marked-amplitude $a = \sin\theta$ rather than just find a marked element. The Grover operator $G$ has eigenvalues $e^{\pm 2i\theta}$ on the 2D subspace; running phase estimation with $G$ as the unitary recovers $\theta$ (and hence $a$) to precision $\epsilon$ with $O(1/\epsilon)$ Grover iterations.
 
-Compared to classical Monte-Carlo estimation of $a$, which needs $O(1/\epsilon^2)$ samples to hit precision $\epsilon$, amplitude estimation gives a **quadratic speedup**: $O(1/\epsilon)$ queries instead. This is the source of many quantum advantages in numerical computation, including quantum Monte-Carlo, option pricing (with caveats — Chapter 27), and partition function estimation.
+Compared to classical Monte-Carlo estimation of $a$, which needs $O(1/\epsilon^2)$ samples to hit precision $\epsilon$, amplitude estimation gives a **quadratic speedup**: $O(1/\epsilon)$ queries instead. This is the source of many quantum advantages in numerical computation, including quantum Monte-Carlo, option pricing (with caveats — Chapter 29), and partition function estimation.
 
 Several iteration-friendly variants exist. **Iterative amplitude estimation** drops the QFT and uses adaptive Grover iterations with classical post-processing, trading a $\log$ factor for shallower circuits — easier to run on near-term hardware. **Maximum-likelihood amplitude estimation** uses repeated Grover iterations with varying counts and fits the success probabilities to recover $a$. The shallow variants are the standard route on present-day devices, where deep phase-estimation circuits are infeasible.
 
@@ -106,7 +106,7 @@ The unifying message: every known exponential quantum speedup outside Hamiltonia
 
 ## 14.10 Bridge to Chapter 15
 
-This chapter assembled the **primitives**: Hadamard sandwich, phase kickback, QFT, phase estimation, amplitude amplification, amplitude estimation, abelian HSP. Chapter 15 turns to the **landmark algorithms** that combine these — Shor's factoring, Grover's search in its complete form, the HHL linear-systems algorithm, and Hamiltonian simulation — each of which uses two or three of the primitives above as subroutines. Chapter 16 then covers the modern frontier (variational, quantum machine learning, simulation algorithms post-2020).
+This chapter assembled the **primitives**: Hadamard sandwich, phase kickback, QFT, phase estimation, amplitude amplification, amplitude estimation, abelian HSP. Chapter 15 turns to the **landmark algorithms** that combine these — Shor's factoring, Grover's search in its complete form, the HHL linear-systems algorithm, quantum walks, and the near-term variational algorithms (VQE, QAOA) — each of which uses one or more of the primitives above as subroutines. Chapter 16 then covers the modern frontier: Hamiltonian simulation, block encoding, qubitization, and the quantum singular value transformation that unifies much of the post-2010 toolbox.
 
 **Sanity checks before moving on.**
 
