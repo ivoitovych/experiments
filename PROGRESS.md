@@ -9,14 +9,14 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 ## Summary
 
 - **Files total:** 45
-- **Started (past `stub`):** 33 / 45
-- **Completed (`draft` or later):** 33 / 45
+- **Started (past `stub`):** 34 / 45
+- **Completed (`draft` or later):** 34 / 45
 
 - **Phase 1 (Foundations):** started 17/18, completed 17/18
 - **Phase 2 (Core mechanics):** started 5/5, completed 5/5
 - **Phase 3 (Algorithms and complexity):** started 1/1, completed 1/1
 - **Phase 4 (Real systems):** started 5/5, completed 5/5
-- **Phase 5 (Practice and applications):** started 5/7, completed 5/7
+- **Phase 5 (Practice and applications):** started 6/7, completed 6/7
 - **Phase 6 (Orientation, epistemics, closure):** started 0/9, completed 0/9
 
 ## Phase 1 — Foundations
@@ -67,7 +67,7 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 - [x] [Chapter 29. Optimization, Finance, and Industrial Use Cases](book/part-11-applications/29-optimization-finance-and-industrial.md) — *draft* — sections 6/6
 - [x] [Chapter 30. Quantum Machine Learning](book/part-11-applications/30-quantum-machine-learning.md) — *draft* — sections 9/9
 - [x] [Chapter 31. Quantum Sensing, Metrology, and Tomography](book/part-11-applications/31-quantum-sensing-metrology-and-tomography.md) — *draft* — sections 6/6
-- [ ] [Chapter 32. Adjacent Computational Models](book/part-12-adjacent-models/32-adjacent-computational-models.md) — *stub* — sections 0/6
+- [x] [Chapter 32. Adjacent Computational Models](book/part-12-adjacent-models/32-adjacent-computational-models.md) — *draft* — sections 10/10
 - [ ] [Chapter 33. Quantum Communication and Networking](book/part-12-adjacent-models/33-quantum-communication-and-networking.md) — *stub* — sections 0/6
 
 ## Phase 6 — Orientation, epistemics, closure
