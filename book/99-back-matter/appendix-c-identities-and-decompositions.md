@@ -243,7 +243,7 @@ $$
 
 - These four relations generate the action of CNOT on the full two-qubit
   Pauli group and are the workhorse identities of the stabilizer formalism
-  (Chapter 23).
+  (§19.8).
 - A useful mnemonic: $X$ copies *forward* (control to target); $Z$ copies
   *backward* (target to control); single-factor $X$ on the target and
   single-factor $Z$ on the control are fixed.
@@ -281,9 +281,9 @@ $$
 
 with single-qubit unitaries $A_1, A_2, B_1, B_2$ and real coefficients
 $c_x, c_y, c_z$. The middle factor is the **non-local part** of $U$; the
-outer factors are local. A constructive proof and the full parameter
-extraction live in Chapter 9 (with the broader Cartan-decomposition
-context in Chapter 23).
+outer factors are local. The decomposition and the full parameter
+extraction are developed in §8.14 (with the broader compilation context in
+Chapter 23).
 
 - The non-local part lives in a three-real-parameter subgroup; the local
   unitaries account for the remaining twelve real parameters of
@@ -296,8 +296,8 @@ context in Chapter 23).
 $U \in \mathrm{U}(4)$ can be implemented with at most **three CNOTs** plus
 single-qubit gates; gates with extra structure (such as $\mathrm{SWAP}$,
 which uses three, or any local unitary $A_1 \otimes A_2$, which uses
-zero) saturate strictly less. The proof goes through the KAK form above
-and is given in Chapter 9.
+zero) saturate strictly less. The result goes through the KAK form above
+and is given in §8.14.
 
 - Two-CNOT decomposition is enough iff the KAK coefficient vector
   $(c_x, c_y, c_z)$ has $c_z = 0$ after relabelling axes.
@@ -313,9 +313,9 @@ $$
 
 where $\tilde V$ is the standard $T / T^\dagger$ ladder of two-CNOT-each
 controlled-$\sqrt X$ stages — six CNOTs plus seven $T$ or $T^\dagger$ gates
-plus two Hadamards in the standard textbook layout. The constructive proof
-and the gate count are taken up in Chapter 9 alongside the general
-controlled-unitary construction.
+plus two Hadamards in the standard textbook layout. The construction and
+the gate count are taken up in §8.8 alongside the general
+controlled-unitary construction (§8.7).
 
 - Six CNOTs is optimal for Toffoli without ancilla and without
   measurement; with one ancilla and measurement the count drops further
