@@ -6,7 +6,7 @@
 
 Part 5 closed the static and informational picture: states, channels, entropies, capacities. Part 6 starts the algorithmic one. Before we look at any specific algorithm, this chapter establishes the mental model that makes the algorithms intelligible. It is short, deliberately opinionated, and meant to inoculate against the most common misreadings of what a quantum computer does. The chapter has no new mathematics that is not already in Chapters 5–9; what it adds is a way of looking at the next four chapters.
 
-> **How to read this chapter.** Treat it as a reader's guide for Part 6, not as a results chapter. There are no theorems to prove and no circuits to memorise here. The four "primitives" in §13.1–13.4 and the resource-accounting vocabulary in §13.7 are the parts you will reuse. The complexity-theoretic framing in §13.7 can be skimmed on a first pass and revisited after Chapters 15 (Shor) and 16 (Grover); the warnings about "quantum parallelism" in §13.1 and about "quantum-inspired" methods in §13.5 are worth absorbing before you read any popular account of the field.
+> **How to read this chapter.** Treat it as a reader's guide for Part 6, not as a results chapter. There are no theorems to prove and no circuits to memorise here. The four "primitives" in §13.1–13.4 and the resource-accounting vocabulary in §13.7 are the parts you will reuse. The complexity-theoretic framing in §13.7 can be skimmed on a first pass and revisited after Chapter 15 (Shor and Grover); the warnings about "quantum parallelism" in §13.1 and about "quantum-inspired" methods in §13.5 are worth absorbing before you read any popular account of the field.
 
 ## 13.1 Amplitude Manipulation
 
@@ -40,9 +40,9 @@ $$
 U_f|x\rangle|-\rangle \;=\; (-1)^{f(x)} |x\rangle|-\rangle.
 $$
 
-The function value, originally an output bit, is now a sign on the input register. Deutsch (§14.2), Deutsch–Jozsa (§14.3), Bernstein–Vazirani (§14.4), and Grover (Chapter 16) all start from this rewrite.
+The function value, originally an output bit, is now a sign on the input register. Deutsch (§14.1), Deutsch–Jozsa (§14.2), Bernstein–Vazirani (§14.3), and Grover (Chapter 15) all start from this rewrite.
 
-**Eigenphase kickback.** Given a unitary $U$ with eigenstate $|u\rangle$ on hand, controlled applications of powers $U^{2^k}$ kick the binary expansion of $\varphi$ onto a register of control qubits. This is the engine of phase estimation (§14.5 of Chapter 14 and Chapter 15).
+**Eigenphase kickback.** Given a unitary $U$ with eigenstate $|u\rangle$ on hand, controlled applications of powers $U^{2^k}$ kick the binary expansion of $\varphi$ onto a register of control qubits. This is the engine of phase estimation (§14.6) and of Shor's algorithm (Chapter 15).
 
 The unifying picture: kickback is how a quantum circuit *reads* a function. The circuit cannot directly observe $f(x)$ while preserving superposition, but it can use the function value to *re-phase* the input register, and that re-phasing is precisely the input to the next Hadamard layer. Every algorithm in Chapter 14 is, structurally, three steps: prepare a uniform superposition, use the oracle to imprint a phase pattern, and then apply a transform that turns that phase pattern into a measurable bit string.
 
@@ -70,13 +70,13 @@ $$
 F_N |x\rangle \;=\; \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1} e^{-2\pi i x y / N} |y\rangle,
 $$
 
-implementable on $n = \log_2 N$ qubits with $O(n^2)$ gates (Chapter 15). The QFT diagonalises shift-invariant operations, just like the classical DFT, but it does so *in superposition*, which means a single application acts on the entire input register at once.
+implementable on $n = \log_2 N$ qubits with $O(n^2)$ gates (§14.5). The QFT diagonalises shift-invariant operations, just like the classical DFT, but it does so *in superposition*, which means a single application acts on the entire input register at once.
 
 What this primitive buys algorithmically:
 
 **Periodicity detection.** If a function $f$ on $\mathbb{Z}_N$ is $r$-periodic, then the Fourier transform of a uniform superposition over its support is concentrated on multiples of $N/r$. Measuring after QFT yields a sample from those multiples, and a few samples plus the continued-fraction algorithm recover $r$. This is the structural core of Shor's algorithm (Chapter 15) and of the hidden-subgroup framework (Chapter 14).
 
-**Phase estimation.** Given a unitary $U$ with an eigenstate $|u\rangle$ and eigenphase $e^{2\pi i \varphi}$, the **quantum phase estimation** subroutine outputs an $m$-bit approximation of $\varphi$ in time $O(m^2)$ — exponentially fewer applications of $U$ than the $2^m$ a classical eigenvalue-finding routine would need. Phase estimation is the algorithmic engine of Shor's algorithm (the period $r$ is read off as a phase), of quantum simulation eigenvalue extraction (Chapter 18), and of HHL-style linear-system solvers.
+**Phase estimation.** Given a unitary $U$ with an eigenstate $|u\rangle$ and eigenphase $e^{2\pi i \varphi}$, the **quantum phase estimation** subroutine outputs an $m$-bit approximation of $\varphi$ using $m$ controlled-$U^{2^k}$ stages and an $O(m^2)$-gate inverse QFT. The payoff comes when the powers $U^{2^k}$ are cheap to implement — by repeated squaring of an efficient circuit, as in Shor's modular exponentiation — rather than by $2^k$ literal applications of a black-box $U$ (§14.6 develops this caveat). Phase estimation is the algorithmic engine of Shor's algorithm (the period $r$ is read off as a phase), of quantum-simulation eigenvalue extraction (Chapter 16), and of HHL-style linear-system solvers.
 
 The mindset shift: many problems that look "structureless" in the time/computational-basis domain reveal *exploitable* structure in the Fourier/eigenphase domain. The algorithm designer's question is rarely "can I evaluate $f$ on all inputs?" — it is "is there a transform under which $f$'s relevant features become a measurement outcome?" For abelian groups the answer is "yes, the QFT over the group"; for some non-abelian groups it is "partially"; outside that, transform-domain thinking degrades and other primitives (amplitude amplification) take over.
 
@@ -92,11 +92,11 @@ $$
 
 Three remarks on this template.
 
-**The structure of $f$ determines what $H^{\otimes n}$ produces.** For constant $f$, the post-Hadamard amplitudes concentrate on $|0^n\rangle$. For balanced $f$, they avoid $|0^n\rangle$ entirely (Deutsch–Jozsa, §14.3). For an $f$ hiding a vector $s$ in $\mathbb{Z}_2^n$, the amplitudes are nonzero only on $y$ satisfying $s \cdot y = 0$ (Simon, §14.5). The same circuit, with the same primitives, decodes different structure when fed different oracles.
+**The structure of $f$ determines what $H^{\otimes n}$ produces.** For constant $f$, the post-Hadamard amplitudes concentrate on $|0^n\rangle$. For balanced $f$, they avoid $|0^n\rangle$ entirely (Deutsch–Jozsa, §14.2). For an $f$ hiding a vector $s$ in $\mathbb{Z}_2^n$, the amplitudes are nonzero only on $y$ satisfying $s \cdot y = 0$ (Simon, §14.4). The same circuit, with the same primitives, decodes different structure when fed different oracles.
 
 **The work happens in the oracle phase, not in the transforms.** $H^{\otimes n}$ at the start and the end are universal — they do not know what algorithm they are part of. The algorithmic content lives in *how the oracle's phase pattern interacts with the Fourier basis*. This is why the same Hadamard sandwich shows up in algorithm after algorithm: the basis change is generic; only the phase pattern is problem-specific.
 
-**Amplitude amplification (Grover-style) is a different idiom.** Where Hadamard-sandwich algorithms exploit *structured* phase patterns, amplitude amplification works on *unstructured* search: it iteratively reflects amplitudes about the all-states average and about the marked-states subspace, rotating amplitude into the marked subspace at a rate of $O(1/\sqrt{N})$ per iteration. The number of iterations needed to reach success probability $\Theta(1)$ is $O(\sqrt{N})$, giving the famous quadratic speedup of Chapter 16.
+**Amplitude amplification (Grover-style) is a different idiom.** Where Hadamard-sandwich algorithms exploit *structured* phase patterns, amplitude amplification works on *unstructured* search: it iteratively reflects amplitudes about the all-states average and about the marked-states subspace, rotating amplitude into the marked subspace at a rate of $O(1/\sqrt{N})$ per iteration. The number of iterations needed to reach success probability $\Theta(1)$ is $O(\sqrt{N})$, giving the famous quadratic speedup of Chapter 15.
 
 A caveat that has become loud in the last decade: a quantum-inspired classical algorithm — most prominently Tang's dequantisation of recommendation systems — can sometimes match a claimed quantum speedup *if the input model assumed by the quantum algorithm is correspondingly powerful classically*. Hidden-structure speedups are not automatically immune. Always check whether the input access model the quantum algorithm assumes (block encoding, $\mathrm{QRAM}$, classical sampling oracles) has a fair classical analogue.
 
@@ -128,7 +128,7 @@ $$
 \mathrm{P} \;\subseteq\; \mathrm{BPP} \;\subseteq\; \mathrm{BQP} \;\subseteq\; \mathrm{PSPACE},
 $$
 
-with $\mathrm{BQP} \subseteq \mathrm{AWPP}$ also known. Each containment is conjectured to be strict, but the only one we know how to prove is $\mathrm{BPP} \subsetneq \mathrm{PSPACE}$ via the time hierarchy theorem. Whether $\mathrm{BQP} = \mathrm{BPP}$ — whether quantum computers can be efficiently simulated by classical randomised computers in general — is open. The standard *belief* is no, supported by the candidate hard problems below; the standard *proof* is absent.
+with $\mathrm{BQP} \subseteq \mathrm{AWPP}$ also known. Each containment is conjectured to be strict, but *no* strict separation among $\mathrm{P}$, $\mathrm{BPP}$, $\mathrm{BQP}$, and $\mathrm{PSPACE}$ has been proved; the only nearby unconditional separation is the coarse $\mathrm{P} \subsetneq \mathrm{EXP}$ from the time hierarchy theorem (§17.1). Whether $\mathrm{BQP} = \mathrm{BPP}$ — whether quantum computers can be efficiently simulated by classical randomised computers in general — is open. The standard *belief* is no, supported by the candidate hard problems below; the standard *proof* is absent.
 
 Three regions on the quantum-speedup map are worth fixing in mind.
 
