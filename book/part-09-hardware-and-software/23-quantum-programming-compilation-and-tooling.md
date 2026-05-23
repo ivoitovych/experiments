@@ -167,13 +167,13 @@ More sophisticated approaches.
 
 **Dynamical decoupling (DD).** Insert sequences of $X$ or $XY4$ pulses into idle slots so that low-frequency noise averages out. The pattern is structurally identical to NMR refocusing pulses (and has the same theoretical justification: a fast classical drive cancels the slow noise Hamiltonian to first order in the Magnus expansion). Both Qiskit (`PadDynamicalDecoupling`) and tket apply DD automatically at high optimisation levels.
 
-**Pauli twirling.** Conjugate a noisy gate with random Pauli operators averaged over many shots. The effective noise channel becomes a Pauli channel even if the underlying noise was not, which makes subsequent error-mitigation passes (Chapter 17) simpler. Implemented in Qiskit's `PauliTwirl` and the `mthree` mitigation toolkit.
+**Pauli twirling.** Conjugate a noisy gate with random Pauli operators averaged over many shots. The effective noise channel becomes a Pauli channel even if the underlying noise was not, which makes subsequent error-mitigation passes (Chapter 18) simpler. Implemented in Qiskit's `PauliTwirl` and the `mthree` mitigation toolkit.
 
 **Probabilistic error cancellation (PEC).** Sample circuits from a quasi-probability distribution chosen so that the noise channel inverts in expectation. Implemented in Qiskit Runtime's `Estimator` as the `pec` resilience level.
 
 **Zero-noise extrapolation (ZNE).** Run the circuit at several effective noise scales (achieved by gate stretching or by deliberate folding) and extrapolate the result to zero noise. Implemented in `mitiq` (an SDK-agnostic mitigation library) and exposed in Qiskit Runtime.
 
-The line between "noise-aware compilation" and "error mitigation" (Chapter 17) is conventional: the same techniques appear in both. The compilation framing is useful because it gets the mitigation strategy out of the user's hands and into the toolchain.
+The line between "noise-aware compilation" and "error mitigation" (Chapter 18) is conventional: the same techniques appear in both. The compilation framing is useful because it gets the mitigation strategy out of the user's hands and into the toolchain.
 
 ## 23.11 Resource Estimation
 
