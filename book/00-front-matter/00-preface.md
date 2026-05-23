@@ -320,11 +320,11 @@ in doubt, write out the action on the four basis states explicitly.
 
 The QFT convention used here is the one with a *negative* exponent
 in the forward transform — that is, $F_N |x\rangle = \tfrac{1}{\sqrt
-N} \sum_y e^{-2\pi i x y / N} |y\rangle$. Some SDKs, Qiskit included
-at the time of writing, use the opposite sign. Chapter 4 documents
-the consequences in detail; the short version is that any
-phase-estimation or controlled-phase code copied across the
-convention boundary needs its angles conjugated.
+N} \sum_y e^{-2\pi i x y / N} |y\rangle$, the convention established
+and reasoned through in §4.13. Some treatments and some SDKs use the
+opposite sign. Chapter 4 documents the consequences in detail; the
+short version is that any phase-estimation or controlled-phase code
+copied across the convention boundary needs its angles conjugated.
 
 The Bloch sphere is used freely as a visualisation aid for
 single-qubit states and gates, but no calculation in the book

@@ -54,23 +54,23 @@ Simon's algorithm is the direct ancestor of Shor's. The hidden-subgroup-problem 
 
 ## 14.5 Quantum Fourier Transform
 
-The **quantum Fourier transform** over $\mathbb{Z}_N$ (with $N = 2^n$) is the unitary defined by
+The **quantum Fourier transform** over $\mathbb{Z}_N$ (with $N = 2^n$) is the unitary $F_N$ defined by
 
 $$
-\mathrm{QFT}_N |x\rangle \;=\; \frac{1}{\sqrt N}\sum_{y=0}^{N-1} e^{2\pi i\\, xy / N} |y\rangle.
+F_N |x\rangle \;=\; \frac{1}{\sqrt N}\sum_{y=0}^{N-1} e^{-2\pi i\\, xy / N} |y\rangle.
 $$
 
-For $N = 2$ the QFT is just the Hadamard gate. For general $N$, the QFT factors into an elegant circuit of single-qubit Hadamards and controlled phase gates: on $n$ qubits, $n$ Hadamards interleaved with $O(n^2)$ controlled rotations $\mathrm{C}R_k$, where $R_k = \mathrm{diag}(1, e^{2\pi i / 2^k})$. The total gate count is $O(n^2)$, exponentially better than the $O(N \log N) = O(n 2^n)$ of the classical FFT.
+This is the negative-exponent ("QFT-sign-minus") convention fixed in §4.13; some sources and SDKs use the opposite sign, so check before porting phase angles. For $N = 2$ the QFT is just the Hadamard gate. For general $N$, the QFT factors into an elegant circuit of single-qubit Hadamards and controlled phase gates: on $n$ qubits, $n$ Hadamards interleaved with $O(n^2)$ controlled rotations $\mathrm{C}R_k$, where $R_k = \mathrm{diag}(1, e^{2\pi i / 2^k})$. The total gate count is $O(n^2)$, exponentially better than the $O(N \log N) = O(n 2^n)$ of the classical FFT.
 
 That said, the QFT does not produce the Fourier coefficients in a *read-out* sense: the amplitudes are the Fourier coefficients but you cannot extract them all, only sample. So the QFT is useful precisely when the structure to be exploited *concentrates* the amplitudes — typically because the input state was the output of some structured periodic computation. This is the situation in phase estimation (§14.6) and in Shor's order-finding (§15.1).
 
-A useful sanity check: $\mathrm{QFT}^{-1}_N$ is just the QFT with $e^{2\pi i xy / N}$ replaced by $e^{-2\pi i xy / N}$, implemented by the same circuit run in reverse with conjugate phases. The Solovay–Kitaev caveat (§8.11) bites here too: the controlled phase gates $\mathrm{C}R_k$ have angles $2\pi/2^k$, which must be discretely synthesised in a fault-tolerant compilation. The cost is $O(n^2 \log(n/\epsilon))$ instead of $O(n^2)$ when $\epsilon$-accuracy is required.
+A useful sanity check: $F_N^{-1}$ is just the QFT with $e^{-2\pi i xy / N}$ replaced by $e^{+2\pi i xy / N}$, implemented by the same circuit run in reverse with conjugate phases. The Solovay–Kitaev caveat (§8.11) bites here too: the controlled phase gates $\mathrm{C}R_k$ have angles $2\pi/2^k$, which must be discretely synthesised in a fault-tolerant compilation. The cost is $O(n^2 \log(n/\epsilon))$ instead of $O(n^2)$ when $\epsilon$-accuracy is required.
 
 ## 14.6 Quantum Phase Estimation
 
-Phase estimation is the workhorse subroutine: given a unitary $U$ and an eigenstate $|u\rangle$ with eigenvalue $e^{2\pi i \varphi}$, estimate $\varphi$ to $t$ bits of precision. The circuit uses two registers: an estimation register of $t$ qubits and a system register holding $|u\rangle$. Apply $H^{\otimes t}$, then a cascade of $\mathrm{C}U^{2^k}$ controls (the $k$-th estimation qubit controls $U^{2^k}$), then $\mathrm{QFT}^{-1}_t$, then measure the estimation register. The outcome is an integer whose value divided by $2^t$ is $\varphi$ rounded to $t$ bits with probability $\geq 4/\pi^2$.
+Phase estimation is the workhorse subroutine: given a unitary $U$ and an eigenstate $|u\rangle$ with eigenvalue $e^{2\pi i \varphi}$, estimate $\varphi$ to $t$ bits of precision. The circuit uses two registers: an estimation register of $t$ qubits and a system register holding $|u\rangle$. Apply $H^{\otimes t}$, then a cascade of $\mathrm{C}U^{2^k}$ controls (the $k$-th estimation qubit controls $U^{2^k}$), then the forward QFT $F_t$, then measure the estimation register. The outcome is an integer whose value divided by $2^t$ is $\varphi$ rounded to $t$ bits with probability $\geq 4/\pi^2$.
 
-Why it works, in one line: the cascade of controlled $U^{2^k}$ writes the phase $\varphi$ into the estimation register in the form $\sum_x e^{2\pi i \varphi x}|x\rangle/\sqrt{2^t}$, which is exactly $\mathrm{QFT}|2^t \varphi\rangle$; inverting the QFT reads $2^t\varphi$ off the register.
+Why it works, in one line: the cascade of controlled $U^{2^k}$ writes the phase $\varphi$ into the estimation register in the form $\sum_x e^{2\pi i \varphi x}|x\rangle/\sqrt{2^t}$, which is exactly $F_t^{-1}|2^t \varphi\rangle$ in the book's negative-exponent convention; applying the forward QFT $F_t$ reads $2^t\varphi$ off the register. (With the opposite QFT-sign convention this step is the *inverse* QFT — a frequent source of off-by-a-conjugation bugs.)
 
 The catch lives in the **controlled exponentials** $\mathrm{C}U^{2^k}$. If $U$ is a simple gate, $U^{2^k}$ can be implemented in $O(1)$ gates by squaring. If $U$ is a general unitary, $U^{2^k}$ generally requires $2^k$ applications of $U$, blowing up the gate count. This is why phase estimation is most useful when $U$ admits an efficient power structure (e.g., $U = e^{-iHt}$ via Trotterised simulation, Chapter 15) and not as a universal black-box subroutine. The required precision $t = O(\log(1/\epsilon))$ on the estimation register gives the standard $\epsilon^{-1}$-scaling that distinguishes phase estimation from amplitude estimation.
 

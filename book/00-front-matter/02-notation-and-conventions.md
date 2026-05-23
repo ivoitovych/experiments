@@ -362,9 +362,10 @@ explicit symbolic names:
 - $F_N$ — the **quantum Fourier transform** on $N = 2^n$ dimensions.
   The book uses the negative-exponent convention,
   $F_N |j\rangle = N^{-1/2} \sum_k \omega^{-jk} |k\rangle$ with
-  $\omega = e^{2\pi i / N}$. Qiskit's `QFTGate` uses the opposite
-  sign and therefore corresponds to the inverse of this book's
-  $F_N$; the consequences for phase angles and phase-estimation
+  $\omega = e^{2\pi i / N}$, the "QFT-sign-minus" convention
+  established in §4.13. Sign conventions vary across sources and
+  SDKs, so a transform copied across the convention boundary needs
+  its phase angles conjugated; the consequences for phase-estimation
   readout are spelled out at
   [§4.13](../part-02-formalism/04-mathematical-background.md#413-fourier-transform-basics).
 - $U^\dagger$ as a circuit block — the inverse of a unitary gate
