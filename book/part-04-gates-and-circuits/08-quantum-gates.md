@@ -162,7 +162,7 @@ The compiler's job is to lower a logical circuit, written in the abstract gate s
 
 A **parameterised gate** is a unitary whose form depends on one or more continuous parameters: $R_Z(\theta)$, $R_X(\theta)$, $\mathrm{CR}_Z(\theta)$, $\mathrm{XX}(\theta)$, and so on. Two regimes use parameterised gates extensively.
 
-**Variational algorithms** (VQE, QAOA, Chapter 17). The circuit $U(\vec\theta)$ is a parameterised *ansatz*, and a classical optimiser tunes $\vec\theta$ to minimise some cost function evaluated by repeated measurement. The dominant question becomes how to compute gradients: the **parameter-shift rule** says, for any gate of the form $e^{-i\theta P/2}$ with $P$ Hermitian and eigenvalues $\pm 1$, that
+**Variational algorithms** (VQE, QAOA, Chapter 15). The circuit $U(\vec\theta)$ is a parameterised *ansatz*, and a classical optimiser tunes $\vec\theta$ to minimise some cost function evaluated by repeated measurement. The dominant question becomes how to compute gradients: the **parameter-shift rule** says, for any gate of the form $e^{-i\theta P/2}$ with $P$ Hermitian and eigenvalues $\pm 1$, that
 
 $$
 \partial_\theta \langle O \rangle(\theta) \;=\; \tfrac{1}{2}\bigl[\langle O\rangle(\theta + \tfrac{\pi}{2}) - \langle O\rangle(\theta - \tfrac{\pi}{2})\bigr].
@@ -170,7 +170,7 @@ $$
 
 The gradient is therefore exactly computable from two additional circuit evaluations at shifted parameters, with no finite-difference approximation. Generalisations exist for gates with more eigenvalues.
 
-**Quantum simulation** (Trotter circuits, Chapter 15). Approximating $e^{-iHt}$ for a problem Hamiltonian decomposed as $H = \sum_k H_k$ uses $\mathrm{Trotter}_{\Delta t} = \prod_k e^{-i H_k \Delta t}$ with $\Delta t = t/N$ — each Trotter step is a layer of parameterised exponentials of the $H_k$.
+**Quantum simulation** (Trotter circuits, Chapter 16). Approximating $e^{-iHt}$ for a problem Hamiltonian decomposed as $H = \sum_k H_k$ uses $\mathrm{Trotter}_{\Delta t} = \prod_k e^{-i H_k \Delta t}$ with $\Delta t = t/N$ — each Trotter step is a layer of parameterised exponentials of the $H_k$.
 
 ## 8.14 Gate Decomposition and Synthesis
 
