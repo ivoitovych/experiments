@@ -9,21 +9,25 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 ## Summary
 
 - **Files total:** 45
-- **Started (past `stub`):** 39 / 45
-- **Completed (`draft` or later):** 39 / 45
+- **Started (past `stub`):** 45 / 45
+- **Completed (`draft` or later):** 45 / 45
 
-- **Phase 1 (Foundations):** started 19/20, completed 19/20
+- **Phase 1 (Foundations):** started 25/25, completed 25/25
 - **Phase 2 (Core mechanics):** started 5/5, completed 5/5
 - **Phase 3 (Algorithms and complexity):** started 1/1, completed 1/1
 - **Phase 4 (Real systems):** started 5/5, completed 5/5
 - **Phase 5 (Practice and applications):** started 7/7, completed 7/7
-- **Phase 6 (Orientation, epistemics, closure):** started 2/7, completed 2/7
+- **Phase 6 (Orientation, epistemics, closure):** started 2/2, completed 2/2
 
 ## Phase 1 — Foundations
 
 - [x] [Preface](book/00-front-matter/00-preface.md) — *draft* — sections 11/11
-- [ ] [Notation and Conventions](book/00-front-matter/02-notation-and-conventions.md) — *stub* — sections 0/7
+- [x] [Recommended / Assumed Background and Self-Check](book/00-front-matter/01-background-and-self-check.md) — *draft* — sections 7/7
+- [x] [Notation and Conventions](book/00-front-matter/02-notation-and-conventions.md) — *draft* — sections 7/7
 - [x] [Appendix A. Notation Reference](book/99-back-matter/appendix-a-notation-reference.md) — *draft* — sections 6/6
+- [x] [Chapter 1. Why Quantum Computing Exists](book/part-01-orientation/01-why-quantum-computing-exists.md) — *draft* — sections 6/6
+- [x] [Chapter 2. Classical-to-Quantum Contrast](book/part-01-orientation/02-classical-to-quantum-contrast.md) — *draft* — sections 7/7
+- [x] [Chapter 3. Physical Intuition Behind Quantum Mechanics](book/part-01-orientation/03-physical-intuition.md) — *draft* — sections 10/10
 - [x] [Chapter 4. Mathematical Background for Quantum Computing](book/part-02-formalism/04-mathematical-background.md) — *draft* — sections 17/17
 - [x] [Chapter 5. Postulates of Quantum Mechanics for Computing](book/part-02-formalism/05-postulates.md) — *draft* — sections 14/14
 - [x] [Chapter 6. The Qubit](book/part-03-qubits/06-the-qubit.md) — *draft* — sections 10/10
@@ -41,6 +45,7 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 - [x] [Chapter 25. NISQ and the Early Fault-Tolerant Era](book/part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md) — *draft* — sections 6/6
 - [x] [Chapter 26. Practical Access and Hands-On Work](book/part-10-practice-and-era/26-practical-access-and-hands-on-work.md) — *draft* — sections 7/7
 - [x] [Chapter 36. How to Judge Claims in Quantum Computing](book/part-13-perspective-and-direction/36-how-to-judge-claims.md) — *draft* — sections 8/8
+- [x] [Chapter 37. Endgame](book/part-13-perspective-and-direction/37-endgame.md) — *draft* — sections 9/9
 
 ## Phase 2 — Core mechanics
 
@@ -74,10 +79,5 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 
 ## Phase 6 — Orientation, epistemics, closure
 
-- [ ] [Recommended / Assumed Background and Self-Check](book/00-front-matter/01-background-and-self-check.md) — *stub* — sections 0/7
-- [ ] [Chapter 1. Why Quantum Computing Exists](book/part-01-orientation/01-why-quantum-computing-exists.md) — *stub* — sections 0/6
-- [ ] [Chapter 2. Classical-to-Quantum Contrast](book/part-01-orientation/02-classical-to-quantum-contrast.md) — *stub* — sections 0/7
-- [ ] [Chapter 3. Physical Intuition Behind Quantum Mechanics](book/part-01-orientation/03-physical-intuition.md) — *stub* — sections 0/10
 - [x] [Chapter 34. Bridging Quantum Computing to Familiar Engineering Ideas](book/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md) — *draft* — sections 9/9
 - [x] [Chapter 35. Interpretational and Conceptual Pitfalls](book/part-13-perspective-and-direction/35-interpretational-and-conceptual-pitfalls.md) — *draft* — sections 14/14
-- [ ] [Chapter 37. Endgame](book/part-13-perspective-and-direction/37-endgame.md) — *stub* — sections 0/9
