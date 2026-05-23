@@ -238,7 +238,7 @@ detailed treatment lives in Chapters 14–16.
 - **Hamiltonian simulation.** Implementing $e^{-iHt}$ as a quantum
   circuit to specified precision. Foundational subroutine for phase
   estimation, quantum chemistry, and most "quantum advantage in
-  physics" applications. See Chapter 15 and Chapter 28.
+  physics" applications. See Chapter 16 and Chapter 28.
 - **Oracle.** A black-box unitary $U_f$ implementing
   $|x\rangle|y\rangle \mapsto |x\rangle|y \oplus f(x)\rangle$ (or a
   phase variant). Query complexity counts oracle calls. See
@@ -249,7 +249,7 @@ detailed treatment lives in Chapters 14–16.
   primitive of Shor, HHL, and chemistry. See Chapter 14.
 - **QAOA.** Quantum Approximate Optimization Algorithm. A
   variational hybrid algorithm for combinatorial optimisation built
-  from alternating problem and mixer Hamiltonians. See Chapter 16.
+  from alternating problem and mixer Hamiltonians. See Chapter 15.
 - **QFT.** Quantum Fourier transform on $N = 2^n$ dimensions. This
   book uses the negative-exponent convention
   $F_N |j\rangle = \tfrac{1}{\sqrt{N}} \sum_k \omega^{-jk}\\, |k\rangle$
@@ -278,12 +278,12 @@ detailed treatment lives in Chapters 14–16.
   multiplication unitary. See Chapter 15 and Chapter 27.
 - **Trotterisation.** A product-formula approximation of $e^{-iHt}$
   for $H = \sum_j H_j$, e.g., $e^{-iHt} \approx (e^{-iH_1 t/r} \cdots e^{-iH_k t/r})^r$
-  for large $r$, with controlled error. See Chapter 15.
+  for large $r$, with controlled error. See Chapter 16.
 - **VQE.** Variational Quantum Eigensolver. A hybrid
   classical–quantum algorithm that minimises
   $\langle \psi(\theta) | H | \psi(\theta)\rangle$ over a
   parameterised circuit ansatz to estimate the ground-state energy
-  of $H$. See Chapter 16.
+  of $H$. See Chapter 15.
 
 ## E.4 Hardware Terms
 
