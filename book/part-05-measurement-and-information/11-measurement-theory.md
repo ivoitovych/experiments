@@ -120,7 +120,7 @@ $$
 P_{\mathrm{succ}}^{\max} = \frac{1}{2}\bigl(1 + \tfrac{1}{2}\\|\rho_0 - \rho_1\\|_1\bigr).
 $$
 
-The optimal measurement is the projective measurement onto the positive and negative eigenspaces of the operator $\pi_0\\, \rho_0 - \pi_1\\, \rho_1$. For orthogonal $\rho_0, \rho_1$ the trace distance equals $2$ and the discrimination succeeds with probability $1$; for identical states the trace distance is $0$ and discrimination is a coin flip. The trace distance therefore acquires the operational meaning **"bias of the best discriminator"**, which Chapter 12 generalises further.
+The optimal measurement is the projective measurement onto the positive and negative eigenspaces of the operator $\pi_0\\, \rho_0 - \pi_1\\, \rho_1$. For orthogonal $\rho_0, \rho_1$ the trace norm $\\|\rho_0 - \rho_1\\|_1$ equals $2$ (trace distance $1$) and the discrimination succeeds with probability $1$; for identical states it is $0$ and discrimination is a coin flip. The trace distance therefore acquires the operational meaning **"bias of the best discriminator"**, which Chapter 12 generalises further.
 
 **Unambiguous discrimination** (Ivanovic–Dieks–Peres). Insist that whenever the measurement returns "$\rho_0$" or "$\rho_1$", the answer is correct with probability $1$; the cost is a third outcome "$?$" admitting ignorance. For pure non-orthogonal states $|\psi_0\rangle, |\psi_1\rangle$ with overlap $c = \langle\psi_0|\psi_1\rangle$, the minimum inconclusive probability with equal priors is $P_? = |c|$, achieved by an explicit three-element POVM. Unambiguous discrimination is impossible for non-orthogonal mixed states whose supports overlap — there is no measurement that certifies $\rho_0$ versus $\rho_1$ with zero error on a generic copy.
 
