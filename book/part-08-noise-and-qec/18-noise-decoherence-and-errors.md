@@ -89,7 +89,7 @@ A gate-error budget on a real device sorts into three rough buckets.
 
 The two-qubit fidelity is the *bottleneck* for every fault-tolerance estimate. Each additional decade of two-qubit fidelity translates directly into smaller surface-code patches for the same logical error rate (§19.12).
 
-**The infidelity-vs-error-per-gate gap.** Reported fidelities are *averages* — Clifford-RB returns an average gate error that approximates the depolarising-channel parameter (§18.10), not a worst-case bound. A 99.9% average could hide a 1% worst-case error on a particular Pauli direction. The diamond norm (§12.7) is the proper worst-case metric; it is harder to measure directly, and the field has not standardised reporting it, which is a known gap in the benchmarking conventions.
+**The infidelity-vs-error-per-gate gap.** Reported fidelities are *averages* — Clifford-RB returns an average gate error that approximates the depolarising-channel parameter (§18.10), not a worst-case bound. A 99.9% average could hide a 1% worst-case error on a particular Pauli direction. The diamond norm (§12.6) is the proper worst-case metric; it is harder to measure directly, and the field has not standardised reporting it, which is a known gap in the benchmarking conventions.
 
 ## 18.5 Readout Errors
 
