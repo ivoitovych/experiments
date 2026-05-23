@@ -9,14 +9,14 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 ## Summary
 
 - **Files total:** 45
-- **Started (past `stub`):** 17 / 45
-- **Completed (`draft` or later):** 17 / 45
+- **Started (past `stub`):** 19 / 45
+- **Completed (`draft` or later):** 19 / 45
 
-- **Phase 1 (Foundations):** started 12/13, completed 12/13
+- **Phase 1 (Foundations):** started 14/15, completed 14/15
 - **Phase 2 (Core mechanics):** started 5/5, completed 5/5
-- **Phase 3 (Algorithms and complexity):** started 0/2, completed 0/2
+- **Phase 3 (Algorithms and complexity):** started 0/1, completed 0/1
 - **Phase 4 (Real systems):** started 0/7, completed 0/7
-- **Phase 5 (Practice and applications):** started 0/9, completed 0/9
+- **Phase 5 (Practice and applications):** started 0/8, completed 0/8
 - **Phase 6 (Orientation, epistemics, closure):** started 0/9, completed 0/9
 
 ## Phase 1 — Foundations
@@ -34,6 +34,8 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 - [x] [Chapter 13. The Quantum Algorithms Mindset](book/part-06-algorithms/13-quantum-algorithms-mindset.md) — *draft* — sections 8/8
 - [x] [Chapter 14. Foundational Algorithms](book/part-06-algorithms/14-foundational-algorithms.md) — *draft* — sections 9/9
 - [x] [Chapter 15. Landmark Quantum Algorithms](book/part-06-algorithms/15-landmark-quantum-algorithms.md) — *draft* — sections 10/10
+- [x] [Chapter 16. Modern Algorithmic Frontier](book/part-06-algorithms/16-modern-algorithmic-frontier.md) — *draft* — sections 8/8
+- [x] [Chapter 26. Practical Access and Hands-On Work](book/part-10-practice-and-era/26-practical-access-and-hands-on-work.md) — *draft* — sections 7/7
 
 ## Phase 2 — Core mechanics
 
@@ -45,7 +47,6 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 
 ## Phase 3 — Algorithms and complexity
 
-- [ ] [Chapter 16. Modern Algorithmic Frontier](book/part-06-algorithms/16-modern-algorithmic-frontier.md) — *stub* — sections 0/8
 - [ ] [Chapter 17. Complexity Theory Around Quantum Computing](book/part-07-complexity/17-complexity-theory.md) — *stub* — sections 0/13
 
 ## Phase 4 — Real systems
@@ -61,7 +62,6 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 ## Phase 5 — Practice and applications
 
 - [ ] [Chapter 25. NISQ and the Early Fault-Tolerant Era](book/part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md) — *stub* — sections 0/6
-- [ ] [Chapter 26. Practical Access and Hands-On Work](book/part-10-practice-and-era/26-practical-access-and-hands-on-work.md) — *stub* — sections 0/7
 - [ ] [Chapter 27. Cryptography and Security](book/part-11-applications/27-cryptography-and-security.md) — *stub* — sections 0/6
 - [ ] [Chapter 28. Scientific Computing and Physical Simulation](book/part-11-applications/28-scientific-computing-and-physical-simulation.md) — *stub* — sections 0/8
 - [ ] [Chapter 29. Optimization, Finance, and Industrial Use Cases](book/part-11-applications/29-optimization-finance-and-industrial.md) — *stub* — sections 0/6
