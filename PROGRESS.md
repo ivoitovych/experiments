@@ -9,15 +9,15 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 ## Summary
 
 - **Files total:** 45
-- **Started (past `stub`):** 5 / 45
-- **Completed (`draft` or later):** 5 / 45
+- **Started (past `stub`):** 9 / 45
+- **Completed (`draft` or later):** 9 / 45
 
-- **Phase 1 (Foundations):** started 4/6, completed 4/6
-- **Phase 2 (Core mechanics):** started 1/7, completed 1/7
+- **Phase 1 (Foundations):** started 5/6, completed 5/6
+- **Phase 2 (Core mechanics):** started 4/9, completed 4/9
 - **Phase 3 (Algorithms and complexity):** started 0/5, completed 0/5
 - **Phase 4 (Real systems):** started 0/7, completed 0/7
 - **Phase 5 (Practice and applications):** started 0/9, completed 0/9
-- **Phase 6 (Orientation, epistemics, closure):** started 0/11, completed 0/11
+- **Phase 6 (Orientation, epistemics, closure):** started 0/9, completed 0/9
 
 ## Phase 1 — Foundations
 
@@ -26,12 +26,14 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 - [x] [Chapter 4. Mathematical Background for Quantum Computing](book/part-02-formalism/04-mathematical-background.md) — *draft* — sections 17/17
 - [x] [Chapter 5. Postulates of Quantum Mechanics for Computing](book/part-02-formalism/05-postulates.md) — *draft* — sections 14/14
 - [x] [Chapter 6. The Qubit](book/part-03-qubits/06-the-qubit.md) — *draft* — sections 10/10
-- [ ] [Chapter 7. Multiple Qubits and Entanglement](book/part-03-qubits/07-multiple-qubits-and-entanglement.md) — *stub* — sections 0/13
+- [x] [Chapter 7. Multiple Qubits and Entanglement](book/part-03-qubits/07-multiple-qubits-and-entanglement.md) — *draft* — sections 13/13
 
 ## Phase 2 — Core mechanics
 
 - [x] [Appendix B. Common Gates and Their Matrices](book/99-back-matter/appendix-b-common-gates.md) — *draft* — sections 9/9
-- [ ] [Appendix C. Useful Identities and Decompositions](book/99-back-matter/appendix-c-identities-and-decompositions.md) — *stub* — sections 0/6
+- [x] [Appendix C. Useful Identities and Decompositions](book/99-back-matter/appendix-c-identities-and-decompositions.md) — *draft* — sections 6/6
+- [x] [Appendix D. Suggested Reading and Reference Papers](book/99-back-matter/appendix-d-suggested-reading.md) — *draft* — sections 8/8
+- [x] [Appendix E. Glossary](book/99-back-matter/appendix-e-glossary.md) — *draft* — sections 7/7
 - [ ] [Chapter 8. Quantum Gates](book/part-04-gates-and-circuits/08-quantum-gates.md) — *stub* — sections 0/14
 - [ ] [Chapter 9. Quantum Circuits](book/part-04-gates-and-circuits/09-quantum-circuits.md) — *stub* — sections 0/13
 - [ ] [Chapter 10. Core Quantum Phenomena from a Computational View](book/part-04-gates-and-circuits/10-core-quantum-phenomena.md) — *stub* — sections 0/7
@@ -72,8 +74,6 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 
 - [ ] [Preface](book/00-front-matter/00-preface.md) — *stub* — sections 0/8
 - [ ] [Recommended / Assumed Background and Self-Check](book/00-front-matter/01-background-and-self-check.md) — *stub* — sections 0/7
-- [ ] [Appendix D. Suggested Reading and Reference Papers](book/99-back-matter/appendix-d-suggested-reading.md) — *stub* — sections 0/8
-- [ ] [Appendix E. Glossary](book/99-back-matter/appendix-e-glossary.md) — *stub* — sections 0/7
 - [ ] [Chapter 1. Why Quantum Computing Exists](book/part-01-orientation/01-why-quantum-computing-exists.md) — *stub* — sections 0/6
 - [ ] [Chapter 2. Classical-to-Quantum Contrast](book/part-01-orientation/02-classical-to-quantum-contrast.md) — *stub* — sections 0/7
 - [ ] [Chapter 3. Physical Intuition Behind Quantum Mechanics](book/part-01-orientation/03-physical-intuition.md) — *stub* — sections 0/10
