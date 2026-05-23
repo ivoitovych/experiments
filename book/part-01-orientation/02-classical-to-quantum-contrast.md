@@ -2,35 +2,130 @@
 
 [← Previous: Chapter 1](01-why-quantum-computing-exists.md) · [Table of Contents](../../README.md) · [Next: Chapter 3 →](03-physical-intuition.md)
 
-> **Status:** stub · **Phase:** 6 · **Sections drafted:** 0 / 7
+> **Status:** draft · **Phase:** 1 · **Sections drafted:** 7 / 7
+
+Chapter 1 argued that a separate model of computation exists because certain physical systems are intractable to simulate classically. This chapter draws the dividing line directly: it lists, side by side and without yet introducing formal machinery, the places where the quantum model of computation departs from the classical one you already know. The aim is not precision — Chapters 4, 5, and 6 cover that — but orientation. By the end of this chapter you should be able to answer, for any classical concept you reach for, the question "does this transfer, transfer with modification, or fail entirely?" Each section closes with the answer for one such concept, in roughly the order an experienced developer encounters them while reading a quantum tutorial: bits, randomness, reversibility, gates, state-space size, hardware realisation, and control flow.
+
+> **How to read this chapter.** §§2.1–2.2 are the conceptual core: what changes when discrete bits become continuous amplitudes, and what "probability with interference" means. §§2.3–2.4 cover the structural consequences (reversibility, gate sets). §2.5 introduces the exponential-state-space picture and names the complexity classes ($\mathrm{P}$, $\mathrm{NP}$, $\mathrm{BQP}$) at recognition level only — the rigorous treatment is Chapter 17. §§2.6–2.7 close the loop with the physical and operational realities (hardware, noise, the Deutsch worked example, entanglement-assisted communication). Nothing here is load-bearing for the rest of the book; everything reappears with proper formalism in Part II. Read for shape, not for derivations.
 
 ## 2.1 Bits vs. Qubits
 
-_TODO_
+A classical bit is the simplest non-trivial computational primitive: a value drawn from the two-element set $\\{0, 1\\}$. The set is discrete. The value is definite. At any moment one of the two states is the actual state, and the other is not. The hardware that stores the bit — a flip-flop, an SRAM cell, a magnetic domain — is engineered specifically to push borderline cases away from the midpoint and to snap to one of the two stable states. The discreteness is not just a mathematical convenience; it is the central engineering invariant of digital electronics.
+
+A qubit is fundamentally different. A qubit's state is a unit vector in a two-dimensional complex vector space, written
+
+$$
+|\psi\rangle \;=\; \alpha \\, |0\rangle + \beta \\, |1\rangle, \qquad \alpha, \beta \in \mathbb{C}, \qquad |\alpha|^2 + |\beta|^2 = 1.
+$$
+
+The pair $(\alpha, \beta)$ is continuous, not discrete. Two complex numbers, four real numbers, with two real constraints (unit norm and an irrelevant global phase) — that leaves two real parameters of freedom for a single qubit. So a qubit's *configuration space* is a sphere (the Bloch sphere of Chapter 6), not a two-element set. Even saying "a qubit is in state $|0\rangle$ or $|1\rangle$ with some probability" undersells the picture, because the phase of $\beta$ relative to $\alpha$ is not a probability; it is a coordinate that affects the *outcome* of every subsequent operation.
+
+When a qubit is measured in the computational basis, the outcome is one of the two classical bits $0$ or $1$, with probability $|\alpha|^2$ and $|\beta|^2$ respectively. The discreteness comes back, but only at the readout boundary. *Inside* the computation, the qubit is a continuous object; *outside* the computation, you see a classical bit. The whole game of quantum algorithm design is steering the continuous amplitudes during the computation so that the discrete readout at the end is informative.
+
+The contrast in one sentence: a classical bit *is* one of two values; a qubit is a vector that *evaluates to* one of two values when forced to.
 
 ## 2.2 Deterministic, Probabilistic, and Quantum Computation
 
-_TODO_
+A second axis distinguishes three models of computation that the rest of the book will compare repeatedly: deterministic classical, probabilistic classical, and quantum.
+
+**Deterministic classical computation** maps an $n$-bit input to an $n$-bit (or $m$-bit) output by a fixed function $f: \\{0,1\\}^n \to \\{0,1\\}^m$. Run it twice on the same input and you get the same output twice. Most production code most of the time is of this shape; reasoning about it uses Boolean algebra and truth tables.
+
+**Probabilistic classical computation** lets the algorithm flip coins. The state of the machine at each step is a *probability distribution* over $\\{0,1\\}^n$ — a vector of $2^n$ non-negative real numbers summing to $1$. An operation is a stochastic update: a row-stochastic matrix that maps probability vectors to probability vectors. Examples are Monte Carlo simulation, randomised primality testing (Miller–Rabin), randomised load balancing. The complexity class for problems solvable with bounded error in polynomial time by a randomised algorithm is $\mathrm{BPP}$. Probabilistic computation is *not* exotic; the laptop you are reading this on runs randomised algorithms many times per second.
+
+**Quantum computation** also keeps a vector of $2^n$ numbers, but those numbers are complex *amplitudes*, not real probabilities. The vector has unit Euclidean ($\ell_2$) norm, not unit $\ell_1$ norm. An operation is a *unitary* matrix — a complex matrix that preserves the $\ell_2$ norm. Probabilities only appear at measurement, computed by the Born rule as $|\alpha_x|^2$ for outcome $x$. The complexity class is $\mathrm{BQP}$ (Chapter 17).
+
+The crucial structural difference is the sign — or, more precisely, the *phase* — of an amplitude. Probabilities are non-negative; they only ever add. Amplitudes are complex; they can add or cancel. Two computational paths leading to the same outcome with amplitudes $+\tfrac{1}{\sqrt 2}$ and $-\tfrac{1}{\sqrt 2}$ contribute total amplitude $0$ to that outcome, so the outcome is observed with probability $0$. The same two paths in a probabilistic-classical algorithm would each contribute $\tfrac{1}{2}$ to the outcome, for a total of $1$. This phenomenon is **interference**, and it is the single mechanism by which a quantum algorithm beats a randomised one. Without interference, quantum computers reduce to randomised classical computers and BQP collapses to BPP. With interference, quantum algorithms can arrange constructive interference on wanted outcomes and destructive interference on unwanted ones, which is what powers every quantum speedup in this book.
+
+The contrast in one sentence: probabilistic computation is "many timelines weighted by non-negative probabilities that always add"; quantum computation is "many timelines weighted by complex amplitudes that can add *or cancel*."
 
 ## 2.3 Reversible Computation
 
-_TODO_
+Classical computation is, in general, **irreversible**. The `AND` gate maps two input bits to one output bit, and given the output `0` you cannot tell whether the input was $(0,0)$, $(0,1)$, or $(1,0)$. Each irreversible primitive throws away information; Landauer's principle (Chapter 1) attaches an energy cost to each erased bit. Reversible classical computation exists as a theoretical curiosity (Bennett, 1973) and as a sub-discipline of low-power and adiabatic logic design, but no mainstream classical computing platform is built around it.
+
+Quantum computation has no such freedom. Every closed-system quantum operation is unitary, and every unitary is invertible: if $U|\psi\rangle = |\phi\rangle$, then $U^\dagger |\phi\rangle = |\psi\rangle$. There is no "throw away one bit of state" primitive inside the unitary regime. Conditional branches that destroy information must be encoded as controlled gates that *preserve* information. The irreversible primitive of quantum computing — measurement — is segregated to a single, special, well-understood boundary (§2.7 and Chapter 11), and is the only mechanism for ejecting information from the quantum register.
+
+Two consequences follow immediately. First, classical irreversible circuits must be *embedded* into reversible ones before they can run on a quantum computer. The standard pattern is the **Toffoli embedding**: replace each $\mathrm{AND}(a, b)$ with $\mathrm{TOF}(a, b, c)$ acting on a fresh ancilla bit $c$ initialised to $0$, leaving the inputs in place and writing $a \wedge b$ into $c$. The ancillas accumulate intermediate junk that has to be *uncomputed* before the algorithm finishes — running the inverse circuit on the ancillas to restore them to $|0\rangle$ — because residual entanglement with the rest of the register destroys interference at the readout. The discipline is alien to most classical programming but immediate once you internalise that nothing can be silently discarded.
+
+Second, the **no-cloning theorem** drops out of the same unitary constraint. There is no unitary $U$ such that $U(|\psi\rangle \otimes |0\rangle) = |\psi\rangle \otimes |\psi\rangle$ for every $|\psi\rangle$ — the would-be cloning operation is non-linear in $|\psi\rangle$, while every unitary is linear. So a generic unknown quantum state cannot be copied. Classical data is freely copyable; quantum data is not. The closest classical analogue is a *move-only* type in modern C++ or Rust: the value can be transferred but not duplicated. Algorithms that rely on classical patterns like "save a checkpoint, attempt destructive operation, roll back on failure" have no direct quantum analogue and must be redesigned. Chapter 7 develops both the proof and the engineering discipline; for now, treat no-cloning as a hard wall.
 
 ## 2.4 Classical Logic Gates vs. Quantum Gates
 
-_TODO_
+Classical digital logic is built out of a small set of universal gates: $\mathrm{NAND}$ alone is functionally complete, as is $\\{\mathrm{AND}, \mathrm{OR}, \mathrm{NOT}\\}$, and a real circuit is a network of these (plus flip-flops for memory). Each gate is described by a truth table: a finite function from input bits to output bits.
+
+Quantum gates are matrices, not truth tables. A single-qubit gate is a $2 \times 2$ unitary matrix; a two-qubit gate is a $4 \times 4$ unitary matrix. The book uses the following recurring cast:
+
+- $X$: the **bit-flip** gate, the quantum analogue of $\mathrm{NOT}$. $X|0\rangle = |1\rangle$ and $X|1\rangle = |0\rangle$.
+- $Z$: the **phase-flip** gate. $Z|0\rangle = |0\rangle$ and $Z|1\rangle = -|1\rangle$. No classical analogue — it does nothing to the computational basis labels, but it does flip the *phase* of the $|1\rangle$ component, and that affects subsequent interference.
+- $H$: the **Hadamard** gate. $H|0\rangle = \tfrac{1}{\sqrt 2}(|0\rangle + |1\rangle)$ and $H|1\rangle = \tfrac{1}{\sqrt 2}(|0\rangle - |1\rangle)$. Creates superposition from a definite state and vice versa. Has no classical analogue at all.
+- $\mathrm{CNOT}$: the **controlled-NOT** gate, a two-qubit gate that flips the second qubit if and only if the first qubit is $|1\rangle$. The closest classical relative is $\mathrm{XOR}$, but $\mathrm{CNOT}$ leaves the control qubit intact, making the gate reversible.
+
+These four gates already capture the flavour. $\\{H, T, \mathrm{CNOT}\\}$, where $T$ is a particular $\pi/8$ phase rotation introduced in Chapter 8, is a standard universal gate set: any unitary on $n$ qubits can be approximated to arbitrary precision by a circuit drawn from this set. The exact statement is the Solovay–Kitaev theorem (Chapter 8); for now, the takeaway is that a small finite gate set is functionally complete in the quantum world too — just as $\\{\mathrm{NAND}\\}$ is in the classical world — but the underlying object being composed is a matrix product rather than a Boolean truth table.
+
+A subtle consequence is that quantum "functional completeness" is approximate, not exact. Any finite gate set generates a countable subgroup of the unitary group, and the unitary group is uncountable. So a finite gate set cannot represent every unitary exactly; it can only approximate. The Solovay–Kitaev theorem bounds the cost of that approximation, but the conceptual point is that the discreteness of the *gate library* meets the continuity of the *state space* through approximation, not through exact representation. Classical Boolean completeness has no such caveat: $\mathrm{NAND}$ exactly computes any Boolean function.
 
 ## 2.5 State-Space Growth
 
-_TODO_
+Both classical and quantum $n$-bit registers carry an exponential amount of structure, but they carry it differently.
+
+A classical $n$-bit register has $2^n$ possible states. At any moment it is in exactly one of them. The state takes $n$ bits to write down. The cost of describing the register's *current configuration* is linear in $n$, even though the set of *possible* configurations is exponential. This is the everyday situation that makes classical computing tractable: 64-bit integers happily live in a register, even though they enumerate $2^{64}$ values.
+
+A quantum $n$-qubit register is in a *complex linear combination* of all $2^n$ basis states simultaneously:
+
+$$
+|\psi\rangle \;=\; \sum_{x \in \\{0,1\\}^n} \alpha_x \\, |x\rangle, \qquad \sum_x |\alpha_x|^2 = 1.
+$$
+
+The current configuration has $2^n$ amplitudes, each a complex number. Writing the state down takes exponential space *in $n$*. This is the resource that quantum algorithms exploit, and it is the reason classical simulation of a quantum computer is hard: a classical simulator must store and update all $2^n$ amplitudes explicitly, while the quantum hardware stores them implicitly in physical degrees of freedom of the qubits. Around $n = 50$ to $n = 60$ is the boundary where the brute-force state-vector simulation stops fitting on the largest classical supercomputers; specialised classical methods (tensor networks, Clifford simulation, sign-problem-free Monte Carlo) push this boundary further for structured circuits, but cannot push it indefinitely.
+
+Pure state-space size is not enough on its own to give a speedup, however. A probabilistic classical algorithm with $n$ bits also has a state — its probability distribution — described by $2^n$ real numbers. The probabilistic model is no more powerful than the deterministic model up to polynomial overhead ($\mathrm{BPP}$ is conjectured equal to $\mathrm{P}$). The exponential state space is necessary but not sufficient. What additionally distinguishes quantum from probabilistic is the *interference* described in §2.2: the amplitudes can cancel as well as add, and that cancellation can be arranged by circuit design to concentrate probability on useful outcomes.
+
+This is also the right place to name three complexity classes at recognition level. $\mathrm{P}$ is the set of decision problems solvable in classical polynomial time. $\mathrm{NP}$ is the set of decision problems for which a yes-answer admits a polynomial-size certificate verifiable in polynomial time; $\mathrm{NP}$-complete problems (SAT, 3-colouring, TSP-decision) are the hardest problems in $\mathrm{NP}$, and no polynomial-time algorithm is known for any of them. $\mathrm{BQP}$ is the quantum analogue of $\mathrm{BPP}$: problems solvable with bounded error by a polynomial-size quantum circuit. The containment $\mathrm{P} \subseteq \mathrm{BPP} \subseteq \mathrm{BQP}$ is known. $\mathrm{BQP}$ contains some problems not known to be in $\mathrm{BPP}$ — factoring (Shor's algorithm) is the famous example. Whether $\mathrm{BQP}$ contains $\mathrm{NP}$-complete problems is a major open question; the prevailing belief is that it does not, and that quantum computers do *not* brute-force NP. Chapter 17 makes all of this precise. For now, the right mental picture is "quantum computers move the boundary of tractability, but not by collapsing $\mathrm{NP}$ into polynomial time."
 
 ## 2.6 Simulation Cost of Quantum Systems
 
-_TODO_
+The hardware story makes the cost asymmetry vivid. A classical bit is stored in tens of nanometres of silicon, operating at room temperature, with a single-bit error rate well below $10^{-15}$ per operation. Decades of process-node scaling and circuit-design discipline have made the classical bit so reliable, and so cheap, that engineers routinely treat both numbers as "free." A modern CPU performs $10^{10}$ logic operations per second on $10^9$ transistors and the only number that matters in practice is power and not correctness.
+
+A qubit is, by comparison, an open research problem. Today's leading physical realisations include:
+
+- **Superconducting circuits** (IBM, Google, Rigetti): lithographically defined LC resonators at millikelvin temperatures inside a dilution refrigerator, manipulated by microwave pulses. Coherence times of tens to hundreds of microseconds; gate times of tens to hundreds of nanoseconds; two-qubit gate fidelities at the $10^{-2}$ to $10^{-3}$ level.
+- **Trapped ions** (IonQ, Quantinuum): individual atomic ions held in electromagnetic traps in ultrahigh vacuum, manipulated by laser pulses. Coherence times of seconds; gate times of microseconds to milliseconds; two-qubit gate fidelities approaching $10^{-3}$ to $10^{-4}$; all-to-all connectivity within a trap.
+- **Neutral atoms** (QuEra, Atom Computing, Pasqal): individual atoms held in optical tweezer arrays, manipulated via Rydberg interactions. Larger system sizes, slower gates, rapidly improving fidelities.
+- **Photonics** (PsiQuantum, Xanadu): single photons in linear-optical networks, with measurement-based or fusion-based architectures. Different trade-off profile entirely — no decoherence in flight, but probabilistic gates and large hardware overheads.
+- **Spin qubits** in silicon or in nitrogen-vacancy centres: closer in fabrication style to classical CMOS, slower in development, attractive for long-term scalability.
+
+Chapter 20 covers each platform in depth; the point here is the cost asymmetry. Every quantum operation costs *measurable noise*. Two-qubit gates have error rates of order $10^{-3}$ on the best platforms; ten thousand two-qubit gates is enough to randomise the state on current hardware. The number of two-qubit gates you can execute coherently — sometimes called the **circuit volume** — is the headline metric, and it grows much more slowly than the headline qubit count. A classical engineer used to treating operations as free needs a new mental model: every gate is a cost, every measurement is a cost, and the algorithm-design discipline is much closer to embedded-systems development on a tight power budget than to desktop programming.
+
+A second consequence of the cost model is **error correction**. Classical hardware needs error correction occasionally (ECC RAM, redundant network packets); quantum hardware needs error correction *always*, because every physical operation is above the no-error-correction-needed threshold by orders of magnitude. Quantum error correction (Chapters 19, 21) encodes one **logical qubit** redundantly across many **physical qubits** — currently around $10^3$ to $10^4$ physical qubits per logical qubit for surface-code thresholds at realistic error rates. A device with $1{,}000{,}000$ physical qubits may have only $100$ to $1000$ logical qubits. The right resource metric for an algorithmically interesting workload is logical-qubit count times logical-gate count times logical fidelity, not headline physical-qubit count.
 
 ## 2.7 From Classical Control to Quantum Control
 
-_TODO_
+The final axis is operational: how data flows through the program, how measurement and feedback enter, what kinds of information can be communicated. Three threads of contrast close the chapter.
+
+**Measurement: probabilistic readout that disturbs the state.** In classical computing, reading a value out of a register is free, deterministic, and non-destructive. The bit is still there afterwards, holding the same value, ready to be read again. In quantum computing, **measurement** is the *only* non-unitary primitive in the model. It is probabilistic — for a state $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$, the outcome is $0$ with probability $|\alpha|^2$ and $1$ with probability $|\beta|^2$ — and it is destructive: after observing outcome $0$, the state collapses to $|0\rangle$ and the information about $\beta$ is gone for good. Treat measurement like an I/O syscall, not like a register read: cross the boundary as little as possible, design the rest of the program so that each measurement carries maximum information, and never reach for it as a casual "let me peek at this value" primitive. Chapter 11 develops the formalism (POVMs, the Born rule, projective measurement); Chapter 9 covers mid-circuit measurement and classical feedforward.
+
+**Communication: classical Shannon information vs entanglement-assisted protocols.** Classical communication is bounded by the Shannon limit: $n$ classical bits transmit at most $n$ bits of information. Quantum communication adds two phenomena with no classical counterpart. **Superdense coding** (Chapter 12) lets one qubit transmit two classical bits of information, provided the sender and receiver share one pre-distributed entangled pair. **Teleportation** (Chapter 12) lets two parties transmit one *qubit* of quantum information using two classical bits and one pre-distributed entangled pair, without the qubit itself crossing any wire. These are not violations of Shannon's theorem — the shared entanglement counts as a pre-distributed resource — but they make precise the sense in which entanglement is a *communication resource* that has no classical analogue. The full quantum information theory is Chapter 12; the takeaway for orientation is that the classical and quantum communication boundaries do not coincide.
+
+**Algorithmic structures: a different toolbox.** Classical algorithm design has its toolbox: divide-and-conquer, dynamic programming, greedy methods, randomisation, hashing, branch-and-bound. Quantum algorithm design has its own toolbox, partly overlapping but mostly distinct: **amplitude amplification** (Grover and its generalisations, Chapter 14), **phase estimation** (the workhorse for Shor, Chapter 14), the **hidden-subgroup framework** (which subsumes Shor and Simon, Chapter 15), **quantum walks** (Chapter 15), **variational** and **adiabatic** methods (Chapter 26). The classical tools and the quantum tools rarely solve the same problem in the same way, and the choice of toolbox is closer to "which physics is the algorithm exploiting?" than "which loop nest is fastest?"
+
+**A small worked example: Deutsch's problem.** The smallest meaningful problem on which the classical and quantum approaches diverge is **Deutsch's problem** (Chapter 14). You are given black-box access to a function $f: \\{0,1\\} \to \\{0,1\\}$, with the promise that $f$ is either *constant* (returns the same value on both inputs) or *balanced* (returns $0$ on one input and $1$ on the other). The task is to decide which.
+
+Classically, you must query $f$ on *both* inputs: any single query reveals one output, and one output is consistent with both a constant function (where the other output equals it) and a balanced function (where the other output differs). Two queries are necessary and sufficient.
+
+Quantum mechanically, you can decide with *one* query. The black box is given as a unitary $U_f$ acting on two qubits, $U_f |x\rangle|y\rangle = |x\rangle|y \oplus f(x)\rangle$. Prepare the input qubit in $H|0\rangle = \tfrac{1}{\sqrt 2}(|0\rangle + |1\rangle)$ and the output qubit in $H|1\rangle = \tfrac{1}{\sqrt 2}(|0\rangle - |1\rangle)$. After one query and a final Hadamard on the input qubit, the input qubit deterministically reads $0$ if $f$ is constant and $1$ if $f$ is balanced. The mechanism is the **phase kickback** of §2.2: the function's output value is reflected into a *phase* on the input register, and the two phases interfere constructively for constant $f$ and destructively for balanced $f$ at the readout. The chapter has not introduced the formal machinery to derive this — Chapter 14 does — but the *shape* of the saving is the same as every quantum speedup in this book: exponentially many computational paths are run in superposition, and interference is engineered to make the right answer come out of a single measurement.
+
+Deutsch's problem is conceptually small. The factor of two it saves is not practically useful. What matters is that it is the simplest demonstration that there is a *separation*: a task on which a quantum algorithm strictly beats every classical one, achievable on two qubits, derivable from the postulates of Chapter 5 alone. Every algorithm in Part VI is a more elaborate version of the same trick.
+
+The next chapter, Chapter 3, turns to the underlying physics: quantization, superposition, interference, measurement back-action, entanglement, decoherence. The conceptual scaffolding of this chapter — interference as the resource, unitarity as the constraint, measurement as the irreversible boundary, exponential state space as the asset — reappears there with physical intuition attached, and again in Chapters 4–5 with mathematical formalism. From Part II onward the book stops contrasting the two models and starts working inside the quantum one.
+
+---
+
+> **Sanity checks.**
+>
+> 1. A qubit's state has two complex amplitudes constrained by unit norm. How many real degrees of freedom remain after also discarding the global phase, and what is the name of the geometric object parameterising them? (Chapter 6 names it.)
+> 2. State why a probabilistic classical algorithm is *not* equivalent to a quantum algorithm even though both manipulate $2^n$-dimensional state vectors. Use one sentence and the word "interference."
+> 3. Sketch why $\mathrm{AND}$ cannot be a unitary gate on two qubits, and describe in one sentence how the Toffoli gate fixes the problem.
+> 4. The classical query complexity of Deutsch's problem is $2$ and the quantum query complexity is $1$. State the resource that the quantum algorithm uses to halve the query count, and the operation that converts function-evaluation into that resource.
+> 5. A vendor announces a 1000-qubit device with two-qubit gate fidelity 99%. Estimate, with a one-line argument, the typical depth of a useful circuit before the state randomises, and contrast with the depth needed for a fault-tolerant logical operation. (Chapter 21 gives the precise version.)
 
 ---
 
