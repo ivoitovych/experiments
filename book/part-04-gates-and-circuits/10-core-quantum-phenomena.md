@@ -122,7 +122,7 @@ The **Kochen–Specker theorem** makes this precise. For Hilbert spaces of dimen
 
 The cleanest computational manifestation is the **GHZ contradiction** (§7.6 and §7.7). For the three-qubit GHZ state $(|000\rangle + |111\rangle)/\sqrt{2}$, the four observables $X_1 X_2 X_3$, $X_1 Y_2 Y_3$, $Y_1 X_2 Y_3$, $Y_1 Y_2 X_3$ all commute pairwise on this state and have definite values $+1, -1, -1, -1$ respectively. Their product is $-1$, but the product of pre-assigned $\pm 1$ values would always yield $+1$ because each Pauli appears twice. No hidden-variable assignment is consistent; the contradiction is a single shot, not a statistical inequality.
 
-Contextuality is widely conjectured to be a resource powering certain quantum advantages — notably magic-state distillation (§8.10) and measurement-based quantum computation (Chapter 30) — and the formal connection is an active research area.
+Contextuality is widely conjectured to be a resource powering certain quantum advantages — notably magic-state distillation (Chapter 19) and measurement-based quantum computation (Chapter 32) — and the formal connection is an active research area.
 
 ## 10.8 Quantum Zeno Effect
 
