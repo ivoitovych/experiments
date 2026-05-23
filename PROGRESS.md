@@ -9,11 +9,11 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 ## Summary
 
 - **Files total:** 45
-- **Started (past `stub`):** 1 / 45
-- **Completed (`draft` or later):** 1 / 45
+- **Started (past `stub`):** 4 / 45
+- **Completed (`draft` or later):** 4 / 45
 
-- **Phase 1 (Foundations):** started 1/6, completed 1/6
-- **Phase 2 (Core mechanics):** started 0/7, completed 0/7
+- **Phase 1 (Foundations):** started 3/6, completed 3/6
+- **Phase 2 (Core mechanics):** started 1/7, completed 1/7
 - **Phase 3 (Algorithms and complexity):** started 0/5, completed 0/5
 - **Phase 4 (Real systems):** started 0/7, completed 0/7
 - **Phase 5 (Practice and applications):** started 0/9, completed 0/9
@@ -22,15 +22,15 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 ## Phase 1 — Foundations
 
 - [ ] [Notation and Conventions](book/00-front-matter/02-notation-and-conventions.md) — *stub* — sections 0/7
-- [ ] [Appendix A. Notation Reference](book/99-back-matter/appendix-a-notation-reference.md) — *stub* — sections 0/6
+- [x] [Appendix A. Notation Reference](book/99-back-matter/appendix-a-notation-reference.md) — *draft* — sections 6/6
 - [x] [Chapter 4. Mathematical Background for Quantum Computing](book/part-02-formalism/04-mathematical-background.md) — *draft* — sections 17/17
-- [ ] [Chapter 5. Postulates of Quantum Mechanics for Computing](book/part-02-formalism/05-postulates.md) — *stub* — sections 0/14
+- [x] [Chapter 5. Postulates of Quantum Mechanics for Computing](book/part-02-formalism/05-postulates.md) — *draft* — sections 14/14
 - [ ] [Chapter 6. The Qubit](book/part-03-qubits/06-the-qubit.md) — *stub* — sections 0/10
 - [ ] [Chapter 7. Multiple Qubits and Entanglement](book/part-03-qubits/07-multiple-qubits-and-entanglement.md) — *stub* — sections 0/13
 
 ## Phase 2 — Core mechanics
 
-- [ ] [Appendix B. Common Gates and Their Matrices](book/99-back-matter/appendix-b-common-gates.md) — *stub* — sections 0/9
+- [x] [Appendix B. Common Gates and Their Matrices](book/99-back-matter/appendix-b-common-gates.md) — *draft* — sections 9/9
 - [ ] [Appendix C. Useful Identities and Decompositions](book/99-back-matter/appendix-c-identities-and-decompositions.md) — *stub* — sections 0/6
 - [ ] [Chapter 8. Quantum Gates](book/part-04-gates-and-circuits/08-quantum-gates.md) — *stub* — sections 0/14
 - [ ] [Chapter 9. Quantum Circuits](book/part-04-gates-and-circuits/09-quantum-circuits.md) — *stub* — sections 0/13
