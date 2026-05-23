@@ -807,8 +807,12 @@ show up constantly in quantum computing:
   value. It bounds the worst-case amplification by $A$.
 - The **trace norm** (nuclear norm) is
   $\\|A\\|_1 = \mathrm{tr}\sqrt{A^\dagger A} = \sum_i \sigma_i$. The trace
-  distance between two density matrices, $\tfrac{1}{2}\\|\rho - \sigma\\|_1$,
-  is the operational distance between quantum states.
+  distance between two density matrices,
+  $D(\rho, \sigma) = \tfrac{1}{2}\\|\rho - \sigma\\|_1$, quantifies
+  their optimal distinguishability: it equals the maximum classical
+  total-variation distance obtainable from any measurement, and
+  determines the optimal equal-prior discrimination success
+  probability between $\rho$ and $\sigma$.
 
 For a square invertible matrix the **condition number** is
 $\kappa(A) = \sigma_{\max}(A) / \sigma_{\min}(A)$. It measures how
@@ -1311,25 +1315,58 @@ the rest of the book:
 
 The conventions are spread across the chapter as they get introduced.
 Here they are collected as a single debugging checklist for moments
-when something does not type-check:
+when something does not type-check.
 
-| Topic | Convention in this book |
-|---|---|
-| Inner product | Conjugate-linear in the first argument: $\langle u, v\rangle = \sum_i \overline{u_i}\\, v_i$. |
-| Norm notation | $\\|z\\|$ scalar modulus, $\\|v\\|$ vector 2-norm, $\\|A\\|$ operator (spectral) norm, $\\|A\\|_1$ trace norm, $\\|A\\| = \sqrt{A^\dagger A}$ operator absolute value. |
-| Kets | Abstract state vectors; represented as $n \times 1$ column vectors after a basis is chosen. |
-| Pure states | Normalized unless explicitly stated otherwise; rays under global phase. |
-| Computational basis order | $x_1$ is the most significant bit; $\\|x\rangle$ sits at zero-based index $\sum_i x_i\\, 2^{n-i}$. |
-| Tensor-product order | $\\|x_1 x_2 \cdots x_n\rangle = \\|x_1\rangle \\|x_2\rangle \cdots \\|x_n\rangle$. |
-| Qiskit mapping | Map this book's leftmost tensor factor to Qiskit's *highest-numbered* qubit label, or insert a SWAP. |
-| QFT sign | Convention **QFT-sign-minus**: $F_N\\|j\rangle = N^{-1/2} \sum_k \omega^{-jk}\\, \\|k\rangle$ with $\omega = e^{2\pi i / N}$. Qiskit's `QFTGate` uses the opposite sign. |
-| Hamiltonian evolution | Algorithmic chapters use $\hbar = 1$, so $U(t) = e^{-iHt}$. |
-| Observables | Hermitian operators in the projective-measurement picture; POVMs cover the general case (Chapter 11). |
-| Entropy logs | Base 2; entropies measured in bits unless stated otherwise. |
-| Projectors in measurement contexts | Always orthogonal ($P^2 = P$, $P^\dagger = P$) unless explicitly stated otherwise. |
+This section is a bullet list rather than a Markdown table because
+several conventions contain literal `|` characters (kets, norm
+bars), and `|` is the column separator inside a Markdown table cell
+— Bug 5 in [`docs/github-markdown-math-bugs.md`](../../docs/github-markdown-math-bugs.md)
+records the silent failure mode.
+
+- **Inner product.** Conjugate-linear in the first argument:
+  $\langle u, v\rangle = \sum_i \overline{u_i}\\, v_i$.
+- **Kets.** Abstract state vectors; represented as $n \times 1$
+  column vectors after a basis is chosen.
+- **Pure states.** Normalized unless explicitly stated otherwise;
+  rays under global phase.
+- **Computational basis order.** Bit string $x = x_1 x_2 \cdots x_n$
+  is interpreted with $x_1$ as the most significant bit; the
+  corresponding basis ket $|x\rangle$ sits at zero-based statevector
+  index $\sum_i x_i\\, 2^{n-i}$.
+- **Tensor-product order.** $|x_1 x_2 \cdots x_n\rangle = |x_1\rangle\\, |x_2\rangle \cdots |x_n\rangle$.
+- **Qiskit mapping.** Map this book's leftmost tensor factor to
+  Qiskit's *highest-numbered* qubit label, or insert a SWAP.
+- **QFT sign.** Convention **QFT-sign-minus**:
+  $F_N\\, |j\rangle = N^{-1/2}\\, \sum_k \omega^{-jk}\\, |k\rangle$
+  with $\omega = e^{2\pi i / N}$. As of Qiskit's 2.x documentation,
+  `QFTGate` uses the opposite, positive-exponent sign and therefore
+  corresponds to the inverse of our $F_N$.
+- **Hamiltonian evolution.** Algorithmic chapters use $\hbar = 1$,
+  so $U(t) = e^{-iHt}$.
+- **Observables.** Hermitian operators in the projective-measurement
+  picture; POVMs cover the general case (Chapter 11).
+- **Entropy logs.** Base 2; entropies measured in bits unless stated
+  otherwise.
+- **Projectors in measurement contexts.** Always orthogonal
+  ($P^2 = P$, $P^\dagger = P$) unless explicitly stated otherwise.
+
+Norm notation is reserved across five distinct roles. Note in
+particular that single bars `|A|` are *not* a norm — they denote the
+operator absolute value:
+
+- $|z|$ — scalar modulus of a complex number.
+- $\\|v\\|$ — vector 2-norm.
+- $\\|A\\|$ (or $\\|A\\|_{\mathrm{op}}$ when ambiguity threatens) —
+  operator / spectral norm of an operator $A$ (the largest singular
+  value).
+- $\\|A\\|_1$ — trace norm (sum of singular values; the basis for
+  trace distance between density matrices).
+- $|A| = \sqrt{A^\dagger A}$ — *operator* absolute value, the
+  positive semidefinite square root used in the polar decomposition.
+  Single bars; this is not a norm.
 
 If a later derivation seems off by a conjugate, a swap, or a sign,
-check this table first before suspecting the math.
+check the lists above first before suspecting the math.
 
 ## 4.17 Bridge to Chapter 5
 
