@@ -69,4 +69,6 @@ PHASE_BY_FILE: dict[str, int] = {
     "appendix-c-identities-and-decompositions.md": 2,
     "appendix-d-suggested-reading.md": 6,
     "appendix-e-glossary.md": 6,
+    "appendix-f-hardware-snapshot-2026.md": 4,
+    "index.md": 6,
 }

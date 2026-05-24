@@ -819,6 +819,31 @@ ENTRIES: list[dict] = [
             "Software and Tooling Terms",
         ],
     },
+    {
+        "kind": "back",
+        "dir": "99-back-matter",
+        "file": "appendix-f-hardware-snapshot-2026.md",
+        "title": "Appendix F. 2026 Hardware Snapshot",
+        "sections": [
+            "How to Read This Snapshot",
+            "Superconducting Qubits",
+            "Trapped-Ion Qubits",
+            "Neutral-Atom Qubits",
+            "Photonic, Spin, and Topological Approaches",
+            "Cross-Cutting Metrics at a Glance",
+            "Error-Correction and Logical-Qubit Milestones",
+            "How This Snapshot Will Age",
+        ],
+    },
+    {
+        "kind": "back",
+        "dir": "99-back-matter",
+        "file": "index.md",
+        "title": "Index",
+        "sections": [
+            "Index",
+        ],
+    },
 ]
 
 

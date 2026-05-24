@@ -1,6 +1,6 @@
 # Appendix E. Glossary
 
-[← Previous: Appendix D. Suggested Reading and Reference Papers](appendix-d-suggested-reading.md) · [Table of Contents](../../README.md)
+[← Previous: Appendix D. Suggested Reading and Reference Papers](appendix-d-suggested-reading.md) · [Table of Contents](../../README.md) · [Next: Appendix F. 2026 Hardware Snapshot →](appendix-f-hardware-snapshot-2026.md)
 
 > **Status:** draft · **Phase:** 2 · **Sections drafted:** 7 / 7
 
@@ -529,4 +529,4 @@ treatment is in Chapter 23 (compilation and tooling), Chapter 24
 
 ---
 
-[← Previous: Appendix D. Suggested Reading and Reference Papers](appendix-d-suggested-reading.md) · [Table of Contents](../../README.md)
+[← Previous: Appendix D. Suggested Reading and Reference Papers](appendix-d-suggested-reading.md) · [Table of Contents](../../README.md) · [Next: Appendix F. 2026 Hardware Snapshot →](appendix-f-hardware-snapshot-2026.md)

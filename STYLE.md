@@ -92,8 +92,15 @@ on **all** of: GitHub web view, mdBook + MathJax, and Pandoc.
 
 ## Diagrams
 
+The figure pipeline is being introduced incrementally. Most chapters
+currently describe circuits and block diagrams in prose; the conventions
+below are the target for newly added figures and for backfilling existing
+chapters — not a claim that every diagram already exists.
+
 - Quantum circuits → SVG (rendered from Quantikz/Tikz source).
-- Block diagrams → SVG or Mermaid (`mermaid` code block).
+- Block diagrams → SVG or Mermaid (`mermaid` code block). Mermaid renders
+  natively on GitHub but not in plain Pandoc/PDF builds without a filter;
+  prefer SVG where cross-renderer fidelity matters.
 - Plots → SVG, generated from a checked-in script in `figures-src/`.
 - Always include alt text: `![CNOT circuit acting on two qubits](figures/cnot.svg)`.
 
