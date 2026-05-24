@@ -7,6 +7,71 @@
 
 ---
 
+<!-- ============================================================ -->
+<!-- MANUSCRIPT RECONCILIATION NOTE — READ FIRST                   -->
+<!-- ============================================================ -->
+
+# **▌Manuscript Reconciliation Note** (as of 2026-05-24)
+
+> **The delivered manuscript under `book/` is the source of truth.** The
+> section-level outline in the remainder of this file is the *original plan*.
+> The book evolved during writing — normal and expected — so the chapter files
+> now diverge from that outline in the ways catalogued in this block. Part
+> structure, chapter numbering, and chapter titles are unchanged and remain
+> accurate (see also `README.md`). Every in-text cross-reference (`§X.Y`,
+> `Chapter N`) resolves against the **delivered** section numbers, which are
+> the authoritative ones.
+
+**Structural changes from the planned outline (below) to the delivered manuscript:**
+
+- **Chapter-closing bridges.** Most chapters now end with an unlisted "Bridge to
+  Chapter N+1" section (e.g. §4.17, §7.14, §13.8, §26.8). These are
+  navigational and introduce no new results. Chapters 8, 19, 23, 34, and 36 end
+  on their last planned section instead.
+- **Front matter.** The Preface replaced the detailed "Suggested Reading Paths"
+  sub-list with "A Note on Conventions", "A Note on the 2026 Timestamp",
+  "Acknowledgements", and "License and Attribution". The background-and-self-check
+  and notation chapters are now explicitly numbered (1.x, 2.x).
+- **Chapter 4** expanded from 13 to 17 sections: added §4.9 *Singular Values and
+  the Singular Value Decomposition*, broadened §4.5 to *Hermitian, Unitary,
+  Normal, and Positive Operators*, and added §4.15 *Common Traps* and §4.16
+  *Conventions at a Glance*. (The Fourier and probability sections shifted to
+  §4.13 and §4.14 accordingly.)
+- **Chapters 10–12 reorganized.** Quantum channels, CPTP maps, Kraus operators,
+  and the operator-sum representation moved out of Chapter 12 into Chapter 10
+  (§10.12–10.13). Chapter 11 is now built around POVMs, Naimark dilation,
+  tomography, **classical shadows (§11.5)**, and state discrimination. Chapter 12
+  became an information-theory arc (Shannon → von Neumann → Holevo → trace
+  distance / fidelity → channel capacities → LOCC and resource theories).
+- **Chapter 18** consolidated the per-channel sections (bit-flip, phase-flip,
+  depolarizing, amplitude-damping) into the noise-model discussion and expanded
+  the characterisation material (RB and variants, spectral-density / non-Markovian
+  models, GST, error budgets, and a practitioner workflow).
+- **Chapter 22** grew from 10 to 14 sections: replaced "Scalability Constraints"
+  and added cross-entropy benchmarking / XEB, mid-circuit measurement / reset /
+  feedforward latency, calibration stability and drift, and a 2024–2026
+  benchmark-suite survey.
+- **Chapter 24** reorganized its simulation taxonomy (near-Clifford / magic-state
+  simulation, Schrödinger–Feynman path sums, GPU and distributed simulation,
+  quantum-noise simulators, the advantage frontier, and a closing "choosing a
+  simulator" guide) in place of the planned Trotterization / many-body /
+  numerical-stability / connections sections.
+- **Applications and perspective chapters reworked.** Chapters 27, 28, 29, 30,
+  31, 32, 33, 35, and 37 were rewritten and several grew well beyond their
+  planned outlines — e.g. Ch27 now covers hash functions, the NIST PQC timeline,
+  harvest-now-decrypt-later, and BB84 / E91 / B92 / decoy states; Ch30 is
+  organized around three categories of QML; Ch32 adds topological computation,
+  quantum walks, and reversible/probabilistic classical models; Ch35 expands to
+  14 conceptual-pitfall sections including the PBR theorem. Chapters 34 and 36
+  match their planned outlines.
+- **Index.** The "Index" entry listed under Back Matter has not yet been produced.
+
+<!-- ============================================================ -->
+<!-- END RECONCILIATION NOTE — original planned outline follows.  -->
+<!-- ============================================================ -->
+
+---
+
 # **Front Matter**
 
 ## **Preface**
