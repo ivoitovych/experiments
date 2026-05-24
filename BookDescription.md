@@ -1,6 +1,43 @@
 # Quantum Computing for Experienced Developers  
 ## A Structured Guide from Core Principles to Modern Practice
 
+---
+
+<!-- ============================================================ -->
+<!-- MANUSCRIPT RECONCILIATION NOTE — READ FIRST                   -->
+<!-- ============================================================ -->
+
+## ▌Manuscript Reconciliation Note (as of 2026-05-24)
+
+> **The delivered manuscript under `book/` is the source of truth.** This
+> document states the book's original scope and vision, which the manuscript
+> fulfils. The book evolved during writing — normal and expected — so a few
+> structural details in the descriptions below predate the delivered layout.
+> Part structure, chapter numbering, chapter titles, and every chapter number
+> cited in the *Suggested Reading Paths* remain accurate. `TOC.md` carries the
+> full section-level reconciliation.
+
+Points where the descriptions below predate the delivered manuscript:
+
+- **Quantum channels, CPTP maps, Kraus operators, and the operator-sum
+  representation** moved from the Part V information-theory chapter (Chapter 12)
+  into the Part IV phenomena chapter (**Chapter 10**, §10.12–10.13). The Part IV
+  and Part V summaries below describe the earlier placement. Chapter 12 is now an
+  information-theory arc (Shannon → von Neumann → Holevo → trace distance /
+  fidelity → channel capacities → LOCC and resource theories). The **diamond
+  norm** is treated within Chapter 12's trace-distance discussion (§12.6) rather
+  than as a standalone section.
+- Several chapters grew beyond the scope sketched here — notably Chapter 4's
+  added singular-value-decomposition material, and the substantially expanded
+  application and perspective chapters (27, 30, 32, 35, 37). See the
+  reconciliation note at the top of `TOC.md` for the full catalogue.
+
+<!-- ============================================================ -->
+<!-- END RECONCILIATION NOTE — original description follows.       -->
+<!-- ============================================================ -->
+
+---
+
 ## Book Description
 
 **Quantum Computing for Experienced Developers** is a rigorous, engineering-oriented guide to quantum computing for readers who already have strong programming skills, mathematical maturity, and practical experience with computational systems.
