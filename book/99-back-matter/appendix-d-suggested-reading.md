@@ -96,7 +96,7 @@ the original papers for the constructions that interest you.
 
 ## D.3 Quantum Information Theory
 
-Beyond Chapter 11. These cover entropy, channels, capacities,
+Beyond Chapter 12. These cover entropy, channels, capacities,
 entanglement measures, and the structure theorems that the chapter
 only summarizes.
 
@@ -122,7 +122,7 @@ only summarizes.
 - *Holevo's theorem and its variants.* Alexander S. Holevo. Original
   paper *Bounds for the quantity of information transmitted by a
   quantum communication channel*, Problemy Peredachi Informatsii,
-  1973. Worth reading once for context on the bound used in §11.7.
+  1973. Worth reading once for context on the bound used in §12.5.
 - *Lecture Notes on Quantum Information Theory.* Mark Wilde and others.
   Several free sets are available online; the LSU and Caltech lecture
   notes are the most polished.
@@ -225,7 +225,7 @@ Chapter 17 cites directly.
 - *Dequantizing read-once quantum formulas.* Ewin Tang and others —
   start with Tang's *A quantum-inspired classical algorithm for
   recommendation systems* (STOC 2019) for the dequantization
-  phenomenon discussed in §17.10.
+  phenomenon discussed in §17.12.
 - *The query complexity of the hidden subgroup problem.* Various
   authors; a good entry point is Childs and van Dam's *Quantum
   algorithms for algebraic problems*, Reviews of Modern Physics, 2010.
