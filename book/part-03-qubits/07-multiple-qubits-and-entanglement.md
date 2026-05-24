@@ -171,6 +171,8 @@ Entanglement is consumed and produced by protocols. Three canonical examples:
 
 **Teleportation.** Alice and Bob share one Bell pair. Alice has an unknown qubit $|\psi\rangle$ she wants to send to Bob. She performs a Bell-basis measurement on her unknown qubit together with her half of the shared pair, getting two classical bits as outcome. She sends those bits over a classical channel. Bob applies one of four single-qubit corrections ($I$, $X$, $Z$, $XZ$) indexed by Alice's bits, and now holds $|\psi\rangle$. No qubit travelled; one ebit and two classical bits were consumed.
 
+![Teleportation circuit: a Bell pair on q1–q2, Alice's Bell measurement on the message qubit q0 and her half q1, and Bob's classically-conditioned X and Z corrections on q2.](figures/teleportation.svg)
+
 **Superdense coding.** Reverse roles: Alice and Bob share one Bell pair. Alice applies one of four local operations ($I$, $X$, $Z$, $XZ$) to her half, depending on a two-bit message, and sends the qubit to Bob. Bob measures both qubits in the Bell basis and recovers the two bits. One qubit transmission, aided by one ebit, carries two classical bits.
 
 **Entanglement-based key distribution (Ekert).** Alice and Bob share many Bell pairs. They measure each pair in randomly chosen bases and use a subset of outcomes to estimate the CHSH value $S$. If $S$ is close to $2\sqrt{2}$, the pairs were undisturbed, and the remaining correlated outcomes yield a shared secret key. Any eavesdropper attempting to learn information necessarily disturbs the state and reduces $S$ below the threshold.

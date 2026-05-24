@@ -18,6 +18,32 @@ Two extensions are worth knowing. **Unknown $M$**: run Grover with successively 
 
 What Grover *is not*. It is not a way to "solve NP in $\sqrt{\text{search space}}$"; it gives a quadratic speedup, not an exponential one, and once you account for the overhead of a fault-tolerant Grover query (Toffoli-heavy circuits, magic-state distillation), the constant factors are substantial. The current consensus is that Grover provides a useful speedup for problems with very large search spaces and cheap oracles (e.g., parts of cryptanalysis, branch-and-bound search), and that the *NP* picture is roughly: $\sqrt{\text{search space}}$ is what you get under unstructured search; algorithmic structure can do much better classically and is rarely tractable to import into the Grover model. Bennett–Bernstein–Brassard–Vazirani showed Grover's $\sqrt N$ is optimal in the oracle model.
 
+The amplification is easy to see in code (`examples/grover.py`): searching $N = 8$ for the marked item $|111\rangle$, the optimal $\lfloor \tfrac{\pi}{4}\sqrt{8} \rfloor = 2$ iterations concentrate almost all the probability on the answer.
+
+```python
+from qiskit import QuantumCircuit
+from qiskit.primitives import StatevectorSampler
+
+n = 3
+qc = QuantumCircuit(n, n)
+qc.h(range(n))
+for _ in range(2):                     # ~ floor(pi/4 * sqrt(8)) iterations
+    qc.h(n - 1); qc.mcx([0, 1], n - 1); qc.h(n - 1)        # oracle: mark |111>
+    qc.h(range(n)); qc.x(range(n))                          # diffusion
+    qc.h(n - 1); qc.mcx([0, 1], n - 1); qc.h(n - 1)
+    qc.x(range(n)); qc.h(range(n))
+qc.measure(range(n), range(n))
+
+counts = StatevectorSampler().run([qc], shots=1000).result()[0].data.c.get_counts()
+print(dict(sorted(counts.items(), key=lambda kv: -kv[1])))
+```
+
+Output (stochastic, but `111` dominates at roughly 95%):
+
+```text
+{'111': 950, '001': 9, '010': 9, '000': 9, '011': 8, '101': 7, '110': 5, '100': 3}
+```
+
 ## 15.2 Shor's Algorithm
 
 Shor's algorithm factors an $n$-bit integer $N$ in polynomial time on a quantum computer. The structure is: a classical reduction from factoring to **order-finding** modulo $N$, followed by a quantum order-finding subroutine, followed by classical post-processing.

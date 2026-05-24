@@ -64,6 +64,8 @@ Both have eigenvalue $+1$ on the code subspace, because $Z|0\rangle = +|0\rangle
 
 Measuring $S_1$ and $S_2$ (each implemented as a CNOT cascade onto an ancilla, followed by a $Z$-basis measurement of the ancilla) reveals the syndrome without revealing $\alpha$ or $\beta$. The recovery flips whichever qubit the syndrome identifies. The code has distance $d = 3$ for bit flips and corrects one $X$ error. Phase errors are *not* corrected, as §19.3 showed.
 
+![Three-qubit bit-flip code: two CNOTs encode the data qubit d0 into d0–d2, then two ancillas a0, a1 collect the parities $Z_1 Z_2$ and $Z_2 Z_3$, measured into the syndrome bits.](figures/bit-flip-code.svg)
+
 ## 19.5 Phase-Flip Codes
 
 The **3-qubit phase-flip code** is the bit-flip code conjugated by Hadamards. Recall that $H X H = Z$ and $H Z H = X$, so if a code protects against $X$ errors in the computational basis, conjugating every qubit by $H$ produces a code that protects against $Z$ errors. Explicitly:
