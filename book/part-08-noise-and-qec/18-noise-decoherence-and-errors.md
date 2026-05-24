@@ -279,7 +279,7 @@ $$
 
 provided $\epsilon_{\mathrm{total}} \ll 1$. Each term is a *count* of operations multiplied by an *average* error per operation. The SPAM contribution is added once for each shot.
 
-**Mitchell-style attribution.** Mitchell's error budget table (named after the practice popularised by John Mitchell of the IBM team's early-2020s benchmark reports, and widely adopted) breaks the total into:
+**Component attribution.** A standard error-budget table — of the kind that became common in vendor benchmark reports in the early 2020s — breaks the total into:
 
 - Single-qubit Clifford error × count
 - Two-qubit Clifford error × count
