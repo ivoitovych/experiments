@@ -200,13 +200,13 @@ A **simulator** is a classical program that computes the output of a quantum cir
 
 **Tensor-network simulator.** Represents the state (or the circuit's contraction) as a tensor network and contracts it in an order chosen to minimise the intermediate bond dimensions. The cost scales not with $n$ but with the *entanglement structure* of the circuit: low-entanglement and shallow circuits can be simulated at $n = 100$ or more, while heavily entangled circuits at large depth are no easier than state-vector. Standard in `quimb`, `cuQuantum`'s `cuTensorNet`, and `cotengra` (the contraction-path search library). The 2019 Google "quantum supremacy" experiment was rebutted in part by tensor-network simulations.
 
-**Stabiliser simulator.** Restricted to Clifford circuits (gates from the Clifford group: $H$, $S$, CNOT, Pauli measurements). The Gottesman-Knill theorem (§19.x) gives a polynomial-time classical simulation. Standard in `stim` (the de facto stabiliser simulator since 2021, by Craig Gidney) and Qiskit's `Clifford` class. Used heavily in quantum-error-correction research, where Clifford circuits dominate.
+**Stabiliser simulator.** Restricted to Clifford circuits (gates from the Clifford group: $H$, $S$, CNOT, Pauli measurements). The Gottesman–Knill theorem (§8.10) gives a polynomial-time classical simulation. Standard in `stim` (the de facto stabiliser simulator since 2021, by Craig Gidney) and Qiskit's `Clifford` class. Used heavily in quantum-error-correction research, where Clifford circuits dominate.
 
 **Density-matrix simulator.** Stores the $2^n \times 2^n$ density matrix to model noisy evolution exactly. Memory cost $O(4^n)$ — twice the exponent of state-vector — so the qubit ceiling is roughly half: $n = 15$ comfortably, $n = 20$ with effort. Used when the noise model matters and Monte Carlo sampling of pure-state trajectories is insufficient. Standard in Qiskit Aer (`method='density_matrix'`) and QuTiP.
 
 **Trajectory simulator.** Runs many pure-state samples through a Monte Carlo unravelling of the noisy dynamics. Memory cost $O(2^n)$ per trajectory; statistical cost grows with the noise rate and the desired expectation-value precision. The natural method when noise is weak and many shots are acceptable.
 
-**Classical-shadows-based simulators.** Use the classical-shadows representation (Chapter 18) to estimate expectation values without ever materialising the full state. Excellent for variational algorithms where the only outputs of interest are expectation values of local observables.
+**Classical-shadows-based simulators.** Use the classical-shadows representation (Chapter 11) to estimate expectation values without ever materialising the full state. Excellent for variational algorithms where the only outputs of interest are expectation values of local observables.
 
 **Specialised**: matchgate / fermionic simulators (polynomial-time for the fermionic linear-optics subclass), photonic simulators (`Strawberry Fields`, `Piquasso`), and Boson-sampling reference implementations.
 
@@ -263,7 +263,7 @@ Quantum machine learning is the largest sustained user of the variational stack 
 
 **Qiskit Machine Learning** offers `EstimatorQNN` (expectation-value outputs) and `SamplerQNN` (probability-distribution outputs) as scikit-learn-compatible estimators and PyTorch modules. Convenient for Qiskit-native users; the integration story is not as smooth as PennyLane's because Qiskit's Primitives were not initially designed with autodiff in mind.
 
-The practical effect of these integrations is that a 2026 QML pipeline looks structurally identical to a 2024 classical ML pipeline — `optimiser.zero_grad(); loss = model(batch); loss.backward(); optimiser.step()` — with the quantum part hidden inside a layer object. Whether the *training* converges to anything useful is the open scientific question of the field (Chapter 26 takes it up).
+The practical effect of these integrations is that a 2026 QML pipeline looks structurally identical to a 2024 classical ML pipeline — `optimiser.zero_grad(); loss = model(batch); loss.backward(); optimiser.step()` — with the quantum part hidden inside a layer object. Whether the *training* converges to anything useful is the open scientific question of the field (Chapter 30 takes it up).
 
 The bridge from this chapter to Chapter 24: with the compilation pipeline understood, we can ask what those layers below the pipeline — the simulators that stand in for hardware during development — actually do. Chapter 24 takes the classical-simulation question seriously: what circuits can a classical computer simulate efficiently, where does that frontier lie in 2026, and what does "quantum advantage" actually mean once the simulators get good at the easy cases?
 
