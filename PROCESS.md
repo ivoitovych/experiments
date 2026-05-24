@@ -278,9 +278,7 @@ the renderer-gotcha catalog, and dated decisions.
   warning that opposite-sign QFT requires conjugating every
   controlled-phase angle and phase-estimation readout.
 - **Authorship and history.** All commits authored as
-  Iaroslav Voitovych <yaroslav.voytovych@gmail.com>. No mention of
-  AI, automation, or assistants in commits, PRs, comments, code, or
-  documentation (INSTRUCTIONS.md).
+  Iaroslav Voitovych <yaroslav.voytovych@gmail.com> (INSTRUCTIONS.md).
 
 ## Lessons learned per chapter
 

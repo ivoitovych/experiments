@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+title: >-
+  Quantum Computing for Experienced Developers: A Structured Guide from Core
+  Principles to Modern Practice
+message: "If you reference this work, please cite it as below."
+type: book
+authors:
+  - family-names: Voitovych
+    given-names: Iaroslav
+    email: yaroslav.voytovych@gmail.com
+abstract: >-
+  A rigorous, engineering-oriented guide to quantum computing for experienced
+  developers and technically mature readers: from core principles and the
+  mathematical formalism through qubits, gates, circuits, measurement,
+  algorithms, complexity, noise and error correction, hardware, tooling, and
+  the modern algorithmic frontier, with explicit guidance on judging claims.
+keywords:
+  - quantum computing
+  - quantum algorithms
+  - quantum error correction
+  - quantum information
+  - software engineering
+repository-code: "https://github.com/ivoitovych/experiments"
+license: CC-BY-NC-ND-4.0
+version: "draft"
+date-released: "2026-05-24"

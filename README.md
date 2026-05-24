@@ -6,47 +6,78 @@ by **Iaroslav Voitovych**
 
 ---
 
-## About
+## What this is
 
-This book is a rigorous, engineering-oriented guide to quantum computing for
-readers who already have strong programming skills, mathematical maturity, and
-practical experience with computational systems. See
-[BookDescription.md](BookDescription.md) for the full description and
-[TOC.md](TOC.md) for the complete table of contents with all section headings.
+A rigorous, engineering-oriented, anti-hype guide to quantum computing for
+people who already write software and reason mathematically. It bridges
+classical computing intuition, linear algebra, circuits, algorithms,
+complexity, noise and error correction, hardware, tooling, and the modern
+algorithmic frontier — without pop-science metaphors, physics-first detours,
+or SDK-tutorial shallowness. See [BookDescription.md](BookDescription.md) for
+the full charter and [TOC.md](TOC.md) for every section heading.
+
+## Status
+
+**Full manuscript drafted; technical and editorial review in progress.** All
+37 chapters plus front matter and appendices are written and readable, but
+every file is currently at `draft` status — not yet `reviewed` or `final`.
+Treat the text as a complete draft under active revision. See
+[PROGRESS.md](PROGRESS.md) for per-chapter status and the writing plan.
+
+## Who this is for
+
+Experienced software, systems, ML/AI-infrastructure, HPC, and scientific
+developers — plus computational mathematicians, cryptographers, and
+signal-processing, control, and hardware/software co-design practitioners. No
+prior quantum mechanics is assumed, but mathematical maturity is: you should
+be comfortable reasoning with vectors, matrices, operators, probability, and
+complexity. The full assumed-background list is in
+[BookDescription.md](BookDescription.md).
+
+## Start here
+
+Pick an entry path by goal (fuller versions in
+[BookDescription.md](BookDescription.md)):
+
+- **Full journey** — read linearly: Parts I–III (foundations, qubits,
+  entanglement) → IV–VI (circuits, algorithms) → VII (complexity) → VIII–IX
+  (noise, hardware, software) → X–XIII (practice, applications, epistemics).
+- **Algorithms-first** — Chapters 1–5, then 8–17, with Chapter 16 (modern
+  frontier) and Chapter 36 (judging claims).
+- **Hardware / control / software** — Chapters 1–5, then 18–23, then 25 (NISQ
+  era) and 34 (engineering analogies).
+- **Skeptical / frontier reader** — Chapters 12, 16, 17, 19, 24, then 35–37
+  for interpretation, claim evaluation, and direction.
 
 ## Reading the book on GitHub
 
 Each chapter is a separate Markdown file under [`book/`](book/). Click any
-chapter title below to read it. Math is written in LaTeX and renders natively
-in the GitHub web viewer.
+chapter title in the table of contents below to read it. Math is written in
+LaTeX and renders natively in the GitHub web viewer.
 
-## Writing progress
+## Project documents
 
-See [PROGRESS.md](PROGRESS.md) for per-chapter status and the phase-by-phase
-writing plan.
-
-## Source conventions
-
-See [STYLE.md](STYLE.md) for math, notation, and file conventions used
-throughout the manuscript.
-
-## Process and toolchain
-
-[PROCESS.md](PROCESS.md) records the working method, the toolchain
-(lint, screenshot capture, gist-based reproducer, progress
-regeneration), and the decision log. [HISTORY.md](HISTORY.md) is the
-chronological narrative of how the project got to its current state,
-including the review-loop and renderer-bug investigation arcs.
-[docs/github-markdown-math-bugs.md](docs/github-markdown-math-bugs.md)
-is the canonical memo describing the GitHub Markdown + MathJax
-rendering bugs the project has encountered and worked around;
-[docs/render-tests/math-context-matrix.md](docs/render-tests/math-context-matrix.md)
-is its live test sheet.
+- [BookDescription.md](BookDescription.md) — the charter: scope, audience, philosophy, reading paths.
+- [TOC.md](TOC.md) — full table of contents with every section heading.
+- [PROGRESS.md](PROGRESS.md) — per-chapter status and the phase-by-phase writing plan.
+- [STYLE.md](STYLE.md) — math, notation, and file conventions used throughout the manuscript.
+- [PROCESS.md](PROCESS.md) — working method, toolchain, and decision log.
+- [HISTORY.md](HISTORY.md) — chronological narrative of how the project reached its current state.
+- [CITATION.cff](CITATION.cff) — how to cite this work.
+- [docs/github-markdown-math-bugs.md](docs/github-markdown-math-bugs.md) — canonical memo on GitHub Markdown + MathJax rendering bugs and their workarounds; [docs/render-tests/math-context-matrix.md](docs/render-tests/math-context-matrix.md) is its live test sheet.
 
 ## License
 
-Dual-licensed: free for non-commercial use under CC BY-NC-ND 4.0; commercial
-use requires a separate license. See [LICENSE](LICENSE).
+The **manuscript** — everything under [`book/`](book/) and the prose
+documents — is dual-licensed: free for non-commercial use under
+**CC BY-NC-ND 4.0**, with commercial use requiring a separate license.
+
+The **code and tooling** (`scripts/`, `tools/`, the `Makefile`) are not part
+of the licensed manuscript. They are provided to reproduce the build and
+review pipeline; all rights reserved unless a separate license is stated for
+them.
+
+See [LICENSE](LICENSE) for full terms.
 
 ---
 

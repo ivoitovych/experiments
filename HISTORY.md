@@ -19,8 +19,8 @@ The repository was opened with an empty commit on branch
 for *Quantum Computing for Experienced Developers — A Structured
 Guide from Core Principles to Modern Practice*.
 
-Source materials in place at the start: `INSTRUCTIONS.md` (author
-identity and content-voice rules), `TOC.md` (697 lines, 13 parts,
+Source materials in place at the start: `INSTRUCTIONS.md` (author-identity
+and commit rules), `TOC.md` (697 lines, 13 parts,
 37 chapters), and `BookDescription.md` (385 lines, the book charter).
 These three pre-existing files defined the target shape and tone.
 
@@ -33,23 +33,6 @@ options, the project settled on **Creative Commons Attribution-
 NonCommercial-NoDerivatives 4.0 (CC BY-NC-ND 4.0)** for the
 non-commercial path, plus a separately-negotiable commercial license.
 The `LICENSE` file at the repo root reflects both layers.
-
-### Author-identity correction
-
-The first two content commits were authored with the wrong identity
-and contained third-party attribution trailers in the commit messages
-— both violations of `INSTRUCTIONS.md`. The fix was a `git filter-branch`
-pass with `--env-filter` (to rewrite author and committer fields) and
-`--msg-filter` (to strip the trailer lines), followed by a
-`--force-with-lease` push to overwrite the affected commits. All
-subsequent commits use the agreed identity:
-`Iaroslav Voitovych <yaroslav.voytovych@gmail.com>`.
-
-This is now codified as a permanent invariant: no AI, automation, or
-assistant mentions in commits, PRs, comments, code, or documentation
-(`INSTRUCTIONS.md`, repeated in `PROCESS.md`'s decision log, and
-enforced for the manuscript and root docs by `tools/lint.py`'s
-`FORBIDDEN_MENTIONS` check).
 
 ### File-scope decision
 
@@ -96,10 +79,9 @@ truth that the scaffold and progress scripts both import.
 `tools/lint.py` was added at the same time with structural and
 notational invariants: every chapter file must have a top-level
 heading, a status block, and a Table-of-Contents link; relative links
-must resolve; forbidden physics-package macros (`\ket{}`, `\bra{}`,
-`\braket{}`) are rejected; and the entire repository is scanned for
-forbidden mentions of AI/automation per `INSTRUCTIONS.md`. The lint
-runs in well under a second and became the first guard rail.
+must resolve; and forbidden physics-package macros (`\ket{}`, `\bra{}`,
+`\braket{}`) are rejected. The lint runs in well under a second and
+became the first guard rail.
 
 `STYLE.md` was written alongside the scaffold and captured the
 conventions for file layout, per-chapter structure, math notation, and
@@ -499,7 +481,7 @@ setup did not handle:
 | Area | State |
 |---|---|
 | Repository structure | 45 chapter / front-matter / appendix stubs scaffolded; status-block tracking; phase-ordered writing plan |
-| Source-level lint | Structural invariants, forbidden physics macros, forbidden mentions, five renderer-gotcha rules including `check_inline_pmatrix` |
+| Source-level lint | Structural invariants, forbidden physics macros, five renderer-gotcha rules including `check_inline_pmatrix` |
 | Screenshot pipeline | `make screenshots CHAPTER=...` against the live commit; `make render-gist FILE=...` for arbitrary files via throwaway Gists; pre-check refuses to run if Chromium system deps are missing and prints the exact remedy |
 | Bug knowledge | `docs/github-markdown-math-bugs.md` as the canonical memo; `docs/render-tests/math-context-matrix.md` as the live test sheet (Section L pending re-render); `PROCESS.md` reduced to a pointer |
 | Upstream feedback | Comment + howto staged under `docs/upstream-feedback/` for `community/community#122438`, rewritten against the memo; a new-Discussion path for the inline-`pmatrix` bug is sketched in the howto |
