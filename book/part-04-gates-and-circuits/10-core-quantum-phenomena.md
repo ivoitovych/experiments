@@ -88,7 +88,7 @@ So a state with sharp $Z$ value (an eigenstate of $Z$, i.e. $|0\rangle$ or $|1\r
 
 ## 10.5 No-Cloning Restated
 
-The **no-cloning theorem** (introduced informally in Part 3) says that no unitary $U$ exists satisfying $U(|\psi\rangle \otimes |0\rangle) = |\psi\rangle \otimes |\psi\rangle$ for every $|\psi\rangle$. The proof is one line: if it worked for two non-orthogonal states $|\psi\rangle$ and $|\phi\rangle$ with $\langle \psi|\phi\rangle \neq 0, 1$, unitarity would demand $\langle \psi|\phi\rangle = \langle \psi|\phi\rangle^2$, a contradiction. Linearity alone is enough; unitarity is a stronger constraint that gives the same conclusion.
+The **no-cloning theorem** (proved in §5.13) says that no unitary $U$ exists satisfying $U(|\psi\rangle \otimes |0\rangle) = |\psi\rangle \otimes |\psi\rangle$ for every $|\psi\rangle$. The proof is one line: if it worked for two non-orthogonal states $|\psi\rangle$ and $|\phi\rangle$ with $\langle \psi|\phi\rangle \neq 0, 1$, unitarity would demand $\langle \psi|\phi\rangle = \langle \psi|\phi\rangle^2$, a contradiction. Linearity alone is enough; unitarity is a stronger constraint that gives the same conclusion.
 
 **What no-cloning forbids.** Broadcasting an unknown quantum state to many parties; making backup copies of a quantum register; constructing a deterministic state-discrimination device for non-orthogonal states. Each of these would compose into a cloner if it existed. The theorem also rules out one naive route to faster-than-light signalling, in which Alice would use her half of an entangled pair to influence the local statistics observable by Bob (see §10.6).
 

@@ -16,7 +16,7 @@ The first number on any vendor sheet is the qubit count, and it is the first num
 
 **Connected, usable qubits** is the subset of physical qubits that simultaneously meets calibration thresholds (single-qubit fidelity above some floor, two-qubit fidelity above some floor, readout above some floor) and is wired into the device's coupling graph as a connected component. This is the count a programmer can actually request. For large devices it can be substantially smaller than the physical count; for small, well-curated devices the two coincide.
 
-**Logical qubits** are encoded qubits in an error-correcting code (Part 6). A single surface-code logical qubit at code distance $d$ uses roughly $2d^2$ physical qubits for the data plus ancilla overhead, so a 1000-physical-qubit device at $d = 5$ supports on the order of 10–20 logical qubits, not 1000. When a vendor reports both numbers — Quantinuum, for instance, has published logical-qubit counts on H1/H2 — read them as the count the user-facing algorithm should plan against.
+**Logical qubits** are encoded qubits in an error-correcting code (Part 8). A single surface-code logical qubit at code distance $d$ uses roughly $2d^2$ physical qubits for the data plus ancilla overhead, so a 1000-physical-qubit device at $d = 5$ supports on the order of 10–20 logical qubits, not 1000. When a vendor reports both numbers — Quantinuum, for instance, has published logical-qubit counts on H1/H2 — read them as the count the user-facing algorithm should plan against.
 
 **Algorithmic qubits** is a marketing-blessed shorthand introduced by IonQ (§22.9) for an effective qubit count that accounts for connectivity and noise. It is a *derived* metric, not a count of anything you can address.
 

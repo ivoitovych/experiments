@@ -6,7 +6,7 @@
 
 Chapters 5–7 fixed the static picture: states, composite systems, entanglement. This chapter introduces the dynamics that a quantum computer can actually realise. Gates are unitaries acting on one or two qubits at a time; circuits are sequences of gates; and the questions of practical interest are which gates one can implement on a given device, which finite sets of gates are universal, and how to compile an arbitrary unitary down to those primitives. The chapter is heavy on matrices — open Appendix B alongside it for the gate cheat sheet.
 
-> **How to read this chapter.** §§8.1–8.6 are mandatory; everything later assumes them. §§8.9–8.11 (universality, Clifford+T, Solovay–Kitaev) are essential before reading Part 6 on quantum error correction but can be deferred on a first algorithmic pass. §§8.12–8.14 (native gates, parameterised gates, synthesis) become important once you start running circuits on real hardware (Part 7) or designing variational algorithms (Part 5).
+> **How to read this chapter.** §§8.1–8.6 are mandatory; everything later assumes them. §§8.9–8.11 (universality, Clifford+T, Solovay–Kitaev) are essential before reading Part 8 on quantum error correction but can be deferred on a first algorithmic pass. §§8.12–8.14 (native gates, parameterised gates, synthesis) become important once you start running circuits on real hardware (Part 9) or designing variational algorithms (Part 6).
 
 ## 8.1 Reversibility and Unitary Evolution
 
@@ -26,7 +26,7 @@ $$
 
 Each is Hermitian and unitary, with $X^2 = Y^2 = Z^2 = I$, and they anticommute in pairs: $\\{X, Y\\} = \\{Y, Z\\} = \\{Z, X\\} = 0$. They span the traceless Hermitian $2\times 2$ matrices, so every single-qubit Hamiltonian is a real linear combination $H = h_0 I + \vec h \cdot \vec\sigma$ and every single-qubit unitary is of the form $e^{-i\alpha} R_{\hat n}(\theta)$ for some axis $\hat n$ and angle $\theta$ (§8.5).
 
-Operationally: $X$ is the "quantum NOT" — it swaps $|0\rangle \leftrightarrow |1\rangle$. $Z$ is the "phase flip" — it flips the sign of $|1\rangle$ and leaves $|0\rangle$ alone. $Y = iXZ$ does both. In the Bloch picture (§6.8), each Pauli implements a $\pi$ rotation about the corresponding axis. Pauli operators also generate the Pauli group, which is the backbone of stabiliser formalism (Part 6) and of error-correction code construction.
+Operationally: $X$ is the "quantum NOT" — it swaps $|0\rangle \leftrightarrow |1\rangle$. $Z$ is the "phase flip" — it flips the sign of $|1\rangle$ and leaves $|0\rangle$ alone. $Y = iXZ$ does both. In the Bloch picture (§6.8), each Pauli implements a $\pi$ rotation about the corresponding axis. Pauli operators also generate the Pauli group, which is the backbone of stabiliser formalism (Part 8) and of error-correction code construction.
 
 ## 8.3 Hadamard Gate
 
@@ -123,7 +123,7 @@ A **universal gate set** is a finite collection of gates whose products can appr
 
 Combining the two, $\\{H, T, \mathrm{CNOT}\\}$ is universal. Other common universal sets include $\\{H, S, \mathrm{CNOT}, \mathrm{Toffoli}\\}$; any single non-Clifford single-qubit gate together with Clifford generators; and any "generic" two-qubit entangling gate (one that creates entanglement from a product state) together with all single-qubit unitaries.
 
-The relevance for hardware: a platform that exposes any one entangling two-qubit gate plus arbitrary single-qubit rotations is, in principle, computationally universal. Whether those primitives are *practically* good enough — low enough error, fast enough, well-calibrated enough — is a separate question, addressed in Part 7.
+The relevance for hardware: a platform that exposes any one entangling two-qubit gate plus arbitrary single-qubit rotations is, in principle, computationally universal. Whether those primitives are *practically* good enough — low enough error, fast enough, well-calibrated enough — is a separate question, addressed in Part 9.
 
 ## 8.10 Clifford + T
 

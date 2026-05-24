@@ -6,7 +6,7 @@
 
 Chapter 6 introduced one qubit. Most of the interesting physics — and all of the computational advantage we care about — lives in systems of many qubits, where the state space grows exponentially and where states can exhibit correlations with no classical analogue. This chapter builds that machinery: the tensor product, product vs. entangled states, the Bell zoo, the EPR/Bell argument that quantum correlations cannot be reproduced by any local hidden-variable model, the Schmidt decomposition, partial traces, and entanglement as a resource that powers teleportation, superdense coding, and quantum cryptography.
 
-> **How to read this chapter.** If you skipped Chapter 5, the postulate of composite systems (§5.5) and the partial trace (§5.12) are the operational prerequisites. Sections 7.1–7.5 are mandatory; §7.9 (Bell inequalities) and §7.10 (Schmidt) can be skimmed on a first pass and revisited when you reach the algorithms in Part 5.
+> **How to read this chapter.** If you skipped Chapter 5, the postulate of composite systems (§5.5) and the partial trace (§5.12) are the operational prerequisites. Sections 7.1–7.5 are mandatory; §7.9 (Bell inequalities) and §7.10 (Schmidt) can be skimmed on a first pass and revisited when you reach the algorithms in Part 6.
 
 ## 7.1 Tensor-Product State Construction
 
