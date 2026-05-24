@@ -568,8 +568,8 @@ The basic statements:
 
 The same resource-theoretic structure applies to other quantum features
 treated later: **coherence** (Chapter 18 noise discussion), **magic /
-non-stabilizer states** (Chapter 22 fault-tolerance discussion), and
-**thermodynamic free energy** (briefly, in Chapter 33). Each of them
+non-stabilizer states** (Chapter 19 fault-tolerance discussion), and
+**thermodynamic free energy** (briefly, in Chapter 32). Each of them
 identifies a class of "free" states and "free" operations, defines the
 resource as whatever is preserved or destroyed under those, and asks
 for conversion rates. Entanglement under LOCC is the prototype and

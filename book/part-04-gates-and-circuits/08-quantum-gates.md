@@ -94,7 +94,7 @@ $$
 
 so on a device that only offers CNOTs you can synthesise CZ and SWAP, at the cost of one or three CNOTs respectively.
 
-Two-qubit gates are the *expensive* resource on hardware: they are slower, noisier, and require careful calibration. Most of the optimisation effort in a compiler is about minimising the two-qubit gate count and routing them around limited connectivity (§8.14, Chapter 22).
+Two-qubit gates are the *expensive* resource on hardware: they are slower, noisier, and require careful calibration. Most of the optimisation effort in a compiler is about minimising the two-qubit gate count and routing them around limited connectivity (§8.14, Chapter 23).
 
 ## 8.7 Controlled and Multi-Controlled Gates
 
@@ -182,7 +182,7 @@ The gradient is therefore exactly computable from two additional circuit evaluat
 
 **Multi-qubit synthesis.** For arbitrary $n$, exact synthesis uses at most $O(4^n)$ CNOTs; finding optimal or near-optimal circuits is the central problem of compilation. Practical compilers (Qiskit Transpiler, t|ket⟩, Quantinuum's TKET, Google's Cirq) combine peephole rewrite rules, template matching, and search-based optimisation. The targets are usually some combination of (a) CNOT or two-qubit gate count, (b) circuit depth, (c) $T$-count in fault-tolerant settings, and (d) compatibility with hardware connectivity.
 
-Chapter 22 returns to compilation; Chapter 23 to fault-tolerant resource estimation. For now, the takeaway is that a well-defined target unitary is one end of a long pipeline, the other end of which is a stream of pulses sent to physical qubits.
+Chapter 23 returns to compilation; Chapter 19 to fault-tolerant resource estimation. For now, the takeaway is that a well-defined target unitary is one end of a long pipeline, the other end of which is a stream of pulses sent to physical qubits.
 
 **Sanity checks before moving on.**
 
