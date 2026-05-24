@@ -1,0 +1,5 @@
+# Figure-generation toolchain — see figures-src/generate_figures.py.
+# Install into the repo venv with: make figures-setup
+matplotlib==3.10.9
+qiskit==2.4.1
+pylatexenc==2.10

@@ -28,6 +28,8 @@ Each is Hermitian and unitary, with $X^2 = Y^2 = Z^2 = I$, and they anticommute 
 
 Operationally: $X$ is the "quantum NOT" — it swaps $|0\rangle \leftrightarrow |1\rangle$. $Z$ is the "phase flip" — it flips the sign of $|1\rangle$ and leaves $|0\rangle$ alone. $Y = iXZ$ does both. In the Bloch picture (§6.8), each Pauli implements a $\pi$ rotation about the corresponding axis. Pauli operators also generate the Pauli group, which is the backbone of stabiliser formalism (Part 8) and of error-correction code construction.
 
+![Circuit symbol for the Pauli-X (quantum NOT) gate acting on a single qubit.](figures/pauli-x.svg)
+
 ## 8.3 Hadamard Gate
 
 The Hadamard gate is
@@ -45,6 +47,8 @@ $$
 and back: $H|+\rangle = |0\rangle$, $H|-\rangle = |1\rangle$. So $H^2 = I$, and $H$ is its own inverse. It is the single most important single-qubit gate in algorithms: $H^{\otimes n}|0^n\rangle$ is the uniform superposition over all $2^n$ bit strings, which is where Deutsch–Jozsa, Grover, Shor's order-finding subroutine, and the whole "quantum parallelism" picture begin.
 
 $H$ is also the change-of-basis matrix between the $Z$ eigenbasis and the $X$ eigenbasis. Concretely, $HXH = Z$ and $HZH = X$. This identity is used constantly when compiling: a Pauli-X measurement on a qubit is the same as a Pauli-Z measurement preceded by $H$ and followed by $H$ — and because measurement collapses anyway, the trailing $H$ can usually be dropped.
+
+![Circuit symbol for the Hadamard gate acting on a single qubit.](figures/hadamard.svg)
 
 ## 8.4 S, T, and Phase Gates
 
@@ -86,6 +90,8 @@ $$
 
 It flips the target qubit (the second one, by convention here) iff the control qubit is $|1\rangle$. Combined with $H$, it generates the Bell states (§7.5).
 
+![CNOT gate with a control dot on the top qubit and a target (⊕) on the bottom qubit.](figures/cnot.svg)
+
 Closely related are **CZ** (controlled-Z), which adds a minus sign to $|11\rangle$ and is symmetric in the two qubits; **SWAP**, which exchanges the two qubits; and **iSWAP** and **$\sqrt{\mathrm{SWAP}}$**, which are convenient native gates on some superconducting architectures. Useful identities to memorise:
 
 $$
@@ -93,6 +99,10 @@ $$
 $$
 
 so on a device that only offers CNOTs you can synthesise CZ and SWAP, at the cost of one or three CNOTs respectively.
+
+![Controlled-Z gate, drawn symmetrically with a control dot on each of the two qubits.](figures/cz.svg)
+
+![SWAP gate exchanging two qubits, drawn with crossed (×) symbols joined by a vertical line.](figures/swap.svg)
 
 Two-qubit gates are the *expensive* resource on hardware: they are slower, noisier, and require careful calibration. Most of the optimisation effort in a compiler is about minimising the two-qubit gate count and routing them around limited connectivity (§8.14, Chapter 23).
 
@@ -111,6 +121,8 @@ Multi-controlled gates extend the same idea: $\mathrm{C}^k(U)$ applies $U$ to th
 ## 8.8 Toffoli and Fredkin Gates
 
 **Toffoli** ($\mathrm{CCX}$) flips the target iff both controls are $|1\rangle$. It is universal for classical reversible computation, which means any classical circuit can be lifted into a quantum circuit using only Toffolis — at the cost of additional ancilla qubits to absorb the irreversible information.
+
+![Toffoli (CCX) gate: two control dots on the upper qubits and a target (⊕) on the third.](figures/toffoli.svg)
 
 **Fredkin** ($\mathrm{CSWAP}$) swaps two target qubits conditioned on a control. It is also classically universal and is the natural primitive when the underlying classical operation is a permutation. Both Toffoli and Fredkin can be decomposed into Clifford + T circuits: the standard Toffoli decomposition uses six CNOTs, seven $T$ / $T^{\dagger}$ gates, and two $H$ gates. Reducing the $T$-cost of Toffoli (and of long Toffoli chains arising in arithmetic) is a recurring theme in fault-tolerant compilation.
 

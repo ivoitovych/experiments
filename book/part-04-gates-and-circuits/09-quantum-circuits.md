@@ -21,6 +21,8 @@ A handful of glyph conventions are near-universal across vendors:
 
 Three conventions are *not* universal and trip up readers crossing between sources. **Qubit ordering**: textbooks usually put the most-significant qubit on top (this book does), but Qiskit puts the least-significant qubit on top (so it lines up with classical bit-string order). **Time direction**: most diagrams run left-to-right, but a few physics texts run right-to-left to match the algebraic order $U_n \cdots U_2 U_1$. **Endianness in bit strings**: $|q_0 q_1 q_2\rangle$ might mean either $q_0$ is the top wire or the leftmost bit of the integer — check before computing. This book uses leftmost-as-most-significant throughout (Chapter 7) and matches the top-wire convention.
 
+![Bell-state preparation: a Hadamard on the top qubit, then a CNOT, then measurement of both qubits into a two-bit classical register — illustrating the control dot, the target, the meter symbol, and the double-line classical wire.](figures/bell-state.svg)
+
 ## 9.2 The Circuit Model of Computation
 
 A **quantum circuit** on $n$ qubits is a finite sequence
@@ -108,6 +110,8 @@ The **depth** of a circuit is the length of the longest path through it — equi
 A few useful facts. Single-qubit and disjoint two-qubit gates can run in parallel, so a width-$n$ circuit of $n$ disjoint single-qubit gates has depth $1$, not $n$. But two two-qubit gates that share a qubit must serialise. Layered compilation (the "ASAP scheduler") greedily places each gate as early as its data dependencies allow; the result is a near-optimal depth assignment, modulo gate-duration heterogeneity.
 
 Depth lower bounds are sometimes available. Preparing an $n$-qubit state from $|0^n\rangle$ generally requires depth $\Omega(n)$ on nearest-neighbour architectures (linear connectivity forces information to propagate by SWAPs); on a fully-connected architecture, depth $O(\log n)$ suffices for some families like the GHZ state. Many practical algorithms have depth scaling as $O(\mathrm{poly}(n) \cdot \log(1/\epsilon))$ — the second factor reflecting Solovay–Kitaev synthesis (§8.11).
+
+![Three-qubit GHZ-state preparation: a Hadamard on the top qubit followed by a chain of two CNOTs. As drawn (linear nearest-neighbour chain) the depth grows with the qubit count.](figures/ghz-state.svg)
 
 ## 9.11 Circuit Width
 
