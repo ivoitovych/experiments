@@ -20,7 +20,7 @@ PY       := $(VENV)/bin/python
 PIP      := $(VENV)/bin/pip
 SYS_PY   := python3
 
-.PHONY: help setup setup-system-deps lint progress screenshots render-gist clean-artifacts figures figures-setup
+.PHONY: help setup setup-system-deps lint progress screenshots render-gist clean-artifacts figures figures-setup check-examples
 
 help: ## Show available targets.
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?##/ \
@@ -56,6 +56,9 @@ progress: ## Regenerate PROGRESS.md from chapter status blocks.
 
 figures: figures-setup ## Generate circuit figures (SVG next to chapters + PNG previews in .artifacts/).
 	$(PY) figures-src/generate_figures.py
+
+check-examples: figures-setup ## Run examples/ end-to-end to keep embedded code snippets honest.
+	$(PY) scripts/check_examples.py
 
 figures-setup: $(VENV)/.figures-installed ## One-time: install figure-generation deps into .venv.
 

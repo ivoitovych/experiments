@@ -61,6 +61,32 @@ The practical ceiling is on the order of $n = 33$–$35$ for a workstation and $
 
 What statevector simulation *cannot* do: simulate noise (Section 24.4 is the extension), exploit structure (the cost is the same for a deeply entangled state and a product state), or scale beyond the memory wall. Within those constraints it is the gold standard.
 
+A few lines exercise exactly this access-to-internals (`examples/statevector_simulation.py`): build a GHZ circuit, read the exact amplitudes, and get outcome probabilities with no sampling at all.
+
+```python
+from qiskit import QuantumCircuit
+from qiskit.quantum_info import Statevector
+
+qc = QuantumCircuit(3)
+qc.h(0)
+qc.cx(0, 1)
+qc.cx(1, 2)  # prepares the 3-qubit GHZ state
+
+sv = Statevector(qc)
+for basis, amp in sorted(sv.to_dict().items()):
+    print(f"|{basis}>: {amp.real:+.3f}{amp.imag:+.3f}j")
+probs = {str(k): float(round(v, 3)) for k, v in sv.probabilities_dict().items()}
+print(probs)
+```
+
+Output:
+
+```text
+|000>: +0.707+0.000j
+|111>: +0.707+0.000j
+{'000': 0.5, '111': 0.5}
+```
+
 ## 24.4 Density-Matrix Simulation
 
 When the system is mixed — coupled to an environment, subject to gate errors, decohering over time — the pure-state description fails. The right object is the **density matrix** $\rho$, a $2^n \times 2^n$ positive semidefinite operator with trace $1$ (Chapter 11). Storing $\rho$ in dense form costs $16 \cdot 4^n$ bytes — every qubit doubled in cost. The threshold values halve: $n = 15$ on a workstation, $n = 22$ on a large server, $n = 25$ at the very edge of dense simulation.

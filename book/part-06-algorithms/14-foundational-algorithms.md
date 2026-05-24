@@ -32,6 +32,30 @@ The circuit is the natural generalisation: prepare $|0^n\rangle|1\rangle$, apply
 
 Two remarks. **The exponential separation is artificial**: it disappears if you allow bounded-error classical algorithms, since a few random samples distinguish constant from balanced with high probability. Deutsch–Jozsa was historically important as the first oracle exponential gap, not as a practical speedup. **The mechanism, however, is universal**: this is a poster child for "Hadamard sandwich + phase kickback", and the same template reappears in Bernstein–Vazirani, Simon, Shor's period-finding subroutine, and the QFT itself.
 
+This runs end to end (`examples/deutsch_jozsa.py`). With a balanced oracle $f(x) = x_0 \oplus x_1 \oplus x_2$ — a CNOT from each input into the ancilla — the data register never returns all-zero, so a single shot already decides "balanced":
+
+```python
+from qiskit import QuantumCircuit
+from qiskit.primitives import StatevectorSampler
+
+def dj_circuit(n, oracle):
+    qc = QuantumCircuit(n + 1, n)
+    qc.x(n)
+    qc.h(range(n + 1))
+    oracle(qc, n)
+    qc.h(range(n))
+    qc.measure(range(n), range(n))
+    return qc
+
+def balanced_oracle(qc, n):
+    for q in range(n):
+        qc.cx(q, n)
+
+qc = dj_circuit(3, balanced_oracle)
+counts = StatevectorSampler().run([qc], shots=1000).result()[0].data.c.get_counts()
+print(counts)  # {'111': 1000} -> not all-zero -> balanced
+```
+
 ## 14.3 Bernstein–Vazirani Algorithm
 
 The Bernstein–Vazirani problem: given an oracle for $f_s(x) = s \cdot x \pmod 2$ where $s \in \\{0,1\\}^n$ is a hidden bit-string and $s \cdot x$ is the bitwise inner product, recover $s$. Classically you need $n$ queries (query the standard basis vectors $e_i$); the Bernstein–Vazirani algorithm needs *one*.

@@ -40,6 +40,32 @@ The question "which SDK should I start with" has different answers for different
 
 A reasonable default for somebody coming from a software-engineering background and trying to learn the field: start with PennyLane on a local simulator, build up to small circuits on IBM hardware via Qiskit, and use tket when you need to compare vendors. Avoid the trap of installing six SDKs at once; pick one and stay with it for the first month.
 
+To make this concrete, here is a complete first Qiskit program — prepare a Bell state, inspect its exact amplitudes, then sample it (`examples/first_bell_program.py`):
+
+```python
+from qiskit import QuantumCircuit
+from qiskit.primitives import StatevectorSampler
+from qiskit.quantum_info import Statevector
+
+qc = QuantumCircuit(2)
+qc.h(0)
+qc.cx(0, 1)
+
+print("statevector:", Statevector(qc).data.round(3))
+
+measured = qc.copy()
+measured.measure_all()
+result = StatevectorSampler().run([measured], shots=1000).result()
+print("counts:", result[0].data.meas.get_counts())
+```
+
+Output (the statevector is exact; the counts fluctuate from run to run):
+
+```text
+statevector: [0.707+0.j 0.   +0.j 0.   +0.j 0.707+0.j]
+counts: {'11': 502, '00': 498}
+```
+
 ## 26.4 Choosing a First Hardware Target
 
 Once you move past simulators, the question is which platform. A few pragmatic guidelines:
