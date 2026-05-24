@@ -103,7 +103,7 @@ A typical superconducting cadence walks from coarse to fine:
 1. **Spectroscopy**: drive the qubit at varying frequency and watch the readout to locate $\omega_{01}/2\pi$ to within a few hundred kilohertz. Repeat for the $|1\rangle \to |2\rangle$ transition to refit the anharmonicity $\alpha$.
 2. **Rabi**: at the refit drive frequency, sweep amplitude and pulse duration; fit the Rabi oscillation to pin the amplitude that produces an $X_\pi$ in the nominal $30\\,\mathrm{ns}$.
 3. **Ramsey**: measure $T_2^*$ and refine the drive detuning to within a kilohertz.
-4. **DRAG calibration**: sweep the DRAG coefficient (§21.12) until leakage and phase error are minimised; typical figure of merit is the error in a repeated $X_{\pi/2}$ sequence.
+4. **DRAG calibration**: sweep the DRAG coefficient (§21.11) until leakage and phase error are minimised; typical figure of merit is the error in a repeated $X_{\pi/2}$ sequence.
 5. **Single-qubit randomised benchmarking**: verify the Clifford error rate is below the spec ($10^{-3}$ to $10^{-4}$).
 6. **Two-qubit gate tune-up**: sweep the cross-resonance amplitude, phase, and rotary-echo parameters; refit until interleaved RB on the entangling gate meets spec.
 7. **Readout**: sweep readout pulse amplitude and duration; refit the IQ discrimination boundary from a calibration dataset of prepared $|0\rangle$ and $|1\rangle$ shots.
