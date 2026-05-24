@@ -18,16 +18,21 @@ from __future__ import annotations
 
 import pathlib
 
+from math import pi
+
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from qiskit import QuantumCircuit
+from qiskit.circuit import Gate, Parameter
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PREVIEW_DIR = ROOT / ".artifacts" / "figures"
 
 # Chapters 8-10 all live in Part IV and share one figures directory.
 GATES_DIR = "book/part-04-gates-and-circuits/figures"
+# Chapters 13-16 live in Part VI.
+ALGO_DIR = "book/part-06-algorithms/figures"
 
 
 def hadamard() -> QuantumCircuit:
@@ -82,6 +87,77 @@ def ghz_state() -> QuantumCircuit:
     return qc
 
 
+def interference() -> QuantumCircuit:
+    # Single-qubit interferometer: the two H gates are the "beam splitters"
+    # and the phase P(phi) sets the relative path length.
+    phi = Parameter("ϕ")
+    qc = QuantumCircuit(1, 1)
+    qc.h(0)
+    qc.p(phi, 0)
+    qc.h(0)
+    qc.measure(0, 0)
+    return qc
+
+
+def deutsch_jozsa(n: int = 3) -> QuantumCircuit:
+    qc = QuantumCircuit(n + 1, n)
+    qc.x(n)
+    qc.h(range(n + 1))
+    qc.barrier()
+    qc.append(Gate("$U_f$", n + 1, []), range(n + 1))
+    qc.barrier()
+    qc.h(range(n))
+    qc.measure(range(n), range(n))
+    return qc
+
+
+def bernstein_vazirani(n: int = 3) -> QuantumCircuit:
+    qc = QuantumCircuit(n + 1, n)
+    qc.x(n)
+    qc.h(range(n + 1))
+    qc.barrier()
+    qc.append(Gate("$U_s$", n + 1, []), range(n + 1))
+    qc.barrier()
+    qc.h(range(n))
+    qc.measure(range(n), range(n))
+    return qc
+
+
+def qft3() -> QuantumCircuit:
+    qc = QuantumCircuit(3)
+    qc.h(0)
+    qc.cp(pi / 2, 1, 0)
+    qc.cp(pi / 4, 2, 0)
+    qc.h(1)
+    qc.cp(pi / 2, 2, 1)
+    qc.h(2)
+    qc.swap(0, 2)
+    return qc
+
+
+def grover_iteration(n: int = 3) -> QuantumCircuit:
+    # Uniform superposition, then one Grover iteration: an oracle that
+    # phase-flips the marked basis state |11..1> (H-MCX-H on the last wire),
+    # followed by the diffusion operator about the mean. The iteration is
+    # repeated about (pi/4)*sqrt(2**n) times.
+    controls = list(range(n - 1))
+    qc = QuantumCircuit(n)
+    qc.h(range(n))
+    qc.barrier(label="oracle")
+    qc.h(n - 1)
+    qc.mcx(controls, n - 1)
+    qc.h(n - 1)
+    qc.barrier(label="diffuser")
+    qc.h(range(n))
+    qc.x(range(n))
+    qc.h(n - 1)
+    qc.mcx(controls, n - 1)
+    qc.h(n - 1)
+    qc.x(range(n))
+    qc.h(range(n))
+    return qc
+
+
 # name -> (builder, target directory under repo root)
 FIGURES: list[dict] = [
     {"name": "hadamard", "dir": GATES_DIR, "build": hadamard},
@@ -92,6 +168,11 @@ FIGURES: list[dict] = [
     {"name": "toffoli", "dir": GATES_DIR, "build": toffoli},
     {"name": "bell-state", "dir": GATES_DIR, "build": bell_state},
     {"name": "ghz-state", "dir": GATES_DIR, "build": ghz_state},
+    {"name": "interference", "dir": GATES_DIR, "build": interference},
+    {"name": "deutsch-jozsa", "dir": ALGO_DIR, "build": deutsch_jozsa},
+    {"name": "bernstein-vazirani", "dir": ALGO_DIR, "build": bernstein_vazirani},
+    {"name": "qft-3qubit", "dir": ALGO_DIR, "build": qft3},
+    {"name": "grover-iteration", "dir": ALGO_DIR, "build": grover_iteration},
 ]
 
 
