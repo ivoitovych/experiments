@@ -10,14 +10,14 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 
 - **Files total:** 47
 - **Started (past `stub`):** 47 / 47
-- **Completed (`draft` or later):** 46 / 47
+- **Completed (`draft` or later):** 47 / 47
 
 - **Phase 1 (Foundations):** started 25/25, completed 25/25
 - **Phase 2 (Core mechanics):** started 5/5, completed 5/5
 - **Phase 3 (Algorithms and complexity):** started 1/1, completed 1/1
 - **Phase 4 (Real systems):** started 6/6, completed 6/6
 - **Phase 5 (Practice and applications):** started 7/7, completed 7/7
-- **Phase 6 (Orientation, epistemics, closure):** started 3/3, completed 2/3
+- **Phase 6 (Orientation, epistemics, closure):** started 3/3, completed 3/3
 
 ## Phase 1 — Foundations
 
@@ -80,6 +80,6 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 
 ## Phase 6 — Orientation, epistemics, closure
 
-- [ ] [Index](book/99-back-matter/index.md) — *outlined* — sections 0/1
+- [x] [Index](book/99-back-matter/index.md) — *draft* — sections 1/1
 - [x] [Chapter 34. Bridging Quantum Computing to Familiar Engineering Ideas](book/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md) — *draft* — sections 9/9
 - [x] [Chapter 35. Interpretational and Conceptual Pitfalls](book/part-13-perspective-and-direction/35-interpretational-and-conceptual-pitfalls.md) — *draft* — sections 14/14

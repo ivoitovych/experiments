@@ -20,7 +20,7 @@ PY       := $(VENV)/bin/python
 PIP      := $(VENV)/bin/pip
 SYS_PY   := python3
 
-.PHONY: help setup setup-system-deps lint progress screenshots render-gist clean-artifacts figures figures-setup check-examples
+.PHONY: help setup setup-system-deps lint progress index screenshots render-gist clean-artifacts figures figures-setup check-examples
 
 help: ## Show available targets.
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?##/ \
@@ -53,6 +53,9 @@ lint: ## Run tools/lint.py — fast, no venv needed.
 
 progress: ## Regenerate PROGRESS.md from chapter status blocks.
 	$(SYS_PY) scripts/generate_progress.py
+
+index: ## Regenerate the back-matter Index from the curated term list.
+	$(SYS_PY) scripts/generate_index.py
 
 figures: figures-setup ## Generate circuit figures (SVG next to chapters + PNG previews in .artifacts/).
 	$(PY) figures-src/generate_figures.py
