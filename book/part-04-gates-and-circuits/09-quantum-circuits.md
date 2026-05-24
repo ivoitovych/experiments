@@ -33,7 +33,7 @@ each $U_\ell$ being a tensor product of single- or few-qubit gates acting on dis
 
 This model is **polynomially equivalent** to other quantum models — the quantum Turing machine, the adiabatic model (for sufficiently smooth Hamiltonians), measurement-based quantum computation with a 2D cluster state, and various continuous-variable schemes. It is the model that maps most cleanly onto current hardware and onto every major SDK (Qiskit, Cirq, OpenQASM, Quil, $\mathrm{t}|\mathrm{ket}\rangle$).
 
-What the circuit model is not. It is not a description of analogue evolution: the Hamiltonian $H$ that physically implements each gate is hidden inside the gate primitive. It is not a probabilistic computation in disguise: outcomes are sampled, but the *amplitudes* propagate through interference between gates, not via probabilities. And it is not unique: the same unitary $C$ admits exponentially many circuit decompositions, which is why compilation and optimisation (§9.13, Chapter 22) are nontrivial.
+What the circuit model is not. It is not a description of analogue evolution: the Hamiltonian $H$ that physically implements each gate is hidden inside the gate primitive. It is not a probabilistic computation in disguise: outcomes are sampled, but the *amplitudes* propagate through interference between gates, not via probabilities. And it is not unique: the same unitary $C$ admits exponentially many circuit decompositions, which is why compilation and optimisation (§9.13, Chapter 23) are nontrivial.
 
 ## 9.3 Ancilla Qubits
 
@@ -137,7 +137,7 @@ Equivalent to routing is **initial mapping**: choosing which logical qubits live
 
 **Routing-aware reordering**: interleave gate scheduling and SWAP insertion to minimise total cost on a connectivity-restricted device.
 
-In practice you do not write these passes; you call the compiler ("transpile" in Qiskit, "compile" in $\mathrm{t}|\mathrm{ket}\rangle$, "optimize" in Cirq) and tune optimisation level. But knowing which passes the compiler runs is invaluable when debugging unexpected blow-ups in circuit size, and Chapter 22 takes the topic up in detail.
+In practice you do not write these passes; you call the compiler ("transpile" in Qiskit, "compile" in $\mathrm{t}|\mathrm{ket}\rangle$, "optimize" in Cirq) and tune optimisation level. But knowing which passes the compiler runs is invaluable when debugging unexpected blow-ups in circuit size, and Chapter 23 takes the topic up in detail.
 
 ## 9.14 Bridge to Chapter 10
 
