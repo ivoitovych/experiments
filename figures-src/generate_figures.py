@@ -22,6 +22,9 @@ from math import pi
 
 import matplotlib
 matplotlib.use("Agg")
+# Deterministic SVGs: fixed salt for element ids, and no embedded timestamp,
+# so regenerating an unchanged figure produces a byte-identical file.
+matplotlib.rcParams["svg.hashsalt"] = "qc-book"
 import matplotlib.pyplot as plt
 from qiskit import QuantumCircuit
 from qiskit.circuit import Gate, Parameter
@@ -181,7 +184,8 @@ def render(qc: QuantumCircuit, svg_path: pathlib.Path, png_path: pathlib.Path) -
     svg_path.parent.mkdir(parents=True, exist_ok=True)
     png_path.parent.mkdir(parents=True, exist_ok=True)
     # White facecolor so black gate labels stay legible on GitHub dark mode.
-    fig.savefig(svg_path, format="svg", bbox_inches="tight", facecolor="white")
+    fig.savefig(svg_path, format="svg", bbox_inches="tight", facecolor="white",
+                metadata={"Date": None})
     fig.savefig(png_path, format="png", dpi=200, bbox_inches="tight", facecolor="white")
     plt.close(fig)
 
