@@ -136,7 +136,7 @@ Three regions on the quantum-speedup map are worth fixing in mind.
 
 **Polynomial speedups.** Provable, ubiquitous, and based on amplitude amplification. Grover's algorithm gives a quadratic speedup for unstructured search; element distinctness, collision finding, and many graph problems inherit polynomial speedups from Grover-style subroutines or from the *quantum walk* framework. Quadratic speedups are robust but easily eroded: in fault-tolerant settings, the constant overhead of error correction can absorb a factor-of-$\sqrt{n}$ improvement, and one must compare *fault-tolerant* quantum running time to *uncorrected* classical running time to judge end-to-end advantage.
 
-**Simulation speedups.** Quantum systems are believed to be hard to simulate classically; running a quantum computer to simulate them is the original Feynman motivation. Quantum simulation of local Hamiltonians (Chapter 18) admits provable polynomial-time algorithms, and the speedup over the best known classical algorithms is exponential for many natural physical problems. This is the speedup most likely to be of practical importance in the near term.
+**Simulation speedups.** Quantum systems are believed to be hard to simulate classically; running a quantum computer to simulate them is the original Feynman motivation. Quantum simulation of local Hamiltonians (Chapter 16) admits provable polynomial-time algorithms, and the speedup over the best known classical algorithms is exponential for many natural physical problems. This is the speedup most likely to be of practical importance in the near term.
 
 Two cautions worth carrying into Part 6.
 
