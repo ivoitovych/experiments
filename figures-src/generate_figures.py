@@ -27,7 +27,7 @@ matplotlib.use("Agg")
 matplotlib.rcParams["svg.hashsalt"] = "qc-book"
 import matplotlib.pyplot as plt
 from qiskit import QuantumCircuit
-from qiskit.circuit import Gate, Parameter
+from qiskit.circuit import ClassicalRegister, Gate, Parameter, QuantumRegister
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PREVIEW_DIR = ROOT / ".artifacts" / "figures"
@@ -36,6 +36,10 @@ PREVIEW_DIR = ROOT / ".artifacts" / "figures"
 GATES_DIR = "book/part-04-gates-and-circuits/figures"
 # Chapters 13-16 live in Part VI.
 ALGO_DIR = "book/part-06-algorithms/figures"
+# Chapter 7 (qubits/entanglement) lives in Part III.
+QUBITS_DIR = "book/part-03-qubits/figures"
+# Chapters 18-19 (noise / QEC) live in Part VIII.
+QEC_DIR = "book/part-08-noise-and-qec/figures"
 
 
 def hadamard() -> QuantumCircuit:
@@ -161,6 +165,41 @@ def grover_iteration(n: int = 3) -> QuantumCircuit:
     return qc
 
 
+def teleportation() -> QuantumCircuit:
+    q = QuantumRegister(3, "q")
+    c = ClassicalRegister(2, "c")
+    qc = QuantumCircuit(q, c)
+    qc.h(1)
+    qc.cx(1, 2)  # Bell pair shared between Alice (q1) and Bob (q2)
+    qc.barrier()
+    qc.cx(0, 1)  # Alice entangles the message qubit q0
+    qc.h(0)
+    qc.measure(0, 0)
+    qc.measure(1, 1)
+    qc.barrier()
+    with qc.if_test((c[1], 1)):  # Bob's classically-conditioned corrections
+        qc.x(2)
+    with qc.if_test((c[0], 1)):
+        qc.z(2)
+    return qc
+
+
+def bit_flip_code() -> QuantumCircuit:
+    data = QuantumRegister(3, "d")
+    anc = QuantumRegister(2, "a")
+    syn = ClassicalRegister(2, "s")
+    qc = QuantumCircuit(data, anc, syn)
+    qc.cx(data[0], data[1])  # encode one logical qubit into three
+    qc.cx(data[0], data[2])
+    qc.barrier(label="encode")
+    qc.cx(data[0], anc[0])  # syndrome: parity of (d0,d1) and (d1,d2)
+    qc.cx(data[1], anc[0])
+    qc.cx(data[1], anc[1])
+    qc.cx(data[2], anc[1])
+    qc.measure(anc, syn)
+    return qc
+
+
 # name -> (builder, target directory under repo root)
 FIGURES: list[dict] = [
     {"name": "hadamard", "dir": GATES_DIR, "build": hadamard},
@@ -176,6 +215,8 @@ FIGURES: list[dict] = [
     {"name": "bernstein-vazirani", "dir": ALGO_DIR, "build": bernstein_vazirani},
     {"name": "qft-3qubit", "dir": ALGO_DIR, "build": qft3},
     {"name": "grover-iteration", "dir": ALGO_DIR, "build": grover_iteration},
+    {"name": "teleportation", "dir": QUBITS_DIR, "build": teleportation},
+    {"name": "bit-flip-code", "dir": QEC_DIR, "build": bit_flip_code},
 ]
 
 
