@@ -38,6 +38,8 @@ The amplitude for $|1\rangle$ cancelled exactly — destructive interference. Cl
 
 **Interference is the engine of quantum advantage.** Every quantum algorithm with a known speedup over classical can be read as: prepare a superposition of inputs, evaluate the problem coherently across the superposition, and arrange the gate sequence so that amplitudes for wrong answers destructively interfere and amplitudes for right answers constructively interfere. Deutsch–Jozsa, Grover, the QFT-based subroutines, and the HHL-family linear-systems solvers (Part 6) all fit this template. An algorithm that produces a uniform superposition and then measures immediately has performed no useful computation — there is no interference between the preparation and the readout, and the output distribution is the same as classical random sampling.
 
+![Single-qubit interferometer: two Hadamards act as the "beam splitters" with a relative phase P(ϕ) between them. Varying ϕ moves amplitude between the two measurement outcomes by interference.](figures/interference.svg)
+
 ## 10.3 Born Rule in Practice
 
 For a pure state $|\psi\rangle$ measured in an orthonormal basis $\\{|k\rangle\\}$, the **Born rule** (Postulate 3, §5.4) gives

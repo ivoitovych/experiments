@@ -28,6 +28,8 @@ The Deutsch–Jozsa problem generalises Deutsch to $n$ bits: given $f: \\{0,1\\}
 
 The circuit is the natural generalisation: prepare $|0^n\rangle|1\rangle$, apply $H^{\otimes (n+1)}$, query $U_f$, apply $H^{\otimes n}$ on the data register, measure. The data register collapses to $|0^n\rangle$ iff $f$ is constant — so a single all-zero outcome confirms constant, anything else confirms balanced.
 
+![Deutsch–Jozsa circuit (here n = 3 data qubits plus one ancilla): Hadamards on every wire, the oracle U_f, Hadamards on the data register, then measurement of the data qubits.](figures/deutsch-jozsa.svg)
+
 Two remarks. **The exponential separation is artificial**: it disappears if you allow bounded-error classical algorithms, since a few random samples distinguish constant from balanced with high probability. Deutsch–Jozsa was historically important as the first oracle exponential gap, not as a practical speedup. **The mechanism, however, is universal**: this is a poster child for "Hadamard sandwich + phase kickback", and the same template reappears in Bernstein–Vazirani, Simon, Shor's period-finding subroutine, and the QFT itself.
 
 ## 14.3 Bernstein–Vazirani Algorithm
@@ -41,6 +43,8 @@ $$
 $$
 
 which is exactly $H^{\otimes n}|s\rangle$ by the Hadamard-transform identity. Applying the second $H^{\otimes n}$ inverts the transform, and the measurement yields $s$ with probability $1$.
+
+![Bernstein–Vazirani circuit: structurally identical to Deutsch–Jozsa with the inner-product oracle U_s; the final measurement returns the hidden string s in a single query.](figures/bernstein-vazirani.svg)
 
 This is the cleanest example of a Hadamard-based **transform-then-read** pattern: encode the unknown into phases, apply the Hadamard transform (which is its own inverse), read the encoding directly. It is also the cleanest way to see why "exponential parallelism" is the wrong slogan — the algorithm uses $2^n$ amplitudes during the run but extracts only $n$ bits at the end. The structure of the problem (linear inner-product oracle, group structure $\mathbb{Z}_2^n$) is what makes Hadamard the right transform.
 
@@ -61,6 +65,8 @@ F_N |x\rangle \;=\; \frac{1}{\sqrt N}\sum_{y=0}^{N-1} e^{-2\pi i\\, xy / N} |y\r
 $$
 
 This is the negative-exponent ("QFT-sign-minus") convention fixed in §4.13; some sources and SDKs use the opposite sign, so check before porting phase angles. For $N = 2$ the QFT is just the Hadamard gate. For general $N$, the QFT factors into an elegant circuit of single-qubit Hadamards and controlled phase gates: on $n$ qubits, $n$ Hadamards interleaved with $O(n^2)$ controlled rotations $\mathrm{C}R_k$, where $R_k = \mathrm{diag}(1, e^{2\pi i / 2^k})$. The total gate count is $O(n^2)$, exponentially better than the $O(N \log N) = O(n 2^n)$ of the classical FFT.
+
+![Three-qubit quantum Fourier transform: Hadamards interleaved with controlled-phase gates P(π/2) and P(π/4), followed by a SWAP that reverses the qubit order.](figures/qft-3qubit.svg)
 
 That said, the QFT does not produce the Fourier coefficients in a *read-out* sense: the amplitudes are the Fourier coefficients but you cannot extract them all, only sample. So the QFT is useful precisely when the structure to be exploited *concentrates* the amplitudes — typically because the input state was the output of some structured periodic computation. This is the situation in phase estimation (§14.6) and in Shor's order-finding (§15.2).
 
