@@ -8,16 +8,16 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 
 ## Summary
 
-- **Files total:** 45
-- **Started (past `stub`):** 45 / 45
-- **Completed (`draft` or later):** 45 / 45
+- **Files total:** 47
+- **Started (past `stub`):** 47 / 47
+- **Completed (`draft` or later):** 46 / 47
 
 - **Phase 1 (Foundations):** started 25/25, completed 25/25
 - **Phase 2 (Core mechanics):** started 5/5, completed 5/5
 - **Phase 3 (Algorithms and complexity):** started 1/1, completed 1/1
-- **Phase 4 (Real systems):** started 5/5, completed 5/5
+- **Phase 4 (Real systems):** started 6/6, completed 6/6
 - **Phase 5 (Practice and applications):** started 7/7, completed 7/7
-- **Phase 6 (Orientation, epistemics, closure):** started 2/2, completed 2/2
+- **Phase 6 (Orientation, epistemics, closure):** started 3/3, completed 2/3
 
 ## Phase 1 — Foundations
 
@@ -61,6 +61,7 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 
 ## Phase 4 — Real systems
 
+- [x] [Appendix F. 2026 Hardware Snapshot](book/99-back-matter/appendix-f-hardware-snapshot-2026.md) — *draft* — sections 8/8
 - [x] [Chapter 19. Quantum Error Correction and Fault Tolerance](book/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md) — *draft* — sections 23/23
 - [x] [Chapter 21. Quantum Control and Electronics](book/part-09-hardware-and-software/21-quantum-control-and-electronics.md) — *draft* — sections 14/14
 - [x] [Chapter 22. Hardware Engineering Metrics](book/part-09-hardware-and-software/22-hardware-engineering-metrics.md) — *draft* — sections 14/14
@@ -79,5 +80,6 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 
 ## Phase 6 — Orientation, epistemics, closure
 
+- [ ] [Index](book/99-back-matter/index.md) — *outlined* — sections 0/1
 - [x] [Chapter 34. Bridging Quantum Computing to Familiar Engineering Ideas](book/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md) — *draft* — sections 9/9
 - [x] [Chapter 35. Interpretational and Conceptual Pitfalls](book/part-13-perspective-and-direction/35-interpretational-and-conceptual-pitfalls.md) — *draft* — sections 14/14

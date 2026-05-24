@@ -172,3 +172,5 @@ See [LICENSE](LICENSE) for full terms.
 - [Appendix C. Useful Identities and Decompositions](book/99-back-matter/appendix-c-identities-and-decompositions.md)
 - [Appendix D. Suggested Reading and Reference Papers](book/99-back-matter/appendix-d-suggested-reading.md)
 - [Appendix E. Glossary](book/99-back-matter/appendix-e-glossary.md)
+- [Appendix F. 2026 Hardware Snapshot](book/99-back-matter/appendix-f-hardware-snapshot-2026.md)
+- [Index](book/99-back-matter/index.md)
