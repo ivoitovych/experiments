@@ -193,7 +193,7 @@ The **logical operators** are products of $X$ along an "$X$-string" from one rou
 
 Errors create syndrome defects in pairs: an $X$ error on a data qubit flips two adjacent plaquettes; a $Z$ error flips two adjacent stars. Chains of errors create defects only at their endpoints. Decoding is finding the most-likely pairing of defects, which MWPM solves efficiently. The **threshold** of the surface code under standard depolarising noise is approximately 1% per physical gate — the highest of any code family currently known with implementable syndrome circuits.
 
-The surface code is the reference design that every hardware roadmap quotes. IBM, Google, and most academic groups target it as the first scalable code; alternatives such as colour codes (§19.14), qLDPC codes (§19.15), and bosonic codes (Chapter 20) are active research, but the surface code remains the comparison baseline.
+The surface code is the reference design that every hardware roadmap quotes. IBM, Google, and most academic groups target it as the first scalable code; alternatives such as colour codes (§19.14), qLDPC codes (§19.15), and bosonic codes (Chapter 32) are active research, but the surface code remains the comparison baseline.
 
 ## 19.13 Topological Codes
 

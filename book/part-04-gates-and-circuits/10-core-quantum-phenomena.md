@@ -60,7 +60,7 @@ $$
 \mathrm{Var}\bigl(\widehat{\langle A \rangle}\bigr) \;=\; \frac{\mathrm{Var}_\psi(A)}{N} \;=\; \frac{\langle A^2\rangle - \langle A\rangle^2}{N},
 $$
 
-so the standard error scales as $1/\sqrt{N}$. The implication is operationally severe: improving an expectation-value estimate by one decimal place costs $100\times$ more shots. Variational algorithms (§8.13, Chapter 17) live and die by this scaling. Amplitude estimation (Chapter 14) is the quantum subroutine that bends it from $1/\sqrt{N}$ to $1/N$ at the cost of running a longer coherent circuit.
+so the standard error scales as $1/\sqrt{N}$. The implication is operationally severe: improving an expectation-value estimate by one decimal place costs $100\times$ more shots. Variational algorithms (§8.13, Chapter 15) live and die by this scaling. Amplitude estimation (Chapter 14) is the quantum subroutine that bends it from $1/\sqrt{N}$ to $1/N$ at the cost of running a longer coherent circuit.
 
 Two formal points worth restating. **Non-degenerate** measurements (each $a_k$ distinct) project onto the rank-one $|k\rangle\langle k|$ and yield the post-measurement state $|k\rangle$. **Degenerate** measurements project onto the eigenprojector $\Pi_k$ of the eigenvalue $a_k$ and yield $\Pi_k|\psi\rangle / \\|\Pi_k|\psi\rangle\\|$ — Lüders' rule (§5.4). For mixed states $\rho$, the same statements with $P(k) = \mathrm{tr}(\Pi_k \rho)$ and $\langle A\rangle = \mathrm{tr}(A\rho)$.
 
