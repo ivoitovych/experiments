@@ -55,6 +55,11 @@ Each chapter is a separate Markdown file under [`book/`](book/). Click any
 chapter title in the table of contents below to read it. Math is written in
 LaTeX and renders natively in the GitHub web viewer.
 
+For a continuous, offline copy you can build a single HTML book with
+[mdBook](https://rust-lang.github.io/mdBook/): install the toolchain once
+(`cargo install mdbook mdbook-katex`) and run `make book`, which renders the
+manuscript — math included, via build-time KaTeX — into `book-build/`.
+
 ## Project documents
 
 - [BookDescription.md](BookDescription.md) — the charter: scope, audience, philosophy, reading paths.
