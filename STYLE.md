@@ -100,5 +100,3 @@ on **all** of: GitHub web view, mdBook + MathJax, and Pandoc.
 ## Authorship and history
 
 - All commits authored as `Iaroslav Voitovych <yaroslav.voytovych@gmail.com>`.
-- No mention of AI, automation, or assistants in commits, PRs, comments,
-  code, or documentation.
