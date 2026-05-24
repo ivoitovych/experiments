@@ -1162,7 +1162,7 @@ phase or period information needs to be extracted.
 *Takeaway:* the QFT accelerates the *unitary*, not the *information transfer*.
 It is a structured-data tool, not a general-purpose amplitude dump.
 
-We return to the QFT in §14.5, to **quantum phase estimation** in §15.4, and
+We return to the QFT in §14.5, to **quantum phase estimation** in §14.6, and
 to the broader family of **spectral-transformation techniques** —
 qubitization, quantum signal processing (QSP), and the quantum singular
 value transformation (QSVT) — in Chapter 16. These are not literal

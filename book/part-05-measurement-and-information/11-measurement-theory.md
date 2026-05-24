@@ -124,7 +124,7 @@ The optimal measurement is the projective measurement onto the positive and nega
 
 **Unambiguous discrimination** (Ivanovic–Dieks–Peres). Insist that whenever the measurement returns "$\rho_0$" or "$\rho_1$", the answer is correct with probability $1$; the cost is a third outcome "$?$" admitting ignorance. For pure non-orthogonal states $|\psi_0\rangle, |\psi_1\rangle$ with overlap $c = \langle\psi_0|\psi_1\rangle$, the minimum inconclusive probability with equal priors is $P_? = |c|$, achieved by an explicit three-element POVM. Unambiguous discrimination is impossible for non-orthogonal mixed states whose supports overlap — there is no measurement that certifies $\rho_0$ versus $\rho_1$ with zero error on a generic copy.
 
-Both formulations recur in cryptography. The Helstrom bound limits an eavesdropper's success at distinguishing the BB84 signal states (Chapter 27). Unambiguous discrimination is the operational primitive behind several conclusive quantum-key-distribution attacks. And the trace distance, central to minimum-error discrimination, is the natural metric for "two states are operationally close" — used in security proofs throughout Part 8.
+Both formulations recur in cryptography. The Helstrom bound limits an eavesdropper's success at distinguishing the BB84 signal states (Chapter 27). Unambiguous discrimination is the operational primitive behind several conclusive quantum-key-distribution attacks. And the trace distance, central to minimum-error discrimination, is the natural metric for "two states are operationally close" — used in the cryptographic security proofs of Chapter 27.
 
 ## 11.7 Estimation, Joint Measurements, and Readout-Error Mitigation
 

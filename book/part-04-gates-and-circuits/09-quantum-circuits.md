@@ -6,7 +6,7 @@
 
 Gates are the alphabet; circuits are the sentences. This chapter introduces the **circuit model** as the standard way of describing quantum computations and as the abstraction that every quantum SDK exposes. Beyond diagram conventions, the material here covers ancilla qubits and uncomputation (the bookkeeping that makes reversible computation possible), measurement in circuits (deferred, mid-circuit, feedforward), and the metrics — depth, width, connectivity — that govern whether a circuit can actually run on a given device.
 
-> **How to read this chapter.** §§9.1–9.6 are the working vocabulary; you cannot read any later chapter without them. §§9.7–9.9 (measurement timing and classical feedforward) are essential for error correction (Part 6) and for teleportation-based protocols. §§9.10–9.13 (depth, width, connectivity, optimisation) become indispensable when targeting real hardware (Part 7) and when reading vendor documentation.
+> **How to read this chapter.** §§9.1–9.6 are the working vocabulary; you cannot read any later chapter without them. §§9.7–9.9 (measurement timing and classical feedforward) are essential for error correction (Part 8) and for teleportation-based protocols. §§9.10–9.13 (depth, width, connectivity, optimisation) become indispensable when targeting real hardware (Part 9) and when reading vendor documentation.
 
 ## 9.1 Circuit Diagrams and Conventions
 
@@ -97,7 +97,7 @@ Both regimes require **non-demolition** measurement (the qubit survives, with st
 
 **Classical feedforward** is the loop: measure → classical computation → apply a quantum gate conditioned on the result. The classical processing must complete *within the coherence time* of the unmeasured qubits, which on superconducting devices is on the order of $100\\,\mu\mathrm{s}$ — orders of magnitude tighter than the millisecond-scale of typical kernel/userspace round-trips. Devices that advertise feedforward usually expose a dedicated low-latency classical controller and a restricted feedforward instruction set.
 
-Three canonical uses. **Teleportation-based gates**: the $T$ gate on a logical qubit, in many surface-code schemes, is implemented by Bell measurement on a magic state followed by a feedforward Pauli correction. **Error correction**: every cycle of a stabiliser code (Part 6) measures syndromes and applies corrections based on the syndrome bits; the correction layer is feedforward, often with a classical decoder in between. **Adaptive protocols**: measurement-based computation and many photonic schemes use feedforward to route between alternative branches of the computation.
+Three canonical uses. **Teleportation-based gates**: the $T$ gate on a logical qubit, in many surface-code schemes, is implemented by Bell measurement on a magic state followed by a feedforward Pauli correction. **Error correction**: every cycle of a stabiliser code (Part 8) measures syndromes and applies corrections based on the syndrome bits; the correction layer is feedforward, often with a classical decoder in between. **Adaptive protocols**: measurement-based computation and many photonic schemes use feedforward to route between alternative branches of the computation.
 
 The cost is real and increasingly visible in benchmarks. A feedforward operation appears in vendor documentation under names like *conditional gate*, *if statement*, or *real-time classical control*; OpenQASM 3 introduced first-class support, where prior versions of QASM did not.
 
@@ -141,7 +141,7 @@ In practice you do not write these passes; you call the compiler ("transpile" in
 
 ## 9.14 Bridge to Chapter 10
 
-Chapter 8 fixed the gate alphabet; this chapter assembled gates into circuits, with all the operational baggage — ancillae, measurement, depth, connectivity — that comes from the gap between abstract unitary and physical execution. Chapter 10 closes Part 4 by revisiting the *phenomena* the circuit model can exhibit: superposition, interference, decoherence, channels, and the operator-sum representation that recasts noise as a circuit-level primitive. After that, Part 5 starts the algorithms.
+Chapter 8 fixed the gate alphabet; this chapter assembled gates into circuits, with all the operational baggage — ancillae, measurement, depth, connectivity — that comes from the gap between abstract unitary and physical execution. Chapter 10 closes Part 4 by revisiting the *phenomena* the circuit model can exhibit: superposition, interference, decoherence, channels, and the operator-sum representation that recasts noise as a circuit-level primitive. After that, Part 5 turns to measurement and quantum information, and Part 6 begins the algorithms.
 
 **Sanity checks before moving on.**
 

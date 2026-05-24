@@ -288,7 +288,7 @@ detailed treatment lives in Chapters 14–16.
 ## E.4 Hardware Terms
 
 Vocabulary for physical realisations and their device-level metrics.
-Detailed treatment lives in Part 7 (Chapters 20–22).
+Detailed treatment lives in Part 9 (Chapters 20–22).
 
 - **Calibration.** The periodic procedure of measuring drift in
   qubit frequencies, gate amplitudes, and readout discriminators,

@@ -6,7 +6,7 @@
 
 This chapter walks through the algorithms that established the quantum-algorithms field as a real subject — Deutsch, Deutsch–Jozsa, Bernstein–Vazirani, and Simon — and the two general-purpose primitives that almost every later algorithm builds on: the quantum Fourier transform (with phase estimation) and amplitude amplification (with amplitude estimation). It closes with the hidden subgroup problem, the framework that unifies many of the exponential speedups including the order-finding subroutine of Shor's algorithm.
 
-> **How to read this chapter.** §§14.1–14.4 are tutorial: short circuits, clean speedups, and the right mental model for "phase kickback as the engine of quantum advantage". §14.5 (QFT) and §14.6 (phase estimation) are the workhorses you will see again in Chapter 15 and again throughout Part 5. §§14.7–14.8 (amplitude amplification and estimation) are the Grover-style toolset. §14.9 is structural; skim on first pass and return when reading Shor.
+> **How to read this chapter.** §§14.1–14.4 are tutorial: short circuits, clean speedups, and the right mental model for "phase kickback as the engine of quantum advantage". §14.5 (QFT) and §14.6 (phase estimation) are the workhorses you will see again in Chapter 15 and again throughout the rest of Part 6. §§14.7–14.8 (amplitude amplification and estimation) are the Grover-style toolset. §14.9 is structural; skim on first pass and return when reading Shor.
 
 ## 14.1 Deutsch's Algorithm
 
