@@ -20,7 +20,7 @@ PY       := $(VENV)/bin/python
 PIP      := $(VENV)/bin/pip
 SYS_PY   := python3
 
-.PHONY: help setup setup-system-deps lint progress screenshots render-gist clean-artifacts
+.PHONY: help setup setup-system-deps lint progress screenshots render-gist clean-artifacts figures figures-setup
 
 help: ## Show available targets.
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?##/ \
@@ -53,6 +53,22 @@ lint: ## Run tools/lint.py — fast, no venv needed.
 
 progress: ## Regenerate PROGRESS.md from chapter status blocks.
 	$(SYS_PY) scripts/generate_progress.py
+
+figures: figures-setup ## Generate circuit figures (SVG next to chapters + PNG previews in .artifacts/).
+	$(PY) figures-src/generate_figures.py
+
+figures-setup: $(VENV)/.figures-installed ## One-time: install figure-generation deps into .venv.
+
+$(VENV)/.figures-installed:
+	@if ! python3 -c "import ensurepip" >/dev/null 2>&1; then \
+	    echo "ERROR: python3 venv support is not installed."; \
+	    echo "On Debian/Ubuntu: sudo apt install python3-venv python3-pip"; \
+	    exit 1; \
+	fi
+	$(SYS_PY) -m venv $(VENV)
+	$(PIP) install --upgrade pip
+	$(PIP) install -r figures-src/requirements.txt
+	@touch $(VENV)/.figures-installed
 
 screenshots: setup precheck-chromium ## Capture screenshots. Usage: make screenshots CHAPTER=<path.md>
 	@if [ -z "$(CHAPTER)" ]; then \
