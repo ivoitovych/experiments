@@ -91,7 +91,11 @@ def rewrite_offbook_links(text: str, src_relpath: str, inbook: set[str]) -> str:
     def repl(m: re.Match) -> str:
         label, target = m.group(1), m.group(2)
         url = target.split("#", 1)[0]
-        if not url or url.startswith(("http://", "https://", "mailto:")) or not url.endswith(".md"):
+        if not url or url.startswith(("http://", "https://", "mailto:")):
+            return m.group(0)
+        if url.endswith("/"):  # directory link (e.g. book/) -> book home
+            return f"[{label}]({home})"
+        if not url.endswith(".md"):  # images, LICENSE, .cff, etc. -> leave as asset
             return m.group(0)
         resolved = posixpath.normpath(posixpath.join(src_dir, url))
         if resolved in inbook:
@@ -102,21 +106,26 @@ def rewrite_offbook_links(text: str, src_relpath: str, inbook: set[str]) -> str:
     return _restore_code(text, placeholders)
 
 
-INTRO_MD = """\
-# Quantum Computing for Experienced Developers
-
-*A Structured Guide from Core Principles to Modern Practice*
-
-by **Iaroslav Voitovych**
-
-This is the offline HTML build. Start with the
-[Preface](book/00-front-matter/00-preface.md), or use the sidebar to jump to
-any chapter. The in-page "Table of Contents" links return to this page.
-"""
+# Prose documents linked from README, included as pages so the landing page
+# (README itself) mirrors the online book with working links.
+PROJECT_DOCS = [
+    ("BookDescription.md", "Book Description"),
+    ("TOC.md", "Full Planned Table of Contents"),
+    ("PROGRESS.md", "Writing Progress"),
+    ("STYLE.md", "Style and Source Conventions"),
+    ("PROCESS.md", "Process and Toolchain"),
+    ("HISTORY.md", "Project History"),
+]
+EXTRA_DOCS = [doc for doc, _ in PROJECT_DOCS]
+# Non-markdown files README links to; copied verbatim as static assets.
+ASSET_FILES = ["LICENSE", "CITATION.cff"]
 
 
 def build_summary() -> str:
-    lines = ["# Summary", "", "- [Title page](intro.md)"]
+    # The first entry becomes the site index.html. Using the README content
+    # there makes the home page (and every chapter's "Table of Contents" nav,
+    # which is redirected to home) match the online landing page.
+    lines = ["# Summary", "", "- [Quantum Computing for Experienced Developers](intro.md)"]
     for e in ENTRIES:
         kind = e.get("kind")
         if kind == "part-divider":
@@ -125,6 +134,9 @@ def build_summary() -> str:
             lines.append(f"- [{e['chapter_label']}. {e['title']}](book/{e['dir']}/{e['file']})")
         elif kind in ("front", "back"):
             lines.append(f"- [{e['title']}](book/{e['dir']}/{e['file']})")
+    lines.append("\n# Project documents\n")
+    for doc, title in PROJECT_DOCS:
+        lines.append(f"- [{title}]({doc})")
     return "\n".join(lines) + "\n"
 
 
@@ -163,6 +175,10 @@ def selftest() -> None:
         ("[memo](../../docs/m.md#x)", "book/p/y.md", "[memo](../../index.html)"),
         # in-book link left untouched (mdBook rewrites .md -> .html)
         ("[x](x.md)", "book/p/y.md", "[x](x.md)"),
+        # directory link -> home
+        ("[dir](book/)", "book/p/y.md", "[dir](../../index.html)"),
+        # non-markdown asset link left as-is
+        ("[lic](../../LICENSE)", "book/p/y.md", "[lic](../../LICENSE)"),
         # external + code untouched
         ("[s](https://e.com/a.md)", "book/p/y.md", "[s](https://e.com/a.md)"),
         ("`[c](../../README.md)`", "book/p/y.md", "`[c](../../README.md)`"),
@@ -177,23 +193,40 @@ def selftest() -> None:
           f"SUMMARY lists all {len(file_entries())} chapters)")
 
 
+def _process_md(src_file: pathlib.Path, src_relpath: str, inbook: set[str]) -> str:
+    text = transform_math(src_file.read_text(encoding="utf-8"))
+    return rewrite_offbook_links(text, src_relpath, inbook)
+
+
 def assemble() -> None:
     if BUILD.exists():
         shutil.rmtree(BUILD)
-    inbook = {f"book/{e['dir']}/{e['file']}" for e in file_entries()}
+    inbook = {f"book/{e['dir']}/{e['file']}" for e in file_entries()} | set(EXTRA_DOCS)
+    SRC.mkdir(parents=True, exist_ok=True)
     for path in sorted((ROOT / "book").rglob("*")):
         dest = SRC / path.relative_to(ROOT)
         if path.is_dir():
             dest.mkdir(parents=True, exist_ok=True)
         elif path.suffix == ".md":
             dest.parent.mkdir(parents=True, exist_ok=True)
-            text = transform_math(path.read_text(encoding="utf-8"))
-            text = rewrite_offbook_links(text, path.relative_to(ROOT).as_posix(), inbook)
-            dest.write_text(text, encoding="utf-8")
+            dest.write_text(_process_md(path, path.relative_to(ROOT).as_posix(), inbook),
+                            encoding="utf-8")
         else:
             dest.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(path, dest)
-    (SRC / "intro.md").write_text(INTRO_MD, encoding="utf-8")
+    # Landing page = README content (mirrors the online book, includes the TOC).
+    (SRC / "intro.md").write_text(_process_md(ROOT / "README.md", "intro.md", inbook),
+                                  encoding="utf-8")
+    # Prose documents README links to, as pages.
+    for doc in EXTRA_DOCS:
+        src_doc = ROOT / doc
+        if src_doc.exists():
+            (SRC / doc).write_text(_process_md(src_doc, doc, inbook), encoding="utf-8")
+    # Non-markdown files README links to, copied as static assets.
+    for asset in ASSET_FILES:
+        src_asset = ROOT / asset
+        if src_asset.exists():
+            shutil.copy2(src_asset, SRC / asset)
     (SRC / "SUMMARY.md").write_text(build_summary(), encoding="utf-8")
     (BUILD / "book.toml").write_text(BOOK_TOML, encoding="utf-8")
     print(f"assembled build tree at {BUILD.relative_to(ROOT)} ({len(file_entries())} chapters)")
