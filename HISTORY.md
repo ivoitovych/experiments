@@ -476,17 +476,130 @@ setup did not handle:
   so a broken capture leaves the artifact alive for inspection
   instead of vanishing.
 
+## Phase 9 — Full draft and cross-reference review
+
+With Chapter 4's conventions and the renderer discipline settled, the
+remaining chapters were drafted to the same template, and the
+manuscript reached **full draft**: 37 chapters, three front-matter
+files, and appendices A–E, each carrying a `Status: draft` block and
+the standard navigation. Several chapters outgrew their planned
+outlines (tracked in `TOC.md`'s reconciliation note) — Ch27 expanded
+into hash functions, the NIST PQC timeline, and BB84 / E91 / B92 /
+decoy states; Ch35 grew to fourteen conceptual-pitfall sections; Ch16
+settled on block encodings → qubitization → QSP → QSVT as one arc.
+
+A systematic cross-reference review pass followed — nineteen
+`Review:`-prefixed commits (`dc80243`…`6a3a9cc`). Drafting at speed had
+left many pointers stale: Shor's order-finding cited as §15.1 instead
+of §15.2, the VQE family placed in Ch17 instead of §15.7–15.9, phase
+estimation pointing at the wrong chapter, several part numbers off by
+one. The pass walked the cross-references chapter by chapter, unified
+the QFT sign convention on the negative-exponent form fixed in §4.13,
+and removed an unverifiable eponym from the §18.16 error budget. This
+is the error class the lint cannot catch — a link can resolve to a
+real file while pointing at the wrong concept — so it was done by
+reading, not tooling.
+
+## Phase 10 — Reader-facing build-out
+
+Two editorial reviews of the README and project framing arrived in
+close succession. Both were positive about scope and positioning, and
+their actionable content converged on the same gaps. The
+README/credibility fixes (an explicit "draft, under review" status, a
+"Start here" path, a manuscript-vs-tooling license split) were folded
+into the README first; the substantive content and infrastructure
+gaps were addressed in the work below.
+
+### 10.1 2026 hardware snapshot (`6a7f8ef`)
+
+Appendix F is a deliberately perishable snapshot of the hardware
+landscape — superconducting, trapped-ion, neutral-atom, photonic,
+spin, and topological platforms, a representative-metrics table, and
+error-correction milestones — isolated in back matter so the
+time-sensitive numbers can be replaced wholesale on each revision.
+Every figure is hedged and dated, and the appendix sends readers to
+Chapter 36's claim-evaluation checklist first. The contested
+Majorana-1 announcement is presented as a claim under scrutiny, not an
+established platform — a worked example of the book's own epistemics.
+
+### 10.2 A generated Index (`6a7f8ef`, `3b4fc29`)
+
+The Index, long a placeholder in `TOC.md`, became real.
+`scripts/generate_index.py` (`make index`) scans the section headings,
+resolves a curated term list to relative links with the correct GitHub
+heading anchors, and reports any unresolved reference; the result is
+51 entries. The Index was promoted from `outlined` to `draft`,
+bringing `PROGRESS.md` to 47/47.
+
+### 10.3 A circuit-figure pipeline (`403c6b9`, `37b90aa`, `76ef8cd`, `adfa5c4`)
+
+`STYLE.md` had promised SVG circuit diagrams that did not exist.
+`figures-src/generate_figures.py` (`make figures`) builds each circuit
+with Qiskit's matplotlib drawer and writes both the committed SVG and
+a PNG preview under `.artifacts/` — the preview exists so each diagram
+can be read for correctness before its SVG is embedded. Fifteen
+figures were placed: gates and the Bell/GHZ circuits in Ch8–9, a
+single-qubit interferometer in Ch10, the foundational algorithms and a
+Grover iteration in Ch14–15, teleportation in Ch7, and the first
+figure in the QEC chapter — the 3-qubit bit-flip code — in Ch19. One
+attempt was rejected at the preview stage (Grover drawn with opaque
+oracle/diffuser boxes collided the gate label with the operand index)
+and rebuilt from concrete gates. matplotlib's non-deterministic SVG
+output (embedded timestamp, random element ids) was pinned so
+regeneration is byte-stable.
+
+### 10.4 Runnable, checked code examples (`c686873`, `76ef8cd`)
+
+The practical chapters had almost no code. `examples/` now holds small
+Qiskit programs executed end to end by `scripts/check_examples.py`
+(`make check-examples`), so every embedded snippet is run rather than
+asserted: a first Bell-state program (Ch26), exact statevector
+simulation (Ch24), Deutsch–Jozsa in one query (Ch14), and Grover
+amplification (Ch15). The checker paid for itself immediately by
+catching a `complex.round()` error before it reached the page.
+
+### 10.5 An offline mdBook build (`026aed9`, `604cc61`, `42c38e5`)
+
+`make book` renders the manuscript to a self-contained HTML book, and
+getting the math right reproduced two Phase-4 bug classes in a new
+renderer. First, Markdown emphasis eats underscores inside formulas: a
+runtime-MathJax build corrupted display math by pairing subscript
+underscores (`_A` … `_a`) into `<em>` spans before MathJax ran. The
+fix is build-time rendering with `mdbook-katex`, which extracts the
+inline and display math spans before the parser can touch them — and,
+because KaTeX renders server-side, the build is verifiable without a
+browser: a clean build emits zero `katex-error` spans. Second, mdBook eats one
+backslash layer exactly as GitHub does, so the source's doubled
+escapes (`\\\\`, `\\{`) are already correct and are de-stubbed only
+when handed to KaTeX.
+
+A tool-version conflict surfaced: `mdbook-katex 0.9.4` targets mdBook
+0.4.x while `mdbook-epub 0.5.2` needs 0.5.x, so the toolchain was
+pinned to mdBook 0.4.48 for a math-correct HTML build and EPUB was
+deferred. A first delivered build had broken links — the manuscript is
+authored for GitHub, where `README.md` and `docs/` sit beside the
+book, so the per-chapter "Table of Contents" nav (47 links to
+`../../README.md`) pointed at missing pages. A link-rewrite pass now
+redirects out-of-book links to the book home, and the home page was
+made the README content itself, so it carries the full table of
+contents and the prose documents it links to (`BookDescription`,
+`TOC`, `PROGRESS`, `STYLE`, `PROCESS`, `HISTORY`) are included as
+pages. The build is checked for zero broken `href`/`src` targets and
+zero `katex-error` spans.
+
 ## Snapshot at this point
 
 | Area | State |
 |---|---|
-| Repository structure | 45 chapter / front-matter / appendix stubs scaffolded; status-block tracking; phase-ordered writing plan |
-| Source-level lint | Structural invariants, forbidden physics macros, five renderer-gotcha rules including `check_inline_pmatrix` |
-| Screenshot pipeline | `make screenshots CHAPTER=...` against the live commit; `make render-gist FILE=...` for arbitrary files via throwaway Gists; pre-check refuses to run if Chromium system deps are missing and prints the exact remedy |
-| Bug knowledge | `docs/github-markdown-math-bugs.md` as the canonical memo; `docs/render-tests/math-context-matrix.md` as the live test sheet (Section L pending re-render); `PROCESS.md` reduced to a pointer |
-| Upstream feedback | Comment + howto staged under `docs/upstream-feedback/` for `community/community#122438`, rewritten against the memo; a new-Discussion path for the inline-`pmatrix` bug is sketched in the howto |
-| Chapter 4 | 17 sections (added §4.16 "Conventions at a Glance" in the post-round-13 polish); inline-`pmatrix` instances eliminated; `Status: draft · Sections drafted: 17 / 17`. Ready for transition to `reviewed` once Section L confirms the §4.13 unroll plan |
-| All other chapters | `stub` |
+| Manuscript | Full draft — 37 chapters, 3 front-matter files, appendices A–F, and the Index; all `draft` (Index promoted from `outlined`); `PROGRESS.md` at 47/47 |
+| Cross-references | Systematic review pass complete (19 `Review:` commits); stale section/chapter pointers corrected; QFT sign convention unified |
+| Figures | `figures-src/generate_figures.py` (`make figures`) — 15 Qiskit-rendered SVGs across Ch7–10, 14–15, 19; PNG previews for QA; byte-deterministic output |
+| Code examples | `examples/` run end to end by `make check-examples`; embedded in Ch14, 15, 24, 26 |
+| Index | Generated by `scripts/generate_index.py` (`make index`) — 51 anchored entries |
+| Offline book | `make book` → mdBook HTML via build-time KaTeX (`mdbook-katex`), README as landing page; 0 broken links, 0 `katex-error`; EPUB deferred on a tool-version conflict |
+| Source-level lint | Structural invariants, forbidden mentions, renderer-gotcha rules; clean on all manuscript files |
+| Bug knowledge | `docs/github-markdown-math-bugs.md` canonical memo; `docs/render-tests/math-context-matrix.md` live test sheet |
+| Screenshot pipeline | `make screenshots CHAPTER=...` and `make render-gist FILE=...` (Playwright/Chromium), unchanged from Phase 5 |
 
 ## Recurring lessons worth carrying forward
 
@@ -534,15 +647,30 @@ setup did not handle:
   `playwright install-deps chromium`) that a developer machine
   already had quietly installed. Both are now first-class in the
   Makefile.
+- **Generated diagrams need a look, not just a build.** The figure
+  pipeline writes a PNG preview precisely so each circuit can be read
+  before its SVG is trusted; the Grover label/operand-index collision
+  was caught only because the preview was actually examined.
+- **Embedded code should be executed, not asserted.** Running every
+  snippet through a checker caught a `complex.round()` bug before it
+  shipped. A snippet that has not been run is a claim, not an example.
+- **A second renderer re-exposes the first renderer's bugs.** The
+  mdBook build hit the same underscore-emphasis and backslash-eating
+  classes catalogued for GitHub. Build-time math rendering (KaTeX)
+  sidesteps both and, unlike runtime MathJax, is verifiable from the
+  generated HTML.
+- **Pin the toolchain to a known-compatible set.** `mdbook-katex` and
+  `mdbook-epub` target different mdBook majors; the math-correct build
+  required pinning mdBook to 0.4.48, and EPUB was deferred rather than
+  forced onto an incompatible pairing.
 
 ---
 
-This file will continue to be appended to as later chapters are
-drafted and reviewed. The next planned chapters are 5 (Postulates),
-6 (The Qubit), 7 (Multiple Qubits and Entanglement), with
-Appendix A (Notation Reference) co-evolving alongside. The
-immediate next concrete step is re-rendering Section L of the test
-sheet to confirm or refute the leading-character-on-continuation
-hypothesis for Bug 4, after which the §4.13 paragraph fixes from
-round 12 will either be unrolled back into blockquotes or left in
-place.
+This file will continue to be appended to as the manuscript moves
+from full draft toward review. The open threads are: promoting
+chapters from `draft` to `reviewed` (the substantive technical and
+editorial pass the README status advertises); backfilling figures
+into the chapters that still lack them (QEC, hardware, measurement);
+extending the runnable examples; and publishing the mdBook build via
+GitHub Pages / CI, which would also reopen the EPUB and PDF question
+once a compatible toolchain is pinned.
