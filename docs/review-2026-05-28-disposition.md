@@ -32,7 +32,7 @@ disposition record.
 | Preface: nav-before-status ordering | APPLIED | `093eca2` |
 | Preface: "Every chapter ends with sanity-check exercises" not strictly true for front matter | APPLIED | `d8319bb` (preface: "most chapters end") |
 | Preface: inline-answers contradiction with §self-check exemption | APPLIED | `d8319bb` (preface: self-check exemption + inline-answers caveat) |
-| Preface: Qiskit endian "0b01 ↔ \|10⟩" is high-risk | DEFENSIBLE | claim is correct in context and immediately backed by the Ch4 / Appendix A treatment; the warning's purpose is precisely to flag the cross-convention risk |
+| Preface: Qiskit endian "0b01 ↔ \|10⟩" is high-risk | DEFENSIBLE | `bf7fba9` clarified — example now explicitly flagged as a cross-convention pitfall, not a convention this book adopts |
 | Preface: glossary "every boldface term" claim | APPLIED | `d8319bb` (preface: "major terms") |
 | §self-check: §1.2 has no closing reference matching the opener | APPLIED | `d8319bb` (background-and-self-check: "most sections close") |
 | §self-check: §1.6 vs §1.7 framing as "final" | DEFENSIBLE | reviewer's own "no defect" note |
@@ -47,7 +47,7 @@ disposition record.
 | All appendices: ordering | APPLIED | `093eca2` |
 | Appendix A: Qiskit endian guidance repetition risk | DEFENSIBLE | each repetition is properly contextualised; risk is acknowledged but the redundancy is intentional |
 | Appendix A: circuit-drawing intro cross-ref to Ch6 | DEFENSIBLE | the wording is acceptable since Ch6 introduces single-qubit circuits |
-| Appendix B: §B.5/§B.8 Qiskit-specific claims | DEFENSIBLE | verified against installed Qiskit 2.4.1 (`make check-examples` passes) |
+| Appendix B: §B.5/§B.8 Qiskit-specific claims | DEFENSIBLE | `bf7fba9` clarified — "(Qiskit 2.x)" version anchors added to §B.4/§B.5/§B.8; verified vs Qiskit 2.4.1 (`make check-examples` passes) |
 | Appendix B: §B.3 `P(φ)` "no relative observable phase" | APPLIED | `d8319bb` (computational-basis-eigenstate vs superposition explicit) |
 | Appendix B: §B.9 `CP(α) ⊗_{control}` notation | APPLIED | `d8319bb` (relabelled as `P(α)⊗I`) |
 | Appendix C: Toffoli decomposition described loosely | DEFENSIBLE | the existing wording cites the standard 6-CNOT decomposition by reference rather than reproducing the diagram; the §B.7 entry has the concrete circuit; cross-reference is sufficient at this granularity |
@@ -55,16 +55,16 @@ disposition record.
 | Appendix D: Qiskit `QFT` class deprecation timing | APPLIED | `4c42d48` (Pass 7) |
 | Appendix D: TKET docs URL moved | APPLIED | `4c42d48` (Pass 7) |
 | Appendix D: live tooling URL freshness (other entries) | APPLIED | Pass 7 verified Cirq / PennyLane / Qiskit / Q# URLs |
-| Appendix D: "current"/"still-current" language | DEFENSIBLE | acceptable for a dated 2026 draft |
-| Appendix E: glossary precision (chapter vs section cross-refs) | DEFENSIBLE | acceptable at draft stage |
-| Appendix E: hardware/tooling current-state claims in glossary | DEFENSIBLE | perishable; tracked in fact-check ledger scope, none flagged as currently wrong |
+| Appendix D: "current"/"still-current" language | DEFENSIBLE | `bf7fba9` clarified — bare "still-current" fault-tolerance survey anchored "as of 2026" |
+| Appendix E: glossary precision (chapter vs section cross-refs) | DEFENSIBLE | `bf7fba9` clarified — Fidelity glossary cross-ref Chapter 12 → §12.7 (matches index/main-development policy) |
+| Appendix E: hardware/tooling current-state claims in glossary | DEFENSIBLE | gate-fidelity entry already carries "as of 2026"; remaining entries definitional, none flagged wrong |
 | Appendix E: fidelity convention alignment with Ch12 | APPLIED | `d8319bb` (glossary aligned to unsquared convention) |
 | Appendix F: Quantinuum H2 / IonQ / Pasqal updates | APPLIED | `3237078` (Pass 1) |
 | Appendix F: explicit Bluvstein 2023 citation; Microsoft × Quantinuum logical-qubit result | APPLIED | Pass 1 |
-| Appendix F: F.6 table fragility (Markdown table with units) | DEFENSIBLE | no kets/math; reviewer's own "probably fine" |
+| Appendix F: F.6 table fragility (Markdown table with units) | DEFENSIBLE | `bf7fba9` verified table has no `\|`/kets in cells; renders clean; prose left as-is |
 | Appendix F: §F.8 "replace wholesale" guidance | DEFENSIBLE | already in the appendix; reviewer's note is forward-looking |
 | Index: §16.x placeholder | APPLIED | `7ef9e39` |
-| Index: target precision (Born rule → §10.3 vs Ch5; Fidelity → Ch22 vs Ch12) | NEEDS-VERIFICATION | judgment call: encode an index policy ("first formal definition" vs "main development" vs "most practical use") and revisit; can be deferred to a generator-policy commit |
+| Index: target precision (Born rule → §10.3 vs Ch5; Fidelity → Ch22 vs Ch12) | APPLIED | `bf7fba9` — adopted "main development" policy (stated in index + generator); Born rule → §5.4, Fidelity → §12.7; `scripts/generate_index.py` TERMS updated so `make index` reproduces it |
 
 ## Chapters 1–3
 
@@ -72,40 +72,40 @@ disposition record.
 |---|---|---|
 | §1.6 Shor "broke the public-key cryptography that underwrites modern internet security" | APPLIED | `88731cd` (Ch 1.intro rewritten to "polynomial-time algorithm … undermining those schemes in principle, once a sufficiently large fault-tolerant machine exists") |
 | §1.6 trapped-ion qubit count "hundreds" | APPLIED | Pass 6 (`415a469`) |
-| §1.6 forecast "5–10 years" framed as scenario | DEFENSIBLE | clearly hedged in context |
-| §1.6 sanity checks | DEFENSIBLE | no issue flagged |
+| §1.6 forecast "5–10 years" framed as scenario | DEFENSIBLE | `bc6e32c` clarified — reframed as an optimistic-roadmap scenario anchored to 2026, not a scheduled deliverable |
+| §1.6 sanity checks | DEFENSIBLE | `bc6e32c` clarified — added "as of 2026" to the "no speedup known" check for parity with the chapter's time-anchored claims |
 | §2.5 BPP=P phrasing | APPLIED | `b1f0335` |
 | §2.6 superconducting fidelity vs Appendix F | APPLIED | Pass 6 (general framing aligns) |
-| §2.7 superdense/teleportation cross-refs to §7.12 | NEEDS-VERIFICATION | verify cross-refs in current Ch7 |
-| §2.7 final sanity-check "depth from 99% 2Q fidelity" forward-looking | DEFENSIBLE | reviewer notes it is acceptable as forward-looking |
+| §2.7 superdense/teleportation cross-refs to §7.12 | APPLIED | `bc6e32c` — verified §7.12 "Entanglement as a Resource" covers both; added section title for navigability |
+| §2.7 final sanity-check "depth from 99% 2Q fidelity" forward-looking | DEFENSIBLE | `bc6e32c` clarified as a back-of-the-envelope estimate, not a hard limit (Ch 21 gives the precise version) |
 | §3.3 "Part VI" → "Part IX" | APPLIED | `8365708` |
-| §3.3 molecule-interference "several thousand atoms" | NEEDS-VERIFICATION | source-check; soften or cite |
+| §3.3 molecule-interference "several thousand atoms" | APPLIED | `bc6e32c` — corrected to ~2,000-atom engineered macromolecules; Fein et al., *Nature Physics* 15, 1242 (2019), >25 kDa oligoporphyrins ("biological" was also inaccurate) |
 | §3.8 Bell-test "every loophole" | APPLIED | `88731cd` (scoped to main experimental loopholes; superdeterminism and retrocausality noted as not closable) |
-| §3.9 coherence-time/platform comparisons | DEFENSIBLE | general framing aligns with Appendix F (Pass 6) |
-| §3 sanity checks | DEFENSIBLE | no issue |
+| §3.9 coherence-time/platform comparisons | DEFENSIBLE | `bc6e32c` added "(as of the mid-2020s)" time anchor to the gates-within-T2 figure |
+| §3 sanity checks | DEFENSIBLE | `bc6e32c` reviewed all five answers airtight; no edit |
 
 ## Chapters 4–7
 
 | Item | Status | Notes |
 |---|---|---|
 | §4 ordering | DEFENSIBLE | already compliant pre-`093eca2` |
-| §4.6 measurement cross-ref "Chapters 11–12" | NEEDS-VERIFICATION | review wants "Chapter 11, with channels in 12"; small cross-ref precision |
+| §4.6 measurement cross-ref "Chapters 11–12" | APPLIED | `bc6e32c` — verified Ch 11 = Measurement Theory (POVMs); §4.6 already attributed measurement to Ch 11; added pointer that channels are Ch 10, not the measurement chapter |
 | §4.13/§4.16 Qiskit-specific claims | DEFENSIBLE | verified against installed Qiskit 2.4.1 |
 | §4.14 Holevo/AE previews "advanced" | DEFENSIBLE | reviewer's own "no change required" |
 | §5 ordering | DEFENSIBLE | already compliant |
-| §5.2 channel cross-ref (Ch18 vs earlier introduction) | NEEDS-VERIFICATION | small cross-ref precision |
+| §5.2 channel cross-ref (Ch18 vs earlier introduction) | APPLIED | `bc6e32c` — §5.2 already correct (channels first in Ch 10 CPTP/Kraus §10.12–10.13, applied to hardware in Ch 18); fixed the genuinely imprecise twin xref in §4.5 which had skipped Ch 10 |
 | §5.11 partial-trace `tr_A` → `tr` | APPLIED | `8365708` |
 | §5 no-cloning proof | DEFENSIBLE | example states make the contradiction clear |
 | §6 ordering | DEFENSIBLE | already compliant |
 | §6.1 "3-sphere" → "2-sphere" | APPLIED | `8365708` |
-| §6.6 MUB "n qubits admit 2^n+1 MUBs" parenthetical | NEEDS-VERIFICATION | add a brief "(because 2^n is a prime power)" qualifier |
+| §6.6 MUB "n qubits admit 2^n+1 MUBs" parenthetical | APPLIED | `bc6e32c` — qualified as the maximal d+1, existing because 2^n is a prime power (Wootters–Fields 1989; Bandyopadhyay–Boykin–Roychowdhury–Vatan 2002) |
 | §6.10 circular-basis `S†H` → `HS†` | APPLIED | `8365708` |
-| §6.4 platform examples | DEFENSIBLE | general framing aligns with Ch20 |
+| §6.4 platform examples | DEFENSIBLE | `bc6e32c` clarified — added "for example / typically / often" hedges so per-platform encodings don't read as exhaustive |
 | §7 ordering | APPLIED | `093eca2` |
-| §7.1 "qubit 0" vs Qiskit | NEEDS-VERIFICATION | ambiguity-of-label note; small clarification |
-| §7.4 "most algorithms exploit entanglement" | NEEDS-VERIFICATION | soften ("many"/"most nontrivial multi-qubit") |
-| §7.9 CHSH sign convention | DEFENSIBLE | consistent throughout |
-| §7.12 teleportation corrections I,X,Z,XZ vs ZX | NEEDS-VERIFICATION | verify bit-to-correction mapping vs the §7.12 derivation; convention question |
+| §7.1 "qubit 0" vs Qiskit | APPLIED | `bc6e32c` — added a clause flagging that the book's big-endian "qubit 0" is Qiskit's rightmost (little-endian) qubit; cross-refs §4.2 + Appendix A |
+| §7.4 "most algorithms exploit entanglement" | APPLIED | `bc6e32c` — softened: growing multipartite entanglement is *necessary* for exponential speedup in the pure-state setting (Jozsa–Linden 2003), with the DQC1 mixed-state caveat |
+| §7.9 CHSH sign convention | DEFENSIBLE | `bc6e32c` added one clause stating the $A_1B_1$ minus-sign convention at first use; bounds unaffected |
+| §7.12 teleportation corrections I,X,Z,XZ vs ZX | APPLIED | `bc6e32c` — **genuine fix**: original `XZ` was wrong; corrected to the explicit map 00→I, 01→X, 10→Z, 11→ZX ($Z\cdot X$ order), verified by reproducing the circuit; superdense table made consistent |
 
 ## Chapter 8
 
@@ -113,29 +113,29 @@ disposition record.
 |---|---|---|
 | §8 ordering | APPLIED | `093eca2` |
 | §8.1 "every branch at once" parallelism | APPLIED | `3c77c48` |
-| §8.3 X-measurement as H-Z-H with trailing H dropped | DEFENSIBLE | correct as textbook conjugation; trailing-H drop is fine because measurement collapses; no change |
-| §8.7 multi-controlled-gate cost statement broad | NEEDS-VERIFICATION | mark `O(k)`/`O(k²)` as representative; qualify by clean/dirty ancilla |
-| §8.9 `{H, S, CNOT, Toffoli}` universal — which theorem? | NEEDS-VERIFICATION | the set is universal (Aharonov 2003 / Shi 2002 for `{H, Toffoli}` ⇒ subset universal); add a one-line citation |
-| §8.11 Ross–Selinger `c≈1` for `{H, T}` | NEEDS-VERIFICATION | claim is correct in context (Clifford+T single-qubit synthesis); add a brief context note |
+| §8.3 X-measurement as H-Z-H with trailing H dropped | DEFENSIBLE | `bc6e32c` clarified — spelled out *why* the trailing H is droppable (only relabels readout outcomes; no effect on statistics) |
+| §8.7 multi-controlled-gate cost statement broad | APPLIED | `bc6e32c` — qualified by clean/dirty/no ancilla; O(k)-Toffoli marked representative; Barenco et al., *Phys. Rev. A* 52, 3457 (1995) cited |
+| §8.9 `{H, S, CNOT, Toffoli}` universal — which theorem? | APPLIED | `bc6e32c` — added {H, Toffoli} computational universality (dense in SO(2^n), complex via real-encoding); Shi 2003 (arXiv:quant-ph/0205115) + Aharonov 2003 (arXiv:quant-ph/0301040) cited |
+| §8.11 Ross–Selinger `c≈1` for `{H, T}` | APPLIED | `bc6e32c` — disambiguated c≈1 (Ross–Selinger 2016 Clifford+T z-rotation T-count 3log₂(1/ε)+O(loglog)) from the generic SK exponent c≈3.97 (Dawson–Nielsen 2005); both cited |
 | §8.12 native gate sets | APPLIED | Pass 5 (`e751e2e`) |
 | §8.14 KAK 2-CNOT condition `c_z=0` | APPLIED | `ac1c4cc` |
-| §8 sanity check 3 `R_Y(π)\|0⟩` trivial phase | DEFENSIBLE | reviewer notes "fine, may surprise readers"; no change required |
+| §8 sanity check 3 `R_Y(π)\|0⟩` trivial phase | DEFENSIBLE | `bc6e32c` clarified — added a reassurance that the resulting global phase is unobservable |
 
 ## Chapter 9
 
 | Item | Status | Notes |
 |---|---|---|
 | §9 ordering | APPLIED | `093eca2` |
-| §9.1 Qiskit endian "least-significant on top" compressed | DEFENSIBLE | already cross-refs to Ch4's more careful treatment |
+| §9.1 Qiskit endian "least-significant on top" compressed | DEFENSIBLE | `bc6e32c` clarified — explicit Ch 7 endianness pointer added at the compressed Qiskit-ordering remark |
 | §9.4 uncompute composition order | APPLIED | `6e93cd3` |
 | §9.7 `Meas ∘ C(U) = C(U) ∘ Meas` literal equality risk | APPLIED | `88731cd` (equality made explicitly statistical-on-joint-distributions; intermediate quantum states differ) |
 | §9.8 mid-circuit measurement "qubit available for further use" too absolute for destructive-measurement platforms | APPLIED | `88731cd` (qualified by non-demolition vs destructive readout) |
-| §9.8 hardware-support claims time-sensitive | DEFENSIBLE | general framing; specific vendor claims not made |
+| §9.8 hardware-support claims time-sensitive | DEFENSIBLE | `bc6e32c` clarified — "(as of the mid-2020s)" time anchor added to the non-demolition-readout platform claim |
 | §9.9 magic-state Clifford (S) correction | APPLIED | `a275f15` |
 | §9.9 Pauli-frame tracking missing from QEC description | APPLIED | `88731cd` (one-sentence mention added) |
 | §9.10 Solovay–Kitaev wording | APPLIED | `88731cd` (scoped to fault-tolerant Clifford+T; NISQ continuous-gate case excepted) |
 | §9.12 SWAP cost "on CNOT-native target" | APPLIED | `a275f15` |
-| §9 sanity check 2 Toffoli classical-correlation vs entanglement | DEFENSIBLE | reviewer's own note: forward-looking framing acceptable |
+| §9 sanity check 2 Toffoli classical-correlation vs entanglement | DEFENSIBLE | `bc6e32c` clarified — specified a superposition input so the exercise yields genuine entanglement, not just classical correlation |
 
 ## Chapter 10
 
@@ -174,10 +174,10 @@ disposition record.
 |---|---|---|
 | §12 ordering | DEFENSIBLE | already compliant |
 | §12 "Part 6 and Part 8" preview cross-ref | APPLIED | `8e8943e` (Part 6 → Part 8 + Part 12, matching where capacities are actually developed) |
-| §12.4 state-merging operational interpretation | DEFENSIBLE | one of two equivalent standard Horodecki–Oppenheim–Winter 2005 formulations; reasoned, not changed |
+| §12.4 state-merging operational interpretation | DEFENSIBLE | `bc6e32c` clarified — added a one-clause note that the equivalent "fully quantum Slepian–Wolf" formulation exists (Horodecki–Oppenheim–Winter 2005), to preempt "this isn't how I learned it" |
 | §12.7 main-text "Either side becomes equality on pure states" (distinct from SC3) | APPLIED | `8e8943e` (only upper bound tight on pure states; lower bound saturates only at endpoints) |
 | §12.8 no-cloning "conserved" → "preserved" | APPLIED | `7e787f7` |
-| §12.9 Schumacher source-model | DEFENSIBLE | reviewer's own "acceptable for intuition" |
+| §12.9 Schumacher source-model | DEFENSIBLE | `bc6e32c` clarified — flagged the i.i.d. source as an idealization and scoped out correlated/non-stationary sources |
 | §12.10 `max_ρ` ranges over multi-use inputs | APPLIED | `8e8943e` (input written as ρ^{(n)}; regularisation note added) |
 | §12.13 no-cloning repeated-runs framing | APPLIED | `3c77c48` |
 | §12 SC3 Fuchs–van de Graaf upper-tight | APPLIED | `894c201` |
@@ -195,7 +195,7 @@ disposition record.
 | §13.7 "each containment conjectured strict" | APPLIED | `b1f0335` |
 | §13.7 simulation speedups "best-known" | APPLIED | `fbfc566` |
 | §13.7 "uncorrected classical" | APPLIED | `8e8943e` ("best practical classical" + fault-tolerant end-to-end framing) |
-| §13 sanity checks | DEFENSIBLE | no issue |
+| §13 sanity checks | APPLIED | `bc6e32c` — **fix**: SC4 cost-metric list corrected (query, time, gate, T-count) to match the four metrics §13.7 actually defines (was "depth") |
 
 ## Chapter 14
 
@@ -234,24 +234,46 @@ disposition record.
 | §15.6 glued-trees as oracle-model | APPLIED | `fbfc566` |
 | §15.6 Szegedy quadratic in spectral-gap dependence | APPLIED | `fbfc566` |
 | §15.6 `§16.x` placeholder → §16.5 | APPLIED | `7ef9e39` |
-| §15.8 VQE shot estimate sourced | DEFENSIBLE (open in ledger) | order-of-magnitude defensible; pinning to a specific 2024–2026 paper is the lone open ledger row |
+| §15.8 VQE shot estimate sourced | DEFENSIBLE (open in ledger) | `bc6e32c` clarified — marked the 10⁹–10¹² figure as order-of-magnitude, problem- and ansatz-dependent; pinning to a specific 2024–2026 paper is the lone open ledger row |
 | §15.9 QAOA `p→∞` adiabatic schedule | APPLIED | `fbfc566` |
 | §15.10 QML 2026 picture | VERIFIED | Pass 6; substantively unchanged |
-| §15 SC5 RSA-2048 exercise | DEFENSIBLE | reviewer's "good exercise" framing; the new Gidney citations in §15.3 give the named baseline |
+| §15 SC5 RSA-2048 exercise | DEFENSIBLE | `bc6e32c` clarified — pointed the exercise at the §15.3 Gidney baseline figures |
 
-## Counts (post-2026-05-28 apply pass)
+## Counts (final — all items dispositioned)
 
-- **APPLIED**: 92 items.
-- **DEFENSIBLE / VERIFIED** (intentionally not changed, with rationale): 21 items.
-- **NEEDS-VERIFICATION** (the open list to walk through): 11 items.
+- **APPLIED**: 122 items.
+- **DEFENSIBLE** (intentionally not changed; most now carry a clarity
+  touch to preempt re-flagging): 33 items.
+- **VERIFIED** (checked against the live toolchain / sources, no change
+  needed): 3 items.
+- **NEEDS-VERIFICATION**: 0 items.
 - **REJECTED**: 0 items.
 
-The remaining 11 NEEDS-VERIFICATION items are small cross-reference or
-phrasing precision tightenings concentrated in Ch 2–8 (and the Index
-policy judgment call). They do not change any technical claim. The
-fixes applied in commits `d8319bb`, `88731cd`, `8e8943e` cover the
-larger and more substantive verification items from the front matter,
-back matter, and Ch 1–15 (excluding 2–8).
+**Zero NEEDS-VERIFICATION rows remain.** The final verification pass
+(commits `bc6e32c`, `bf7fba9`) closed the last batch via a pool of
+per-chapter verification workers, each checking against primary sources:
+
+- **Genuine corrections surfaced and fixed:** §3.3 matter-wave record
+  (Fein et al. 2019, ~2,000-atom macromolecules; "biological / several
+  thousand" was wrong); §7.12 teleportation Pauli corrections (`XZ` →
+  `ZX`, verified by reproducing the circuit); §13.7 self-check
+  cost-metric list ("depth" → "time", matching §13.7's own definitions).
+- **Sourced clarifications:** §6.6 MUB prime-power qualifier
+  (Wootters–Fields 1989; BBRV 2002); §7.4 entanglement-and-speedup
+  (Jozsa–Linden 2003 + DQC1 caveat); §8.7 multi-controlled cost
+  (Barenco et al. 1995); §8.9 {H, Toffoli} universality (Shi 2003;
+  Aharonov 2003); §8.11 Ross–Selinger c≈1 vs Solovay–Kitaev c≈3.97.
+- **Cross-reference precision:** §2.7→§7.12, §4.5/§4.6 channel-vs-measurement
+  split (Ch 10 vs Ch 11), §5.2 verified already correct.
+- **Index policy:** "main development" target policy adopted and encoded
+  in `scripts/generate_index.py` (Born rule → §5.4; Fidelity → §12.7).
+- **DEFENSIBLE items** received minimal one-clause clarity touches (time
+  anchors, hedges, convention statements) so a perfectionist re-read does
+  not re-open them; a handful were verified airtight and left untouched.
+
+The earlier apply commits `d8319bb`, `88731cd`, `8e8943e` cover the
+front matter, back matter, and Ch 1–15 substantive items from the
+first pass.
 
 ## Process to close
 
