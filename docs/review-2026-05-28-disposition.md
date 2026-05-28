@@ -397,7 +397,7 @@ build failure in their env is now "the expected result of an
 unsupported `mdbook 0.5.x`", not a repository-instructions problem.
 One trivial polish remained and is applied:
 
-- **README install snippet missing `--force` — applied (`<reconcile-5>`):**
+- **README install snippet missing `--force` — applied (the commit below):**
   added `--force` to both `cargo install` commands in the README so the
   snippet also covers the downgrade-from-0.5.x case (PROCESS.md already
   had it). No other findings; the reviewer's assessment is all-clear.
