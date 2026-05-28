@@ -308,9 +308,11 @@ Qubit indices are read left-to-right in ket strings, with the
 \ldots x_n\rangle$ maps to the integer $\sum_i x_i \cdot 2^{n-i}$.
 This is the textbook convention. It is the *opposite* of Qiskit's
 display order, which is little-endian: a Qiskit `0b01` printout
-corresponds to this book's $|10\rangle$. Chapter 4 documents the
-conversion in detail; if you are reading along with Qiskit code,
-keep the difference visible.
+corresponds to this book's $|10\rangle$. That mapping is flagged here
+as a cross-convention pitfall, not as a convention this book adopts —
+the book stays leftmost-most-significant throughout. Chapter 4
+documents the conversion in detail; if you are reading along with
+Qiskit code, keep the difference visible.
 
 Two-qubit gate matrices are written in the
 $|00\rangle, |01\rangle, |10\rangle, |11\rangle$ basis in that

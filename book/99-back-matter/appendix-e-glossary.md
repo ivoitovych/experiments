@@ -66,7 +66,7 @@ lives in the referenced section.
   $F(|\psi\rangle, |\phi\rangle) = |\langle\phi|\psi\rangle|$; for density
   matrices, the generalised Uhlmann fidelity
   $F(\rho, \sigma) = \mathrm{tr}\sqrt{\sqrt{\rho}\\, \sigma \sqrt{\rho}}$.
-  Both range over $[0, 1]$. See Chapter 12.
+  Both range over $[0, 1]$. See §12.7.
 - **Gate.** A unitary operator applied to one or a few qubits in a
   circuit. Common gates are catalogued in
   [Appendix B](appendix-b-common-gates.md). See Chapter 8.
@@ -315,7 +315,7 @@ Detailed treatment lives in Part 9 (Chapters 20–22).
 - **Gate fidelity.** Average fidelity between the ideal and
   implemented unitary, typically measured by randomized
   benchmarking. Per-gate error rates of $10^{-3}$ to $10^{-4}$ are
-  the current state of the art. See Chapter 22.
+  the state of the art as of 2026. See Chapter 22.
 - **Native gate set.** The small set of gates a given hardware
   platform actually implements at the pulse level. Every higher-level
   gate is compiled into this set. See Chapter 20 and Chapter 23.
