@@ -232,6 +232,34 @@ def assemble() -> None:
     print(f"assembled build tree at {BUILD.relative_to(ROOT)} ({len(file_entries())} chapters)")
 
 
+def mdbook_version() -> tuple[int, ...] | None:
+    """Return the installed mdbook version as a tuple, or None if unparseable."""
+    try:
+        out = subprocess.run(["mdbook", "--version"], capture_output=True,
+                             text=True, check=True).stdout
+    except (subprocess.CalledProcessError, OSError):
+        return None
+    m = re.search(r"(\d+)\.(\d+)\.(\d+)", out)
+    return tuple(int(g) for g in m.groups()) if m else None
+
+
+# Known-good toolchain. mdbook-katex 0.9.x speaks the mdbook 0.4.x
+# preprocessor protocol; mdbook 0.5.x changed the render-context schema and
+# mdbook-katex 0.9.4 fails against it with a TOML/JSON parse error before HTML
+# rendering completes. Keep these in sync with README.md and the Makefile.
+MDBOOK_MIN = (0, 4, 0)
+MDBOOK_MAX_EXCLUSIVE = (0, 5, 0)
+KNOWN_GOOD_HINT = (
+    "Known-good toolchain: mdbook 0.4.x (tested with 0.4.48) + "
+    "mdbook-katex 0.9.4.\n"
+    "  Install pinned versions with:\n"
+    "    cargo install mdbook --version '>=0.4,<0.5' --locked\n"
+    "    cargo install mdbook-katex --version 0.9.4 --locked\n"
+    "mdbook 0.5.x is not yet supported: mdbook-katex 0.9.4 fails against its\n"
+    "render-context schema (TOML parse error) before HTML rendering completes."
+)
+
+
 def main() -> None:
     if "--selftest" in sys.argv:
         selftest()
@@ -239,11 +267,18 @@ def main() -> None:
     selftest()
     assemble()
     if shutil.which("mdbook"):
+        ver = mdbook_version()
+        if ver is not None and not (MDBOOK_MIN <= ver < MDBOOK_MAX_EXCLUSIVE):
+            shown = ".".join(str(n) for n in ver)
+            print(f"WARNING: mdbook {shown} is outside the supported range "
+                  f"(>=0.4, <0.5).\n{KNOWN_GOOD_HINT}\n"
+                  "Attempting the build anyway; if it fails during the katex "
+                  "preprocessor, downgrade mdbook to the 0.4.x line.")
         subprocess.run(["mdbook", "build"], cwd=BUILD, check=True)
         print(f"built HTML at {(BUILD / 'book').relative_to(ROOT)}")
     else:
-        print("mdbook not found on PATH; assembled sources only. "
-              "Install with `cargo install mdbook mdbook-katex`, then re-run `make book`.")
+        print("mdbook not found on PATH; assembled sources only.\n"
+              + KNOWN_GOOD_HINT)
 
 
 if __name__ == "__main__":

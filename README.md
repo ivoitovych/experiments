@@ -56,9 +56,20 @@ chapter title in the table of contents below to read it. Math is written in
 LaTeX and renders natively in the GitHub web viewer.
 
 For a continuous, offline copy you can build a single HTML book with
-[mdBook](https://rust-lang.github.io/mdBook/): install the toolchain once
-(`cargo install mdbook mdbook-katex`) and run `make book`, which renders the
-manuscript — math included, via build-time KaTeX — into `book-build/`.
+[mdBook](https://rust-lang.github.io/mdBook/): install the toolchain once and
+run `make book`, which renders the manuscript — math included, via build-time
+KaTeX — into `book-build/`. The known-good toolchain is **mdbook 0.4.x**
+(tested with 0.4.48) together with **mdbook-katex 0.9.4**; install pinned
+versions with
+
+```
+cargo install mdbook --version '>=0.4,<0.5' --locked
+cargo install mdbook-katex --version 0.9.4 --locked
+```
+
+mdbook 0.5.x is not yet supported — mdbook-katex 0.9.4 fails against its
+render-context schema (a TOML parse error) before HTML rendering completes.
+`make book` prints this guidance if it detects an out-of-range mdbook.
 
 ## Project documents
 

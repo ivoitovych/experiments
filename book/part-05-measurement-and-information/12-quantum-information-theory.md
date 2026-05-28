@@ -253,6 +253,10 @@ entanglement per copy, free of charge, as a byproduct of merging. A
 negative conditional entropy is *exactly* the rate at which entanglement
 falls out of the protocol. The classical-Shannon picture has no slot
 for this sign because classical state merging never produces entanglement.
+$S(A \mid B)$ is thus the *quantum* resource cost (qubits sent when
+positive, ebits gained when negative); the protocol additionally uses
+classical communication, but only at an asymptotically negligible rate
+per copy, so it does not enter this leading-order resource accounting.
 
 This protocol also gives an operational reading of the coherent
 information from §12.3: $I_c(A \rangle B) = -S(A \mid B)$, so positive
