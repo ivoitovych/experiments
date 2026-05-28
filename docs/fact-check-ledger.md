@@ -50,10 +50,25 @@ For each row above, the procedure was:
 | Gidney (2025): under 1M physical qubits, under 1 week, same noise; key innovations approximate residue arithmetic, yoked surface codes, smaller magic-state-distillation budget | §15.3 | arXiv:2505.15917 (May 2025); Google Research publication | 2026-05 | **Added** — supersedes the prior unsourced "~10M / ~10h / ~7×10⁹ Toffoli" intermediate numbers |
 | RSA-2048 logical-qubit count: order of a few thousand | §15.3 | Both Gidney papers; consistent with `2d²` surface-code overhead at d in the high twenties | 2026-05 | Confirmed (matches the earlier internal-consistency fix in commit `2e046d0`) |
 
+## Pass 3 — 2026-05-28 (Ch 27 PQC timeline)
+
+| Claim | Manuscript | Source | Verified | Verdict |
+|---|---|---|---|---|
+| FIPS 203 (ML-KEM), FIPS 204 (ML-DSA), FIPS 205 (SLH-DSA) finalised August 2024 | §27.5 | NIST press release "First 3 Finalized Post-Quantum Encryption Standards" (2024-08-13); FIPS 203/204/205 final | 2026-05 | Confirmed |
+| ML-KEM-768 sizes: pk = 1184 B, ct = 1088 B, ss = 32 B | §27.4 | FIPS 203 final; vendor implementation references | 2026-05 | Confirmed |
+| HQC selected by NIST as a 4th-round KEM (cryptographic diversity); FIPS 207 forthcoming | §27.5 | NIST press release 2025-03-11; NIST IR 8545; FIPS 207 presentation | 2026-05 | **Updated** — date pinned to March 2025 and forthcoming standard correctly named FIPS 207 (was "2024–2025" / "finalised as FIPS draft") |
+| Falcon → FN-DSA / FIPS 206: IPD submitted August 2025; final expected late 2026 / early 2027 | §27.4, §27.5 | NIST FIPS 206 status update (Aug 2025); DigiCert / data-centre coverage | 2026-05 | **Updated** — status sharpened to "IPD submitted Aug 2025" |
+| RSA-2048 resource bounds — Gidney–Ekerå 2019 (~20M qubits, ~8h) and Gidney 2025 (<1M, <1 week) | §27.2 | Same sources as Pass 2 §15.3 | 2026-05 | **Updated** — replaces the prior "~$10^7$ physical qubits / 10 hours" which now disagreed with the updated §15.3 |
+
 ## Open items for the next pass
 
-- §27 cryptography: detailed PQC timeline beyond the ML-KEM/ML-DSA fix in
-  §15.2.
+- §8.12 native gate sets (current IBM, Google, IonQ, Quantinuum, neutral
+  atom, photonic).
+- §15.8 VQE shot-budget claims; §15.10 QML state-of-field.
+- §33 satellite-QKD (Micius and follow-ons).
+- Appendix D suggested reading: URL/version freshness for SDKs and live docs.
+- Byte-level confirmation of ML-DSA-65 / SLH-DSA-SHA2-128s key & signature
+  sizes (only ML-KEM-768 was verified at byte granularity in this pass).
 - §8.12 native gate sets (current IBM, Google, IonQ, Quantinuum, neutral
   atom, photonic).
 - §15.8 VQE shot-budget claims; §15.10 QML state-of-field.
