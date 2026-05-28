@@ -90,9 +90,16 @@ For each row above, the procedure was:
 | §15.8 VQE: ~50-orbital active space → $10^9$–$10^{12}$ shots, several days of device time | §15.8 | Cao–Romero–Aspuru-Guzik (2019) chemistry-VQE review; subsequent shot-reduction work (Pauli grouping, classical shadows, derandomisation) | 2026-05 | Confirmed (order-of-magnitude defensible; a specific 2024–2026 estimate can be pinned in a later pass) |
 | §15.10 QML state of field: dequantisation of HHL-style ML (Tang); barren plateaus in VQNNs; modest empirical quantum-kernel advantage; structural advantages for learning *quantum* data (shadow tomography) | §15.10 | Tang (STOC 2019) and follow-ups; barren-plateau literature (McClean et al. 2018, Cerezo et al. 2021); Huang et al. shadow-tomography lines | 2026-05 | Confirmed |
 
+## Pass 7 — 2026-05-28 (Appendix D suggested reading)
+
+| Claim | Manuscript | Source | Verified | Verdict |
+|---|---|---|---|---|
+| Qiskit `QFT` class deprecated, `QFTGate` (and `qiskit.synthesis.qft.synth_qft_full`) recommended | Appendix D (Qiskit entry) | IBM Quantum docs — `qiskit.circuit.library.QFT` deprecation notice (deprecated in Qiskit 2.1, removal in Qiskit 3.0); `QFTGate` reference page | 2026-05 | **Updated** — sharpened to "formally deprecated in Qiskit 2.1, removal in 3.0" with the alternative synthesis function named |
+| TKET / pytket documentation URL | Appendix D (Quantinuum stack entry) | docs.quantinuum.com/tket (current); the older cqcl.github.io/tket no longer serves the docs | 2026-05 | **Updated** — `cqcl.github.io/tket` → `docs.quantinuum.com/tket` |
+| Cirq docs at `quantumai.google/cirq`; PennyLane at `pennylane.ai`; Qiskit at `quantum.cloud.ibm.com`; Q# / Microsoft Quantum docs site | Appendix D | Vendor sites (resolves as written) | 2026-05 | Confirmed |
+
 ## Open items for the next pass
 
-- Appendix D suggested-reading URL/version freshness for SDKs and live docs.
 - A specific 2024–2026 paper for the VQE shot-budget estimate in §15.8 (the
   current order-of-magnitude framing is defensible but uncited).
 

@@ -278,7 +278,9 @@ documentation rather than as stable artifacts.
   `quantum.cloud.ibm.com`. The book's code examples follow the
   current Qiskit object model; note that several historical class
   names have been renamed or split — for instance the older `QFT`
-  *class* is superseded by `QFTGate` as of writing. When in doubt,
+  *class* was formally deprecated in Qiskit 2.1 and is scheduled for
+  removal in Qiskit 3.0, in favour of `QFTGate` and the synthesis
+  function `qiskit.synthesis.qft.synth_qft_full`. When in doubt,
   check the module index of the installed package rather than older
   blog posts.
 - **Cirq (Google).** `quantumai.google/cirq`. Python-native, with a
@@ -296,7 +298,7 @@ documentation rather than as stable artifacts.
   programming language looks like. The Microsoft Quantum
   documentation site is the current entry point; the original
   *Q# language specification* on GitHub is still readable.
-- **t|ket> and the Quantinuum stack.** `cqcl.github.io/tket`. The
+- **t|ket> and the Quantinuum stack.** `docs.quantinuum.com/tket`. The
   TKET compiler and `pytket` Python bindings are the strongest
   open-source pieces of compiler infrastructure for circuit
   optimization and hardware-aware routing across multiple backends.
