@@ -284,7 +284,11 @@ def toolchain_hint() -> str:
 def check_toolchain() -> None:
     """Warn (never block) if the installed mdbook / mdbook-katex versions are
     not a known-compatible pair. The manuscript and generated book.toml are
-    version-neutral, so the build is always attempted."""
+    version-neutral, so the build is always attempted.
+
+    Diagnostics go to stderr with a flush so they appear *before* any error
+    mdBook itself writes to stderr (stdout is block-buffered when piped, which
+    would otherwise reorder the explanation after the failure)."""
     mb = tool_version("mdbook")
     kx = tool_version("mdbook-katex")
     if mb is None:
@@ -292,7 +296,8 @@ def check_toolchain() -> None:
     line = mb[:2]
     if line not in SUPPORTED_PAIRS:
         print(f"NOTE: mdbook {'.'.join(map(str, mb))} is a line this repo has "
-              f"not exercised. Attempting the build anyway.\n{toolchain_hint()}")
+              f"not exercised. Attempting the build anyway.\n{toolchain_hint()}",
+              file=sys.stderr, flush=True)
         return
     expected_katex = _KATEX_LINE_FOR_MDBOOK.get(line)
     if kx is not None and expected_katex is not None and kx[:2] != expected_katex:
@@ -303,7 +308,8 @@ def check_toolchain() -> None:
               f"likely fail with an 'invalid type: null …' TOML error.\n"
               f"  Install the matching preprocessor:\n"
               f"    cargo install mdbook-katex --version {katex_arg} --locked --force\n"
-              f"  (or switch mdbook to match your mdbook-katex.)\n{toolchain_hint()}")
+              f"  (or switch mdbook to match your mdbook-katex.)\n{toolchain_hint()}",
+              file=sys.stderr, flush=True)
 
 
 def main() -> None:
@@ -318,7 +324,7 @@ def main() -> None:
         print(f"built HTML at {(BUILD / 'book').relative_to(ROOT)}")
     else:
         print("mdbook not found on PATH; assembled sources only.\n"
-              + toolchain_hint())
+              + toolchain_hint(), file=sys.stderr, flush=True)
 
 
 if __name__ == "__main__":
