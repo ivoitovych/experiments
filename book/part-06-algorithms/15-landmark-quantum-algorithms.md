@@ -58,11 +58,12 @@ The implication, when (if) fault-tolerant quantum computers exist at the relevan
 
 Factoring deserves a section beyond Shor's statement because the resource cost is the central number cited in "when will quantum computers be a threat" discussions. The relevant resource is the **number of physical qubits** and the **runtime in wall-clock hours** required to factor a cryptographically relevant integer (RSA-2048: 2048 bits) under realistic noise.
 
-The 2025–2026 resource estimates, building on Gidney–Ekerå (2019) and subsequent refinements, sit roughly at:
+Two anchor estimates frame the 2025–2026 picture, both at a physical gate error of $10^{-3}$:
 
-- $\sim 10$ million physical qubits at surface-code distance $d \approx 27$ with physical error rate $10^{-3}$.
-- $\sim 10$ hours runtime, dominated by magic-state distillation for the Toffoli/$T$ gates in modular exponentiation.
-- $\sim 7 \times 10^9$ Toffoli gates in the logical circuit, over the order of a few thousand logical qubits — the surface-code overhead (roughly $2d^2 \approx 1500$ physical qubits per logical at $d \approx 27$) is what inflates those thousands of logical qubits to the $\sim 10$ million physical qubits above.
+- **Gidney–Ekerå (2019; *Quantum* 2021):** $\sim 20$ million physical qubits, $\sim 8$ hours of runtime, magic-state distillation dominating the cost.
+- **Gidney (arXiv 2505.15917, May 2025):** under 1 million physical qubits, under one week — a $>20\times$ qubit reduction without weakening the assumptions, driven by approximate residue arithmetic (Chevignard–Fouque–Schrottenloher 2024), yoked surface codes (Gidney–Newman–Brooks–Jones 2023), and a smaller magic-state-distillation budget.
+
+In both estimates the logical circuit lives on the order of a few thousand logical qubits; the surface-code overhead — roughly $2d^2$ physical qubits per logical, with $d$ in the high twenties — is what inflates that to the millions of physical qubits above.
 
 These numbers have come down by orders of magnitude over the last decade through algorithmic improvements (window arithmetic, semi-classical Fourier, Ekerå's modifications) and through surface-code improvements (lattice surgery, magic-state cultivation, $T$-count optimisation in modular adders). They will probably come down further. Current physical devices in 2026 have $\sim 10^2$–$10^3$ qubits with error rates around $10^{-3}$. The gap is large but is a difference of degree, not kind: the question for post-quantum migration is *when*, not *whether*.
 

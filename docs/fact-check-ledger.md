@@ -42,13 +42,16 @@ For each row above, the procedure was:
 4. If a claim is contested, prefer the manuscript's framing of "claim under
    scrutiny" over a confident assertion.
 
+## Pass 2 — 2026-05-28 (§15.3 RSA-2048 resource figures)
+
+| Claim | Manuscript | Source | Verified | Verdict |
+|---|---|---|---|---|
+| Gidney–Ekerå (2019): ~20M physical qubits, ~8 hours at p=10⁻³ | §15.3 | Gidney & Ekerå, *Quantum* (2021), arXiv:1905.09749 | 2026-05 | Confirmed (now cited explicitly) |
+| Gidney (2025): under 1M physical qubits, under 1 week, same noise; key innovations approximate residue arithmetic, yoked surface codes, smaller magic-state-distillation budget | §15.3 | arXiv:2505.15917 (May 2025); Google Research publication | 2026-05 | **Added** — supersedes the prior unsourced "~10M / ~10h / ~7×10⁹ Toffoli" intermediate numbers |
+| RSA-2048 logical-qubit count: order of a few thousand | §15.3 | Both Gidney papers; consistent with `2d²` surface-code overhead at d in the high twenties | 2026-05 | Confirmed (matches the earlier internal-consistency fix in commit `2e046d0`) |
+
 ## Open items for the next pass
 
-- §15.3 RSA-2048 resource figures (10M physical qubits, 10 hours, 7×10⁹
-  Toffoli): the logical-qubit count was corrected on internal-consistency
-  grounds (commit `2e046d0`); the remaining physical-qubit/time/Toffoli
-  numbers still need explicit alignment to Gidney–Ekerå (2019) and any
-  2024–2025 refinements (Gidney's 2025 sub-million-qubit estimate).
 - §27 cryptography: detailed PQC timeline beyond the ML-KEM/ML-DSA fix in
   §15.2.
 - §8.12 native gate sets (current IBM, Google, IonQ, Quantinuum, neutral
