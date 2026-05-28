@@ -201,7 +201,7 @@ Two features make Lindblad the canonical form. **Trace preservation**: $\mathrm{
 
 - **Amplitude damping** (spontaneous emission, models $T_1$): $L = \sqrt{\gamma} \\, |0\rangle\langle 1|$. The excited state decays at rate $\gamma = 1/T_1$.
 - **Pure dephasing** (models $T_\varphi$): $L = \sqrt{\gamma_\varphi/2} \\, Z$. Off-diagonal coherences decay; populations unchanged.
-- **Depolarising** (isotropic Pauli noise): three jump operators $L_k = \sqrt{p/4}\\, \sigma_k$ for $\sigma_k \in \\{X, Y, Z\\}$. The Bloch vector shrinks toward the origin uniformly.
+- **Depolarising** (isotropic Pauli noise): three jump operators $L_k = \sqrt{\gamma}\\, \sigma_k$ for $\sigma_k \in \\{X, Y, Z\\}$, with depolarising rate $\gamma$. The Bloch vector shrinks toward the origin uniformly.
 
 The non-Markovian generalisations (when the environment retains memory) require integro-differential equations and richer machinery; Chapter 21 returns to when the Markov approximation breaks down on real hardware.
 
@@ -217,7 +217,7 @@ Together, **CPTP**: completely positive, trace-preserving. Every CPTP map is a v
 
 **Catalogue of qubit channels.** Each is parameterised by a single noise rate $p \in [0, 1]$ unless stated otherwise.
 
-- **Depolarising channel**: $\mathcal{E}(\rho) = (1 - p)\rho + p \cdot I/2$. With probability $p$, the qubit is replaced by the maximally mixed state. Equivalently, each Pauli error $X, Y, Z$ occurs with probability $p/3$.
+- **Depolarising channel**: $\mathcal{E}(\rho) = (1 - p)\rho + p \cdot I/2$. With probability $p$, the qubit is replaced by the maximally mixed state. Equivalently — using $I/2 = (\rho + X\rho X + Y\rho Y + Z\rho Z)/4$ — the qubit is left alone with probability $1 - 3p/4$ and each Pauli error $X, Y, Z$ is applied with probability $p/4$, giving Kraus operators $\sqrt{1 - 3p/4}\\, I$ and $\sqrt{p/4}\\, X$, $\sqrt{p/4}\\, Y$, $\sqrt{p/4}\\, Z$.
 - **Amplitude damping**: models $T_1$ relaxation. Acts on the Bloch sphere by contracting toward the north pole $|0\rangle$. The Kraus operators are $K_0 = |0\rangle\langle 0| + \sqrt{1-p}\\, |1\rangle\langle 1|$ and $K_1 = \sqrt{p}\\, |0\rangle\langle 1|$.
 - **Phase damping** (equivalently, pure dephasing): models $T_\varphi$. Diagonal entries of $\rho$ are preserved; off-diagonals shrink by $\sqrt{1 - p}$. Operationally indistinguishable from random $Z$ rotations averaged uniformly.
 - **Bit-flip / phase-flip / bit-phase-flip**: probabilistic application of $X$, $Z$, $Y$ respectively.
