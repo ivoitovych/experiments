@@ -225,7 +225,7 @@ rather than from rounds-of-conversation memory.
 
 After several rounds of bug-by-bug renderer-bug diagnosis produced
 a partly-wrong catalog (notably the over-broad
-"$$ in blockquote is broken" rule), a single structured test sheet
+"<code>&dollar;&dollar;</code> in blockquote is broken" rule), a single structured test sheet
 with 11 containers × 10 math forms and labelled cells (A1…K4)
 overturned two earlier diagnoses, surfaced a new bug
 (inline `pmatrix` broken in every container, including top level),
@@ -311,7 +311,7 @@ One short retrospective per chapter, added when the chapter reaches
   checklist of the chapter's accumulated conventions.
 - All five GitHub-Markdown renderer gotchas (`\\`, `\{`/`\}`, `\,`,
   `\|`, inline `pmatrix`) were discovered while drafting this
-  chapter, and the over-broad "$$ in blockquote" rule was
+  chapter, and the over-broad "<code>&dollar;&dollar;</code> in blockquote" rule was
   identified as an *incorrect* diagnosis only after the structured
   test sheet was rendered. The lint rules encoding the surviving
   gotchas are permanent guards for every subsequent chapter; the
