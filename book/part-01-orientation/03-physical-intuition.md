@@ -508,9 +508,12 @@ Shalm et al., 2015, with photons), freedom-of-choice (the
 **simultaneously loophole-free** Bell tests in 2015 (Hensen et al.
 in Delft with NV-center spins; the Vienna and NIST photon
 experiments later that year). The 2015 experiments are the
-empirical capstone: every loophole that could conceivably let a
-local hidden-variable theory survive has been closed in at least
-one experiment, and they all agree with quantum mechanics.
+empirical capstone: the main loopholes that could let a
+local hidden-variable theory survive — locality, detection efficiency,
+and freedom-of-choice — have been closed simultaneously in at least
+one experiment, and the results agree with quantum mechanics.
+(Residual super-determinism and retrocausal loopholes are by their
+nature not closable by experiment.)
 
 A few things to take from this:
 

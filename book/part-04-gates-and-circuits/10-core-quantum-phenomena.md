@@ -16,7 +16,7 @@ A pure state $|\psi\rangle = \sum_x \alpha_x |x\rangle$ is a **superposition** o
 
 Two operational consequences. **First**, "is the state in superposition?" is not a meaningful question without specifying a basis; "is the state in superposition with respect to the computational basis?" is. **Second**, what a single shot of measurement returns is one basis label drawn from the Born distribution (§10.3); the amplitudes themselves are not directly observable from a single qubit. Repeated preparation and measurement in *several* bases — the workflow of state tomography (Chapter 11) — is required to reconstruct them.
 
-The computational utility of superposition is that gates apply linearly. Applying $U$ to $\sum_x \alpha_x |x\rangle$ yields $\sum_x \alpha_x U|x\rangle$ — the gate evaluates "on every branch at once", in the precise sense that the same matrix multiplies every component. That is the structural feature §10.2 turns into a computational resource: amplitudes from different branches subsequently interfere.
+The computational utility of superposition is that gates apply linearly. Applying $U$ to $\sum_x \alpha_x |x\rangle$ yields $\sum_x \alpha_x U|x\rangle$ — the same matrix multiplies every component of the superposition. This is sometimes paraphrased as "the gate evaluates on every branch at once", but the popular version is misleading on its own (cf. §1.2): a single measurement still returns a single basis label, and the structural feature only becomes a computational resource once amplitudes from different branches are made to interfere (§10.2).
 
 ## 10.2 Interference
 
@@ -84,7 +84,7 @@ $$
 [X, Z] \;=\; -2 i Y, \qquad [Y, Z] \;=\; 2 i X, \qquad [X, Y] \;=\; 2 i Z.
 $$
 
-So a state with sharp $Z$ value (an eigenstate of $Z$, i.e. $|0\rangle$ or $|1\rangle$) has $\Delta Z = 0$, which forces $\Delta X = \Delta Y = 1$: maximal uncertainty in the conjugate bases. This is the formal version of the §6.6 mutually-unbiased-bases observation.
+So a state with sharp $Z$ value (an eigenstate of $Z$, i.e. $|0\rangle$ or $|1\rangle$) has $\Delta Z = 0$. A direct calculation — using $X^2 = Y^2 = I$ and $\langle X\rangle = \langle Y\rangle = 0$ on $Z$-eigenstates — gives $\Delta X = \Delta Y = 1$: maximal uncertainty in the conjugate bases. (The Robertson bound itself is vacuous on these states, since $\langle Y\rangle = 0$ on a $Z$-eigenstate makes the right-hand side zero — the strong constraint comes from the explicit second moments, of which the bound is a coarser consequence.) This is the formal version of the §6.6 mutually-unbiased-bases observation.
 
 **Operational consequence for protocols.** Any procedure that learns about an observable disturbs every observable that does not commute with it. Quantum key distribution (Chapter 27) builds an entire cryptographic primitive on this fact: an eavesdropper who measures BB84 photons in the wrong basis disturbs the state, and the disturbance is statistically detectable in the residual bit-error rate. Mid-circuit measurement, used as a control mechanism for error correction and feed-forward (Chapter 19), is engineered to disturb only the syndrome subspace, leaving the encoded data intact.
 
@@ -108,7 +108,7 @@ $$
 \sum_a p_a \\, \rho_{B|a} \;=\; \sum_a \mathrm{Tr}_A\bigl((M_a \otimes I) \rho_{AB} (M_a^{\dagger} \otimes I)\bigr) \;=\; \mathrm{Tr}_A(\rho_{AB}) \;=\; \rho_B,
 $$
 
-using $\sum_a M_a^{\dagger} M_a = I$ and cyclicity of the partial trace. Bob, with no access to Alice's classical outcome, sees the same $\rho_B$ in either world.
+using $\sum_a M_a^{\dagger} M_a = I$ together with cyclicity *within the A subsystem* — i.e. $\mathrm{Tr}_A((M_a \otimes I) \sigma (M_a^{\dagger} \otimes I)) = \mathrm{Tr}_A((M_a^{\dagger} M_a \otimes I)\\,\sigma)$, which is the partial-trace identity that applies when both Kraus factors act only on $A$ (full cyclicity does not hold for partial trace; this restricted form does). Bob, with no access to Alice's classical outcome, sees the same $\rho_B$ in either world.
 
 This is the formal statement underlying the §7.11 observation that the reduced state of one half of a Bell pair is $I/2$ regardless of what Alice does. It is what reconciles the dramatic phrasing of Bell-inequality violations ("instantaneous correlations at any distance") with relativistic causality: nothing observable on Bob's side reveals Alice's measurement choice without a classical channel. Bell-inequality violations are visible only *after* the two parties pool their data.
 
@@ -219,7 +219,7 @@ Together, **CPTP**: completely positive, trace-preserving. Every CPTP map is a v
 
 - **Depolarising channel**: $\mathcal{E}(\rho) = (1 - p)\rho + p \cdot I/2$. With probability $p$, the qubit is replaced by the maximally mixed state. Equivalently — using $I/2 = (\rho + X\rho X + Y\rho Y + Z\rho Z)/4$ — the qubit is left alone with probability $1 - 3p/4$ and each Pauli error $X, Y, Z$ is applied with probability $p/4$, giving Kraus operators $\sqrt{1 - 3p/4}\\, I$ and $\sqrt{p/4}\\, X$, $\sqrt{p/4}\\, Y$, $\sqrt{p/4}\\, Z$.
 - **Amplitude damping**: models $T_1$ relaxation. Acts on the Bloch sphere by contracting toward the north pole $|0\rangle$. The Kraus operators are $K_0 = |0\rangle\langle 0| + \sqrt{1-p}\\, |1\rangle\langle 1|$ and $K_1 = \sqrt{p}\\, |0\rangle\langle 1|$.
-- **Phase damping** (equivalently, pure dephasing): models $T_\varphi$. Diagonal entries of $\rho$ are preserved; off-diagonals shrink by $\sqrt{1 - p}$. Operationally indistinguishable from random $Z$ rotations averaged uniformly.
+- **Phase damping** (equivalently, pure dephasing): models $T_\varphi$. Diagonal entries of $\rho$ are preserved; off-diagonals shrink by $\sqrt{1 - p}$. Equivalent at the channel level to a probabilistic $Z$ application — i.e. $\mathcal{E}(\rho) = (1 - q)\rho + q Z \rho Z$ with $q = (1 - \sqrt{1-p})/2$ chosen so that off-diagonals shrink by the same factor $\sqrt{1-p}$ (a uniformly random $Z$-rotation angle gives a different shrink factor).
 - **Bit-flip / phase-flip / bit-phase-flip**: probabilistic application of $X$, $Z$, $Y$ respectively.
 
 The depolarising and amplitude-damping channels are the two workhorses of error-correction analysis (Chapter 19): depolarising because of its symmetry across the Pauli group, amplitude damping because of its physical accuracy as a $T_1$ model.
