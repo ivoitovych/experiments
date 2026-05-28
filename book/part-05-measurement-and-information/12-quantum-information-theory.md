@@ -641,11 +641,11 @@ throughout Part 6:
   an algorithm to succeed *with error $\epsilon$* — a notion that
   appears in every algorithm chapter and every error-correction
   discussion.
-- The no-cloning theorem (§12.8) is the reason quantum algorithms
-  cannot use the classical trick of "run the same subroutine twice on
-  the same input" to amplify confidence at zero extra cost. Repetition
-  costs fresh state preparation, and shot-budget accounting (§4.14)
-  enters as a first-class concern.
+- The no-cloning theorem (§12.8) is the reason a quantum algorithm cannot
+  copy a prepared input state and rerun on the copy for free, the way a
+  classical algorithm reuses a stored input. Repetition instead costs fresh
+  state preparation each time, and shot-budget accounting (§4.14) enters as
+  a first-class concern.
 
 With these quantitative tools in hand, Part 6 begins by asking *what
 quantum algorithms actually are* — a question that turns out to have a
