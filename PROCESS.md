@@ -114,6 +114,12 @@ cargo install mdbook-katex --version 0.10.0-alpha --locked --force
   `make book`; nothing under it is source. Deleting it does not affect a
   version-mismatch failure, which happens *after* source assembly when mdBook
   invokes the preprocessor.
+- **Harmless within-line patch skew:** `mdbook-katex 0.9.4` is built against
+  `mdbook 0.4.48` (its `mdbook_fork4ls` dependency), so running it under a
+  different 0.4.x patch — e.g. `mdbook 0.4.52` — prints a **non-fatal** notice
+  that the versions differ. The build still completes with 0 KaTeX errors;
+  the notice is safe to ignore. (Using exactly `mdbook 0.4.48` silences it,
+  but any 0.4.x works — we intentionally do not pin the patch level.)
 - **Symptom of a mismatched pair** (e.g. mdbook 0.5.x with mdbook-katex 0.9.x,
   or vice versa): the build fails during the preprocessor with
   `invalid type: null, expected any valid TOML value …` followed by

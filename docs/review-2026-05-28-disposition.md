@@ -450,6 +450,35 @@ raised two refinements, both applied in the commit below:
   failure. `check_toolchain()` now writes to `sys.stderr` with `flush=True`
   (verified: mismatch diagnostic emits 875 bytes on stderr, 0 on stdout).
 
+### Reviewer independent build verification (2026-05-29 01:21 CEST) — blocker resolved
+
+The reviewer followed the new documentation, installed the stable
+supported pair (`mdbook 0.4.52` + `mdbook-katex 0.9.4`, replacing their
+`mdbook 0.5.3`), and reported **`make book` passed** — "built HTML at
+book-build/book". They independently confirmed in the rendered output:
+no `class="katex-error"` / `KaTeX parse error` occurrences; the visible
+`Moving-target warning` callouts present (incl. Appendix F); and
+`make check-examples` green (4 examples, Qiskit 2.4.1). They state the
+former blocker was "a mismatched local pair … not a manuscript/build-script
+defect," and that "no manuscript or technical findings remain."
+
+One non-blocking observation, documented (not "fixed" by re-pinning):
+`mdbook-katex 0.9.4` is built against `mdbook 0.4.48`, so running it under
+a different 0.4.x patch (their 0.4.52) prints a harmless version-skew
+notice; the build still completes with 0 KaTeX errors. PROCESS.md now
+notes this explicitly. We deliberately do **not** pin the patch level —
+that would re-narrow the range we just widened.
+
+### Closure status
+
+All review findings are APPLIED / VERIFIED / DEFENSIBLE; zero
+NEEDS-VERIFICATION; the build blocker is resolved and independently
+reproduced by the reviewer. The only standing discipline is the
+intentional publication gate (clear `Moving-target warning` callouts
+after dated fact-checking before any file is marked `final`; lint
+enforces it). **This review is ready to close** pending the user's
+explicit go-ahead to delete the review file (see below).
+
 ## Process to close
 
 1. For each NEEDS-VERIFICATION row: re-read the actual current
