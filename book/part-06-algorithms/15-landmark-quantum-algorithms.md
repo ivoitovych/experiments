@@ -58,7 +58,7 @@ The implication, when (if) fault-tolerant quantum computers exist at the relevan
 
 Factoring deserves a section beyond Shor's statement because the resource cost is the central number cited in "when will quantum computers be a threat" discussions. The relevant resource is the **number of physical qubits** and the **runtime in wall-clock hours** required to factor a cryptographically relevant integer (RSA-2048: 2048 bits) under realistic noise.
 
-Two anchor estimates frame the 2025–2026 picture, both at a physical gate error of $10^{-3}$:
+Two anchor estimates frame the 2025–2026 picture, both at a physical gate error of $10^{-3}$ (these are the published anchors as of their dates and remain a moving target — treat the specific figures as a dated snapshot, not a fixed threshold):
 
 - **Gidney–Ekerå (2019; *Quantum* 2021):** $\sim 20$ million physical qubits, $\sim 8$ hours of runtime, magic-state distillation dominating the cost.
 - **Gidney (arXiv 2505.15917, May 2025):** under 1 million physical qubits, under one week — a $>20\times$ qubit reduction without weakening the assumptions, driven by approximate residue arithmetic (Chevignard–Fouque–Schrottenloher 2024), yoked surface codes (Gidney–Newman–Brooks–Jones 2023), and a smaller magic-state-distillation budget.
@@ -113,7 +113,7 @@ The **Variational Quantum Eigensolver (VQE)** is the prototype VQA, targeting th
 
 VQE's appeal is that the ansatz can be tailored to the chemistry: **unitary coupled cluster (UCCSD)** uses excitation operators from coupled-cluster theory; **ADAPT-VQE** grows the ansatz one operator at a time based on largest gradient; **hardware-efficient** ansatze ignore chemistry and just minimise depth. UCCSD captures static correlation accurately but has deep circuits; ADAPT-VQE achieves comparable accuracy with shorter circuits at the cost of more classical orchestration.
 
-The practical bottleneck in 2026 is **measurement cost**: a Hamiltonian with $K$ Pauli strings and target precision $\epsilon$ requires $O(K \mathrm{Var}/\epsilon^2)$ shots in the naive scheme. Pauli-string grouping, classical-shadows-based estimation (§11.5), and adaptive measurement allocation reduce this substantially — sometimes by an order of magnitude — but VQE on a 50-orbital active space still requires on the order of $10^9$–$10^{12}$ shots (an order-of-magnitude estimate; exact counts are problem- and ansatz-dependent), which is several days of real-time device usage. Hardware-noise mitigation via zero-noise extrapolation and probabilistic error cancellation (Chapter 18) tames bias but worsens variance.
+The practical bottleneck in 2026 is **measurement cost**: a Hamiltonian with $K$ Pauli strings and target precision $\epsilon$ requires $O(K \mathrm{Var}/\epsilon^2)$ shots in the naive scheme. Pauli-string grouping, classical-shadows-based estimation (§11.5), and adaptive measurement allocation reduce this substantially — sometimes by an order of magnitude — but VQE on a 50-orbital active space still requires on the order of $10^9$–$10^{12}$ shots (an order-of-magnitude estimate; exact counts are problem- and ansatz-dependent), which is several days of real-time device usage. These are current-hardware figures that should fall as measurement-reduction techniques and devices improve; read them as a 2026 snapshot. Hardware-noise mitigation via zero-noise extrapolation and probabilistic error cancellation (Chapter 18) tames bias but worsens variance.
 
 ## 15.9 Quantum Approximate Optimization Algorithm
 
@@ -133,7 +133,7 @@ Empirical and theoretical results from 2020–2025 are sobering. For most natura
 
 **Quantum machine learning (QML)** is a broad umbrella covering: (a) quantum algorithms for classical ML problems (training, inference, sampling), (b) machine learning of quantum data (state tomography, learning Hamiltonians), and (c) variational "quantum neural networks" trained by gradient descent on quantum hardware.
 
-The 2026 picture, in plain language:
+The 2026 picture, in plain language (a fast-moving research area — the status claims below are a dated snapshot and the specific verdicts may shift):
 
 - **Speedups for classical ML via HHL-style algorithms** (linear regression, kernel methods, recommendation systems, principal-component analysis): essentially all dequantised by Tang and follow-ups under the same data-access assumptions. The exponential speedups were artefacts of the QRAM assumption.
 - **Quantum kernel methods**: kernels evaluated by inner products of quantum-state-encoded inputs. Polynomial advantage on artificial problems is provable; generic-data advantage is empirically modest.

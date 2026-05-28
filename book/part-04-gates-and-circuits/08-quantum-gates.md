@@ -169,7 +169,7 @@ What this means practically: any continuous rotation gate $R_Z(\theta)$ used in 
 
 Real hardware does not implement abstract gates; it implements whatever unitary the physical control pulses generate, calibrated to a target. The **native gate set** of a device is the small alphabet the compiler is allowed to assume.
 
-Some common native sets in 2026:
+Some common native sets, as a snapshot of the 2026 hardware landscape (the specific vendor chips named below date quickly; the *structure* of each native set is the durable part):
 
 - **Superconducting (transmons), Google/IBM-style**: arbitrary single-qubit $R_Z(\theta)$ (virtual, free), $R_X(\pi/2)$ ("sqrt-X"), and a two-qubit entangler — typically CZ via tunable couplers (current IBM Heron-class processors and Google's Willow-class processors) or cross-resonance CNOT on older fixed-coupling IBM devices, with iSWAP-family / fSim entanglers on older Google Sycamore-class chips. Recent IBM Heron also exposes parameterised "fractional" gates for variational algorithms.
 - **Trapped ions (IonQ-, Quantinuum-style)**: arbitrary single-qubit rotations and a Mølmer–Sørensen entangling gate $\mathrm{XX}(\theta) = e^{-i\theta X\otimes X/2}$, often all-to-all (no routing needed).
