@@ -40,7 +40,7 @@ Three points to keep in mind:
 > bread-and-butter distance measures used constantly in the rest of the
 > book and can be skimmed for definitions and revisited for proofs.
 > §§12.8–12.10 (Schumacher compression, channel capacities) preview
-> material expanded in Part 6 and Part 8 and can be read at "what's the
+> material expanded in Part 8 (error correction) and Part 12 (cryptography) and can be read at "what's the
 > headline result" depth on a first pass. §§12.11–12.12 collect the
 > no-go theorems and the LOCC resource picture; both are short and worth
 > rereading once the channel-capacity sections settle.
@@ -386,8 +386,8 @@ $$
 1 - F(\rho, \sigma) \le D(\rho, \sigma) \le \sqrt{1 - F(\rho, \sigma)^2}.
 $$
 
-Either side becomes an equality on pure states, and both quantities go
-to zero together. In practice, one chooses whichever is easier to
+On pure states the upper bound is tight — $D = \sqrt{1 - F^2}$ — while the
+lower bound is generally strict (it saturates only at the endpoints $F = 0$ and $F = 1$). Both quantities go to zero together. In practice, one chooses whichever is easier to
 compute: fidelity is often analytically tractable through Uhlmann,
 trace distance is the right object for direct distinguishability
 statements, and the inequalities convert between them as needed.
@@ -498,11 +498,10 @@ distance to the identity-on-the-input. The LSD theorem (Lloyd 1997,
 Shor 2002, Devetak 2005) gives
 
 $$
-Q(\mathcal{N}) = \lim_{n \to \infty} \tfrac{1}{n}\\, \max_\rho I_c(\rho, \mathcal{N}^{\otimes n}),
+Q(\mathcal{N}) = \lim_{n \to \infty} \tfrac{1}{n}\\, \max_{\rho^{(n)}} I_c(\rho^{(n)}, \mathcal{N}^{\otimes n}),
 $$
 
-where $I_c$ is the coherent information (§12.3) of the channel on input
-$\rho$. Like the classical capacity, the formula requires
+where $I_c$ is the coherent information (§12.3) and the maximisation is over input states $\rho^{(n)}$ on $n$ channel uses (not single-letter — that is what the regularisation tracks). Like the classical capacity, the formula requires
 regularisation because coherent information is generically
 superadditive. The quantum capacity is the rate at which the channel
 can be turned into a perfect quantum wire after enough error correction;
