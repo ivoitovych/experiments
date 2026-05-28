@@ -201,7 +201,8 @@ Useful identities:
 - $\mathrm{tr}(A \otimes B) = \mathrm{tr}(A)\\, \mathrm{tr}(B)$
 - $\langle u_1 \otimes v_1,\\, u_2 \otimes v_2\rangle = \langle u_1, u_2\rangle\\, \langle v_1, v_2\rangle$, so $\\|u \otimes v\\| = \\|u\\|\\, \\|v\\|$.
 
-**Qiskit endian warning.** Qiskit is little-endian: qubit `0` is the
+**Qiskit endian warning** (restated here for self-containment; see also
+§A.1 and §A.5). Qiskit is little-endian: qubit `0` is the
 *least* significant bit in printed bit strings and statevector
 indices. To match this book's tensor-product order with a Qiskit
 statevector index without inserting any permutation, map the

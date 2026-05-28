@@ -162,7 +162,7 @@ literature has consolidated to a handful of papers that everyone cites.
   surface code is not the end of the story.
 - *Roads towards fault-tolerant universal quantum computation.* Earl T.
   Campbell, Barbara M. Terhal, and Christophe Vuillot. Nature, 2017.
-  A compact and still-current survey of the fault-tolerance landscape.
+  A compact survey of the fault-tolerance landscape, still current as of 2026.
 
 ## D.5 Hardware and Control
 
@@ -258,8 +258,9 @@ with the modern algorithmic vocabulary.
   pass over the framework after Chapter 16.
 - *Theory of Trotter error with commutator scaling.* Andrew M. Childs,
   Yuan Su, Minh C. Tran, Nathan Wiebe, and Shuchen Zhu. Physical
-  Review X, 2021. The current state-of-the-art Trotter error
-  analysis; relevant whenever Hamiltonian simulation depth matters.
+  Review X, 2021. The state-of-the-art Trotter error
+  analysis as of 2026; relevant whenever Hamiltonian simulation depth
+  matters.
 - *Variational quantum algorithms.* M. Cerezo et al. Nature Reviews
   Physics, 2021. The reference survey for VQE, QAOA, and the
   variational landscape, including barren-plateau diagnostics.
