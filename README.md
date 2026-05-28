@@ -63,8 +63,8 @@ KaTeX — into `book-build/`. The known-good toolchain is **mdbook 0.4.x**
 versions with
 
 ```
-cargo install mdbook --version '>=0.4,<0.5' --locked
-cargo install mdbook-katex --version 0.9.4 --locked
+cargo install mdbook --version '>=0.4,<0.5' --locked --force
+cargo install mdbook-katex --version 0.9.4 --locked --force
 ```
 
 mdbook 0.5.x is not yet supported — mdbook-katex 0.9.4 fails against its
