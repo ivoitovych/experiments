@@ -10,7 +10,7 @@ Part 5 closed the static and informational picture: states, channels, entropies,
 
 ## 13.1 Amplitude Manipulation
 
-The slogan "a quantum computer tries all answers at once" is, taken literally, false in a way that misleads more than it teaches. A single application of a unitary $U$ to $H^{\otimes n}|0^n\rangle = \tfrac{1}{\sqrt{2^n}}\sum_x |x\rangle$ does evaluate $U$ "on every $x$" in the sense that each $|x\rangle$ acquires the amplitude $U_{yx}$ in the output. But measurement returns a single $y$, sampled from $|\sum_x U_{yx}/\sqrt{2^n}|^2$. The exponential number of intermediate evaluations has been compressed back to one bit string. No black-box query yields more information than a single classical query would have.
+The slogan "a quantum computer tries all answers at once" is, taken literally, false in a way that misleads more than it teaches. A single application of a unitary $U$ to $H^{\otimes n}|0^n\rangle = \tfrac{1}{\sqrt{2^n}}\sum_x |x\rangle$ does evaluate $U$ "on every $x$" in the sense that each $|x\rangle$ acquires the amplitude $U_{yx}$ in the output. But measurement returns a single $y$, sampled from $|\sum_x U_{yx}/\sqrt{2^n}|^2$. The exponential number of intermediate evaluations has been compressed back to one bit string. A single quantum query gives the same *raw* per-shot information rate as a single classical query — at most $n$ bits — but as Deutsch–Jozsa and Bernstein–Vazirani show (§§14.2, 14.3), interference can pack a global feature of the function into those bits in a way no single classical query can.
 
 What makes quantum computation work is not parallel evaluation but **interference**: the amplitudes for different computational paths add coherently before being squared, and a well-designed algorithm arranges for the amplitudes leading to wrong answers to cancel while the amplitudes leading to right answers reinforce. The Hadamard transform $H^{\otimes n}$ is the workhorse for setting up such interferences because it spreads a single basis state into a uniform superposition with controllable signs:
 
@@ -60,7 +60,7 @@ A few framing rules worth absorbing.
 
 **Promise problems are common.** Deutsch–Jozsa, Simon, and most query-model separations are *promise* problems: the oracle is guaranteed to belong to a restricted family (constant-or-balanced, $\mathbb{Z}_2^n$-periodic). Without the promise, exponential separations usually collapse. Whether the promise is realistic in practice is the first question to ask about any oracle algorithm.
 
-**Black-box separations are not automatically practical.** A separation between query complexities does not by itself imply a separation between practical running times: the oracle has to be implementable, and implementation cost may dominate query cost. This caveat is the seam between query-model and uniform-circuit-model results, and it returns in §13.5 and §13.7.
+**Black-box separations are not automatically practical.** A separation between query complexities does not by itself imply a separation between practical running times: the oracle has to be implementable, and implementation cost may dominate query cost. This caveat is the boundary between query-model and uniform-circuit-model results, and it returns in §13.5 and §13.7.
 
 ## 13.4 Transform-Domain Thinking
 
@@ -136,7 +136,7 @@ Three regions on the quantum-speedup map are worth fixing in mind.
 
 **Polynomial speedups.** Provable, ubiquitous, and based on amplitude amplification. Grover's algorithm gives a quadratic speedup for unstructured search; element distinctness, collision finding, and many graph problems inherit polynomial speedups from Grover-style subroutines or from the *quantum walk* framework. Quadratic speedups are robust but easily eroded: in fault-tolerant settings, the constant overhead of error correction can absorb a factor-of-$\sqrt{n}$ improvement, and one must compare *fault-tolerant* quantum running time to *uncorrected* classical running time to judge end-to-end advantage.
 
-**Simulation speedups.** Quantum systems are believed to be hard to simulate classically; running a quantum computer to simulate them is the original Feynman motivation. Quantum simulation of local Hamiltonians (Chapter 16) admits provable polynomial-time algorithms, and the speedup over the best known classical algorithms is exponential for many natural physical problems. This is the speedup most likely to be of practical importance in the near term.
+**Simulation speedups.** Quantum systems are believed to be hard to simulate classically; running a quantum computer to simulate them is the original Feynman motivation. Quantum simulation of local Hamiltonians (Chapter 16) admits provable polynomial-time algorithms, and the speedup over the best known classical algorithms is exponential for many natural physical problems — a *best-known-algorithm* gap rather than a proved unconditional complexity separation. This is the speedup most likely to be of practical importance in the near term.
 
 Two cautions worth carrying into Part 6.
 
