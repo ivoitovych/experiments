@@ -664,17 +664,20 @@ sharper answer than the popular picture suggests.
 3. Take $\rho = |0\rangle\langle 0|$ and $\sigma = |+\rangle\langle +|$.
    Compute both $D(\rho, \sigma)$ and $F(\rho, \sigma)$, then verify
    that the Fuchs–van de Graaf inequalities
-   $1 - F \le D \le \sqrt{1 - F^2}$ are satisfied (with equality on the
-   pure-state side).
+   $1 - F \le D \le \sqrt{1 - F^2}$ are satisfied — the upper bound
+   $D = \sqrt{1 - F^2}$ is tight for pure states, while the lower bound
+   $1 - F \le D$ is strict here.
 4. For the qubit ensemble $\\{(\tfrac{1}{2}, |0\rangle), (\tfrac{1}{2}, |+\rangle)\\}$,
    compute the average state $\rho$ and the Holevo quantity
    $\chi = S(\rho)$. Confirm $\chi < 1$, so one qubit transmitted from
    this ensemble carries strictly less than one bit of accessible
    classical information.
 5. Confirm that subadditivity $S(\rho_{AB}) \le S(\rho_A) + S(\rho_B)$
-   is violated only as equality (never strictly) for $|\Phi^+\rangle$,
-   and check that strong subadditivity reduces to ordinary
-   subadditivity when system $B$ is trivial (one-dimensional).
+   holds *strictly* for $|\Phi^+\rangle$ — there $S(\rho_{AB}) = 0$ while
+   $S(\rho_A) + S(\rho_B) = 2$ — and that equality holds iff
+   $\rho_{AB} = \rho_A \otimes \rho_B$. Then check that strong subadditivity
+   reduces to ordinary subadditivity when system $B$ is trivial
+   (one-dimensional).
 
 ---
 
