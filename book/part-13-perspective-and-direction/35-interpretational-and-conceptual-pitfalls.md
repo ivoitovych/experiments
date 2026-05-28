@@ -1,8 +1,8 @@
 # Chapter 35. Interpretational and Conceptual Pitfalls
 
-[← Previous: Chapter 34](34-bridging-to-familiar-engineering-ideas.md) · [Table of Contents](../../README.md) · [Next: Chapter 36 →](36-how-to-judge-claims.md)
-
 > **Status:** draft · **Phase:** 6 · **Sections drafted:** 14 / 14
+
+[← Previous: Chapter 34](34-bridging-to-familiar-engineering-ideas.md) · [Table of Contents](../../README.md) · [Next: Chapter 36 →](36-how-to-judge-claims.md)
 
 By this point the formalism has done all the work. States are unit
 vectors in a Hilbert space; gates are unitaries; measurements are

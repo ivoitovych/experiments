@@ -1,8 +1,8 @@
 # Chapter 30. Quantum Machine Learning
 
-[← Previous: Chapter 29](29-optimization-finance-and-industrial.md) · [Table of Contents](../../README.md) · [Next: Chapter 31 →](31-quantum-sensing-metrology-and-tomography.md)
-
 > **Status:** draft · **Phase:** 5 · **Sections drafted:** 9 / 9
+
+[← Previous: Chapter 29](29-optimization-finance-and-industrial.md) · [Table of Contents](../../README.md) · [Next: Chapter 31 →](31-quantum-sensing-metrology-and-tomography.md)
 
 Quantum machine learning (QML) is, in 2026, the most over-promised and least-delivered application area in quantum computing. The phrase covers three nearly unrelated research programmes that share little except the words "quantum" and "learning": running classical machine-learning workloads on quantum hardware, using machine-learning techniques to characterise quantum systems, and training parameterised quantum circuits as if they were neural networks. The first programme has been gutted by a series of dequantisation results since 2018; the second is the genuine bright spot; the third is an active research area with no demonstrated advantage on any natural task. A chapter that takes QML seriously has to draw those distinctions sharply, because most of the marketing literature does not.
 

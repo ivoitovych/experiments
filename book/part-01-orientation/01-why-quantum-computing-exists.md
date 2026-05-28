@@ -1,8 +1,8 @@
 # Chapter 1. Why Quantum Computing Exists
 
-[← Previous: Notation and Conventions](../00-front-matter/02-notation-and-conventions.md) · [Table of Contents](../../README.md) · [Next: Chapter 2 →](02-classical-to-quantum-contrast.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 6 / 6
+
+[← Previous: Notation and Conventions](../00-front-matter/02-notation-and-conventions.md) · [Table of Contents](../../README.md) · [Next: Chapter 2 →](02-classical-to-quantum-contrast.md)
 
 Quantum computing is not a faster classical computer. It is a different machine model — one whose state lives in a complex vector space of dimension exponential in the number of qubits, whose evolution is governed by unitary transformations, and whose output is sampled from a probability distribution determined by interference of amplitudes. Why does such a model exist at all, why do governments and large companies pour money into building hardware for it, and why should an experienced developer spend the time to understand it? This chapter answers those questions before any formalism is introduced. It is the only chapter in the book that is allowed to gesture; every subsequent chapter pays the gesture back with definitions, proofs, or concrete circuits.
 

@@ -1,8 +1,8 @@
 # Chapter 15. Landmark Quantum Algorithms
 
-[← Previous: Chapter 14](14-foundational-algorithms.md) · [Table of Contents](../../README.md) · [Next: Chapter 16 →](16-modern-algorithmic-frontier.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 10 / 10
+
+[← Previous: Chapter 14](14-foundational-algorithms.md) · [Table of Contents](../../README.md) · [Next: Chapter 16 →](16-modern-algorithmic-frontier.md)
 
 Chapter 14 set up the primitives. This chapter is about the **algorithms** built from them — the named, citable, well-studied algorithms that practitioners reach for when sketching what a fault-tolerant or NISQ-era quantum computer could plausibly do. Grover and Shor are the canonical pair; HHL is the linear-systems analogue with subtle preconditions; quantum walks generalise random walks for graph problems; VQE and QAOA are the variational workhorses of the near-term era; and the chapter closes with a level-headed survey of quantum machine learning, which is the most over-promised and under-delivered subarea in the field.
 

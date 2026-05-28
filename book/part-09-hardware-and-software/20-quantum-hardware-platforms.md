@@ -1,8 +1,8 @@
 # Chapter 20. Quantum Hardware Platforms
 
-[← Previous: Chapter 19](../part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md) · [Table of Contents](../../README.md) · [Next: Chapter 21 →](21-quantum-control-and-electronics.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 12 / 12
+
+[← Previous: Chapter 19](../part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md) · [Table of Contents](../../README.md) · [Next: Chapter 21 →](21-quantum-control-and-electronics.md)
 
 Parts 2–8 have treated the qubit as a clean mathematical object: a unit vector in $\mathbb{C}^2$, acted on by unitaries drawn from a chosen native set (§8.12), measured projectively, and afflicted by an idealised noise model (Chapters 18–19). Real hardware is much more interesting. The qubit can be a microwave-frequency oscillation in a superconducting circuit, the two electronic levels of a trapped atom, the polarisation of a single photon, a localised electron spin in silicon, or a topologically encoded mode in a superconductor-semiconductor hybrid. Each physical embodiment determines the device's native gate set, its connectivity graph, its coherence times, its error model, the engineering effort required to scale it, and the room (or cryostat) it lives in. This chapter is a guided tour of the modalities competing in 2026, the engineering tradeoffs they expose, and the order-of-magnitude numbers a working developer needs to keep in mind when choosing a backend or reading a vendor's specification sheet.
 

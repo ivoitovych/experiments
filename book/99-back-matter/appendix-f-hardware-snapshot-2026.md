@@ -1,8 +1,8 @@
 # Appendix F. 2026 Hardware Snapshot
 
-[← Previous: Appendix E. Glossary](appendix-e-glossary.md) · [Table of Contents](../../README.md) · [Next: Index →](index.md)
-
 > **Status:** draft · **Phase:** 4 · **Sections drafted:** 8 / 8
+
+[← Previous: Appendix E. Glossary](appendix-e-glossary.md) · [Table of Contents](../../README.md) · [Next: Index →](index.md)
 
 This appendix is a deliberately *perishable* snapshot of the quantum
 hardware landscape as of early 2026. It is isolated here, rather than

@@ -1,8 +1,8 @@
 # Chapter 16. Modern Algorithmic Frontier
 
-[← Previous: Chapter 15](15-landmark-quantum-algorithms.md) · [Table of Contents](../../README.md) · [Next: Chapter 17 →](../part-07-complexity/17-complexity-theory.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 8 / 8
+
+[← Previous: Chapter 15](15-landmark-quantum-algorithms.md) · [Table of Contents](../../README.md) · [Next: Chapter 17 →](../part-07-complexity/17-complexity-theory.md)
 
 Chapter 15 closed with HHL, the prototypical "block-encoded linear algebra" algorithm, and pointed at the post-2015 reformulations that have replaced its presentation in every modern reference. This chapter covers those reformulations. The thread tying them together is a single conceptual move: *stop reasoning about each algorithm in its own bespoke terms, and start reasoning about polynomial transformations of a matrix that has been embedded ("block-encoded") inside a larger unitary*. Once that move is made, Hamiltonian simulation, amplitude amplification, phase estimation, HHL-style linear solving, and several Monte-Carlo speedups all fall out as special cases of a single template — the **quantum singular value transformation (QSVT)** of Gilyén–Su–Low–Wiebe (2019). Chapter 17 then steps up to the complexity-theoretic view of what these algorithms can and cannot do.
 

@@ -1,8 +1,8 @@
 # Chapter 24. Classical Simulation of Quantum Systems
 
-[← Previous: Chapter 23](23-quantum-programming-compilation-and-tooling.md) · [Table of Contents](../../README.md) · [Next: Chapter 25 →](../part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md)
-
 > **Status:** draft · **Phase:** 4 · **Sections drafted:** 15 / 15
+
+[← Previous: Chapter 23](23-quantum-programming-compilation-and-tooling.md) · [Table of Contents](../../README.md) · [Next: Chapter 25 →](../part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md)
 
 Every quantum algorithm in this book has, at some point in its life, been simulated classically. Test suites for Qiskit, Cirq, and PennyLane run on classical hardware; pre-deployment validation of a variational circuit runs on a classical simulator; the very claim "this device beat classical simulation" is meaningful only insofar as the corresponding classical computation has been characterised. Classical simulation of quantum systems is therefore not the failure mode of quantum computing but its constant companion: the verification layer, the debugging surface, the lower bound against which advantage is measured, and — for many physically interesting Hamiltonians — the production tool that is still doing the science.
 

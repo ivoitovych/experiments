@@ -1,8 +1,8 @@
 # Chapter 11. Measurement Theory
 
-[← Previous: Chapter 10](../part-04-gates-and-circuits/10-core-quantum-phenomena.md) · [Table of Contents](../../README.md) · [Next: Chapter 12 →](12-quantum-information-theory.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 7 / 7
+
+[← Previous: Chapter 10](../part-04-gates-and-circuits/10-core-quantum-phenomena.md) · [Table of Contents](../../README.md) · [Next: Chapter 12 →](12-quantum-information-theory.md)
 
 Chapter 5 introduced measurement as a postulate (§5.4): a finite collection of orthogonal projectors $\\{P_m\\}$ summing to the identity, returning outcome $m$ with probability $\langle\psi| P_m |\psi\rangle$ and collapsing the state to the corresponding projected ray. That picture is enough for almost every textbook quantum algorithm, but it is also strictly idealised. Real detectors are noisy, real measurement procedures sometimes have more outcomes than the system has orthogonal states, real experimenters care about extracting expectation values from finite samples, and real protocols sometimes need to know whether two candidate states can be distinguished at all. This chapter develops the operational machinery that addresses each of these: POVMs, Naimark dilation, tomography, classical shadows, state discrimination, sampling estimators, basis-rotation tricks for joint Pauli measurements, and readout-error mitigation.
 

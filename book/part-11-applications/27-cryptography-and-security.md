@@ -1,8 +1,8 @@
 # Chapter 27. Cryptography and Security
 
-[← Previous: Chapter 26](../part-10-practice-and-era/26-practical-access-and-hands-on-work.md) · [Table of Contents](../../README.md) · [Next: Chapter 28 →](28-scientific-computing-and-physical-simulation.md)
-
 > **Status:** draft · **Phase:** 5 · **Sections drafted:** 11 / 11
+
+[← Previous: Chapter 26](../part-10-practice-and-era/26-practical-access-and-hands-on-work.md) · [Table of Contents](../../README.md) · [Next: Chapter 28 →](28-scientific-computing-and-physical-simulation.md)
 
 Cryptography is the application area where quantum computing has the sharpest, most concrete consequences. Shor's algorithm (§15.2, §15.4) breaks every widely deployed public-key primitive in polynomial time on a fault-tolerant quantum computer; Grover's algorithm (§15.1) chips a constant factor off symmetric-key security. The community response — post-quantum cryptography, standardised by NIST between 2016 and 2024 — is now production code in TLS libraries, SSH implementations, signed-update toolchains, and embedded protocol stacks. Quantum key distribution exists as an independent track that offers a different security argument (physical laws, not computational hardness) at the cost of severe deployment constraints. This chapter walks the engineering picture: what is broken, what replaces it, what the threat timeline looks like, and where QKD does and does not earn its keep.
 

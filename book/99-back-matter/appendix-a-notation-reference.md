@@ -1,8 +1,8 @@
 # Appendix A. Notation Reference
 
-[← Previous: Chapter 37](../part-13-perspective-and-direction/37-endgame.md) · [Table of Contents](../../README.md) · [Next: Appendix B. Common Gates and Their Matrices →](appendix-b-common-gates.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 6 / 6
+
+[← Previous: Chapter 37](../part-13-perspective-and-direction/37-endgame.md) · [Table of Contents](../../README.md) · [Next: Appendix B. Common Gates and Their Matrices →](appendix-b-common-gates.md)
 
 This appendix is a lookup table for the symbols used throughout the book.
 Entries are short by design: each one names a symbol, gives its definition

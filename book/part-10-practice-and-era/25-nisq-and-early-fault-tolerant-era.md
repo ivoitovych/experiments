@@ -1,8 +1,8 @@
 # Chapter 25. NISQ and the Early Fault-Tolerant Era
 
-[← Previous: Chapter 24](../part-09-hardware-and-software/24-classical-simulation-of-quantum-systems.md) · [Table of Contents](../../README.md) · [Next: Chapter 26 →](26-practical-access-and-hands-on-work.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 6 / 6
+
+[← Previous: Chapter 24](../part-09-hardware-and-software/24-classical-simulation-of-quantum-systems.md) · [Table of Contents](../../README.md) · [Next: Chapter 26 →](26-practical-access-and-hands-on-work.md)
 
 Parts 5–9 built up the algorithm, error-correction, and hardware machinery roughly as if all of it were available at once. The reality in 2026 is more sober: the algorithms exist on paper, the codes exist on paper, the hardware exists in modest sizes, and the intersection of "runs on real hardware today" and "outperforms the best classical alternative on a problem anyone outside the lab cares about" is still nearly empty. This chapter is the honest account. It introduces the **NISQ** (Noisy Intermediate-Scale Quantum) regime that has defined the field since 2018, calibrates what current devices can and cannot do, walks through the contested history of quantum-advantage claims, and sketches the transition into the **early fault-tolerant** regime that is starting to peek over the horizon. Nothing here is new physics; everything here is engineering, economics, and expectation-setting — and the difference between a useful pilot project and a press-release failure mostly comes down to getting these calibrations right.
 

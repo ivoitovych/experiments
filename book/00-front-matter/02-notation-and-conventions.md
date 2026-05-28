@@ -1,8 +1,8 @@
 # Notation and Conventions
 
-[← Previous: Recommended / Assumed Background and Self-Check](01-background-and-self-check.md) · [Table of Contents](../../README.md) · [Next: Chapter 1 →](../part-01-orientation/01-why-quantum-computing-exists.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 7 / 7
+
+[← Previous: Recommended / Assumed Background and Self-Check](01-background-and-self-check.md) · [Table of Contents](../../README.md) · [Next: Chapter 1 →](../part-01-orientation/01-why-quantum-computing-exists.md)
 
 Quantum computing inherits notation from three different traditions —
 linear algebra, theoretical physics, and theoretical computer science —

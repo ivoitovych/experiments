@@ -1,8 +1,8 @@
 # Chapter 32. Adjacent Computational Models
 
-[← Previous: Chapter 31](../part-11-applications/31-quantum-sensing-metrology-and-tomography.md) · [Table of Contents](../../README.md) · [Next: Chapter 33 →](33-quantum-communication-and-networking.md)
-
 > **Status:** draft · **Phase:** 5 · **Sections drafted:** 10 / 10
+
+[← Previous: Chapter 31](../part-11-applications/31-quantum-sensing-metrology-and-tomography.md) · [Table of Contents](../../README.md) · [Next: Chapter 33 →](33-quantum-communication-and-networking.md)
 
 The circuit model from Chapter 9 is the lingua franca of quantum software — every major SDK speaks it, every textbook teaches it, every architecture paper benchmarks against it. But it is not the *only* model of quantum computation, and on certain hardware platforms it is not even the most natural one. Adiabatic evolution, measurement-based steering of a cluster state, braiding of anyons, photonic modes carrying continuous-variable encodings — each is a complete account of quantum computation in its own right, and most are **polynomially equivalent** to the circuit model in computational power. Equivalent in theory, however, does not mean interchangeable in practice. Different models map onto different hardware with very different overheads, and a problem that looks awkward in one formulation can look obvious in another.
 

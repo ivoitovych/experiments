@@ -1,8 +1,8 @@
 # Chapter 13. The Quantum Algorithms Mindset
 
-[← Previous: Chapter 12](../part-05-measurement-and-information/12-quantum-information-theory.md) · [Table of Contents](../../README.md) · [Next: Chapter 14 →](14-foundational-algorithms.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 8 / 8
+
+[← Previous: Chapter 12](../part-05-measurement-and-information/12-quantum-information-theory.md) · [Table of Contents](../../README.md) · [Next: Chapter 14 →](14-foundational-algorithms.md)
 
 Part 5 closed the static and informational picture: states, channels, entropies, capacities. Part 6 starts the algorithmic one. Before we look at any specific algorithm, this chapter establishes the mental model that makes the algorithms intelligible. It is short, deliberately opinionated, and meant to inoculate against the most common misreadings of what a quantum computer does. The chapter has no new mathematics that is not already in Chapters 5–9; what it adds is a way of looking at the next four chapters.
 

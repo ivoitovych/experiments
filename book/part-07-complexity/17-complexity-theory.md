@@ -1,8 +1,8 @@
 # Chapter 17. Complexity Theory Around Quantum Computing
 
-[← Previous: Chapter 16](../part-06-algorithms/16-modern-algorithmic-frontier.md) · [Table of Contents](../../README.md) · [Next: Chapter 18 →](../part-08-noise-and-qec/18-noise-decoherence-and-errors.md)
-
 > **Status:** draft · **Phase:** 3 · **Sections drafted:** 13 / 13
+
+[← Previous: Chapter 16](../part-06-algorithms/16-modern-algorithmic-frontier.md) · [Table of Contents](../../README.md) · [Next: Chapter 18 →](../part-08-noise-and-qec/18-noise-decoherence-and-errors.md)
 
 Part 6 catalogued algorithms one by one. This chapter steps back and asks the structural question: which problems *can* a quantum computer solve efficiently, which problems can it not, and how do those classes sit inside the older classical zoo? The complexity-theoretic picture is what tells you, before you write a single circuit, whether an algorithm of a given shape is even possible — and, conversely, why almost every exciting quantum-speedup claim has to be parsed against a precise model of resources and access.
 

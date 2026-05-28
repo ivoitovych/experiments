@@ -1,8 +1,8 @@
 # Appendix D. Suggested Reading and Reference Papers
 
-[← Previous: Appendix C. Useful Identities and Decompositions](appendix-c-identities-and-decompositions.md) · [Table of Contents](../../README.md) · [Next: Appendix E. Glossary →](appendix-e-glossary.md)
-
 > **Status:** draft · **Phase:** 2 · **Sections drafted:** 8 / 8
+
+[← Previous: Appendix C. Useful Identities and Decompositions](appendix-c-identities-and-decompositions.md) · [Table of Contents](../../README.md) · [Next: Appendix E. Glossary →](appendix-e-glossary.md)
 
 This appendix is a starting bibliography, not a comprehensive one. Every
 entry is here because a reader who has worked through this book would

@@ -1,8 +1,8 @@
 # Chapter 14. Foundational Algorithms
 
-[← Previous: Chapter 13](13-quantum-algorithms-mindset.md) · [Table of Contents](../../README.md) · [Next: Chapter 15 →](15-landmark-quantum-algorithms.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 9 / 9
+
+[← Previous: Chapter 13](13-quantum-algorithms-mindset.md) · [Table of Contents](../../README.md) · [Next: Chapter 15 →](15-landmark-quantum-algorithms.md)
 
 This chapter walks through the algorithms that established the quantum-algorithms field as a real subject — Deutsch, Deutsch–Jozsa, Bernstein–Vazirani, and Simon — and the two general-purpose primitives that almost every later algorithm builds on: the quantum Fourier transform (with phase estimation) and amplitude amplification (with amplitude estimation). It closes with the hidden subgroup problem, the framework that unifies many of the exponential speedups including the order-finding subroutine of Shor's algorithm.
 

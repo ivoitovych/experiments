@@ -1,8 +1,8 @@
 # Chapter 7. Multiple Qubits and Entanglement
 
-[← Previous: Chapter 6](06-the-qubit.md) · [Table of Contents](../../README.md) · [Next: Chapter 8 →](../part-04-gates-and-circuits/08-quantum-gates.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 13 / 13
+
+[← Previous: Chapter 6](06-the-qubit.md) · [Table of Contents](../../README.md) · [Next: Chapter 8 →](../part-04-gates-and-circuits/08-quantum-gates.md)
 
 Chapter 6 introduced one qubit. Most of the interesting physics — and all of the computational advantage we care about — lives in systems of many qubits, where the state space grows exponentially and where states can exhibit correlations with no classical analogue. This chapter builds that machinery: the tensor product, product vs. entangled states, the Bell zoo, the EPR/Bell argument that quantum correlations cannot be reproduced by any local hidden-variable model, the Schmidt decomposition, partial traces, and entanglement as a resource that powers teleportation, superdense coding, and quantum cryptography.
 

@@ -1,8 +1,8 @@
 # Chapter 31. Quantum Sensing, Metrology, and Tomography
 
-[← Previous: Chapter 30](30-quantum-machine-learning.md) · [Table of Contents](../../README.md) · [Next: Chapter 32 →](../part-12-adjacent-models/32-adjacent-computational-models.md)
-
 > **Status:** draft · **Phase:** 5 · **Sections drafted:** 6 / 6
+
+[← Previous: Chapter 30](30-quantum-machine-learning.md) · [Table of Contents](../../README.md) · [Next: Chapter 32 →](../part-12-adjacent-models/32-adjacent-computational-models.md)
 
 Quantum *computation* is still working its way through the noisy-intermediate-scale era; quantum *sensing* and *metrology* are already in production. Optical lattice clocks measure time at a fractional uncertainty around $10^{-19}$, an order of magnitude better than the caesium standard that defines the SI second. Nitrogen-vacancy magnetometers image neuronal currents at nanoscale resolution on a benchtop. SQUID arrays read out brain activity in clinical magnetoencephalography rooms. LIGO uses squeezed vacuum to extend its gravitational-wave sensitivity past the shot-noise floor at frequencies where it matters. None of these systems waits for a fault-tolerant logical qubit. They run today, in commercial and scientific deployments, on the strength of three ideas: that quantum states encode small parameters more efficiently than classical ones (§31.1–31.2), that entanglement can beat the $1/\sqrt{N}$ averaging law (§31.2), and that the same measurement-theory machinery of Chapter 11 doubles as the characterisation toolkit for everything the rest of this book has built (§31.4–31.5).
 

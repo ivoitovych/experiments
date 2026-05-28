@@ -1,8 +1,8 @@
 # Recommended / Assumed Background and Self-Check
 
-[← Previous: Preface](00-preface.md) · [Table of Contents](../../README.md) · [Next: Notation and Conventions →](02-notation-and-conventions.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 7 / 7
+
+[← Previous: Preface](00-preface.md) · [Table of Contents](../../README.md) · [Next: Notation and Conventions →](02-notation-and-conventions.md)
 
 This chapter is a **self-check**, not an introduction. The book proper
 starts at Chapter 1. If you can work the problems below from memory — or

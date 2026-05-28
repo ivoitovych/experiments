@@ -1,8 +1,8 @@
 # Chapter 10. Core Quantum Phenomena from a Computational View
 
-[← Previous: Chapter 9](09-quantum-circuits.md) · [Table of Contents](../../README.md) · [Next: Chapter 11 →](../part-05-measurement-and-information/11-measurement-theory.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 13 / 13
+
+[← Previous: Chapter 9](09-quantum-circuits.md) · [Table of Contents](../../README.md) · [Next: Chapter 11 →](../part-05-measurement-and-information/11-measurement-theory.md)
 
 Parts 2 and 3 built the formal apparatus: Hilbert spaces and postulates in Chapter 5, the qubit in Chapter 6, multi-qubit composites and entanglement in Chapter 7. Part 4 then introduced gates and circuits as the operational vocabulary the hardware speaks. This chapter is the *phenomenology* synthesis: each of the qualitative features of quantum mechanics that an algorithm designer leans on — superposition, interference, the Born rule, measurement disturbance, no-cloning, no-signalling, contextuality, the Zeno effect, decoherence, mixed states, open-system evolution, channels, and the Kraus representation — gets a tight operational statement and a pointer back to the postulate or theorem that justifies it. Nothing in this chapter is genuinely new; everything is restated in the form algorithm and protocol designers actually use.
 

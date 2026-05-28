@@ -1,8 +1,8 @@
 # Chapter 34. Bridging Quantum Computing to Familiar Engineering Ideas
 
-[← Previous: Chapter 33](../part-12-adjacent-models/33-quantum-communication-and-networking.md) · [Table of Contents](../../README.md) · [Next: Chapter 35 →](35-interpretational-and-conceptual-pitfalls.md)
-
 > **Status:** draft · **Phase:** 6 · **Sections drafted:** 9 / 9
+
+[← Previous: Chapter 33](../part-12-adjacent-models/33-quantum-communication-and-networking.md) · [Table of Contents](../../README.md) · [Next: Chapter 35 →](35-interpretational-and-conceptual-pitfalls.md)
 
 By this point in the book you have spent thirty-three chapters acquiring quantum-specific vocabulary: kets and bras, unitaries, measurement, entanglement, error correction, variational ansätze, and a long list of acronyms. The cost of acquiring that vocabulary in isolation is that it can feel detached from the engineering practice you already have. This chapter pays that cost back. It maps the major quantum-computing constructs onto familiar software-engineering ideas: linearity, registers, side effects, error correction, compiler pipelines, gradients, DAGs, cost models. The translations are imperfect on purpose. Each analogy carries a footnote saying where the analogy breaks; those breaks are what make the field its own discipline rather than a relabelling of classical computing.
 
