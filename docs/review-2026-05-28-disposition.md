@@ -377,7 +377,7 @@ but the reviewer cannot run in their env (§9.1, §14.2, §15.1
 genuinely new, actionable ask was a **documentation ownership gap**:
 
 - **Build/tooling setup + troubleshooting docs — applied
-  (`<reconcile-4>`):** added a "Building the rendered book" subsection to
+  (`087154c`):** added a "Building the rendered book" subsection to
   `PROCESS.md` answering the reviewer's five questions explicitly —
   required mdbook range (`>=0.4,<0.5`, hard prerequisite, tested 0.4.48),
   required mdbook-katex (`0.9.4`), exact install/downgrade commands
