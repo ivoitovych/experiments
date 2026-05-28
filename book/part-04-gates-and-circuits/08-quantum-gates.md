@@ -163,7 +163,7 @@ Real hardware does not implement abstract gates; it implements whatever unitary 
 
 Some common native sets in 2026:
 
-- **Superconducting (transmons), Google/IBM-style**: arbitrary single-qubit $R_Z(\theta)$ (virtual, free), $R_X(\pi/2)$ ("sqrt-X"), and a two-qubit entangler — either CNOT (IBM) or CZ / iSWAP-family (Google). Some devices add fractional gates for parameterised algorithms.
+- **Superconducting (transmons), Google/IBM-style**: arbitrary single-qubit $R_Z(\theta)$ (virtual, free), $R_X(\pi/2)$ ("sqrt-X"), and a two-qubit entangler — typically CZ via tunable couplers (current IBM Heron-class processors and Google's Willow-class processors) or cross-resonance CNOT on older fixed-coupling IBM devices, with iSWAP-family / fSim entanglers on older Google Sycamore-class chips. Recent IBM Heron also exposes parameterised "fractional" gates for variational algorithms.
 - **Trapped ions (IonQ-, Quantinuum-style)**: arbitrary single-qubit rotations and a Mølmer–Sørensen entangling gate $\mathrm{XX}(\theta) = e^{-i\theta X\otimes X/2}$, often all-to-all (no routing needed).
 - **Neutral atoms (QuEra-, Pasqal-style)**: global single-qubit rotations and Rydberg-mediated $\mathrm{CZ}$ or multi-qubit blockade gates.
 - **Photonic / measurement-based platforms**: state preparation, beam-splitter/phase shifters, and adaptive measurements, with the gate model emerging from a fusion or cluster-state pattern.
