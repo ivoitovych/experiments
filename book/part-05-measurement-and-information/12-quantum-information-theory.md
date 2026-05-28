@@ -253,10 +253,19 @@ entanglement per copy, free of charge, as a byproduct of merging. A
 negative conditional entropy is *exactly* the rate at which entanglement
 falls out of the protocol. The classical-Shannon picture has no slot
 for this sign because classical state merging never produces entanglement.
-$S(A \mid B)$ is thus the *quantum* resource cost (qubits sent when
-positive, ebits gained when negative); the protocol additionally uses
-classical communication, but only at an asymptotically negligible rate
-per copy, so it does not enter this leading-order resource accounting.
+
+It is worth being precise about the resource ledger, because
+$S(A \mid B)$ prices only one entry in it. The protocol runs in the
+**LOCC** setting — local operations and classical communication — and
+draws on three distinct resources: (i) **quantum communication**, at
+rate $S(A \mid B)$ qubits per copy when the conditional entropy is
+positive; (ii) **entanglement**, at rate $|S(A \mid B)|$ ebits *gained*
+per copy when it is negative; and (iii) **classical communication**,
+which the LOCC framework supplies freely and which the protocol does use
+at a non-trivial rate, but which $S(A \mid B)$ does not measure. So
+$S(A \mid B)$ is the *quantum* cost (or yield) of the merge, not the
+total communication — the classical side-channel is real, it is simply
+not the quantity being priced.
 
 This protocol also gives an operational reading of the coherent
 information from §12.3: $I_c(A \rangle B) = -S(A \mid B)$, so positive

@@ -325,6 +325,47 @@ These closures are in commit `69c5183` (manuscript §8.3/§12.4,
 toolchain pinning + guard, README/Makefile) and `3afaedf`
 (snapshot caveats on the time-sensitive claims and §9.1).
 
+## Reviewer third reconciliation (2026-05-29 00:17 CEST)
+
+The reviewer reran the checks. Confirmed landed: §8.3, §9.8, §13.7,
+§15.3, §15.8, §15.10, and the build-script version warning. Their
+remaining list, dispositioned:
+
+- **§9.1 Qiskit endian — verified (`<reconcile-3>`):** checked
+  empirically against Qiskit 2.4.1 — `X` on qubit 0 yields the label
+  `'01'` (qubit 0 = rightmost / least-significant) and qubit 0 is drawn
+  on the *top* wire. The book's statement ("Qiskit puts the
+  least-significant qubit on top") is correct. No manuscript change.
+- **§12.4 state merging — applied (`<reconcile-3>`):** the reviewer was
+  right to keep pressing. My earlier clause wrongly called the classical
+  communication "asymptotically negligible". Corrected: the protocol
+  runs in the **LOCC** setting and draws on three resources — quantum
+  communication ($S(A\mid B)$ qubits when positive), entanglement
+  ($|S(A\mid B)|$ ebits gained when negative), and classical
+  communication (freely supplied by LOCC, used at a non-trivial rate,
+  *not* what $S(A\mid B)$ measures). $S(A\mid B)$ is the quantum cost/yield,
+  not the total communication.
+- **§14.2 / §15.1 Qiskit `StatevectorSampler` — verified
+  (`<reconcile-3>`):** the in-text §15.1 code is identical to the tested
+  `examples/grover.py`; `make check-examples` runs it (and the §14.2
+  Deutsch–Jozsa analogue) clean under Qiskit 2.4.1. The exact API call
+  `StatevectorSampler().run([qc], shots=…).result()[0].data.c.get_counts()`
+  is exercised. No change needed.
+- **§15.1 Grover bound — applied (`<reconcile-3>`):** stated the exact
+  success probability $\sin^2((2k+1)\theta)$ and derived the $\ge 1-M/N$
+  guarantee from $(2k+1)\theta$ landing within $\theta$ of $\pi/2$, rather
+  than asserting the bound.
+- **§8.12, §15.3, §15.8, §15.10 "still need dated external
+  fact-checking before publication":** these now carry explicit
+  dated-snapshot caveats; the residual ask is a pre-publication
+  fact-check pass tracked in `docs/fact-check-ledger.md`, not a
+  manuscript defect.
+- **Build blocker (mdbook 0.5.3 in the reviewer's env):** the reviewer
+  confirms the version guard now warns correctly. Resolving 0.5.x at the
+  mdbook-katex level is outside what can be done/tested here; the pin +
+  guard is the durable fix, and our build on mdbook 0.4.48 is verified
+  (0 KaTeX errors).
+
 ## Process to close
 
 1. For each NEEDS-VERIFICATION row: re-read the actual current
