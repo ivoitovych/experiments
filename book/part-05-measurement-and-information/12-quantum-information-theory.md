@@ -421,10 +421,12 @@ later piece of quantum information theory.
 - **No-deleting** (Pati–Braunstein 2000). Two identical copies of an
   unknown $|\psi\rangle$ cannot be unitarily reduced to one. Together
   with no-cloning, this says quantum information under closed-system
-  evolution is *conserved*: it can be neither duplicated nor erased.
-  The closest physical analogue of "delete" is to dump information
-  into an environment, which is the standard description of decoherence
-  (Chapter 18).
+  evolution is *preserved* on unknown states — it can be neither
+  duplicated nor erased — though it can still be moved into correlations
+  or transferred to an environment, which is the standard description of
+  decoherence (Chapter 18). The statement is reversibility plus the
+  no-go theorems on unknown inputs, not a formal Noether-style
+  conservation law.
 
 In a sentence: classical bits can be copied and erased freely; quantum
 information cannot do either. Every later piece of quantum information
