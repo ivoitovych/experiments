@@ -61,10 +61,12 @@ lives in the referenced section.
   $|\psi\rangle \ne |\alpha\rangle \otimes |\beta\rangle$; for mixed
   states it is non-separability of the density matrix. Detected by
   Schmidt rank $> 1$ on pure states. See §5.5 and Chapter 7.
-- **Fidelity.** A similarity measure between quantum states. For pure
-  states, $F(|\psi\rangle, |\phi\rangle) = |\langle\phi|\psi\rangle|^2$
-  (squared-overlap convention); for density matrices, the generalised
-  Uhlmann fidelity. See Chapter 12.
+- **Fidelity.** A similarity measure between quantum states. This book
+  uses the *unsquared* convention (matching §12.7): for pure states,
+  $F(|\psi\rangle, |\phi\rangle) = |\langle\phi|\psi\rangle|$; for density
+  matrices, the generalised Uhlmann fidelity
+  $F(\rho, \sigma) = \mathrm{tr}\sqrt{\sqrt{\rho}\\, \sigma \sqrt{\rho}}$.
+  Both range over $[0, 1]$. See Chapter 12.
 - **Gate.** A unitary operator applied to one or a few qubits in a
   circuit. Common gates are catalogued in
   [Appendix B](appendix-b-common-gates.md). See Chapter 8.

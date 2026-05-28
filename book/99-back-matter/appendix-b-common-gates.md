@@ -101,9 +101,12 @@ Properties:
   $|0\rangle$ and $|1\rangle$ respectively. Eigenvalues of $S$ are $1, i$;
   eigenvalues of $T$ are $1, e^{i\pi/4}$.
 - Action on the computational basis: $P(\varphi)|0\rangle = |0\rangle$ and
-  $P(\varphi)|1\rangle = e^{i\varphi}|1\rangle$. The basis states accumulate
-  no relative observable phase from $P(\varphi)$ on its own; the phase only
-  becomes observable after a basis change such as $H$.
+  $P(\varphi)|1\rangle = e^{i\varphi}|1\rangle$. A *computational-basis
+  eigenstate* therefore picks up only a global phase, which is not
+  observable on its own. Applied to a superposition such as
+  $|+\rangle = (|0\rangle + |1\rangle)/\sqrt{2}$, however, $P(\varphi)$
+  produces $(|0\rangle + e^{i\varphi}|1\rangle)/\sqrt{2}$ — a genuine
+  relative phase, observable after a basis change such as $H$.
 - Composition law: $P(\varphi_1) P(\varphi_2) = P(\varphi_1 + \varphi_2)$.
   In particular $S^2 = Z$, $T^2 = S$, $T^4 = Z$, $T^8 = I$.
 - $P(\varphi)$ differs from $R_z(\varphi)$ (§B.4) only by a global phase
@@ -420,9 +423,7 @@ Properties (apply uniformly to the family above):
   eigenvalues $\\{1, 1, 1, e^{i\varphi}\\}$.
 - Action on the computational basis: $|0, b\rangle \mapsto |0, b\rangle$ and
   $|1, b\rangle \mapsto |1, U b\rangle$ for $b \in \\{0, 1\\}$.
-- Global phase becomes relative phase: $C(e^{i\alpha} U)$ differs from
-  $C(U)$ by the diagonal phase $\mathrm{diag}(1, 1, e^{i\alpha}, e^{i\alpha})
-  = \mathrm{CP}(\alpha) \otimes_{\mathrm{control}}$. This is why $C(R_z(\theta))$
+- Global phase becomes relative phase: $C(e^{i\alpha} U) = (P(\alpha) \otimes I)\\, C(U)$ — the diagonal phase $\mathrm{diag}(1, 1, e^{i\alpha}, e^{i\alpha})$ is $P(\alpha)$ acting on the *control* qubit (the target is unaffected by the phase factor). This is why $C(R_z(\theta))$
   and $\mathrm{CP}(\theta)$ are *not* equal — they differ by the global
   phase of $R_z$ relative to $P$, promoted to a relative phase by the
   control (see §B.3).

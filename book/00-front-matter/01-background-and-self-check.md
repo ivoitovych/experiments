@@ -7,9 +7,9 @@
 This chapter is a **self-check**, not an introduction. The book proper
 starts at Chapter 1. If you can work the problems below from memory — or
 with only minor stumbling — you have the background to read this book
-linearly. If you cannot, the closing paragraph of each section names a
-standard reference that will get you there in a few weeks of evening
-study, and §1.6 collects them in one place.
+linearly. If you cannot, most sections close with a standard reference
+that will get you there in a few weeks of evening study, and §1.6
+collects them in one place.
 
 The bar is deliberately set at "fluent enough that the math does not
 get in the way of the physics and the algorithms." This is roughly the

@@ -177,14 +177,16 @@ make the prerequisite graph explicit. The notation reference in
 Appendix A, the gate matrices in Appendix B, and the identity tables
 in Appendix C are designed to be looked up rather than read through.
 
-Every chapter ends with a small set of sanity-check exercises. These
-are not problem sets in the textbook-with-solutions-in-the-back
+Most chapters end with a small set of sanity-check exercises (the
+self-check chapter in the front matter is the exception: it is
+calibration rather than practice and gives sample problems with inline
+answers). These are not problem sets in the textbook-with-solutions-in-the-back
 sense. They are short, concrete questions that you should be able to
 answer quickly if the chapter has landed; if you cannot, that is the
-signal to reread the relevant section before moving on. The answers
-are not printed inline because the act of answering matters more than
-the act of looking up; where an answer is non-obvious, the chapter
-discussion contains it.
+signal to reread the relevant section before moving on. In the
+chapter-end exercises, answers are not printed inline because the act
+of answering matters more than the act of looking up; where an answer
+is non-obvious, the chapter discussion contains it.
 
 Worked examples are integrated into the text rather than collected at
 the end. The principle is that the example *is* the explanation: if
@@ -247,7 +249,7 @@ Part VI first.
 
 For a second pass, the book is a reference. The chapters are
 internally numbered for cross-reference, the appendices are designed
-for lookup, and the glossary collects every term introduced in
+for lookup, and the glossary collects the major terms introduced in
 boldface in the text. The intent is that you should be able to flip
 to any chapter mid-career and use it as a reference without
 rereading the whole book.
@@ -371,7 +373,7 @@ introductory machine-learning texts, signal-processing texts, and
 compiler-construction texts, all of which face the same problem of
 introducing a non-trivial mathematical formalism to an experienced
 technical audience. The choice to put sanity-check exercises at the
-end of every chapter is borrowed from that tradition.
+end of most chapters is borrowed from that tradition.
 
 Errors that remain are mine. The book is a living document; if you
 find a mistake, the repository's issue tracker is the right place to

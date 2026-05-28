@@ -366,9 +366,13 @@ $$
   |y_-\rangle\\}$ are pairwise mutually unbiased, and every off-basis
   overlap is $1/\sqrt 2$ in absolute value. This is the maximum possible
   number of MUBs in dimension $2$.
-- In prime-power dimensions $d$ there are exactly $d + 1$ mutually unbiased
-  bases. The general construction and applications (random access codes,
-  tomography) are taken up in Chapter 12.
+- The maximum number of mutually unbiased bases in dimension $d$ is at
+  most $d + 1$, and this bound is achieved when $d$ is a prime power
+  (so a complete set of $d + 1$ MUBs is known for $d = 2, 3, 4, 5, 7, 8, 9, \ldots$).
+  Smaller MUB sets exist trivially in any dimension; whether $d + 1$ is
+  achievable for non-prime-power $d$ — the smallest open case is $d = 6$ —
+  is a long-standing open problem. The general construction and
+  applications (random access codes, tomography) are taken up in Chapter 12.
 
 ---
 
