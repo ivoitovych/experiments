@@ -70,10 +70,17 @@ For each row above, the procedure was:
 | Listed TF-QKD demonstration distances (511 / 605 / 658 / 830 / >1000 km) | §33.4 | Series of TF-QKD experiments by USTC and Toshiba-Cambridge groups, 2019–2023 | 2026-05 | Confirmed |
 | 2024–2026 satellite-QKD missions: SpeQtre / SpeQtral-1 (SG), QEYSSat (CA), EAGLE-1 (ESA/EU), QUBE-II, CAPSat | §33.4 | National space-agency / mission pages; *The Quantum Insider* coverage | 2026-05 | Confirmed (general statement; individual mission launch dates remain in flux) |
 
-## Open items for the next pass
+## Pass 5 — 2026-05-28 (§8.12 native gate sets)
 
-- §8.12 native gate sets (current IBM, Google, IonQ, Quantinuum, neutral
-  atom, photonic).
+| Claim | Manuscript | Source | Verified | Verdict |
+|---|---|---|---|---|
+| IBM Heron native 2-qubit gate is CZ via tunable couplers (vs cross-resonance CNOT on earlier fixed-coupling IBM devices) | §8.12 | IBM Quantum Developer Conf 2024; postquantum.com Heron r2 brief | 2026-05 | **Updated** — was "CNOT (IBM)", which is true only for older Eagle-class / fixed-coupling devices |
+| Google superconducting native 2-qubit: CZ (Willow-class) / iSWAP-family (Sycamore-class) | §8.12 | Acharya et al. *Nature* (2024) Willow paper; Google QAI prior work | 2026-05 | Confirmed (clarified the device-class split) |
+| Trapped ions (IonQ, Quantinuum): single-qubit rotations + Mølmer–Sørensen XX(θ); typically all-to-all | §8.12 | IonQ docs; Quantinuum H-series docs | 2026-05 | Confirmed |
+| Neutral atoms (QuEra, Pasqal): global single-qubit + Rydberg CZ / multi-qubit blockade | §8.12 | QuEra Aquila paper; Pasqal docs | 2026-05 | Confirmed |
+| Photonic / MBQC: state preparation, beam-splitter/phase shifters, adaptive measurements; gate model from fusion / cluster-state pattern | §8.12 | Generic platform-physics description | 2026-05 | Confirmed |
+
+## Open items for the next pass
 - §15.8 VQE shot-budget claims; §15.10 QML state-of-field.
 - Appendix D suggested reading: URL/version freshness for SDKs and live docs.
 - Byte-level confirmation of ML-DSA-65 / SLH-DSA-SHA2-128s key & signature
