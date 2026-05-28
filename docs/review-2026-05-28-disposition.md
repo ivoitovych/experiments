@@ -306,7 +306,7 @@ Disposition of that residual list:
   (both using `StatevectorSampler().run([qc], shots=…).result()[0].data.c.get_counts()`)
   clean under Qiskit 2.4.1.
 - **Time-sensitive claims (§8.12, §9.8, §15.3, §15.8, §15.10) — clarity
-  added (`<clarity-pass>`):** these are perishable by nature and tracked
+  added (`3afaedf`):** these are perishable by nature and tracked
   in `docs/fact-check-ledger.md`, but each now carries an explicit
   "dated snapshot / moving target" caveat so a reader (or reviewer) does
   not read the figures as eternal: §8.12 native-set list flagged as a
@@ -316,13 +316,13 @@ Disposition of that residual list:
   fixed threshold"; §15.8 VQE shot counts flagged a "2026 snapshot that
   should fall"; §15.10 QML status flagged "fast-moving, verdicts may
   shift".
-- **§9.1 compressed endian note — clarity added (`<clarity-pass>`):**
+- **§9.1 compressed endian note — clarity added (`3afaedf`):**
   spelled out that wire-position ordering and bit-string endianness are
   two independent choices this book aligns and Qiskit reverses on both,
   with a pointer to the Appendix A index-conversion recipe.
 
 These closures are in commit `69c5183` (manuscript §8.3/§12.4,
-toolchain pinning + guard, README/Makefile) and `<clarity-pass>`
+toolchain pinning + guard, README/Makefile) and `3afaedf`
 (snapshot caveats on the time-sensitive claims and §9.1).
 
 ## Process to close
