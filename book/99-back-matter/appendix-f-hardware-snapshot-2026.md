@@ -65,11 +65,13 @@ typically in the $100$–$300\ \mu s$ range.
 
 The fidelity and connectivity leader at modest qubit counts.
 
-- **Quantinuum** operates H-series QCCD machines (H2 in the ~50-qubit range)
-  with all-to-all connectivity via ion shuttling, two-qubit fidelities around
-  99.8–99.9%, and very high state-preparation-and-measurement fidelity.
-- **IonQ** markets "algorithmic qubits" (Forte and Forte Enterprise in the
-  ~30-qubit effective range), using trapped ytterbium/barium ions.
+- **Quantinuum** operates H-series QCCD machines (H2 at 56 trapped-ion qubits)
+  with all-to-all connectivity via ion shuttling, median two-qubit fidelity
+  around 99.9% (best-pair >99.91%), and very high
+  state-preparation-and-measurement fidelity.
+- **IonQ** markets "algorithmic qubits" (Forte at #AQ 29 today, with
+  Forte Enterprise #AQ 35 and Tempo #AQ 64 announced), using trapped
+  ytterbium and (next-generation) barium ions.
 
 Ions offer the best per-gate fidelity and native all-to-all connectivity,
 which reduces SWAP overhead dramatically. The cost is slow gates (microseconds
@@ -84,8 +86,10 @@ The fastest-moving platform on array size and reconfigurability.
   the 2023 Harvard/MIT/QuEra collaboration demonstrated 48 logical qubits with
   transversal operations, a landmark for the platform.
 - **Atom Computing** demonstrated arrays exceeding 1,000 atomic sites (2023).
-- **Pasqal**, **Infleqtion**, and others operate hundreds-of-atom systems with
-  both analog and digital modes.
+- **Pasqal**, **Infleqtion**, and others operate hundreds-to-thousands-of-atom
+  systems with both analog and digital modes. Pasqal's 2025 roadmap targets
+  roughly 1,000 physical qubits by the end of 2025 and a 250-qubit
+  advantage demonstration in 2026.
 
 Neutral atoms combine large, optically reconfigurable arrays with connectivity
 that can be rearranged by moving atoms with optical tweezers. Two-qubit
@@ -131,10 +135,11 @@ pre-fault-tolerant at useful scale.
 - **Below threshold (superconducting).** Google's Willow result (2024) showed
   a surface-code logical qubit whose error rate *decreased* with increasing
   code distance — the defining signature of a working error-correction regime.
-- **Logical operations (trapped ion / neutral atom).** Quantinuum and
-  collaborators demonstrated small numbers of logical qubits with logical
-  error rates below the physical rate; the Harvard/QuEra 48-logical-qubit
-  experiment (2023) showed transversal logical operations on neutral atoms.
+- **Logical operations (trapped ion / neutral atom).** Microsoft and
+  Quantinuum demonstrated 4 logical qubits on H2 with logical error rates
+  below the physical rate (2024). The Harvard/QuEra 48-logical-qubit
+  experiment (Bluvstein et al., *Nature*, December 2023) showed
+  transversal logical operations on a neutral-atom platform.
 - **Overhead reduction.** Quantum-LDPC codes (e.g. bivariate-bicycle "gross"
   codes) promise far lower physical-to-logical overhead than the surface code,
   and feature prominently in IBM's stated path toward a fault-tolerant machine
