@@ -62,7 +62,7 @@ The 2025–2026 resource estimates, building on Gidney–Ekerå (2019) and subse
 
 - $\sim 10$ million physical qubits at surface-code distance $d \approx 27$ with physical error rate $10^{-3}$.
 - $\sim 10$ hours runtime, dominated by magic-state distillation for the Toffoli/$T$ gates in modular exponentiation.
-- $\sim 7 \times 10^9$ Toffoli gates in the logical circuit; $\sim 3 \times 10^6$ logical qubits.
+- $\sim 7 \times 10^9$ Toffoli gates in the logical circuit, over the order of a few thousand logical qubits — the surface-code overhead (roughly $2d^2 \approx 1500$ physical qubits per logical at $d \approx 27$) is what inflates those thousands of logical qubits to the $\sim 10$ million physical qubits above.
 
 These numbers have come down by orders of magnitude over the last decade through algorithmic improvements (window arithmetic, semi-classical Fourier, Ekerå's modifications) and through surface-code improvements (lattice surgery, magic-state cultivation, $T$-count optimisation in modular adders). They will probably come down further. Current physical devices in 2026 have $\sim 10^2$–$10^3$ qubits with error rates around $10^{-3}$. The gap is large but is a difference of degree, not kind: the question for post-quantum migration is *when*, not *whether*.
 
