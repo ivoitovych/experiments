@@ -431,7 +431,9 @@ status line directly after its top-level heading:
 States in order of completeness:
 `stub` → `outlined` → `draft` → `reviewed` → `final`. The block is
 parsed by `scripts/generate_progress.py` to regenerate `PROGRESS.md`;
-the exact spacing and bullet character (`·`) are load-bearing.
+the form above — with ` · ` (middle-dot) separators — is the convention;
+the parser tolerates other whitespace, but the convention keeps file
+diffs readable.
 
 **Boxed callouts.** Definitions, theorems, asides, and reader-facing
 notes are written as Markdown blockquotes (lines beginning with `>`).
@@ -495,10 +497,11 @@ machine-detectable failures; the rest of this list is conventional:
   "modulo") to avoid renderer ambiguity.
 
 The lint rules in `tools/lint.py` enforce the source-detectable items
-above on every commit. The render-time items (kets in tables,
-inline `\begin{...}`) are caught by the same lint; the conventional
-items (cross-reference style, the `physics`-package ban) are matters
-of editorial discipline and are checked at review time.
+above on every commit — the `physics`-package macro ban, the
+inline-`pmatrix` check, the escaping rules, link integrity, and
+forbidden mentions. The conventional items not mechanically enforced
+(cross-reference style, avoiding kets in tables, the `%` / `#` notes
+above) are matters of editorial discipline and are checked at review time.
 
 ---
 
