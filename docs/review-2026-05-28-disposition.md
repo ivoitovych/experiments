@@ -257,6 +257,8 @@ None require new external sources.
    manuscript text, decide APPLY / RETHINK / REJECT, and update this row
    in the table.
 2. Batch the APPLY items into one or two commits, citing this doc.
-3. When the table has zero NEEDS-VERIFICATION rows, delete
+3. When the table has zero NEEDS-VERIFICATION rows **and** the user
+   has explicitly signed off on the final state, delete
    `review-2026-05-28-0105.md` in a final commit that points at this
-   disposition record as the canonical closing artefact.
+   disposition record as the canonical closing artefact. **The review
+   file is not deleted while processing is ongoing.**
