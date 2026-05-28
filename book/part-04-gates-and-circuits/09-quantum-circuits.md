@@ -50,7 +50,7 @@ The cost of an ancilla is not zero. In current NISQ hardware, ancillae compete f
 An ancilla that ends in a state correlated with the computation register is **not** free space — measuring or discarding it collapses or decoheres the computation. The fix is **uncomputation**: after using an ancilla to compute some intermediate value, run the inverse circuit on the ancilla to return it to $|0\rangle$ before measuring or releasing it. The standard pattern is
 
 $$
-\underbrace{U_{\text{copy}}}_{\text{store result on output}} \;\circ\; \underbrace{U_{\text{compute}}}_{\text{ancilla} \to f(x)} \;\circ\; \underbrace{U_{\text{compute}}^{\dagger}}_{\text{ancilla} \to 0}.
+\underbrace{U_{\text{compute}}^{\dagger}}_{\text{ancilla} \to 0} \;\circ\; \underbrace{U_{\text{copy}}}_{\text{store result on output}} \;\circ\; \underbrace{U_{\text{compute}}}_{\text{ancilla} \to f(x)}.
 $$
 
 The "Bennett trick" for reversible computation makes this systematic. Given a classical circuit of size $T$ depth $d$, the Bennett construction produces a reversible quantum circuit of size $O(T)$ that leaves only $|x\rangle|f(x)\rangle$ on the output and zeroes all ancillae, at the cost of extra time or extra ancillae. Variants trade time for space.
