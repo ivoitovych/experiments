@@ -52,7 +52,7 @@ The classical reduction (Miller, Rabin): pick a random $a$ coprime to $N$; find 
 
 The quantum order-finding subroutine: prepare two registers of $2n$ and $n$ qubits; apply $H^{\otimes 2n}$ to the first; query $U_a |x\rangle|y\rangle = |x\rangle|a^x y \mod N\rangle$ controlled on the first register; apply the QFT $F_{2^{2n}}$ (in the book's negative-exponent convention, §14.5) to the first register; measure. The measurement returns a value close to a rational $s/r$ with $s \in \\{0, 1, \ldots, r-1\\}$; continued-fraction expansion recovers $r$ with high probability. Total quantum gate count is $O(n^2 \log n \log\log n)$ using Schönhage–Strassen modular exponentiation, dominated by the modular-exponentiation step (the QFT is "only" $O(n^2)$).
 
-The implication, when (if) fault-tolerant quantum computers exist at the relevant scale, is that RSA and the discrete-log family of public-key cryptosystems are broken. This is the motivation for **post-quantum cryptography** (Chapter 27) and for the NIST standardisation effort that finalised CRYSTALS-Kyber and CRYSTALS-Dilithium in 2024.
+The implication, when (if) fault-tolerant quantum computers exist at the relevant scale, is that RSA and the discrete-log family of public-key cryptosystems are broken. This is the motivation for **post-quantum cryptography** (Chapter 27) and for the NIST standardisation effort that in 2024 finalised its first post-quantum standards — ML-KEM (FIPS 203) and ML-DSA (FIPS 204), derived from CRYSTALS-Kyber and CRYSTALS-Dilithium respectively.
 
 ## 15.3 Factoring
 
@@ -96,7 +96,7 @@ A **quantum walk** is the unitary analogue of a classical random walk: instead o
 
 Quantum walks give polynomial speedups for several graph-search problems. The signature result: a quantum walk on a "glued-trees" graph traverses from root to root in polynomial time, while any classical algorithm requires exponential time — Childs–Cleve–Deotto–Farhi–Gutmann (2003), the first exponential separation by a quantum walk. **Element distinctness** on $n$ inputs: $O(n^{2/3})$ queries quantum versus $\Omega(n)$ classical, due to Ambainis. **Triangle finding** in graphs: $O(n^{1.26\ldots})$ quantum queries via Magniez–Santha–Szegedy.
 
-The unifying framework, **Szegedy quantization** of Markov chains, converts a stochastic matrix $P$ into a unitary walk $W_P$ on a doubled state space whose spectrum encodes the mixing properties of $P$. Quantum walk applied to a Markov chain achieves quadratic speedup in mixing time, which underpins amplitude-amplification-of-Monte-Carlo-style quantum algorithms (Chapter 16). Quantum walks are also the backbone of modern Hamiltonian simulation (qubitization, §16.x) and quantum signal processing.
+The unifying framework, **Szegedy quantization** of Markov chains, converts a stochastic matrix $P$ into a unitary walk $W_P$ on a doubled state space whose spectrum encodes the mixing properties of $P$. Quantum walk applied to a Markov chain achieves quadratic speedup in mixing time, which underpins amplitude-amplification-of-Monte-Carlo-style quantum algorithms (Chapter 16). Quantum walks are also the backbone of modern Hamiltonian simulation (qubitization, §16.5) and quantum signal processing.
 
 ## 15.7 Variational Quantum Algorithms
 
