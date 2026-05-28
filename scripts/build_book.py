@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Assemble an mdBook build tree from the GitHub-flavoured manuscript.
+r"""Assemble an mdBook build tree from the GitHub-flavoured manuscript.
 
 Why a preprocessor is needed. The manuscript is written for GitHub's
 Markdown+MathJax pipeline: it uses `$`/`$$` delimiters, and because GitHub

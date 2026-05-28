@@ -532,7 +532,7 @@ subsystem $A$ gives the same statistics under $\rho_A$ as under
 $\rho_{AB}$*:
 
 $$
-\mathrm{tr}_A\bigl((M_A \otimes I_B)\\, \rho_{AB}\bigr) = \mathrm{tr}\bigl(M_A\\, \rho_A\bigr)
+\mathrm{tr}\bigl((M_A \otimes I_B)\\, \rho_{AB}\bigr) = \mathrm{tr}\bigl(M_A\\, \rho_A\bigr)
 $$
 
 for every operator $M_A$ on $\mathcal{H}_A$. This is the *operational*

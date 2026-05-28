@@ -8,7 +8,8 @@ A qubit is the simplest non-trivial quantum system: a two-dimensional
 complex Hilbert space $\mathbb{C}^2$. Everything in Chapter 5
 specialises here, and the result is concrete enough to picture. The
 Bloch sphere makes the single-qubit state space *visible* — every
-pure state is a point on the surface of an ordinary 3-sphere — and
+pure state is a point on the surface of an ordinary sphere in
+three-dimensional space (the unit 2-sphere) — and
 that picture turns abstract operator algebra into geometry. Most
 intuition about how quantum gates work, what phase does, and why
 measurement gives the answers it gives starts on the Bloch sphere
@@ -434,7 +435,7 @@ For the three standard bases:
 
 - Computational-basis measurement: identity (no gate needed).
 - Hadamard-basis measurement: $H$, then computational.
-- Circular-basis measurement: $S^\dagger H$, then computational
+- Circular-basis measurement: $H S^\dagger$, then computational
   (work this out; $S^\dagger$ maps $|R\rangle \leftrightarrow |+\rangle$,
   then $H$ maps to computational).
 
