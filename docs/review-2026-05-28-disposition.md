@@ -310,7 +310,7 @@ Disposition of that residual list:
   tracked in `docs/fact-check-ledger.md`. Not defects — flagged for the
   next dated fact-check pass before publication.
 
-These closures are in commit `<this-pass>` (manuscript §8.3/§12.4,
+These closures are in commit `69c5183` (manuscript §8.3/§12.4,
 toolchain pinning + guard, README/Makefile).
 
 ## Process to close
