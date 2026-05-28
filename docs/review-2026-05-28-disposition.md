@@ -405,6 +405,24 @@ One trivial polish remained and is applied:
 No manuscript or technical findings remain across all five
 reconciliation rounds.
 
+## Perishable-claim warnings + publication gate (post-review hardening)
+
+Beyond closing the review, a durable safeguard was added for the
+time-sensitive claims the reviewer kept flagging as "needs dated
+fact-check before publication". Rather than rely on the ledger alone (or
+on invisible markers a draft reader would never see), each perishable
+section now carries a **visible, dated "Moving-target warning"** callout
+telling the reader the figures were accurate as of **May 2026** and must
+be re-verified against current sources. Sections: §1.6, §3.9, §8.12,
+§9.8, §15.3, §15.8, §15.10, and Appendix F.
+
+The bold lead doubles as a greppable sentinel wired into `tools/lint.py`
+as a **publication gate**: harmless while a file is `draft`/`reviewed`,
+but a hard lint failure once a file is marked `final` — so a perishable
+number cannot ship unverified. Documented in `PROCESS.md` (*Perishable
+claims*). Dated to month + year to match the `docs/fact-check-ledger.md`
+`YYYY-MM` granularity, since hardware figures move within months.
+
 ## Process to close
 
 1. For each NEEDS-VERIFICATION row: re-read the actual current

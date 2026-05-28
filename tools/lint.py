@@ -185,6 +185,20 @@ def check_book_file(md: pathlib.Path) -> None:
         status = m.group(1).lower()
         if status not in ("stub", "outlined") and "_TODO_" in content:
             fail(rel, f"contains _TODO_ but status is '{status}'")
+        # Publication gate for perishable claims. A "Moving-target warning"
+        # callout is a visible, dated reader warning on time-sensitive
+        # figures (hardware, resource estimates, status assessments). It is
+        # allowed while a file is being written or reviewed, but must be
+        # cleared — the claim re-verified against current sources and the
+        # check logged in docs/fact-check-ledger.md — before the file is
+        # marked `final`. This keeps perishable numbers from shipping
+        # unverified while still warning draft readers.
+        if status == "final" and "Moving-target warning" in content:
+            fail(rel, "contains an unresolved 'Moving-target warning' "
+                      "(perishable claim) but status is 'final'; re-verify "
+                      "against current sources, log it in "
+                      "docs/fact-check-ledger.md, and remove the warning "
+                      "before marking the file final")
 
 
 def check_readme() -> None:
