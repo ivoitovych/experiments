@@ -128,7 +128,7 @@ $$
 \mathrm{P} \;\subseteq\; \mathrm{BPP} \;\subseteq\; \mathrm{BQP} \;\subseteq\; \mathrm{PSPACE},
 $$
 
-with $\mathrm{BQP} \subseteq \mathrm{AWPP}$ also known. Each containment is conjectured to be strict, but *no* strict separation among $\mathrm{P}$, $\mathrm{BPP}$, $\mathrm{BQP}$, and $\mathrm{PSPACE}$ has been proved; the only nearby unconditional separation is the coarse $\mathrm{P} \subsetneq \mathrm{EXP}$ from the time hierarchy theorem (§17.1). Whether $\mathrm{BQP} = \mathrm{BPP}$ — whether quantum computers can be efficiently simulated by classical randomised computers in general — is open. The standard *belief* is no, supported by the candidate hard problems below; the standard *proof* is absent.
+with $\mathrm{BQP} \subseteq \mathrm{AWPP}$ also known. The relationships are mostly open and the beliefs are not uniform: $\mathrm{P} = \mathrm{BPP}$ is widely expected (derandomisation), whereas $\mathrm{BPP} \subsetneq \mathrm{BQP}$ and $\mathrm{BQP} \subsetneq \mathrm{PSPACE}$ are believed but unproven. *No* strict separation among $\mathrm{BPP}$, $\mathrm{BQP}$, and $\mathrm{PSPACE}$ has been proved; the only nearby unconditional separation is the coarse $\mathrm{P} \subsetneq \mathrm{EXP}$ from the time hierarchy theorem (§17.1). Whether $\mathrm{BQP} = \mathrm{BPP}$ — whether quantum computers can be efficiently simulated by classical randomised computers in general — is open. The standard *belief* is no, supported by the candidate hard problems below; the standard *proof* is absent.
 
 Three regions on the quantum-speedup map are worth fixing in mind.
 
