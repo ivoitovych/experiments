@@ -60,12 +60,12 @@ For a continuous, offline copy you can build a single HTML book with
 run `make book`, which renders the manuscript — math included, via build-time
 KaTeX — into `book-build/`. `mdbook-katex` is a preprocessor coupled to
 mdBook's preprocessor protocol, so the two must come from **matching lines**;
-either of these pairs works:
+install a matched pair from one of these lines:
 
 | mdbook | mdbook-katex | notes |
 |---|---|---|
 | 0.4.x | 0.9.x | stable; the combination tested in this repo (0.4.48 + 0.9.4) |
-| 0.5.x | 0.10.x | newer protocol; `mdbook-katex 0.10` is currently pre-release |
+| 0.5.x | 0.10.x | newer protocol; the matching line per the crate manifests, but `mdbook-katex 0.10` is currently pre-release and not re-verified here |
 
 ```
 # stable pair (recommended):

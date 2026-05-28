@@ -423,6 +423,33 @@ number cannot ship unverified. Documented in `PROCESS.md` (*Perishable
 claims*). Dated to month + year to match the `docs/fact-check-ledger.md`
 `YYYY-MM` granularity, since hardware figures move within months.
 
+## Toolchain support widened to compatible pairs (post-review hardening)
+
+The build finding (key finding #5) was reopened on the user's prompt that
+the repo had "baked in incompatibility" by pinning mdbook `<0.5`.
+Investigation of `mdbook-katex`'s crate dependencies showed the real
+constraint is a *matched mdbook/preprocessor pair* (0.9.x ↔ mdbook 0.4.x
+via `mdbook_fork4ls`; 0.10.x ↔ mdbook 0.5.x via `mdbook-preprocessor`),
+so 0.5.x was never categorically unsupported — it needs `mdbook-katex
+0.10.x`. `scripts/build_book.py` now validates the installed *pair* and
+prints the exact fix on a mismatch; README/PROCESS/Makefile document both
+lines. Commit `46ae0f9`.
+
+### Reviewer sixth review (2026-05-29 01:11 CEST) — two UX/wording nits, applied
+
+The reviewer approved the pair model ("accurately classified as a
+mismatched component pair, not a generic mdbook 0.5.x rejection") and
+raised two refinements, both applied in the commit below:
+
+- **README slightly overclaimed** that the 0.5.x+0.10.x pair "works",
+  while PROCESS says it is documented-from-manifests but not re-verified.
+  README now matches the honest wording ("the matching line per the crate
+  manifests, but … pre-release and not re-verified here").
+- **Diagnostic ordering:** the toolchain warning printed to stdout while
+  mdBook errors go to stderr, so the explanation could appear *after* the
+  failure. `check_toolchain()` now writes to `sys.stderr` with `flush=True`
+  (verified: mismatch diagnostic emits 875 bytes on stderr, 0 on stdout).
+
 ## Process to close
 
 1. For each NEEDS-VERIFICATION row: re-read the actual current
