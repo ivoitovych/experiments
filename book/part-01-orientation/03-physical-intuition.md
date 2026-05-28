@@ -536,6 +536,8 @@ A few things to take from this:
 
 ## 3.9 Decoherence
 
+> **Moving-target warning — snapshot as of May 2026.** The per-platform coherence times and gate-count figures in this section reflect the best sources available in 2026 and *date quickly*. If you are reading a draft, treat every specific number here as provisional and re-verify it against current vendor, preprint, or journal sources before relying on it.
+
 The idealized superpositions of the Mach-Zehnder interferometer and
 the Bell state look fragile, and they are. A quantum system left to
 interact with its environment — air molecules, stray photons,

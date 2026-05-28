@@ -88,6 +88,8 @@ The honest summary for an engineer: as of 2026, no quantum computer is solving a
 
 ## 1.6 NISQ vs. Fault-Tolerant Quantum Computing
 
+> **Moving-target warning — snapshot as of May 2026.** The qubit counts, error rates, and timeline forecasts in this section reflect the best sources available in 2026 and *date quickly*. If you are reading a draft, treat every specific number and date here as provisional and re-verify it against current vendor, preprint, or journal sources before relying on it.
+
 The 2025–2026 hardware landscape divides cleanly into two regimes, and the distinction structures the rest of the book.
 
 **NISQ — Noisy Intermediate-Scale Quantum.** The term was coined by John Preskill in 2018 to describe devices in the regime that has dominated the field through the early 2020s: tens to hundreds, now thousands, of physical qubits, gate fidelities good enough for short circuits but not for arbitrarily deep ones, no fault-tolerant error correction at scale, and a runtime budget determined by decoherence rather than by problem size. The headline NISQ devices in 2025–2026: superconducting processors from IBM (Heron and successors in the thousand-physical-qubit range), Google (Willow, with the first below-threshold demonstration of surface-code error correction), Quantinuum and IonQ (trapped-ion machines with tens of high-fidelity, all-to-all-connected qubits — Quantinuum's H2 at 56, IonQ's Forte at #AQ 29 — and aggressive scaling roadmaps), Atom Computing and QuEra (neutral-atom arrays scaling toward and past a thousand qubits), Rigetti and PsiQuantum (the latter pursuing a photonic fault-tolerant architecture rather than NISQ). Chapter 20 surveys hardware platforms in detail; Chapter 25 covers the NISQ era and its honest results.

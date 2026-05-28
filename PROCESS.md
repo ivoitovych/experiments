@@ -123,6 +123,37 @@ clean (0 KaTeX errors) under the pinned toolchain, and
 `make check-examples` green. All three are reproduced under
 `mdbook 0.4.48` + `mdbook-katex 0.9.4`.
 
+## Perishable claims: the "Moving-target warning" callout
+
+Time-sensitive content — vendor hardware figures, resource estimates,
+near-term-status assessments — is marked in the body with a visible,
+dated callout the reader cannot miss:
+
+```
+> **Moving-target warning — snapshot as of <Month Year>.** … treat every
+> specific number here as provisional and re-verify it against current
+> vendor, preprint, or journal sources before relying on it.
+```
+
+The callout serves two purposes at once:
+
+- **Reader-facing.** A draft is publicly readable, so a perishable figure
+  must warn the reader directly: it was accurate as of the stated month,
+  and they should re-check it against current sources. Date to the
+  **month and year** (matching the `docs/fact-check-ledger.md` `YYYY-MM`
+  granularity), not the bare year — hardware numbers move within months.
+- **Publication gate.** The bold lead `**Moving-target warning` is a
+  greppable sentinel. `tools/lint.py` treats it like `_TODO_`: harmless
+  while a file is `draft`/`reviewed`, but a **hard lint failure** once a
+  file is marked `final`. To clear it, re-verify the claim against current
+  sources, log the check in `docs/fact-check-ledger.md`, update the
+  figure, and remove the callout. This makes it structurally impossible
+  to ship a `final` chapter with an unverified perishable number.
+
+Inventory the warnings any time with `rg -n "Moving-target warning" book/`.
+As of this writing they sit on the perishable sections: §1.6, §3.9,
+§8.12, §9.8, §15.3, §15.8, §15.10, and Appendix F.
+
 ## Screenshot workflow
 
 Screenshots are *review artifacts*, not source. The repo contains the

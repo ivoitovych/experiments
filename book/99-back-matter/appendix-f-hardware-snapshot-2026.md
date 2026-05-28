@@ -19,6 +19,8 @@ the machines roughly are right now."
 > Apply the discipline of [Chapter 36](../part-13-perspective-and-direction/36-how-to-judge-claims.md)
 > before repeating any single figure as fact.
 
+> **Moving-target warning — snapshot as of May 2026.** This entire appendix is a dated snapshot: the qubit counts, fidelities, and "logical qubit" claims throughout were accurate to the best sources available in May 2026 and *date quickly*. If you are reading a draft, treat every specific number here as provisional and re-verify it against current vendor, preprint, or journal sources before relying on it. The dated verification trail is in the project's fact-check ledger.
+
 ## F.1 How to Read This Snapshot
 
 Three caveats dominate any hardware comparison.

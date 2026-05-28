@@ -87,6 +87,8 @@ In practice this is a tool with two faces. **Theoretically**: assume all measure
 
 ## 9.8 Mid-Circuit Measurement
 
+> **Moving-target warning — snapshot as of May 2026.** The platform-by-platform mid-circuit-measurement support described in this section reflects the 2026 landscape and *date quickly*. If you are reading a draft, re-check current device documentation before relying on any specific platform claim here.
+
 A **mid-circuit measurement** is a measurement performed before the circuit ends. On platforms that support **non-demolition** readout (as of the mid-2020s, most superconducting and trapped-ion devices), the qubit survives in the post-measurement basis state and can be re-used; on destructive-readout platforms (many photonic schemes, some atom-array readout modes) the qubit is consumed and a fresh one must be supplied. The treatment below assumes non-demolition mid-circuit readout. Two regimes matter.
 
 **Reset and reuse**: after measurement, the qubit is in a known computational-basis state ($|0\rangle$ or $|1\rangle$). Resetting it to $|0\rangle$ (by applying $X$ if the outcome was $1$, or by an unconditional reset operation) lets the qubit be re-used as a fresh ancilla. This is essential on small devices where qubit count is the bottleneck.

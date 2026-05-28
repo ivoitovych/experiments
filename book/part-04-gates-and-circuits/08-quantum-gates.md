@@ -167,6 +167,8 @@ What this means practically: any continuous rotation gate $R_Z(\theta)$ used in 
 
 ## 8.12 Native Gate Sets
 
+> **Moving-target warning — snapshot as of May 2026.** The vendor chips and native-gate-set details named in this section reflect the 2026 hardware landscape and *date quickly* (the native-set *structure* is the durable part). If you are reading a draft, re-verify any specific device or vendor claim against current documentation before relying on it.
+
 Real hardware does not implement abstract gates; it implements whatever unitary the physical control pulses generate, calibrated to a target. The **native gate set** of a device is the small alphabet the compiler is allowed to assume.
 
 Some common native sets, as a snapshot of the 2026 hardware landscape (the specific vendor chips named below date quickly; the *structure* of each native set is the durable part):

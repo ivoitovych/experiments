@@ -56,6 +56,8 @@ The implication, when (if) fault-tolerant quantum computers exist at the relevan
 
 ## 15.3 Factoring
 
+> **Moving-target warning — snapshot as of May 2026.** The factoring resource estimates in this section (physical-qubit counts, runtimes) reflect the best published sources as of 2026 and *date quickly* — they have fallen by orders of magnitude over the past decade and will keep moving. If you are reading a draft, treat every figure as provisional and re-verify it against current preprints and journal sources before relying on it.
+
 Factoring deserves a section beyond Shor's statement because the resource cost is the central number cited in "when will quantum computers be a threat" discussions. The relevant resource is the **number of physical qubits** and the **runtime in wall-clock hours** required to factor a cryptographically relevant integer (RSA-2048: 2048 bits) under realistic noise.
 
 Two anchor estimates frame the 2025–2026 picture, both at a physical gate error of $10^{-3}$ (these are the published anchors as of their dates and remain a moving target — treat the specific figures as a dated snapshot, not a fixed threshold):
@@ -109,6 +111,8 @@ The notorious obstacle is the **barren-plateau phenomenon**: for many circuit fa
 
 ## 15.8 Variational Quantum Eigensolver
 
+> **Moving-target warning — snapshot as of May 2026.** The shot-count and near-term-practicality figures in this section reflect 2026-era hardware and *date quickly*. If you are reading a draft, treat them as provisional order-of-magnitude estimates and re-verify against current sources before relying on them.
+
 The **Variational Quantum Eigensolver (VQE)** is the prototype VQA, targeting the ground-state energy of a molecular or material Hamiltonian. Mapping the Hamiltonian to qubits — Jordan–Wigner or Bravyi–Kitaev — gives a sum of Pauli strings $H = \sum_k c_k P_k$. The cost function is $\langle H \rangle = \sum_k c_k \langle P_k\rangle$, with each $\langle P_k\rangle$ estimated by basis-rotating and measuring (§9.6).
 
 VQE's appeal is that the ansatz can be tailored to the chemistry: **unitary coupled cluster (UCCSD)** uses excitation operators from coupled-cluster theory; **ADAPT-VQE** grows the ansatz one operator at a time based on largest gradient; **hardware-efficient** ansatze ignore chemistry and just minimise depth. UCCSD captures static correlation accurately but has deep circuits; ADAPT-VQE achieves comparable accuracy with shorter circuits at the cost of more classical orchestration.
@@ -130,6 +134,8 @@ For $p = 1$, QAOA on Max-Cut on 3-regular graphs already achieves an approximati
 Empirical and theoretical results from 2020–2025 are sobering. For most natural instance distributions, QAOA at small $p$ does not beat the best classical approximation algorithms (Goemans–Williamson for Max-Cut, etc.). At larger $p$, the parameter optimisation becomes hard. Recent positive results on specific instance families (low-autocorrelation binary sequences, certain dense problems) keep QAOA in the conversation, but the early "QAOA will give near-term quantum advantage on combinatorial optimisation" hope has not materialised.
 
 ## 15.10 Quantum Machine Learning Overview
+
+> **Moving-target warning — snapshot as of May 2026.** The status assessments in this section are a 2026 snapshot of a fast-moving research area, and specific verdicts may shift. If you are reading a draft, re-check the current literature before treating any judgment here as settled.
 
 **Quantum machine learning (QML)** is a broad umbrella covering: (a) quantum algorithms for classical ML problems (training, inference, sampling), (b) machine learning of quantum data (state tomography, learning Hamiltonians), and (c) variational "quantum neural networks" trained by gradient descent on quantum hardware.
 
