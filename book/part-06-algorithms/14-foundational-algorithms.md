@@ -88,7 +88,7 @@ $$
 F_N |x\rangle \;=\; \frac{1}{\sqrt N}\sum_{y=0}^{N-1} e^{-2\pi i\\, xy / N} |y\rangle.
 $$
 
-This is the negative-exponent ("QFT-sign-minus") convention fixed in §4.13; some sources and SDKs use the opposite sign, so check before porting phase angles. For $N = 2$ the QFT is just the Hadamard gate. For general $N$, the QFT factors into an elegant circuit of single-qubit Hadamards and controlled phase gates: on $n$ qubits, $n$ Hadamards interleaved with $O(n^2)$ controlled rotations $\mathrm{C}R_k$, where $R_k = \mathrm{diag}(1, e^{2\pi i / 2^k})$. The total gate count is $O(n^2)$, exponentially better than the $O(N \log N) = O(n 2^n)$ of the classical FFT.
+This is the negative-exponent ("QFT-sign-minus") convention fixed in §4.13; some sources and SDKs use the opposite sign, so check before porting phase angles. For $N = 2$ the QFT is just the Hadamard gate. For general $N$, the QFT factors into an elegant circuit of single-qubit Hadamards and controlled phase gates: on $n$ qubits, $n$ Hadamards interleaved with $O(n^2)$ controlled rotations $\mathrm{C}R_k$, where $R_k = \mathrm{diag}(1, e^{-2\pi i / 2^k})$ (conjugated relative to the positive-exponent convention, to match the negative-exponent definition above). The total gate count is $O(n^2)$, exponentially better than the $O(N \log N) = O(n 2^n)$ of the classical FFT.
 
 ![Three-qubit quantum Fourier transform: Hadamards interleaved with controlled-phase gates P(π/2) and P(π/4), followed by a SWAP that reverses the qubit order.](figures/qft-3qubit.svg)
 
@@ -142,7 +142,7 @@ This chapter assembled the **primitives**: Hadamard sandwich, phase kickback, QF
 
 1. Run through Deutsch–Jozsa on $n=2$ with $f(x) = x_0$ (balanced) and verify the data register measurement is non-zero with probability $1$.
 2. Show $H^{\otimes n}|s\rangle = 2^{-n/2}\sum_x (-1)^{s\cdot x}|x\rangle$, the Bernstein–Vazirani identity.
-3. Verify $\mathrm{QFT}_4|1\rangle$ by hand; confirm the four amplitudes are $\tfrac{1}{2}, \tfrac{i}{2}, -\tfrac{1}{2}, -\tfrac{i}{2}$.
+3. Verify $\mathrm{QFT}_4|1\rangle$ by hand; confirm the four amplitudes are $\tfrac{1}{2}, -\tfrac{i}{2}, -\tfrac{1}{2}, \tfrac{i}{2}$ (using the negative-exponent definition above).
 4. For phase estimation on $U = R_Z(\theta)$ with eigenstate $|1\rangle$ and $\varphi = \theta/(4\pi)$, write out the controlled-$U^{2^k}$ cascade and verify the estimation register's pre-QFT state.
 5. For Grover with $N = 16$, $M = 1$, compute the optimal number of iterations and the resulting success probability.
 
