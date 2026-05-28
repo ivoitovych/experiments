@@ -126,13 +126,12 @@ The **hidden subgroup problem (HSP)** generalises Simon, Bernstein–Vazirani, D
 
 - $G = \mathbb{Z}_2^n$, $H = \\{0, s\\}$: Simon's algorithm.
 - $G = \mathbb{Z}_2^n$, $H = \\{x : s \cdot x = 0\\}$ (codimension-1): Bernstein–Vazirani.
-- $G = \mathbb{Z}_N$, $H = \langle r\rangle$: order-finding (Shor).
-- $G = $ a function over $\mathbb{Z}^n$ encoding integer factoring: factoring reduces here.
+- $G = \mathbb{Z}_N$, $H = \langle r\rangle$: order-finding (Shor); integer factoring reduces to this case.
 - $G = $ a semidirect product of groups: dihedral HSP, lattice problems and the **CVP/SVP** lineage — *no* known polynomial-time quantum algorithm; an open problem driving research on quantum algorithms for lattice problems.
 
 The general HSP algorithm template is **Fourier sampling**: prepare $\sum_x |x\rangle|f(x)\rangle$, measure the second register, apply the QFT over $G$ to the first, measure. For *abelian* $G$, this gives random elements of the dual subgroup $H^{\perp}$ with each query, and $O(\log |G|)$ queries plus polynomial classical post-processing solve HSP. For *nonabelian* $G$, the picture is wide open. Two structurally interesting cases: the **symmetric group** HSP would imply a polynomial quantum algorithm for graph isomorphism (status: open, but progress is slow); the **dihedral group** HSP would imply efficient solutions for some lattice problems (open, but Kuperberg has subexponential algorithms).
 
-The unifying message: every known exponential quantum speedup outside Hamiltonian simulation either fits the abelian HSP template or factors through it. Whether new templates exist — and whether nonabelian HSP can be cracked — is one of the central questions of quantum algorithms research in 2026.
+The unifying message: most known exponential quantum speedups outside Hamiltonian simulation either fit the abelian HSP template or factor through it — though there are genuine oracle-model exceptions that do not, such as the glued-trees quantum walk and forrelation-type separations. Whether new templates exist — and whether nonabelian HSP can be cracked — is one of the central questions of quantum algorithms research in 2026.
 
 ## 14.10 Bridge to Chapter 15
 
