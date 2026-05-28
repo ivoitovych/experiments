@@ -80,16 +80,20 @@ For each row above, the procedure was:
 | Neutral atoms (QuEra, Pasqal): global single-qubit + Rydberg CZ / multi-qubit blockade | §8.12 | QuEra Aquila paper; Pasqal docs | 2026-05 | Confirmed |
 | Photonic / MBQC: state preparation, beam-splitter/phase shifters, adaptive measurements; gate model from fusion / cluster-state pattern | §8.12 | Generic platform-physics description | 2026-05 | Confirmed |
 
+## Pass 6 — 2026-05-28 (Ch 1/2/3 hardware refs, byte-level PQC sizes, §15.8 / §15.10)
+
+| Claim | Manuscript | Source | Verified | Verdict |
+|---|---|---|---|---|
+| §1.6 NISQ-era platform list | §1.6 | Appendix F (this ledger Pass 1) | 2026-05 | **Updated** — "Quantinuum and IonQ (trapped-ion machines with hundreds of qubits)" was an over-claim; restated as "tens of high-fidelity, all-to-all-connected qubits — Quantinuum's H2 at 56, IonQ's Forte at #AQ 29 — and aggressive scaling roadmaps". The rest of §1.6 / §2.6 / §3.9 hardware framing aligns with Appendix F |
+| ML-DSA-65 (FIPS 204): pk 1952 B, sig 3309 B | §27.4 | FIPS 204 final standard; implementation refs | 2026-05 | **Updated** — was 3293 B (likely a pre-final-draft value) |
+| SLH-DSA-SHA2-128s (FIPS 205): pk 32 B, sig 7856 B | §27.4 | FIPS 205 final standard; multiple implementation refs | 2026-05 | Confirmed (already correct) |
+| §15.8 VQE: ~50-orbital active space → $10^9$–$10^{12}$ shots, several days of device time | §15.8 | Cao–Romero–Aspuru-Guzik (2019) chemistry-VQE review; subsequent shot-reduction work (Pauli grouping, classical shadows, derandomisation) | 2026-05 | Confirmed (order-of-magnitude defensible; a specific 2024–2026 estimate can be pinned in a later pass) |
+| §15.10 QML state of field: dequantisation of HHL-style ML (Tang); barren plateaus in VQNNs; modest empirical quantum-kernel advantage; structural advantages for learning *quantum* data (shadow tomography) | §15.10 | Tang (STOC 2019) and follow-ups; barren-plateau literature (McClean et al. 2018, Cerezo et al. 2021); Huang et al. shadow-tomography lines | 2026-05 | Confirmed |
+
 ## Open items for the next pass
-- §15.8 VQE shot-budget claims; §15.10 QML state-of-field.
-- Appendix D suggested reading: URL/version freshness for SDKs and live docs.
-- Byte-level confirmation of ML-DSA-65 / SLH-DSA-SHA2-128s key & signature
-  sizes (only ML-KEM-768 was verified at byte granularity in this pass).
-- §1.6, §2.6, §3.x current hardware references — alignment with Appendix F.
-- §8.12 native gate sets (current IBM, Google, IonQ, Quantinuum, neutral
-  atom, photonic).
-- §15.8 VQE shot-budget claims; §15.10 QML state-of-field.
-- §33 satellite-QKD (Micius and follow-ons).
-- Appendix D suggested reading: URL/version freshness for SDKs and live docs.
+
+- Appendix D suggested-reading URL/version freshness for SDKs and live docs.
+- A specific 2024–2026 paper for the VQE shot-budget estimate in §15.8 (the
+  current order-of-magnitude framing is defensible but uncited).
 
 Each next pass appends a new dated section above this one.
