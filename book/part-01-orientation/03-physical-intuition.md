@@ -54,7 +54,7 @@ Three points to keep in mind:
 > and are referenced repeatedly later; do not skim. §§3.9–3.10
 > (decoherence and open vs. closed systems) explain why the
 > idealized postulates of Chapter 5 are idealized, and what the
-> hardware chapters in Part VI will have to deal with. None of the
+> hardware chapters in Part IX will have to deal with. None of the
 > sections depends on quantum-mechanical formalism that has not yet
 > been introduced, so the chapter can be read straight through on
 > first pass.

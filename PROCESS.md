@@ -18,8 +18,8 @@ commit.
 The book is structured as one Markdown file per chapter under
 `book/part-XX-<slug>/NN-<slug>.md`, with front matter under
 `book/00-front-matter/` and appendices under `book/99-back-matter/`.
-Forty-five files total: thirty-seven chapters plus three front-matter
-files and five appendices.
+Forty-seven files total: thirty-seven chapters, three front-matter
+files, six appendices (A–F), and the index.
 
 Each file carries a status block at the top, immediately after the
 chapter heading:
@@ -254,7 +254,7 @@ the renderer-gotcha catalog, and dated decisions.
   CC BY-NC-ND 4.0; commercial use requires a separate license.
   Chosen to allow free reading and learning while preserving the
   right to monetize printed or derivative work.
-- **File scope.** One Markdown file per chapter (45 files total).
+- **File scope.** One Markdown file per chapter (47 files total).
   Per-section (250+ files) was rejected as too fragmented for
   navigation and link hygiene; per-part (13 files) was rejected as
   too large for diff review and forward references.
