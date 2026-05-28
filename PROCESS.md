@@ -85,43 +85,54 @@ things only a human can judge.
 
 `make book` (via `scripts/build_book.py`) assembles `book-build/` and then
 invokes mdBook with the `mdbook-katex` preprocessor to render math at build
-time. The toolchain is **version-sensitive**; these are the supported
-versions and the answers to the common failure.
+time. The constraint is **not** a narrow mdbook pin — it is that `mdbook` and
+`mdbook-katex` must come from the *same protocol line*, because `mdbook-katex`
+is a preprocessor coupled to mdBook's preprocessor API. The coupling is visible
+in `mdbook-katex`'s own dependency manifest on crates.io:
 
-- **Required `mdbook` version:** `>= 0.4, < 0.5` (a hard prerequisite;
-  tested with 0.4.48).
-- **Required `mdbook-katex` version:** `0.9.4`.
-- **Install / downgrade the pinned pair** (add `--force` to replace an
-  already-installed newer version):
+- `mdbook-katex 0.9.x` depends on `mdbook_fork4ls ^0.4.48` → the mdbook **0.4.x** protocol.
+- `mdbook-katex 0.10.x` depends on `mdbook-preprocessor ^0.5.1` → the mdbook **0.5.x** protocol.
 
-  ```
-  cargo install mdbook --version '>=0.4,<0.5' --locked --force
-  cargo install mdbook-katex --version 0.9.4 --locked --force
-  ```
+**Supported pairs** (install a matched pair, not arbitrary latest):
 
-- **Is `book-build/` safe to delete?** Yes. It is fully regenerated on
-  every `make book`; nothing under it is source. Deleting it changes
-  nothing about the failure below, because the error happens *after*
-  source assembly, when mdBook invokes the preprocessor.
-- **Symptom on an unsupported toolchain:** with `mdbook 0.5.x` the build
-  fails during the preprocessor with
+| mdbook | mdbook-katex | status |
+|---|---|---|
+| 0.4.x | 0.9.x | stable; verified in this repo (0.4.48 + 0.9.4) |
+| 0.5.x | 0.10.x | newer protocol; `mdbook-katex 0.10` is currently a pre-release (`0.10.0-alpha`) |
+
+```
+# stable pair (recommended; --force replaces an already-installed version):
+cargo install mdbook --version '>=0.4,<0.5' --locked --force
+cargo install mdbook-katex --version 0.9.4 --locked --force
+
+# or the mdbook 0.5.x line (pre-release katex):
+cargo install mdbook --locked --force
+cargo install mdbook-katex --version 0.10.0-alpha --locked --force
+```
+
+- **Is `book-build/` safe to delete?** Yes. It is fully regenerated on every
+  `make book`; nothing under it is source. Deleting it does not affect a
+  version-mismatch failure, which happens *after* source assembly when mdBook
+  invokes the preprocessor.
+- **Symptom of a mismatched pair** (e.g. mdbook 0.5.x with mdbook-katex 0.9.x,
+  or vice versa): the build fails during the preprocessor with
   `invalid type: null, expected any valid TOML value …` followed by
-  `The "katex" preprocessor exited unsuccessfully`. Cause: mdBook 0.5.x
-  changed the render-context stream passed to preprocessors, and
-  `mdbook-katex 0.9.4` does not accept it. `scripts/build_book.py` detects
-  an out-of-range `mdbook` and prints this guidance before attempting the
-  build.
-- **Ownership of `mdbook 0.5.x` support:** out of scope for now. The
-  project pins the 0.4.x line as the supported toolchain. Adopting
-  mdBook 0.5.x is a future task that belongs in the build configuration
-  and/or the choice of KaTeX preprocessor (upgrade `mdbook-katex` to a
-  0.5-compatible release, or replace it), not in the manuscript. Until
-  then, build with `mdbook 0.4.x`.
+  `The "katex" preprocessor exited unsuccessfully`. The two halves are speaking
+  different protocol versions. `scripts/build_book.py` reads both installed
+  versions, and if they are not a matched pair it prints the exact
+  `cargo install` command to align them (it never hard-blocks — the manuscript
+  and the generated `book.toml` are version-neutral, so the build is always
+  attempted).
+- **Newer mdbook lines (0.6+):** when they appear, the fix is to install the
+  matching `mdbook-katex` line and add the pair to `SUPPORTED_PAIRS` in
+  `scripts/build_book.py`. Nothing in the manuscript or `book.toml` should need
+  to change; the coupling lives entirely in the preprocessor.
 
-The CI-free verification baseline is: `make lint` clean, `make book`
-clean (0 KaTeX errors) under the pinned toolchain, and
-`make check-examples` green. All three are reproduced under
-`mdbook 0.4.48` + `mdbook-katex 0.9.4`.
+The CI-free verification baseline is: `make lint` clean, `make book` clean
+(0 KaTeX errors), and `make check-examples` green — reproduced here under the
+stable pair `mdbook 0.4.48` + `mdbook-katex 0.9.4`. The 0.5.x + 0.10.x pair is
+documented from the dependency manifests above; it is the matched line for
+mdbook 0.5.x but has not been re-verified in this repo (0.10 is pre-release).
 
 ## Perishable claims: the "Moving-target warning" callout
 

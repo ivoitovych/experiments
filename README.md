@@ -58,20 +58,30 @@ LaTeX and renders natively in the GitHub web viewer.
 For a continuous, offline copy you can build a single HTML book with
 [mdBook](https://rust-lang.github.io/mdBook/): install the toolchain once and
 run `make book`, which renders the manuscript — math included, via build-time
-KaTeX — into `book-build/`. The known-good toolchain is **mdbook 0.4.x**
-(tested with 0.4.48) together with **mdbook-katex 0.9.4**; install pinned
-versions with
+KaTeX — into `book-build/`. `mdbook-katex` is a preprocessor coupled to
+mdBook's preprocessor protocol, so the two must come from **matching lines**;
+either of these pairs works:
+
+| mdbook | mdbook-katex | notes |
+|---|---|---|
+| 0.4.x | 0.9.x | stable; the combination tested in this repo (0.4.48 + 0.9.4) |
+| 0.5.x | 0.10.x | newer protocol; `mdbook-katex 0.10` is currently pre-release |
 
 ```
+# stable pair (recommended):
 cargo install mdbook --version '>=0.4,<0.5' --locked --force
 cargo install mdbook-katex --version 0.9.4 --locked --force
+
+# or the mdbook 0.5.x line (pre-release katex):
+cargo install mdbook --locked --force
+cargo install mdbook-katex --version 0.10.0-alpha --locked --force
 ```
 
-mdbook 0.5.x is not yet supported — mdbook-katex 0.9.4 fails against its
-render-context schema (a TOML parse error) before HTML rendering completes.
-`make book` prints this guidance if it detects an out-of-range mdbook. See
-[PROCESS.md](PROCESS.md) (*Building the rendered book*) for the full
-version matrix and troubleshooting, including downgrade commands.
+Mixing lines (e.g. mdbook 0.5.x with mdbook-katex 0.9.x) is what produces the
+`invalid type: null …` TOML error during the katex preprocessor. `make book`
+detects a mismatched pair and prints the exact command to fix it. See
+[PROCESS.md](PROCESS.md) (*Building the rendered book*) for the full version
+matrix, the dependency rationale, and troubleshooting.
 
 ## Project documents
 
