@@ -153,7 +153,7 @@ This chapter framed *how to think* about quantum algorithms; Chapter 14 starts o
 1. State, in one sentence, why the slogan "a quantum computer tries every input in parallel" is misleading, and what replaces it in the amplitude-shaping picture of §13.1.
 2. Given the oracle $U_f|x\rangle|y\rangle = |x\rangle|y \oplus f(x)\rangle$ and the ancilla $|-\rangle$, verify by direct calculation that $U_f|x\rangle|-\rangle = (-1)^{f(x)}|x\rangle|-\rangle$. Identify which step is "phase kickback."
 3. For $n = 3$, compute $H^{\otimes 3}|101\rangle$ and identify which output basis states acquire a minus sign. Confirm the pattern matches the $(-1)^{x \cdot y}$ formula in §13.1.
-4. List the four cost metrics from §13.7 (query, gate, depth, $T$-count) and give one concrete scenario in which each is the dominant cost.
+4. List the four cost metrics from §13.7 (query, time, gate, $T$-count) and give one concrete scenario in which each is the dominant cost.
 5. Sketch, without computing anything, the difference between an algorithm that exploits *structured* phase patterns (Hadamard sandwich) and one that uses *unstructured* amplitude amplification (Grover). Which one of Chapter 14's algorithms is the cleanest example of the former?
 
 ---

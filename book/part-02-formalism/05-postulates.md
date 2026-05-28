@@ -15,9 +15,10 @@ Three points to keep in mind as you read:
 
 1. The postulates are the *idealised* picture — closed-system,
    noise-free, projective measurement only. Real hardware deviates
-   from this picture; the deviations are catalogued in Chapter 18
-   (noise and decoherence) and the formalism is then extended to
-   cover them (quantum channels, POVMs, mixed states). This chapter
+   from this picture; the formalism is extended to cover the
+   deviations (mixed states here, quantum channels in Chapter 10,
+   POVMs in Chapter 11), and Chapter 18 catalogues the specific
+   noise and decoherence processes of real hardware. This chapter
    introduces the extensions deliberately so the path from idealised
    to realistic is explicit rather than retrofit.
 2. The postulates are stated in *finite-dimensional* form throughout.
@@ -106,10 +107,11 @@ least in principle — is the content of this postulate.
 Postulate 2 is the postulate that most aggressively departs from
 realistic hardware. Real evolutions are not exactly unitary because
 the system is not exactly closed: it couples to environmental
-degrees of freedom, picks up noise, and decoheres. Chapter 18 promotes
+degrees of freedom, picks up noise, and decoheres. Chapter 10 promotes
 unitary evolution to **completely positive trace-preserving (CPTP)
 maps** — also called **quantum channels** — which subsume both unitary
-evolution and noise.
+evolution and noise; Chapter 18 then applies that formalism to the
+specific noise and decoherence processes of real hardware.
 
 ## 5.3 The Schrödinger Equation
 
@@ -671,9 +673,10 @@ $$
 
 So $\langle\psi|\phi\rangle = \langle\psi|\phi\rangle^2$, which forces
 $\langle\psi|\phi\rangle \in \\{0, 1\\}$ for every pair. But that
-contradicts the existence of arbitrary $|\psi\rangle, |\phi\rangle$
-with non-trivial overlap (e.g., $|0\rangle$ and $|+\rangle$, which
-have overlap $1/\sqrt{2}$). Hence no such $U$ exists. ∎
+fails for any two non-orthogonal, non-identical states — whose overlap
+lies strictly between $0$ and $1$ — for example $|0\rangle$ and
+$|+\rangle$, which have overlap $1/\sqrt{2}$. Hence no such $U$
+exists. ∎
 
 The theorem says you cannot make a perfect copy of an unknown
 quantum state. This single fact has wide consequences:

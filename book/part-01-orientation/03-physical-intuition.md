@@ -216,8 +216,10 @@ the outcome.
 The Mach-Zehnder result is reproducible with **electrons** (Tonomura
 and collaborators, 1989), with **neutrons**, with **atoms**, with
 **molecules** as large as $\mathrm{C}_{60}$ fullerene, and at the
-time of writing with biological molecules of several thousand
-atoms. The superposition principle is not an artifact of the
+time of writing with engineered macromolecules of around two
+thousand atoms (Fein et al., *Nature Physics*, 2019, reported
+matter-wave interference of oligoporphyrins exceeding 25,000 amu).
+The superposition principle is not an artifact of the
 photon's masslessness or of any subtle feature of electromagnetism;
 it is a property of every system that has been tested under
 sufficiently isolated conditions.
@@ -576,9 +578,9 @@ room temperature, seconds at low temperature.
 
 The dimensionless figure of merit is **the ratio of coherence time
 to gate time**: how many quantum operations can be applied before
-the state is unrecognizable. Current superconducting hardware
-manages a few hundred to a few thousand gates within $T_2$; trapped
-ions manage more, with slower gates. Quantum error correction
+the state is unrecognizable. Current superconducting hardware (as
+of the mid-2020s) manages a few hundred to a few thousand gates
+within $T_2$; trapped ions manage more, with slower gates. Quantum error correction
 (Chapter 19 and Part IX) is the discipline of stretching a logical
 qubit's effective coherence time far past any individual physical
 qubit's, by encoding logical information into entangled multi-qubit

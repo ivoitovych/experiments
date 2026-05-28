@@ -318,8 +318,10 @@ and therefore the norm. Eigenvalues lie on the unit circle, $\\{e^{i\theta}\\}$.
 In the **ideal closed-system circuit model**, every quantum gate is a unitary,
 and time evolution between gates is unitary. Realistic computations also
 include non-unitary operations — measurement, reset, noise, and general
-quantum channels — that require the density-matrix and channel formalism
-introduced in Chapter 5 and developed in Chapter 18.
+quantum channels — that require the density-matrix and channel formalism:
+density matrices are introduced in Chapter 5, the quantum-channel (CPTP)
+formalism is developed in Chapter 10, and Chapter 18 applies it to the
+specific noise processes of real hardware.
 
 **Normal**: $A A^\dagger = A^\dagger A$. The class of operators that admit a
 spectral decomposition in some orthonormal basis. Hermitian and unitary are
@@ -441,7 +443,9 @@ $\langle \psi | P_\lambda | \psi\rangle > 0$ — the post-measurement state is
 $P_\lambda |\psi\rangle / \sqrt{\langle \psi | P_\lambda | \psi\rangle}$.
 Outcomes with zero probability never happen and do not have a
 post-measurement state. More general measurements (POVMs, generalized
-measurements) are covered in Chapters 11–12.
+measurements) are developed in the measurement-theory chapter (Chapter 11);
+the related non-unitary *channel* formalism is a separate development
+(Chapter 10).
 
 The non-degenerate case is the one you will reach for most often. For a
 projective measurement in a nondegenerate orthonormal basis
@@ -579,8 +583,9 @@ $|a\rangle |b\rangle$ or $|ab\rangle$ once the order of subsystems is fixed.
 
 > **Endian warning.** This book uses the convention
 > $|x_1 x_2 \cdots x_n\rangle = |x_1\rangle |x_2\rangle \cdots |x_n\rangle$
-> with $x_1$ as the most significant bit (§4.2). Qiskit has several related
-> but *distinct* ordering conventions that the reader has to track separately:
+> with $x_1$ as the most significant bit (§4.2). Qiskit (2.x) has several
+> related but *distinct* ordering conventions that the reader has to track
+> separately:
 >
 > 1. **Circuit-diagram order.** Qiskit places qubit $0$ at the top of a
 >    circuit drawing by default.
@@ -1277,7 +1282,9 @@ the rest of the book:
    algorithms exploit structure and interference, not state-space size.
 7. **Unitary evolution is the closed-system picture.** Measurement, reset,
    and noise are not unitary, and they enter the formalism through
-   density matrices and quantum channels (Chapters 5, 11, 18).
+   density matrices (Chapter 5), generalized measurements (Chapter 11),
+   and quantum channels (Chapter 10, applied to hardware noise in
+   Chapter 18).
 8. **Eigenvalues and singular values are not the same in general.** They
    coincide for positive semidefinite Hermitian operators and agree in
    modulus for normal ones; the SVD is the safer tool for non-normal or

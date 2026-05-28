@@ -113,7 +113,7 @@ The **Variational Quantum Eigensolver (VQE)** is the prototype VQA, targeting th
 
 VQE's appeal is that the ansatz can be tailored to the chemistry: **unitary coupled cluster (UCCSD)** uses excitation operators from coupled-cluster theory; **ADAPT-VQE** grows the ansatz one operator at a time based on largest gradient; **hardware-efficient** ansatze ignore chemistry and just minimise depth. UCCSD captures static correlation accurately but has deep circuits; ADAPT-VQE achieves comparable accuracy with shorter circuits at the cost of more classical orchestration.
 
-The practical bottleneck in 2026 is **measurement cost**: a Hamiltonian with $K$ Pauli strings and target precision $\epsilon$ requires $O(K \mathrm{Var}/\epsilon^2)$ shots in the naive scheme. Pauli-string grouping, classical-shadows-based estimation (§11.5), and adaptive measurement allocation reduce this substantially — sometimes by an order of magnitude — but VQE on a 50-orbital active space still requires $10^9$–$10^{12}$ shots, which is several days of real-time device usage. Hardware-noise mitigation via zero-noise extrapolation and probabilistic error cancellation (Chapter 18) tames bias but worsens variance.
+The practical bottleneck in 2026 is **measurement cost**: a Hamiltonian with $K$ Pauli strings and target precision $\epsilon$ requires $O(K \mathrm{Var}/\epsilon^2)$ shots in the naive scheme. Pauli-string grouping, classical-shadows-based estimation (§11.5), and adaptive measurement allocation reduce this substantially — sometimes by an order of magnitude — but VQE on a 50-orbital active space still requires on the order of $10^9$–$10^{12}$ shots (an order-of-magnitude estimate; exact counts are problem- and ansatz-dependent), which is several days of real-time device usage. Hardware-noise mitigation via zero-noise extrapolation and probabilistic error cancellation (Chapter 18) tames bias but worsens variance.
 
 ## 15.9 Quantum Approximate Optimization Algorithm
 
@@ -152,7 +152,7 @@ This chapter covered the landmark algorithms of the first three decades of the f
 2. Sketch the order-finding circuit for $a = 7$, $N = 15$ (so $r = 4$) and verify the QFT-output peaks at multiples of $2^{2n}/4 = 2^{2n-2}$.
 3. For HHL on a $2\times 2$ Hermitian matrix $A$, write out the eigenvalues and the conditional rotation angle.
 4. For QAOA at $p=1$ on the two-vertex Max-Cut (trivially optimisable), compute the optimal $(\gamma, \beta)$ analytically.
-5. Look up a current resource estimate for factoring RSA-2048 (Gidney–Ekerå or a 2024–2025 refinement) and identify which line item dominates — magic-state distillation, lattice surgery, or arithmetic.
+5. Look up a current resource estimate for factoring RSA-2048 (Gidney–Ekerå or a 2024–2025 refinement) and identify which line item dominates — magic-state distillation, lattice surgery, or arithmetic. Use the baseline figures already tabulated in §15.3 as your starting point.
 
 ---
 

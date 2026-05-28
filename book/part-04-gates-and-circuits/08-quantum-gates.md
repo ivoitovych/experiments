@@ -46,7 +46,7 @@ $$
 
 and back: $H|+\rangle = |0\rangle$, $H|-\rangle = |1\rangle$. So $H^2 = I$, and $H$ is its own inverse. It is the single most important single-qubit gate in algorithms: $H^{\otimes n}|0^n\rangle$ is the uniform superposition over all $2^n$ bit strings, which is where Deutsch–Jozsa, Grover, Shor's order-finding subroutine, and the whole "quantum parallelism" picture begin.
 
-$H$ is also the change-of-basis matrix between the $Z$ eigenbasis and the $X$ eigenbasis. Concretely, $HXH = Z$ and $HZH = X$. This identity is used constantly when compiling: a Pauli-X measurement on a qubit is the same as a Pauli-Z measurement preceded by $H$ and followed by $H$ — and because measurement collapses anyway, the trailing $H$ can usually be dropped.
+$H$ is also the change-of-basis matrix between the $Z$ eigenbasis and the $X$ eigenbasis. Concretely, $HXH = Z$ and $HZH = X$. This identity is used constantly when compiling: a Pauli-X measurement on a qubit is the same as a Pauli-Z measurement preceded by $H$ and followed by $H$ — and because that trailing $H$ sits immediately before a computational-basis measurement, it only relabels the outcome (it is undone by the readout choice and does not affect the measurement statistics), so it can be dropped.
 
 ![Circuit symbol for the Hadamard gate acting on a single qubit.](figures/hadamard.svg)
 
@@ -116,7 +116,9 @@ $$
 
 CNOT is $\mathrm{C}(X)$; CZ is $\mathrm{C}(Z)$; controlled phase gates $\mathrm{C}P(\varphi)$ are central in the quantum Fourier transform (Chapter 14).
 
-Multi-controlled gates extend the same idea: $\mathrm{C}^k(U)$ applies $U$ to the target iff all $k$ controls are in $|1\rangle$. The three-qubit case $\mathrm{C}^2(X) = $ Toffoli is universal for classical reversible computation. In general $\mathrm{C}^k(U)$ can be decomposed into $O(k)$ Toffolis and one $\mathrm{C}(U)$ (with ancilla) or into $O(k^2)$ CNOTs (without). The cost growth with $k$ is one of the constant headaches of circuit synthesis; ancilla qubits, when available, buy substantial savings.
+Multi-controlled gates extend the same idea: $\mathrm{C}^k(U)$ applies $U$ to the target iff all $k$ controls are in $|1\rangle$. The three-qubit case $\mathrm{C}^2(X) = $ Toffoli is universal for classical reversible computation. The cost of $\mathrm{C}^k(U)$ depends on whether spare ancilla qubits are available, and the canonical decompositions all trace back to Barenco et al. (1995): with one clean ancilla a $k$-controlled-NOT decomposes into $O(k)$ Toffolis; with a single dirty (borrowed, arbitrarily initialised) ancilla it is still $O(k)$ elementary gates; and ancilla-free constructions cost $O(k^2)$ gates. The $O(k)$-Toffoli figure quoted here is the representative case with a clean ancilla. The cost growth with $k$ is one of the constant headaches of circuit synthesis; ancilla qubits, when available, buy substantial savings.
+
+> Barenco, Bennett, Cleve, DiVincenzo, Margolus, Shor, Sleator, Smolin, Weinfurter, "Elementary gates for quantum computation," *Phys. Rev. A* **52**, 3457 (1995), arXiv:quant-ph/9503016.
 
 ## 8.8 Toffoli and Fredkin Gates
 
@@ -133,7 +135,9 @@ A **universal gate set** is a finite collection of gates whose products can appr
 1. Any unitary on $n$ qubits can be exactly decomposed into single-qubit unitaries and CNOTs. This is a *finite* decomposition into a *continuous* set of single-qubit gates.
 2. Any single-qubit unitary can be approximated to within $\epsilon$ using a finite gate set, for example $\\{H, T\\}$ (see §8.10 and §8.11).
 
-Combining the two, $\\{H, T, \mathrm{CNOT}\\}$ is universal. Other common universal sets include $\\{H, S, \mathrm{CNOT}, \mathrm{Toffoli}\\}$; any single non-Clifford single-qubit gate together with Clifford generators; and any "generic" two-qubit entangling gate (one that creates entanglement from a product state) together with all single-qubit unitaries.
+Combining the two, $\\{H, T, \mathrm{CNOT}\\}$ is universal. Other common universal sets include $\\{H, S, \mathrm{CNOT}, \mathrm{Toffoli}\\}$; any single non-Clifford single-qubit gate together with Clifford generators; and any "generic" two-qubit entangling gate (one that creates entanglement from a product state) together with all single-qubit unitaries. In fact $\\{H, \mathrm{Toffoli}\\}$ alone is already computationally universal — the gates densely generate the real-orthogonal group $\mathrm{SO}(2^n)$, so they approximate any real unitary directly and any complex computation through a one-qubit real-encoding overhead (Shi 2003; Aharonov 2003); adding $S$ (the full Clifford group) gives the standard fault-tolerant generating set.
+
+> Y. Shi, "Both Toffoli and Controlled-NOT need little help to do universal quantum computation," *Quantum Inf. Comput.* **3**, 84 (2003), arXiv:quant-ph/0205115; D. Aharonov, "A Simple Proof that Toffoli and Hadamard are Quantum Universal," arXiv:quant-ph/0301040 (2003).
 
 The relevance for hardware: a platform that exposes any one entangling two-qubit gate plus arbitrary single-qubit rotations is, in principle, computationally universal. Whether those primitives are *practically* good enough — low enough error, fast enough, well-calibrated enough — is a separate question, addressed in Part 9.
 
@@ -153,7 +157,11 @@ $$
 L \;=\; O\bigl(\log^{c}(1/\epsilon)\bigr)
 $$
 
-that approximates $U$ to error $\epsilon$ in operator norm, with $c \approx 3.97$ in the original construction and provably $c = 1$ for "good enough" sets such as $\\{H, T\\}$ via more recent number-theoretic techniques (Ross–Selinger). Constructive algorithms exist, but for the high-precision regime needed in fault-tolerant compilation, special-purpose synthesisers like **gridsynth** produce shorter $T$-sequences than generic Solovay–Kitaev.
+that approximates $U$ to error $\epsilon$ in operator norm, with $c \approx 3.97$ in the standard constructive analysis (Dawson–Nielsen 2005; tighter analyses push the generic exponent down toward $c \approx 2$). Constructive algorithms exist, but for the high-precision regime needed in fault-tolerant compilation, special-purpose synthesisers like **gridsynth** produce shorter $T$-sequences than generic Solovay–Kitaev.
+
+A separate, sharper result governs the specific case that actually matters in practice — synthesising a single-qubit $z$-rotation in the Clifford+T basis. The Ross–Selinger algorithm (2016) is near-optimal and achieves a $T$-count of $3\log_2(1/\epsilon) + O(\log\log(1/\epsilon))$ — *linear* in $\log(1/\epsilon)$, i.e. effective exponent $c \approx 1$. This $c \approx 1$ figure refers to Clifford+T $z$-rotation synthesis and should not be confused with the generic Solovay–Kitaev exponent above, which applies to an arbitrary universal gate set and an arbitrary $\mathrm{SU}(2)$ target.
+
+> C. M. Dawson and M. A. Nielsen, "The Solovay–Kitaev algorithm," *Quantum Inf. Comput.* **6**, 81 (2006), arXiv:quant-ph/0505030; N. J. Ross and P. Selinger, "Optimal ancilla-free Clifford+T approximation of z-rotations," *Quantum Inf. Comput.* **16**, 901 (2016), arXiv:1403.2975.
 
 What this means practically: any continuous rotation gate $R_Z(\theta)$ used in an algorithm can, in the fault-tolerant pipeline, be replaced by a discrete sequence of $H$ and $T$ at logarithmic cost in precision. The $\theta$-dependence in the algorithm becomes a per-gate compilation cost, not an inflation of asymptotic complexity.
 
@@ -200,7 +208,7 @@ Chapter 23 returns to compilation; Chapter 19 to fault-tolerant resource estimat
 
 1. Verify directly that $H X H = Z$ and $H Z H = X$ from the matrices in §8.2–8.3.
 2. Show that $S^2 = Z$ and $T^2 = S$. Conclude $T^4 = Z$ and $T^8 = I$.
-3. Expand $R_Y(\pi)|0\rangle$ and confirm it equals $|1\rangle$ up to a global phase; identify the phase.
+3. Expand $R_Y(\pi)|0\rangle$ and confirm it equals $|1\rangle$ up to a global phase; identify the phase. (The resulting global phase is physically unobservable, so $R_Y(\pi)$ is a perfectly good bit-flip despite not equalling $X$ on the nose.)
 4. Apply the identity $\mathrm{CZ} = (I \otimes H)\\,\mathrm{CNOT}\\,(I \otimes H)$ to $|+\rangle|+\rangle$ and check both sides give the same state.
 5. Derive the Toffoli truth table from its matrix, and verify it implements classical AND when the third qubit is initialised to $|0\rangle$.
 

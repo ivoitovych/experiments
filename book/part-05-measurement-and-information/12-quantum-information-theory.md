@@ -260,6 +260,12 @@ coherent information is the same statement as negative quantum
 conditional entropy. The two quantities differ only in sign and
 intended emphasis.
 
+The state-merging account given here is one of two standard, equivalent
+formulations of the Horodecki–Oppenheim–Winter result; the other casts
+the same content as a quantum-communication-versus-shared-entanglement
+trade-off (the "fully quantum Slepian–Wolf" picture), so a reader who
+learned it in that form is looking at the same theorem.
+
 ## 12.5 The Holevo Bound
 
 Classical information has to be encoded into quantum states to be
@@ -438,7 +444,9 @@ overheads — pays for this in one form or another.
 Schumacher's theorem (1995) is the quantum analogue of Shannon's
 source-coding theorem and the source of the *qubit* as a unit. Let
 $\rho$ be a density matrix on $\mathcal{H}$, regarded as the per-letter
-state of an i.i.d. quantum source emitting copies $\rho^{\otimes n}$.
+state of an i.i.d. quantum source emitting copies $\rho^{\otimes n}$
+(the idealized i.i.d. model; correlated and non-stationary sources need
+the more general machinery this chapter does not develop).
 The compression task is to faithfully encode $n$ copies of $\rho$ into
 a smaller quantum register, transmit or store it, and decode an
 approximate reconstruction $\tilde\rho$ with high fidelity to the
