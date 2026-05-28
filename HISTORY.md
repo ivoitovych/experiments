@@ -587,12 +587,160 @@ contents and the prose documents it links to (`BookDescription`,
 pages. The build is checked for zero broken `href`/`src` targets and
 zero `katex-error` spans.
 
+## Phase 11 — External-review verification and the fact-check pass
+
+A pair of editorial / technical reviews arrived in late May 2026. The
+first (README + project framing) had already been folded into Phase 10's
+credibility fixes. The second, `review-2026-05-28-0105.md`, was a
+file-by-file pass over the full manuscript and supplied roughly a hundred
+concrete findings. This phase records the work of acting on them — first
+by reasoning, then by sources, then by mechanical reconciliation.
+
+### 11.1 Review-driven correctness pass
+
+The first sweep worked through every claim that could be verified by
+arithmetic or logic, fixing each in place and skipping anything that
+proved defensible-as-written. Highlights, by class:
+
+- **Cross-references and part numbers** (`7ef9e39`, `1a563b1`): hardware
+  chapters are in Part IX, not VI; the §10 "How to read" Parts 6/7
+  typo corrected; the placeholder `qubitization, §16.x` resolved to §16.5.
+- **Operator-order corrections** (`7ef9e39`, `6e93cd3`): circular-basis
+  measurement is `H S^\dagger`, not `S^\dagger H` — consistent with the
+  parenthetical "apply S-dagger, then H"; the same fix in §11.7 for
+  Y-basis Pauli-string measurement; the §9.4 uncomputation pattern
+  reordered to compute-copy-uncompute under right-to-left composition.
+- **Channels and sanity-check errors** (`39ee7ab`, `894c201`): the
+  depolarising-channel "each Pauli at `p/3`" is wrong against
+  `E(rho) = (1-p)rho + p I/2` — the correct equivalent is `p/4`, with
+  Kraus operators added so SC-5 has a referent; §10.11's jump operators
+  reparameterised on a Lindblad rate `gamma`. Chapter 12 SC-5 had
+  subadditivity "violated as equality" for the Bell state, which holds
+  *strictly*; SC-3 needed the upper-bound-tight qualification for
+  pure-state Fuchs–van de Graaf.
+- **Algorithmic conventions** (`ae2e8be`, `b1f0335`, `a275f15`): the
+  QFT circuit's `R_k` sign reconciled with §14.5's negative-exponent
+  definition (and SC-3 amplitudes); Simon framed as a query-model
+  exponential separation; the Grover operator's marked-flip factor
+  written as `(I - 2 P_good)` to match the surrounding prose; amplitude
+  estimation reparameterised on the *probability* `a = sin^2(theta)`;
+  the prevailing belief on `P = BPP` restored after §13.7 had asserted
+  "each containment is conjectured strict".
+- **Resource-estimate consistency** (`2e046d0`): "~3×10⁶ logical
+  qubits" for RSA-2048 was inconsistent with "~10⁷ physical at
+  d ~ 27" by ~1000×; corrected to a few thousand logical qubits with
+  the surface-code overhead `2d^2` stated explicitly.
+- **Two-qubit gate synthesis** (`ac1c4cc`): the 2-CNOT condition is
+  `c_z = 0` in the Weyl chamber, not the `c_x = c_y` surface — iSWAP at
+  `(pi/4, pi/4, 0)` is on the `c_z = 0` face *and* satisfies `c_x = c_y`,
+  the likely source of the confusion.
+- **Other precision fixes** (`6e93cd3`, `1a563b1`, `3c77c48`, `7e787f7`,
+  `fbfc566`): POVM-vs-measurement-operator naming in §10.6; weak measurement
+  (not QND) for residual coherence in §11.1; informationally-complete
+  input states in process tomography (§11.4); Zeno-plus-correction in
+  §10.8; the HSP scope softened with glued-trees / forrelation
+  exceptions; magic-state T-gate correction is Clifford (`S`), not Pauli
+  (§9.9); HHL framed as a coherent spectral transformation (§15.5);
+  unambiguous discrimination of mixed states requires non-nested
+  supports (§11.6); readout-error mitigation costs split between
+  calibration and inversion (§11.7); no-cloning as "preservation",
+  with movement to an environment explicitly allowed (§12.8); the §8.1
+  "every branch at once" phrasing reworded toward "linearity plus
+  interference"; §13.1's absolute claim about black-box queries qualified
+  against the Deutsch–Jozsa / Bernstein–Vazirani counterexample;
+  §13.7 simulation speedups marked as best-known rather than proved
+  separations; §14.6 phase-estimation cascade conditional on efficient
+  closed-form powers; §14.9 dihedral HSP linked via Regev's reduction
+  to lattice approximation regimes; §15.1 Grover iteration count
+  given as `round(pi/(4 theta) - 1/2)`; §15.4 ECDLP-vs-RSA comparison
+  cited to Roetteler et al. 2017 and Häner et al. 2020; §15.5 HHL's
+  `kappa^2` flagged as the original scaling with QSVT-era linear-`kappa`
+  variants noted; §15.6 glued-trees clarified as an oracle-model
+  separation and Szegedy as a quadratic speedup in the spectral-gap
+  dependence; §15.9 QAOA `p -> infinity` convergence conditional on
+  an adiabatic-interpolating schedule.
+
+The single recurring lesson: many of these "find an inconsistency by
+computing both sides" findings — depolarising `p/4`, the RSA
+logical/physical ratio, KAK `c_z = 0`, QFT sign — are the class of error
+that source-level lint and structural review cannot catch. They need a
+reader who will actually do the arithmetic.
+
+### 11.2 Dated fact-check pass
+
+A separate, source-backed sweep verified every perishable 2025–2026
+claim against vendor pages, peer-reviewed papers, and dated press. The
+long-running artefact is [`docs/fact-check-ledger.md`](docs/fact-check-ledger.md),
+a table of (claim, manuscript location, sources, verification date,
+verdict) entries appended per pass.
+
+Pass 1 — Appendix F hardware snapshot (`3237078`); Pass 2 — RSA-2048
+resource bounds in §15.3 (`fc02932`); Pass 3 — NIST PQC timeline in
+Chapter 27 (`9d8f009`); Pass 4 — satellite-QKD and twin-field QKD in
+§33.4 (`fa74c35`); Pass 5 — native gate sets in §8.12 (`e751e2e`);
+Pass 6 — Chapter 1/2/3 hardware references and byte-level PQC sizes
+(`415a469`); Pass 7 — Appendix D SDK references (`4c42d48`).
+
+Substantive content changes:
+
+- **Appendix F**: Quantinuum H2 is 56 qubits at ~99.9% (best-pair
+  >99.91%), not "~50" / "99.8–99.9%"; IonQ entry expanded to the
+  Forte / Forte Enterprise / Tempo #AQ ladder; Pasqal updated to its
+  2025 roadmap (~1,000 qubits by end of 2025, 250-qubit advantage
+  demonstration in 2026); Microsoft × Quantinuum four-logical-qubit
+  result on H2 (2024) and the Bluvstein et al. *Nature* 2023 paper for
+  Harvard / QuEra's 48 logical qubits cited explicitly.
+- **§15.3 RSA**: the unsourced "~10 million physical / ~10 hours
+  / ~7 × 10⁹ Toffoli" figures replaced with two anchored estimates at
+  `p = 10^-3` — Gidney–Ekerå 2019 (~20M qubits, ~8h) and Gidney 2025
+  (`arXiv:2505.15917`, <1M qubits, <1 week), with the reductions
+  attributed to approximate residue arithmetic (Chevignard–Fouque–
+  Schrottenloher 2024) and yoked surface codes (Gidney–Newman–Brooks–
+  Jones 2023).
+- **Chapter 27**: HQC selection pinned to March 11, 2025 (FIPS 207
+  forthcoming); FN-DSA / FIPS 206 status sharpened to "IPD submitted
+  August 2025, final expected late 2026 / early 2027"; ML-DSA-65
+  signature size corrected from 3293 B to 3309 B (final FIPS 204);
+  §27.2 RSA cross-reference realigned to the updated §15.3.
+- **§8.12 native gate sets**: IBM Heron-class processors use a CZ
+  native two-qubit gate via tunable couplers, not the cross-resonance
+  CNOT of earlier Eagle-class devices.
+- **§1.6**: "trapped-ion machines with hundreds of qubits" reframed as
+  "tens of high-fidelity, all-to-all-connected qubits" with explicit
+  current values (H2 at 56, Forte at #AQ 29).
+- **Appendix D**: Qiskit `QFT`-class deprecation made explicit
+  (deprecated in 2.1, removed in 3.0; replaced by `QFTGate` /
+  `qiskit.synthesis.qft.synth_qft_full`); TKET / pytket documentation URL
+  updated from `cqcl.github.io/tket` (now returns 403) to
+  `docs.quantinuum.com/tket`.
+
+Several other claims were verified as accurate as written — among them
+Micius (2016 launch, 2017 operational, ~7600 km Beijing–Vienna QKD
+videoconference, 1,200 km ground-to-ground entanglement distribution);
+twin-field QKD at 1,002 km in Liu et al. *PRL* 2023; Atom Computing's
+1,180-atom array on a 35×35 grid (2023); Intel Tunnel Falls 12 qubits
+(2023); IBM Condor 1,121 qubits (2023); and the IBM bivariate-bicycle
+("Gross") qLDPC roadmap.
+
+### 11.3 Ordering reconciliation
+
+A historical inconsistency, repeatedly flagged by the reviews, was that
+`STYLE.md` prescribes "heading → status → nav" while 43 of the 47
+manuscript files used "heading → nav → status". A small script detected
+the violation pattern and swapped the two lines in each affected file
+(`093eca2`); the four already-compliant files (Chapters 4–6 and 12) were
+left alone. Lint, the mdBook build, and `make progress` all remained
+clean after the change.
+
 ## Snapshot at this point
 
 | Area | State |
 |---|---|
 | Manuscript | Full draft — 37 chapters, 3 front-matter files, appendices A–F, and the Index; all `draft` (Index promoted from `outlined`); `PROGRESS.md` at 47/47 |
-| Cross-references | Systematic review pass complete (19 `Review:` commits); stale section/chapter pointers corrected; QFT sign convention unified |
+| External-review verification | Two 2026-05 reviews worked through end-to-end (~ thirty correctness / convention / precision fixes in §§2, 6, 8–15, 27 plus the appendices); see Phase 11 |
+| Fact-check | `docs/fact-check-ledger.md` records seven dated passes against vendor / preprint / journal sources for Appendix F, §15.3, Chapter 27, §33.4, §8.12, Chapters 1–3 + ML-DSA/ML-KEM sizes, and Appendix D |
+| Format consistency | All 47 files now follow `STYLE.md`'s heading → status → nav order |
+| Cross-references | Systematic review pass complete (19 `Review:` commits + the Phase-11 sweep); stale section / chapter pointers corrected; QFT sign convention unified across §14.5, §14.6, §15.2 |
 | Figures | `figures-src/generate_figures.py` (`make figures`) — 15 Qiskit-rendered SVGs across Ch7–10, 14–15, 19; PNG previews for QA; byte-deterministic output |
 | Code examples | `examples/` run end to end by `make check-examples`; embedded in Ch14, 15, 24, 26 |
 | Index | Generated by `scripts/generate_index.py` (`make index`) — 51 anchored entries |
@@ -663,14 +811,37 @@ zero `katex-error` spans.
   `mdbook-epub` target different mdBook majors; the math-correct build
   required pinning mdBook to 0.4.48, and EPUB was deferred rather than
   forced onto an incompatible pairing.
+- **Arithmetic catches what structure cannot.** Source-level lint and
+  structural review do not catch errors of the form "these two expressions
+  are equal" when they aren't. The Phase-11 corrections — depolarising
+  `p/4`, the RSA logical / physical ratio, KAK `c_z = 0`, the QFT sign
+  in the circuit and its sanity check — all required a reader who would
+  actually do the arithmetic on both sides. Add a "compute it" pass to the
+  review checklist alongside lint and screenshot review.
+- **A long-running source ledger is cheaper than re-checking from
+  scratch.** Every perishable claim in the manuscript has a row in
+  `docs/fact-check-ledger.md` with (claim, location, sources, verification
+  date, verdict). When a number ages, the ledger is the diff target — not
+  a re-search of the open web — and the fact-check pass becomes additive
+  rather than archaeological.
+- **Defer fewer "soft-wording" items.** Loose-but-not-wrong phrasings —
+  the `every branch at once` slogan in §8.1, the "seam" metaphor in
+  §13.3, the absoluteness of §13.1's no-classical-equivalent claim — turn
+  out to be quick targeted edits, not voice-perturbing rewrites. Treating
+  them as judgment-laden was over-caution; they cost the same per-item
+  verification as the correctness fixes and should not have piled up.
 
 ---
 
-This file will continue to be appended to as the manuscript moves
-from full draft toward review. The open threads are: promoting
-chapters from `draft` to `reviewed` (the substantive technical and
-editorial pass the README status advertises); backfilling figures
-into the chapters that still lack them (QEC, hardware, measurement);
-extending the runnable examples; and publishing the mdBook build via
-GitHub Pages / CI, which would also reopen the EPUB and PDF question
-once a compatible toolchain is pinned.
+This file will continue to be appended to as the manuscript moves from
+full draft toward review. After Phase 11 the open threads narrow: the
+two external reviews have been worked through to closure, the perishable
+claims have a dated ledger, and the format inconsistency is resolved.
+What remains is the substantive technical-and-editorial pass that takes
+chapters from `draft` to `reviewed`; backfilling figures into the
+chapters that still lack them (QEC depth, hardware, measurement);
+extending the runnable examples beyond the four currently checked in;
+pinning the §15.8 VQE shot-budget estimate to a specific 2024–2026
+paper (the last open row in the fact-check ledger); and publishing the
+mdBook build via GitHub Pages / CI, which would also reopen the EPUB
+and PDF question once a compatible toolchain is pinned.
