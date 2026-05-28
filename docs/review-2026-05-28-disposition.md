@@ -1,7 +1,9 @@
 # Review 2026-05-28 — disposition record
 
-This is the closing record for [`review-2026-05-28-0105.md`](../review-2026-05-28-0105.md).
-Each distinct finding in that review has one row here with a status:
+This is the closing record for the review formerly at
+`review-2026-05-28-0105.md` (deleted on close — see *Closure status*
+below; recoverable from git history). Each distinct finding in that
+review has one row here with a status:
 
 - **APPLIED** — change is in HEAD; commit cited.
 - **DEFENSIBLE** — verified by reasoning or source; intentionally not changed; rationale given.
@@ -469,24 +471,33 @@ notice; the build still completes with 0 KaTeX errors. PROCESS.md now
 notes this explicitly. We deliberately do **not** pin the patch level —
 that would re-narrow the range we just widened.
 
-### Closure status
+### Closure status — CLOSED (2026-05-29)
 
 All review findings are APPLIED / VERIFIED / DEFENSIBLE; zero
 NEEDS-VERIFICATION; the build blocker is resolved and independently
-reproduced by the reviewer. The only standing discipline is the
+reproduced by the reviewer (stable pair `mdbook 0.4.52` + `mdbook-katex
+0.9.4`, `make book` → "built HTML at book-build/book", 0 KaTeX errors,
+`make check-examples` green). The only standing discipline is the
 intentional publication gate (clear `Moving-target warning` callouts
 after dated fact-checking before any file is marked `final`; lint
-enforces it). **This review is ready to close** pending the user's
-explicit go-ahead to delete the review file (see below).
+enforces it).
 
-## Process to close
+**The review is closed.** On the user's explicit go-ahead, the source
+review file `review-2026-05-28-0105.md` was deleted in the same commit
+that finalized this line — it had no remaining actionable items, and
+this disposition record is the durable closing artefact. The deleted
+file remains recoverable from git history if ever needed. If the
+recurring reviewer regenerates the file on a later run, treat its
+contents as fresh input rather than reopened findings, and reconcile
+only items not already dispositioned above.
 
-1. For each NEEDS-VERIFICATION row: re-read the actual current
-   manuscript text, decide APPLY / RETHINK / REJECT, and update this row
-   in the table.
-2. Batch the APPLY items into one or two commits, citing this doc.
-3. When the table has zero NEEDS-VERIFICATION rows **and** the user
-   has explicitly signed off on the final state, delete
-   `review-2026-05-28-0105.md` in a final commit that points at this
-   disposition record as the canonical closing artefact. **The review
-   file is not deleted while processing is ongoing.**
+## Process to close — completed
+
+1. ✅ Every finding walked through and dispositioned (zero
+   NEEDS-VERIFICATION remaining).
+2. ✅ APPLY items landed across the commits cited in the tables above.
+3. ✅ With zero NEEDS-VERIFICATION rows and the user's explicit
+   sign-off, `review-2026-05-28-0105.md` was deleted in the closing
+   commit that finalized this record. This disposition document is the
+   canonical closing artefact; the deleted review file is recoverable
+   from git history.
