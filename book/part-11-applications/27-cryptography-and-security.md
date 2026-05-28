@@ -67,7 +67,7 @@ A fifth family, **isogeny-based** cryptography (SIDH/SIKE), looked like a strong
 Key engineering numbers for the standardised schemes, in round figures:
 
 - **ML-KEM-768** (Kyber-768, FIPS 203, NIST category 3): public key 1184 B, ciphertext 1088 B, shared secret 32 B. Encapsulation and decapsulation under 100 microseconds on a modern CPU.
-- **ML-DSA-65** (Dilithium-3, FIPS 204, category 3): public key 1952 B, signature 3293 B. Sign and verify on the order of milliseconds.
+- **ML-DSA-65** (Dilithium-3, FIPS 204, category 3): public key 1952 B, signature 3309 B. Sign and verify on the order of milliseconds.
 - **SLH-DSA-SHA2-128s** (SPHINCS+-128s, FIPS 205, category 1): public key 32 B, signature 7856 B. Signing is slow (several hundred milliseconds), verification is fast.
 - **Falcon-512** (renamed FN-DSA in NIST's draft, FIPS 206 IPD submitted August 2025, category 1): public key 897 B, signature 666 B. Smallest signatures of any forthcoming PQC signature scheme, but constant-time floating-point implementation is hard; final FIPS 206 is expected late 2026 / early 2027.
 - **Classic McEliece (mceliece6960119)** (category 5): public key 1 047 319 B (~1 MB), ciphertext 226 B. KEM only.
