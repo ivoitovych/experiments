@@ -60,15 +60,25 @@ For each row above, the procedure was:
 | Falcon → FN-DSA / FIPS 206: IPD submitted August 2025; final expected late 2026 / early 2027 | §27.4, §27.5 | NIST FIPS 206 status update (Aug 2025); DigiCert / data-centre coverage | 2026-05 | **Updated** — status sharpened to "IPD submitted Aug 2025" |
 | RSA-2048 resource bounds — Gidney–Ekerå 2019 (~20M qubits, ~8h) and Gidney 2025 (<1M, <1 week) | §27.2 | Same sources as Pass 2 §15.3 | 2026-05 | **Updated** — replaces the prior "~$10^7$ physical qubits / 10 hours" which now disagreed with the updated §15.3 |
 
+## Pass 4 — 2026-05-28 (§33 satellite-QKD and twin-field QKD)
+
+| Claim | Manuscript | Source | Verified | Verdict |
+|---|---|---|---|---|
+| Micius launched 2016, operational since 2017; decoy-state BB84 to Xinglong / Nanshan / Graz; Beijing–Vienna QKD-secured videoconference over ~7600 km (Sept 29, 2017) | §33.4 | EurekAlert/CAS press release on the Bai–Zeilinger videoconference; *Wikipedia: Quantum Experiments at Space Scale*; *Science* 356, 1140 (2017) | 2026-05 | Confirmed |
+| Micius distributed Bell-pair entanglement between two ground stations separated by ~1200 km | §33.4 | Yin et al., *Science* (2017) — satellite-based entanglement distribution | 2026-05 | Confirmed |
+| Twin-field QKD has reached more than 1000 km of fibre | §33.4 | Liu et al., "Experimental Twin-Field QKD Over 1000 km Fiber Distance", *Phys. Rev. Lett.* (2023), arXiv:2303.15795 (1,002 km record) | 2026-05 | Confirmed |
+| Listed TF-QKD demonstration distances (511 / 605 / 658 / 830 / >1000 km) | §33.4 | Series of TF-QKD experiments by USTC and Toshiba-Cambridge groups, 2019–2023 | 2026-05 | Confirmed |
+| 2024–2026 satellite-QKD missions: SpeQtre / SpeQtral-1 (SG), QEYSSat (CA), EAGLE-1 (ESA/EU), QUBE-II, CAPSat | §33.4 | National space-agency / mission pages; *The Quantum Insider* coverage | 2026-05 | Confirmed (general statement; individual mission launch dates remain in flux) |
+
 ## Open items for the next pass
 
 - §8.12 native gate sets (current IBM, Google, IonQ, Quantinuum, neutral
   atom, photonic).
 - §15.8 VQE shot-budget claims; §15.10 QML state-of-field.
-- §33 satellite-QKD (Micius and follow-ons).
 - Appendix D suggested reading: URL/version freshness for SDKs and live docs.
 - Byte-level confirmation of ML-DSA-65 / SLH-DSA-SHA2-128s key & signature
   sizes (only ML-KEM-768 was verified at byte granularity in this pass).
+- §1.6, §2.6, §3.x current hardware references — alignment with Appendix F.
 - §8.12 native gate sets (current IBM, Google, IonQ, Quantinuum, neutral
   atom, photonic).
 - §15.8 VQE shot-budget claims; §15.10 QML state-of-field.
