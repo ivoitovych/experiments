@@ -81,6 +81,48 @@ render-visible problems are caught by screenshot review. The cheaper
 layer should catch what it can, so human review is reserved for the
 things only a human can judge.
 
+### Building the rendered book (`make book`) — versions and troubleshooting
+
+`make book` (via `scripts/build_book.py`) assembles `book-build/` and then
+invokes mdBook with the `mdbook-katex` preprocessor to render math at build
+time. The toolchain is **version-sensitive**; these are the supported
+versions and the answers to the common failure.
+
+- **Required `mdbook` version:** `>= 0.4, < 0.5` (a hard prerequisite;
+  tested with 0.4.48).
+- **Required `mdbook-katex` version:** `0.9.4`.
+- **Install / downgrade the pinned pair** (add `--force` to replace an
+  already-installed newer version):
+
+  ```
+  cargo install mdbook --version '>=0.4,<0.5' --locked --force
+  cargo install mdbook-katex --version 0.9.4 --locked --force
+  ```
+
+- **Is `book-build/` safe to delete?** Yes. It is fully regenerated on
+  every `make book`; nothing under it is source. Deleting it changes
+  nothing about the failure below, because the error happens *after*
+  source assembly, when mdBook invokes the preprocessor.
+- **Symptom on an unsupported toolchain:** with `mdbook 0.5.x` the build
+  fails during the preprocessor with
+  `invalid type: null, expected any valid TOML value …` followed by
+  `The "katex" preprocessor exited unsuccessfully`. Cause: mdBook 0.5.x
+  changed the render-context stream passed to preprocessors, and
+  `mdbook-katex 0.9.4` does not accept it. `scripts/build_book.py` detects
+  an out-of-range `mdbook` and prints this guidance before attempting the
+  build.
+- **Ownership of `mdbook 0.5.x` support:** out of scope for now. The
+  project pins the 0.4.x line as the supported toolchain. Adopting
+  mdBook 0.5.x is a future task that belongs in the build configuration
+  and/or the choice of KaTeX preprocessor (upgrade `mdbook-katex` to a
+  0.5-compatible release, or replace it), not in the manuscript. Until
+  then, build with `mdbook 0.4.x`.
+
+The CI-free verification baseline is: `make lint` clean, `make book`
+clean (0 KaTeX errors) under the pinned toolchain, and
+`make check-examples` green. All three are reproduced under
+`mdbook 0.4.48` + `mdbook-katex 0.9.4`.
+
 ## Screenshot workflow
 
 Screenshots are *review artifacts*, not source. The repo contains the

@@ -366,6 +366,29 @@ remaining list, dispositioned:
   guard is the durable fix, and our build on mdbook 0.4.48 is verified
   (0 KaTeX errors).
 
+## Reviewer fourth reconciliation (2026-05-29 00:26 CEST)
+
+Confirmed landed: §12.4 resource ledger and §15.1 exact Grover bound
+are "materially fixed". The remaining "still open" entries are all
+either (a) ledger-tracked pre-publication fact-checks (§8.12, §15.3,
+§15.8, §15.10), (b) Qiskit checks I have verified empirically on 2.4.1
+but the reviewer cannot run in their env (§9.1, §14.2, §15.1
+`StatevectorSampler`), or (c) the mdbook 0.5.x build blocker. The one
+genuinely new, actionable ask was a **documentation ownership gap**:
+
+- **Build/tooling setup + troubleshooting docs — applied
+  (`<reconcile-4>`):** added a "Building the rendered book" subsection to
+  `PROCESS.md` answering the reviewer's five questions explicitly —
+  required mdbook range (`>=0.4,<0.5`, hard prerequisite, tested 0.4.48),
+  required mdbook-katex (`0.9.4`), exact install/downgrade commands
+  (`--locked --force`), whether `book-build/` is safe to delete (yes,
+  regenerated each run; not the cause), the 0.5.x failure symptom and
+  cause, and explicit ownership ("mdbook 0.5.x support is out of scope
+  for now; 0.4.x is the supported line"). README now points to it.
+
+This is the last open item from the reconciliations; everything else is
+either applied/verified or a tracked pre-publication fact-check.
+
 ## Process to close
 
 1. For each NEEDS-VERIFICATION row: re-read the actual current

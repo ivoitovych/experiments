@@ -69,7 +69,9 @@ cargo install mdbook-katex --version 0.9.4 --locked
 
 mdbook 0.5.x is not yet supported — mdbook-katex 0.9.4 fails against its
 render-context schema (a TOML parse error) before HTML rendering completes.
-`make book` prints this guidance if it detects an out-of-range mdbook.
+`make book` prints this guidance if it detects an out-of-range mdbook. See
+[PROCESS.md](PROCESS.md) (*Building the rendered book*) for the full
+version matrix and troubleshooting, including downgrade commands.
 
 ## Project documents
 
