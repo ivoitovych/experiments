@@ -1,8 +1,8 @@
 # Chapter 37. Endgame
 
-[← Previous: Chapter 36](36-how-to-judge-claims.md) · [Table of Contents](../../README.md) · [Next: Appendix A. Notation Reference →](../99-back-matter/appendix-a-notation-reference.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 9 / 9
+
+[← Previous: Chapter 36](36-how-to-judge-claims.md) · [Table of Contents](../../README.md) · [Next: Appendix A. Notation Reference →](../99-back-matter/appendix-a-notation-reference.md)
 
 Thirty-six chapters ago this book opened with a promise to treat quantum computing as the working subject of a serious engineering field rather than as an inevitability or a marketing story. The intervening material — postulates, linear algebra, gates and circuits, algorithms, error correction, hardware, practice — was the long form of that promise. This closing chapter collects the perspective that the rest of the book has been building toward. It is the only chapter that does not introduce new technical machinery; it is the only chapter where the question "so what?" is the load-bearing one. The aim is to leave the reader with a calibrated map of the field as it stands in 2026, a defensible view of where it is plausibly headed, an honest list of where it is *not* headed, and concrete guidance on how to continue once the book is closed.
 

@@ -1,8 +1,8 @@
 # Appendix B. Common Gates and Their Matrices
 
-[← Previous: Appendix A. Notation Reference](appendix-a-notation-reference.md) · [Table of Contents](../../README.md) · [Next: Appendix C. Useful Identities and Decompositions →](appendix-c-identities-and-decompositions.md)
-
 > **Status:** draft · **Phase:** 2 · **Sections drafted:** 9 / 9
+
+[← Previous: Appendix A. Notation Reference](appendix-a-notation-reference.md) · [Table of Contents](../../README.md) · [Next: Appendix C. Useful Identities and Decompositions →](appendix-c-identities-and-decompositions.md)
 
 This appendix collects the matrices of the gates that appear most often in the
 rest of the book, in a form you can look up quickly. Each entry gives a short

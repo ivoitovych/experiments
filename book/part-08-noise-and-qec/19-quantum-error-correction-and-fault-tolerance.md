@@ -1,8 +1,8 @@
 # Chapter 19. Quantum Error Correction and Fault Tolerance
 
-[← Previous: Chapter 18](18-noise-decoherence-and-errors.md) · [Table of Contents](../../README.md) · [Next: Chapter 20 →](../part-09-hardware-and-software/20-quantum-hardware-platforms.md)
-
 > **Status:** draft · **Phase:** 4 · **Sections drafted:** 23 / 23
+
+[← Previous: Chapter 18](18-noise-decoherence-and-errors.md) · [Table of Contents](../../README.md) · [Next: Chapter 20 →](../part-09-hardware-and-software/20-quantum-hardware-platforms.md)
 
 Chapter 18 catalogued the ways physical qubits go wrong: $T_1$ decay, dephasing, coherent miscalibration, leakage, readout error. Chapter 19 is about the response. Classical computers tolerate noisy components because every bit is implemented by a macroscopic voltage with huge margin to its nearest neighbour, and because a flipped bit can simply be copied and majority-voted. Quantum computers have neither margin: the state lives in a continuous Hilbert space, an arbitrary rotation of one amplitude is an error, and the no-cloning theorem (§5.7) forbids the obvious copy-and-vote. The miracle is that quantum error correction is nevertheless possible — not as a clever encoding here and there, but as a complete theory with stabiliser formalism, code families, threshold theorems, and a fault-tolerant compilation pipeline that turns noisy physical hardware into arbitrarily reliable logical qubits at a polylog overhead. This chapter walks that pipeline end to end.
 

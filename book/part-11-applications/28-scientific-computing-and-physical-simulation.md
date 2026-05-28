@@ -1,8 +1,8 @@
 # Chapter 28. Scientific Computing and Physical Simulation
 
-[← Previous: Chapter 27](27-cryptography-and-security.md) · [Table of Contents](../../README.md) · [Next: Chapter 29 →](29-optimization-finance-and-industrial.md)
-
 > **Status:** draft · **Phase:** 5 · **Sections drafted:** 8 / 8
+
+[← Previous: Chapter 27](27-cryptography-and-security.md) · [Table of Contents](../../README.md) · [Next: Chapter 29 →](29-optimization-finance-and-industrial.md)
 
 Of all the applications quantum computers could plausibly deliver, **simulating quantum systems** is the one that has motivated the field since Feynman's 1982 lecture "Simulating Physics with Computers". The argument is structural: a system of $n$ interacting quantum particles has a state space of dimension exponential in $n$, and no classical algorithm is known — or believed to exist — that simulates generic quantum dynamics in time polynomial in $n$. A quantum computer, on the other hand, *is* a controlled quantum system, and the Hamiltonian-simulation algorithms of [Chapter 16](../part-06-algorithms/16-modern-algorithmic-frontier.md) deliver provably polynomial-time evolution for local Hamiltonians. Among the candidate "killer apps" for quantum computing — cryptanalysis, optimisation, machine learning, simulation — only simulation has both a clean theoretical case for exponential advantage *and* a list of industrially valuable target problems where classical methods are demonstrably inadequate.
 

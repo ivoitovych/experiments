@@ -1,8 +1,8 @@
 # Chapter 9. Quantum Circuits
 
-[← Previous: Chapter 8](08-quantum-gates.md) · [Table of Contents](../../README.md) · [Next: Chapter 10 →](10-core-quantum-phenomena.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 13 / 13
+
+[← Previous: Chapter 8](08-quantum-gates.md) · [Table of Contents](../../README.md) · [Next: Chapter 10 →](10-core-quantum-phenomena.md)
 
 Gates are the alphabet; circuits are the sentences. This chapter introduces the **circuit model** as the standard way of describing quantum computations and as the abstraction that every quantum SDK exposes. Beyond diagram conventions, the material here covers ancilla qubits and uncomputation (the bookkeeping that makes reversible computation possible), measurement in circuits (deferred, mid-circuit, feedforward), and the metrics — depth, width, connectivity — that govern whether a circuit can actually run on a given device.
 

@@ -1,8 +1,8 @@
 # Chapter 22. Hardware Engineering Metrics
 
-[← Previous: Chapter 21](21-quantum-control-and-electronics.md) · [Table of Contents](../../README.md) · [Next: Chapter 23 →](23-quantum-programming-compilation-and-tooling.md)
-
 > **Status:** draft · **Phase:** 4 · **Sections drafted:** 14 / 14
+
+[← Previous: Chapter 21](21-quantum-control-and-electronics.md) · [Table of Contents](../../README.md) · [Next: Chapter 23 →](23-quantum-programming-compilation-and-tooling.md)
 
 Every vendor benchmark sheet for a quantum processor is a small adversarial document. The numbers on it are not lies — they were measured carefully, often by world-class experimentalists — but they were measured *under specific conditions*, with specific calibration choices, and against specific protocols whose strengths and blind spots are not advertised on the same page. The job of an experienced developer reading such a sheet is to translate the metrics into something operationally useful: *will this algorithm, on this device, give me the answer I want?* This chapter is the dictionary for that translation.
 

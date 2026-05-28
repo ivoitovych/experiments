@@ -1,8 +1,8 @@
 # Chapter 18. Noise, Decoherence, and Errors
 
-[← Previous: Chapter 17](../part-07-complexity/17-complexity-theory.md) · [Table of Contents](../../README.md) · [Next: Chapter 19 →](19-quantum-error-correction-and-fault-tolerance.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 18 / 18
+
+[← Previous: Chapter 17](../part-07-complexity/17-complexity-theory.md) · [Table of Contents](../../README.md) · [Next: Chapter 19 →](19-quantum-error-correction-and-fault-tolerance.md)
 
 Chapter 10 introduced decoherence, channels, and the Kraus representation as the mathematical apparatus that describes any open-system evolution. Chapter 11 promoted the measurement postulate to POVMs and gave the calibration-matrix picture of readout error. This chapter sits between that apparatus and the error-correcting machinery of Chapter 19: it is the chapter where the formal channels become *named* failure modes of real hardware, where $T_1$ and $T_2$ stop being abstract decay times and become numbers a benchmark returns, and where the noise budget of a circuit becomes something you can attribute to specific physical mechanisms. Almost nothing here is new mathematics — the channels, the Kraus operators, the POVMs, and the Lindblad dissipators have all been built. What changes is the question: instead of "what is a channel", we ask "which channel is *this* device, how do we measure it, and what can we do about it before we are forced to spend qubits on error correction".
 

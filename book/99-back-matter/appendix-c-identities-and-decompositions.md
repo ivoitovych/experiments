@@ -1,8 +1,8 @@
 # Appendix C. Useful Identities and Decompositions
 
-[← Previous: Appendix B. Common Gates and Their Matrices](appendix-b-common-gates.md) · [Table of Contents](../../README.md) · [Next: Appendix D. Suggested Reading and Reference Papers →](appendix-d-suggested-reading.md)
-
 > **Status:** draft · **Phase:** 2 · **Sections drafted:** 6 / 6
+
+[← Previous: Appendix B. Common Gates and Their Matrices](appendix-b-common-gates.md) · [Table of Contents](../../README.md) · [Next: Appendix D. Suggested Reading and Reference Papers →](appendix-d-suggested-reading.md)
 
 This appendix collects the working identities used throughout the book in a
 form you can look up quickly. The **matrix forms** of the gates appearing

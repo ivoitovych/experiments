@@ -1,8 +1,8 @@
 # Chapter 3. Physical Intuition Behind Quantum Mechanics
 
-[← Previous: Chapter 2](02-classical-to-quantum-contrast.md) · [Table of Contents](../../README.md) · [Next: Chapter 4 →](../part-02-formalism/04-mathematical-background.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 10 / 10
+
+[← Previous: Chapter 2](02-classical-to-quantum-contrast.md) · [Table of Contents](../../README.md) · [Next: Chapter 4 →](../part-02-formalism/04-mathematical-background.md)
 
 Chapter 2 contrasted classical and quantum computation at the level of
 state-space objects and operations. This chapter steps back from

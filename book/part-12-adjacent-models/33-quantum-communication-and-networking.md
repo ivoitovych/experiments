@@ -1,8 +1,8 @@
 # Chapter 33. Quantum Communication and Networking
 
-[← Previous: Chapter 32](32-adjacent-computational-models.md) · [Table of Contents](../../README.md) · [Next: Chapter 34 →](../part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md)
-
 > **Status:** draft · **Phase:** 5 · **Sections drafted:** 6 / 6
+
+[← Previous: Chapter 32](32-adjacent-computational-models.md) · [Table of Contents](../../README.md) · [Next: Chapter 34 →](../part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md)
 
 Computation is one use of quantum mechanics; *communication* is the other, and it is the one that has reached the field earlier. The ideas trace back to the same resource — entanglement — but flow through different infrastructure: not a processor, but a *channel*. A photon travelling through fibre or vacuum can carry a qubit between two laboratories, and two laboratories sharing one Bell pair can do things — superdense coding, teleportation, key distribution, distributed sensing — that no classical channel between them can do. The trouble is loss. Optical fibre attenuates a photon by roughly $0.2\\,\mathrm{dB/km}$, satellites can punch through atmosphere but cannot keep a quantum memory in low-earth orbit forever, and the no-cloning theorem (§5.13) forbids the classical fix of amplification. Practical quantum networking is therefore an exercise in distributing entanglement against the loss budget — and the architectural ideas (repeaters, swapping, distillation, twin-field protocols, satellites) are all answers to that one constraint.
 

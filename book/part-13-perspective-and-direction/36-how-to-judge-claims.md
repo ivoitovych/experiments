@@ -1,8 +1,8 @@
 # Chapter 36. How to Judge Claims in Quantum Computing
 
-[← Previous: Chapter 35](35-interpretational-and-conceptual-pitfalls.md) · [Table of Contents](../../README.md) · [Next: Chapter 37 →](37-endgame.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 8 / 8
+
+[← Previous: Chapter 35](35-interpretational-and-conceptual-pitfalls.md) · [Table of Contents](../../README.md) · [Next: Chapter 37 →](37-endgame.md)
 
 Quantum computing has the misfortune of being interesting enough to attract press releases and technical enough that most readers cannot quickly check what the press releases say. The gap between "this is a beautiful experiment" and "this changes what an industrial customer should buy" is wide, frequently mis-stated, and only occasionally bridged in good faith. This chapter is the field manual for the skeptical reader: how to distinguish a defensible claim from a marketed one, how to read a hardware paper, an algorithm paper, and a benchmark report, and how to weigh a roadmap against the physical-scaling reality the previous chapters built up. It is also the chapter that names specific case studies — Sycamore, Jiuzhang, the IBM utility-scale experiments, Schnorr 2023, the Tang dequantisation cascade — and uses them as worked examples of the failure modes the chapter catalogues.
 

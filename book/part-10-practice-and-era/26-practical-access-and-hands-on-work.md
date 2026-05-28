@@ -1,8 +1,8 @@
 # Chapter 26. Practical Access and Hands-On Work
 
-[← Previous: Chapter 25](25-nisq-and-early-fault-tolerant-era.md) · [Table of Contents](../../README.md) · [Next: Chapter 27 →](../part-11-applications/27-cryptography-and-security.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 7 / 7
+
+[← Previous: Chapter 25](25-nisq-and-early-fault-tolerant-era.md) · [Table of Contents](../../README.md) · [Next: Chapter 27 →](../part-11-applications/27-cryptography-and-security.md)
 
 The previous chapters have built theory. This chapter is the bridge between book and keyboard: how to pick a simulator or device, how to access real quantum hardware, which SDK is the right entry point for which goal, how to design an experiment that won't waste device time, and how to read the literature without being buried by it. The focus is the pragmatic decisions you'll have to make in the first few weeks of actually trying things.
 

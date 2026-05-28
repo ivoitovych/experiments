@@ -1,8 +1,8 @@
 # Chapter 29. Optimization, Finance, and Industrial Use Cases
 
-[← Previous: Chapter 28](28-scientific-computing-and-physical-simulation.md) · [Table of Contents](../../README.md) · [Next: Chapter 30 →](30-quantum-machine-learning.md)
-
 > **Status:** draft · **Phase:** 5 · **Sections drafted:** 6 / 6
+
+[← Previous: Chapter 28](28-scientific-computing-and-physical-simulation.md) · [Table of Contents](../../README.md) · [Next: Chapter 30 →](30-quantum-machine-learning.md)
 
 Combinatorial optimisation, portfolio construction, derivative pricing, and industrial scheduling are the three application areas that have absorbed the largest share of corporate quantum-computing budgets between roughly 2017 and 2026. They are also the three areas where the gap between marketing material and demonstrated advantage is widest. This chapter walks through the quantum proposals — QAOA, quantum annealing, amplitude-estimation-based Monte Carlo, Grover-amplified search, QUBO embeddings of scheduling problems — and against each one, the corresponding classical state of the art that any near-term quantum approach has to beat. The honest summary, stated up front: as of 2026 there is no production deployment of a quantum optimiser, a quantum risk engine, or a quantum scheduler that has been shown to outperform a well-tuned classical baseline on a problem the customer actually cares about. The pilots are real, the tooling is real, the funded teams are real; the advantage is not.
 

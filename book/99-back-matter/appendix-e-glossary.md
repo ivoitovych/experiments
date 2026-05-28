@@ -1,8 +1,8 @@
 # Appendix E. Glossary
 
-[← Previous: Appendix D. Suggested Reading and Reference Papers](appendix-d-suggested-reading.md) · [Table of Contents](../../README.md) · [Next: Appendix F. 2026 Hardware Snapshot →](appendix-f-hardware-snapshot-2026.md)
-
 > **Status:** draft · **Phase:** 2 · **Sections drafted:** 7 / 7
+
+[← Previous: Appendix D. Suggested Reading and Reference Papers](appendix-d-suggested-reading.md) · [Table of Contents](../../README.md) · [Next: Appendix F. 2026 Hardware Snapshot →](appendix-f-hardware-snapshot-2026.md)
 
 This glossary collects book-specific definitions for the terms that recur
 throughout the manuscript. Entries are short by design: a one-line

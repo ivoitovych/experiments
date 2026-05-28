@@ -1,8 +1,8 @@
 # Chapter 8. Quantum Gates
 
-[← Previous: Chapter 7](../part-03-qubits/07-multiple-qubits-and-entanglement.md) · [Table of Contents](../../README.md) · [Next: Chapter 9 →](09-quantum-circuits.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 14 / 14
+
+[← Previous: Chapter 7](../part-03-qubits/07-multiple-qubits-and-entanglement.md) · [Table of Contents](../../README.md) · [Next: Chapter 9 →](09-quantum-circuits.md)
 
 Chapters 5–7 fixed the static picture: states, composite systems, entanglement. This chapter introduces the dynamics that a quantum computer can actually realise. Gates are unitaries acting on one or two qubits at a time; circuits are sequences of gates; and the questions of practical interest are which gates one can implement on a given device, which finite sets of gates are universal, and how to compile an arbitrary unitary down to those primitives. The chapter is heavy on matrices — open Appendix B alongside it for the gate cheat sheet.
 

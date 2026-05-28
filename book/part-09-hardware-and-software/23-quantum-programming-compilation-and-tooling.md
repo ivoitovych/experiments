@@ -1,8 +1,8 @@
 # Chapter 23. Quantum Programming, Compilation, and Tooling
 
-[← Previous: Chapter 22](22-hardware-engineering-metrics.md) · [Table of Contents](../../README.md) · [Next: Chapter 24 →](24-classical-simulation-of-quantum-systems.md)
-
 > **Status:** draft · **Phase:** 4 · **Sections drafted:** 15 / 15
+
+[← Previous: Chapter 22](22-hardware-engineering-metrics.md) · [Table of Contents](../../README.md) · [Next: Chapter 24 →](24-classical-simulation-of-quantum-systems.md)
 
 Chapter 22 fixed the vocabulary for *what* a quantum device is — a collection of qubits with measured fidelities, coherence times, connectivity, and a native gate set. This chapter is about the software stack that turns the abstract unitary you wrote in a notebook into the pulse train that lands on those qubits. Conceptually the stack is a tower of intermediate representations: a high-level program describes a *unitary* or a *circuit*; a gate-level IR (OpenQASM 3, QIR, Quil) pins down a discrete sequence of operations; a compilation pipeline rewrites that sequence to respect a target device's connectivity and native gate set; and a scheduler emits the timed envelopes that the control electronics (Chapter 21) actually play. Every working SDK in 2026 — Qiskit, Cirq, PennyLane, tket, Q#, pyQuil, Braket — implements some slice of this tower; the differences between them are mostly *which* abstraction layer is the primary surface and *which* hardware vendors they target natively.
 

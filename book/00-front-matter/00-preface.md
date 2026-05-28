@@ -1,8 +1,8 @@
 # Preface
 
-[Table of Contents](../../README.md) · [Next: Recommended / Assumed Background and Self-Check →](01-background-and-self-check.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 11 / 11
+
+[Table of Contents](../../README.md) · [Next: Recommended / Assumed Background and Self-Check →](01-background-and-self-check.md)
 
 ## Why This Book Exists
 

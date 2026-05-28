@@ -1,8 +1,8 @@
 # Chapter 2. Classical-to-Quantum Contrast
 
-[← Previous: Chapter 1](01-why-quantum-computing-exists.md) · [Table of Contents](../../README.md) · [Next: Chapter 3 →](03-physical-intuition.md)
-
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 7 / 7
+
+[← Previous: Chapter 1](01-why-quantum-computing-exists.md) · [Table of Contents](../../README.md) · [Next: Chapter 3 →](03-physical-intuition.md)
 
 Chapter 1 argued that a separate model of computation exists because certain physical systems are intractable to simulate classically. This chapter draws the dividing line directly: it lists, side by side and without yet introducing formal machinery, the places where the quantum model of computation departs from the classical one you already know. The aim is not precision — Chapters 4, 5, and 6 cover that — but orientation. By the end of this chapter you should be able to answer, for any classical concept you reach for, the question "does this transfer, transfer with modification, or fail entirely?" Each section closes with the answer for one such concept, in roughly the order an experienced developer encounters them while reading a quantum tutorial: bits, randomness, reversibility, gates, state-space size, hardware realisation, and control flow.
 
