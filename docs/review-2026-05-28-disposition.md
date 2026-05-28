@@ -389,6 +389,22 @@ genuinely new, actionable ask was a **documentation ownership gap**:
 This is the last open item from the reconciliations; everything else is
 either applied/verified or a tracked pre-publication fact-check.
 
+## Reviewer fifth review (2026-05-29 00:40 CEST)
+
+The reviewer read the two toolchain-doc commits and confirmed the
+"who owns this / what should users do?" ambiguity is resolved; the
+build failure in their env is now "the expected result of an
+unsupported `mdbook 0.5.x`", not a repository-instructions problem.
+One trivial polish remained and is applied:
+
+- **README install snippet missing `--force` — applied (`<reconcile-5>`):**
+  added `--force` to both `cargo install` commands in the README so the
+  snippet also covers the downgrade-from-0.5.x case (PROCESS.md already
+  had it). No other findings; the reviewer's assessment is all-clear.
+
+No manuscript or technical findings remain across all five
+reconciliation rounds.
+
 ## Process to close
 
 1. For each NEEDS-VERIFICATION row: re-read the actual current
