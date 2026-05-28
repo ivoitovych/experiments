@@ -331,12 +331,12 @@ The reviewer reran the checks. Confirmed landed: §8.3, §9.8, §13.7,
 §15.3, §15.8, §15.10, and the build-script version warning. Their
 remaining list, dispositioned:
 
-- **§9.1 Qiskit endian — verified (`<reconcile-3>`):** checked
+- **§9.1 Qiskit endian — verified (`757a20e`):** checked
   empirically against Qiskit 2.4.1 — `X` on qubit 0 yields the label
   `'01'` (qubit 0 = rightmost / least-significant) and qubit 0 is drawn
   on the *top* wire. The book's statement ("Qiskit puts the
   least-significant qubit on top") is correct. No manuscript change.
-- **§12.4 state merging — applied (`<reconcile-3>`):** the reviewer was
+- **§12.4 state merging — applied (`757a20e`):** the reviewer was
   right to keep pressing. My earlier clause wrongly called the classical
   communication "asymptotically negligible". Corrected: the protocol
   runs in the **LOCC** setting and draws on three resources — quantum
@@ -346,12 +346,12 @@ remaining list, dispositioned:
   *not* what $S(A\mid B)$ measures). $S(A\mid B)$ is the quantum cost/yield,
   not the total communication.
 - **§14.2 / §15.1 Qiskit `StatevectorSampler` — verified
-  (`<reconcile-3>`):** the in-text §15.1 code is identical to the tested
+  (`757a20e`):** the in-text §15.1 code is identical to the tested
   `examples/grover.py`; `make check-examples` runs it (and the §14.2
   Deutsch–Jozsa analogue) clean under Qiskit 2.4.1. The exact API call
   `StatevectorSampler().run([qc], shots=…).result()[0].data.c.get_counts()`
   is exercised. No change needed.
-- **§15.1 Grover bound — applied (`<reconcile-3>`):** stated the exact
+- **§15.1 Grover bound — applied (`757a20e`):** stated the exact
   success probability $\sin^2((2k+1)\theta)$ and derived the $\ge 1-M/N$
   guarantee from $(2k+1)\theta$ landing within $\theta$ of $\pi/2$, rather
   than asserting the bound.
