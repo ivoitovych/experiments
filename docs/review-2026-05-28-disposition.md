@@ -275,6 +275,44 @@ The earlier apply commits `d8319bb`, `88731cd`, `8e8943e` cover the
 front matter, back matter, and Ch 1–15 substantive items from the
 first pass.
 
+## Reviewer post-pull reconciliation (2026-05-28 23:57 CEST)
+
+The reviewer appended a fresh reconciliation to `review-2026-05-28-0105.md`.
+It confirms the Ch 8–15 fixes above landed, and lists residual items.
+Disposition of that residual list:
+
+- **Already fixed before the reviewer's check (stale flags):** §13.7
+  "uncorrected classical" (now "best practical … end-to-end", `8e8943e`);
+  §15.1 Grover success-bound qualifier (`8e8943e`/`bc6e32c`). Verified
+  present in HEAD.
+- **Build blocker — addressed:** the reviewer's `make book` failure is a
+  toolchain mismatch (mdbook 0.5.3 vs mdbook-katex 0.9.4), not a config
+  bug. Root cause: nothing pinned the toolchain, so a fresh
+  `cargo install` pulled mdbook 0.5.x. Fixed by pinning the install
+  commands (README + Makefile) to mdbook 0.4.x + mdbook-katex 0.9.4 and
+  adding a version guard in `scripts/build_book.py` that prints
+  known-good guidance instead of failing cryptically. Our build with
+  mdbook 0.4.48 is verified: 0 KaTeX errors.
+- **§8.3 — applied:** reframed to separate the *operator* identity
+  $HXH=Z$ (symmetric) from the *measurement* procedure ($X$ via a single
+  $H$ then a $Z$-basis readout); removed the "drop the trailing $H$"
+  framing the reviewer flagged.
+- **§12.4 — applied:** added a clause making explicit that $S(A\mid B)$ is
+  the *quantum* resource cost and that classical communication, used at
+  an asymptotically negligible rate, is outside the leading-order
+  accounting (complements the FQSW-equivalence note from `bc6e32c`).
+- **§14.2 / §15.1 Qiskit `StatevectorSampler` — verified:** `make
+  check-examples` runs `examples/deutsch_jozsa.py` and `examples/grover.py`
+  (both using `StatevectorSampler().run([qc], shots=…).result()[0].data.c.get_counts()`)
+  clean under Qiskit 2.4.1.
+- **Time-sensitive claims (§8.12, §9.8, §15.3, §15.8, §15.10):** these
+  remain perishable by nature; they carry explicit time anchors and are
+  tracked in `docs/fact-check-ledger.md`. Not defects — flagged for the
+  next dated fact-check pass before publication.
+
+These closures are in commit `<this-pass>` (manuscript §8.3/§12.4,
+toolchain pinning + guard, README/Makefile).
+
 ## Process to close
 
 1. For each NEEDS-VERIFICATION row: re-read the actual current
