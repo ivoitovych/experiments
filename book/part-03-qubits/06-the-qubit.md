@@ -114,11 +114,11 @@ measurement basis.
 
 The computational basis $\\{|0\rangle, |1\rangle\\}$ is special by
 hardware convention: it is the basis the readout device
-distinguishes. On superconducting qubits the two basis states are
+distinguishes. On superconducting qubits, for example, the two basis states are
 two energy levels of the qubit's Hamiltonian; on ion traps they are
-two hyperfine sublevels; on photonic qubits they are two polarisation
+typically two hyperfine sublevels; on photonic qubits they are often two polarisation
 states; on neutral atoms they are two long-lived atomic states. The
-physics differs by platform; the abstract Hilbert space does not.
+encodings differ by platform (and several platforms admit more than one choice); the abstract Hilbert space does not.
 
 In matrix form, projectors onto the computational basis are
 
@@ -223,7 +223,8 @@ state in one basis, measurement in either of the other two bases is
 $50/50$. The three Pauli operators $X$, $Y$, $Z$ pairwise anticommute,
 and their eigenbases are precisely these three mutually-unbiased bases
 of $\mathbb{C}^2$. The pattern generalises: $n$ qubits admit $2^n + 1$
-mutually unbiased bases (when $2^n$ is a prime power), and these
+mutually unbiased bases (the maximal number $d + 1$ in dimension
+$d = 2^n$, which exists because $2^n$ is a prime power), and these
 structures underlie quantum key distribution protocols (Chapter 27)
 and certain randomized algorithms.
 

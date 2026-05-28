@@ -19,7 +19,7 @@ A handful of glyph conventions are near-universal across vendors:
 - A measurement is a meter-style box, often with a "$D$"-shaped icon, followed by a double-line classical wire carrying the outcome bit.
 - Single-qubit gates are usually labelled by a letter or symbol ($H$, $X$, $T$, $R_Y(\theta)$); their box width is purely cosmetic.
 
-Three conventions are *not* universal and trip up readers crossing between sources. **Qubit ordering**: textbooks usually put the most-significant qubit on top (this book does), but Qiskit puts the least-significant qubit on top (so it lines up with classical bit-string order). **Time direction**: most diagrams run left-to-right, but a few physics texts run right-to-left to match the algebraic order $U_n \cdots U_2 U_1$. **Endianness in bit strings**: $|q_0 q_1 q_2\rangle$ might mean either $q_0$ is the top wire or the leftmost bit of the integer — check before computing. This book uses leftmost-as-most-significant throughout (Chapter 7) and matches the top-wire convention.
+Three conventions are *not* universal and trip up readers crossing between sources. **Qubit ordering**: textbooks usually put the most-significant qubit on top (this book does), but Qiskit puts the least-significant qubit on top (so it lines up with classical bit-string order; see the endianness discussion in Chapter 7). **Time direction**: most diagrams run left-to-right, but a few physics texts run right-to-left to match the algebraic order $U_n \cdots U_2 U_1$. **Endianness in bit strings**: $|q_0 q_1 q_2\rangle$ might mean either $q_0$ is the top wire or the leftmost bit of the integer — check before computing. This book uses leftmost-as-most-significant throughout (Chapter 7) and matches the top-wire convention.
 
 ![Bell-state preparation: a Hadamard on the top qubit, then a CNOT, then measurement of both qubits into a two-bit classical register — illustrating the control dot, the target, the meter symbol, and the double-line classical wire.](figures/bell-state.svg)
 
@@ -87,7 +87,7 @@ In practice this is a tool with two faces. **Theoretically**: assume all measure
 
 ## 9.8 Mid-Circuit Measurement
 
-A **mid-circuit measurement** is a measurement performed before the circuit ends. On platforms that support **non-demolition** readout (most superconducting and trapped-ion devices), the qubit survives in the post-measurement basis state and can be re-used; on destructive-readout platforms (many photonic schemes, some atom-array readout modes) the qubit is consumed and a fresh one must be supplied. The treatment below assumes non-demolition mid-circuit readout. Two regimes matter.
+A **mid-circuit measurement** is a measurement performed before the circuit ends. On platforms that support **non-demolition** readout (as of the mid-2020s, most superconducting and trapped-ion devices), the qubit survives in the post-measurement basis state and can be re-used; on destructive-readout platforms (many photonic schemes, some atom-array readout modes) the qubit is consumed and a fresh one must be supplied. The treatment below assumes non-demolition mid-circuit readout. Two regimes matter.
 
 **Reset and reuse**: after measurement, the qubit is in a known computational-basis state ($|0\rangle$ or $|1\rangle$). Resetting it to $|0\rangle$ (by applying $X$ if the outcome was $1$, or by an unconditional reset operation) lets the qubit be re-used as a fresh ancilla. This is essential on small devices where qubit count is the bottleneck.
 
@@ -150,7 +150,7 @@ Chapter 8 fixed the gate alphabet; this chapter assembled gates into circuits, w
 **Sanity checks before moving on.**
 
 1. Draw the Bell-state preparation circuit ($H$ on qubit 0, CNOT with qubit 0 as control) and identify its depth, width, and the time slice in which each gate fires.
-2. Take a circuit that uses one ancilla initialised to $|0\rangle$, applies a Toffoli, and measures the ancilla. Show that without uncomputation the data register is entangled with the ancilla.
+2. Take a circuit whose two data qubits start in a superposition (so the correlation produced is genuine entanglement, not just classical correlation), uses one ancilla initialised to $|0\rangle$, applies a Toffoli, and measures the ancilla. Show that without uncomputation the data register is entangled with the ancilla.
 3. Apply the deferred-measurement principle to teleportation: replace Alice's mid-circuit Bell measurement with a quantum operation followed by an end-of-circuit measurement. Verify the marginal statistics agree.
 4. On a linear-chain coupling graph $q_0 - q_1 - q_2 - q_3$, count the minimum number of SWAPs needed to apply a CNOT between $q_0$ and $q_3$.
 5. Apply rotation-merging to $R_Z(\pi/4) \cdot R_Z(-\pi/8)$ and compute the resulting single-rotation angle.

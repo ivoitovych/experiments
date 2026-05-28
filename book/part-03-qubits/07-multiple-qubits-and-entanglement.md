@@ -18,7 +18,7 @@ $$
 |a\rangle \otimes |b\rangle \;=\; \alpha_0 \beta_0 |00\rangle + \alpha_0 \beta_1 |01\rangle + \alpha_1 \beta_0 |10\rangle + \alpha_1 \beta_1 |11\rangle.
 $$
 
-Notational shorthands: $|a\rangle \otimes |b\rangle = |a\rangle|b\rangle = |ab\rangle$, and for basis states $|0\rangle \otimes |1\rangle = |01\rangle$. The convention used throughout this book is that the leftmost ket is the most-significant qubit (qubit 0), matching the bit-string ordering: $|01\rangle$ means qubit 0 is in $|0\rangle$, qubit 1 is in $|1\rangle$.
+Notational shorthands: $|a\rangle \otimes |b\rangle = |a\rangle|b\rangle = |ab\rangle$, and for basis states $|0\rangle \otimes |1\rangle = |01\rangle$. The convention used throughout this book is that the leftmost ket is the most-significant qubit (qubit 0), matching the bit-string ordering: $|01\rangle$ means qubit 0 is in $|0\rangle$, qubit 1 is in $|1\rangle$. (Heads-up on labels: "qubit 0" here is *this book's* leftmost, most-significant qubit; Qiskit numbers from the *least*-significant end, so its qubit 0 is our rightmost — see §4.2 and Appendix A before comparing with code.)
 
 For matrices and operators acting on the joint space, the tensor product is the Kronecker product. If $A$ acts on $\mathcal{H}_A$ and $B$ acts on $\mathcal{H}_B$, then $A \otimes B$ acts on $\mathcal{H}_A \otimes \mathcal{H}_B$ by
 
@@ -64,7 +64,7 @@ $$
 
 Try to factor it as $(\alpha|0\rangle + \beta|1\rangle) \otimes (\gamma|0\rangle + \delta|1\rangle)$. Expanding gives $\alpha\gamma|00\rangle + \alpha\delta|01\rangle + \beta\gamma|10\rangle + \beta\delta|11\rangle$, so we need $\alpha\delta = \beta\gamma = 0$ but $\alpha\gamma = \beta\delta = 1/\sqrt{2}$. The first conditions force at least one of $\alpha,\delta$ and at least one of $\beta,\gamma$ to be zero, which contradicts the second. No factorisation exists. The state is entangled.
 
-Entanglement is a property of the joint state, not of either subsystem in isolation, and it is preserved under local unitaries: applying $U_A \otimes U_B$ to an entangled state yields another entangled state. What entanglement gives you is correlations between subsystems that are stronger than any classical correlation, in a precise sense made operational by Bell's theorem (§7.9). It is also what most quantum algorithms exploit: an unentangled $n$-qubit computation can be simulated classically in $O(n)$ space.
+Entanglement is a property of the joint state, not of either subsystem in isolation, and it is preserved under local unitaries: applying $U_A \otimes U_B$ to an entangled state yields another entangled state. What entanglement gives you is correlations between subsystems that are stronger than any classical correlation, in a precise sense made operational by Bell's theorem (§7.9). It is also what most quantum algorithms that achieve a speedup rely on: a pure-state computation that stays unentangled can be simulated classically in $O(n)$ space, and growing multipartite entanglement is *necessary* for any exponential speedup in the pure-state setting (Jozsa–Linden 2003). Entanglement is not the whole story, though — certain mixed-state models (such as one-clean-qubit / DQC1) show an advantage with only vanishing entanglement.
 
 ## 7.5 Bell States
 
@@ -119,7 +119,7 @@ $$
 S \;=\; \langle A_0 B_0 \rangle + \langle A_0 B_1 \rangle + \langle A_1 B_0 \rangle - \langle A_1 B_1 \rangle,
 $$
 
-where $\langle X Y\rangle = E[XY]$ is the expectation of the product of outcomes.
+where $\langle X Y\rangle = E[XY]$ is the expectation of the product of outcomes. (The minus sign sits on the $A_1 B_1$ term by convention; permuting which of the four correlators is subtracted only changes the sign or labelling of $S$, not the bounds below.)
 
 **Classical bound.** For any local hidden-variable model, $|S| \leq 2$. The proof is one line: for any fixed values $a_0, a_1, b_0, b_1 \in \\{-1,+1\\}$, the algebraic identity $a_0 b_0 + a_0 b_1 + a_1 b_0 - a_1 b_1 = a_0(b_0+b_1) + a_1(b_0-b_1)$ has magnitude at most $2$, since one of $b_0 \pm b_1$ is $0$ and the other is $\pm 2$. Averaging over any joint distribution preserves the bound.
 
@@ -169,11 +169,11 @@ This is the maximally mixed single-qubit state. From Alice's local perspective, 
 
 Entanglement is consumed and produced by protocols. Three canonical examples:
 
-**Teleportation.** Alice and Bob share one Bell pair. Alice has an unknown qubit $|\psi\rangle$ she wants to send to Bob. She performs a Bell-basis measurement on her unknown qubit together with her half of the shared pair, getting two classical bits as outcome. She sends those bits over a classical channel. Bob applies one of four single-qubit corrections ($I$, $X$, $Z$, $XZ$) indexed by Alice's bits, and now holds $|\psi\rangle$. No qubit travelled; one ebit and two classical bits were consumed.
+**Teleportation.** Alice and Bob share one Bell pair. Alice has an unknown qubit $|\psi\rangle$ she wants to send to Bob. She performs a Bell-basis measurement on her unknown qubit together with her half of the shared pair, getting two classical bits as outcome. She sends those bits over a classical channel. Bob applies one of four single-qubit corrections, indexed by Alice's two bits $(m_1 m_2)$: $00 \to I$, $01 \to X$, $10 \to Z$, $11 \to ZX$ (apply $X$ first, then $Z$, so the composite operator is $Z \cdot X$, read right to left), and now holds $|\psi\rangle$. No qubit travelled; one ebit and two classical bits were consumed.
 
 ![Teleportation circuit: a Bell pair on q1–q2, Alice's Bell measurement on the message qubit q0 and her half q1, and Bob's classically-conditioned X and Z corrections on q2.](figures/teleportation.svg)
 
-**Superdense coding.** Reverse roles: Alice and Bob share one Bell pair. Alice applies one of four local operations ($I$, $X$, $Z$, $XZ$) to her half, depending on a two-bit message, and sends the qubit to Bob. Bob measures both qubits in the Bell basis and recovers the two bits. One qubit transmission, aided by one ebit, carries two classical bits.
+**Superdense coding.** Reverse roles: Alice and Bob share one Bell pair. Alice applies one of four local operations ($I$, $X$, $Z$, $ZX$, using the same operator order as the teleportation corrections above) to her half, depending on a two-bit message, and sends the qubit to Bob. Bob measures both qubits in the Bell basis and recovers the two bits. One qubit transmission, aided by one ebit, carries two classical bits.
 
 **Entanglement-based key distribution (Ekert).** Alice and Bob share many Bell pairs. They measure each pair in randomly chosen bases and use a subset of outcomes to estimate the CHSH value $S$. If $S$ is close to $2\sqrt{2}$, the pairs were undisturbed, and the remaining correlated outcomes yield a shared secret key. Any eavesdropper attempting to learn information necessarily disturbs the state and reduces $S$ below the threshold.
 
