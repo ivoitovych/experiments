@@ -207,8 +207,8 @@ surfaced one by one, each from a real render-time bug:
    destroying the chapter's careful single-bar/double-bar distinction.
    Source needs `\\|`.
 
-5. **`$$ ... $$` inside blockquotes or list-item continuations**
-   (`55a4c40`). The entire equation rendered as literal `$$` text.
+5. **<code>&dollar;&dollar; ... &dollar;&dollar;</code> inside blockquotes or list-item continuations**
+   (`55a4c40`). The entire equation rendered as literal <code>&dollar;&dollar;</code> text.
    No backslash trick fixes this one — the equation has to be pulled
    *out* of the `>` block or list continuation and rewritten as a
    plain bold-prefixed paragraph.
@@ -216,7 +216,7 @@ surfaced one by one, each from a real render-time bug:
 `tools/lint.py` grew a math-block scanner that detects each pattern
 in source. The lint rules pay for themselves on every commit — when
 later edits introduced new `\,` instances they were caught
-immediately, and the round-12 `$$`-in-blockquote rule fired on
+immediately, and the round-12 <code>&dollar;&dollar;</code>-in-blockquote rule fired on
 fresh content as soon as it was added.
 
 `PROCESS.md` now records each gotcha with symptom, cause, and fix
@@ -232,7 +232,7 @@ configuration, prompting a switch to `\mathrm{}` for `\mathrm{tr}`,
 
 Source-level lint catches what it can catch from source. Some
 rendering bugs are only visible in the rendered output. Several of
-the gotchas above (`\|`, `$$`-in-blockquote, an early `\operatorname`
+the gotchas above (`\|`, <code>&dollar;&dollar;</code>-in-blockquote, an early `\operatorname`
 case) were caught only because the user opened the rendered chapter
 in GitHub and screenshotted it manually.
 
@@ -292,7 +292,7 @@ says what the conventions are; `PROCESS.md` says how and why.
 
 ## Phase 7 — Upstream feedback
 
-Once the `$$`-in-blockquote/list bug was understood, a check of
+Once the <code>&dollar;&dollar;</code>-in-blockquote/list bug was understood, a check of
 existing GitHub Community Discussions found that the bug had already
 been reported twice:
 
@@ -348,15 +348,15 @@ diagnoses and added a new bug:
 
 - **Inline `pmatrix` is broken in every container** (`066f47d`).
   A2, B2, C2, D2, E2, F2, G2, H2, J2, K2 *all* render
-  `$ A = \begin{pmatrix}...\end{pmatrix} $` as literal LaTeX. The
+  <code>&dollar; A = \begin{pmatrix}...\end{pmatrix} &dollar;</code> as literal LaTeX. The
   §4.4 sanity-check `Q`-matrix that was blamed on the surrounding
   blockquote, and all five §4.5 inline Pauli/Hadamard/phase matrices
   that the round-13 visual review had claimed were rendering, were
   actually broken because of the inline-math parser, not the
   containers.
-- **Multi-line `$$...$$` inside a plain `>` blockquote actually
+- **Multi-line <code>&dollar;&dollar;...&dollar;&dollar;</code> inside a plain `>` blockquote actually
   works.** B7, B8, B9, B10 all rendered correctly. The earlier
-  "$$ in blockquote does not enter math mode" rule was wrong; the
+  "<code>&dollar;&dollar;</code> in blockquote does not enter math mode" rule was wrong; the
   original §4.13 break was almost certainly caused by an equation
   continuation line beginning with `+` (Section L of the test sheet
   tests this hypothesis directly), which Markdown reads as a list
@@ -383,9 +383,9 @@ diagnoses and added a new bug:
   better than the explicit 2×2 in that context anyway.
 
 `tools/lint.py` was simultaneously corrected: the over-broad
-"blockquote `$$`" rule was removed, the indented-list-continuation
+"blockquote <code>&dollar;&dollar;</code>" rule was removed, the indented-list-continuation
 case kept, and a new `check_inline_pmatrix` rule added so that any
-`$...\begin{pmatrix}...$` is caught at source level. Five rules
+<code>&dollar;...\begin{pmatrix}...&dollar;</code> is caught at source level. Five rules
 total, each now backed by a specific cell in the test sheet.
 
 ### 8.3 Single source of truth: the canonical bug memo
@@ -399,7 +399,7 @@ test sheet. Five bugs:
    (the `\\`, `\{`, `\}`, `\,`, `\|` family).
 2. Inline `pmatrix` in every container.
 3. Display math inside an indented list-item continuation.
-4. Plain-blockquote `$$` is fine *except* when a continuation line
+4. Plain-blockquote <code>&dollar;&dollar;</code> is fine *except* when a continuation line
    starts with a Markdown list marker — hypothesis pending Section
    L confirmation.
 5. Norm bars collapse to single bars inside Markdown table cells.
@@ -422,7 +422,7 @@ rewritten:
 - The new comment cites the test sheet URL as a single-page
   reproducer, enumerates the three confirmed bugs not covered by
   existing Discussions, and corrects the record on
-  blockquote-`$$` (which the existing Discussion claims is broken
+  blockquote-<code>&dollar;&dollar;</code> (which the existing Discussion claims is broken
   and which the test sheet says works under the current renderer).
 - The new howto explains what `community/community #122438` and
   `#16958` cover and what they do not, and argues — with a
