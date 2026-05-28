@@ -57,7 +57,7 @@ progress: ## Regenerate PROGRESS.md from chapter status blocks.
 index: ## Regenerate the back-matter Index from the curated term list.
 	$(SYS_PY) scripts/generate_index.py
 
-book: ## Build the mdBook HTML into book-build/ (needs mdbook 0.4.x + mdbook-katex 0.9.4; see README).
+book: ## Build the mdBook HTML into book-build/ (needs a matched mdbook+mdbook-katex pair: 0.4.x+0.9.x or 0.5.x+0.10.x; see README).
 	$(SYS_PY) scripts/build_book.py
 
 figures: figures-setup ## Generate circuit figures (SVG next to chapters + PNG previews in .artifacts/).

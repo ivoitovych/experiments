@@ -232,10 +232,10 @@ def assemble() -> None:
     print(f"assembled build tree at {BUILD.relative_to(ROOT)} ({len(file_entries())} chapters)")
 
 
-def mdbook_version() -> tuple[int, ...] | None:
-    """Return the installed mdbook version as a tuple, or None if unparseable."""
+def tool_version(tool: str) -> tuple[int, ...] | None:
+    """Return ``tool --version`` as a (major, minor, patch) tuple, or None."""
     try:
-        out = subprocess.run(["mdbook", "--version"], capture_output=True,
+        out = subprocess.run([tool, "--version"], capture_output=True,
                              text=True, check=True).stdout
     except (subprocess.CalledProcessError, OSError):
         return None
@@ -243,21 +243,67 @@ def mdbook_version() -> tuple[int, ...] | None:
     return tuple(int(g) for g in m.groups()) if m else None
 
 
-# Known-good toolchain. mdbook-katex 0.9.x speaks the mdbook 0.4.x
-# preprocessor protocol; mdbook 0.5.x changed the render-context schema and
-# mdbook-katex 0.9.4 fails against it with a TOML/JSON parse error before HTML
-# rendering completes. Keep these in sync with README.md and the Makefile.
-MDBOOK_MIN = (0, 4, 0)
-MDBOOK_MAX_EXCLUSIVE = (0, 5, 0)
-KNOWN_GOOD_HINT = (
-    "Known-good toolchain: mdbook 0.4.x (tested with 0.4.48) + "
-    "mdbook-katex 0.9.4.\n"
-    "  Install pinned versions with:\n"
-    "    cargo install mdbook --version '>=0.4,<0.5' --locked\n"
-    "    cargo install mdbook-katex --version 0.9.4 --locked\n"
-    "mdbook 0.5.x is not yet supported: mdbook-katex 0.9.4 fails against its\n"
-    "render-context schema (TOML parse error) before HTML rendering completes."
-)
+# Supported toolchain is a set of compatible *pairs*, not a single pin.
+# mdbook-katex is a preprocessor and is coupled to mdBook's preprocessor
+# protocol, which changed at mdbook 0.5.0. The coupling is visible in
+# mdbook-katex's own dependency manifest:
+#   - mdbook-katex 0.9.x depends on `mdbook_fork4ls ^0.4.48`  -> mdbook 0.4.x
+#   - mdbook-katex 0.10.x depends on `mdbook-preprocessor ^0.5.1` -> mdbook 0.5.x
+# So each mdbook minor line has a matching mdbook-katex line; mixing across
+# lines is what produces the "invalid type: null …" TOML parse error.
+#
+# Each entry: mdbook (major, minor) -> (katex requirement label,
+#             katex install argument, tested-in-this-repo?).
+SUPPORTED_PAIRS = {
+    (0, 4): ("mdbook-katex 0.9.x", "0.9.4", True),   # stable; verified here
+    (0, 5): ("mdbook-katex 0.10.x", "0.10.0-alpha", False),  # 0.10 still pre-release
+}
+# Katex major.minor expected for a given mdbook minor line.
+_KATEX_LINE_FOR_MDBOOK = {(0, 4): (0, 9), (0, 5): (0, 10)}
+
+
+def _pair_table() -> str:
+    rows = []
+    for (maj, minr), (katex_label, _arg, tested) in sorted(SUPPORTED_PAIRS.items()):
+        tag = " (tested in this repo)" if tested else " (pre-release katex)"
+        rows.append(f"    mdbook {maj}.{minr}.x  +  {katex_label}{tag}")
+    return "\n".join(rows)
+
+
+def toolchain_hint() -> str:
+    return ("Supported toolchain pairs (mdbook is coupled to a matching "
+            "mdbook-katex):\n" + _pair_table() + "\n"
+            "  Install a matching pair, e.g.:\n"
+            "    cargo install mdbook --version '>=0.4,<0.5' --locked --force\n"
+            "    cargo install mdbook-katex --version 0.9.4 --locked --force\n"
+            "  or, for the mdbook 0.5.x line:\n"
+            "    cargo install mdbook --locked --force\n"
+            "    cargo install mdbook-katex --version 0.10.0-alpha --locked --force")
+
+
+def check_toolchain() -> None:
+    """Warn (never block) if the installed mdbook / mdbook-katex versions are
+    not a known-compatible pair. The manuscript and generated book.toml are
+    version-neutral, so the build is always attempted."""
+    mb = tool_version("mdbook")
+    kx = tool_version("mdbook-katex")
+    if mb is None:
+        return
+    line = mb[:2]
+    if line not in SUPPORTED_PAIRS:
+        print(f"NOTE: mdbook {'.'.join(map(str, mb))} is a line this repo has "
+              f"not exercised. Attempting the build anyway.\n{toolchain_hint()}")
+        return
+    expected_katex = _KATEX_LINE_FOR_MDBOOK.get(line)
+    if kx is not None and expected_katex is not None and kx[:2] != expected_katex:
+        katex_label, katex_arg, _ = SUPPORTED_PAIRS[line]
+        print(f"WARNING: mdbook {'.'.join(map(str, mb))} needs {katex_label}, "
+              f"but mdbook-katex {'.'.join(map(str, kx))} is installed — these "
+              f"are different preprocessor-protocol lines and the build will "
+              f"likely fail with an 'invalid type: null …' TOML error.\n"
+              f"  Install the matching preprocessor:\n"
+              f"    cargo install mdbook-katex --version {katex_arg} --locked --force\n"
+              f"  (or switch mdbook to match your mdbook-katex.)\n{toolchain_hint()}")
 
 
 def main() -> None:
@@ -267,18 +313,12 @@ def main() -> None:
     selftest()
     assemble()
     if shutil.which("mdbook"):
-        ver = mdbook_version()
-        if ver is not None and not (MDBOOK_MIN <= ver < MDBOOK_MAX_EXCLUSIVE):
-            shown = ".".join(str(n) for n in ver)
-            print(f"WARNING: mdbook {shown} is outside the supported range "
-                  f"(>=0.4, <0.5).\n{KNOWN_GOOD_HINT}\n"
-                  "Attempting the build anyway; if it fails during the katex "
-                  "preprocessor, downgrade mdbook to the 0.4.x line.")
+        check_toolchain()
         subprocess.run(["mdbook", "build"], cwd=BUILD, check=True)
         print(f"built HTML at {(BUILD / 'book').relative_to(ROOT)}")
     else:
         print("mdbook not found on PATH; assembled sources only.\n"
-              + KNOWN_GOOD_HINT)
+              + toolchain_hint())
 
 
 if __name__ == "__main__":

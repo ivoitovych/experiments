@@ -22,7 +22,7 @@ disposition record.
 | 2 | `TOC.md` says Index not yet produced | APPLIED | `8365708` |
 | 3 | `scripts/build_book.py` SyntaxWarning | APPLIED | raw docstring, `8365708` |
 | 4 | `STYLE.md` understates figure coverage | APPLIED | `8365708` |
-| 5 | Full mdBook HTML build not verifiable in reviewer's env | DEFENSIBLE | environment-specific to reviewer; our build is verified (0 KaTeX errors / 0 broken links since `026aed9`); ledger Pass 1 documents the pinned toolchain |
+| 5 | Full mdBook HTML build not verifiable in reviewer's env | APPLIED | root cause was a too-narrow toolchain policy: the supported range is now compatible *pairs* (mdbook 0.4.x+mdbook-katex 0.9.x, **or** 0.5.x+0.10.x), evidenced by mdbook-katex's own crate deps (`mdbook_fork4ls ^0.4.48` vs `mdbook-preprocessor ^0.5.1`); pair-aware guard in `scripts/build_book.py`, docs in README + PROCESS. The reviewer's 0.5.3 env now has a documented matching katex (0.10.x). Our build verified on the 0.4.48+0.9.4 pair (0 KaTeX errors) |
 | 6 | 2025/2026 claims need a dated fact-check | APPLIED | seven dated passes recorded in `docs/fact-check-ledger.md` |
 
 ## Front-matter notes
