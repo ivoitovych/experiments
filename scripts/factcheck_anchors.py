@@ -32,7 +32,7 @@ ANCHOR_RE = re.compile(
 
 def norm(s: str) -> str:
     s = s.lower()                   # case (anchors often start a sentence)
-    for ch in "*$\\{}":             # markdown emphasis + LaTeX math noise
+    for ch in "*$\\{}>":            # markdown emphasis/blockquote + LaTeX math noise
         s = s.replace(ch, "")
     for ch in "\"'“”‘’":  # straight + typographic quotes
         s = s.replace(ch, "")
