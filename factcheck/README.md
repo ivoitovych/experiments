@@ -40,39 +40,67 @@ Out of scope (don't clutter the file):
 - Routine algebra a reader can check inline.
 - Opinion / framing explicitly flagged as such in the manuscript.
 
-## Verification methods — source is not the only one
+## Independence principle
+
+Each entry must be **self-contained** — the claim, the method, and (once
+verified) the source make sense on their own, without opening the chapter the
+entry mirrors. This lets a reviewer (human or agent) verify the entry as an
+isolated task, and lets the directory double as a reusable reference. In
+practice:
+
+- The **claim** is a standalone statement. No "the chapter shows that…",
+  no "as discussed above".
+- The **method** description recalls the derivation or names the source
+  directly. No "see §4.7", no "proved in Chapter 11", no "previewed for
+  Chapter 14".
+- The **find-in-text** field is the *one* place a back-reference into the
+  chapter lives, by design — it's the locator.
+
+A claim like "Holevo bound: the accessible information sup I(X; Y) is at most
+χ = S(ρ) − Σ p_x S(ρ_x)" is verifiable on its own. A claim that says only
+"Holevo bound, deferred to Chapter 12" is not.
+
+## Verification methods
 
 Every entry names a **method**. Do *not* force an external URL onto a claim
 that isn't externally sourced, or the math chapters fill with false "uncited"
 flags. The methods are:
 
-- `external` — verified against an outside source. Give a citation + link/DOI.
-- `derivation` — verified by an internal derivation. Point to it
-  (`→ §4.3`, or the proof in this section).
-- `check` — verified by a runnable artifact. Point to it
-  (`→ examples/grover_count.py`).
-- `convention` — verified as internally consistent with a stated convention
-  (`→ §2 notation`, Appendix A).
+- `external` — backed by an outside source. The Source field carries the
+  citation + link/DOI once verified.
+- `derivation` — follows from standard mathematics. The Method field recalls
+  the derivation in one line, so a reviewer can reproduce it without the
+  chapter.
+- `check` — verified by a runnable artifact (e.g. `examples/grover_count.py`).
+  Name the artifact in the Source field.
+- `convention` — a stated notation/sign/ordering choice. The check is
+  book-wide consistency.
 
 ## Entry format
 
 ````markdown
-## §15.3 — Gidney (2025) RSA-2048 resource estimate
+### Claim: Gidney (2025) RSA-2048 resource estimate — under 1 million physical qubits, under one week, same noise assumptions
 
-- **Claim** (anchor): "under 1 million physical qubits, under one week"
-- **Method**: external
-- **Source**: Gidney, arXiv:2505.15917 (May 2025) — https://arxiv.org/abs/2505.15917
-- **Verified**: 2026-05 · **Verdict**: confirmed
-- **Comment**: supersedes the prior unsourced ~10M-qubit / ~10h intermediate figures.
+- **Method:** external — supersedes the earlier ~10M-qubit / ~10h estimate; key innovations are approximate residue arithmetic, yoked surface codes, and a smaller magic-state-distillation budget.
+- **Source:** Gidney, arXiv:2505.15917 (May 2025) — https://arxiv.org/abs/2505.15917
+- **Status:** confirmed (2026-05)
+- **Find in text:** "under 1 million physical qubits, under one week"
 ````
 
-- **Anchor**: a short *quoted* phrase that actually appears in the section.
-  Quotes survive renumbering; section/line numbers do not. If the manuscript
-  wording changes, the anchor stops matching — which is exactly the signal the
-  self-check below looks for.
-- **Verdict**: `confirmed` / `updated` / `contested` / `open`.
-- **Verified**: `YYYY-MM`, matching the manuscript's perishable-snapshot
-  convention (`PROCESS.md`, "Moving-target warning").
+- **Claim** — a standalone sentence; prefix with `Claim:` so the reader never
+  has to guess what the line is.
+- **Method** — `external` / `derivation` / `check` / `convention`, followed by
+  one sentence that *recalls* the derivation or *names* the source, so the
+  entry is verifiable on its own.
+- **Source** — empty (`—`) until the claim is verified; then a real citation
+  with a link/DOI if external, or the artifact path if `check`.
+- **Status** — `not yet verified` / `confirmed` / `updated` / `contested`,
+  optionally with a `YYYY-MM` date, matching the manuscript's
+  perishable-snapshot convention (`PROCESS.md`, "Moving-target warning").
+- **Find in text** — a verbatim sentence from the section. Quotes survive
+  renumbering; section/line numbers do not. If the manuscript wording changes
+  the locator stops matching, which is exactly the signal the self-check looks
+  for. **This is the one field allowed to depend on the chapter.**
 
 ## Two run modes (separation of concerns)
 
@@ -95,16 +123,17 @@ The self factcheck run should flag:
 
 Checks (1) and (2) are mechanised in
 [`scripts/factcheck_anchors.py`](../scripts/factcheck_anchors.py) — run it from
-the repo root; exit code 0 means all anchors resolve. Matching is **normalized**,
-not byte-exact: it folds case, markdown emphasis (`**`), and LaTeX noise
-(`$`, `\`, `{}`) before comparing, so a cosmetic escaping difference is not
-reported as drift while genuine wording changes still are. Two consequences for
-how you write anchors:
+the repo root; exit code 0 means all locators resolve. Matching is
+**normalized**, not byte-exact: it folds case, markdown emphasis (`**`),
+blockquote markers (`>`), straight and typographic quotes, and LaTeX noise
+(`$`, `\`, `{}`) before comparing, so cosmetic escaping or callout-box markup
+is not reported as drift while genuine wording changes still are. Two
+consequences for how you write find-in-text locators:
 
-- Don't splice non-contiguous text with `…` — an anchor must be a *single
+- Don't splice non-contiguous text with `…` — the locator must be a *single
   contiguous run* that appears in the section.
-- Prefer a distinctive **prose** fragment over raw LaTeX; if a claim is purely
-  mathematical, anchor on the surrounding prose where possible.
+- Quote a full sentence where possible. It's both more readable and a tighter
+  drift detector than a short fragment.
 
 ## Status
 
