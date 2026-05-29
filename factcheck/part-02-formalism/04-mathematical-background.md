@@ -1,210 +1,166 @@
 # Factcheck — §4 Mathematical Background
 
-Mirrors `book/part-02-formalism/04-mathematical-background.md`.
-Extraction pass 2026-05 — claims identified and anchored; verification still OPEN.
-
-This chapter is predominantly standard finite-dimensional linear algebra, Dirac
-notation, and classical information theory. The vast majority of content is
-`derivation` (standard results) or `convention` (stated notation choices).
-Entries below capture the few claims that a reviewer would want to verify against
-a named theorem or an external source, plus the most consequential conventions.
+> **Reviewer companion** for `book/part-02-formalism/04-mathematical-background.md`.
+> Each entry states a claim in plain language, says how it can be checked, gives
+> its current verification status, and quotes a phrase you can search for to
+> find it in the chapter. This chapter is mostly standard linear algebra — only
+> the claims a reviewer might actually want to confirm are listed.
+>
+> - **Method** — how the claim is checked: *external* (a named outside source),
+>   *derivation* (follows from standard or in-text mathematics), or *convention*
+>   (a stated notation choice the rest of the book must use consistently).
+> - **Status** — *open* (not yet verified), *confirmed*, *updated*, or *contested*.
+> - **Find in text** — a verbatim phrase from the chapter, used to locate the
+>   claim and to detect when the wording drifts (the self-check greps for it).
 
 ---
 
-## §4.1 — Born rule stated as probability recipe
+## §4.1 Complex Numbers and Probability Amplitudes
 
-- **Claim** (anchor): "The Born rule says that the probability of obtaining outcome 0 on measurement is"
-- **Method**: derivation
-- **Source**: → §4.1; standard postulate of quantum mechanics, repeated formally in Chapter 5.
-- **Verified**: — · **Verdict**: open
-- **Comment**: statement is the standard Born rule; the chapter explicitly defers the postulate formulation to Chapter 5.
+### The Born rule gives a measurement outcome's probability as the squared magnitude of its amplitude
+- **Method:** derivation — standard quantum-mechanics postulate; stated informally here and formalised in Chapter 5.
+- **Status:** open — not yet verified.
+- **Find in text:** "The Born rule says that the probability of obtaining outcome 0 on measurement is"
 
-## §4.1 — Global phase physically irrelevant
+### A global phase multiplying the entire state is physically unobservable
+- **Method:** derivation — §4.1 shows the phase cancels out of every measurement probability.
+- **Status:** open — not yet verified.
+- **Find in text:** "global phase is physically irrelevant"
 
-- **Claim** (anchor): "global phase is physically irrelevant"
-- **Method**: derivation
-- **Source**: → §4.1 (inline calculation showing cancellation in all measurement probabilities).
-- **Verified**: — · **Verdict**: open
+### A Hadamard sends |+⟩ and |−⟩ to computational-basis states, so a measurement then tells them apart perfectly
+- **Method:** derivation — follows from H² = I and the definitions of |+⟩ and |−⟩ (shown inline).
+- **Status:** open — not yet verified.
+- **Find in text:** "a computational-basis measurement distinguishes them perfectly"
 
-## §4.1 — Hadamard distinguishes plus/minus states
+## §4.2 Vector Spaces
 
-- **Claim** (anchor): "a computational-basis measurement distinguishes them perfectly"
-- **Method**: derivation
-- **Source**: → §4.1 (inline Hadamard action verified by matrix multiplication).
-- **Verified**: — · **Verdict**: open
-- **Comment**: standard result; the two outcomes follow from H² = I and the definitions of |+⟩, |−⟩.
+### An n-qubit register has a state space of dimension 2ⁿ
+- **Method:** derivation — the dimension of an n-fold tensor product; elaborated in §4.8.
+- **Status:** open — not yet verified.
+- **Find in text:** "For an $n$-qubit register, the state space is"
 
-## §4.2 — n-qubit state space dimension is 2^n
+### Bit strings are ordered most-significant-bit first (x₁ is the MSB)
+- **Method:** convention — book-wide ordering, collected again in §4.16. Note: some frameworks (e.g. Qiskit) use the opposite, LSB-first order.
+- **Status:** open — not yet verified.
+- **Find in text:** "Throughout this book the bit string"
 
-- **Claim** (anchor): "the state space is"
-- **Method**: derivation
-- **Source**: → §4.2 (standard dimension-of-tensor-product argument, elaborated in §4.8).
-- **Verified**: — · **Verdict**: open
-- **Comment**: anchor is intentionally minimal prose fragment; the surrounding sentence contains the claim.
+## §4.3 Inner Products, Norms, and Orthonormal Bases
 
-## §4.2 — MSB computational-basis ordering convention
+### Inner products are conjugate-linear in the first argument (the physics convention)
+- **Method:** convention — differs from the common mathematics convention (which is linear in the first argument).
+- **Status:** open — not yet verified.
+- **Find in text:** "This convention is conjugate-linear in the first argument and linear in the second, which is the physics convention"
 
-- **Claim** (anchor): "Ordering convention"
-- **Method**: convention
-- **Source**: → §4.2; collected again in §4.16. Some frameworks (Qiskit 2.x) use the opposite (LSB) convention.
-- **Verified**: — · **Verdict**: open
+### The Cauchy–Schwarz inequality holds for the inner product
+- **Method:** derivation — standard result in any finite-dimensional inner-product space; it underlies fidelity bounds, and equality holds exactly for linearly dependent vectors.
+- **Status:** open — not yet verified.
+- **Find in text:** "The Cauchy–Schwarz inequality"
 
-## §4.3 — Physics inner-product convention (conjugate-linear in first argument)
+## §4.4 Matrices and Linear Operators
 
-- **Claim** (anchor): "This convention is conjugate-linear in the first argument and linear in the second, which is the physics convention"
-- **Method**: convention
-- **Source**: → §4.3; noted as differing from the mathematics convention.
-- **Verified**: — · **Verdict**: open
+### The adjoint A† is defined by ⟨u, Av⟩ = ⟨A†u, v⟩, independent of basis
+- **Method:** derivation — standard definition; the conjugate-transpose formula is its matrix realisation.
+- **Status:** open — not yet verified.
+- **Find in text:** "is the defining property of the adjoint independent of basis"
 
-## §4.3 — Cauchy–Schwarz inequality
+## §4.5 Hermitian, Unitary, Normal, and Positive Operators
 
-- **Claim** (anchor): "The Cauchy–Schwarz inequality"
-- **Method**: derivation
-- **Source**: → §4.3; standard result in any finite-dimensional inner-product space.
-- **Verified**: — · **Verdict**: open
-- **Comment**: equality condition (linear dependence) and the quantum-mechanical role (fidelity bounds) are also standard.
+### A normal operator has an orthonormal eigenbasis; Hermitian and unitary operators are both normal, but not conversely
+- **Method:** derivation — the spectral theorem for finite-dimensional normal operators (decomposition given in §4.7).
+- **Status:** open — not yet verified.
+- **Find in text:** "Hermitian and unitary are both normal; the converse is false"
 
-## §4.4 — Adjoint defined by inner-product relation
+### The eigenvalues of a unitary operator lie on the unit circle
+- **Method:** derivation — follows from U†U = I, which forces |λ|² = 1.
+- **Status:** open — not yet verified.
+- **Find in text:** "Eigenvalues lie on the unit circle"
 
-- **Claim** (anchor): "It satisfies"
-- **Method**: derivation
-- **Source**: → §4.4; standard definition of the adjoint independent of basis.
-- **Verified**: — · **Verdict**: open
-- **Comment**: the entries-level formula (conjugate transpose) and the abstract property are both standard linear algebra.
+### The Pauli matrices satisfy the commutator relation [X, Y] = 2iZ (and cyclic permutations)
+- **Method:** derivation — direct from the explicit Pauli matrix entries.
+- **Status:** open — not yet verified.
+- **Find in text:** "[X, Y] = 2iZ"
 
-## §4.5 — Spectral theorem for normal operators (orthonormal eigenbasis)
+## §4.7 Spectral Decomposition
 
-- **Claim** (anchor): "Normal: A A"
-- **Method**: derivation
-- **Source**: → §4.7 (spectral decomposition proved/stated for normal operators); standard spectral theorem for finite-dimensional normal operators.
-- **Verified**: — · **Verdict**: open
-- **Comment**: the claim that Hermitian and unitary are both normal, and the converse fails, is standard; the orthonormal-eigenbasis conclusion is the spectral theorem.
+### A function of a normal operator acts by applying that function to its eigenvalues (functional calculus)
+- **Method:** derivation — standard polynomial/analytic functional calculus for finite-dimensional normal operators; underlies time evolution U(t) = e^(−iHt) (with ℏ = 1, §4.16).
+- **Status:** open — not yet verified.
+- **Find in text:** "functional calculus: for any function"
 
-## §4.5 — Unitary eigenvalues lie on the unit circle
+### For a normal operator, the matrix exponential reduces to exponentiating its eigenvalues in the spectral basis
+- **Method:** derivation — from the power-series definition of the matrix exponential together with the functional calculus.
+- **Status:** open — not yet verified.
+- **Find in text:** "for a normal A with spectral decomposition"
 
-- **Claim** (anchor): "Eigenvalues lie on the unit circle"
-- **Method**: derivation
-- **Source**: → §4.5; follows from U†U = I and |λ|² = 1.
-- **Verified**: — · **Verdict**: open
+## §4.8 Tensor Products
 
-## §4.5 — Pauli commutation relations
+### The tensor product of two normalized states is itself normalized
+- **Method:** derivation — multiplicativity of the inner product on product vectors (shown inline).
+- **Status:** open — not yet verified.
+- **Find in text:** "a product of two normalized single-qubit states is itself normalized"
 
-- **Claim** (anchor): "[X, Y] = 2iZ"
-- **Method**: derivation
-- **Source**: → §4.5 (explicit matrix entries given; verification is direct multiplication).
-- **Verified**: — · **Verdict**: open
+### Determinant of a Kronecker product: det(A⊗B) = (det A)ⁿ (det B)ᵐ for A m×m and B n×n
+- **Method:** derivation — standard Kronecker-product identity; non-obvious enough that a reviewer would want to confirm it.
+- **Status:** open — not yet verified.
+- **Find in text:** "If $A$ is $m \times m$ and $B$ is $n \times n$, then"
 
-## §4.7 — Functional calculus via spectral decomposition
+### Among pure bipartite states, product (separable) states form a measure-zero subset
+- **Method:** derivation — the Segre variety has strictly lower dimension than the ambient projective space; the claim is qualified to pure states and nontrivial bipartitions.
+- **Status:** open — not yet verified.
+- **Find in text:** "product/separable states form a measure-zero"
 
-- **Claim** (anchor): "functional calculus: for any function"
-- **Method**: derivation
-- **Source**: → §4.7; standard polynomial (and analytic) functional calculus for normal operators in finite dimensions.
-- **Verified**: — · **Verdict**: open
-- **Comment**: the application to Hamiltonian time evolution U(t) = e^{−iHt} and the setting ℏ = 1 are stated as conventions (§4.16).
+### Qiskit (2.x) exposes several distinct qubit-ordering conventions the reader must track
+- **Method:** convention (perishable) — Qiskit 2.x documentation; re-verify against current Qiskit on each update. The four sub-conventions are the circuit diagram, the integer, the printed string, and the statevector index.
+- **Status:** open — not yet verified.
+- **Find in text:** "related but distinct ordering conventions that the reader has to track"
 
-## §4.7 — Matrix exponential collapses to spectral form for normal operators
+## §4.9 Singular Values and the Singular Value Decomposition
 
-- **Claim** (anchor): "for a normal A with spectral decomposition"
-- **Method**: derivation
-- **Source**: → §4.7; consequence of the power-series definition of the matrix exponential and the functional calculus, standard result.
-- **Verified**: — · **Verdict**: open
+### Every complex matrix has a singular value decomposition
+- **Method:** derivation — standard theorem; the singular values are unique, the factors U and V are not.
+- **Status:** open — not yet verified.
+- **Find in text:** "singular value decomposition (SVD)"
 
-## §4.8 — Tensor product of two normalized states is normalized
+### The singular values are the square roots of the eigenvalues of A†A
+- **Method:** derivation — from A = UΣV†, giving A†A = VΣ²V†.
+- **Status:** open — not yet verified.
+- **Find in text:** "they are the square roots of the eigenvalues of the positive semidefinite operator"
 
-- **Claim** (anchor): "a product of two normalized single-qubit states is itself normalized"
-- **Method**: derivation
-- **Source**: → §4.8 (inner-product multiplicativity on product vectors, shown inline).
-- **Verified**: — · **Verdict**: open
+### Trace distance equals the largest total-variation distance achievable by any measurement
+- **Method:** derivation — the Holevo–Helstrom operational characterisation; stated here, proved in Chapter 11.
+- **Status:** open — not yet verified.
+- **Find in text:** "it equals the maximum classical total-variation distance obtainable from any measurement"
 
-## §4.8 — Determinant identity for Kronecker product
+## §4.13 Fourier Transform Basics
 
-- **Claim** (anchor): "det(A"
-- **Method**: derivation
-- **Source**: → §4.8; standard identity: det(A ⊗ B) = (det A)^n (det B)^m for A m×m, B n×n.
-- **Verified**: — · **Verdict**: open
-- **Comment**: this is a non-obvious identity that a reviewer would want to confirm; it is standard but worth anchoring.
+### The exact QFT circuit uses O(n²) gates (Hadamards plus controlled phases)
+- **Method:** derivation — standard QFT construction (see also Chapter 14); this is a gate count, not a circuit depth.
+- **Status:** open — not yet verified.
+- **Find in text:** "the standard exact construction uses"
 
-## §4.8 — Product states are measure-zero among pure bipartite states
+### This book's QFT uses the negative-exponent sign; Qiskit's QFTGate uses the opposite (positive) sign
+- **Method:** convention (perishable) — Qiskit 2.x documentation; re-verify against current docs.
+- **Status:** open — not yet verified.
+- **Find in text:** "implements the opposite, positive-exponent convention"
 
-- **Claim** (anchor): "product/separable states form a measure-zero subset"
-- **Method**: derivation
-- **Source**: → §4.8; standard differential-geometry / algebraic-geometry argument (Segre variety has lower dimension than the ambient projective space).
-- **Verified**: — · **Verdict**: open
-- **Comment**: claim is qualified to pure-state meaning and nontrivial bipartitions in the text.
+### The QFT is not a faster FFT for arbitrary data: loading an arbitrary length-N vector as amplitudes generically costs Ω(N)
+- **Method:** derivation — standard state-preparation lower bound; reading the result back out is limited by the Born rule.
+- **Status:** open — not yet verified.
+- **Find in text:** "Loading an arbitrary length-N classical vector as amplitudes generically costs"
 
-## §4.8 — Qiskit 2.x qubit-ordering conventions
+## §4.14 Probability and Information Theory Refresher
 
-- **Claim** (anchor): "related but distinct ordering conventions that the reader has to track"
-- **Method**: convention
-- **Source**: → §4.8 endian-warning box; Qiskit 2.x documentation. Should be re-verified against current Qiskit docs when chapter is updated.
-- **Verified**: — · **Verdict**: open
-- **Comment**: perishable software-convention claim; the four sub-conventions (circuit diagram, integer, printed-string, statevector index) are stated and could shift across Qiskit releases.
+### Shannon entropy is bounded by 0 ≤ H(p) ≤ log₂ n
+- **Method:** derivation — the uniform distribution maximises entropy, a deterministic one minimises it.
+- **Status:** open — not yet verified.
+- **Find in text:** "It satisfies $0 \le H(p) \le \log_2 n$"
 
-## §4.9 — SVD existence for any complex matrix
+### Holevo bound: the accessible information is at most the Holevo quantity
+- **Method:** external — Holevo's theorem (1973); the book defers the full proof to Chapter 12 and treats it as a standard fact here.
+- **Status:** open — not yet verified.
+- **Find in text:** "the accessible information — the supremum of I(X; Y) over all measurements — is itself at most"
 
-- **Claim** (anchor): "singular value decomposition (SVD)"
-- **Method**: derivation
-- **Source**: → §4.9; standard theorem (existence and uniqueness of singular values, non-uniqueness of U, V).
-- **Verified**: — · **Verdict**: open
-
-## §4.9 — Singular values are square roots of eigenvalues of A†A
-
-- **Claim** (anchor): "they are the square roots of the eigenvalues of the positive semidefinite operator"
-- **Method**: derivation
-- **Source**: → §4.9; follows directly from A = UΣV† and A†A = VΣ²V†.
-- **Verified**: — · **Verdict**: open
-
-## §4.9 — Trace distance equals maximum total-variation distance over all measurements
-
-- **Claim** (anchor): "it equals the maximum classical total-variation distance obtainable from any measurement"
-- **Method**: derivation
-- **Source**: → §4.9 (stated as a fact; full proof is in Chapter 11 / standard quantum information references).
-- **Verified**: — · **Verdict**: open
-- **Comment**: this is the Helstrom / Holevo–Helstrom operational characterization of trace distance; non-trivial enough to flag. Standard result but the chapter does not prove it here.
-
-## §4.13 — QFT exact circuit gate count O(n²)
-
-- **Claim** (anchor): "the standard exact construction uses"
-- **Method**: derivation
-- **Source**: → §4.13; standard QFT circuit construction (see also Chapter 14). Gate count O(n²) = O((log N)²) is the well-known Hadamard + controlled-phase decomposition.
-- **Verified**: — · **Verdict**: open
-- **Comment**: the claim is for gate count, not circuit depth, as the text clarifies.
-
-## §4.13 — QFT sign convention (QFT-sign-minus) and Qiskit QFTGate sign
-
-- **Claim** (anchor): "implements the opposite, positive-exponent convention"
-- **Method**: convention
-- **Source**: → §4.13; Qiskit 2.x documentation. Perishable software claim — re-check against current docs.
-- **Verified**: — · **Verdict**: open
-- **Comment**: the text instructs readers to re-verify against current Qiskit documentation; appropriately flagged as perishable.
-
-## §4.13 — QFT input/output bottleneck (not a faster FFT for arbitrary data)
-
-- **Claim** (anchor): "Loading an arbitrary length-N classical vector as amplitudes generically costs"
-- **Method**: derivation
-- **Source**: → §4.13; standard argument about state preparation lower bounds (Omega(N) for arbitrary amplitudes) and the inability to read out all amplitudes.
-- **Verified**: — · **Verdict**: open
-- **Comment**: the Omega(N) lower bound for arbitrary amplitude loading is a standard result; the output-sampling point follows directly from the Born rule.
-
-## §4.14 — Shannon entropy bounds: 0 ≤ H ≤ log₂ n
-
-- **Claim** (anchor): "It satisfies 0"
-- **Method**: derivation
-- **Source**: → §4.14; standard information-theory result (uniform distribution maximizes entropy, deterministic minimizes it).
-- **Verified**: — · **Verdict**: open
-
-## §4.14 — Holevo bound
-
-- **Claim** (anchor): "the accessible information — the supremum of I(X; Y) over all measurements — is itself at most"
-- **Method**: derivation
-- **Source**: → §4.14; Holevo's theorem (1973). Standard quantum information theory result, proved in Chapter 12.
-- **Verified**: — · **Verdict**: open
-- **Comment**: this is a named external result (Holevo 1973) but treated here as a standard fact with proof deferred to Chapter 12; `derivation` is appropriate given the book's internal proof.
-
-## §4.14 — Shot complexity for Bernoulli estimation: Θ(1/ε²)
-
-- **Claim** (anchor): "estimating that Bernoulli outcome probability to additive error"
-- **Method**: derivation
-- **Source**: → §4.14; standard concentration-bound argument (Hoeffding / Chernoff), textbook probability theory.
-- **Verified**: — · **Verdict**: open
-- **Comment**: the log(1/δ) confidence factor is also standard. The claim about amplitude estimation improving to O(1/ε) is a preview of Chapter 14.
+### Estimating a Bernoulli probability to additive error ε needs Θ(1/ε²) samples
+- **Method:** derivation — Hoeffding/Chernoff concentration; amplitude estimation improves this to O(1/ε) (previewed for Chapter 14).
+- **Status:** open — not yet verified.
+- **Find in text:** "estimating that Bernoulli outcome probability to additive error"

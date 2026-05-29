@@ -23,7 +23,11 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 FC = ROOT / "factcheck"
 BOOK = ROOT / "book"
 
-ANCHOR_RE = re.compile(r'\*\*Claim\*\* \(anchor\):\s*"(.+?)"\s*$', re.M)
+# Two accepted locator formats during the readable-format migration:
+#   old:  - **Claim** (anchor): "..."
+#   new:  - **Find in text:** "..."
+ANCHOR_RE = re.compile(
+    r'(?:\*\*Claim\*\* \(anchor\):|\*\*Find in text:\*\*)\s*"(.+?)"\s*$', re.M)
 
 
 def norm(s: str) -> str:
