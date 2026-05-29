@@ -89,9 +89,22 @@ The self factcheck run should flag:
 
 1. **Orphan files** — a factcheck file whose mirrored `book/` section no longer
    exists.
-2. **Stale anchors** — a quoted anchor that no longer appears verbatim in its
-   section (claim edited or removed upstream; the entry needs review).
+2. **Stale anchors** — a quoted anchor that no longer appears in its section
+   (claim edited or removed upstream; the entry needs review).
 3. **Thin coverage** — a claim-dense section with little or no factcheck file.
+
+Checks (1) and (2) are mechanised in
+[`scripts/factcheck_anchors.py`](../scripts/factcheck_anchors.py) — run it from
+the repo root; exit code 0 means all anchors resolve. Matching is **normalized**,
+not byte-exact: it folds case, markdown emphasis (`**`), and LaTeX noise
+(`$`, `\`, `{}`) before comparing, so a cosmetic escaping difference is not
+reported as drift while genuine wording changes still are. Two consequences for
+how you write anchors:
+
+- Don't splice non-contiguous text with `…` — an anchor must be a *single
+  contiguous run* that appears in the section.
+- Prefer a distinctive **prose** fragment over raw LaTeX; if a claim is purely
+  mathematical, anchor on the surrounding prose where possible.
 
 ## Status
 

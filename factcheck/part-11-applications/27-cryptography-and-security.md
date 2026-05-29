@@ -26,7 +26,7 @@ Seeded from ledger Pass 3 and Pass 6 (2026-05-28).
 
 ## §27.4 — Falcon → FN-DSA / FIPS 206
 
-- **Claim** (anchor): "renamed FN-DSA in NIST's draft, FIPS 206 IPD submitted August 2025 … final FIPS 206 is expected late 2026 / early 2027"
+- **Claim** (anchor): "renamed FN-DSA in NIST's draft, FIPS 206 IPD submitted August 2025"
 - **Method**: external
 - **Source**: NIST FIPS 206 status update (Aug 2025); DigiCert / data-centre coverage
 - **Verified**: 2026-05 · **Verdict**: **updated** — status sharpened to "IPD submitted Aug 2025"
