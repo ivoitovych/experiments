@@ -1,5 +1,19 @@
 # Fact-check ledger
 
+> **⚠️ A superior mechanism now exists — prefer it.** Claim-level verification
+> has moved to the [`factcheck/`](../factcheck/) directory, which mirrors the
+> manuscript section-by-section (one factcheck file per section file). It
+> indexes claims by *location* rather than by date, accommodates non-external
+> verification methods (derivation / runnable check / convention, not just a
+> URL), and doubles as a reusable cache of already-researched sources. See
+> [`factcheck/README.md`](../factcheck/README.md) for the conventions.
+>
+> This ledger is **retained as a dated changelog** — it holds the historical
+> Pass 1–7 audit trail (May 2026), which is valuable and is not being
+> migrated wholesale. **New verification work should be recorded in
+> `factcheck/` where possible**, not appended here. A future pass may decide
+> how (or whether) to fold this history into the mirror.
+
 A traceable record of the dated, source-backed verification of perishable
 2025–2026 claims in the manuscript. Each entry lists the claim, the location
 in the manuscript, the source consulted, the verification date, and the
