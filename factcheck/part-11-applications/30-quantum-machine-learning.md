@@ -1,0 +1,156 @@
+# Factcheck — §30 Quantum Machine Learning
+
+Mirrors `book/part-11-applications/30-quantum-machine-learning.md`.
+Extraction pass 2026-05 — claims identified and anchored; verification still OPEN.
+
+## §30.2 — Kerenidis–Prakash 2016 quantum recommendation systems
+
+- **Claim** (anchor): "quantum recommendation systems (Kerenidis–Prakash 2016: produce a recommendation by sampling from a low-rank reconstruction of a preference matrix, using a quantum subroutine to access the matrix)"
+- **Method**: external
+- **Source**: TBD — needs verification
+- **Verified**: — · **Verdict**: open
+- **Comment**: Attributed to Kerenidis and Prakash, 2016. Claimed an exponential speedup over classical recommendation algorithms.
+
+## §30.2 — Lloyd–Mohseni–Rebentrost 2014 quantum PCA
+
+- **Claim** (anchor): "quantum principal-component analysis (Lloyd–Mohseni–Rebentrost 2014: produce a quantum state encoding the top eigenvectors of a density matrix in polylogarithmic time)"
+- **Method**: external
+- **Source**: TBD — needs verification
+- **Verified**: — · **Verdict**: open
+- **Comment**: Attributed to Lloyd, Mohseni, and Rebentrost, 2014. Claims polylogarithmic time for top-eigenvector computation.
+
+## §30.2 — Rebentrost–Mohseni–Lloyd 2014 quantum SVM
+
+- **Claim** (anchor): "quantum support-vector machines (Rebentrost–Mohseni–Lloyd 2014: solve the SVM dual via HHL on the kernel matrix)"
+- **Method**: external
+- **Source**: TBD — needs verification
+- **Verified**: — · **Verdict**: open
+- **Comment**: Attributed to Rebentrost, Mohseni, and Lloyd, 2014.
+
+## §30.2 — No physical QRAM built; bucket-brigade architectures unstable
+
+- **Claim** (anchor): "No physical QRAM has been built. Several proposed architectures (bucket-brigade and variants) are unstable under noise; the question of whether QRAM is achievable at scale is genuinely open"
+- **Method**: external
+- **Source**: TBD — needs verification
+- **Verified**: — · **Verdict**: open
+- **Comment**: Empirical/community-consensus claim about the state of QRAM research; the text states consensus from ~2020 onward leans pessimistic.
+
+## §30.2 — Tang 2018 dequantisation of recommendation systems
+
+- **Claim** (anchor): "Ewin Tang's 2018 work on the recommendation-systems problem showed that the Kerenidis–Prakash quantum algorithm could be dequantised: a classical algorithm, given an analogous classical access model (the ability to sample rows and entries of the matrix with probabilities proportional to squared magnitudes), runs in time polylogarithmic in"
+- **Method**: external
+- **Source**: Tang, STOC 2019 (work circulated 2018)
+- **Verified**: — · **Verdict**: open
+- **Comment**: Foundational dequantisation result. The paper was first circulated as an arXiv preprint in 2018 and presented at STOC 2019.
+
+## §30.2 — Scope of Tang-style dequantisation by 2021
+
+- **Claim** (anchor): "By 2021, the Tang-style dequantisation had been extended to quantum PCA, quantum SVMs, quantum linear regression in the low-rank regime, the Lloyd–Mohseni–Rebentrost density-matrix algorithms, and most other named Category-1 results"
+- **Method**: external
+- **Source**: TBD — needs verification
+- **Verified**: — · **Verdict**: open
+- **Comment**: Broad claim about the scope of the dequantisation programme through 2021; multiple follow-up papers involved.
+
+## §30.3 — Classical shadows: Huang–Kueng–Preskill 2020, O(log M) sample complexity
+
+- **Claim** (anchor): "The classical shadows framework of Huang–Kueng–Preskill (2020) shows that O(log M) shadow samples — each consisting of a randomised Clifford rotation followed by a computational-basis measurement — suffice to predict M arbitrary linear properties of the state to fixed accuracy"
+- **Method**: external
+- **Source**: Huang, Kueng, Preskill (2020) — TBD — needs verification
+- **Verified**: — · **Verdict**: open
+- **Comment**: Specific O(log M) sample-complexity claim for predicting M linear properties via randomised Clifford measurements.
+
+## §30.3 — Hamiltonian learning: Anshu–Arunachalam–Kueng–Lin polynomial sample complexity
+
+- **Claim** (anchor): "recent results (Anshu–Arunachalam–Kueng–Lin and follow-ups) give polynomial sample complexity for low-intersection local Hamiltonians, with the dependence on system size set by the locality structure rather than by Hilbert-space dimension"
+- **Method**: external
+- **Source**: TBD — needs verification
+- **Verified**: — · **Verdict**: open
+- **Comment**: Attributed to Anshu, Arunachalam, Kueng, Lin. Specific structural claim about sample complexity scaling for local Hamiltonians.
+
+## §30.4 — Barren plateaus: McClean et al. 2018, exponentially vanishing gradient variance
+
+- **Claim** (anchor): "McClean–Boixo–Smelyanskiy–Babbush–Neven (2018) showed that for sufficiently expressive (Haar-random) parameterised circuits on n qubits, the gradient of the loss function with respect to any parameter has variance that decays exponentially in n"
+- **Method**: external
+- **Source**: McClean, Boixo, Smelyanskiy, Babbush, Neven (2018) — TBD — needs verification
+- **Verified**: — · **Verdict**: open
+- **Comment**: Foundational barren-plateau result. Exponentially vanishing gradient variance for Haar-random circuits.
+
+## §30.4 — Barren plateaus extended to noise-induced concentration and structured architectures
+
+- **Claim** (anchor): "to circuits with noise-induced concentration (the noise itself flattens the landscape exponentially in depth), and to quantum convolutional and other"
+- **Method**: external
+- **Source**: TBD — needs verification
+- **Verified**: — · **Verdict**: open
+- **Comment**: Refers to multiple follow-up papers extending the barren-plateau result to noisy circuits and structured ansätze; Cerezo et al. are among the authors associated with this line of work.
+
+## §30.5 — Liu–Arunachalam–Temme 2021 quantum kernel separation via discrete logarithms
+
+- **Claim** (anchor): "Liu–Arunachalam–Temme (2021): there is a learning problem — built around discrete logarithms in a carefully constructed group — for which a quantum kernel SVM achieves polynomial sample complexity and any classical learner under the same access model requires super-polynomial samples, assuming the classical hardness of discrete logarithm"
+- **Method**: external
+- **Source**: Liu, Arunachalam, Temme (2021) — TBD — needs verification
+- **Verified**: — · **Verdict**: open
+- **Comment**: Specific claim of a provable quantum-classical learning separation based on discrete-log hardness. Attributed to Liu, Arunachalam, and Temme, 2021.
+
+## §30.6 — Cong–Choi–Lukin 2019 QCNN proposal
+
+- **Claim** (anchor): "Cong–Choi–Lukin (2019) proposed a structured circuit ansatz inspired by classical CNNs: alternating layers of local"
+- **Method**: external
+- **Source**: TBD — needs verification
+- **Verified**: — · **Verdict**: open
+- **Comment**: Architectural description attributed to Cong, Choi, and Lukin, 2019.
+
+## §30.6 — QCNN provably avoids barren plateaus and detects topological order
+
+- **Claim** (anchor): "The structure is restrictive enough to provably avoid barren plateaus at moderate depths and has been shown to detect topological-phase order in 1D and 2D condensed-matter models"
+- **Method**: external
+- **Source**: TBD — needs verification
+- **Verified**: — · **Verdict**: open
+- **Comment**: Two distinct claims: (1) provable barren-plateau avoidance for QCNNs at moderate depth; (2) demonstrated topological-phase detection in condensed-matter models.
+
+## §30.6 — Lloyd–Weedbrook 2018 and Dallaire-Demers–Killoran 2018 QGAN proposals
+
+- **Claim** (anchor): "Lloyd–Weedbrook (2018) and Dallaire-Demers–Killoran (2018) proposed quantum analogues of GANs in which the generator, the discriminator, or both are parameterised quantum circuits"
+- **Method**: external
+- **Source**: TBD — needs verification
+- **Verified**: — · **Verdict**: open
+- **Comment**: Two independent QGAN proposals attributed to the same year (2018).
+
+## §30.6 — Cerezo et al. 2021 and 2022 review papers
+
+- **Claim** (anchor): "the reader who wants the full taxonomy can consult Cerezo–Verdon–Huang–Cincio–Coles (2022) or the Variational Quantum Algorithms review by Cerezo et al. (2021)"
+- **Method**: external
+- **Source**: TBD — needs verification
+- **Verified**: — · **Verdict**: open
+- **Comment**: Two attributed review papers; existence, authorship, and dates are verifiable claims.
+
+## §30.7 — Quantum natural gradient: Stokes–Izaac–Killoran–Carleo 2020
+
+- **Claim** (anchor): "natural-gradient methods (the quantum Fisher information metric of Stokes–Izaac–Killoran–Carleo, 2020) that use the geometry of the parameterised-state manifold to precondition the updates"
+- **Method**: external
+- **Source**: Stokes, Izaac, Killoran, Carleo (2020) — TBD — needs verification
+- **Verified**: — · **Verdict**: open
+- **Comment**: Attributed result proposing the quantum natural gradient using the quantum Fisher information metric.
+
+## §30.7 — Hybrid training wall-clock arithmetic
+
+- **Claim** (anchor): "A parameter-shift gradient for a model with p parameters requires 2p expectation-value evaluations per training step"
+- **Method**: derivation
+- **Source**: → §30.7 (parameter-shift rule derivation, §8.13)
+- **Verified**: — · **Verdict**: open
+- **Comment**: The factor of 2p per step follows directly from the parameter-shift rule requiring two circuit evaluations per parameter. The downstream wall-clock estimate (≈ 23 days for p=100, S=10^4, K=10^3, 1 ms/shot) is a numerical consequence.
+
+## §30.8 — Tang programme: polylogarithmic dequantised algorithms for named problems
+
+- **Claim** (anchor): "the Tang programme has produced classical algorithms with running times that are polylogarithmic in the data dimension for: low-rank linear regression, low-rank matrix recovery, quantum recommendation systems, quantum PCA, quantum SVD, certain classes of quantum kernel methods, and the Lloyd–Mohseni–Rebentrost family"
+- **Method**: external
+- **Source**: TBD — needs verification
+- **Verified**: — · **Verdict**: open
+- **Comment**: Enumerates the problems covered by dequantisation; each item is a verifiable claim tied to specific papers in the Tang-programme literature.
+
+## §30.8 — Shor's algorithm and discrete-log survive dequantisation
+
+- **Claim** (anchor): "survive because their access model is to an oracle for f(x) = a^x bmod N, not to a classical dataset; there is no analogous classical sampling access"
+- **Method**: external
+- **Source**: TBD — needs verification
+- **Verified**: — · **Verdict**: open
+- **Comment**: Conceptual claim about why Shor and discrete-log algorithms are immune to the dequantisation argument; the access model is to an oracle rather than a classical dataset. Standard complexity-theoretic reasoning worth confirming the framing is accurate.
