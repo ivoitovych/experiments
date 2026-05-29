@@ -5,7 +5,7 @@ Seeded from ledger Pass 4 (2026-05-28).
 
 ## §33.4 — Micius satellite QKD
 
-- **Claim** (anchor): "Micius satellite, launched in $2016$ and operational since $2017$, demonstrated decoy-state BB84 … Beijing and Vienna over $7600\,\mathrm{km}$, enabling the first intercontinental QKD-secured videoconference"
+- **Claim** (anchor): "launched in $2016$ and operational since $2017$, demonstrated decoy-state BB84"
 - **Method**: external
 - **Source**: EurekAlert/CAS press release (Bai–Zeilinger videoconference); Wikipedia (Quantum Experiments at Space Scale); *Science* 356, 1140 (2017)
 - **Verified**: 2026-05 · **Verdict**: confirmed
@@ -26,7 +26,7 @@ Seeded from ledger Pass 4 (2026-05-28).
 
 ## §33.4 — TF-QKD demonstration distances
 
-- **Claim** (anchor): "$511\,\mathrm{km}$, $605\,\mathrm{km}$, $658\,\mathrm{km}$, $830\,\mathrm{km}$, and … more than $1000\,\mathrm{km}$"
+- **Claim** (anchor): "$511\,\mathrm{km}$, $605\,\mathrm{km}$, $658\,\mathrm{km}$, $830\,\mathrm{km}$"
 - **Method**: external
 - **Source**: series of TF-QKD experiments by USTC and Toshiba-Cambridge groups, 2019–2023
 - **Verified**: 2026-05 · **Verdict**: confirmed
