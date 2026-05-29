@@ -30,6 +30,8 @@ def norm(s: str) -> str:
     s = s.lower()                   # case (anchors often start a sentence)
     for ch in "*$\\{}":             # markdown emphasis + LaTeX math noise
         s = s.replace(ch, "")
+    for ch in "\"'“”‘’":  # straight + typographic quotes
+        s = s.replace(ch, "")
     s = re.sub(r"\s+", " ", s)      # collapse whitespace
     return s.strip()
 

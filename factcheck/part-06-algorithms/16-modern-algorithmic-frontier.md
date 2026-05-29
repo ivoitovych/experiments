@@ -53,14 +53,14 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §16.2 — Trotter–Suzuki attributed to Lloyd (1996)
 
-- **Claim** (anchor): "Trotter–Suzuki (Lloyd 1996, then refined for decades)"
+- **Claim** (anchor): "(Lloyd 1996, then refined for decades)"
 - **Method**: external
 - **Source**: Lloyd — "Universal quantum simulators", Science 1996. TBD — needs verification of exact title/year.
 - **Verified**: — · **Verdict**: open
 
 ## §16.2 — Commutator scaling analysis attributed to Childs–Su–Tran–Wiebe–Zhu (2021)
 
-- **Claim** (anchor): "commutator scaling analysis (Childs–Su–Tran–Wiebe–Zhu 2021)"
+- **Claim** (anchor): "commutator scaling** analysis (Childs–Su–Tran–Wiebe–Zhu 2021)"
 - **Method**: external
 - **Source**: Childs, Su, Tran, Wiebe, Zhu — TBD — needs verification of exact title/year/venue.
 - **Verified**: — · **Verdict**: open
@@ -83,7 +83,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §16.5 — Qubitization attributed to Low and Chuang (2017)
 
-- **Claim** (anchor): "Qubitization, due to Low and Chuang (2017)"
+- **Claim** (anchor): "**Qubitization**, due to Low and Chuang (2017)"
 - **Method**: external
 - **Source**: Low, Chuang — "Optimal Hamiltonian simulation by quantum signal processing", PRL 2017. TBD — needs verification.
 - **Verified**: — · **Verdict**: open
