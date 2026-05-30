@@ -64,7 +64,7 @@ Quantum computing is *real* science and engineering. Several decades of work, ac
 What is true:
 
 - The mathematical model is well-understood, internally consistent, and tied to physical reality through ninety years of experimental confirmation.
-- Specific algorithms (Shor, Grover, phase estimation, HHL under its conditions, quantum simulation) provide provable speedups over the best known classical alternatives on specific problems. Where the speedup is exponential (Shor, simulation), the consequences if and when a device runs them at scale are dramatic. Where it is polynomial (Grover, HHL), the practical advantage is more contingent on constant factors and data-loading overhead.
+- Specific algorithms (Shor, Grover, phase estimation, HHL under its conditions, quantum simulation) provide provable speedups over the best known classical alternatives on specific problems. Where the speedup is exponential (Shor, simulation, and HHL in the dimension of the system — under restrictive sparsity, conditioning, state-preparation, and readout assumptions), the consequences if and when a device runs them at scale are dramatic. Where it is only polynomial (Grover), or where the exponential speedup is throttled by data-loading and readout (HHL on classical input), the practical advantage is far more contingent on constant factors and I/O overhead.
 - The hardware is improving on multiple platforms, with no fundamental physical obstruction known. The threshold theorem (Chapter 19) is the strongest result the field has: error correction *can* in principle scale logical fidelity arbitrarily, given sufficient physical resources below threshold.
 
 What is also true:

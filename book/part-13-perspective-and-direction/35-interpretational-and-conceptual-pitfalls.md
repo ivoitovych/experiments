@@ -256,9 +256,12 @@ of the theory and treating it as one leads to paradoxes.
 
 ## 35.6 The Interpretations Zoo
 
-A non-exhaustive tour. Every entry here reproduces the predictions of
-standard quantum mechanics on every experiment ever performed. They
-differ in what additional ontological commitments they make.
+A non-exhaustive tour. With one exception, every entry here reproduces the
+predictions of standard quantum mechanics on every experiment ever performed,
+differing only in what additional ontological commitments they make. The
+exception is objective collapse (below), which modifies the dynamics and is
+therefore *empirically distinguishable* in principle — making it a rival
+theory rather than a pure interpretation.
 
 **Copenhagen** (Bohr, Heisenberg). The wavefunction is the most
 complete possible description of a quantum system. Measurement

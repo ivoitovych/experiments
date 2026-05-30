@@ -68,7 +68,7 @@ A trap to avoid: comparing RB averages across vendors as if they were directly c
 
 A qubit left untouched eventually decoheres. Two timescales summarise that decay.
 
-**$T_1$**, the **energy relaxation time**, is the timescale on which an excited qubit decays to its ground state. Operationally: prepare $|1\rangle$, wait time $t$, measure; the population in $|1\rangle$ decays as $\exp(-t/T_1)$. $T_1$ is set by the qubit's coupling to dissipative environmental modes — for superconducting transmons, the Purcell decay through the readout resonator plus dielectric losses; for trapped ions, spontaneous emission from the excited state plus heating of motional modes.
+**$T_1$**, the **energy relaxation time**, is the timescale on which an excited qubit decays to its ground state. Operationally: prepare $|1\rangle$, wait time $t$, measure; the population in $|1\rangle$ decays as $\exp(-t/T_1)$. $T_1$ is set by the qubit's coupling to dissipative environmental modes — for superconducting transmons, the Purcell decay through the readout resonator plus dielectric losses; for trapped ions, spontaneous emission and off-resonant scattering out of the qubit states (motional-mode heating, by contrast, degrades *gate* fidelity through the motional bus rather than the internal-state $T_1$).
 
 **$T_2$**, the **dephasing time**, is the timescale on which the coherence between $|0\rangle$ and $|1\rangle$ decays. The relationship $T_2 \leq 2 T_1$ is a fundamental bound; equality holds when energy relaxation is the only decoherence channel. In practice $T_2 < 2 T_1$ because of dephasing from low-frequency noise (flux noise on transmons, magnetic field fluctuations on ions).
 
@@ -164,7 +164,7 @@ For algorithm planning, AQ is more directly actionable than QV: if your algorith
 
 **Cross-entropy benchmarking (XEB)**, in particular **linear XEB**, is Google's preferred protocol and the one used in the 2019 "quantum supremacy" claim on Sycamore and the 2024 follow-on on Willow. It measures how well a device's output samples track the ideal output distribution of a random circuit.
 
-The protocol: build a random circuit $C$ of width $n$ and depth $d$, classically compute the ideal output probabilities $p_{\mathrm{ideal}}(x) = |\langle x | C | 0^n \rangle|^2$ for all $2^n$ bit strings, run $C$ on the device for many shots producing measured samples $\\{x_k\\}$, and compute the **linear XEB fidelity**
+The protocol: build a random circuit $C$ of width $n$ and depth $d$, run $C$ on the device for many shots producing measured samples $\\{x_k\\}$, classically compute the ideal output probability $p_{\mathrm{ideal}}(x_k) = |\langle x_k | C | 0^n \rangle|^2$ of each *measured* bit string (each such amplitude requires effectively simulating the full circuit, which is the hard part), and compute the **linear XEB fidelity**
 
 $$
 F_{\mathrm{XEB}} \;=\; 2^n \cdot \frac{1}{N_{\mathrm{shots}}} \sum_{k} p_{\mathrm{ideal}}(x_k) \;-\; 1 .

@@ -10,7 +10,7 @@ Chapter 15 closed with HHL, the prototypical "block-encoded linear algebra" algo
 
 ## 16.1 Hamiltonian Simulation
 
-The **Hamiltonian simulation problem**: given a Hermitian operator $H$ on $n$ qubits, a time $t$, and an error tolerance $\epsilon$, construct a quantum circuit $V$ such that $\\| V - e^{-iHt} \\| \leq \epsilon$. This is the Feynman motivation in concrete form: simulating quantum dynamics is the problem quantum computers were invented to solve, and a polynomial-time simulation algorithm for **local** Hamiltonians is one of the few proven exponential speedups over classical computation outside the abelian hidden-subgroup family.
+The **Hamiltonian simulation problem**: given a Hermitian operator $H$ on $n$ qubits, a time $t$, and an error tolerance $\epsilon$, construct a quantum circuit $V$ such that $\\| V - e^{-iHt} \\| \leq \epsilon$. This is the Feynman motivation in concrete form: simulating quantum dynamics is the problem quantum computers were invented to solve, and polynomial-time simulation of **local** Hamiltonians is one of the few exponential speedups widely regarded as robust outside the abelian hidden-subgroup family — the problem is $\mathrm{BQP}$-complete, so an efficient classical algorithm for it would collapse $\mathrm{BQP}$ into $\mathrm{BPP}$ (Chapter 17).
 
 The structure of $H$ matters enormously for what "polynomial time" costs. The standard structural classes are:
 
@@ -124,11 +124,13 @@ A small but useful identity: if $U_A$ is an $(\alpha, a, 0)$-block-encoding of $
 
 **Qubitization**, due to Low and Chuang (2017), is the construction that turns a block encoding of a Hermitian operator into a *quantum walk* whose spectrum sits on the unit circle in a structured way and which can be polynomially transformed via signal processing. It is the bridge between the LCU/block-encoding world of §§16.3–16.4 and the polynomial-transformation toolkit of §§16.6–16.7.
 
-The setup is a $(1, a, 0)$-block-encoding $U_H$ of a Hermitian $H$ with $\\|H\\| \leq 1$. (Any $(\alpha, a, 0)$-block-encoding is renormalised to this case by dividing by $\alpha$, at the price of working with $H/\alpha$ instead.) Define the **reflection** $R = (2|0^a\rangle\langle 0^a| - I) \otimes I$ on the ancilla, and the **qubitized walk operator**
+The setup is a $(1, a, 0)$-block-encoding $U_H$ of a Hermitian $H$ with $\\|H\\| \leq 1$. (Any $(\alpha, a, 0)$-block-encoding is renormalised to this case by dividing by $\alpha$, at the price of working with $H/\alpha$ instead.) Define the **reflection** $R = 2|0^a\rangle\langle 0^a| - I$ on the $a$ ancilla qubits, and the **qubitized walk operator**
 
 $$
-W \;=\; (R \otimes I)\\, U_H.
+W \;=\; (R \otimes I)\\, U_H,
 $$
+
+where the $\otimes I$ extends the ancilla reflection over the system register.
 
 The remarkable fact is that the subspace spanned by $|0^a\rangle|\lambda\rangle$ and the orthogonal "residual" state $U_H|0^a\rangle|\lambda\rangle - \lambda|0^a\rangle|\lambda\rangle$, for each eigenstate $|\lambda\rangle$ of $H$ with eigenvalue $\lambda$, is **invariant under $W$**, and within that 2D subspace $W$ acts as a rotation by angle $\theta_\lambda$ where $\cos\theta_\lambda = \lambda$. The spectrum of $W$ thus consists of pairs $e^{\pm i \arccos\lambda}$ for each eigenvalue $\lambda$ of $H$ — qubitization "encodes" $H$ on the unit circle via $\lambda \mapsto \arccos\lambda$.
 
@@ -170,7 +172,6 @@ For Hermitian $A$ the singular values are the absolute eigenvalues and QSVT redu
 
 Why QSVT is the chapter's centrepiece: it unifies essentially every quantum algorithm built on a block-encoded matrix.
 
-- **Quantum Fourier transform**: a degree-1 polynomial transformation in a particular block encoding, equivalent to applying a fixed unitary.
 - **Amplitude amplification**: $P(x) = T_k(x)$, the Chebyshev polynomial of degree $k$, applied to the block encoding of the projector onto the "good" subspace. The Grover operator's $\sqrt{N/M}$-iteration count comes out as the Chebyshev degree required to amplify amplitude $\sqrt{M/N}$ to $\Theta(1)$.
 - **Phase estimation**: a Chebyshev-comb polynomial that separates eigenphases into bit-string outcomes; equivalent to QPE up to constant factors.
 - **HHL / matrix inversion**: the polynomial approximation of $1/x$ described in §16.6, applied via QSVT to a block encoding of $A$.
