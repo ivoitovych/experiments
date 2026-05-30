@@ -515,8 +515,10 @@ treatment is in Chapter 23 (compilation and tooling), Chapter 24
   §4.13. See Chapter 23.
 - **Statevector simulator.** A classical simulator that tracks the
   full $2^n$-dimensional complex amplitude vector. Exact, but
-  memory scales as $O(2^n)$ and is the practical ceiling at around
-  $n = 30$–$40$ qubits on commodity hardware. See Chapter 24.
+  memory scales as $O(2^n)$ — about $16$ GB at $n = 30$ in double
+  precision — so the practical ceiling is around $n = 30$ on a
+  workstation and the mid-$30$s on large-memory servers. See
+  Chapter 24.
 - **Stim.** A specialised high-performance stabiliser-circuit
   simulator (Gidney 2021) used for surface-code research and
   decoder benchmarking. Simulates Clifford circuits in polynomial
