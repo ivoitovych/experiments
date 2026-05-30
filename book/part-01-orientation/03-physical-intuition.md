@@ -181,10 +181,11 @@ the structural feature that makes quantum state spaces fundamentally
 unlike classical state spaces.
 
 Concretely, if $|\psi_1\rangle$ and $|\psi_2\rangle$ are two physical
-states of a system, then for any complex coefficients $\alpha$ and
-$\beta$ with $|\alpha|^2 + |\beta|^2 = 1$, the combination
-$\alpha |\psi_1\rangle + \beta |\psi_2\rangle$ is also a physical
-state. The Stern-Gerlach experiment reads it out as "spin up with
+states of a system, then any nonzero combination
+$\alpha |\psi_1\rangle + \beta |\psi_2\rangle$, once normalised, is also
+a physical state. When the two are orthonormal — as spin-up and
+spin-down along $z$ are — normalisation is just
+$|\alpha|^2 + |\beta|^2 = 1$. The Stern-Gerlach experiment reads it out as "spin up with
 probability $|\alpha|^2$ or spin down with probability $|\beta|^2$"
 when measured along $z$, but that is a property of the *measurement*,
 not a description of the state. The state itself is a single,

@@ -1,6 +1,6 @@
 # Chapter 21. Quantum Control and Electronics
 
-> **Status:** draft · **Phase:** 4 · **Sections drafted:** 14 / 14
+> **Status:** draft · **Phase:** 4 · **Sections drafted:** 15 / 15
 
 [← Previous: Chapter 20](20-quantum-hardware-platforms.md) · [Table of Contents](../../README.md) · [Next: Chapter 22 →](22-hardware-engineering-metrics.md)
 

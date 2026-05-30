@@ -67,9 +67,11 @@ representative its operational content.
 Two consequences worth flagging:
 
 - **Superposition is a postulate, not a derived fact.** Because the
-  state space is linear, any normalized linear combination
-  $\alpha |\psi_1\rangle + \beta |\psi_2\rangle$ with
-  $|\alpha|^2 + |\beta|^2 = 1$ is a perfectly good state. Classical
+  state space is linear, any nonzero linear combination
+  $\alpha |\psi_1\rangle + \beta |\psi_2\rangle$ is (after
+  normalisation) a perfectly good state; when $|\psi_1\rangle$ and
+  $|\psi_2\rangle$ are orthonormal, the normalisation condition is
+  simply $|\alpha|^2 + |\beta|^2 = 1$. Classical
   systems do not have this property; they have *distributions over*
   states, which is different.
 - **A state is not a number you measure; it is a generator of

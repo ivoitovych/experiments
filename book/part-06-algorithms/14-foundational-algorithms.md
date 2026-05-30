@@ -126,7 +126,7 @@ The **hidden subgroup problem (HSP)** generalises Simon, Bernstein–Vazirani, D
 
 - $G = \mathbb{Z}_2^n$, $H = \\{0, s\\}$: Simon's algorithm.
 - $G = \mathbb{Z}_2^n$, $H = \\{x : s \cdot x = 0\\}$ (codimension-1): Bernstein–Vazirani.
-- $G = \mathbb{Z}_N$, $H = \langle r\rangle$: order-finding (Shor); integer factoring reduces to this case.
+- $G = \mathbb{Z}$ (realised on a large finite cyclic register), with $f(x) = a^x \bmod N$ periodic of period $r$ — i.e. hidden subgroup $H = r\mathbb{Z}$: order-finding (Shor); integer factoring reduces to this case.
 - $G = $ a semidirect product of groups: the **dihedral HSP** connects (via Regev's reduction) to certain approximation regimes of lattice problems — most notably unique- and gap-shortest-vector cases relevant to lattice-based cryptography — for which *no* polynomial-time quantum algorithm is known; an open problem driving research on quantum algorithms for lattice problems.
 
 The general HSP algorithm template is **Fourier sampling**: prepare $\sum_x |x\rangle|f(x)\rangle$, measure the second register, apply the QFT over $G$ to the first, measure. For *abelian* $G$, this gives random elements of the dual subgroup $H^{\perp}$ with each query, and $O(\log |G|)$ queries plus polynomial classical post-processing solve HSP. For *nonabelian* $G$, the picture is wide open. Two structurally interesting cases: the **symmetric group** HSP would imply a polynomial quantum algorithm for graph isomorphism (status: open, but progress is slow); the **dihedral group** HSP would imply efficient solutions for some lattice problems (open, but Kuperberg has subexponential algorithms).

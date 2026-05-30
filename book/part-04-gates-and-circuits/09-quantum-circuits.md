@@ -55,7 +55,7 @@ $$
 
 The "Bennett trick" for reversible computation makes this systematic. Given a classical circuit of size $T$ depth $d$, the Bennett construction produces a reversible quantum circuit of size $O(T)$ that leaves only $|x\rangle|f(x)\rangle$ on the output and zeroes all ancillae, at the cost of extra time or extra ancillae. Variants trade time for space.
 
-Why this matters: uncomputation is what guarantees the **no-garbage** invariant required for interference. If the ancilla register ends up entangled with the computation, the reduced state of the computation register is mixed, and quantum advantage evaporates. Every quantum algorithm with phase-kickback-style structure relies, at least implicitly, on clean uncomputation.
+Why this matters: uncomputation is what guarantees the **no-garbage** invariant required for interference. If leftover ancillae end up entangled with the computation and are then ignored or measured away, the reduced state of the computation register is mixed and the intended interference is lost. (Entanglement with *working* registers is fine and is often the whole point of an algorithm — the hazard is specifically discarded or measured garbage.) Every quantum algorithm with phase-kickback-style structure relies, at least implicitly, on clean uncomputation.
 
 ## 9.5 Garbage Management
 
