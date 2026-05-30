@@ -95,8 +95,9 @@ $$
 
 Properties:
 
-- All four are unitary; **not** Hermitian (except in the degenerate cases
-  $P(0) = I$ and $P(\pi) = Z$). $P(\varphi)^\dagger = P(-\varphi)$.
+- Every $P(\varphi)$ — and hence each of $S, S^\dagger, T, T^\dagger$ — is
+  unitary, and **not** Hermitian except in the degenerate cases
+  $P(0) = I$ and $P(\pi) = Z$. $P(\varphi)^\dagger = P(-\varphi)$.
 - Eigenvalues of $P(\varphi)$ are $1$ and $e^{i\varphi}$, with eigenvectors
   $|0\rangle$ and $|1\rangle$ respectively. Eigenvalues of $S$ are $1, i$;
   eigenvalues of $T$ are $1, e^{i\pi/4}$.

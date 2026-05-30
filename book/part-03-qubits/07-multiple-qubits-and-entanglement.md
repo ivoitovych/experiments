@@ -129,7 +129,7 @@ $$
 |S| \;\leq\; 2\sqrt{2}.
 $$
 
-It is saturated by the singlet $|\Psi^-\rangle$ with the right measurement angles: take Alice's settings $A_0 = Z$, $A_1 = X$, and Bob's $B_0 = -(Z+X)/\sqrt{2}$, $B_1 = -(Z-X)/\sqrt{2}$. Each correlator becomes $-\cos(\theta_{ij})$ for the angle between the measurement axes; the four terms sum to $-2\sqrt{2}$, and the overall sign of $S$ is conventional.
+It is saturated by the singlet $|\Psi^-\rangle$ with the right measurement angles: take Alice's settings $A_0 = Z$, $A_1 = X$, and Bob's $B_0 = -(Z+X)/\sqrt{2}$, $B_1 = -(Z-X)/\sqrt{2}$. On the singlet $\langle(\hat a\cdot\vec\sigma)\otimes(\hat b\cdot\vec\sigma)\rangle = -\hat a\cdot\hat b$, so with these settings each of $\langle A_0 B_0\rangle, \langle A_0 B_1\rangle, \langle A_1 B_0\rangle$ equals $+\tfrac{1}{\sqrt 2}$ and $\langle A_1 B_1\rangle = -\tfrac{1}{\sqrt 2}$, giving $S = 2\sqrt 2$. (The overall sign of $S$ is conventional — dropping the minus signs on Bob's settings flips it to $-2\sqrt 2$ — but $|S| = 2\sqrt 2$ either way.)
 
 The experimental verdict — from Aspect's experiments in the 1980s through the loophole-free tests of 2015 — is that nature violates the classical bound. Local hidden variables, as a model of physical reality, are ruled out. Quantum mechanics correctly predicts the observed values up to the Tsirelson bound.
 
