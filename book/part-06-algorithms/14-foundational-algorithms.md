@@ -90,7 +90,9 @@ $$
 
 This is the negative-exponent ("QFT-sign-minus") convention fixed in §4.13; some sources and SDKs use the opposite sign, so check before porting phase angles. For $N = 2$ the QFT is just the Hadamard gate. For general $N$, the QFT factors into an elegant circuit of single-qubit Hadamards and controlled phase gates: on $n$ qubits, $n$ Hadamards interleaved with $O(n^2)$ controlled rotations $\mathrm{C}R_k$, where $R_k = \mathrm{diag}(1, e^{-2\pi i / 2^k})$ (conjugated relative to the positive-exponent convention, to match the negative-exponent definition above). The total gate count is $O(n^2)$, exponentially better than the $O(N \log N) = O(n 2^n)$ of the classical FFT.
 
-![Three-qubit quantum Fourier transform: Hadamards interleaved with controlled-phase gates P(π/2) and P(π/4), followed by a SWAP that reverses the qubit order.](figures/qft-3qubit.svg)
+![Three-qubit quantum Fourier transform: Hadamards interleaved with controlled-phase gates, drawn in the standard positive-sign convention as P(π/2) and P(π/4), followed by a SWAP that reverses the qubit order. This book's negative-exponent QFT (§4.13) uses the conjugate phases P(−π/2) and P(−π/4).](figures/qft-3qubit.svg)
+
+(The figure is drawn with the conventional positive-exponent phase gates; for the negative-exponent definition used throughout this book, negate each controlled-phase angle, as the text above notes.)
 
 That said, the QFT does not produce the Fourier coefficients in a *read-out* sense: the amplitudes are the Fourier coefficients but you cannot extract them all, only sample. So the QFT is useful precisely when the structure to be exploited *concentrates* the amplitudes — typically because the input state was the output of some structured periodic computation. This is the situation in phase estimation (§14.6) and in Shor's order-finding (§15.2).
 
