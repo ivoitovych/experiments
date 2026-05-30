@@ -477,8 +477,10 @@ treatment is in Chapter 23 (compilation and tooling), Chapter 24
   Chapter 23.
 - **Density-matrix simulator.** A classical simulator that tracks
   the full density matrix $\rho$. Memory cost is
-  $O(4^n)$ on $n$ qubits — twice the qubit budget of a statevector
-  simulator — but it handles noise channels natively. See Chapter 24.
+  $O(4^n)$ on $n$ qubits — so for a fixed memory budget it reaches
+  only about *half* the qubit count of a statevector simulator
+  ($4^n = 2^{2n}$) — but it handles noise channels natively. See
+  Chapter 24.
 - **Noise model.** A specification of the channels applied after
   each gate (depolarising, thermal, readout) used by simulators to
   reproduce device behaviour. See Chapter 18 and Chapter 24.

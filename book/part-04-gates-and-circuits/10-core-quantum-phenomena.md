@@ -120,7 +120,17 @@ This is the formal statement underlying the §7.11 observation that the reduced 
 
 The **Kochen–Specker theorem** makes this precise. For Hilbert spaces of dimension $\geq 3$, there is no consistent assignment of pre-existing values to all projectors that respects the algebraic identities (specifically: for any orthonormal basis, exactly one projector is assigned value $1$ and the rest $0$, and an observable's value equals the function of jointly compatible projector values). The original proof used 117 vectors in $\mathbb{R}^3$; later proofs are much shorter (Cabello, Peres-Mermin). For $d = 2$ — that is, for a single qubit — the theorem fails, and a hidden-variable model exists; contextuality is a feature of $d \geq 3$, including multi-qubit systems.
 
-**Reading.** In a multi-qubit system, measuring $X_1 \otimes Z_2$ commutes with $Z_1 \otimes X_2$ but neither commutes with $Y_1 \otimes Y_2$. The value $X_1 \otimes Z_2$ takes depends on which compatible context — i.e. which maximal commuting set of observables — you put around it. Outcomes do not exist independent of measurement; they are joint properties of system and measurement *context*.
+**Reading.** In a multi-qubit system the same observable can sit in several different commuting contexts. The two-qubit observables $X_1 \otimes Z_2$, $Z_1 \otimes X_2$, and $Y_1 \otimes Y_2$ all commute pairwise (each pair has two local Pauli anticommutations, which cancel), and they form one row of the $3 \times 3$ **Peres–Mermin square**
+
+$$
+\begin{array}{ccc}
+X_1 & X_2 & X_1 X_2 \\\\
+Z_2 & Z_1 & Z_1 Z_2 \\\\
+X_1 Z_2 & Z_1 X_2 & Y_1 Y_2
+\end{array}
+$$
+
+in which every row and every column is a pairwise-commuting triple. Each of the three rows and the first two columns multiplies to $+I$, but the last column multiplies to $-I$. If each observable had a context-independent value $\pm 1$, multiplying those values row by row would give $+1$, while multiplying them column by column would give $-1$ — a contradiction, independent of the state. So the value an observable takes is not fixed in advance; it depends on the compatible context — the maximal commuting set — measured alongside it.
 
 The cleanest computational manifestation is the **GHZ contradiction** (§7.6 and §7.7). For the three-qubit GHZ state $(|000\rangle + |111\rangle)/\sqrt{2}$, the four observables $X_1 X_2 X_3$, $X_1 Y_2 Y_3$, $Y_1 X_2 Y_3$, $Y_1 Y_2 X_3$ all commute pairwise on this state and have definite values $+1, -1, -1, -1$ respectively. Their product is $-1$, but the product of pre-assigned $\pm 1$ values would always yield $+1$ because each Pauli appears twice. No hidden-variable assignment is consistent; the contradiction is a single shot, not a statistical inequality.
 

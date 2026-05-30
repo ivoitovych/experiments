@@ -467,10 +467,16 @@ maximally random. But the *outcomes are perfectly correlated*: every
 time the first qubit reads $0$, the second reads $0$; every time the
 first reads $1$, the second reads $1$. The randomness of each is
 classical-looking, but the correlation pattern is not reducible to
-any prior shared classical variable. In particular, the same
-correlation persists in *every* measurement basis that the two
-qubits are jointly rotated into — a property no classical joint
-distribution can have.
+any prior shared classical variable. The perfect correlation is not a
+feature of the computational basis alone: if both qubits are measured
+in the same *real-rotated* basis — for instance both in the $X$ basis
+$\\{|+\rangle, |-\rangle\\}$, where $|\Phi^+\rangle = (|{+}{+}\rangle +
+|{-}{-}\rangle)/\sqrt{2}$ — the outcomes still agree perfectly. (The
+exact pattern depends on the basis: in the $Y$ eigenbasis the two
+outcomes are perfectly *anti*-correlated, since $|\Phi^+\rangle =
+(|y_+ y_-\rangle + |y_- y_+\rangle)/\sqrt{2}$.) This persistence of
+strong correlations across several incompatible bases is what no single
+prior shared classical variable can reproduce.
 
 Entangled photon pairs are routinely produced in the laboratory by
 **spontaneous parametric down-conversion (SPDC)**. A high-energy
@@ -493,8 +499,9 @@ variables — variables carried by each particle, fixed at the
 moment the particles separated, and unable to affect each other
 faster than light — must satisfy an inequality on the correlations
 between distant measurements. Quantum mechanics predicts that
-inequality is violated for entangled states, by an amount that
-exceeds the classical bound by roughly $\sqrt{2}$.
+inequality is violated for entangled states, reaching the Tsirelson
+value $2\sqrt{2}$ — a *factor* of $\sqrt{2}$ above the classical bound
+of $2$.
 
 Alain Aspect and collaborators in 1982 carried out the first
 experiment that closed the *locality* loophole — the worry that
