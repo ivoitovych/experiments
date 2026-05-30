@@ -71,8 +71,13 @@ are in §4.8.
   (A_1 A_2 \cdots A_k) \otimes (B_1 B_2 \cdots B_k)$.
 - Adjoint distributes:
   $(A \otimes B)^\dagger = A^\dagger \otimes B^\dagger$.
-  In particular $(A \otimes B)$ is Hermitian iff $A$ and $B$ are both
-  Hermitian, and unitary iff $A$ and $B$ are both unitary.
+  In particular, if $A$ and $B$ are both Hermitian then $A \otimes B$
+  is Hermitian, and if both are unitary then $A \otimes B$ is unitary.
+  The converses fail: a compensating scalar can be split across the two
+  factors (e.g. $A = iH$, $B = iK$ with $H, K$ Hermitian gives a
+  Hermitian $A \otimes B = -H \otimes K$ from non-Hermitian factors),
+  so $A \otimes B$ being Hermitian/unitary fixes $A$ and $B$ only up to
+  such a scalar.
 - Transpose and complex conjugate also distribute:
   $(A \otimes B)^T = A^T \otimes B^T$ and
   $(A \otimes B)^* = A^* \otimes B^*$.
@@ -267,8 +272,8 @@ single-axis-swap variants (Z–X–Z, X–Y–X) work analogously.
 - The four angles are determined by $U$ up to the usual Euler-angle
   ambiguities at $\gamma = 0$ or $\pi$.
 - Specialising the angles recovers every single-qubit gate in §B.1–B.4: for
-  example $H = e^{i\pi/2}\\, R_z(\pi/2)\\, R_y(\pi/2)\\, R_z(\pi/2)$ up to a
-  global phase, and $X = e^{i\pi/2}\\, R_x(\pi)$.
+  example $H = e^{i\pi/2}\\, R_y(\pi/2)\\, R_z(\pi)$ (the Z–Y–Z form with
+  $\beta = 0$), and $X = e^{i\pi/2}\\, R_x(\pi)$.
 - The $U_3(\theta, \phi, \lambda)$ Qiskit form (§B.4) packages the same
   three free Euler angles plus an overall phase into a single matrix.
 
