@@ -45,7 +45,8 @@ def main() -> int:
     files = sorted(FC.rglob("*.md"))
     for fc in files:
         rel = fc.relative_to(FC)
-        if rel.name in ("README.md", "_sources.md"):
+        if rel.name in ("README.md", "_sources.md", "CARD-SPEC.md",
+                        "_template.md", "_pilot.md"):
             continue
         src = BOOK / rel
         if not src.exists():
