@@ -222,10 +222,10 @@ Chapter 17 cites directly.
 - *Quantum Proofs.* Thomas Vidick and John Watrous. Foundations and
   Trends in Theoretical Computer Science, 2016. The standard survey
   for QMA, QIP, and quantum interactive proofs.
-- *Dequantizing read-once quantum formulas.* Ewin Tang and others —
-  start with Tang's *A quantum-inspired classical algorithm for
-  recommendation systems* (STOC 2019) for the dequantization
-  phenomenon discussed in §17.12.
+- *A quantum-inspired classical algorithm for recommendation systems.*
+  Ewin Tang (STOC 2019; arXiv:1807.04271) — the paper that launched the
+  dequantization phenomenon discussed in §17.12, followed by a wave of
+  dequantizations of PCA, low-rank regression, and kernel methods.
 - *The query complexity of the hidden subgroup problem.* Various
   authors; a good entry point is Childs and van Dam's *Quantum
   algorithms for algebraic problems*, Reviews of Modern Physics, 2010.

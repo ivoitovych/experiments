@@ -87,8 +87,8 @@ The hardware story makes the cost asymmetry vivid. A classical bit is stored in 
 
 A qubit is, by comparison, an open research problem. Today's leading physical realisations include:
 
-- **Superconducting circuits** (IBM, Google, Rigetti): lithographically defined LC resonators at millikelvin temperatures inside a dilution refrigerator, manipulated by microwave pulses. Coherence times of tens to hundreds of microseconds; gate times of tens to hundreds of nanoseconds; two-qubit gate fidelities at the $10^{-2}$ to $10^{-3}$ level.
-- **Trapped ions** (IonQ, Quantinuum): individual atomic ions held in electromagnetic traps in ultrahigh vacuum, manipulated by laser pulses. Coherence times of seconds; gate times of microseconds to milliseconds; two-qubit gate fidelities approaching $10^{-3}$ to $10^{-4}$; all-to-all connectivity within a trap.
+- **Superconducting circuits** (IBM, Google, Rigetti): lithographically defined LC resonators at millikelvin temperatures inside a dilution refrigerator, manipulated by microwave pulses. Coherence times of tens to hundreds of microseconds; gate times of tens to hundreds of nanoseconds; two-qubit gate error rates at the $10^{-2}$ to $10^{-3}$ level.
+- **Trapped ions** (IonQ, Quantinuum): individual atomic ions held in electromagnetic traps in ultrahigh vacuum, manipulated by laser pulses. Coherence times of seconds; gate times of microseconds to milliseconds; two-qubit gate error rates approaching $10^{-3}$ to $10^{-4}$; all-to-all connectivity within a trap.
 - **Neutral atoms** (QuEra, Atom Computing, Pasqal): individual atoms held in optical tweezer arrays, manipulated via Rydberg interactions. Larger system sizes, slower gates, rapidly improving fidelities.
 - **Photonics** (PsiQuantum, Xanadu): single photons in linear-optical networks, with measurement-based or fusion-based architectures. Different trade-off profile entirely — no decoherence in flight, but probabilistic gates and large hardware overheads.
 - **Spin qubits** in silicon or in nitrogen-vacancy centres: closer in fabrication style to classical CMOS, slower in development, attractive for long-term scalability.

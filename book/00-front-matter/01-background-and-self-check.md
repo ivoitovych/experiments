@@ -386,9 +386,12 @@ $2^{\sqrt n}$.
 *Answer.* $\log n \prec n \log n \prec n^{100} \prec 2^{\sqrt n}
 \prec 2^n \prec n!$. The placement of $2^{\sqrt n}$ between
 polynomial and exponential is the one most people get wrong; it is
-sub-exponential but super-polynomial, which is exactly the regime of
-the best known classical factoring algorithm (the general number
-field sieve).
+sub-exponential but super-polynomial — the same broad regime as the
+best known classical factoring algorithms. (The general number field
+sieve is faster still, at $\exp\bigl(O((\log N)^{1/3}(\log\log N)^{2/3})\bigr)$
+in the integer $N = 2^n$ — the $L[1/3]$ form — whereas $2^{\sqrt n}$
+corresponds to the older $L[1/2]$ algorithms such as the quadratic
+sieve.)
 
 **Sample problem 1.5.2.** True or false: if a problem is in NP, then
 a quantum computer can solve it in polynomial time.
