@@ -16,7 +16,7 @@ Three categories are worth distinguishing.
 
 **Embedded DSLs**: Python (or another host) libraries that build a circuit by method calls — `qc.h(0); qc.cx(0,1)` in Qiskit, `cirq.H(q0), cirq.CNOT(q0, q1)` in Cirq. The "language" is just the host language's syntax; portability comes from a separate serialisation step.
 
-**Standalone textual IRs**: OpenQASM 3, Quil, QIR's textual form. These are first-class languages with grammars, parsers, and tooling. They are the lingua franca between SDKs and hardware backends — a Qiskit circuit is typically serialised to OpenQASM 3 before it leaves the client, and the IBM runtime parses that text into its own internal representation before scheduling.
+**Standalone textual IRs**: OpenQASM 3, Quil, QIR's textual form. These are first-class languages with grammars, parsers, and tooling. They are the lingua franca between SDKs and hardware backends for *interchange*. (For its own client–cloud transport, Qiskit Runtime actually serialises circuits with **QPY**, Qiskit's binary format, and submits hardware-native "ISA" circuits rather than round-tripping through OpenQASM 3 text — but OpenQASM 3 remains the portable cross-tool exchange format.)
 
 **Hardware-flavoured languages**: pulse-level descriptions (OpenPulse, OpenQASM 3's `defcal` blocks, Quantinuum's `H-series` pulse format) that mention waveforms, frequencies, and durations rather than abstract unitaries. Most users never touch these directly; they exist so that the bottom of the compilation pipeline has somewhere to land.
 
@@ -64,7 +64,7 @@ The interesting feature of Quil — and the one that shaped a lot of subsequent 
 
 The SDK landscape in 2026 has consolidated around a handful of mature stacks, each with a clear primary hardware target and a clear secondary strength.
 
-**Qiskit** (IBM, open source). The largest community, the most extensive documentation, and the deepest tooling for IBM superconducting hardware. The Python API is the most common entry point in the field. The current shipping line is the **Qiskit SDK 1.x** (a slimmed-down core with the transpiler, circuit construction, and quantum-info modules) paired with **Qiskit Runtime** (the cloud-side execution service, exposing the `Sampler` and `Estimator` *Primitives* — see §23.13). Qiskit Aer is the local simulator backend.
+**Qiskit** (IBM, open source). The largest community, the most extensive documentation, and the deepest tooling for IBM superconducting hardware. The Python API is the most common entry point in the field. The current shipping line is the **Qiskit SDK 2.x** (released March 2025; a slimmed-down core with the transpiler, circuit construction, and quantum-info modules, plus a new C interface) paired with **Qiskit Runtime** (the cloud-side execution service, exposing the `Sampler` and `Estimator` *Primitives* — see §23.13). Qiskit Aer is the local simulator backend.
 
 **Cirq** (Google, open source). Targets Google's superconducting hardware and the Quantum Engine cloud service. Cirq's design emphasises gate-level circuit construction with explicit qubit objects (a `GridQubit` knows its physical position), and it is the primary entry point for **TensorFlow Quantum** for hybrid quantum-classical ML workloads.
 
@@ -90,7 +90,7 @@ The motivating use cases are narrow but real. **Gate calibration and benchmarkin
 
 The interfaces:
 
-- **Qiskit Pulse** (now exposed through OpenQASM 3 `defcal` blocks; the legacy `qiskit.pulse` API was deprecated in 2024). Lets the user define `defcal h $0 { play(...); }` and replace IBM's default Hadamard calibration on a specific qubit.
+- **Pulse-level calibration** via OpenQASM 3 `defcal` blocks, e.g. `defcal h $0 { play(...); }` to replace IBM's default Hadamard calibration on a specific qubit. (Qiskit's own `qiskit.pulse` API was deprecated in Qiskit 1.3 and **removed in Qiskit 2.0** (2025), alongside IBM's removal of pulse-level control from its QPUs; pulse programming now lives in `defcal`/OpenQASM 3 and vendor stacks rather than in the Qiskit SDK.)
 - **Quil-T** (Rigetti) — the original pulse-level IR, structurally similar.
 - **Quantinuum's H-series stack** allows pulse-level overrides for specialist users; trapped-ion pulse shapes are less commonly customised because the native two-qubit gates are already very high fidelity.
 
@@ -124,7 +124,7 @@ The standard heuristics:
 - **Trivial mapping plus stochastic SWAP**. Cheaper, used at low optimisation levels.
 - **Architecture-aware initial mapping** ("layout selection"): heuristics that pick an initial logical-to-physical assignment based on the circuit's interaction graph rather than starting from the identity.
 
-For all-to-all devices (trapped ions, neutral atoms with rearrangement, photonic), routing is trivial — every two-qubit gate is executable as written — and the transpiler skips this stage. This is a real advantage of those platforms for circuits with non-local interactions, especially in early fault-tolerant regimes where SWAP overhead can dominate.
+For genuinely all-to-all devices (a single trapped-ion chain), routing is trivial — every two-qubit gate is executable as written — and the transpiler skips this stage. Neutral-atom arrays achieve effective all-to-all connectivity by physically *rearranging* atoms, which removes SWAP chains but replaces them with atom-movement and gate-zone scheduling that the compiler must plan; photonic connectivity is set by the interferometer graph. Even so, avoiding SWAP overhead is a real advantage of these platforms for circuits with non-local interactions, especially in early fault-tolerant regimes where SWAP overhead can dominate.
 
 A practical observation: routing quality is the single most impactful transpiler choice on superconducting hardware. Running the same circuit through `optimization_level=1` and `optimization_level=3` can differ by 30–50% in SWAP count on a hard instance, and the success probability follows. If you only tune one transpiler knob, tune this one.
 
@@ -245,13 +245,13 @@ Quantum programs are hard to debug. The state is exponential and unobservable; m
 
 **Statevector-replay debugging.** Run the circuit on a state-vector simulator with the same SDK and inspect the intermediate state vectors. Qiskit's `Statevector(circuit)`, Cirq's `simulate_moment_steps`, and PennyLane's `qml.snapshots` all support this. The constraint is the qubit count — past about 30 qubits, replay debugging becomes infeasible and other techniques take over.
 
-**Assertion-based debugging.** Annotate the circuit with classical assertions on intermediate measurements ("after this Toffoli, the ancilla should be $|0\rangle$ if the inputs were classical") and the framework either statically checks them (Q# does this for some patterns) or dynamically samples to verify (Qiskit's `BaseAssertion` framework).
+**Assertion-based debugging.** Annotate the circuit with classical assertions on intermediate measurements ("after this Toffoli, the ancilla should be $|0\rangle$ if the inputs were classical"); a tool either statically checks them (Q# does this for some patterns) or dynamically samples to verify. Statistical assertion methods (state, entanglement, and superposition assertions via repeated measurement and hypothesis tests) come out of the research literature rather than a single official API.
 
 **Tomographic debugging.** When the circuit is small enough, run state or process tomography on the prepared state or the implemented unitary and compare against the design. Tomography costs scale as $O(4^n)$ in shots, so this is practical for $n \leq 6$ or so.
 
 **Cross-platform compilation diff.** Compile the same logical circuit on Qiskit, tket, and Cirq, run all three on the same hardware, and compare outputs. Disagreements localise a compiler bug, a gate-direction confusion, or an endianness mismatch (always the prime suspect — Qiskit is little-endian; the book convention is big-endian; this difference alone has eaten more debug time than any other single issue in the field).
 
-**Quantum-software unit testing.** `pytest-qiskit`, `pennylane-pytest`, and similar frameworks let you write unit tests that simulate small circuits and assert on the output distribution. The discipline of writing such tests as the program grows is the single most effective debugging practice.
+**Quantum-software unit testing.** Ordinary `pytest` plus a local simulator (Qiskit Aer, Qiskit Runtime's local testing mode, Cirq's simulator, or PennyLane's `default.qubit`) lets you write unit tests that run small circuits and assert on the output distribution against a fixed seed. The discipline of writing such tests as the program grows is the single most effective debugging practice.
 
 ## 23.15 Integration with Classical ML Frameworks
 
