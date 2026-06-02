@@ -74,12 +74,12 @@ ENTRIES: list[dict] = [
         ],
     },
 
-    # ----- Part 0 -----
-    {"kind": "part-divider", "part_label": "Part 0 — Historical Prelude"},
+    # ----- Historical Prelude (unnumbered) -----
+    {"kind": "part-divider", "part_label": "Historical Prelude"},
     {
-        "kind": "chapter", "part_label": "Part 0 — Historical Prelude",
+        "kind": "chapter", "part_label": "Historical Prelude",
         "dir": "part-00-historical-prelude", "file": "00-historical-prelude.md",
-        "chapter_label": "Chapter 0", "title": "From Quanta to Qubits",
+        "chapter_label": "", "title": "From Quanta to Qubits",
         "sections": [
             ("0.1", "The Classical World Before the Crisis"),
             ("0.2", "The Classical Crisis: Bugs That Would Not Go Away"),
@@ -904,19 +904,19 @@ def link_to_root(from_entry: dict, target_name: str) -> str:
 
 
 def heading(e: dict) -> str:
-    if e["kind"] == "chapter":
+    if e["kind"] == "chapter" and e.get("chapter_label"):
         return f"# {e['chapter_label']}. {e['title']}"
     return f"# {e['title']}"
 
 
 def display_title(e: dict) -> str:
-    if e["kind"] == "chapter":
+    if e["kind"] == "chapter" and e.get("chapter_label"):
         return f"{e['chapter_label']}. {e['title']}"
     return e["title"]
 
 
 def short_title(e: dict) -> str:
-    if e["kind"] == "chapter":
+    if e["kind"] == "chapter" and e.get("chapter_label"):
         return e["chapter_label"]
     return e["title"]
 
@@ -1029,7 +1029,9 @@ def render_readme() -> str:
             continue
 
         if kind == "chapter":
-            lines.append(f"- [{e['chapter_label']}. {e['title']}]({rel_path(e)})")
+            label = e.get("chapter_label", "")
+            prefix = f"{label}. " if label else ""
+            lines.append(f"- [{prefix}{e['title']}]({rel_path(e)})")
             continue
 
         if kind == "back":

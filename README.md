@@ -117,9 +117,9 @@ See [LICENSE](LICENSE) for full terms.
 - [Recommended / Assumed Background and Self-Check](book/00-front-matter/01-background-and-self-check.md)
 - [Notation and Conventions](book/00-front-matter/02-notation-and-conventions.md)
 
-### Part 0 — Historical Prelude
+### Historical Prelude
 
-- [Chapter 0. From Quanta to Qubits](book/part-00-historical-prelude/00-historical-prelude.md)
+- [From Quanta to Qubits](book/part-00-historical-prelude/00-historical-prelude.md)
 
 ### Part I — Orientation and Framing
 

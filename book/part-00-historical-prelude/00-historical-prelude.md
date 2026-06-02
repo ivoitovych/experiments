@@ -1,4 +1,4 @@
-# Chapter 0. From Quanta to Qubits
+# Historical Prelude — From Quanta to Qubits
 
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 16 / 16
 
@@ -8,13 +8,13 @@ The rest of this book teaches a model: states, gates, measurement, error correct
 
 What the prelude offers, to the reader who does *not* skip it, is a working sense of how the field's body of knowledge was built. Quantum mechanics was not invented; it was forced — experiment by experiment — over twenty-five years, and quantum computing was assembled from it over another forty. Knowing that history changes how the postulates of Chapter 5 read. They stop looking like axioms imposed from above and start looking like the compressed summary of every classical assumption that failed. The state vector is not a definition; it is the survivor of black-body radiation, the photoelectric effect, the Bohr atom, matter waves, the EPR challenge, Bell's inequalities, the Aspect experiments, and the loophole-free tests of 2015. Knowing how that survivor was selected is what turns a reader from a stranger to the field into a literate inhabitant of it.
 
-> **How to read this chapter.** Read linearly on first pass. The four parts trace a single causal arc — *the classical model breaks; a formal replacement is built; physics becomes engineering and computation becomes mathematical; the two streams converge into a discipline* — and each part hands off to the next with one bridging sentence. Names and dates accumulate; do not try to memorise them. The chapter cross-references forward into the technical chapters (so the curious reader knows where the operational treatment lives) but is otherwise self-contained, and no later chapter assumes you have read it.
+> **How to read this chapter.** Read linearly on first pass. The four eras trace a single causal arc — *the classical model breaks; a formal replacement is built; physics becomes engineering and computation becomes mathematical; the two streams converge into a discipline* — and each era hands off to the next with one bridging sentence. Names and dates accumulate; do not try to memorise them. The chapter cross-references forward into the technical chapters (so the curious reader knows where the operational treatment lives) but is otherwise self-contained, and no later chapter assumes you have read it.
 
 The thesis the chapter argues, in one paragraph: **quantum computing is not weird mathematics invented for its own sake.** It is the result of a century-long sequence in which failed classical models forced new physical abstractions, those abstractions became formal mathematics, computation and information became physical, and quantum computation emerged as an engineering discipline. The path is recognisable to any working developer — a model works, edge cases appear, patches accumulate, the abstraction fails, a new model is introduced, the model becomes formal, the formalism becomes technology, the technology becomes a discipline — and the rest of this prelude walks that path.
 
 ---
 
-# Part I — The Classical Model Breaks
+# Era I — The Classical Model Breaks
 
 ## 0.1 The Classical World Before the Crisis
 
@@ -62,7 +62,7 @@ By 1925, old quantum theory had produced working formulas for the hydrogen spect
 
 ---
 
-# Part II — Quantum Mechanics Becomes a Formal Model
+# Era II — Quantum Mechanics Becomes a Formal Model
 
 ## 0.4 The Birth of Modern Quantum Mechanics, 1925–1927
 
@@ -128,9 +128,9 @@ The historical shape worth holding on to: entanglement entered the theory as a p
 
 ---
 
-# Part III — Quantum Physics Becomes Technology and Information
+# Era III — Quantum Physics Becomes Technology and Information
 
-This part is the bridge that prevents the chapter from jumping directly from Schrödinger to Feynman. Quantum mechanics did not wait for quantum computers to enter the world. It built the world the experienced developer already lives in.
+This era is the bridge that prevents the chapter from jumping directly from Schrödinger to Feynman. Quantum mechanics did not wait for quantum computers to enter the world. It built the world the experienced developer already lives in.
 
 ## 0.7 Quantum Mechanics Becomes Engineering
 
@@ -190,7 +190,7 @@ BB84 was not just a paper proposal. Bennett and Brassard built a working prototy
 
 ---
 
-# Part IV — Quantum Computation Becomes a Discipline
+# Era IV — Quantum Computation Becomes a Discipline
 
 ## 0.11 The Birth of Quantum Computing: Possibility, Necessity, Universality
 
