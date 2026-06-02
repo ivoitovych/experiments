@@ -137,9 +137,9 @@
 
 ---
 
-# **Part 0 — Historical Prelude**
+# **Historical Prelude**
 
-## **Chapter 0. From Quanta to Qubits**
+## **From Quanta to Qubits**
 
 * 0.1. The Classical World Before the Crisis
 * 0.2. The Classical Crisis: Bugs That Would Not Go Away

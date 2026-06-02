@@ -131,7 +131,9 @@ def build_summary() -> str:
         if kind == "part-divider":
             lines.append(f"\n# {e['part_label']}\n")
         elif kind == "chapter":
-            lines.append(f"- [{e['chapter_label']}. {e['title']}](book/{e['dir']}/{e['file']})")
+            label = e.get("chapter_label", "")
+            prefix = f"{label}. " if label else ""
+            lines.append(f"- [{prefix}{e['title']}](book/{e['dir']}/{e['file']})")
         elif kind in ("front", "back"):
             lines.append(f"- [{e['title']}](book/{e['dir']}/{e['file']})")
     lines.append("\n# Project documents\n")

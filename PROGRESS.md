@@ -25,7 +25,7 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 - [x] [Recommended / Assumed Background and Self-Check](book/00-front-matter/01-background-and-self-check.md) — *draft* — sections 7/7
 - [x] [Notation and Conventions](book/00-front-matter/02-notation-and-conventions.md) — *draft* — sections 7/7
 - [x] [Appendix A. Notation Reference](book/99-back-matter/appendix-a-notation-reference.md) — *draft* — sections 6/6
-- [x] [Chapter 0. From Quanta to Qubits](book/part-00-historical-prelude/00-historical-prelude.md) — *draft* — sections 16/16
+- [x] [Historical Prelude — From Quanta to Qubits](book/part-00-historical-prelude/00-historical-prelude.md) — *draft* — sections 16/16
 - [x] [Chapter 1. Why Quantum Computing Exists](book/part-01-orientation/01-why-quantum-computing-exists.md) — *draft* — sections 6/6
 - [x] [Chapter 2. Classical-to-Quantum Contrast](book/part-01-orientation/02-classical-to-quantum-contrast.md) — *draft* — sections 7/7
 - [x] [Chapter 3. Physical Intuition Behind Quantum Mechanics](book/part-01-orientation/03-physical-intuition.md) — *draft* — sections 10/10
