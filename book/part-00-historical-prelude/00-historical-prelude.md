@@ -1,8 +1,8 @@
-# Chapter 0. Historical Prelude — From Quanta to Qubits
+# Chapter 0. From Quanta to Qubits
 
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 16 / 16
 
-[← Previous: Notation and Conventions](02-notation-and-conventions.md) · [Table of Contents](../../README.md) · [Next: Chapter 1 →](../part-01-orientation/01-why-quantum-computing-exists.md)
+[← Previous: Notation and Conventions](../00-front-matter/02-notation-and-conventions.md) · [Table of Contents](../../README.md) · [Next: Chapter 1 →](../part-01-orientation/01-why-quantum-computing-exists.md)
 
 The rest of this book teaches a model: states, gates, measurement, error correction, algorithms, hardware. This chapter explains *why the model has the shape it does*. It is the only chapter ordered chronologically, and it is the only chapter you can safely skip — Chapter 1 onward does not lean on it. If you want to start with the formalism, jump to Chapter 1; this prelude will still be here later.
 
@@ -302,4 +302,4 @@ Quantum computing is not classical computing with faster bits. It is computation
 
 ---
 
-[← Previous: Notation and Conventions](02-notation-and-conventions.md) · [Table of Contents](../../README.md) · [Next: Chapter 1 →](../part-01-orientation/01-why-quantum-computing-exists.md)
+[← Previous: Notation and Conventions](../00-front-matter/02-notation-and-conventions.md) · [Table of Contents](../../README.md) · [Next: Chapter 1 →](../part-01-orientation/01-why-quantum-computing-exists.md)

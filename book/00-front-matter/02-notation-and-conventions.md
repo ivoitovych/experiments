@@ -2,7 +2,7 @@
 
 > **Status:** draft · **Phase:** 1 · **Sections drafted:** 7 / 7
 
-[← Previous: Recommended / Assumed Background and Self-Check](01-background-and-self-check.md) · [Table of Contents](../../README.md) · [Next: Chapter 0 →](03-historical-prelude.md)
+[← Previous: Recommended / Assumed Background and Self-Check](01-background-and-self-check.md) · [Table of Contents](../../README.md) · [Next: Chapter 0 →](../part-00-historical-prelude/00-historical-prelude.md)
 
 Quantum computing inherits notation from three different traditions —
 linear algebra, theoretical physics, and theoretical computer science —
@@ -505,4 +505,4 @@ above) are matters of editorial discipline and are checked at review time.
 
 ---
 
-[← Previous: Recommended / Assumed Background and Self-Check](01-background-and-self-check.md) · [Table of Contents](../../README.md) · [Next: Chapter 0 →](03-historical-prelude.md)
+[← Previous: Recommended / Assumed Background and Self-Check](01-background-and-self-check.md) · [Table of Contents](../../README.md) · [Next: Chapter 0 →](../part-00-historical-prelude/00-historical-prelude.md)
