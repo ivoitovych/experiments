@@ -137,6 +137,29 @@
 
 ---
 
+# **Part 0 — Historical Prelude**
+
+## **Chapter 0. From Quanta to Qubits**
+
+* 0.1. The Classical World Before the Crisis
+* 0.2. The Classical Crisis: Bugs That Would Not Go Away
+* 0.3. Old Quantum Theory: Patching Classical Physics, 1900–1925
+* 0.4. The Birth of Modern Quantum Mechanics, 1925–1927
+* 0.5. Dirac, von Neumann, and the Formal Language of Quantum Theory
+* 0.6. Entanglement: From Philosophical Problem to Operational Resource
+* 0.7. Quantum Mechanics Becomes Engineering
+* 0.8. Computation Becomes Formal
+* 0.9. Information Becomes Mathematical and Physical
+* 0.10. Quantum Information Before Quantum Computers
+* 0.11. The Birth of Quantum Computing: Possibility, Necessity, Universality
+* 0.12. The Algorithmic Shock: From Oracle Separations to Shor and Grover
+* 0.13. Quantum Error Correction: Making the Impossible Plausible
+* 0.14. The Hardware Era: From Laboratory Systems to Competing Platforms
+* 0.15. NISQ, Quantum Advantage, and the Present Reality
+* 0.16. What This History Gives the Practicing Developer
+
+---
+
 # **Part I — Orientation and Framing**
 
 ## **Chapter 1. Why Quantum Computing Exists**
