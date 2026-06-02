@@ -8,11 +8,11 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 
 ## Summary
 
-- **Files total:** 47
-- **Started (past `stub`):** 47 / 47
-- **Completed (`draft` or later):** 47 / 47
+- **Files total:** 48
+- **Started (past `stub`):** 48 / 48
+- **Completed (`draft` or later):** 48 / 48
 
-- **Phase 1 (Foundations):** started 25/25, completed 25/25
+- **Phase 1 (Foundations):** started 26/26, completed 26/26
 - **Phase 2 (Core mechanics):** started 5/5, completed 5/5
 - **Phase 3 (Algorithms and complexity):** started 1/1, completed 1/1
 - **Phase 4 (Real systems):** started 6/6, completed 6/6
@@ -24,6 +24,7 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 - [x] [Preface](book/00-front-matter/00-preface.md) — *draft* — sections 11/11
 - [x] [Recommended / Assumed Background and Self-Check](book/00-front-matter/01-background-and-self-check.md) — *draft* — sections 7/7
 - [x] [Notation and Conventions](book/00-front-matter/02-notation-and-conventions.md) — *draft* — sections 7/7
+- [x] [Chapter 0. Historical Prelude — From Quanta to Qubits](book/00-front-matter/03-historical-prelude.md) — *draft* — sections 17/17
 - [x] [Appendix A. Notation Reference](book/99-back-matter/appendix-a-notation-reference.md) — *draft* — sections 6/6
 - [x] [Chapter 1. Why Quantum Computing Exists](book/part-01-orientation/01-why-quantum-computing-exists.md) — *draft* — sections 6/6
 - [x] [Chapter 2. Classical-to-Quantum Contrast](book/part-01-orientation/02-classical-to-quantum-contrast.md) — *draft* — sections 7/7
@@ -63,7 +64,7 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 
 - [x] [Appendix F. 2026 Hardware Snapshot](book/99-back-matter/appendix-f-hardware-snapshot-2026.md) — *draft* — sections 8/8
 - [x] [Chapter 19. Quantum Error Correction and Fault Tolerance](book/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md) — *draft* — sections 23/23
-- [x] [Chapter 21. Quantum Control and Electronics](book/part-09-hardware-and-software/21-quantum-control-and-electronics.md) — *draft* — sections 14/14
+- [x] [Chapter 21. Quantum Control and Electronics](book/part-09-hardware-and-software/21-quantum-control-and-electronics.md) — *draft* — sections 15/15
 - [x] [Chapter 22. Hardware Engineering Metrics](book/part-09-hardware-and-software/22-hardware-engineering-metrics.md) — *draft* — sections 14/14
 - [x] [Chapter 23. Quantum Programming, Compilation, and Tooling](book/part-09-hardware-and-software/23-quantum-programming-compilation-and-tooling.md) — *draft* — sections 15/15
 - [x] [Chapter 24. Classical Simulation of Quantum Systems](book/part-09-hardware-and-software/24-classical-simulation-of-quantum-systems.md) — *draft* — sections 15/15
