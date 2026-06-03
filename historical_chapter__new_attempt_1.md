@@ -374,6 +374,10 @@ standing on top of the Hilbert-space language. The notation made the physics
 portable: from chalkboards to circuits, from circuits to simulators, and from
 simulators to control systems.
 
+This is why quantum-computing introductions so quickly turn into linear
+algebra. The mathematics is not a decorative barrier to entry; it is the
+compact interface that made the physics programmable.
+
 ## 0.7 Entanglement: From Problem to Resource
 
 Entanglement began as trouble.
@@ -854,9 +858,9 @@ a physics demonstration and a computer.
 
 In the 2010s and 2020s, cloud-accessible quantum processors made small
 devices available to researchers, students, and developers. John Preskill
-popularised the term NISQ: noisy intermediate-scale quantum. NISQ devices
-have enough qubits to be scientifically interesting but not enough error
-correction to run deep, reliable algorithms at scale.
+popularised the term NISQ: noisy intermediate-scale quantum. In this framing,
+the devices have enough qubits to be scientifically interesting but not
+enough error correction to run deep, reliable algorithms at scale.
 
 Google's 2019 Sycamore experiment claimed "quantum supremacy" for a specific
 random-circuit sampling task: a 53-qubit superconducting processor sampled in
@@ -941,8 +945,16 @@ draft. They are not meant to be exhaustive.
 - Albert Einstein, Nobel Prize facts page, especially the photoelectric-effect
   prize motivation and summary:
   <https://www.nobelprize.org/prizes/physics/1921/einstein/facts/>
+- American Physical Society, "May, 1911: Rutherford and the Discovery of the
+  Atomic Nucleus":
+  <https://www.aps.org/apsnews/2006/05/rutherford-discovery-atomic-nucleus>
+- Arthur H. Compton, Nobel Prize facts page:
+  <https://www.nobelprize.org/prizes/physics/1927/compton/facts/>
 - Nobel Prize in Physics 2022 summary for Aspect, Clauser, and Zeilinger:
   <https://www.nobelprize.org/prizes/physics/2022/summary/>
+- B. Hensen et al., "Loophole-free Bell inequality violation using electron
+  spins separated by 1.3 kilometres," *Nature*, 2015:
+  <https://www.nature.com/articles/nature15759>
 - Computer History Museum, "1947: Invention of the Point-Contact
   Transistor":
   <https://www.computerhistory.org/siliconengine/invention-of-the-point-contact-transistor/>
@@ -963,7 +975,8 @@ draft. They are not meant to be exhaustive.
   Technical Journal*, 1948:
   <https://www.cs.yale.edu/homes/yry/readings/general/shannon1948.pdf>
 - R. Landauer, "Irreversibility and Heat Generation in the Computing Process,"
-  *IBM Journal of Research and Development*, 1961.
+  *IBM Journal of Research and Development*, 1961:
+  <https://www.cs.princeton.edu/courses/archive/fall06/cos576/papers/landauer61.pdf>
 - C. H. Bennett, "Logical Reversibility of Computation," *IBM Journal of
   Research and Development*, 1973:
   <https://www.cs.princeton.edu/courses/archive/fall06/cos576/papers/bennett73.html>
