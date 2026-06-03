@@ -57,7 +57,7 @@ scaffolding. It follows the chain:
 - quantisation appears first as a patch;
 - quantum mechanics becomes a formal language of states, operators, and
   measurement;
-- entanglement moves from embarrassment to resource;
+- entanglement moves from apparent paradox to resource;
 - quantum physics becomes the engineering base of modern electronics;
 - computation and information become mathematical objects;
 - information becomes physical;
@@ -69,7 +69,7 @@ Here is the same story in the form a developer may find most useful:
 | --- | --- |
 | Energy can vary continuously | Energy exchange can be quantised |
 | State is a list of definite properties | State is represented by amplitudes |
-| Measurement reveals a passive record | Measurement is a physical operation with probabilistic outcomes |
+| Measurement reveals a passive pre-existing record | Measurement is a physical operation with probabilistic outcomes |
 | Operation order is usually harmless | Operation order can change the result |
 | Composite systems reduce to their parts | Composite systems can be entangled |
 | Information is an abstract payload | Information is physically instantiated |
@@ -84,8 +84,8 @@ when classical intuition stopped predicting reality.
 
 ## 0.2 The Classical World Before the Crisis
 
-Before quantum theory, the world looked continuous, deterministic, and
-separable.
+Before quantum theory, the world looked continuous, separable, and
+deterministic at the level of its underlying laws.
 
 In Newtonian mechanics, a particle has a position and a velocity. If you know
 the initial state and the forces, you can calculate the future state. The
@@ -176,6 +176,9 @@ The failures can be written as a test suite:
 - measurement merely reveals pre-existing microscopic facts: later, fails
   more subtly through quantum measurement and entanglement.
 
+Classical physics did not fail everywhere. It failed where its hidden
+assumptions touched the microscopic behaviour of matter and radiation.
+
 The first quantum ideas did not arrive as a complete theory. They arrived as
 patches that worked too well to ignore and too inconsistently to trust.
 
@@ -211,7 +214,7 @@ Rutherford's 1911 nuclear atom, inferred from alpha-particle scattering,
 sharpened the next problem. If the positive charge and most of the mass sit
 in a tiny nucleus, electrons must live outside it. But classical orbits
 should decay. Niels Bohr's 1913 model responded with a disciplined act of
-rule-breaking: allow only certain electron orbits and only certain
+rule-making: postulate only certain stable electron orbits and only certain
 transitions between them. The model explained hydrogen's spectrum with
 astonishing success. It also looked, from a later perspective, like a halfway
 house: classical orbits with quantum restrictions bolted on.
@@ -275,7 +278,8 @@ For a moment, the field had two interfaces.
 
 One interface spoke in matrices and observables. The other spoke in
 wavefunctions and differential equations. They looked different, but they
-described the same underlying theory. The equivalence was quickly understood.
+turned out to describe the same underlying theory. The equivalence was
+quickly understood.
 This is a useful lesson for anyone coming to quantum computing from software:
 a model can have multiple interfaces. State-vector simulation, circuit
 diagrams, operator algebra, tensor networks, and path integrals can all expose
@@ -346,9 +350,9 @@ but also states that cannot be factored into independent one-qubit pieces.
 Dirac's equation for the electron also showed the depth of the new theory.
 It combined quantum mechanics and special relativity and implied the
 existence of the positron, the electron's antiparticle, before it was observed
-experimentally. For this chapter, the technical details are less important
-than the pattern: once the formalism became sharp, it generated unexpected
-structure.
+experimentally in 1932. For this chapter, the technical details are less
+important than the pattern: once the formalism became sharp, it generated
+unexpected structure.
 
 John von Neumann gave quantum mechanics an even more explicit mathematical
 foundation. In the Hilbert-space formulation, states live in vector spaces,
@@ -399,8 +403,9 @@ clearer questions about what the theory meant.
 In 1935, Einstein, Boris Podolsky, and Nathan Rosen published the EPR
 argument. They asked whether quantum mechanics was complete. If two systems
 are prepared together and then separated, quantum theory can describe them in
-a correlated joint state. Measurements on one system can then constrain what
-will be observed on the other. EPR argued that this suggested either
+a correlated joint state. Measurements on one system can then let the theory
+predict corresponding results for the other with striking certainty, even
+when the systems are far apart. EPR argued that this suggested either
 incompleteness or a troubling kind of nonlocality. The argument was not a
 cheap refusal to accept new mathematics. It was a precise demand: say clearly
 what kind of reality, locality, and completeness this theory is claiming.
@@ -506,7 +511,7 @@ machine. The setup was deliberately austere: a tape, symbols, a head that
 reads and writes, and a finite table of rules. The simplicity was the point.
 Turing was not designing a practical device. He was isolating the idea of an
 effective procedure from the habits of any particular human calculator or
-machine shop.
+physical machine.
 
 The universal Turing machine was the deeper idea. A single machine could read
 a description of another machine and simulate it. Program and data could live
@@ -686,8 +691,8 @@ quantum machines as the natural remedy. Deutsch placed quantum computation in
 the lineage of universal computing models.
 
 At this point, quantum computing existed as a serious idea. It did not yet
-have the algorithmic shock that would force the wider computer-science and
-cryptography communities to pay attention.
+have the algorithmic shock that would make it impossible for the wider
+computer-science and cryptography communities to ignore.
 
 ## 0.13 The Algorithmic Shock
 
@@ -870,7 +875,7 @@ people now prefer the less grandiose phrase "quantum advantage," especially
 outside narrow benchmark contexts. The claim was important, but it also
 illustrated the calibration needed in this field. The task was not a useful
 business application. Classical simulation methods improved. The benchmark
-war continued. Still, the experiment marked a real moment: quantum hardware
+debate continued. Still, the experiment marked a real moment: quantum hardware
 had entered a regime where comparison with classical computation became
 subtle, empirical, and contested rather than purely hypothetical.
 
@@ -988,7 +993,8 @@ draft. They are not meant to be exhaustive.
   <https://arxiv.org/abs/2003.06557>
 - P. Benioff, "The computer as a physical system: A microscopic quantum
   mechanical Hamiltonian model of computers as represented by Turing
-  machines," *Journal of Statistical Physics*, 1980.
+  machines," *Journal of Statistical Physics*, 1980:
+  <https://inspirehep.net/literature/140590>
 - R. P. Feynman, "Simulating Physics with Computers," *International Journal
   of Theoretical Physics*, 1982:
   <https://authors.library.caltech.edu/records/a1kgk-xyk45/latest>
