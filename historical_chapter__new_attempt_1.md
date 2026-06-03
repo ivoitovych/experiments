@@ -63,6 +63,18 @@ scaffolding. It follows the chain:
 - information becomes physical;
 - quantum computation emerges when those tracks converge.
 
+Here is the same story in the form a developer may find most useful:
+
+| Classical expectation | Quantum replacement |
+| --- | --- |
+| Energy can vary continuously | Energy exchange can be quantised |
+| State is a list of definite properties | State is represented by amplitudes |
+| Measurement reveals a passive record | Measurement is a physical operation with probabilistic outcomes |
+| Operation order is usually harmless | Operation order can change the result |
+| Composite systems reduce to their parts | Composite systems can be entangled |
+| Information is an abstract payload | Information is physically instantiated |
+| Errors can be corrected by copying | Quantum errors require indirect syndrome information |
+
 The rest of a quantum-computing book usually teaches the model in engineering
 order: vectors, gates, circuits, algorithms, noise, error correction, and
 hardware. History happened in a messier order. That mess is useful. It shows
@@ -142,12 +154,12 @@ why an atom should emit only these frequencies and not others.
 Then there was the photoelectric effect. Shine light on a metal and electrons
 can be ejected. Classical wave theory made intensity look like the obvious
 control knob: brighter light should deliver more energy. But in the ordinary
-single-photon regime the effect depended crucially on frequency. Below a
-threshold frequency, increasing the brightness did not liberate electrons.
-Above it, electrons came out, and their energies depended on the light
-frequency. The experiment behaved less like a wave slowly filling a bucket
-and more like a stream of individual payments, each of which either met the
-price of admission or did not.
+low-intensity regime the effect depended crucially on frequency. Below a
+threshold frequency, making the lamp brighter still did not liberate
+electrons. Above it, electrons came out, and their energies depended on the
+light frequency. The experiment behaved less like a wave slowly filling a
+bucket and more like a stream of individual payments, each of which either
+met the price of admission or did not.
 
 Atomic stability was worse. After Rutherford's nuclear model, the atom looked
 like a tiny massive positive nucleus with electrons outside it. But an
@@ -207,25 +219,29 @@ house: classical orbits with quantum restrictions bolted on.
 Arnold Sommerfeld extended Bohr's model with elliptical orbits and fine
 structure. The Stern-Gerlach experiment in 1922 sent silver atoms through a
 nonuniform magnetic field and found discrete deflections rather than the
-continuous smear classical intuition suggested. Arthur Compton's 1923
-scattering experiments strengthened the case that photons carry momentum.
-Louis de Broglie proposed in 1924 that matter, not just light, has wave-like
-character. Wolfgang Pauli's exclusion principle in 1925 gave a rule for why
-electrons fill atomic states the way they do.
+continuous smear classical intuition suggested. It was first understood in
+the language of space quantisation; only later did electron spin become the
+clean modern explanation. Arthur Compton's 1923 scattering experiments
+strengthened the case that photons carry momentum. Louis de Broglie proposed
+in 1924 that matter, not just light, has wave-like character. Wolfgang
+Pauli's exclusion principle in 1925 gave a rule for why electrons fill atomic
+states the way they do.
 
 The old quantum theory was productive. Calling it a patch is not an insult;
-patches keep important systems alive. It generated formulas, predictions, and
-experimental connections. But it was not a clean architecture. It mixed
-classical pictures with quantum prohibitions. It said, in effect: use orbits,
-but only these orbits; use waves, but also particles; use classical mechanics,
-but insert quantisation by hand.
+patches keep important systems alive while deeper causes are still being
+understood. It generated formulas, predictions, and experimental connections.
+But it was not a clean architecture. It mixed classical pictures with quantum
+prohibitions. It said, in effect: use orbits, but only these orbits; use
+waves, but also particles; use classical mechanics, but insert quantisation
+by hand.
 
 That is why the period from 1900 to 1925 feels like a compatibility layer.
 It kept the old system running while the replacement was being discovered.
 
 ## 0.5 Modern Quantum Mechanics: A New Model of State
 
-The rewrite began in earnest in 1925.
+If old quantum theory was the compatibility layer, modern quantum mechanics
+was the replacement architecture. The rewrite began in earnest in 1925.
 
 Werner Heisenberg's matrix mechanics abandoned the attempt to picture
 electrons moving along classical orbits. Instead it focused on observable
@@ -255,15 +271,15 @@ Schrödinger's equation described the evolution of a wavefunction. It was more
 visual, more continuous, and for many physicists more comfortable than
 Heisenberg's matrices.
 
-For a moment, the field had two APIs.
+For a moment, the field had two interfaces.
 
-One API spoke in matrices and observables. The other spoke in wavefunctions
-and differential equations. They looked different, but they described the
-same underlying theory. The equivalence was quickly understood. This is a
-useful lesson for anyone coming to quantum computing from software: a model
-can have multiple interfaces. State-vector simulation, circuit diagrams,
-operator algebra, tensor networks, and path integrals can all expose the same
-physics through different handles.
+One interface spoke in matrices and observables. The other spoke in
+wavefunctions and differential equations. They looked different, but they
+described the same underlying theory. The equivalence was quickly understood.
+This is a useful lesson for anyone coming to quantum computing from software:
+a model can have multiple interfaces. State-vector simulation, circuit
+diagrams, operator algebra, tensor networks, and path integrals can all expose
+the same physics through different handles.
 
 Born's probability interpretation supplied one of the decisive changes.
 The wavefunction was not just a classical wave in space. Its squared magnitude
@@ -297,7 +313,8 @@ By the late 1920s, the key replacements were visible:
 - passive observation becomes measurement as a physical operation;
 - commuting classical quantities become operators whose order may matter;
 - smooth determinism at the level of outcomes becomes deterministic evolution
-  of the state punctuated by probabilistic measurement.
+  of the state, with probabilistic measurement outcomes in the standard
+  textbook account.
 
 The state of a system had become a mathematical object whose amplitudes, not
 hidden classical properties, determine observable probabilities.
@@ -327,10 +344,11 @@ state spaces combine into a larger state space that contains product states,
 but also states that cannot be factored into independent one-qubit pieces.
 
 Dirac's equation for the electron also showed the depth of the new theory.
-It combined quantum mechanics and special relativity and led to the
-prediction of antimatter. For this chapter, the technical details are less
-important than the pattern: once the formalism became sharp, it generated
-unexpected structure.
+It combined quantum mechanics and special relativity and implied the
+existence of the positron, the electron's antiparticle, before it was observed
+experimentally. For this chapter, the technical details are less important
+than the pattern: once the formalism became sharp, it generated unexpected
+structure.
 
 John von Neumann gave quantum mechanics an even more explicit mathematical
 foundation. In the Hilbert-space formulation, states live in vector spaces,
@@ -352,7 +370,9 @@ For quantum computing, this is where physics becomes an interface:
 That interface is why a quantum circuit can be drawn as boxes and wires while
 still being a precise physical model. The boxes are not metaphors. They are
 unitary transformations, measurements, resets, and classical feedforward
-standing on top of the Hilbert-space language.
+standing on top of the Hilbert-space language. The notation made the physics
+portable: from chalkboards to circuits, from circuits to simulators, and from
+simulators to control systems.
 
 ## 0.7 Entanglement: From Problem to Resource
 
@@ -513,7 +533,9 @@ puts the machine back into physics.
 
 ## 0.10 Information Becomes Mathematical and Physical
 
-The next bridge was information.
+The next bridge was information. Computation tells you what procedures can
+do; information theory asks what can be represented, transmitted, compressed,
+hidden, corrupted, and recovered.
 
 Claude Shannon's 1948 paper, *A Mathematical Theory of Communication*,
 treated communication with a new kind of abstraction. A message is selected
@@ -526,8 +548,8 @@ meaningless; he made reliable communication mathematically tractable.
 That separation was powerful. It gave information a measure. It connected
 uncertainty, entropy, coding, compression, noise, and channel capacity. It
 showed that reliable communication through noisy channels is possible below
-the right limits, provided the coding is good enough. In hindsight, this is
-one of the ancestors of the quantum error-correction mindset: noise is not
+the right limits, provided the coding is good enough. In hindsight, this
+teaches a habit that quantum computing will later need badly: noise is not
 just an annoyance; it is part of the problem specification.
 
 For quantum computing, Shannon matters for two reasons. First, he made
@@ -677,9 +699,10 @@ deterministic classical algorithm. Bernstein-Vazirani showed how a hidden bit
 string could be recovered with one quantum query where the classical query
 model needs more. Simon's algorithm exposed a deeper pattern: quantum
 interference could reveal hidden structure in a way that classical queries
-could not match efficiently. These were not yet practical applications, but
-they taught researchers what to look for: hidden structure, phase kickback,
-Fourier sampling, and interference.
+could not match efficiently, and it became the conceptual stepping stone to
+Shor's period-finding breakthrough. These were not yet practical
+applications, but they taught researchers what to look for: hidden structure,
+phase kickback, Fourier sampling, and interference.
 
 Then came Shor.
 
@@ -706,7 +729,8 @@ form in 1997, gave a different kind of result. For unstructured search over
 but it is broad. It applies to a very general search setting, and its
 amplitude-amplification idea appears in many later algorithms.
 
-Shor and Grover are often paired because they teach complementary lessons:
+Shor and Grover are often paired because they teach complementary lessons.
+One is narrow but spectacular; the other is broad but more modest:
 
 - Shor: dramatic speedups are possible when algebraic structure can be
   exposed through quantum transforms.
@@ -753,11 +777,11 @@ Quantum error correction changed the question.
 > says what went wrong without revealing the encoded logical state.
 
 In 1995, Shor introduced a quantum error-correcting code that showed how to
-protect quantum information against certain errors without copying the
-unknown state. The trick is subtle. You do not measure the logical quantum
-information directly. You encode it into a larger entangled state and measure
-error syndromes: information about what error occurred, not information about
-the protected logical value itself.
+protect quantum information against arbitrary single-qubit errors without
+copying the unknown state. The trick is subtle. You do not measure the
+logical quantum information directly. You encode it into a larger entangled
+state and measure error syndromes: information about what error occurred, not
+information about the protected logical value itself.
 
 Andrew Steane and others quickly developed related codes, connecting quantum
 error correction to classical coding theory while also revealing what had to
@@ -791,7 +815,8 @@ That is one of the most important engineering reversals in the whole story.
 
 ## 0.15 Hardware, NISQ, and the Present Reality
 
-Once the theory was compelling, the hardware race became unavoidable.
+Once the theory was compelling, the race was no longer only to prove theorems.
+It was to make matter obey them on demand.
 
 The Cirac-Zoller trapped-ion proposal in 1995 showed how ions confined in
 electromagnetic traps could implement quantum gates. Nuclear magnetic
@@ -901,7 +926,9 @@ has this shape.
 Classical intuition did not fail because it was foolish. It failed because it
 was a successful approximation pushed past its domain. Quantum computing is
 what happens when the replacement theory is no longer used merely to build
-classical devices, but is itself treated as the substrate of computation.
+classical devices, but is itself treated as the substrate of computation. The
+strangeness is not decoration; it is the engineering surface of a deeper
+physical model.
 
 ## References and Further Reading
 
@@ -971,7 +998,8 @@ draft. They are not meant to be exhaustive.
   Letters*, 1996:
   <https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.77.793>
 - J. I. Cirac and P. Zoller, "Quantum Computations with Cold Trapped Ions,"
-  *Physical Review Letters*, 1995.
+  *Physical Review Letters*, 1995:
+  <https://pubmed.ncbi.nlm.nih.gov/10058410/>
 - D. P. DiVincenzo, "The Physical Implementation of Quantum Computation,"
   2000:
   <https://arxiv.org/abs/quant-ph/0002077>
