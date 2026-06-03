@@ -141,12 +141,13 @@ why an atom should emit only these frequencies and not others.
 
 Then there was the photoelectric effect. Shine light on a metal and electrons
 can be ejected. Classical wave theory made intensity look like the obvious
-control knob: brighter light should deliver more energy. But the effect
-depended crucially on frequency. Below a threshold frequency, no amount of
-increased brightness liberated electrons. Above it, electrons came out, and
-their energies depended on the light frequency. The experiment behaved less
-like a wave slowly filling a bucket and more like a stream of individual
-payments, each of which either met the price of admission or did not.
+control knob: brighter light should deliver more energy. But in the ordinary
+single-photon regime the effect depended crucially on frequency. Below a
+threshold frequency, increasing the brightness did not liberate electrons.
+Above it, electrons came out, and their energies depended on the light
+frequency. The experiment behaved less like a wave slowly filling a bucket
+and more like a stream of individual payments, each of which either met the
+price of admission or did not.
 
 Atomic stability was worse. After Rutherford's nuclear model, the atom looked
 like a tiny massive positive nucleus with electrons outside it. But an
@@ -194,21 +195,23 @@ This was not simply "light is particles now." The wave picture remained
 successful. Interference and diffraction did not disappear. The discomfort
 was that light was refusing to fit into one classical category.
 
-Rutherford's 1911 nuclear atom sharpened the next problem. If the positive
-charge and most of the mass sit in a tiny nucleus, electrons must live outside
-it. But classical orbits should decay. Niels Bohr's 1913 model responded with
-a disciplined act of rule-breaking: allow only certain electron orbits and
-only certain transitions between them. The model explained hydrogen's
-spectrum with astonishing success. It also looked, from a later perspective,
-like a halfway house: classical orbits with quantum restrictions bolted on.
+Rutherford's 1911 nuclear atom, inferred from alpha-particle scattering,
+sharpened the next problem. If the positive charge and most of the mass sit
+in a tiny nucleus, electrons must live outside it. But classical orbits
+should decay. Niels Bohr's 1913 model responded with a disciplined act of
+rule-breaking: allow only certain electron orbits and only certain
+transitions between them. The model explained hydrogen's spectrum with
+astonishing success. It also looked, from a later perspective, like a halfway
+house: classical orbits with quantum restrictions bolted on.
 
 Arnold Sommerfeld extended Bohr's model with elliptical orbits and fine
-structure. The Stern-Gerlach experiment in 1922 showed that measurements of
-atomic magnetic moments could split into discrete outcomes. Arthur Compton's
-1923 scattering experiments strengthened the case that photons carry
-momentum. Louis de Broglie proposed in 1924 that matter, not just light, has
-wave-like character. Wolfgang Pauli's exclusion principle in 1925 gave a rule
-for why electrons fill atomic states the way they do.
+structure. The Stern-Gerlach experiment in 1922 sent silver atoms through a
+nonuniform magnetic field and found discrete deflections rather than the
+continuous smear classical intuition suggested. Arthur Compton's 1923
+scattering experiments strengthened the case that photons carry momentum.
+Louis de Broglie proposed in 1924 that matter, not just light, has wave-like
+character. Wolfgang Pauli's exclusion principle in 1925 gave a rule for why
+electrons fill atomic states the way they do.
 
 The old quantum theory was productive. Calling it a patch is not an insult;
 patches keep important systems alive. It generated formulas, predictions, and
@@ -308,8 +311,8 @@ Paul Dirac helped unify the matrix and wave pictures through transformation
 theory. His work made it natural to think abstractly: not merely about a wave
 written in one coordinate system or a matrix written in one basis, but about a
 state that can be represented in many bases. Dirac's later bra-ket notation,
-introduced after the initial 1920s foundations, gave the field a compact
-language for states, dual states, inner products, and operators:
+introduced in 1939 after the initial 1920s foundations, gave the field a
+compact language for states, dual states, inner products, and operators:
 
 $$
 |\psi\rangle, \quad \langle \phi|, \quad \langle \phi|\psi\rangle.
@@ -398,13 +401,13 @@ states. The disagreement is experimentally testable.
 
 Experiments by John Clauser and collaborators in the 1970s, Alain Aspect and
 collaborators in the early 1980s, and later increasingly refined tests
-supported the quantum predictions. In 2015, several groups reported
-loophole-free or significant-loophole-free Bell tests, closing major
-experimental escape routes. The careful statement is not that every
-philosophical interpretation was settled, or that quantum correlations can be
-used for faster-than-light signalling. They cannot. The careful statement is
-that Bell's theorem and experiment strongly support quantum predictions over
-local hidden-variable models of the relevant kind.
+supported the quantum predictions. In 2015, several groups reported Bell
+tests designed to close the major experimental loopholes that had previously
+kept the evidence from being as clean as the theorem. The careful statement
+is not that every philosophical interpretation was settled, or that quantum
+correlations can be used for faster-than-light signalling. They cannot. The
+careful statement is that Bell's theorem and experiment strongly support
+quantum predictions over local hidden-variable models of the relevant kind.
 
 The reversal is one of the most important in the history of quantum
 information. Entanglement started as a sign that something was wrong or at
@@ -431,14 +434,16 @@ already become engineering.
 This point matters for developers. Quantum computing is exotic, but quantum
 technology is not. The laptop, phone, fibre network, camera sensor, and data
 centre are already full of quantum mechanics translated into reliable
-classical devices.
+classical devices. You do not need a quantum computer to live inside a
+quantum-built world.
 
 Semiconductors are the cleanest example. Band theory explains why some
 materials conduct, some insulate, and some sit in the controllable middle.
-The transistor, demonstrated in 1947, did not require engineers to manipulate
-arbitrary quantum superpositions as information. But it did require the
-quantum theory of electrons in solids. Modern integrated circuits are
-classical information machines built from quantum matter.
+The point-contact transistor demonstrated at Bell Labs in 1947 did not
+require engineers to manipulate arbitrary quantum superpositions as
+information. But it did require the quantum theory of electrons in solids.
+Modern integrated circuits are classical information machines built from
+quantum matter.
 
 Lasers and masers are another example. They rely on quantised energy levels,
 stimulated emission, and coherent radiation. They became tools for
@@ -576,11 +581,12 @@ string. A classical serial number can be read, written down, photocopied, and
 checked later. A quantum state can be designed so that an unauthorised attempt
 to learn it changes the operational situation.
 
-The no-cloning theorem, proved in the early 1980s, made the copying point
-precise. There is no universal operation that takes an arbitrary unknown
-quantum state \(|\psi\rangle\) and produces two copies
-\(|\psi\rangle|\psi\rangle\). This is not a technological limitation. It is a
-structural feature of quantum theory.
+The no-cloning theorem, formalised in 1982 by William Wootters and Wojciech
+Zurek and independently by Dennis Dieks, made the copying point precise.
+There is no universal operation that takes an arbitrary unknown quantum state
+\(|\psi\rangle\) and produces two copies \(|\psi\rangle|\psi\rangle\). This
+is not a technological limitation. It is a structural feature of quantum
+theory.
 
 Bennett and Gilles Brassard's BB84 protocol in 1984 turned these ideas into a
 cryptographic primitive. In quantum key distribution, the goal is not to send
@@ -600,7 +606,8 @@ Whether QKD is the right engineering choice in a given deployment is a
 separate question. It often is not. Post-quantum classical cryptography is
 far easier to deploy at internet scale. But historically, QKD proved
 something important: quantum states could be treated as information carriers
-with operational tasks, not merely as objects in foundations debates.
+with operational tasks, not merely as objects in foundations debates. It made
+quantum weirdness useful before quantum computers were useful.
 
 Before quantum computers became machines, quantum information became a
 protocol.
@@ -610,19 +617,21 @@ protocol.
 The idea of quantum computation emerged when the physics track and the
 computation track finally met.
 
-Paul Benioff, around 1980, described quantum-mechanical models of computation.
-This showed that computation could be embedded consistently in quantum
-physics. A computing machine need not be imagined as an exception to the
-physical rules of the universe. This was a modest-sounding step with a deep
-consequence: if computers are physical systems, then a fully physical account
-of computation should be able to describe a computer quantum mechanically.
+Paul Benioff, in a 1980 Hamiltonian model of a Turing machine, described a
+computer as a quantum-mechanical physical system. This showed that
+computation could be embedded consistently in quantum physics. A computing
+machine need not be imagined as an exception to the physical rules of the
+universe. This was a modest-sounding step with a deep consequence: if
+computers are physical systems, then a fully physical account of computation
+should be able to describe a computer quantum mechanically.
 
-Richard Feynman gave the field one of its central motivations. In his 1981
-talk and 1982 paper on simulating physics with computers, he argued that
-classical computers face a fundamental difficulty when simulating quantum
-systems. A generic quantum system has a state space whose size grows
-exponentially with the number of components. Nature, however, seems to evolve
-such systems without writing down an exponentially large classical table.
+Richard Feynman gave the field one of its central motivations. In a 1981
+lecture, later published as the 1982 paper "Simulating Physics with
+Computers," he argued that classical computers face a fundamental difficulty
+when simulating quantum systems. A generic quantum system has a state space
+whose size grows exponentially with the number of components. Nature,
+however, seems to evolve such systems without writing down an exponentially
+large classical table.
 
 Feynman's proposal was not "make a faster classical computer." It was more
 radical and more physical: use a machine made of quantum elements to simulate
@@ -657,7 +666,10 @@ cryptography communities to pay attention.
 ## 0.13 The Algorithmic Shock
 
 Early quantum algorithms showed that the model was not merely a different
-notation for classical computation.
+notation for classical computation. Most of the early separations lived in
+the query or oracle model, where one counts how many times an algorithm must
+ask a black-box question. That sounds artificial, but it is a clean laboratory
+for discovering mechanisms.
 
 Deutsch-Jozsa gave an oracle separation: under a promise about a function, a
 quantum algorithm could distinguish cases with fewer queries than a
@@ -687,12 +699,12 @@ not generic speed. It is structure meeting interference. This is why the
 algorithm was shocking but not magical; it was a precise exploit against a
 specific mathematical structure.
 
-Lov Grover's 1996 search algorithm gave a different kind of result. For
-unstructured search over \(N\) possibilities, Grover gives a quadratic
-speedup, using \(O(\sqrt{N})\) oracle queries rather than \(O(N)\). This is
-not exponential, but it is broad. It applies to a very general search
-setting, and its amplitude-amplification idea appears in many later
-algorithms.
+Lov Grover's search algorithm, introduced in 1996 and published in journal
+form in 1997, gave a different kind of result. For unstructured search over
+\(N\) possibilities, Grover gives a quadratic speedup, using
+\(O(\sqrt{N})\) oracle queries rather than \(O(N)\). This is not exponential,
+but it is broad. It applies to a very general search setting, and its
+amplitude-amplification idea appears in many later algorithms.
 
 Shor and Grover are often paired because they teach complementary lessons:
 
@@ -757,10 +769,10 @@ Fault tolerance extended the idea from memory to computation. It is not
 enough to store a logical qubit safely. You must perform gates, measurements,
 and corrections while preventing small physical errors from spreading into
 unrecoverable logical errors. Threshold theorems showed, under suitable
-assumptions, that arbitrarily long quantum computation is possible if physical
-error rates are below a threshold and if enough overhead is available. The
-overhead is not a footnote; it is one of the central engineering costs of the
-field.
+assumptions about noise, locality, preparation, and correction, that
+arbitrarily long quantum computation is possible if physical error rates are
+below a threshold and if enough overhead is available. The overhead is not a
+footnote; it is one of the central engineering costs of the field.
 
 This transformed the field's engineering posture. The question stopped being
 "does any noise make quantum computing impossible?" and became:
@@ -808,12 +820,12 @@ Each platform offers a different bargain:
 - topological qubits: elegant protection if realised, but experimentally
   uncertain.
 
-David DiVincenzo's criteria, formulated around 2000, gave the hardware field
-a useful checklist: a scalable physical system with well-characterised
-qubits, initialisation, long coherence relative to gate times, universal
-gates, measurement, and communication-related capabilities. The criteria are
-not a product specification, but they frame the gap between a physics
-demonstration and a computer.
+David DiVincenzo's criteria, codified in his 2000 implementation review, gave
+the hardware field a useful checklist: a scalable physical system with
+well-characterised qubits, initialisation, long coherence relative to gate
+times, universal gates, measurement, and communication-related capabilities.
+The criteria are not a product specification, but they frame the gap between
+a physics demonstration and a computer.
 
 In the 2010s and 2020s, cloud-accessible quantum processors made small
 devices available to researchers, students, and developers. John Preskill
@@ -822,16 +834,16 @@ have enough qubits to be scientifically interesting but not enough error
 correction to run deep, reliable algorithms at scale.
 
 Google's 2019 Sycamore experiment claimed "quantum supremacy" for a specific
-random-circuit sampling task: the device sampled in minutes from a distribution
-that the authors estimated would take a top classical supercomputer far
-longer to reproduce by then-known methods. Many people now prefer the less
-grandiose phrase "quantum advantage," especially outside narrow benchmark
-contexts. The claim was important, but it also illustrated the calibration
-needed in this field. The task was not a useful business application.
-Classical simulation methods improved. The benchmark war continued. Still,
-the experiment marked a real moment: quantum hardware had entered a regime
-where comparison with classical computation became subtle, empirical, and
-contested rather than purely hypothetical.
+random-circuit sampling task: a 53-qubit superconducting processor sampled in
+minutes from a distribution that the authors estimated would take a top
+classical supercomputer far longer to reproduce by then-known methods. Many
+people now prefer the less grandiose phrase "quantum advantage," especially
+outside narrow benchmark contexts. The claim was important, but it also
+illustrated the calibration needed in this field. The task was not a useful
+business application. Classical simulation methods improved. The benchmark
+war continued. Still, the experiment marked a real moment: quantum hardware
+had entered a regime where comparison with classical computation became
+subtle, empirical, and contested rather than purely hypothetical.
 
 Recent progress in error correction, better gates, improved materials,
 larger devices, and more serious software stacks has made the field more
@@ -904,6 +916,20 @@ draft. They are not meant to be exhaustive.
   <https://www.nobelprize.org/prizes/physics/1921/einstein/facts/>
 - Nobel Prize in Physics 2022 summary for Aspect, Clauser, and Zeilinger:
   <https://www.nobelprize.org/prizes/physics/2022/summary/>
+- Computer History Museum, "1947: Invention of the Point-Contact
+  Transistor":
+  <https://www.computerhistory.org/siliconengine/invention-of-the-point-contact-transistor/>
+- J. Bardeen, L. N. Cooper, and J. R. Schrieffer, "Theory of
+  Superconductivity," *Physical Review*, 1957:
+  <https://journals.aps.org/pr/abstract/10.1103/PhysRev.108.1175>
+- Stanford Encyclopedia of Philosophy, "The Einstein-Podolsky-Rosen Argument
+  in Quantum Theory":
+  <https://plato.stanford.edu/entries/qt-epr/>
+- Stanford Encyclopedia of Philosophy, "Bell's Theorem":
+  <https://plato.stanford.edu/entries/bell-theorem/>
+- P. A. M. Dirac, "A New Notation for Quantum Mechanics,"
+  *Mathematical Proceedings of the Cambridge Philosophical Society*, 1939:
+  <https://www.cambridge.org/core/product/identifier/S0305004100021162/type/journal_article>
 - Stanford Encyclopedia of Philosophy, "Turing Machines":
   <https://plato.stanford.edu/entries/turing-machine/>
 - C. E. Shannon, "A Mathematical Theory of Communication," *Bell System
@@ -914,9 +940,27 @@ draft. They are not meant to be exhaustive.
 - C. H. Bennett, "Logical Reversibility of Computation," *IBM Journal of
   Research and Development*, 1973:
   <https://www.cs.princeton.edu/courses/archive/fall06/cos576/papers/bennett73.html>
+- W. K. Wootters and W. H. Zurek, "A Single Quantum Cannot be Cloned,"
+  *Nature*, 1982:
+  <https://www.nature.com/articles/299802a0>
+- C. H. Bennett and G. Brassard, "Quantum Cryptography: Public Key
+  Distribution and Coin Tossing," 1984:
+  <https://arxiv.org/abs/2003.06557>
+- P. Benioff, "The computer as a physical system: A microscopic quantum
+  mechanical Hamiltonian model of computers as represented by Turing
+  machines," *Journal of Statistical Physics*, 1980.
+- R. P. Feynman, "Simulating Physics with Computers," *International Journal
+  of Theoretical Physics*, 1982:
+  <https://authors.library.caltech.edu/records/a1kgk-xyk45/latest>
+- D. Deutsch, "Quantum theory, the Church-Turing principle and the universal
+  quantum computer," *Proceedings of the Royal Society A*, 1985:
+  <https://www.cs.princeton.edu/courses/archive/fall06/cos576/papers/deutsch85.pdf>
 - P. W. Shor, "Algorithms for Quantum Computation: Discrete Logarithms and
   Factoring," FOCS 1994:
   <https://dblp.org/rec/conf/focs/Shor94.html>
+- L. K. Grover, "A Fast Quantum Mechanical Algorithm for Database Search,"
+  STOC 1996:
+  <https://arxiv.org/abs/quant-ph/9605043>
 - L. K. Grover, "Quantum Mechanics Helps in Searching for a Needle in a
   Haystack," *Physical Review Letters*, 1997:
   <https://arxiv.org/abs/quant-ph/9706033>
