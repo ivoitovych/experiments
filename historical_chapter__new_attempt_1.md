@@ -11,9 +11,9 @@ Most technical subjects become easier once you know what problem they were
 invented to solve. Quantum computing is no exception. If the subject is
 presented only as a list of rules, it can look like a pile of arbitrary
 exceptions: amplitudes instead of probabilities, unitary gates instead of
-ordinary functions, measurement rules instead of simple reads, tensor
-products instead of records with fields. History turns those exceptions back
-into causes.
+ordinary irreversible updates, measurement rules instead of simple reads,
+tensor products instead of records with fields. History turns those
+exceptions back into causes.
 
 If you arrive from software, systems, mathematics, or classical engineering,
 the first rules of quantum mechanics can feel unnecessarily strange. A state
@@ -280,6 +280,7 @@ One interface spoke in matrices and observables. The other spoke in
 wavefunctions and differential equations. They looked different, but they
 turned out to describe the same underlying theory. The equivalence was
 quickly understood.
+
 This is a useful lesson for anyone coming to quantum computing from software:
 a model can have multiple interfaces. State-vector simulation, circuit
 diagrams, operator algebra, tensor networks, and path integrals can all expose
@@ -374,7 +375,7 @@ For quantum computing, this is where physics becomes an interface:
 That interface is why a quantum circuit can be drawn as boxes and wires while
 still being a precise physical model. The boxes are not metaphors. They are
 unitary transformations, measurements, resets, and classical feedforward
-standing on top of the Hilbert-space language. The notation made the physics
+expressed in the Hilbert-space language. The notation made the physics
 portable: from chalkboards to circuits, from circuits to simulators, and from
 simulators to control systems.
 
