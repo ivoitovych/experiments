@@ -85,6 +85,18 @@ on **all** of: GitHub web view, mdBook + MathJax, and Pandoc.
 
 ## Cross-references
 
+- A cross-reference is a **signpost to where a topic is developed further,
+  never a prerequisite for understanding the passage it sits in.** The book
+  is written for selective readers who land in a section directly (see the
+  Preface, *Reading Linearly vs. Reading Selectively*), so each section must
+  carry its own context: name the fact, person, or result inline rather than
+  leaning on "the X of Section Y." Prefer deliberate, controlled repetition
+  over a reference the reader is forced to chase. Forward pointers of the
+  "developed in full in Chapter N" kind are invitations and are encouraged;
+  back-references that assume the reader has already read another section are
+  not. (This does not deny the real dependency chain among the core teaching
+  chapters 4–9, which the Preface states plainly — it governs how a section
+  reads when entered cold.)
 - Refer to chapters and sections by number in prose:
   "see Section 8.6 in [Chapter 8](../part-04-gates-and-circuits/08-quantum-gates.md)".
 - Use relative file paths for inter-file links.
