@@ -1,9 +1,10 @@
 # Chapter 0 — Historical Prelude: From Quanta to Qubits
 
-> This chapter is optional in the practical sense: you can learn quantum
-> computing without memorising the full historical route. But it is not
-> optional in the conceptual sense. The history explains why the model has
-> the shape it has.
+> This chapter is optional for learning the mechanics, but useful for
+> understanding why those mechanics have the shape they do. It supplies
+> historical motivation, not a derivation of quantum mechanics. Read it now
+> for the overall map, skim it if you want to reach the formalism quickly, or
+> revisit it after the technical chapters.
 
 ## 0.1 Why History Matters for Quantum Developers
 
@@ -51,7 +52,16 @@ most important tests. The story of quantum computing is what happened after
 that replacement model became precise enough to engineer.
 
 So this chapter is not history for ornament. It is history as causal
-scaffolding. It follows the chain:
+scaffolding. Its four movements are:
+
+1. why classical physics broke at the scale of atoms and radiation;
+2. how quantum mechanics became a formal model of states, operations, and
+   measurement;
+3. how computation and information became mathematical and physical objects;
+4. how those lines converged in quantum algorithms, error correction, and
+   hardware.
+
+Within those movements, it follows the chain:
 
 - classical physics works, then breaks;
 - quantisation appears first as a patch;
@@ -143,6 +153,12 @@ predicted a runaway disaster in the ultraviolet. Real objects did not do
 that. They emitted a finite spectrum with a peak. The disagreement was not
 small. It was structural.
 
+The structural problem came from combining classical mode counting with
+equipartition: a cavity has ever more electromagnetic modes at higher
+frequencies, and classical statistical mechanics assigned thermal energy to
+each of them. The resulting Rayleigh-Jeans law therefore diverged in the
+ultraviolet instead of merely missing the measured curve by a little.
+
 Atoms created another bug, and it was visible in colour. Heated gases and
 electrical discharges emitted light at sharp frequencies. Hydrogen, for
 example, did not smear its light across a continuous rainbow. It produced a
@@ -230,6 +246,23 @@ in 1924 that matter, not just light, has wave-like character. Wolfgang
 Pauli's exclusion principle in 1925 gave a rule for why electrons fill atomic
 states the way they do.
 
+The matter-wave proposal soon became experimental fact. In 1927, Clinton
+Davisson and Lester Germer observed electron diffraction from a nickel
+crystal, while George Paget Thomson independently observed diffraction
+through thin films. Electrons were not merely being described with a
+suggestive metaphor; they produced interference patterns characteristic of
+waves.
+
+Spin also emerged as a genuinely quantum degree of freedom rather than a tiny
+classical object literally rotating in space. A spin-\(\tfrac12\) system has
+two measurement outcomes along any chosen axis, and its observables and
+rotations can be described using the Pauli matrices. That two-level structure
+later became one of the natural physical and mathematical ancestors of the
+qubit and its Bloch sphere representation. Pauli's exclusion principle,
+meanwhile, reaches far beyond atomic bookkeeping: it helps explain chemical
+structure, the stability of matter, electronic bands, and therefore
+semiconductor technology.
+
 The old quantum theory was productive. Calling it a patch is not an insult;
 patches keep important systems alive while deeper causes are still being
 understood. It generated formulas, predictions, and experimental connections.
@@ -262,11 +295,11 @@ $$
 AB \neq BA.
 $$
 
-This was not a notation preference. It encoded a physical fact: some
-questions cannot be treated as if they reveal a single pre-existing classical
-record independent of how the questions are asked. In circuit language, the
-same fact later becomes completely practical: doing gate \(A\) and then gate
-\(B\) need not produce the same state as doing \(B\) and then \(A\).
+This was not a notation preference. The formalism does not allow all
+observables to be treated as simultaneously sharp, measurement-independent
+classical properties. In circuit language, the same fact later becomes
+completely practical: doing gate \(A\) and then gate \(B\) need not produce
+the same state as doing \(B\) and then \(A\).
 
 Max Born, Pascual Jordan, and Heisenberg developed matrix mechanics into a
 systematic theory. Then Erwin Schrödinger introduced wave mechanics in 1926.
@@ -287,12 +320,25 @@ diagrams, operator algebra, tensor networks, and path integrals can all expose
 the same physics through different handles.
 
 Born's probability interpretation supplied one of the decisive changes.
-The wavefunction was not just a classical wave in space. Its squared magnitude
-gave probabilities. More generally, quantum theory worked with amplitudes:
-complex quantities that can add, rotate, cancel, and interfere before
-probabilities are extracted. This is the point at which "probability" stops
-being the whole story. Classical probabilities add directly. Quantum
-amplitudes add first, and only then become probabilities.
+The wavefunction was not just a classical wave in space. Its squared
+magnitude gave probabilities. For an amplitude \(\alpha\), the corresponding
+probability is
+
+$$
+p = |\alpha|^2.
+$$
+
+More generally, quantum theory worked with amplitudes: complex quantities
+that can add, rotate, cancel, and interfere before probabilities are
+extracted. This is the point at which "probability" stops being the whole
+story. Classical probabilities add directly. Quantum amplitudes add first,
+and only then become probabilities.
+
+Phase is part of that extra structure. Multiplying an entire state by one
+common phase does not change its observable predictions, but relative phases
+between alternatives change how their amplitudes interfere. Quantum
+algorithms exploit those relative phases so that some alternatives reinforce
+one another while others cancel.
 
 This is the seed of quantum algorithms. A quantum computer is not useful
 because it stores a magical list of all answers. It is useful when amplitudes
@@ -364,6 +410,12 @@ but by a statistical or operational mixture. This matters for engineering
 because real devices are never perfectly isolated; noise and partial
 knowledge are not optional complications.
 
+> **Side note: superposition is not mixture.** A coherent superposition has
+> relative phases that can produce interference. A mixture represents
+> classical uncertainty, discarded information, or entanglement with
+> degrees of freedom that are not being tracked. The two can produce the same
+> statistics for one measurement and different statistics for another.
+
 For quantum computing, this is where physics becomes an interface:
 
 - states as vectors or density operators;
@@ -371,6 +423,11 @@ For quantum computing, this is where physics becomes an interface:
 - measurements as operations with probabilistic outcomes;
 - composite systems as tensor products;
 - change of basis as a normal part of calculation.
+
+Ideal isolated evolution is unitary, but real devices are open systems.
+Quantum channels provide the broader language: they describe unitary gates,
+noise, state preparation, measurement, and information discarded into an
+environment as physical transformations of quantum states.
 
 That interface is why a quantum circuit can be drawn as boxes and wires while
 still being a precise physical model. The boxes are not metaphors. They are
@@ -439,19 +496,27 @@ correlations can be used for faster-than-light signalling. They cannot. The
 careful statement is that Bell's theorem and experiment strongly support
 quantum predictions over local hidden-variable models of the relevant kind.
 
+> **No-signalling still holds.** Entanglement can violate Bell inequalities,
+> but it cannot transmit a controllable message faster than light. The
+> correlations become visible only when ordinary classical records from the
+> separated measurements are compared.
+
 The reversal is one of the most important in the history of quantum
 information. Entanglement started as a sign that something was wrong or at
 least deeply puzzling. It became a resource.
 
 Quantum teleportation uses entanglement plus classical communication to
-transfer an unknown quantum state. Superdense coding uses entanglement to
-send two classical bits by transmitting one qubit. Entanglement-based quantum
-key distribution uses correlations as a security witness. Quantum algorithms
-often generate entanglement as part of their structure. Quantum error
-correction uses carefully engineered entangled states to protect logical
-information. Quantum simulation uses entanglement because nature itself does.
-This is the historical reversal in one line: what looked like a defect in the
-theory became a capability in the technology.
+transfer an unknown quantum state. It does not copy or beam matter: a joint
+measurement consumes the sender's version of the state, two classical bits
+must reach the receiver, and only then can the receiver reconstruct it.
+Superdense coding uses prior entanglement to send two classical bits by
+transmitting one qubit. Entanglement-based quantum key distribution uses
+correlations as a security witness. Quantum algorithms often generate
+entanglement as part of their structure. Quantum error correction uses
+carefully engineered entangled states to protect logical information.
+Quantum simulation uses entanglement because nature itself does. This is the
+historical reversal in one line: what looked like a defect in the theory
+became a capability in the technology.
 
 What began as an apparent paradox became one of the central materials of the
 field.
@@ -528,6 +593,14 @@ is not a theorem in the ordinary sense, because "effectively computable" is
 an informal concept. It is a thesis connecting mathematical models to the
 intuitive idea of algorithmic procedure.
 
+Quantum computing does not overturn that original claim about what is
+computable. A classical Turing machine can simulate a quantum computation,
+given enough time and memory. The sharper point concerns efficiency. The
+extended Church-Turing thesis informally asserts that any physically
+reasonable computation can be simulated efficiently by a probabilistic
+classical machine. Quantum algorithms challenge that stronger expectation,
+provided the complexity separations suggested by current evidence are real.
+
 Early digital computers turned computation into machinery. But the abstract
 move had already happened. Computation was no longer just what a human clerk,
 desk calculator, or differential analyser did. It was a formal process with
@@ -587,6 +660,13 @@ is reversible. Quantum gates are normally represented by unitary operations.
 They preserve information in a precise mathematical sense: the transformation
 has an inverse.
 
+The bridge can be seen at the gate level. An ordinary AND gate loses
+information about its inputs, while a reversible classical gate such as the
+Toffoli gate preserves enough information to run backward. Unitary quantum
+gates are reversible by construction. Irreversibility re-enters through
+measurement, reset, uncontrolled noise, and the decision to discard part of
+a system.
+
 Put the ideas together:
 
 - Turing formalised computation;
@@ -597,8 +677,8 @@ Put the ideas together:
   are reversible and whose measurements are probabilistic.
 
 If information is physical, and the physical world is quantum, then the
-deepest model of computation cannot be permanently insulated from quantum
-theory.
+physical limits and efficient implementation of computation cannot be
+understood completely while ignoring quantum theory.
 
 ## 0.11 Quantum Information Before Quantum Computers
 
@@ -619,6 +699,21 @@ There is no universal operation that takes an arbitrary unknown quantum state
 \(|\psi\rangle\) and produces two copies \(|\psi\rangle|\psi\rangle\). This
 is not a technological limitation. It is a structural feature of quantum
 theory.
+
+The reason is linearity. Suppose a universal copier \(U\) could copy both
+\(|\psi\rangle\) and \(|\phi\rangle\). Applied to a superposition, linearity
+would require
+
+$$
+U(a|\psi\rangle+b|\phi\rangle)|0\rangle = a|\psi\rangle|\psi\rangle+b|\phi\rangle|\phi\rangle.
+$$
+
+But copying the superposition itself would produce
+\((a|\psi\rangle+b|\phi\rangle)^{\otimes 2}\), which also contains cross
+terms. The two expressions are not generally equal. The same limitation
+blocks another tempting shortcut: although an \(n\)-qubit pure state requires
+exponentially many classical amplitudes to describe in general, one copy
+cannot be measured to print that entire description.
 
 Bennett and Gilles Brassard's BB84 protocol in 1984 turned these ideas into a
 cryptographic primitive. In quantum key distribution, the goal is not to send
@@ -682,8 +777,8 @@ no longer only "can quantum systems simulate quantum systems?" It became
 
 One compact way to remember the transition is:
 
-> Benioff made quantum computation possible. Feynman made it necessary.
-> Deutsch made it universal.
+> Benioff made quantum computation concrete. Feynman made its motivation
+> urgent. Deutsch made it universal.
 
 That sentence compresses history, but it captures the roles. Benioff showed
 that computation can be quantum-mechanical. Feynman argued that quantum
@@ -727,10 +822,19 @@ physics. It had consequences for cryptography and computational complexity.
 
 Shor's algorithm works because number-theoretic structure can be converted
 into periodicity, and periodicity can be extracted through quantum
-interference and Fourier analysis. That theme is worth keeping: the power is
-not generic speed. It is structure meeting interference. This is why the
-algorithm was shocking but not magical; it was a precise exploit against a
-specific mathematical structure.
+interference and the quantum Fourier transform. The QFT is not simply a
+faster classical FFT applied to a readable list of numbers. It is a unitary
+transformation of amplitudes that makes periodic structure accessible to
+measurement. That theme is worth keeping: the power is not generic speed. It
+is structure meeting interference. This is why the algorithm was shocking
+but not magical; it was a precise exploit against a specific mathematical
+structure.
+
+Quantum phase estimation became another central primitive. Given controlled
+access to a unitary operation and a suitable eigenstate, it converts an
+eigenvalue's phase into measurable bits. In different forms, that mechanism
+connects period finding, spectral estimation, and later simulation
+algorithms: hidden phase becomes classical evidence.
 
 Lov Grover's search algorithm, introduced in 1996 and published in journal
 form in 1997, gave a different kind of result. For unstructured search over
@@ -746,6 +850,21 @@ One is narrow but spectacular; the other is broad but more modest:
   exposed through quantum transforms.
 - Grover: even unstructured problems can sometimes be accelerated, but the
   gain is more modest.
+
+Quantum simulation remained a separate central family rather than merely the
+historical motivation. Hamiltonian-simulation algorithms approximate the
+time evolution generated by a quantum system's Hamiltonian. They connect the
+machine directly to questions in chemistry, materials, and many-body physics,
+where representing generic quantum states is itself the classical
+bottleneck.
+
+> **A small complexity map.** \(P\) contains problems efficiently solvable by
+> deterministic classical algorithms; \(BPP\) allows bounded-error
+> probabilistic classical algorithms; \(BQP\) is the corresponding class for
+> bounded-error quantum algorithms. Factoring is in \(BQP\), but quantum
+> computers are not known or expected to solve every \(NP\)-complete problem
+> efficiently. The exact relationships among several of these classes remain
+> open.
 
 The developer lesson is blunt:
 
@@ -778,6 +897,13 @@ obvious version of that strategy. If the story had stopped there, quantum
 computing would have remained a beautiful model with no credible route to
 large machines.
 
+Decoherence is more specific than a qubit simply becoming "dirty." When a
+system interacts with uncontrolled degrees of freedom, information about its
+state spreads into correlations with the environment. Relative phases that
+could have produced interference then become inaccessible to the computation.
+When the environment is ignored, local statistics can then look like those
+of an ordinary probabilistic mixture.
+
 Quantum error correction changed the question.
 
 > **Side note: the QEC reversal.** At first, quantum error correction sounded
@@ -799,6 +925,19 @@ change. A quantum code must protect against bit-flip-like errors, phase
 errors, and combinations of them. It must do so without violating no-cloning
 and without collapsing the encoded state.
 
+This introduces the distinction between a physical qubit and a logical
+qubit. A physical qubit is one imperfect device degree of freedom. A logical
+qubit is information encoded nonlocally across many physical qubits so that
+syndrome measurements can reveal errors without revealing the logical state.
+
+The stabilizer formalism turned this idea into an algebraic engineering
+language. Instead of asking for the unknown logical amplitudes, one measures
+a compatible set of checks whose outcomes identify an error syndrome.
+Surface codes apply this strategy to local checks on a two-dimensional
+layout. Their appeal is practical as well as mathematical: they trade many
+physical qubits, repeated measurements, and a demanding real-time decoder for
+local interactions and a route to logical operations.
+
 Fault tolerance extended the idea from memory to computation. It is not
 enough to store a logical qubit safely. You must perform gates, measurements,
 and corrections while preventing small physical errors from spreading into
@@ -807,6 +946,11 @@ assumptions about noise, locality, preparation, and correction, that
 arbitrarily long quantum computation is possible if physical error rates are
 below a threshold and if enough overhead is available. The overhead is not a
 footnote; it is one of the central engineering costs of the field.
+
+The theorem is a path, not an implementation. Leakage outside the qubit
+subspace, crosstalk, correlated noise, fabrication variation, calibration
+drift, measurement latency, and decoder throughput all determine whether a
+real machine satisfies a code's assumptions closely enough.
 
 This transformed the field's engineering posture. The question stopped being
 "does any noise make quantum computing impossible?" and became:
@@ -855,6 +999,12 @@ Each platform offers a different bargain:
 - topological qubits: elegant protection if realised, but experimentally
   uncertain.
 
+This section intentionally avoids treating vendor roadmaps, qubit counts, or
+leaderboards as settled facts. Those change quickly and often measure
+different things. The durable subject is the engineering stack and the
+evidence required to show that one layer improves the behaviour of the whole
+system.
+
 David DiVincenzo's criteria, codified in his 2000 implementation review, gave
 the hardware field a useful checklist: a scalable physical system with
 well-characterised qubits, initialisation, long coherence relative to gate
@@ -888,8 +1038,9 @@ noisy physical qubits and limited circuit depth.
 
 That gap is not a reason to dismiss the field. It is the field. Quantum
 computing today is the work of turning a mathematically coherent model into a
-reliable stack: devices, control pulses, calibration loops, compilers,
-decoders, runtime systems, applications, and honest benchmarks.
+reliable stack: circuit descriptions, topology-aware compilation, control
+pulses, calibration loops, runtime feedback, error mitigation, syndrome
+decoding, classical co-processing, applications, and honest benchmarks.
 
 The field has repeatedly mixed real progress with optimistic timelines. The
 right stance is neither hype nor cynicism. The right stance is calibrated
@@ -933,6 +1084,20 @@ learn the operations, build circuits, understand algorithms, face noise, and
 study hardware. But the historical path explains why the engineering model
 has this shape.
 
+The compact version to carry forward is:
+
+- a quantum state is not a classical record of simultaneously definite
+  properties;
+- amplitudes, including their relative phases, interfere before probabilities
+  appear;
+- measurement and noise are physical operations, not passive annotations;
+- entanglement is structure in a composite state, not a faster-than-light
+  message channel;
+- information is physically instantiated, so computation inherits physical
+  limits;
+- useful quantum computation requires both problem structure and a reliable
+  stack of control, correction, and classical support.
+
 Classical intuition did not fail because it was foolish. It failed because it
 was a successful approximation pushed past its domain. Quantum computing is
 what happens when the replacement theory is no longer used merely to build
@@ -956,6 +1121,9 @@ draft. They are not meant to be exhaustive.
   <https://www.aps.org/apsnews/2006/05/rutherford-discovery-atomic-nucleus>
 - Arthur H. Compton, Nobel Prize facts page:
   <https://www.nobelprize.org/prizes/physics/1927/compton/facts/>
+- C. Davisson and L. H. Germer, "Diffraction of Electrons by a Crystal of
+  Nickel," *Physical Review*, 1927:
+  <https://journals.aps.org/pr/abstract/10.1103/PhysRev.30.705>
 - Nobel Prize in Physics 2022 summary for Aspect, Clauser, and Zeilinger:
   <https://www.nobelprize.org/prizes/physics/2022/summary/>
 - B. Hensen et al., "Loophole-free Bell inequality violation using electron
@@ -972,11 +1140,20 @@ draft. They are not meant to be exhaustive.
   <https://plato.stanford.edu/entries/qt-epr/>
 - Stanford Encyclopedia of Philosophy, "Bell's Theorem":
   <https://plato.stanford.edu/entries/bell-theorem/>
+- C. H. Bennett et al., "Teleporting an Unknown Quantum State via Dual
+  Classical and Einstein-Podolsky-Rosen Channels," *Physical Review Letters*,
+  1993:
+  <https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.70.1895>
+- M. Schlosshauer, "Decoherence, the Measurement Problem, and Interpretations
+  of Quantum Mechanics," *Reviews of Modern Physics*, 2004:
+  <https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.76.1267>
 - P. A. M. Dirac, "A New Notation for Quantum Mechanics,"
   *Mathematical Proceedings of the Cambridge Philosophical Society*, 1939:
   <https://www.cambridge.org/core/product/identifier/S0305004100021162/type/journal_article>
 - Stanford Encyclopedia of Philosophy, "Turing Machines":
   <https://plato.stanford.edu/entries/turing-machine/>
+- Stanford Encyclopedia of Philosophy, "The Church-Turing Thesis":
+  <https://plato.stanford.edu/entries/church-turing/>
 - C. E. Shannon, "A Mathematical Theory of Communication," *Bell System
   Technical Journal*, 1948:
   <https://www.cs.yale.edu/homes/yry/readings/general/shannon1948.pdf>
@@ -999,9 +1176,14 @@ draft. They are not meant to be exhaustive.
 - R. P. Feynman, "Simulating Physics with Computers," *International Journal
   of Theoretical Physics*, 1982:
   <https://authors.library.caltech.edu/records/a1kgk-xyk45/latest>
+- S. Lloyd, "Universal Quantum Simulators," *Science*, 1996:
+  <https://doi.org/10.1126/science.273.5278.1073>
 - D. Deutsch, "Quantum theory, the Church-Turing principle and the universal
   quantum computer," *Proceedings of the Royal Society A*, 1985:
   <https://www.cs.princeton.edu/courses/archive/fall06/cos576/papers/deutsch85.pdf>
+- E. Bernstein and U. Vazirani, "Quantum Complexity Theory," *SIAM Journal on
+  Computing*, 1997:
+  <https://epubs.siam.org/doi/10.1137/S0097539796300921>
 - P. W. Shor, "Algorithms for Quantum Computation: Discrete Logarithms and
   Factoring," FOCS 1994:
   <https://dblp.org/rec/conf/focs/Shor94.html>
@@ -1017,6 +1199,9 @@ draft. They are not meant to be exhaustive.
 - A. M. Steane, "Error Correcting Codes in Quantum Theory," *Physical Review
   Letters*, 1996:
   <https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.77.793>
+- E. Dennis, A. Kitaev, A. Landahl, and J. Preskill, "Topological Quantum
+  Memory," *Journal of Mathematical Physics*, 2002:
+  <https://arxiv.org/abs/quant-ph/0110143>
 - J. I. Cirac and P. Zoller, "Quantum Computations with Cold Trapped Ions,"
   *Physical Review Letters*, 1995:
   <https://pubmed.ncbi.nlm.nih.gov/10058410/>
