@@ -36,6 +36,8 @@ The chapter is structured around four causal arcs — what we call *Episodes* be
 
 Read the table now as a map; the rest of the chapter walks each row.
 
+None of these episodes is invented for narrative effect; the drama is in the material itself. Planck spent fifteen years trying to wish away his own constant. Einstein received his Nobel Prize for the very theory — light quanta — that he would then spend three decades arguing was incomplete. Classical electrodynamics predicted that atoms cannot exist; atoms exist anyway. A single inequality, derived by John Bell in 1964, turned a thirty-year philosophical stalemate into an experimentally distinguishable claim. Quantum error correction looked structurally impossible because measurement disturbs the state and no-cloning forbids backups — until someone noticed that you can measure the *error* without measuring the *data*. The Episode label is not theatrical packaging; it is the honest description of what the chapter walks through.
+
 ---
 
 # Episode I — The Classical Model Breaks
