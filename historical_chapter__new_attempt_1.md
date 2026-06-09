@@ -80,15 +80,21 @@ Within those movements, it follows the chain:
 
 Here is the same story in the form a developer may find most useful:
 
-| Classical expectation | Quantum replacement |
-| --- | --- |
-| Energy can vary continuously | Energy exchange can be quantised |
-| State is a list of definite properties | State is represented by amplitudes |
-| Measurement reveals a passive pre-existing record | Measurement is a physical operation with probabilistic outcomes |
-| Operation order is usually harmless | Operation order can change the result |
-| Composite systems reduce to their parts | Composite systems can be entangled |
-| Information is an abstract payload | Information is physically instantiated |
-| Errors can be corrected by copying | Quantum errors require indirect syndrome information |
+| Classical expectation | Quantum replacement | What forced the change |
+| --- | --- | --- |
+| Energy can vary continuously | Energy exchange can be quantised | Thermal spectra and atomic lines |
+| State is a list of definite properties | State is represented by a vector or density operator; amplitudes are basis-dependent coordinates | Interference, spectra, and incompatible measurements |
+| Measurement reveals a passive pre-existing record | Measurement is modelled as a physical operation with probabilistic outcomes | Microscopic experiments and later Bell tests |
+| Operation order is usually harmless | Operation order can change the result | Noncommuting observables and transformations |
+| Composite systems reduce to their parts | Composite systems can be entangled | EPR correlations and Bell-inequality violations |
+| Information is an abstract payload | Information is physically instantiated | Thermodynamics of information processing |
+| Errors can be corrected by copying | Quantum errors require indirect syndrome information | No-cloning and measurement disturbance |
+
+For now, read *qubit* as the quantum analogue of a bit: a two-level system
+whose state is described by amplitudes rather than by a stored, definite
+\(0\) or \(1\). A *basis* is a choice of coordinates for describing that
+state and the outcomes of a corresponding measurement. The formal definitions
+come later.
 
 The rest of a quantum-computing book usually teaches the model in engineering
 order: vectors, gates, circuits, algorithms, noise, error correction, and
@@ -96,6 +102,10 @@ hardware. History happened in a messier order. That mess is useful. It shows
 that quantum computing is not classical computing with faster bits. It is
 computation built on the physical rules that replaced classical intuition
 when classical intuition stopped predicting reality.
+
+---
+
+**Movement I — Classical Physics Breaks**
 
 ## 0.2 The Classical World Before the Crisis
 
@@ -194,8 +204,8 @@ The failures can be written as a test suite:
 - atoms can emit arbitrary frequencies: fails for spectra;
 - light is only a wave: fails for the photoelectric effect;
 - classical electron orbits are stable: fails for atomic matter;
-- measurement merely reveals pre-existing microscopic facts: later, fails
-  more subtly through quantum measurement and entanglement.
+- measurement is passive inspection of a stored microscopic value: later,
+  fails as an operational model of incompatible measurements and entanglement.
 
 Classical physics did not fail everywhere. It failed where its hidden
 assumptions touched the microscopic behaviour of matter and radiation.
@@ -282,6 +292,10 @@ The old theory knew where classical physics failed, but not yet what a
 quantum state was. That missing concept is where modern quantum mechanics
 begins.
 
+---
+
+**Movement II — Quantum Mechanics Becomes a Formal Model**
+
 ## 0.5 Modern Quantum Mechanics: A New Model of State
 
 If old quantum theory was the compatibility layer, modern quantum mechanics
@@ -309,6 +323,9 @@ classical properties. In circuit language, the same fact later becomes
 completely practical: doing gate \(A\) and then gate \(B\) need not produce
 the same state as doing \(B\) and then \(A\).
 
+Commuting observables are compatible in the sense that they can share a basis
+of states with definite values. Noncommuting observables generally cannot.
+
 Max Born, Pascual Jordan, and Heisenberg developed matrix mechanics into a
 systematic theory. Then Erwin Schrödinger introduced wave mechanics in 1926.
 Schrödinger's equation described the evolution of a wavefunction. It was more
@@ -329,8 +346,9 @@ the same physics through different handles.
 
 Born's probability interpretation supplied one of the decisive changes.
 The wavefunction was not just a classical wave in space. Its squared
-magnitude gave probabilities. For an amplitude \(\alpha\), the corresponding
-probability is
+magnitude gave probabilities. In a discrete measurement basis, if
+\(\alpha\) is the amplitude of one basis state, the probability of that
+outcome is
 
 $$
 p = |\alpha|^2.
@@ -347,6 +365,11 @@ common phase does not change its observable predictions, but relative phases
 between alternatives change how their amplitudes interfere. Quantum
 algorithms exploit those relative phases so that some alternatives reinforce
 one another while others cancel.
+
+For example, \((|0\rangle+|1\rangle)/\sqrt{2}\) and
+\((|0\rangle-|1\rangle)/\sqrt{2}\) give the same probabilities when measured
+in the computational basis, but a basis change makes their relative phases
+produce different outcomes.
 
 This is the seed of quantum algorithms. A quantum computer is not useful
 because it stores a magical list of all answers. It is useful when amplitudes
@@ -368,7 +391,9 @@ different experimental contexts.
 By the late 1920s, the key replacements were visible:
 
 - classical state becomes quantum state;
-- definite properties become amplitudes and probability distributions;
+- simultaneously definite microscopic properties are replaced by a state
+  formalism that assigns amplitudes and outcome probabilities to specified
+  measurements;
 - passive observation becomes measurement as a physical operation;
 - commuting classical quantities become operators whose order may matter;
 - smooth determinism at the level of outcomes becomes deterministic evolution
@@ -422,13 +447,15 @@ important than the pattern: once the formalism became sharp, it generated
 unexpected structure.
 
 John von Neumann gave quantum mechanics an even more explicit mathematical
-foundation. In the Hilbert-space formulation, states live in vector spaces,
-observables are represented by operators, and measurement is described by
-structured rules. Density operators make it possible to describe mixed
-states: situations where a system is not represented by a single pure state
-but by a statistical or operational mixture. This matters for engineering
-because real devices are never perfectly isolated; noise and partial
-knowledge are not optional complications.
+foundation. A Hilbert space is, roughly, a complex vector space equipped with
+an inner product, together with the completeness needed for limits and
+infinite-dimensional systems. In this formulation, states live in Hilbert
+spaces, observables are represented by operators, and measurement is
+described by structured rules. Density operators describe statistical
+mixtures and also reduced states obtained when part of an entangled system is
+ignored. This matters for engineering because real devices are never
+perfectly isolated; noise, partial knowledge, and inaccessible environments
+are not optional complications.
 
 > **Side note: superposition is not mixture.** A coherent superposition has
 > relative phases that can produce interference. A mixture represents
@@ -537,6 +564,12 @@ is not that every philosophical interpretation was settled, or that quantum
 correlations can be used for faster-than-light signalling. They cannot. The
 careful statement is that Bell's theorem and experiment strongly support
 quantum predictions over local hidden-variable models of the relevant kind.
+Operationally, a convincing Bell test needs efficient detection, measurement
+settings chosen independently of the systems being tested, and timing and
+separation that exclude ordinary communication between the sites during a
+trial. Modern loophole-free tests were designed to satisfy these conditions
+without the fair-sampling and locality assumptions required by earlier
+experiments.
 
 > **No-signalling still holds.** Entanglement can violate Bell inequalities,
 > but it cannot transmit a controllable message faster than light. The
@@ -551,12 +584,18 @@ Quantum teleportation uses entanglement plus classical communication to
 transfer an unknown quantum state. It does not copy or beam matter: a joint
 measurement consumes the sender's version of the state, two classical bits
 must reach the receiver, and only then can the receiver reconstruct it.
+The reconstruction therefore cannot occur before those classical bits
+arrive.
 Superdense coding uses prior entanglement to send two classical bits by
 transmitting one qubit. Entanglement-based quantum key distribution uses
-correlations as a security witness. Quantum algorithms often generate
-entanglement as part of their structure. Quantum error correction uses
-carefully engineered entangled states to protect logical information.
-Quantum simulation uses entanglement because nature itself does. This is the
+correlations as a security witness; Artur Ekert's 1991 proposal made the
+connection to Bell's theorem explicit. Quantum algorithms often generate
+entanglement as part of their structure. Measurement-based quantum
+computation later sharpened the resource view further: prepare an entangled
+cluster state, then drive the computation through a sequence of
+single-qubit measurements. Quantum error correction uses carefully
+engineered entangled states to protect logical information. Quantum
+simulation uses entanglement because nature itself does. This is the
 historical reversal in one line: what looked like a defect in the theory
 became a capability in the technology.
 
@@ -608,6 +647,10 @@ It is a deeper implementation question. Classical bits are stable, engineered
 macroscopic variables made possible by quantum matter. Qubits are attempts to
 keep more of the underlying quantum behaviour exposed instead of hiding it
 behind a clean 0 or 1.
+
+---
+
+**Movement III — Computation and Information Become Physical**
 
 ## 0.9 Computation Becomes Formal
 
@@ -688,20 +731,24 @@ information mathematical. Second, he made noise part of the model rather than
 an afterthought. Quantum computing would later need both moves.
 
 Rolf Landauer then pulled information back toward physics. In 1961, he argued
-that logically irreversible operations, such as erasing a bit, have physical
-thermodynamic consequences. The slogan associated with this line of work is
-"information is physical." It does not mean information is a new substance.
-It means information is always represented in a physical system, and physical
-systems obey physical laws. A bit is not a ghostly abstraction when it is
-stored; it is a voltage, a magnetisation, a charge configuration, a pulse of
-light, a spin, or some other physical distinction.
+that logically irreversible operations, such as resetting an unknown bit to
+a fixed standard value, have physical thermodynamic consequences. The slogan
+associated with this line of work is "information is physical." It does not
+mean information is a new substance. It means information is always
+represented in a physical system, and physical systems obey physical laws. A
+bit is not a ghostly abstraction when it is stored; it is a voltage, a
+magnetisation, a charge configuration, a pulse of light, a spin, or some
+other physical distinction.
 
 Charles Bennett sharpened the point in 1973 by showing that general-purpose
-computation can be made logically reversible. Computation need not dissipate
-energy at every logical step merely because it is computation. The
-irreversibility is tied to operations such as erasure, where different
-logical histories are merged. This gave computation a more subtle physical
-shape: not every logical operation has the same thermodynamic status.
+computation can in principle be made logically reversible. This does not make
+a practical machine dissipation-free: control, leakage, finite temperature,
+timing, and error correction still cost resources. It does show that
+computation need not dissipate energy at every logical step merely because it
+is computation. The irreversibility is tied to operations such as erasure,
+where different logical histories are merged. This gave computation a more
+subtle physical shape: not every logical operation has the same
+thermodynamic status.
 
 This matters because quantum evolution, before measurement and noise enter,
 is reversible. Quantum gates are normally represented by unitary operations.
@@ -714,6 +761,12 @@ Toffoli gate preserves enough information to run backward. Unitary quantum
 gates are reversible by construction. Irreversibility re-enters through
 measurement, reset, uncontrolled noise, and the decision to discard part of
 a system.
+
+A Toffoli gate keeps both control bits and conditionally flips a target bit,
+so its output uniquely determines its input. Reversible algorithms often
+compute a result, use it while preserving coherence, and then run temporary
+work backward to clear intermediate data. That compute-use-uncompute pattern
+later becomes standard in quantum circuits.
 
 Put the ideas together:
 
@@ -779,9 +832,11 @@ cannot be measured to print that entire description.
 Bennett and Gilles Brassard's BB84 protocol in 1984 turned these ideas into a
 cryptographic primitive. In quantum key distribution, the goal is not to send
 a secret message directly through a quantum channel. The goal is to establish
-a shared random key while detecting eavesdropping. If an eavesdropper measures
-quantum states in the wrong basis, errors appear. The disturbance is not a
-bug; it is the security signal.
+a shared random key while detecting eavesdropping, using an authenticated
+classical channel alongside the quantum channel. Without authentication, an
+attacker could impersonate each endpoint to the other. If an eavesdropper
+measures quantum states in the wrong basis, errors appear. The disturbance is
+not a bug; it is the security signal.
 
 This was a new kind of protocol. Classical cryptography typically bases
 security on computational hardness: an adversary cannot solve some problem
@@ -789,6 +844,10 @@ fast enough. Quantum key distribution bases a different part of security on
 physical law: an adversary cannot inspect arbitrary quantum states without
 consequences. It made measurement disturbance, basis choice, and uncertainty
 into protocol features.
+
+That statement describes the protocol model, not every implementation.
+Practical QKD equipment must also address source flaws, detector behaviour,
+side channels, and authentication-key management.
 
 Whether QKD is the right engineering choice in a given deployment is a
 separate question. It often is not. Post-quantum classical cryptography is
@@ -800,18 +859,27 @@ quantum weirdness useful before quantum computers were useful.
 Before quantum computers became machines, quantum information became a
 protocol.
 
+---
+
+**Movement IV — Quantum Computation Becomes an Engineering Discipline**
+
 ## 0.12 Benioff, Feynman, and Deutsch
 
 The idea of quantum computation emerged when the physics track and the
 computation track finally met.
 
-Paul Benioff, in a 1980 Hamiltonian model of a Turing machine, described a
-computer as a quantum-mechanical physical system. This showed that
-computation could be embedded consistently in quantum physics. A computing
-machine need not be imagined as an exception to the physical rules of the
-universe. This was a modest-sounding step with a deep consequence: if
-computers are physical systems, then a fully physical account of computation
-should be able to describe a computer quantum mechanically.
+Around 1980, Yuri Manin noted that quantum systems might require a
+nonclassical model of computation using superposition and entanglement,
+although he did not develop a full computational framework. In the same year,
+Paul Benioff described a Turing machine as a quantum-mechanical physical
+system through a Hamiltonian model. A Hamiltonian is the operator that
+encodes a system's energy structure and generates its ideal time evolution.
+Benioff's construction showed that computation could be embedded consistently
+in quantum physics. A computing machine need not be imagined as an exception
+to the physical rules of the universe. This was a modest-sounding step with a
+deep consequence: if computers are physical systems, then a fully physical
+account of computation should be able to describe a computer quantum
+mechanically.
 
 Richard Feynman gave the field one of its central motivations. In a 1981
 lecture, later published as the 1982 paper "Simulating Physics with
@@ -856,35 +924,41 @@ computer-science and cryptography communities to ignore.
 Early quantum algorithms showed that the model was not merely a different
 notation for classical computation. Most of the early separations lived in
 the query or oracle model, where one counts how many times an algorithm must
-ask a black-box question. That sounds artificial, but it is a clean laboratory
-for discovering mechanisms. It is like assessing a database algorithm by
-counting expensive database calls rather than every processor instruction:
-not a complete cost model, but a way to isolate a critical resource.
+ask a black-box question. Formally, an oracle provides controlled access to a
+function while hiding the cost of its internal implementation, allowing the
+analysis to isolate the number of function evaluations. That sounds
+artificial, but it is a clean laboratory for discovering mechanisms. It is
+like assessing a database algorithm by counting expensive database calls
+rather than every processor instruction: not a complete cost model, but a way
+to isolate a critical resource.
 
-Deutsch-Jozsa gave an oracle separation: under a promise about a function, a
-quantum algorithm could distinguish cases with fewer queries than a
-deterministic classical algorithm. Bernstein-Vazirani showed how a hidden bit
-string could be recovered with one quantum query where the classical query
-model needs more. Simon's algorithm exposed a deeper pattern: quantum
-interference could reveal hidden structure in a way that classical queries
-could not match efficiently, and it became the conceptual stepping stone to
-Shor's period-finding breakthrough. These were not yet practical
-applications, but they taught researchers what to look for: hidden structure,
-phase kickback, Fourier sampling, and interference.
+The 1992 Deutsch-Jozsa algorithm gave an oracle separation: under a promise
+that a Boolean function is constant or balanced, one exact quantum query
+distinguishes the cases, while an exact deterministic classical algorithm can
+need \(2^{n-1}+1\) queries. Bernstein-Vazirani showed how an \(n\)-bit hidden
+string could be recovered with one quantum query where a deterministic
+classical query algorithm needs \(n\). Simon's 1994 algorithm exposed a
+deeper pattern, giving an exponential query separation for a hidden-period
+problem and becoming the conceptual stepping stone to Shor's period-finding
+breakthrough. These were not yet practical applications, but they taught
+researchers what to look for: hidden structure, phase kickback, Fourier
+sampling, and interference.
 
 Then came Shor.
 
 In 1994, Peter Shor gave polynomial-time quantum algorithms for integer
-factoring and discrete logarithms. These problems are not obscure academic
-games. The presumed classical difficulty of factoring and discrete logarithms
-underlies major public-key cryptographic systems. Shor's algorithm did not
-make existing computers obsolete, because it required a large, reliable
-quantum computer that did not yet exist. But it changed the stakes
-immediately. Quantum computing was no longer just a proposal for simulating
-physics. It had consequences for cryptography and computational complexity.
-Its deeper psychological effect was just as important: quantum speedup was no
-longer confined to artificial promise problems. A natural mathematical
-problem with real-world consequences had entered the quantum column.
+factoring and discrete logarithms in finite groups relevant to classical
+public-key cryptography, including settings behind Diffie-Hellman and
+elliptic-curve systems. These problems are not obscure academic games. Their
+presumed classical difficulty underlies major public-key cryptographic
+systems. Shor's algorithm did not make existing computers obsolete, because
+it required a large, reliable quantum computer that did not yet exist. But it
+changed the stakes immediately. Quantum computing was no longer just a
+proposal for simulating physics. It had consequences for cryptography and
+computational complexity. Its deeper psychological effect was just as
+important: quantum speedup was no longer confined to artificial promise
+problems. A natural mathematical problem with real-world consequences had
+entered the quantum column.
 
 Shor's algorithm works because number-theoretic structure can be converted
 into periodicity, and periodicity can be extracted through quantum
@@ -924,15 +998,31 @@ historical motivation. Hamiltonian-simulation algorithms approximate the
 time evolution generated by a quantum system's Hamiltonian. They connect the
 machine directly to questions in chemistry, materials, and many-body physics,
 where representing generic quantum states is itself the classical
-bottleneck.
+bottleneck. Seth Lloyd's 1996 universal-simulation result turned Feynman's
+motivation into a more explicit algorithmic programme for local quantum
+systems.
+
+The exponential dimension alone does not guarantee a useful quantum
+advantage. Efficient simulation depends on exploitable physical and
+algorithmic structure: locality or other concise Hamiltonian descriptions,
+access to suitable initial states, tolerable precision requirements, useful
+observables, and a circuit whose depth survives the available error budget.
 
 > **A small complexity map.** \(P\) contains problems efficiently solvable by
 > deterministic classical algorithms; \(BPP\) allows bounded-error
 > probabilistic classical algorithms; \(BQP\) is the corresponding class for
 > bounded-error quantum algorithms. Factoring is in \(BQP\), but quantum
 > computers are not known or expected to solve every \(NP\)-complete problem
-> efficiently. The exact relationships among several of these classes remain
-> open.
+> efficiently. Factoring itself is not known to be \(NP\)-complete. The exact
+> relationships among several of these classes remain open.
+
+> **Cryptographic consequence — June 2026 snapshot.** Shor's threat is part
+> of present infrastructure planning even though cryptographically relevant
+> fault-tolerant quantum computers do not yet exist. NIST published FIPS 203,
+> 204, and 205 in August 2024 for post-quantum key establishment and digital
+> signatures; FIPS 206 remains in development. Post-quantum cryptography
+> replaces vulnerable classical public-key algorithms with quantum-resistant
+> classical ones. It is not the same technology as QKD.
 
 The developer lesson is blunt:
 
@@ -1003,6 +1093,12 @@ logical quantum information directly. You encode it into a larger entangled
 state and measure error syndromes: information about what error occurred, not
 information about the protected logical value itself.
 
+Although physical errors vary continuously, quantum codes need not list every
+possible rotation separately. By linearity, correcting a basis of single-qubit
+errors, commonly represented by the identity and the three Pauli operators,
+is enough to correct arbitrary linear combinations of those errors under the
+code's assumptions.
+
 Andrew Steane and others quickly developed related codes, connecting quantum
 error correction to classical coding theory while also revealing what had to
 change. A quantum code must protect against bit-flip-like errors, phase
@@ -1014,7 +1110,8 @@ qubit. A physical qubit is one imperfect device degree of freedom. A logical
 qubit is information encoded nonlocally across many physical qubits so that
 syndrome measurements can reveal errors without revealing the logical state.
 
-The stabilizer formalism turned this idea into an algebraic engineering
+The stabilizer formalism, developed into a general framework by Daniel
+Gottesman in the 1990s, turned this idea into an algebraic engineering
 language. Instead of asking for the unknown logical amplitudes, one measures
 a compatible set of checks whose outcomes identify an error syndrome.
 Surface codes apply this strategy to local checks on a two-dimensional
@@ -1047,12 +1144,19 @@ This transformed the field's engineering posture. The question stopped being
 - how low must physical error rates be?
 - how many physical qubits are needed per logical qubit?
 - which codes match which hardware constraints?
-- how expensive are magic states, lattice surgery, decoding, and control?
+- how expensive are magic states for fault-tolerant non-Clifford operations,
+  lattice surgery for manipulating surface-code patches, decoding, and
+  control?
 - how does one build a system where calibration, fabrication, software, and
   cryogenics all support fault-tolerant operation?
 
 Error correction did not make quantum computing easy. It made scalable
 quantum computing a systems problem rather than a contradiction.
+It also differs from error mitigation: mitigation estimates or suppresses
+some noise effects without encoding a fully protected logical state, whereas
+fault-tolerant QEC aims to make logical error rates decrease as code resources
+increase below the relevant threshold. That threshold is not one universal
+number; it depends on the code, operations, decoder, and noise model.
 
 That is one of the most important engineering reversals in the whole story.
 
@@ -1105,6 +1209,12 @@ well-characterised qubits, initialisation, long coherence relative to gate
 times, universal gates, measurement, and communication-related capabilities.
 The criteria are not a product specification, but they frame the gap between
 a physics demonstration and a computer.
+
+> **Snapshot note — June 2026.** Hardware records, error-correction
+> demonstrations, cloud access, and platform leadership change quickly. The
+> discussion below describes durable constraints and broad trends, not a live
+> leaderboard. Any numerical comparison should be checked against current
+> device documentation and an application-relevant benchmark.
 
 In the 2010s and 2020s, cloud-accessible quantum processors made small
 devices available to researchers, students, and developers. John Preskill
@@ -1245,10 +1355,19 @@ draft. They are not meant to be exhaustive.
   <https://plato.stanford.edu/entries/qt-epr/>
 - Stanford Encyclopedia of Philosophy, "Bell's Theorem":
   <https://plato.stanford.edu/entries/bell-theorem/>
+- J. S. Bell, "On the Einstein Podolsky Rosen Paradox," *Physics Physique
+  Fizika*, 1964:
+  <https://journals.aps.org/ppf/abstract/10.1103/PhysicsPhysiqueFizika.1.195>
+- A. K. Ekert, "Quantum Cryptography Based on Bell's Theorem," *Physical
+  Review Letters*, 1991:
+  <https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.67.661>
 - C. H. Bennett et al., "Teleporting an Unknown Quantum State via Dual
   Classical and Einstein-Podolsky-Rosen Channels," *Physical Review Letters*,
   1993:
   <https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.70.1895>
+- R. Raussendorf and H. J. Briegel, "A One-Way Quantum Computer," *Physical
+  Review Letters*, 2001:
+  <https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.86.5188>
 - M. Schlosshauer, "Decoherence, the Measurement Problem, and Interpretations
   of Quantum Mechanics," *Reviews of Modern Physics*, 2004:
   <https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.76.1267>
@@ -1272,8 +1391,11 @@ draft. They are not meant to be exhaustive.
   *Nature*, 1982:
   <https://www.nature.com/articles/299802a0>
 - C. H. Bennett and G. Brassard, "Quantum Cryptography: Public Key
-  Distribution and Coin Tossing," 1984:
+  Distribution and Coin Tossing," 1984; accessible 2020 reprint:
   <https://arxiv.org/abs/2003.06557>
+- Nature Reviews Physics, "40 Years of Quantum Computing," 2022, including
+  historical discussion of Yuri Manin's and Paul Benioff's 1980 contributions:
+  <https://www.nature.com/articles/s42254-021-00410-6>
 - P. Benioff, "The computer as a physical system: A microscopic quantum
   mechanical Hamiltonian model of computers as represented by Turing
   machines," *Journal of Statistical Physics*, 1980:
@@ -1286,9 +1408,15 @@ draft. They are not meant to be exhaustive.
 - D. Deutsch, "Quantum theory, the Church-Turing principle and the universal
   quantum computer," *Proceedings of the Royal Society A*, 1985:
   <https://www.cs.princeton.edu/courses/archive/fall06/cos576/papers/deutsch85.pdf>
+- D. Deutsch and R. Jozsa, "Rapid Solution of Problems by Quantum
+  Computation," *Proceedings of the Royal Society A*, 1992:
+  <https://research-information.bris.ac.uk/en/publications/rapid-solution-of-problems-by-quantum-computation>
 - E. Bernstein and U. Vazirani, "Quantum Complexity Theory," *SIAM Journal on
   Computing*, 1997:
   <https://epubs.siam.org/doi/10.1137/S0097539796300921>
+- D. R. Simon, "On the Power of Quantum Computation," *SIAM Journal on
+  Computing*, 1997:
+  <https://epubs.siam.org/doi/10.1137/S0097539796298637>
 - P. W. Shor, "Algorithms for Quantum Computation: Discrete Logarithms and
   Factoring," FOCS 1994:
   <https://dblp.org/rec/conf/focs/Shor94.html>
@@ -1304,6 +1432,9 @@ draft. They are not meant to be exhaustive.
 - A. M. Steane, "Error Correcting Codes in Quantum Theory," *Physical Review
   Letters*, 1996:
   <https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.77.793>
+- D. Gottesman, "Stabilizer Codes and Quantum Error Correction," PhD thesis,
+  California Institute of Technology, 1997:
+  <https://arxiv.org/abs/quant-ph/9705052>
 - E. Dennis, A. Kitaev, A. Landahl, and J. Preskill, "Topological Quantum
   Memory," *Journal of Mathematical Physics*, 2002:
   <https://arxiv.org/abs/quant-ph/0110143>
@@ -1318,3 +1449,6 @@ draft. They are not meant to be exhaustive.
 - F. Arute et al., "Quantum supremacy using a programmable superconducting
   processor," *Nature*, 2019:
   <https://www.nature.com/articles/s41586-019-1666-5>
+- National Institute of Standards and Technology, "Post-Quantum Cryptography
+  Standardization Process," current project page:
+  <https://csrc.nist.gov/pqc-standardization>
