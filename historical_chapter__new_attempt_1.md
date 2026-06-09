@@ -8,6 +8,11 @@
 
 ## 0.1 Why History Matters for Quantum Developers
 
+By the end of this chapter, the basic objects of quantum computing should
+feel less arbitrary. Amplitudes, unitary gates, tensor products, measurement,
+entanglement, no-cloning, error correction, and hardware constraints all
+appear because earlier assumptions failed or proved incomplete.
+
 Most technical subjects become easier once you know what problem they were
 invented to solve. Quantum computing is no exception. If the subject is
 presented only as a list of rules, it can look like a pile of arbitrary
@@ -273,6 +278,9 @@ by hand.
 
 That is why the period from 1900 to 1925 feels like a compatibility layer.
 It kept the old system running while the replacement was being discovered.
+The old theory knew where classical physics failed, but not yet what a
+quantum state was. That missing concept is where modern quantum mechanics
+begins.
 
 ## 0.5 Modern Quantum Mechanics: A New Model of State
 
@@ -386,6 +394,18 @@ $$
 |\psi\rangle, \quad \langle \phi|, \quad \langle \phi|\psi\rangle.
 $$
 
+For a qubit, the abstract notation already has a concrete shape:
+
+$$
+|\psi\rangle = \alpha|0\rangle+\beta|1\rangle,
+\qquad |\alpha|^2+|\beta|^2=1.
+$$
+
+The two complex amplitudes encode both probabilities and relative phase.
+For \(n\) qubits, the joint pure state lives in a \(2^n\)-dimensional complex
+vector space. That growth later becomes both the source of entanglement and
+the reason generic quantum systems are difficult to simulate classically.
+
 That notation is now everywhere in quantum computing. A qubit is written as
 a state vector. Gates are operators. Measurement probabilities come from
 inner products and squared magnitudes. Tensor products build multi-qubit
@@ -440,6 +460,9 @@ This is why quantum-computing introductions so quickly turn into linear
 algebra. The mathematics is not a decorative barrier to entry; it is the
 compact interface that made the physics programmable.
 
+Once that interface could describe composite systems precisely, it also
+exposed the feature that would disturb everyone most: entanglement.
+
 ## 0.7 Entanglement: From Problem to Resource
 
 Entanglement began as trouble.
@@ -456,7 +479,15 @@ clearer questions about what the theory meant.
 > probabilistic formalism was a complete description of physical reality or a
 > powerful surface description of something deeper. Even where later
 > experiments favoured quantum predictions over local hidden-variable models,
-> the questions Einstein sharpened became productive science.
+> the questions Einstein sharpened became productive science. For developers
+> and engineers, the attitude is useful: a model that predicts well still
+> deserves questions about what its abstractions mean and where they break.
+
+> **Interpretation boundary.** This chapter uses the operational formalism:
+> states, transformations, measurements, probabilities, circuits, noise, and
+> error correction. Interpretations of quantum mechanics ask important
+> questions about what that formalism says reality is, but learning the
+> engineering model does not require choosing one.
 
 In 1935, Einstein, Boris Podolsky, and Nathan Rosen published the EPR
 argument. They asked whether quantum mechanics was complete. If two systems
@@ -479,6 +510,17 @@ reducible to independent states of its parts. Two qubits can be in a joint
 state for which neither qubit alone carries the full story. This is not a
 minor addition to quantum mechanics. Schrödinger identified it as one of the
 theory's defining features.
+
+A standard example is the Bell state
+
+$$
+|\Phi^+\rangle = \frac{|00\rangle+|11\rangle}{\sqrt{2}}.
+$$
+
+It cannot be factored into one state for the first qubit and another for the
+second. This does not mean that each qubit carries a secret classical value
+that merely waits to be uncovered; the defining structure belongs to the
+joint state.
 
 For decades, the issue looked partly philosophical. Then John Bell changed
 the shape of the question in 1964. Bell derived inequalities that must be
@@ -593,6 +635,12 @@ is not a theorem in the ordinary sense, because "effectively computable" is
 an informal concept. It is a thesis connecting mathematical models to the
 intuitive idea of algorithmic procedure.
 
+Two questions are easy to confuse:
+
+1. What can be computed at all?
+2. What can be computed efficiently?
+
+Quantum computing is revolutionary mainly for the second question.
 Quantum computing does not overturn that original claim about what is
 computable. A classical Turing machine can simulate a quantum computation,
 given enough time and memory. The sharper point concerns efficiency. The
@@ -680,17 +728,30 @@ If information is physical, and the physical world is quantum, then the
 physical limits and efficient implementation of computation cannot be
 understood completely while ignoring quantum theory.
 
+At this point the ingredients were on the table: quantum states,
+computation, information, reversibility, and physical limits. The next step
+was to treat quantum states themselves as information.
+
 ## 0.11 Quantum Information Before Quantum Computers
 
 Quantum information became operational before quantum computers became
 plausible machines.
 
+Its early progress repeatedly turned limitations into resources:
+
+1. nonorthogonal states cannot be perfectly distinguished;
+2. arbitrary unknown states cannot be cloned;
+3. measurement can disturb the system.
+
+In ordinary information processing, these sound like defects. In quantum
+information, they become ingredients for authentication, key distribution,
+and other protocols.
+
 Stephen Wiesner, in work circulated before publication, proposed ideas such
-as quantum money and conjugate coding. The key insight was that nonorthogonal
-quantum states cannot be perfectly distinguished and unknown quantum states
-cannot simply be copied. This makes quantum information unlike a classical
-string. A classical serial number can be read, written down, photocopied, and
-checked later. A quantum state can be designed so that an unauthorised attempt
+as quantum money and conjugate coding. His proposals exploited precisely
+these asymmetries. Quantum information is unlike a classical string: a
+classical serial number can be read, written down, photocopied, and checked
+later, while a quantum state can be designed so that an unauthorised attempt
 to learn it changes the operational situation.
 
 The no-cloning theorem, formalised in 1982 by William Wootters and Wojciech
@@ -796,7 +857,9 @@ Early quantum algorithms showed that the model was not merely a different
 notation for classical computation. Most of the early separations lived in
 the query or oracle model, where one counts how many times an algorithm must
 ask a black-box question. That sounds artificial, but it is a clean laboratory
-for discovering mechanisms.
+for discovering mechanisms. It is like assessing a database algorithm by
+counting expensive database calls rather than every processor instruction:
+not a complete cost model, but a way to isolate a critical resource.
 
 Deutsch-Jozsa gave an oracle separation: under a promise about a function, a
 quantum algorithm could distinguish cases with fewer queries than a
@@ -819,6 +882,9 @@ make existing computers obsolete, because it required a large, reliable
 quantum computer that did not yet exist. But it changed the stakes
 immediately. Quantum computing was no longer just a proposal for simulating
 physics. It had consequences for cryptography and computational complexity.
+Its deeper psychological effect was just as important: quantum speedup was no
+longer confined to artificial promise problems. A natural mathematical
+problem with real-world consequences had entered the quantum column.
 
 Shor's algorithm works because number-theoretic structure can be converted
 into periodicity, and periodicity can be extracted through quantum
@@ -842,6 +908,8 @@ form in 1997, gave a different kind of result. For unstructured search over
 \(O(\sqrt{N})\) oracle queries rather than \(O(N)\). This is not exponential,
 but it is broad. It applies to a very general search setting, and its
 amplitude-amplification idea appears in many later algorithms.
+It also disciplines expectations: even quantum mechanics does not turn
+unstructured search into instant search.
 
 Shor and Grover are often paired because they teach complementary lessons.
 One is narrow but spectacular; the other is broad but more modest:
@@ -877,12 +945,16 @@ parallelisation. The hard part is not putting all candidates into
 superposition. The hard part is arranging the computation so measurement is
 likely to reveal useful structure rather than random noise.
 
-> **Side note: not magic parallelism.** A quantum computer can place
-> amplitudes over many computational paths, but measurement does not hand you
-> all those paths as a free list. Most naive superpositions measure to
-> unhelpful randomness. Quantum algorithms earn their speedups by engineering
-> interference so that useful outcomes become more likely and useless
-> alternatives cancel or disperse.
+> **Anti-hype checkpoint.** Quantum computers do not try every answer and
+> print the right one, solve every hard problem efficiently, signal faster
+> than light, bypass noise and thermodynamics, or make classical computing
+> obsolete. They manipulate amplitudes, exploit interference, use
+> entanglement as structure, and earn advantages only when the algorithm,
+> problem, and physical implementation fit one another. Most naive
+> superpositions measure to unhelpful randomness.
+
+Shor changed what researchers wanted from quantum computers. Error correction
+changed whether that ambition looked physically credible.
 
 ## 0.14 Quantum Error Correction: Making the Impossible Plausible
 
@@ -904,6 +976,12 @@ could have produced interference then become inaccessible to the computation.
 When the environment is ignored, local statistics can then look like those
 of an ordinary probabilistic mixture.
 
+Measurement and noise are both physical interactions, but they play different
+roles in the circuit model. Measurement is a controlled operation that
+produces a classical outcome according to the model. Noise is uncontrolled
+coupling that leaks or scrambles information in degrees of freedom the
+computation does not manage.
+
 Quantum error correction changed the question.
 
 > **Side note: the QEC reversal.** At first, quantum error correction sounded
@@ -911,6 +989,12 @@ Quantum error correction changed the question.
 > measuring it directly can destroy the information you wanted to protect.
 > The breakthrough was to measure the error pattern indirectly. The syndrome
 > says what went wrong without revealing the encoded logical state.
+
+The classical repetition-code intuition is useful up to a point: checking
+whether redundant bits agree can reveal that an error occurred. A quantum
+code must choose checks that reveal the error pattern without revealing the
+encoded amplitudes. It protects the message by asking questions around it,
+not by reading the message itself.
 
 In 1995, Shor introduced a quantum error-correcting code that showed how to
 protect quantum information against arbitrary single-qubit errors without
@@ -951,6 +1035,11 @@ The theorem is a path, not an implementation. Leakage outside the qubit
 subspace, crosstalk, correlated noise, fabrication variation, calibration
 drift, measurement latency, and decoder throughput all determine whether a
 real machine satisfies a code's assumptions closely enough.
+
+Shannon taught classical engineers to stop treating noise as an embarrassment
+outside the model. Quantum error correction repeats that lesson under harsher
+rules: noise must be modelled, detected indirectly, and corrected without
+reading the protected information.
 
 This transformed the field's engineering posture. The question stopped being
 "does any noise make quantum computing impossible?" and became:
@@ -1005,6 +1094,11 @@ different things. The durable subject is the engineering stack and the
 evidence required to show that one layer improves the behaviour of the whole
 system.
 
+A qubit count by itself is not a computer-size metric. Without error rates,
+connectivity, gate and measurement fidelity, coherence, calibration
+stability, and error-correction context, the number says little about what
+the machine can reliably compute.
+
 David DiVincenzo's criteria, codified in his 2000 implementation review, gave
 the hardware field a useful checklist: a scalable physical system with
 well-characterised qubits, initialisation, long coherence relative to gate
@@ -1043,8 +1137,10 @@ pulses, calibration loops, runtime feedback, error mitigation, syndrome
 decoding, classical co-processing, applications, and honest benchmarks.
 
 The field has repeatedly mixed real progress with optimistic timelines. The
-right stance is neither hype nor cynicism. The right stance is calibrated
-excitement:
+right stance is neither hype nor cynicism.
+
+> **Calibrated excitement.** The theory is real, the algorithms are real, the
+> engineering progress is real, and the remaining gap is also real.
 
 - quantum mechanics is real;
 - quantum information is operational;
@@ -1097,6 +1193,15 @@ The compact version to carry forward is:
   limits;
 - useful quantum computation requires both problem structure and a reliable
   stack of control, correction, and classical support.
+
+When later chapters introduce vector spaces and tensor products, they are not
+arbitrary mathematical ceremony; they are the language that survived the
+failure of classical state. When they introduce unitary gates, remember the
+physical importance of reversibility. When they introduce measurement,
+remember that reading is an interaction, not a passive database lookup.
+When they introduce error correction, remember the central reversal: protect
+the logical state by learning about the error, not by copying or directly
+reading the state.
 
 Classical intuition did not fail because it was foolish. It failed because it
 was a successful approximation pushed past its domain. Quantum computing is
