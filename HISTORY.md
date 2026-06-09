@@ -6,9 +6,9 @@ we work* and *why the conventions exist*; read `STYLE.md` for *what
 the conventions are*. The three files complement each other and do
 not duplicate.
 
-This log covers the period from the first commit through the
-completion of Chapter 4's review cycle and the establishment of the
-tooling and process baseline.
+This log covers the period from the first commit through the full
+manuscript draft, the external-review and fact-check cycles, and the
+addition of the unnumbered Historical Prelude.
 
 ---
 
@@ -732,14 +732,178 @@ the violation pattern and swapped the two lines in each affected file
 left alone. Lint, the mdBook build, and `make progress` all remained
 clean after the change.
 
+## Phase 12 — Continued external review and the fact-check card system
+
+Two more review cycles arrived in the days after Phase 11, and a
+parallel thread built out the standing fact-check apparatus.
+
+### 12.1 The 2026-05-29 and 2026-05-30 review cycles
+
+`review-2026-05-29-0144.md` and a self-authored comprehensive pass
+(`review-2026-05-30-0356.md`) produced roughly fifty further
+correctness findings across the manuscript. The working rule was made
+explicit by the user and became the governing discipline for every
+review pass that followed: **do not trust reviewer authority without
+complete verification** — investigate each claim against the actual
+book text and external sources before applying, and sort findings into
+*useful* / *doubtful* / *rejected* with a stated reason for each.
+
+The cycles ran as a sequence of verify-then-apply commits
+(`6eeaea7`, `5df0cee`, `9fb6101`, `8793b5d`, `1089e2a` …) covering
+local-correctness fixes, investigated "doubtful" physics findings, and
+verified-stale SDK claims. The most instructive single fix was an
+Appendix D misattribution (`cca2c9f`): a paper the review confidently
+credited to one author was, on web verification, a different
+author/year entirely — the kind of error that only surfaces when the
+reviewer's authority is *not* trusted blindly. The comprehensive
+self-review pass (`7ab8dd8`, `ca2db86`, `bd93147`) walked the whole
+manuscript front-to-back and is the model for the "review your own work
+in the end" step now applied after every large edit.
+
+### 12.2 The fact-check card system (v2)
+
+The perishable-claims ledger from Phase 11 (`docs/fact-check-ledger.md`)
+tracks *dated external claims*. A separate, larger idea took shape: a
+section-by-section mirror of the manuscript under `factcheck/`, where
+each manuscript file gets a companion file recording its check-worthy
+claims with verbatim anchors, methods, sources, and verdicts.
+
+An early extraction-only format proved unreadable — the user's verdict
+was blunt ("pure torture") — and the redesign that followed is the
+reason the current format exists: claim sentence first, the verbatim
+anchor demoted to a "Find in text" locator, real section names, full
+sentences in quotes rather than fragments, and every claim written to
+be *independently* checkable without re-reading the source. The
+interim v1 format (anchored claims across the 48 manuscript files,
+checked by `scripts/factcheck_anchors.py` with normalised matching for
+case, markdown, blockquote, and LaTeX-escaping noise) confirmed the
+mirror could be kept honest mechanically.
+
+The v2 design (`5af4e24`) is the lean-card spec now in the tree:
+`factcheck/CARD-SPEC.md`, a canonical `_template.md`, a `_pilot.md` of
+worked example cards, and `scripts/factcheck_lint.py`. Its one
+load-bearing architectural decision is that **verdict (stored) and
+freshness (linter-computed) are independent axes**: a card's verdict
+(`unverified` / `verified` / `refuted` / `depends`) records what a human
+established, while the linter separately reports whether the manuscript
+text the card anchors to has since drifted. A verified card whose
+manuscript wording changes becomes "verified-but-stale" and is surfaced
+for re-checking — it is never silently auto-demoted. This keeps human
+judgement and mechanical drift-detection from overwriting each other.
+
+## Phase 13 — The Historical Prelude (Chapter 0)
+
+Reading the full draft, the user identified a structural gap: the book
+jumps cleanly into technical matter but offers no *historical
+perspective* — why the model has the shape it does. The remedy was a
+new opening chapter, drafted across early-to-mid June 2026, that became
+the most heavily iterated single file in the project after Chapter 4.
+
+### 13.1 Commissioning and the first draft
+
+A planning document (`95deab5`) set the constraints: a physics-first
+historical arc (not merely a computing-history note), self-contained so
+that Chapter 1 onward does not lean on it, cross-references forward
+only, and "quality first, page constraints relaxed." The first draft
+(`a43c04d`, 2026-06-02) wired the chapter into the build; a
+quality-first expansion added quantitative detail and named theorems
+where they earn their place (`35147d1`), followed by a six-defect
+self-review (`258d67f`).
+
+### 13.2 Naming and placement decisions
+
+Several structural decisions were taken in sequence, each driven by a
+specific user objection:
+
+- **Directory.** The chapter moved into its own
+  `book/part-00-historical-prelude/` directory (`b97345e`, `22c1b0c`),
+  parallel to the other parts, with `scripts/scaffold.py` extended to
+  treat an empty `chapter_label` as "render the bare title, no chapter
+  number."
+- **"Chapter 0" dropped from the prose.** The "anti-book"-sounding
+  *Chapter 0* label was removed from reader-facing text (`20a94f7`); the
+  prelude is unnumbered in the prose while keeping its `§0.x` section
+  numbers as a neutral cross-reference handle.
+- **Internal divisions: Parts → Eras → Episodes.** The chapter's four
+  internal arcs were first renamed from *Part* (which collided with the
+  book's numbered Parts) to *Era* (`20a94f7`), then — after the user
+  found *Era* too heavy and noted the Star-Wars resonance was *funny*,
+  not a problem — to **Episode** (`45b25fc`). The label was chosen to
+  carry the design intent: an episode is a self-contained narrative unit
+  a reader can enter cold, which is exactly how the chapter's sections
+  are meant to be read.
+
+### 13.3 The verified-review iteration
+
+The chapter then went through several rounds of external review, each
+applied under the Phase-12 discipline (classify → verify → apply the
+true, reject with reasons what conflicts with principle). The user
+supplied alternate full drafts (`chapter0_attempt1-4.md`,
+`historical_chapter__new_attempt_1.md`) and review files
+(`chapter_0_review_1-4.md`) as raw material rather than as edits to
+apply wholesale.
+
+- **Harvesting from alternates** (`479a005`): the strongest single
+  artifact across the alternate drafts — a three-column "classical
+  assumption → quantum replacement → forced by" table — was adapted into
+  §0.16, along with per-result "depends on" dependency tags.
+- **Verified factual corrections** (`49ffd27`, `de21518`): four reviews
+  converged on the same fixes, each web-verified before applying — the
+  equipartition `k_B T`-per-mode correction, the 2015 Bell-test p-values
+  split by platform (the Delft NV result was `p ≈ 0.039`, not the
+  blanket `<10⁻⁷`), the Benioff "unitary time evolution" wording, the
+  Simon STOC-1993-committee story replacing a false "office neighbour at
+  Bell Labs" anecdote, the NIST PQC status, and the Quantinuum / Atom
+  Computing / Microsoft below-threshold partnerships disentangled by
+  platform.
+- **Reader-experience expansions** (`058704d`, `16b7198`, `12db4c4`,
+  `10c42ba`): reader-handle paragraphs before the densest passages,
+  first-use survival definitions (qubit, unitary, Hamiltonian, operator,
+  oracle, syndrome), missing narrative episodes (the two-slit
+  experiment, Maxwell's demon and Bennett's 1982 exorcism, Lloyd 1996,
+  Manin 1980, Ekert 1991, measurement-based quantum computation), and a
+  pass of verified precision items (Eberhard vs Garg–Mermin detection
+  thresholds, the transistor 1947/1948 attribution, Liouville phase-space
+  conservation, CSS dual-code phase side, Deutsch's probabilistic 1985
+  original vs the Cleve–Ekert–Macchiavello–Mosca 1998 deterministic
+  version).
+- **The drama, named** (`0e9ee90`): a short intro paragraph that states
+  outright that the Episode framing is honest acknowledgement of genuine
+  drama in the material (Planck denying his own constant for fifteen
+  years; Einstein's Nobel for the theory he spent three decades arguing
+  against; "atoms should not exist — they do"), not theatrical packaging.
+
+### 13.4 Principles that crystallised here
+
+Three working principles were stated explicitly by the user during this
+phase and now govern manuscript editing generally:
+
+- **Quality is never traded for compactness.** Length is not a defect;
+  no content is removed for brevity. Every Chapter 0 edit is additive or
+  replaces a passage with a longer, sharper version.
+- **Sections are self-contained for selective readers.** The book is
+  written for readers who land in a section directly, so a section must
+  read as a plain flow without "go look at §X" dependencies. Controlled
+  duplication across sections is acceptable, even desirable. A
+  cross-reference is a *signpost* to where a topic is developed further,
+  never a *prerequisite* for the passage it sits in — a rule now recorded
+  in `STYLE.md` (`e81b6ea`) and checked against the Preface's stated
+  "linear vs selective reading" design.
+- **Reviews are verified, not obeyed.** Every reviewer item is checked
+  against the text and primary sources before application; many
+  high-volume "compress / move to a later chapter / strip vendor names"
+  suggestions were rejected outright as conflicting with the two
+  principles above, with the reason recorded in the commit.
+
 ## Snapshot at this point
 
 | Area | State |
 |---|---|
-| Manuscript | Full draft — 37 chapters, 3 front-matter files, appendices A–F, and the Index; all `draft` (Index promoted from `outlined`); `PROGRESS.md` at 47/47 |
-| External-review verification | Two 2026-05 reviews worked through end-to-end (~ thirty correctness / convention / precision fixes in §§2, 6, 8–15, 27 plus the appendices); see Phase 11 |
-| Fact-check | `docs/fact-check-ledger.md` records seven dated passes against vendor / preprint / journal sources for Appendix F, §15.3, Chapter 27, §33.4, §8.12, Chapters 1–3 + ML-DSA/ML-KEM sizes, and Appendix D |
-| Format consistency | All 47 files now follow `STYLE.md`'s heading → status → nav order |
+| Manuscript | Full draft — 37 chapters plus the unnumbered Historical Prelude, 3 front-matter files, appendices A–F, and the Index; all `draft`; `PROGRESS.md` at 48/48 |
+| Historical Prelude | `book/part-00-historical-prelude/` — 16 sections across four Episodes, ~470 lines; heavily iterated under verified external review; end-of-chapter Source Notes and a three-track convergence timeline |
+| External-review verification | Multiple 2026-05/06 reviews worked through end-to-end under the verify-before-apply discipline; see Phases 11–13 |
+| Fact-check | `docs/fact-check-ledger.md` records the dated perishable-claims passes; `factcheck/` holds the section-mirror card system (v2 spec, template, pilot) with the verdict-vs-freshness split, linted by `scripts/factcheck_lint.py` |
+| Format consistency | All manuscript files follow `STYLE.md`'s heading → status → nav order; `STYLE.md` now also records the signpost-not-prerequisite cross-reference rule |
 | Cross-references | Systematic review pass complete (19 `Review:` commits + the Phase-11 sweep); stale section / chapter pointers corrected; QFT sign convention unified across §14.5, §14.6, §15.2 |
 | Figures | `figures-src/generate_figures.py` (`make figures`) — 15 Qiskit-rendered SVGs across Ch7–10, 14–15, 19; PNG previews for QA; byte-deterministic output |
 | Code examples | `examples/` run end to end by `make check-examples`; embedded in Ch14, 15, 24, 26 |
@@ -830,18 +994,53 @@ clean after the change.
   out to be quick targeted edits, not voice-perturbing rewrites. Treating
   them as judgment-laden was over-caution; they cost the same per-item
   verification as the correctness fixes and should not have piled up.
+- **Reviews are raw material, not instructions.** A reviewer — human or
+  model — supplies hypotheses, not edits. Every Phase-12/13 item was
+  classified (useful / doubtful / rejected), the doubtful ones verified
+  against primary sources, and the useful ones applied; the rejected ones
+  carried a stated reason in the commit. Several confident-sounding
+  reviewer claims were simply wrong (the Appendix D misattribution; the
+  Eberhard 82.8% threshold, which is actually Garg–Mermin; a false
+  Simon/Shor "office neighbour" anecdote). Obeying a review wholesale
+  would have introduced errors, not removed them.
+- **State the editing principles, then hold them against every review.**
+  "Quality over compactness" and "self-contained sections for selective
+  readers" did most of their work by letting whole *classes* of reviewer
+  suggestion be declined quickly and consistently — every "compress this
+  section" or "move this to a later chapter" item, however well-argued,
+  was rejected against a written principle rather than re-litigated each
+  time. Cross-checking those principles against the book's own charter
+  (the Preface's linear-vs-selective design) confirmed they were the
+  book's intent, not a local preference.
+- **Verdict and freshness are different axes.** The fact-check card
+  system keeps a human-set verdict and a machine-computed staleness flag
+  independent, so mechanical drift-detection never silently overwrites a
+  human judgement and a human verdict never masks that the underlying
+  text has moved. "Verified-but-stale" is a first-class state, not a
+  contradiction.
+- **A self-contained section is the unit of trust.** Writing each section
+  to be readable cold — naming the fact or person inline instead of
+  pointing at another section, defining a term at first use, repeating
+  just enough context — is what lets a reader land anywhere and what lets
+  a fact-check card anchor to one passage. Self-containment serves the
+  reader and the verification system at the same time.
 
 ---
 
 This file will continue to be appended to as the manuscript moves from
-full draft toward review. After Phase 11 the open threads narrow: the
-two external reviews have been worked through to closure, the perishable
-claims have a dated ledger, and the format inconsistency is resolved.
-What remains is the substantive technical-and-editorial pass that takes
-chapters from `draft` to `reviewed`; backfilling figures into the
+full draft toward review. After Phase 13 the manuscript has gained an
+unnumbered Historical Prelude (`PROGRESS.md` at 48/48), the fact-check
+card system has a v2 spec and a pilot, and three editing principles —
+quality over compactness, self-contained sections, reviews-are-verified
+— are written down and applied. What remains is the substantive
+technical-and-editorial pass that takes chapters from `draft` to
+`reviewed`; migrating the interim v1 fact-check anchors to the v2 card
+format across the remaining sections; backfilling figures into the
 chapters that still lack them (QEC depth, hardware, measurement);
 extending the runnable examples beyond the four currently checked in;
 pinning the §15.8 VQE shot-budget estimate to a specific 2024–2026
-paper (the last open row in the fact-check ledger); and publishing the
-mdBook build via GitHub Pages / CI, which would also reopen the EPUB
-and PDF question once a compatible toolchain is pinned.
+paper (the last open row in the fact-check ledger); folding the
+Historical Prelude's own perishable hardware claims into the dated
+ledger; and publishing the mdBook build via GitHub Pages / CI, which
+would also reopen the EPUB and PDF question once a compatible toolchain
+is pinned.
