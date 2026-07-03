@@ -762,3 +762,74 @@ During the Ch13 review I briefly suspected Ch11's two references to "variational
   - **Certainty:** Medium (all ledgered).
 
 **Entertainment:** high — "every vendor benchmark sheet … is a small adversarial document" is a thesis statement the whole chapter earns; "mistrust everything new" closes it honestly. **Pedagogy:** §22.14's six-step reading protocol is the most directly reusable artifact in Part 9; the QV critique (saturating, 2q-dominated, non-algorithmic) is fair and balanced; the T₂*/echo/CPMG ladder with "the ratios tell you about the noise spectrum" teaches diagnosis, not just definitions. Sanity check 2 (infer the noise spectrum from T₁ = 200 µs, T₂* = 30 µs) is excellent. **Rendering:** clean; house escaping consistent; the §22.13 vendor list as bullets works, though this chapter (unlike §20.12) would genuinely benefit from a comparison table — with the moving-target banner it currently lacks (the §22.13 inline caveat partially covers it).
+
+### book/part-09-hardware-and-software/23-quantum-programming-compilation-and-tooling.md (Chapter 23, 281 lines, 15 H2 sections)
+
+**Overall:** The strongest tooling survey I've seen in book form, and impressively current: the Qiskit 2.x timeline (March 2025, slimmed core, C API), the QPY-vs-OpenQASM3 transport distinction, the Qiskit Pulse removal (consistent with Ch21 ✓), the Modern QDK/QIR story, and LightSABRE are all right. Verified: OpenQASM 3 and Quil examples are syntactically valid ✓; Toffoli = 6 CNOTs consistent with Ch8 ✓; state-vector memory ladder (8 GB @ n=30, 512 GB @ 36, 8 TB @ 40, single-precision complex) recomputed ✓; density-matrix O(4ⁿ) half-ceiling ✓; parameter-shift formula consistent with Ch11/Ch14 ✓; RSA-2048 estimate (2×10⁷ qubits, hours) **consistent with §15.3's Gidney–Ekerå figures** ✓ — notably *not* repeating §17.10's wrong numbers; Stim correctly attributed to Gidney here (highlighting Ch19's "Google's Stim and PyMatching" as the outlier); endianness-as-prime-suspect debugging note correctly reflects the book's own big-endian convention ✓; sanity check 5 recomputable (32 GB @ n=32; >1 TB at n=38) ✓; Ch30 = "Quantum Machine Learning" ✓ (forward ref verified).
+
+- **Severity:** Low · **Category:** Factual (tool misattribution) · **Location:** §23.10 (line 170)
+  - **Problem:** "Pauli twirling … Implemented in Qiskit's `PauliTwirl` **and the `mthree` mitigation toolkit**" — mthree (M3, Nation et al.) is *matrix-free measurement/readout* mitigation; it does not implement Pauli twirling. The `PauliTwirl` pass name is also approximate (Runtime exposes twirling via options; the SDK has twirling utilities under different names).
+  - **Recommendation:** Drop mthree from the twirling sentence (mention it under readout mitigation where it belongs); verify the exact Qiskit pass name.
+  - **Certainty:** High on mthree; medium on the pass name.
+
+- **Severity:** Low · **Category:** Factual (likely confabulated tool) · **Location:** §23.11 (line 191)
+  - **Problem:** "The `PyZX` and **`pyLIQUi|>`** ecosystems offer logical-level T-counting passes" — PyZX is real (ZX-calculus T-count reduction ✓); "pyLIQUi|>" does not exist to my knowledge. LIQUi|> was Microsoft's F#/.NET simulator (2014–2016), long superseded by the QDK, with no Python incarnation.
+  - **Recommendation:** Verify; likely delete or replace (e.g., with Azure QRE's own logical counter or `pytket`'s T-count reporting).
+  - **Certainty:** Medium-high.
+
+- **Severity:** Low · **Category:** Currency (requires verification) · **Location:** §23.4 (line 69), §23.13 (line 234), §23.15 (line 262)
+  - **Problem:** **TensorFlow Quantum** is presented three times as a live, first-class stack ("the primary entry point", "the corresponding stack for Google's hardware", a §23.15 subsection) — but TFQ has been effectively unmaintained since ~2023–24; presenting it as the 2026 recommendation risks sending readers to a dead end. Same pattern as Ch20's Aspen: §23.77's "Rigetti **Aspen** and Ankaa" includes the retired Aspen line.
+  - **Recommendation:** Verify TFQ's maintenance status; if stagnant, say so (the book is elsewhere excellent at exactly this kind of honesty).
+  - **Certainty:** Medium (ledgered).
+
+- **Severity:** Nit · **Category:** Requires verification · **Location:** §23.6 (line 110)
+  - **Problem:** "level 1 is the default" for `transpile(...)` — Qiskit changed the default optimization level to 2 in the 1.x series (needs version-pinned checking; the book targets Qiskit 2.x elsewhere).
+  - **Recommendation:** Pin to the Qiskit 2.x default explicitly.
+  - **Certainty:** Low-medium (ledgered).
+
+- **Severity:** Nit · **Category:** Consistency (structure) · **Location:** end of §23.15
+  - **Problem:** Bridge is an unheaded paragraph inside §23.15 (bridge-style variant count now: numbered section / unnumbered heading / merged-titled section / unheaded trailing paragraph). Status 15/15 matches the numbered sections.
+  - **Recommendation:** One convention, book-wide (§13 lint).
+  - **Certainty:** High.
+
+**Entertainment:** good — "a small adversarial document" energy carries over; "always the prime suspect" (endianness) and "reach for defcal when you have a specific reason, not as a default" are the voice of experience. **Pedagogy:** the §23.12 simulator-selection matrix (state-vector/tensor-network/stabiliser/density-matrix/trajectory/shadows, each with its cost model and use case) is the most complete such taxonomy I've seen in a textbook; §23.14's five debugging families — especially cross-platform compilation diff — are real practice, not textbook idealism. The Sessions-vs-one-shot billing note is exactly the kind of operational detail the book's audience needs. **Rendering:** three fenced code blocks (qasm/text/text) all render correctly; house escaping fine; no figures needed — a compilation-pipeline diagram (4 stages) would be nice-to-have.
+
+### book/part-09-hardware-and-software/24-classical-simulation-of-quantum-systems.md (Chapter 24, 265 lines, 15 H2 sections)
+
+**Overall:** A genuinely valuable chapter — the "classical simulation is quantum computing's constant companion" framing, the plural-methods thesis, and the §24.15 decision tree are exactly what the audience needs, and the §24.7 paragraph carefully distinguishing entanglement *entropy* bounds from Schmidt-*rank* requirements is more precise than most research-adjacent writing. Verified: the double-precision memory ladder (16 GiB @ 30 → 16 PiB @ 50) recomputed ✓ — and *consistent* with Ch23's single-precision figures since each chapter labels its precision ✓; gate-as-stride update ✓; trajectory-vs-density-matrix break-even N ≈ 2ⁿ ✓; tableau sizes/costs and CHP attribution ✓; TEBD O(nχ³), Hastings 1D area law, Calabrese–Cardy linear growth ✓; DMRG-on-cylinders χ ~ 2^w, w ≲ 8 folklore ✓; PEPS #P-hard contraction ✓; NQS Carleo–Troyer 2017 ✓; path-sum formula ✓; Sunway 304 s / 41.9M cores ✓ (but see qubit-count ledger item); H100 80 GiB/3 TB/s ✓; Aharonov–Ben-Or noise-simulability ✓; `examples/statevector_simulation.py` exists and matches the inline snippet ✓, and the shown output is exactly right (Statevector.to_dict() omits zero amplitudes, so only |000⟩/|111⟩ print) ✓.
+
+- **Severity:** Medium · **Category:** Conceptual error (recomputed) · **Location:** §24.7 (line 136)
+  - **Problem:** "A circuit that builds genuine n-qubit **GHZ-type** entanglement across the full register **saturates the bond dimension at χ = 2^{n/2}**". Exactly backwards: the GHZ state has Schmidt rank **2** across *every* bipartition (bond dimension 2 — it is the canonical example of an entangled state MPS handles trivially, a standard teaching point). What saturates χ = 2^{n/2} is *volume-law* entanglement — deep random circuits, generic states.
+  - **Recommendation:** "A circuit that builds volume-law entanglement (a deep random circuit) saturates χ = 2^{n/2}; note by contrast that GHZ states, despite being maximally nonlocal, have bond dimension 2 and are MPS-trivial."
+  - **Certainty:** High (Schmidt decomposition of GHZ recomputed).
+
+- **Severity:** Medium · **Category:** Numerical (internally and cross-chapter inconsistent) · **Location:** §24.4 (line 92)
+  - **Problem:** Density-matrix thresholds: "n = 15 on a workstation, **n = 22 on a large server**, n = 25 at the very edge". At n = 22, 16·4²² = **256 TiB** — no server. Halving §24.2's own statevector ladder gives large-server ≈ n = 16–17; Ch23 §23.12 says "n = 15 comfortably, **n = 20 with effort**". The 22 looks like half of 45 (a supercomputer figure mislabelled as "large server"); n = 25 (16 PiB) correctly halves the n = 50 ceiling.
+  - **Recommendation:** "n ≈ 16–17 on a large server, n ≈ 20 on HPC, n = 25 at the supercomputer edge."
+  - **Certainty:** High (recomputed).
+
+- **Severity:** Low · **Category:** Attribution · **Location:** §24.6 (line 122)
+  - **Problem:** The quasi-probability estimation scheme is credited to "**Pashayan–Bartlett–Gross** 2015" — the paper is Pashayan–**Wallman**–Bartlett (PRL 2015). Gross belongs to the earlier discrete-Wigner-negativity lineage, not this paper.
+  - **Recommendation:** Pashayan–Wallman–Bartlett.
+  - **Certainty:** Medium-high.
+
+- **Severity:** Low · **Category:** Factual (tool behaviour) · **Location:** §24.13 (line 202)
+  - **Problem:** "Qiskit Aer's noise back-end, Cirq's …, and **PennyLane's `default.mixed`** all use trajectories under the hood for large n" — `default.mixed` is a **density-matrix** simulator, not a trajectory simulator.
+  - **Recommendation:** Drop it from the trajectory list (PennyLane's trajectory-style noise lives elsewhere).
+  - **Certainty:** Medium-high.
+
+- **Severity:** Low · **Category:** Mathematical (exercise error) · **Location:** Sanity check 1 (line 256)
+  - **Problem:** "why does adding **two** more qubits roughly **quadruple** it for a **density-matrix** simulator?" — for a density-matrix simulator (4ⁿ), +2 qubits is ×16; +**1** qubit quadruples. (+2 quadruples a *statevector* simulator.) The exercise as posed has no correct answer.
+  - **Recommendation:** Either "one more qubit … density-matrix" or "two more qubits … statevector".
+  - **Certainty:** High.
+
+- **Severity:** Low · **Category:** Internal consistency · **Location:** §24.11 (line 186) vs §24.14 (line 214)
+  - **Problem:** The same Pan–Chen–Zhang work is quoted as "a few days on a GPU cluster" (§24.11) and "roughly 15 hours" (§24.14). Different follow-ups exist, but both sentences cite the same 2022 reference.
+  - **Recommendation:** Pick one figure or distinguish the two papers explicitly.
+  - **Certainty:** Medium-high.
+
+- **Severity:** Low · **Category:** Requires verification (ledgered, 6 items) · **Location:** §§24.3, 24.5, 24.6, 24.12, 24.13, 24.14
+  - **Problem:** (i) Fugaku "48 qubits … 1 PiB … ~130,000 nodes" — 2⁴⁸ double-complex is 4 PiB; 1 PiB implies 4-byte amplitudes; verify the run exists as described. (ii) "**BlueQubit**" listed among stabiliser-simulator improvements — BlueQubit is a cloud-simulation startup, not a known stabiliser-simulator lineage entry. (iii) Bravyi–Gosset "α ≈ 0.396" — BG 2016's exponents are ≈0.47 (exact rank) / ≈0.23 (approximate); 0.396 belongs to the sum-over-Cliffords/stabiliser-extent line (Bravyi et al. 2019) — attribution/exponent pairing needs checking, as does the "50-qubit, 60-T-gate" demo (BG reported 40 qubits/~50 T). (iv) Sunway "**56-qubit** Sycamore-style" — the Gordon Bell 2021 run simulated the 53-qubit Sycamore task. (v) "**Gao, Anschuetz, Wang, Cirac, Lukin 2024**" for noise-exploiting spoofing — that author list matches a 2021 *generative-models* paper; the XEB-spoofing result is Gao–Kalinowski–Chou–Lukin–Barak–Choi. (vi) "AlibabaQuantum Simulator … repeatedly demonstrated" — Alibaba's quantum lab disbanded in 2023; currency check.
+  - **Certainty:** Medium (all ledgered).
+
+**Entertainment:** high — "not the failure mode of quantum computing but its constant companion" is a thesis worth the chapter, and the closing "which lever … will move the boundary in their favour" lands the plural-methods message. **Pedagogy:** the three-constituencies opening (§24.1) prevents the classic conflation; the decision tree is immediately usable; sanity check 5 (sampling agreement ≠ unitary equivalence) is a subtle and excellent trap. Bridge style: bold run-in paragraph — a **fifth** variant; and the checks are headed "Sanity checks." (dropping "before moving on") — minor style drift for the §13 lint list. **Rendering:** clean throughout; code block + output block verified ✓.
