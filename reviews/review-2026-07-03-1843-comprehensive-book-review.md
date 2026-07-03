@@ -264,3 +264,92 @@
 | Nit | precision | §5.13 (~678) | "any two non-orthogonal, non-identical states — whose overlap lies strictly between 0 and 1" — overlaps are complex; the proof needs only "overlap ∉ {0,1}", which holds. Wording implies real overlap. | "whose overlap is neither 0 nor 1". | certain |
 
 **Entertainment:** good — impossibility theorems told as engineering constraints ("Quantum garbage collection is non-trivial") rather than as folklore. **Pedagogy:** the idealised→realistic path is explicitly designed (mixed states here, channels Ch 10, POVMs Ch 11) and each postulate names its own deviation from hardware; exactly right. **Rendering:** clean house escaping throughout; no risky constructs. **Note:** the chapter has *no sanity-check exercises at the end* (the interior has sanity-check blockquotes) — Preface exercise-promise tally: Ch 5 ✗.
+
+---
+
+### File: `book/part-03-qubits/06-the-qubit.md` (480 lines, §6.1–§6.11)
+
+**Overall.** "This chapter is short on purpose" — and right to be. The three-bases → Bloch sphere → rotations → measurement arc is clean, and the geometric payoff is real. Verified: Bloch construction/poles/density-ball conditions ✓; `p(0) = ½(1 + r·n̂)` ✓; axis-angle formula ✓; ZYZ decomposition ✓; MUB count `2ⁿ+1` (prime-power dimension) ✓; circular-basis measurement `H S†` **recomputed as a matrix product and confirmed equal to `V†`** ✓ (the HISTORY-documented operator-order fix is correct); `S† : |R⟩ ↦ |+⟩` ✓.
+
+**Findings.**
+
+| Severity | Category | Location | Problem | Recommendation | Certainty |
+|---|---|---|---|---|---|
+| Medium | mathematical | §6.8 "Why the half-angle" (~line 317) | "A **2π rotation on the Bloch sphere is a 4π rotation in Hilbert space**" — inverted/garbled statement of the double cover. Correct content: a 2π Bloch rotation corresponds to `U = −I` (the state acquires a physical-in-context −1 sign); only a **4π Bloch rotation** returns the Hilbert-space identity. As written the sentence has no correct reading. | "A full 2π rotation of the Bloch vector multiplies the state vector by −1; only a 4π rotation restores it — the SU(2)→SO(3) double cover." Local. | certain |
+| Low | consistency | status block | 10/10 vs 11 `##` sections (Bridge) — 5th instance of the count drift. | Fix; add a lint rule comparing declared vs actual counts (cheap and would have caught all six instances). | certain |
+| Nit | precision | §6.8 (~334) | "$S = R_z(\pi/2)$ up to global phase … and $T = R_z(\pi/4)$" — the up-to-phase qualifier grammatically attaches only to S; T's equality is also only up to global phase `e^{iπ/8}`. | Move the qualifier to cover both. | certain |
+| Nit | sequence | §6.10 (~448) | "the Lüders rule" is name-dropped without definition or forward pointer (POVM/measurement machinery is Ch 11). | Add "(Chapter 11)". | certain |
+
+**Entertainment:** good; the Larmor-precession framing of gates ("hardware implements gates by turning on a Hamiltonian in a chosen direction for a chosen duration") gives physical texture. **Pedagogy:** exactly the right scope. **Note:** Ch 6 has **no sanity-check exercises and no interior SC boxes** — the only Part I–III chapter with neither (Preface exercise tally: Ch 6 ✗). **Rendering:** clean.
+
+---
+
+### File: `book/part-03-qubits/07-multiple-qubits-and-entanglement.md` (210 lines, §7.1–§7.14)
+
+**Overall.** Dense but excellent. The **Tsirelson saturation was fully recomputed** in this pass — all four correlators (`+1/√2, +1/√2, +1/√2, −1/√2`) with the stated singlet settings give `S = 2√2` exactly ✓ (the historically-fixed sign convention is correct). Also verified: product-state cross-ratio test ✓; `|Φ⁺⟩` non-factorability proof ✓; GHZ/W trace-out contrast ✓; Schmidt/SVD relationship and equal reduced spectra ✓; teleportation correction table (incl. the `ZX` order note) ✓; negativity definition and "sufficient but not necessary" ✓; Jozsa–Linden necessity + the DQC1 counterpoint — an unusually honest pairing most texts omit. Resolves an earlier open item: **§7.12 "Entanglement as a Resource" exists exactly as cited by Ch 2** ✓; the no-signaling explanation Ch 3 wanted lives in §7.11 (see Ch 5 finding — Ch 3's pointer should aim here or §5.11 should gain the derivation). Teleportation figure present with descriptive alt text ✓.
+
+**Findings.**
+
+| Severity | Category | Location | Problem | Recommendation | Certainty |
+|---|---|---|---|---|---|
+| Medium | consistency | §7.1 (~21), §7.2 (~33) | **Third qubit-labeling scheme introduced**: §7.1 calls the leftmost ket "the most-significant qubit (**qubit 0**)" and §7.2 writes basis strings as `|x_0 x_1 ⋯ x_{n−1}⟩` — zero-based with x₀ = MSB. The book's established convention (Preface, §2.4, §4.2) is **one-based** `x_1 … x_n` with `idx = Σ x_i 2^{n−i}`. Ch 7's parenthetical then has to warn that "Qiskit's qubit 0 is our rightmost", creating a book-internal "qubit 0" that collides head-on with the SDK meaning — in the single most confusion-prone convention area the book has otherwise handled superbly. | Align Ch 7 to `x_1…x_n` / "first qubit" phrasing; drop the internal "qubit 0" label entirely. Local but touches several §7.x lines. | certain |
+| Low | consistency | §7.9 (~134) | "Local hidden variables, as a model of physical reality, **are ruled out**" — flat statement, where the Prelude and Ch 3 carefully scope the claim to the tested assumptions (locality/free-choice/fair-sampling; superdeterminism not closable). Cross-chapter epistemic drift, in the direction the book's own Ch 36 would flag. | Add the standard one-clause hedge. Local. | certain |
+| Low | consistency | status block | 13/13 vs 14 sections (6th count-drift instance). | Fix. | certain |
+
+**Entertainment:** high for the density — "the Bell zoo," the resource-accounting framing of §7.12, and the honest §7.13 mixed-state caveats keep it alive. **Pedagogy:** exactly the right prerequisites callout; sanity checks (5, no inline answers — policy-compliant ✓). **Rendering:** the `aligned` display block for the Bell states uses correct `\\\\` escaping ✓; figure link relative and valid.
+
+---
+
+### File: `book/part-04-gates-and-circuits/08-quantum-gates.md` (219 lines, §8.1–§8.14)
+
+**Overall.** A dense, precise gate chapter with real research-hygiene: inline citations (Barenco 1995, Shi/Aharonov 2003, Dawson–Nielsen, Ross–Selinger), an explicit Moving-target warning on §8.12's vendor content, and the sharpest treatment in any textbook I know of the **two Solovay–Kitaev exponents** (generic `c ≈ 3.97` vs Ross–Selinger's `c ≈ 1` for Clifford+T z-rotations — explicitly warned not to be confused). Verified: `Y = iXZ` ✓; `S = √Z`, `T = ⁴√Z` ✓; rotation matrices ✓; `CZ = (I⊗H)·CNOT·(I⊗H)` ✓; SWAP = 3 CNOTs ✓; Barenco ancilla-cost taxonomy ✓; Toffoli 6-CNOT/7-T/2-H decomposition ✓; KAK Weyl-chamber CNOT-cost classification incl. iSWAP at `(π/4, π/4, 0)` on the `c_z = 0` face ✓ (the documented fix is intact); parameter-shift rule ✓; §8.3's operator-conjugation-vs-measurement-procedure disambiguation (one `H`, not two) ✓. All 6 figures exist with descriptive alt text ✓. Status block 14/14 — **correct** (first fully consistent count).
+
+**Findings.**
+
+| Severity | Category | Location | Problem | Recommendation | Certainty |
+|---|---|---|---|---|---|
+| Medium | mathematical/pedagogy | §8.14 sanity check 3 (~line 213) | The exercise correctly derives `R_Y(π)|0⟩=|1⟩`, `R_Y(π)|1⟩=−|0⟩`, then asserts "(The phases are physically harmless because `R_Y(π)`, like every gate, is fixed only up to a **global** phase.)" — **wrong justification**: `R_Y(π) = XZ` (up to phase), which differs from `X` by a *relative* sign. On the superposition `|+⟩`, `R_Y(π)|+⟩ = −|−⟩` while `X|+⟩ = |+⟩` — physically different states. The phases are harmless only when the *input is a basis state* (each branch's phase is then global); the parenthetical teaches the exact misconception §4.15 trap 2 warns against. | Rephrase: "harmless when the input is a computational-basis state; in superpositions the sign is a relative phase and `R_Y(π)` is genuinely different from `X`." Local — and pedagogically valuable as stated correctly. | certain (recomputed) |
+| Nit | consistency | §8.9/§8.12/intro | "Part 8", "Part 9", "Part 6" in Arabic numerals (global Arabic-vs-Roman inconsistency already logged at Ch 1). | Normalize book-wide. | certain |
+
+**Entertainment:** strong for a matrix-heavy chapter — the T-count economics of §8.4/§8.10 give the reader stakes; "open Appendix B alongside it" is honest. **Pedagogy:** the mandatory/deferrable triage is accurate. **Sanity checks:** 5, policy-compliant (tally: Ch 8 ✓). **Rendering:** clean; heavy `pmatrix` use all in display blocks with proper `\\\\`.
+
+---
+
+### File: `book/part-04-gates-and-circuits/09-quantum-circuits.md` (162 lines, §9.1–§9.14)
+
+**Overall.** "Gates are the alphabet; circuits are the sentences" — and the chapter delivers the working grammar: ancillae ("the qubit is paying rent"), uncomputation with the correct right-to-left `U†∘copy∘U` operator order (documented fix intact ✓), the deferred-measurement principle stated with the exactly-right caveat ("the equality is statistical, not state-by-state") ✓, magic-state T-correction correctly identified as a Clifford `S`, not a Pauli ✓, the Pauli-frame idiom ✓, and honest platform snapshots under a Moving-target warning. Sanity checks recomputed: SWAP-count-2 on the linear chain ✓, rotation merge to `R_Z(π/8)` ✓. GHZ depth claims (`Ω(n)` NN vs `O(log n)` all-to-all) ✓. Both figures exist; the GHZ alt text even documents its own depth caveat ✓.
+
+**Findings.**
+
+| Severity | Category | Location | Problem | Recommendation | Certainty |
+|---|---|---|---|---|---|
+| Low | consistency | status block | 13/13 vs 14 `##` sections — 7th count-drift instance. | Fix (see global lint-rule recommendation). | certain |
+| Low | sequence | §9.1 (~22) | Endianness discussion attributed to "Chapter 7" twice — but the book's full treatment is **§4.8**, and Ch 7 is precisely where the deviant zero-based labeling crept in (see Ch 7 finding). Pointing readers at Ch 7 for the convention compounds that problem. | Cite §4.2/§4.8 instead. Also verify the claimed "Appendix A index-conversion recipe" exists (checked at App A below). | certain |
+
+**Entertainment:** good; the engineering-reality thread (feedforward latency vs kernel round-trips, rent-paying ancillae) keeps a plumbing chapter alive. **Pedagogy:** §9.4/§9.5's garbage discipline is the best practical treatment of uncomputation I've seen at this level; the "two faces" of deferred measurement (theory tool vs engineering anti-pattern) is exactly the kind of judgement the book promises. **Rendering:** clean.
+
+### book/part-04-gates-and-circuits/10-core-quantum-phenomena.md (Chapter 10, 273 lines, 14 H2 sections)
+
+**Overall:** Excellent synthesis chapter. Every mathematical claim I recomputed checks out: the Pauli commutators ([X,Z] = −2iY, [Y,Z] = 2iX, [X,Y] = 2iZ verified by matrix multiplication), the Peres–Mermin square (all three rows and first two columns multiply to +I, third column to −I — verified per-qubit: XZY = −iI, ZXY = +iI), the GHZ contradiction (XYY on GHZ gives eigenvalue −1 via i²/(−i)² factors; operator product XXX·XYY·YXY·YYX = I⊗(−I)⊗I = −I, verified), the amplitude-damping Kraus completeness (K₀†K₀ + K₁†K₁ = I), the phase-damping q = (1−√(1−p))/2 giving off-diagonal factor 1−2q = √(1−p), the pure-dephasing Lindblad rate (L = √(γ_φ/2)Z gives ρ₀₁ decay at exactly γ_φ), and the depolarizing Kraus √(1−3p/4)·I, √(p/4)·σ (the Phase 11 fix is intact). T₂ ≤ 2T₁ and 1/T₂ = 1/(2T₁) + 1/T_φ correct. Zeno quadratic-leak argument correct. Entertainment: strong — the "no-cloning is what makes QKD possible, not what makes it hard" inversion and "noise is just unobserved entanglement" are memorable. The restricted-cyclicity caveat in the no-signalling proof (§10.6) is exactly the kind of honesty the book's principles demand. Bridge and sanity checks all verified consistent (check 3 on |+⟩: 0 ≥ 0, degenerate but consistent as stated).
+
+- **Severity:** Low · **Category:** Consistency/tooling · **Location:** line 3 (status block)
+  - **Problem:** `Sections drafted: 13 / 13` but the chapter has 14 H2 sections (§10.1–§10.13 plus §10.14 Bridge). Same status-count drift pattern as the 7 files already flagged (Bridge sections added after scaffolding).
+  - **Recommendation:** Update to 14 / 14; covered by the proposed lint rule (§13).
+  - **Certainty:** High.
+
+- **Severity:** Low · **Category:** Correctness (phrasing) · **Location:** §10.7, GHZ paragraph (line 135)
+  - **Problem:** "the four observables … all commute pairwise *on this state*" — they commute pairwise as operators, unconditionally (each pair differs in exactly two tensor slots, giving two local anticommutations that cancel). The qualifier "on this state" suggests state-dependent commutation, which is not a thing for these operators and could confuse a careful reader.
+  - **Recommendation:** Drop "on this state" from the commutation claim (keep it for "have definite values", where it belongs).
+  - **Certainty:** High.
+
+- **Severity:** Nit · **Category:** Terminology · **Location:** §10.8, final sentence (line 157)
+  - **Problem:** Decoherence-free subspaces are described as an "error mitigation" strategy. In this book (and the field), "error mitigation" is reserved for the NISQ statistical-post-processing toolbox (Chapter 25: ZNE, PEC, etc.); DFS is passive error *avoidance*/suppression.
+  - **Recommendation:** Say "error avoidance" or "passive error suppression".
+  - **Certainty:** Medium-high.
+
+- **Severity:** Nit · **Category:** Cross-reference precision · **Location:** §10.4 (line 81) and §10.7 (line 137)
+  - **Problem:** §10.4 cites Chapter 32 for "the continuous-variable setting" and §10.7 cites Chapter 32 for "measurement-based quantum computation". Chapter 32 is "Adjacent Computational Models" (verified in README/TOC), so both references are plausible if that chapter covers both MBQC and CV — verify when reviewing Ch32 that both topics are actually present.
+  - **Recommendation:** Defer; tracked in the uncertainty ledger.
+  - **Certainty:** Medium (pending Ch32 read).
+
+**Positive verifications recorded:** Kochen–Specker facts correct (117 vectors in ℝ³ original, shorter Cabello/Peres–Mermin proofs, d = 2 admits a hidden-variable model); Robertson-bound vacuousness remark on Z-eigenstates correct and pedagogically sharp; no-cloning one-liner ⟨ψ|φ⟩ = ⟨ψ|φ⟩² correct; Kraus-rank bound dim(H_A)·dim(H_B) correct; Stinespring K_i = ⟨i_E|U_SE|0_E⟩ correct; Lindblad↔Kraus first-order correspondence correct.
