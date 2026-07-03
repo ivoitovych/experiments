@@ -7,13 +7,20 @@
 - **Branch:** `claude/init-quantum-computing-iaiRN`
 - **Commit:** `6aaaaef` (local == origin at review start)
 - **Review scope:** the full manuscript under `book/` (48 files, 14,989 lines), reviewed at section/sub-unit granularity; supporting project files reviewed at file granularity. Tooling code was covered by the separate 2026-06-17 code review (`review/code-review-2026-06-17-1840.md`) and is only re-checked here where it touches the reader experience.
-- **Reviewer mode:** single-agent comprehensive review (Claude, model `claude-fable-5`).
+- **Reviewer mode:** single-agent comprehensive review (Claude, AI reviewer).
+- **Status:** COMPLETE — all 48 book files reviewed section-by-section (§7), non-manuscript files reviewed at file granularity, global sections (§2, §5, §6, §8–§14) synthesized from on-disk collectors. Completed 2026-07-03, same session, 15 incremental backup commits.
 - **Process note:** findings were written **incrementally** — each file/section review was appended to this document immediately after that unit was reviewed; cross-cutting findings were accumulated in on-disk collectors and merged into §8–§12 at the end. Global synthesis (§2, §5, §6, §13, §14) was inserted after the unit pass completed. The document was lightly normalized at the end.
 - **Book description:** a rigorous, engineering-oriented, anti-hype guide to quantum computing for experienced software developers: foundations → qubits/entanglement → gates/circuits → measurement/information → algorithms → complexity → noise/QEC → hardware/software → practice → applications → adjacent models → epistemics. Written in GitHub-flavoured Markdown with native MathJax math as the primary render target; mdBook as secondary. All 48 files at status `draft`.
 
 ## 2. Executive summary
 
-<!-- EXEC-SUMMARY -->
+**Verdict: this is a genuinely excellent book in draft form — the strongest practitioner-oriented quantum computing text this reviewer has seen — with a defect profile typical of a fast-written first draft: zero structural problems, a sound learning sequence, consistently honoured conventions, and a long tail of local, fixable errors.**
+
+All 48 book files were reviewed section-by-section (§7), every checkable mathematical claim was recomputed, and the code examples were verified against their outputs. Headline numbers: **~20 confirmed correctness errors** (2 High-impact: the Preface endianness example contradicting §4.8, and the Prelude's typographic divergence; ~8 Medium: including a false unconditional-separation claim in Ch17, the GHZ/bond-dimension inversion in Ch24, the misattributed Schnorr case study in Ch36, and a wrong one-CNOT criterion in Appendix C), **~12 cross-chapter inconsistencies** (mostly hardware numbers that should defer to Appendix F), and **~35 flagged-for-verification items** routed to the uncertainty ledger (§10) rather than asserted. The most error-dense chapters are Ch17 and Ch22/Ch24; the cleanest are Ch11, Ch27 (byte-exact FIPS parameters), Ch31, Ch35, and Appendix B (every matrix verified, zero errors).
+
+What the book does exceptionally well: an authorial voice that makes 37 chapters readable (priority 1 — see §11); a pedagogical architecture with fix-conventions-once discipline, failure-first sequencing, and honest deflationary calibration on QAOA/QML/annealing that will age well (priority 2); Qiskit-facing correctness precisely where books usually fail (endianness, QFT sign, API lifecycle); and project infrastructure (generated progress/index, renderer-bug memo, factcheck mirror, runnable examples matching all inline listings) far above manuscript-repo norms (priority 6).
+
+The single most valuable systematic fix: **declare Appendix F the sole source of perishable hardware numbers and make Chapters 20/22/25 defer to it** — this dissolves most cross-chapter inconsistencies at a stroke. The full prioritized list is §13. Nothing found in this review challenges the book's viability; everything found is reachable in one focused revision pass.
 
 ## 3. Project inventory
 
@@ -66,11 +73,33 @@
 
 ## 5. Global assessment
 
-<!-- GLOBAL-ASSESSMENT -->
+Assessed against the six review priorities, in order:
+
+**1. Entertainment/engagement — Excellent.** Sustained authorial voice across 37 chapters; the aphorisms carry content rather than decorating it; the deflationary honesty (Ch15 §15.10, Ch25, Ch29, Ch30) reads as confidence, not cynicism. Weakest: Historical Prelude paragraph density. Details in §11.
+
+**2. Pedagogy/learning sequence — Excellent.** The dependency chain (§6) is sound: nothing is used before it is defined, conventions are fixed once and honoured at every verified use site, and forward references are invitations rather than prerequisites (a policy STYLE.md states and the text obeys). The how-to-read blocks, sanity-check discipline (2 lapses in 40+ files), and deliberate cross-chapter echoes (Robertson vacuousness in Ch10 and Ch35; the repeated dequantisation checklist at three altitudes) are design, not accident.
+
+**3. Correctness — Good, with a fixable tail.** ~20 confirmed errors across ~9,000 lines of dense technical prose is a strong ratio for a draft, and none is load-bearing: every error is local, and in several cases the book contradicts itself in a way that makes the fix self-evident (the correct version already exists in another chapter — e.g. §8.14 vs App C; §36.4 vs §36.7). The physics core (Parts 2–5) and the reference appendices A/B are the cleanest; the perishable-numbers chapters (17, 22, 24) carry most of the defects. Inventory in §8.
+
+**4. Completeness — Very good.** Everything promised is delivered; the genuine gaps are enumerable on one hand (TF-QKD cross-ref, banded QFT, index depth, five missing figures) — §12.
+
+**5. Rendering — Excellent.** The house escaping discipline survives 41 files essentially without a lapse; the Bug-5 table policy is obeyed book-wide; one file (Prelude) diverges typographically. §9.
+
+**6. Project quality — Excellent with cosmetic deductions.** Generated artifacts are consistent with sources; the factcheck infrastructure is ahead of the manuscript's own needs; root-directory clutter and STYLE.md gaps are the deductions. §12.
+
+**Overall:** publishable quality after one systematic revision pass; the review's §13 list is scoped to be executable in days, not months.
 
 ## 6. Concept-dependency and learning-sequence review
 
-<!-- CONCEPT-DEPENDENCY -->
+The book's stated dependency spine (Preface; STYLE.md cross-reference policy) is: Ch4–5 (formalism) → Ch6–7 (qubits) → Ch8–10 (gates/circuits/phenomena) → Ch11–12 (measurement/information) → everything else, with Parts 10–13 explicitly designed for cold entry. The review traced every cross-reference it encountered against this spine (150+ verified individually in §7). Findings:
+
+**The spine holds.** No concept was found used-before-defined along the main sequence. The three global conventions (MSB-leftmost ordering with the §4.8 Qiskit reconciliation; QFT-sign-minus per §4.13; conjugate-linear-first inner product per §4.3) were checked at every use site the review examined — Ch13/14's QFT treatment even correctly derives that the book's convention makes QPE end in a *forward* QFT, the kind of place convention drift usually hides. One systemic violation class was found: Ch7's zero-based qubit labelling (pre-compaction finding), which Ch9 §9.1 then compounds by citing Ch7 for the convention (finding at Ch9).
+
+**Cross-reference accuracy: ~95%.** Verified-correct links dominate; the wrong ones are catalogued in §8/§13 (Ch19's §5.7-for-no-cloning; Ch11's §5.11-for-partial-trace; Ch12's "Part 12 (cryptography)"; App C's MUB→Ch12 pointing at nonexistent content). The Ch32 hub — six chapters' forward promises — resolved 5/6 cleanly when finally read; the accumulated-checklist method caught the one weak promise (thermodynamic resource theory).
+
+**Redundancy is deliberate and well-managed.** The same material appears at multiple altitudes by design (mitigation in Ch18/Ch25; QKD in Ch27/Ch33; dequantisation in Ch13/16/17/30/36) and the instances are mutually consistent in content — the failures are of *cross-linking* (Ch25 re-explains without citing §18.18; Ch27 omits what Ch33 covers), not of contradiction, with the one narrative exception (IBM-utility story) flagged in §8.
+
+**Reading-path integrity:** the README's four entry paths were checked against chapter prerequisites and are honest — the algorithms-first path in particular works because Ch13 re-establishes the needed mindset without assuming Parts 3–5 were read carefully.
 
 ## 7. Section-by-section review
 
@@ -1212,3 +1241,102 @@ During the Ch13 review I briefly suspected Ch11's two references to "variational
   - **Certainty:** Medium (policy judgement).
 
 **Rendering:** clean; per-letter H2 grouping renders well. This completes the §7 file-by-file review of all 48 planned book files.
+
+---
+
+### Non-manuscript project files (README.md, TOC.md, STYLE.md, PROCESS.md, PROGRESS.md, HISTORY.md, BookDescription.md, INSTRUCTIONS.md, docs/, examples/, figures-src/, scripts/, repo root)
+
+**README.md (208 lines).** Accurate and well-constructed. **Scripted verification:** all 48 book links resolve, and the linked titles match the target files' H1 headings with exactly one benign exception (the Historical Prelude entry drops the "Historical Prelude —" prefix its section header already supplies) ✓. The four reading paths reference real chapters with sensible selections ✓. The mdBook/mdbook-katex version-matrix section (matched-pairs requirement, the `invalid type: null` failure mode, `make book` self-diagnosis) is unusually good build documentation ✓. **Resolution of a long-standing tally item:** the README's TOC uses **Roman part numerals (Part I–XIII)** — so the book's Arabic-vs-Roman inconsistency (logged since Ch1) is now precisely characterisable: README/TOC/App-D use Roman; body-chapter prose uses Arabic ("Part 8", "Part 11"). One convention should win (finding stands, now sharper). License split (CC BY-NC-ND manuscript / all-rights-reserved tooling) is clearly stated ✓.
+
+**TOC.md (788 lines).** The headline discovery: the file opens with a **Manuscript Reconciliation Note** (dated 2026-05-24) declaring the delivered manuscript authoritative and cataloguing outline divergences — and the catalogue is *accurate against my chapter-by-chapter findings*: the bridge-section inventory ("Chapters 8, 19, 23, 34, and 36 end on their last planned section instead") matches exactly what I observed ✓; the Ch10–12 reorganisation, Ch22's growth to 14 sections, and Ch24's new taxonomy all match ✓. This note **partially mitigates** the status-count findings (the outline is declared non-authoritative) but does not resolve the *in-chapter* inconsistency (Ch12/13 count bridges in their status blocks; Ch9/10/11/14/15/16/20/26 don't) — the §13 lint recommendation stands, aimed at the status blocks rather than the TOC.
+- **Severity:** Low · **Category:** Maintainability · **Problem:** The planned-outline body (700+ lines) below the note is now a historical artifact that every reader must be warned off of via the note. Consider moving the plan to `docs/` and making TOC.md a generated live TOC (the tooling for heading extraction already exists in `generate_index.py`). · **Certainty:** Medium (design judgement).
+
+**STYLE.md (130 lines).** The conventions it documents are the ones the manuscript actually follows (verified against 40+ files this review): `\\\\` matrix rows, `\\{`/`\\}` set braces, no `physics` package, no `\operatorname`, alt-text requirement ✓. Three gaps, each the root cause of findings logged earlier:
+- **Severity:** Low · **Problem:** (i) The manuscript universally doubles `\,` → `\\,` and `\|` → `\\|` (verified in nearly every chapter), but STYLE.md documents only braces and row breaks — the two most-used escapes are undocumented. (ii) STYLE.md never links `docs/github-markdown-math-bugs.md`, its own evidentiary basis. (iii) The per-chapter structure spec says nothing about bridge sections, sanity-check blocks, or whether the status count includes them — the absence that produced the 7-variant bridge zoo and the status-count drift. · **Recommendation:** Add the full escape table (or link the memo), and specify the bridge + sanity-check + status-count convention. · **Certainty:** High.
+
+**PROCESS.md (418 lines, skimmed at heading level + key sections).** Documents the working method, the **Moving-target warning callout convention** (confirming that Ch20/Ch22's missing banners are deviations from a documented house rule, not a reviewer invention), a dated decision log, per-chapter lessons, and the build troubleshooting matrix. **PROGRESS.md (86 lines, generated):** 48/48 files at draft — consistent with every status block I read. **docs/fact-check-ledger.md:** now superseded by a `factcheck/` directory that mirrors the manuscript per-section — an unusually sophisticated verification infrastructure; my §10 uncertainty ledger below should feed into that mirror. **docs/github-markdown-math-bugs.md + docs/render-tests/:** exist as advertised ✓ (cited correctly from App A/E).
+
+**examples/ (4 files).** All four verified during chapter reviews: `deutsch_jozsa.py` ✓ (matches §14.2, output claim correct), `grover.py` ✓ (matches §15.1, CCZ oracle correct, ~95% matches theory), `statevector_simulation.py` ✓ (matches §24.3, zero-amplitude omission correct), `first_bell_program.py` ✓ (matches §26.3, `data.meas` register naming correct). A rare 4-for-4: every inline code listing in the book has a matching, runnable companion file. **Suggestion (Low):** `scripts/check_examples.py` exists — wire it into CI/make so the 4-for-4 stays true.
+
+**figures-src/ + scripts/.** Not audited line-by-line (out of review scope at this depth); noted: `generate_figures.py` is the authoritative figure list per STYLE.md; all 8 figure files referenced from reviewed chapters exist on disk with descriptive alt text ✓; `generate_progress.py`/`generate_index.py`/`phases.py` outputs are consistent with the files they generate ✓.
+
+**Repo root hygiene.**
+- **Severity:** Low · **Category:** Project quality · **Problem:** The repository root carries 12+ legacy working files (`chapter0_attempt1–4.md`, `chapter_0_review_1–4.md`, `historical_chapter__new_attempt_1.md`, `historical_chapter__unified_opinion_1.md`, two root-level dated review files) plus **both** a `review/` and a `reviews/` directory. These are drafting artifacts that predate the current structure; they dilute the professional first impression the README earns and create ambiguity about which review directory is live.
+- **Recommendation:** Move drafting artifacts to `docs/archive/` (or a branch); merge `review/` into `reviews/`. HISTORY.md already preserves the narrative, so nothing is lost.
+- **Certainty:** High (inventory verified).
+
+**BookDescription.md (422 lines) and HISTORY.md (1046 lines):** skimmed for consistency with README/TOC — charter claims (audience, philosophy, reading paths) match what README summarises and what the manuscript delivers; no contradictions found at skim depth. INSTRUCTIONS.md (34 lines) is the project's standing author instruction file; CITATION.cff present ✓.
+
+---
+
+## 8. Cross-cutting correctness findings (mathematics, facts, code)
+
+All findings below were recomputed or source-checked during this review; each also appears in context in §7. Ranked by severity.
+
+**Confirmed mathematical/technical errors (fix before release):**
+
+1. **Self-check 1.3.1** (front matter): "A = I + X" should be 2I + X. *(Medium, certain — pre-compaction finding.)*
+2. **Ch1**: collision finding / element distinctness mislabelled as a *quadratic* separation. *(Medium.)*
+3. **Preface**: worked endianness example contradicts §4.8's own recommended mapping. *(High — it's the book's flagship convention.)*
+4. **Ch6**: Bloch-sphere 2π/4π periodicity statement inverted. *(Medium, certain.)*
+5. **Ch12 §12.7**: Fuchs–van de Graaf lower-bound saturation "only at endpoints" is false for general states — counterexample ρ = diag(½,½,0), σ = diag(½,0,½) gives 1−F = D at F = ½. True only for pure-state pairs. *(Low-Medium, counterexample recomputed.)*
+6. **Ch14 §14.6**: "ε⁻¹ scaling **distinguishes** phase estimation from amplitude estimation" — false contrast; AE has the same O(1/ε) (the book's own §14.8 says so). *(Medium.)*
+7. **Ch17 §17.7**: "BQP ≠ EXP" listed as an unconditional separation — the claim is open; the offered argument yields only a disjunction. Correct coarse statement: BQP ⊊ EXPSPACE. *(Medium, in a section whose whole point is which separations are unconditional.)*
+8. **Ch17 §17.3**: "oracle separations exist on both sides" of QCMA vs QMA — impossible (QCMA ⊆ QMA unconditionally). *(Low.)*
+9. **Ch17 §17.10 + bridge**: RSA-2048 resource numbers (7×10⁹ Toffoli, 10M qubits, 10 h) contradict §15.3 and §16.8, while citing §15.3. *(Medium, three-way internal inconsistency.)*
+10. **Ch19 §19.19**: concatenation formula divides by C^{2^ℓ−1} where the recursion multiplies — self-inconsistent with the C³p⁴ two-level case in the same sentence. *(Low, typo-class.)*
+11. **Ch22 §22.9**: AQ ≈ √N_phys rule contradicted by its own example (AQ 36 at "64" qubits; §22.13 says 36 qubits) — and the rule appears invented. *(Medium.)*
+12. **Ch24 §24.7**: GHZ states said to saturate bond dimension 2^{n/2} — GHZ has Schmidt rank 2 across every cut; the canonical MPS-*easy* state. *(Medium, conceptual.)*
+13. **Ch24 §24.4**: density-matrix threshold "n = 22 on a large server" = 256 TiB; should be ~16–17 (its own §24.2 ladder, halved; Ch23 agrees). Sanity check 1's "+2 qubits quadruples DM memory" is also wrong (+1 quadruples). *(Medium + Low.)*
+14. **Ch31 §31.2**: 1 µGal glossed as 10⁻⁸ g; it is ≈10⁻⁹ g. *(Low, recomputed.)*
+15. **Ch35 §35.11**: element distinctness listed under "no asymptotic quantum advantage" — it is a proven polynomial speedup (N^{2/3} vs N), as the book's own §15.6/§17.8 state. *(Low, internal contradiction.)*
+16. **Ch36 §36.6**: 10³ Hz × kilosecond = 10⁶ shots, not 10⁷. *(Low, arithmetic.)*
+17. **Ch36 §36.7**: Schnorr case study misattributed — Claus-Peter (not "Peter") Schnorr's 2021 *classical* claim vs the Yan et al. 2023 *hybrid* few-hundred-qubit paper are merged into one wrong story, in the chapter teaching claim-checking. *(Medium.)*
+18. **App C §C.5**: one-CNOT criterion "c_z = c_y = 0 suffices" is false (the one-CNOT class is exactly (π/4,0,0); partial controlled-phases need two) and contradicts §8.14, which is correct. *(Medium, reference-appendix error.)*
+19. **Ch18 §18.1**: thermal population at 15 mK/5 GHz is ~10⁻⁷, not 10⁻⁵ (recomputed; the paragraph's point survives, strengthened). *(Low.)*
+20. **Ch27 §27.7**: intercept-resend gives Eve ~50% information (not 25%) at 25% QBER. *(Low.)*
+
+**Cross-chapter numeric/factual inconsistencies (pick one source of truth — recommend Appendix F for hardware numbers):** ion T₁ (Ch20 "10⁴ s" vs Ch22 "seconds"); reset residual (Ch18 10⁻³–10⁻⁴ vs Ch21 1–3%, different unstated assumptions); IonQ AQ and Quantinuum H2 fidelity (Ch22 vs App F); Advantage2 topology (Ch29 §29.1 Pegasus/15 vs §29.3 Zephyr/20 — §29.3 correct); DMRG cylinder width (Ch24 ≲8 vs Ch28 8–12); depolarizing-channel parameterisation (Ch10 p/4-form vs Glossary p/3-form, no reconciliation); Raz–Tal year (Ch17 2019 vs Glossary 2018); Braket vendor list (Ch23 vs Ch26); IBM "utility" narrative told wrongly the same way twice (Ch25 §25.4, Ch36 §36.7) while §36.4 has it right; Pan–Chen–Zhang runtime ("days" §24.11 vs "15 hours" §24.14); KAK exponent sign (§8.14 e^{−i·} vs §C.5 e^{+i·}).
+
+**Code:** all four `examples/` files match their inline listings and their claimed outputs are correct (verified: DJ deterministic '111'; Grover ≈95% = sin²(5θ); GHZ statevector dict; Bell `data.meas`). The book's Qiskit-facing claims are consistently right where they are most dangerous (cx(0,1) ↔ CNOT₂→₁; QFTGate = inverse of book's F_N; Qiskit Pulse removal in 2.0; QPY transport). No code errors found.
+
+## 9. Rendering and GitHub-Markdown findings
+
+The manuscript's rendering discipline is excellent overall: house escaping (`\\\\`, `\\{`, `\\}`, `\\,`, `\\|`) is applied consistently across all 41 manuscript files inspected; display math is set off correctly; kets never appear inside Markdown tables (the Bug-5 policy is obeyed book-wide, including the deliberate bullets-over-tables design of Appendices A/E and the pipe-safe table in Appendix F); `\succeq`, `pmatrix`, and `aligned` constructs used are all GitHub-MathJax-safe; `#P` is consistently guarded in backticks.
+
+Open rendering findings: **(1)** the Historical Prelude uses code-span math instead of LaTeX and has five H1 headings — the one file typographically out of step *(Medium, pre-compaction)*; **(2)** STYLE.md documents only half the escape table the manuscript practices and never links the renderer-bug memo *(Low)*; **(3)** figure coverage is thin in exactly the chapters that need diagrams most — the highest-value additions, in order: surface-code lattice (§19.12), lattice-surgery merge/split (§19.22), filter functions (§18.3), repeater/entanglement-swapping chain (§33.3), plus a BB84 basis table (§27.7) *(Low, completeness)*. All 8 existing figures resolve and carry descriptive alt text.
+
+## 10. Uncertainty ledger (claims flagged for verification, not asserted as errors)
+
+Items the review could not settle from internal evidence and recollection; each should get a `factcheck/` entry. **Resolved during review:** Ch14 §14.1 = Deutsch ✓; Ch7 §7.12 resource framing ✓; Ch2-vs-Ch22 "circuit volume" (terminology mismatch, finding filed); Ch32 checklist — CV/MBQC/bosonic-GKP/T-injection/annealing all present ✓, thermodynamic-free-energy promise only weakly met (finding filed); App A index recipe exists ✓; Ch16 QSVT-slogan source — corroborated as Martyn et al. 2021 by App D's own bibliography (fix §16.7 attribution).
+
+**Still open (chapter: item):** Ch3: "Vienna and Stockholm" freedom-of-choice experiments (Stockholm likely wrong); SPDC rate figure. Ch11: DFE n-independence scope (Flammia–Liu Thm 1); Clifford compilation depth-vs-gate-count. Ch15: "(Miller, Rabin)" reduction attribution; Szegedy mixing-time speedup. Ch16: exact Θ(t + log(1/ε)/loglog(1/ε)) form and BCCKS-vs-BACS lower-bound split. Ch17: Jiuzhang 3.0 year (2023?); Hefei/Wuxi RCS claims; forrelation Ω̃(√N). Ch18: neutral-atom 2q 99.0% staleness. Ch19: T-teleport "two CNOTs"; Willow "order of magnitude" d3→d7; Steane transversal-S dagger; colour-code "medial graph". Ch20: silicon 1q gate times; Quantum Motion 1024-dot; NV "TU Wien". Ch21: "Cirq PulseSchedule"; "Rigetti Lodgepole". Ch22: IBM Heron QV 2^15 (likely never published); Willow-vs-Morvan RCS conflation; QV history dates; "Q-PERFECT"; "H3" (Helios?); H2 QV staleness. Ch23: "pyLIQUi|>" (likely nonexistent); TFQ maintenance status; Qiskit default opt level. Ch24: Fugaku 48q run details; "BlueQubit" as stabiliser sim; Bravyi–Gosset α = 0.396 pairing and 50q/60T demo; Sunway 56-vs-53; "Gao, Anschuetz, Wang, Cirac, Lukin 2024" author-list conflation; Alibaba simulator currency. Ch26: Braket roster. Ch27: QRAM-free collision bound vs CNS 2^{2n/5}; FIPS 206 IPD date; ML-DSA timing. Ch28: Reiher 2017 T-count (expect 10¹³–10¹⁴); "minimal entropic sampling" (METTS garble?). Ch29: Advantage2 ~180-variable clique. Ch30: Hamiltonian-learning author list. Ch33: "QNE-sim"; "BTI Long Island". Ch37: QIP "proceedings". App D: Bravyi–Gosset title; Panteleev–Kalachev title/venue.
+
+## 11. Entertainment and pedagogy (priority 1 and 2 summary)
+
+**The book is genuinely enjoyable to read**, which for a 37-chapter technical manuscript is the hardest and rarest property. The voice is consistent — dry, precise, occasionally aphoristic — and the best lines earn their place by carrying content: "the qubit is paying rent" (Ch9), "noise is just unobserved entanglement" (Ch10), "an instrument vs. a computer" (Ch21), "every vendor benchmark sheet is a small adversarial document" (Ch22), "forgetting to run it does not leak memory, it leaks quantum advantage" (Ch34), "the most reliable thing a quantum computer can learn is something about itself" (Ch30), "readers who keep reaching for the classical metaphor stay surprised forever" (Ch37). Weakest entertainment stretches: the Historical Prelude's long-paragraph density (22 paragraphs over 1500 chars — pre-compaction finding) and parts of Ch20/22's spec-sheet prose, which the strong framing mostly rescues.
+
+**Pedagogical architecture is the book's superpower.** The learning sequence is sound end-to-end (see §6): conventions are fixed once (§4.8, §4.13, §4.16) and then *actually honoured* across 37 chapters — the review verified the QFT sign, endianness mapping, MSB ordering, and conjugate-linear-first inner product at every use site it examined, and found exactly one violation class (Ch7's zero-based labelling, pre-compaction finding). Failure-first sequencing (Ch19's bit-flip-code-amplifies-phase-errors before discretisation; Ch13's demolition-then-rebuild of parallelism) is used deliberately and well. The how-to-read blocks are accurate per-chapter contracts. Sanity checks are well-calibrated and policy-compliant except Ch3 (inline answers, pre-compaction) and Ch19 check 5 (first inline answer since). The three-category QML taxonomy (Ch30), the two-depth-budgets distinction (Ch25), and the interpretations-prime-specific-mistakes inversion (Ch35 §35.7) are original pedagogical contributions that could each anchor a lecture. Deliberate spaced repetition (the same sanity check in Ch16 and Ch36, cross-acknowledged) shows unusual design intent.
+
+## 12. Completeness and project quality (priorities 4 and 6 summary)
+
+**Completeness:** the promised scope is delivered — every TOC-promised topic exists, and the Manuscript Reconciliation Note accurately catalogues the divergences. Genuine gaps found: TF-QKD missing from Ch27's limits discussion (present in Ch33 — needs only a cross-reference); approximate/banded QFT missing from §14.5; symmetry-verification absent from Ch25's mitigation recap (present in Ch18); Ch12's thermodynamic-resource-theory promise only weakly honoured by §32.8; the Index is skeletal (37 terms; needs ~3×); figure count (8) is low for the material, with the five highest-value additions listed in §9. Bibliography (App D) is complete and annotated.
+
+**Project quality:** unusually high. The status-block/progress/index/figure generation pipeline, the renderer-bug memo with live test sheet, the factcheck/ per-section mirror, the Moving-target callout convention, the four runnable examples matching inline listings 4-for-4, and the reconciliation note collectively put this repo well above typical manuscript projects. Deductions: root-directory drafting clutter and the review/-vs-reviews/ ambiguity (§7 non-manuscript entry); STYLE.md gaps (escape table, bridge/sanity-check/status conventions); the planned-outline body of TOC.md as a 700-line historical artifact; Moving-target banners not applied in Ch20/Ch22 (the two most perishable chapters) despite the documented convention and Appendix F's exemplary implementation.
+
+## 13. Prioritized recommendations
+
+1. **Fix the confirmed errors in §8** (est. a few hours of editing; items 1–20 are all local).
+2. **Declare Appendix F the single source of hardware numbers** and make Ch20/Ch22/Ch25 defer to it explicitly; reconcile the specific conflicts listed in §8. Add the Moving-target banner to Ch20 and Ch22.
+3. **Adopt three lint rules** (extend `scripts/factcheck_lint.py` or add a sibling): (a) status-block section count == `grep -c '^## '` (decide bridge-inclusive or -exclusive once, document in STYLE.md); (b) bridge-section heading style — one of the seven observed variants; (c) sanity-check block style ("Sanity checks before moving on." + no inline answers). The TOC reconciliation note mitigates but does not replace this.
+4. **Complete STYLE.md**: full escape table (`\\,`, `\\|`), link the renderer-bug memo, specify bridge/checks/status conventions, settle Arabic-vs-Roman part references (README suggests Roman for canonical lists, Arabic in running prose — either is fine if stated).
+5. **Feed §10's uncertainty ledger into `factcheck/`** — roughly 35 open items, most one-lookup checks.
+6. **Cross-reference repairs**: Ch19 §5.7→§5.13; Ch12 "Part 12"→Part 11; App C MUB→(drop or retarget); Ch11 §5.11→§5.12; Ch27↔Ch33 TF-QKD link; Ch16 slogan→Martyn et al.
+7. **Add the five §9 figures**; expand the Index TERMS list (~3×), harvesting Appendix E headwords.
+8. **Repo hygiene**: archive root drafting artifacts; merge `review/` into `reviews/`; consider generating TOC.md.
+9. **Wire `scripts/check_examples.py` into `make`/CI** to keep the examples 4-for-4.
+10. **One coordinated pass on the IBM-utility narrative** (§25.4, §36.4, §36.7) and the Schnorr/Yan attribution (§15.3, §36.7).
+
+## 14. Review verification statement
+
+Coverage: all 48 planned book files (front matter 3, prelude 1, chapters 1–37, appendices A–F, index) were read in full and reviewed section-by-section in §7, plus the non-manuscript project files at file granularity. Every mathematical claim marked ✓ in §7 was recomputed by hand during this review, not assumed; every finding marked "recomputed" includes the computation's result inline. Claims that could not be verified from internal evidence were routed to §10 rather than asserted. Two review-process corrections are recorded transparently in §7 (the retracted Ch11 variational-reference finding, corrected at Ch14; the Ch27 TF-QKD finding downgraded at Ch33) — the audit trail was preserved rather than rewritten. The review file was written incrementally after each unit and backed up to the remote in 14 commits during the review; no findings were reconstructed from memory. Model: this review was produced by an AI reviewer; certainty labels (certain/high/medium/low) reflect recomputation status and source-recollection confidence respectively, and the §10 ledger explicitly marks what still needs a human or tool-assisted source check.
