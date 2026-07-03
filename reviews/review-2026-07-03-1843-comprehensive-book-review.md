@@ -427,3 +427,90 @@
 **Status-block note (upgrades a global finding):** `Sections drafted: 13 / 13` — and the chapter has exactly 13 H2 sections *including* the §12.13 Bridge. So Ch12 **counts** its bridge while Ch10 (13/13 of 14) and Ch11 (7/7 of 8) **exclude** theirs. This settles the drift-vs-convention question from the Ch11 entry: the counting is *inconsistent across chapters*, not a deliberate convention. Strengthens the case for the §13 lint-rule recommendation (compare status count to `grep -c '^## '`).
 
 **Entertainment:** excellent — "every classical theorem has a quantum shadow", the negative-entropy payoff in §12.4 (entanglement "falls out of the protocol ... free of charge"), and the Schumacher origin-of-the-qubit closer give the chapter a real narrative spine. **Pedagogy:** the three-point preamble and the skim-depth guidance per section block are exactly right for the book's stated audience; §12.4's resource-ledger paragraph preempts the most common misreading of state merging. Sanity checks: 5, no inline answers beyond confirmable targets — policy-compliant ✓, all recomputed correct ✓. **Rendering:** house escaping consistent (`\\{`, `\\,`, `\\|` incl. inside display math) ✓; hard-wrapped source lines inside `$...$` spans avoided ✓.
+
+### Verification note on the Chapter 11 entry (raised during Ch13 review, resolved at Ch14 review)
+
+During the Ch13 review I briefly suspected Ch11's two references to "variational quantum algorithms (Chapter 15)" were wrong, since Ch13 glosses Chapter 15 as "(Shor and Grover)" and a grep of Ch16/Part 10 placed "variational" only in Ch25. Checking Chapter 15's actual headings resolves it: Chapter 15 "Landmark Quantum Algorithms" contains **§15.7 Variational Quantum Algorithms, §15.8 VQE, and §15.9 QAOA** — so **Ch11's cross-references are correct** and no finding stands against Ch11. The residual (very minor) observation transfers to Ch13: its parenthetical "(Shor and Grover)" as a gloss for Chapter 15 is incomplete rather than wrong — Ch15 also carries HHL, walks, and the variational family — but as an informal aside it needs no fix. (Ch25 §25.3 "Variational Algorithms in Practice" is the practice companion, not the primary treatment.) Recorded so the audit trail shows the suspicion was checked rather than silently dropped.
+
+### book/part-06-algorithms/13-quantum-algorithms-mindset.md (Chapter 13, 162 lines, 8 H2 sections)
+
+**Overall:** Exactly what a Part-opening mindset chapter should be — short, opinionated, and prophylactic. The §13.1 demolition of "tries all answers at once" is careful in the ways that matter (it concedes the per-shot information-rate point *and* preserves the Deutsch–Jozsa nuance); the three-step "Hadamard sandwich" schema in §13.2/§13.5 is a genuinely useful compression of Chapter 14; and §13.7 is the most honest complexity framing I've seen at this level ("the standard *belief* is no, supported by …; the standard *proof* is absent"). Verified: H^⊗n phase formula (−1)^{x·y} ✓; kickback identities (both eigenphase and |−⟩-ancilla forms) ✓; QFT stated with the **minus-sign convention** — consistent with the book's declared QFT-sign choice ✓; O(n²) QFT gate count ✓; Simon's s·y = 0 support ✓; Grover rotation rate O(1/√N) per iteration and O(√N) iterations ✓; BQP ⊆ AWPP ✓ (Fortnow–Rogers); P ⊊ EXP as the nearby unconditional separation ✓; Pell's equation in the abelian-HSP family ✓ (Hallgren); Tang 2018 dequantisation framing ✓; "Simon is the algorithm Shor saw and generalised" ✓ (historically documented). Forward references verified against the actual files this session: §14.1 Deutsch, §14.2 Deutsch–Jozsa, §14.3 Bernstein–Vazirani, §14.4 Simon, §14.5 QFT, §14.6 QPE — all heading titles match ✓; Chapter 15 = Landmark Quantum Algorithms (Shor/Grover) ✓; Chapter 16 §16.1 = Hamiltonian Simulation ✓; §8.10 magic states ✓ (from Ch8 review). This also resolves the standing uncertainty-ledger item "verify Ch14 §14.1 is Deutsch" — confirmed ✓.
+
+- **Severity:** Low · **Category:** Internal consistency · **Location:** "How to read" (line 9) vs §13.2 (line 27) vs §13.4 (line 67)
+  - **Problem:** The how-to-read block promises "the four 'primitives' in §13.1–13.4", but the body's own numbering contradicts it: §13.2 opens "The **second** primitive is phase kickback" and §13.4 opens "The **third** primitive is the quantum Fourier transform" — skipping §13.3 (oracle-based thinking), which is framed as a model, not a primitive. Either there are three primitives (and the how-to-read should say §§13.1, 13.2, 13.4) or the QFT is the fourth.
+  - **Recommendation:** Cheapest fix: call the QFT "the third primitive" → keep, and change line 9 to "the three primitives in §§13.1–13.4 (with the query model of §13.3 as the cost framework)".
+  - **Certainty:** High.
+
+- **Severity:** Nit · **Category:** Technical precision · **Location:** §13.6, verifiable-output paragraph (line 111)
+  - **Problem:** Shor post-processing "both extracts r and verifies **divisibility**" — the actual verification is checking the candidate period (a^r ≡ 1 mod N) and the subsequent gcd step; "verifies divisibility" doesn't name a specific check and could puzzle a reader who meets the real algorithm in Ch15.
+  - **Recommendation:** "…and verifies the candidate period directly (a^r ≡ 1 mod N)".
+  - **Certainty:** Medium-high.
+
+- **Severity:** Nit · **Category:** Consistency (running tally) · **Location:** line 3 (status block)
+  - **Problem:** 8/8 with 8 H2 sections including the §13.8 Bridge — bridge *counted*, agreeing with Ch12 but disagreeing with Ch10/Ch11. Running tally of the two counting styles: bridge-excluded (Ch9, Ch10, Ch11 + earlier), bridge-included (Ch12, Ch13).
+  - **Recommendation:** Covered by the §13 lint-rule recommendation.
+  - **Certainty:** High.
+
+**Entertainment:** high — "no amount of superposition will rescue you", "reading it well makes Chapter 15 read itself", and the deliberate "inoculation" framing give the chapter voice without sacrificing precision. **Pedagogy:** the chapter does real work distinguishing query/time/gate/T-count metrics *before* the reader meets any algorithm — that ordering is right, and the quantum-inspired/dequantisation caveat placed here (rather than after Ch16 disappoints someone) is honest sequencing. Sanity checks: 5, policy-compliant ✓ (check 3 recomputed: minus signs at y with y₁⊕y₃ = 1, matches (−1)^{x·y} ✓). **Rendering:** clean; `\\{0,1\\}` house escaping in super/subscripts ✓; no tables or figures needed.
+
+### book/part-06-algorithms/14-foundational-algorithms.md (Chapter 14, 153 lines, 10 H2 sections)
+
+**Overall:** A model tutorial chapter. The four black-box algorithms are presented at exactly the right depth, each with its one-line mechanism; the QFT/QPE pair handles the book's minus-sign convention with unusual care — I specifically verified the §14.6 claim that in the negative-exponent convention the cascade state Σₓe^{2πiφx}|x⟩/√2ᵗ equals F⁻¹|2ᵗφ⟩ so the **forward** QFT (not the inverse, as in most positive-convention texts) completes phase estimation ✓, and the parenthetical warning about "off-by-a-conjugation bugs" is exactly the practitioner detail the book promises. Also verified: Deutsch/DJ/BV mechanics and the deterministic-classical 2ⁿ⁻¹+1 bound ✓; Simon's Ω(2^{n/2}) birthday bound, O(n) queries + O(n³) 𝔽₂ elimination ✓; the honest scoping "query-complexity separation, not unconditional time-complexity" ✓; QPE success probability ≥ 4/π² ✓; Grover operator algebra — recomputed that −AS₀A⁻¹S_f with S₀ = 2|0ⁿ⟩⟨0ⁿ|−I, S_f = 2P_good−I reduces exactly to §14.7's G = (2|ψ⟩⟨ψ|−I)(I−2P_good) when A = H^⊗n ✓; sin((2k+1)θ) amplification and k ≈ π/4θ ✓; amplitude-estimation eigenvalues e^{±2iθ} ✓; HSP instance table (Simon {0,s}; BV codimension-1; order-finding H = rℤ with the honest "realised on a large finite cyclic register" caveat; dihedral→lattice via Regev; Kuperberg subexponential; symmetric group→GI) ✓; glued-trees and forrelation as genuine non-HSP exceptions ✓. Sanity check 3 recomputed: QFT₄|1⟩ = ½(1, −i, −1, i) ✓ in the book's convention. **Anchors verified on disk:** all three figures exist (deutsch-jozsa.svg, bernstein-vazirani.svg, qft-3qubit.svg) ✓; `examples/deutsch_jozsa.py` exists and matches the inline snippet (file adds type hints and a verdict print — same circuit, same API) ✓; the predicted `{'111': 1000}` is correct — the chosen balanced oracle is the BV oracle with s = 111, so the output is deterministic ✓; §4.13 = "Fourier Transform Basics" ✓; §8.11 = "Solovay–Kitaev Theorem" ✓; Chapter 29 = "Optimization, Finance, and Industrial Use Cases" (option-pricing ref fits) ✓.
+
+- **Severity:** Medium · **Category:** Correctness (false contrast) · **Location:** §14.6, final sentence (line 107)
+  - **Problem:** "The required precision t = O(log(1/ε)) … gives the standard ε⁻¹-scaling **that distinguishes phase estimation from amplitude estimation**." It does not distinguish them — amplitude estimation has the *same* O(1/ε) scaling, as the book itself states two sections later (§14.8: "precision ε with O(1/ε) Grover iterations"). The genuine contrast is with *classical sampling / direct shot-noise estimation* at O(1/ε²). As written, the sentence contradicts §14.8 and will confuse exactly the careful reader it is aimed at.
+  - **Recommendation:** "…gives the standard ε⁻¹-scaling that phase estimation shares with amplitude estimation (§14.8) and that beats the ε⁻² of classical sampling."
+  - **Certainty:** High.
+
+- **Severity:** Low · **Category:** Completeness · **Location:** §14.5 (line 99)
+  - **Problem:** The section quantifies the exact-QFT synthesis cost O(n² log(n/ε)) but never mentions the **approximate (banded) QFT** — dropping controlled rotations below angle ~2π/2^{O(log(n/ε))} gives O(n log(n/ε)) gates with negligible fidelity loss (Coppersmith). This is the form actually used in every serious Shor compilation and belongs precisely in the paragraph that raises the synthesis-cost issue.
+  - **Recommendation:** One sentence + citation after the Solovay–Kitaev caveat.
+  - **Certainty:** Medium-high.
+
+- **Severity:** Nit · **Category:** Redundancy · **Location:** §14.5, figure caption vs body (lines 93–95)
+  - **Problem:** The positive-convention-drawing caveat is stated twice back-to-back — once inside the figure alt text/caption and again in the parenthetical paragraph immediately below it.
+  - **Recommendation:** Keep the caption version (it travels with the figure); trim the body paragraph.
+  - **Certainty:** High.
+
+- **Severity:** Nit · **Category:** Consistency (running tally) · **Location:** line 3 (status block)
+  - **Problem:** 9/9 vs 10 H2 sections (§14.10 Bridge uncounted). Tally: bridge-excluded Ch9/10/11/14, bridge-included Ch12/13.
+  - **Recommendation:** Covered by the §13 lint-rule recommendation.
+  - **Certainty:** High.
+
+**Entertainment:** strong — "reading it well makes Chapter 15 read itself" is being made good on; the DJ honesty ("the exponential separation is artificial") earns trust before Shor spends it. **Pedagogy:** the DJ→BV→Simon ladder with the explicit HSP mapping at the end is the right scaffold, and running code at the *first* algorithm the reader can fully grasp (DJ) is well-placed. Sanity checks: 5, policy-compliant ✓ (checks 3–4 recomputed correct; check 5 well-posed: N=16, M=1 → k = 3, success ≈ 0.961). **Rendering:** clean; house escaping consistent; both figure alt texts are genuinely descriptive ✓.
+
+### book/part-06-algorithms/15-landmark-quantum-algorithms.md (Chapter 15, 166 lines, 11 H2 sections)
+
+**Overall:** The chapter the whole book has been building toward, and it holds up. The Grover treatment is unusually careful about the iteration count (round(π/4θ − ½) with the exact sin²((2k+1)θ) probability, the floor variant explicitly downgraded) ✓ recomputed; the §15.3 resource-estimate section does the moving-target discipline right (dated snapshot warnings, two anchor estimates, mechanism named for the 20× drop); and §§15.5/15.9/15.10 are admirably deflationary where the literature warrants it (HHL caveats, QAOA "has not materialised", QML "most quantum advantages ... evaporate"). **Code verified line-by-line:** the Grover snippet's H·MCX·H construction is a correct CCZ (phase oracle for |111⟩) ✓; the diffusion sequence is the standard 2|ψ⟩⟨ψ|−I ✓; 2 iterations optimal for N=8, M=1 (π/4θ = 2.17) ✓; predicted ≈95% success matches sin²(5θ) ≈ 0.945 ✓; sample counts sum to 1000 ✓; `examples/grover.py` exists and matches (adds docstring/summary print only) ✓. **Facts verified:** Gidney–Ekerå 2019/2021 (~20M qubits, ~8 h, 10⁻³ error) ✓; Gidney arXiv 2505.15917 (<1M qubits, <1 week) ✓ incl. the three named ingredients (Chevignard–Fouque–Schrottenloher residue arithmetic, yoked surface codes, reduced distillation) ✓; ~2d² physical/logical with d in the high twenties ✓; NIST 2024 FIPS 203 ML-KEM / FIPS 204 ML-DSA lineage ✓; BBBV optimality ✓; Dürr–Høyer minimum finding ✓; Shor gate count O(n² log n log log n) via Schönhage–Strassen ✓; ECDLP ≈ half the cost of RSA (Roetteler et al. 2017, Häner et al. 2020) ✓; HHL O(log N · s²κ²/ε) original vs CKS/QSVT linear-κ successors ✓; conditional-rotation angle 2 arcsin(C/λ) ✓; element distinctness O(n^{2/3}) (Ambainis) ✓; triangle finding Õ(n^{1.3}) → Õ(n^{5/4}) progression (MSS → Belovs/LMS → Le Gall) ✓; barren plateaus (McClean et al. 2018) ✓; QAOA p=1 Max-Cut 3-regular ratio 0.6924 ✓ with the exactly-right adiabatic-schedule caveat on the p→∞ claim ✓; QAOA ansatz operator ordering ✓. **Cross-refs verified:** §8.13 = "Parameterized Gates" ✓; §9.6 ✓; §11.5 shadows ✓; ZNE/PEC do live in Chapter 18 (full treatment, lines ~314–318) with Ch25 as practice recap — Ch15's "(Chapter 18)" is correct ✓.
+
+- **Severity:** Low · **Category:** Attribution (requires verification) · **Location:** §15.2 (line 51)
+  - **Problem:** "The classical reduction (**Miller, Rabin**)" — the factoring→order-finding reduction is due to **Miller (1976)**; Rabin's name attaches to the Miller–Rabin *primality test*, not to this reduction. Shor's paper credits Miller.
+  - **Recommendation:** "(Miller 1976)"; drop Rabin or cite the specific Rabin contribution intended.
+  - **Certainty:** Medium-high (recalled; worth a citation check).
+
+- **Severity:** Low · **Category:** Technical precision · **Location:** §15.4 (line 76)
+  - **Problem:** "classical post-processing recovers x via **lattice reduction**" — in the standard Shor DLP algorithm the post-processing is modular arithmetic: sampled pairs satisfy a ≡ bx (mod r), so x = a·b⁻¹ mod r once a pair with gcd(b, r) = 1 is drawn. Lattice reduction enters in *Ekerå-style* short-DLP/tradeoff variants, not the textbook version being described.
+  - **Recommendation:** "recovers x by modular inversion (x = a·b⁻¹ mod r); Ekerå's refinements use lattice-based post-processing."
+  - **Certainty:** Medium-high.
+
+- **Severity:** Low · **Category:** Attribution · **Location:** §15.6 (line 100)
+  - **Problem:** The glued-trees result is credited "Childs–Cleve–Deotto–Farhi–Gutmann (2003)" — the paper ("Exponential algorithmic speedup by quantum walk", STOC 2003) has a sixth author: **Spielman**.
+  - **Recommendation:** Add Spielman (or use "Childs et al. 2003").
+  - **Certainty:** High.
+
+- **Severity:** Low · **Category:** Requires verification · **Location:** §15.6 (line 102)
+  - **Problem:** Szegedy quantization "achieves a quadratic speedup in the spectral-gap dependence of hitting/search problems (**and, correspondingly, of the mixing-time exponent**)". The quadratic speedup for *hitting/detection* is established; a general quadratic speedup for *mixing* is a long-standing open question (known only for special chains/conditions). The parenthetical asserts more than the literature supports.
+  - **Recommendation:** Drop the parenthetical or hedge ("mixing speedups are known only case-by-case"). Added to uncertainty ledger.
+  - **Certainty:** Medium.
+
+- **Severity:** Nit · **Category:** Phrasing · **Location:** §15.5 (line 94)
+  - **Problem:** "HHL is the prototype for 'block-encoded linear algebra' and its successors (**Chapter 16, §15.5 derivatives**)" — the self-referential "§15.5 derivatives" is opaque (derivatives *of this section*?).
+  - **Recommendation:** "…and its successors (Chapter 16)".
+  - **Certainty:** High.
+
+- **Severity:** Nit · **Category:** Consistency (running tally) · **Location:** line 3 (status block)
+  - **Problem:** 10/10 vs 11 H2 sections (§15.11 Bridge uncounted). Tally: bridge-excluded Ch9/10/11/14/15; bridge-included Ch12/13.
+  - **Recommendation:** Covered by the §13 lint-rule recommendation.
+  - **Certainty:** High.
+
+**Entertainment:** high — QML as "the most over-promised and under-delivered subarea in the field" sets the tone, and §15.3's "difference of degree, not kind" is the single best sentence I've seen on the CRQC timeline debate. **Pedagogy:** the three HHL caveats as a numbered list is exactly how that algorithm should be taught; the deflationary QAOA/QML verdicts protect the reader's calibration. Three moving-target warnings correctly deployed (§15.3, §15.8, §15.10) ✓. Sanity checks: 5, policy-compliant ✓ (check 1 recomputed: N=256, M=4 → k=6, success ≈ 0.997 ✓; check 2's r=4 for a=7, N=15 verified ✓). **Rendering:** clean; QAOA display equation escaping correct; figure `grover-iteration.svg` exists with descriptive alt text ✓.
