@@ -873,3 +873,57 @@ During the Ch13 review I briefly suspected Ch11's two references to "variational
   - **Certainty:** High (count); deferred (Ch32).
 
 **Entertainment:** good for a logistics chapter — "avoid the trap of installing six SDKs at once", "subscribing to arXiv listings is a path to madness", and "epistemic frugality" keep it human. **Pedagogy:** §26.7 (reading papers) is a genuinely rare inclusion that fits the book's practitioner thesis; the three claim types with their distinct failure modes compress Part 7's lessons into a field guide; sanity checks are appropriately *hands-on* (run this, price this, trace this) rather than pencil-and-paper — right for this chapter. **Rendering:** clean; code and output blocks fine.
+
+### book/part-11-applications/27-cryptography-and-security.md (Chapter 27, 184 lines, 11 H2 sections)
+
+**Overall:** The best applications chapter so far and among the most factually dense — and it holds up under detailed checking. **Byte-exact verification of the FIPS parameter sets** (a place where books routinely copy stale draft numbers): ML-KEM-768 pk 1184 / ct 1088 / ss 32 ✓; ML-DSA-65 pk 1952 / sig 3309 ✓ (the *final* FIPS 204 figure, not Dilithium-3's draft 3293 — impressive); SLH-DSA-128s 32 / 7856 ✓; Falcon-512 897 / 666 ✓; mceliece6960119 pk 1,047,319 B ✓ exactly. NIST process history (82→69→26→7+8→2022 selection→Aug 2024 FIPS→HQC March 2025 via NIST IR 8545) ✓; deployment timeline all checks (OpenSSL 3.5, hybrid X25519+ML-KEM at Google/Cloudflare/Apple/AWS 2024, iMessage PQ3, Signal PQXDH late 2023, OpenSSH 9.9 `mlkem768x25519-sha256`) ✓; Rainbow/Beullens 2022 and SIKE/Castryck–Decru 2022 ✓; Grover-on-AES concrete-cost caveat with GLRS/JNRV ✓; Zalka √P parallelisation ✓; superposition-query mode attacks correctly scoped ("no realistic threat model grants" superposition oracle access) ✓; BB84/E91/B92 mechanics verified — B92's unambiguous-outcome logic recomputed (⟨1|0⟩ = ⟨−|+⟩ = 0 → conclusive events) ✓; decoy states, PNS, finite-key-vs-asymptotic caveat ✓; PLOB bound −log₂(1−η) ≈ η/ln 2 ✓ with sanity check 4 recomputable (≈144 kbps ideal ceiling at 200 km/1 GHz) ✓; the HNDL analysis and the KEM-before-signatures urgency asymmetry are exactly right ✓. The §27.9 "abstract protocol vs deployed protocol" framing is the most honest treatment of QKD security I have seen outside the specialist literature.
+
+- **Severity:** Low · **Category:** Numerical (standard result) · **Location:** §27.7 (line 115)
+  - **Problem:** "Eve's optimal individual-qubit attack — intercept-resend in a random basis — gives her **25% information** about each bit at the cost of a 25% QBER." The textbook pairing is **~50% information** (Eve guesses the right basis half the time and then knows the bit fully → 0.5 bits/bit expected) at 25% QBER. The chapter's own worked example supports the 25%-QBER half but not the 25%-information half. (Also "optimal individual-qubit attack" is loose — intercept-resend is the *simplest*, not the optimal, individual attack.)
+  - **Recommendation:** "gives her ~50% information … at the cost of a 25% QBER"; soften "optimal" to "simplest".
+  - **Certainty:** Medium-high.
+
+- **Severity:** Low · **Category:** Completeness · **Location:** §27.10
+  - **Problem:** **Twin-field QKD** (Lucamarini et al. 2018) is entirely absent. TF-QKD is the headline post-2018 development in exactly this section's subject — it circumvents the PLOB bound via an untrusted middle node (rate ∝ √η instead of η) and holds the fibre distance records (~1000 km by 2023), sitting precisely in the gap the section narrates between point-to-point limits and full repeaters. Its omission makes the "trusted nodes or satellites or wait-for-repeaters" trilemma look starker than the field's actual state.
+  - **Recommendation:** One paragraph after the PLOB discussion: TF/MDI-type protocols with an untrusted midpoint achieve √η scaling and push direct links toward 1000 km at low rates.
+  - **Certainty:** Medium-high.
+
+- **Severity:** Low · **Category:** Requires verification (ledgered) · **Location:** §27.3 (line 49), §27.4 (line 72)
+  - **Problem:** (i) "Without QRAM, the best provable quantum collision algorithm matches the classical birthday bound at 2^{n/2} (**Zhandry 2013**)" — Chailloux–Naya-Plasencia–Schrottenloher (2017) gives a QRAM-free 2^{2n/5} time attack (≈2^{102} for SHA-256), so "matches 2^{n/2}" overstates; and the Zhandry citation is for the *query lower bound* lineage, a different statement. (ii) "FIPS 206 **IPD submitted August 2025**" — the FN-DSA draft timing needs a source check. (iii) ML-DSA "sign and verify on the order of **milliseconds**" — typical figures are hundreds of microseconds.
+  - **Recommendation:** Verify all three; adjust the collision range to mention 2^{2n/5}.
+  - **Certainty:** Medium (ledgered).
+
+- **Severity:** Nit · **Category:** Internal consistency · **Location:** §27.4 (lines 61 vs 73)
+  - **Problem:** McEliece prose says "tiny ciphertexts (**under 200 bytes**)"; the parameter list quotes mceliece6960119 at **226 B**. Both true for different parameter sets, but as juxtaposed they contradict.
+  - **Recommendation:** "roughly 100–250 bytes depending on parameter set".
+  - **Certainty:** High.
+
+- **Severity:** Nit · **Category:** Missed cross-link · **Location:** §27.8 (B92) ↔ Ch11 §11.6
+  - **Problem:** B92's conclusive-outcome mechanism *is* unambiguous state discrimination, and Ch11 §11.6 explicitly promised "unambiguous discrimination is the operational primitive behind several conclusive quantum-key-distribution attacks" — yet neither section links to the other. A one-line cross-reference would close a loop the book already set up.
+  - **Certainty:** High (in-repo).
+
+**Entertainment:** high — "every byte … is in their archive forever", "you are back in computational-cryptography land, and you might as well skip QKD", and the trusted-node "enormous security regression" verdict give the chapter teeth. **Pedagogy:** the confidentiality-vs-authentication threat-timeline split (§27.6) is the single most decision-relevant insight for the audience and is stated perfectly; §27.11's layered recommendations are directly liftable into a migration plan. Bridge merged into numbered §27.11 (the Ch22 style) — status 11/11 counts it ✓. **Rendering:** clean; only light math, correctly escaped; no figures needed, though a BB84 basis/bit table would help §27.7's worked example.
+
+### book/part-11-applications/28-scientific-computing-and-physical-simulation.md (Chapter 28, 228 lines, 9 H2 sections)
+
+**Overall:** The strongest case-for-the-field chapter, and technically very solid. Verified: Born–Oppenheimer Hamiltonian (all four terms, atomic units) ✓; second-quantised form with the ½Σh_{pqrs}a†a†aa convention ✓; Jordan–Wigner σ⁻-with-Z-string mapping ✓ (annihilation = (X+iY)/2, correct); Bravyi–Kitaev O(log M) ✓; chemical accuracy 1 kcal/mol ≈ 1.6×10⁻³ Ha ✓ (exact conversion); FeMoco stoichiometry N₂+8H⁺+8e⁻→2NH₃+H₂ ✓ and the ~1%-of-global-energy Haber–Bosch figure ✓; Hubbard/Heisenberg/t-J Hamiltonians ✓ including the −¼n_in_j term ✓; **the half-filling nuance** (sign-problem-free at half-filling on bipartite lattices, sign problem and interesting physics upon doping) — exactly right, and most popularisations get this wrong ✓; DMFT exact-in-infinite-d ✓; retarded Green's function formula ✓; Poisson κ = O(N^{2/3}) in 3D ✓; Carleman R < 1 consistent with §16.8 ✓; Martinez et al. 2016 Schwinger-model demo ✓; CCSD(T) N⁷ ✓; sanity check 2 recomputed (10¹⁰ T / 10⁴ T/s ≈ 12 days, ~2.6M physical qubits — consistent with §28.1's own prose) ✓; check 3's combinatorics (C(16,8)² ≈ 1.7×10⁸ vs 4¹⁶ ≈ 4.3×10⁹) ✓. The §28.6 sign-problem exposition (three concrete failure cases: finite density, real time, θ-terms) is the clearest I have seen at this level, and §28.8's two-column verdict (where quantum wins / where classical stays) is the calibration table the entire application literature needs.
+
+- **Severity:** Low · **Category:** Factual (requires verification) · **Location:** §28.1 (line 56)
+  - **Problem:** "Reiher, Wiebe, Svore, Wecker, and Troyer's 2017 resource estimate … landed at roughly **10¹¹ T gates** and ~100 logical qubits", refined to ~10¹⁰. The Reiher et al. PNAS 2017 estimate is usually quoted at ~**10¹³–10¹⁴** T gates (~111 logical qubits); the 10¹⁰–10¹¹ range is where the *refinements* (Berry 2019, Lee 2021, von Burg 2021) landed. As written, the improvement narrative understates the actual three-to-four-order-of-magnitude drop — ironically underselling the book's own algorithmic-progress story.
+  - **Recommendation:** Verify against the PNAS paper; expect "~10¹⁴ → ~10¹⁰".
+  - **Certainty:** Medium (ledgered).
+
+- **Severity:** Low · **Category:** Likely garbled term (requires verification) · **Location:** §28.5 (line 140)
+  - **Problem:** Thermal-state preparation methods listed as "quantum metropolis (Temme et al. 2011) ✓, quantum imaginary-time evolution ✓, and **minimal entropic sampling** methods" — the third is not a recognisable method name. It reads like a garble of **METTS** (minimally entangled typical thermal states, White 2009) — which is a *classical* tensor-network technique — or possibly of the recent Lindbladian Gibbs samplers (Chen–Kastoryano–Gilyén line).
+  - **Recommendation:** Verify; replace with a real method name.
+  - **Certainty:** Medium.
+
+- **Severity:** Nit · **Category:** Cross-chapter drift · **Location:** §28.8 (line 185) vs Ch24 §24.9
+  - **Problem:** DMRG cylinder ceiling quoted as "width ∼8–12" here vs "w ≲ 8" in Ch24. Both hedged, but a coordinated number would be better.
+  - **Certainty:** High (in-repo).
+
+- **Severity:** Nit · **Category:** Consistency (tally) · **Location:** line 3
+  - **Problem:** Status 8/8 vs 9 H2 sections (§28.9 Bridge numbered, uncounted).
+  - **Certainty:** High.
+
+**Entertainment:** high — FeMoco as "the chemistry community's standard challenge instance" gets the full narrative treatment (biology → Haber–Bosch economics → multireference physics → resource-estimate history), which is exactly how to make a resource table matter to a reader. **Pedagogy:** §28.4's "the quantum computer never sees the full 10⁶-orbital problem; it sees a 50-orbital impurity model, hundreds of times" is the single sentence that makes near-term chemistry roadmaps intelligible; the embedded cross-links to §§15.5/15.8/16.x are dense and all verified valid ✓; sanity check 5 (read a real DMET-VQE paper and extract four specific numbers) is the most research-adjacent exercise in the book and perfectly placed. **Rendering:** heavy display math, all house-escaped correctly ✓; inline links to chapter files use correct relative paths ✓; no figures — a lattice-model cartoon (Hubbard hopping/interaction) would help §28.2 but the formulas carry it.
