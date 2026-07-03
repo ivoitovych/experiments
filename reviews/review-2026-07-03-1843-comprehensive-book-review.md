@@ -1102,3 +1102,51 @@ During the Ch13 review I briefly suspected Ch11's two references to "variational
   - **Certainty:** High.
 
 **Entertainment:** the Preface's promissory voice returns and pays off — "readers who keep reaching for the classical metaphor stay surprised forever" and the 1945-mechanical-calculation analogy are keepers; §37.7's anti-pattern paragraph ("checkable in a single hour-long conversation") is bracingly honest career advice. **Pedagogy:** the six-role taxonomy (§37.5) with its sorting question is the most useful career section I've seen in a technical book; sanity check 1 (restate the postulates from memory, attribute entanglement/interference/measurement to the right ones) is the correct final exam for the whole book. Status 9/9 with checks as counted §37.9 ✓. **Rendering:** clean. **Note for §14 (final verification):** §37.6 promises "Appendix D collects this list with current URLs" — check at the Appendix D review.
+
+### book/99-back-matter/appendix-a-notation-reference.md (Appendix A, 365 lines, 6 H2 sections)
+
+**Overall:** A genuinely useful lookup appendix with the book's conventions correctly and consistently recorded. **Ledger resolutions:** (i) Ch9 §9.1's claimed "Appendix A index-conversion recipe" **exists** — §A.1 gives the zero-based index formula Σxᵢ2^{n−i} and §A.3 gives the operational Qiskit mapping rule ("map the leftmost tensor factor to Qiskit's highest-numbered qubit label, otherwise insert an explicit SWAP layer") ✓ resolved. (ii) The I/I_n identity notation is registered here ✓. Verified: bra anti-linearity, conjugate-linear-first inner product, outer-product entries ψᵢφ̄ⱼ ✓; the six-way bar taxonomy (|z|, ‖v‖, ‖A‖, ‖A‖₁, ‖A‖_HS, |A|) with the crucial "|A| is *not a scalar, and not a norm*" warning — excellent reference writing ✓; spectral/SVD blocks ✓; all four tensor identities ✓; QFT-sign-minus F_N|j⟩ = N^{-1/2}Σω^{−jk}|k⟩ consistent with Ch13/14, **plus the high-value warning that Qiskit's `QFTGate` implements the inverse of this book's F_N** ✓; the bullets-over-tables rationale citing renderer Bug 5 (pipes in table cells) is self-consistent rendering discipline ✓; §A.6 entropy/Holevo entries consistent with Ch12 ✓.
+
+- **Severity:** Low · **Category:** Copy edit (count) · **Location:** §A.2 (lines 79–80, 102–103)
+  - **Problem:** "The norm symbols are reused for **five** distinct roles" and "**five** distinct symbols share two glyphs" — the list that follows has **six** entries (|z|, ‖v‖, ‖A‖, ‖A‖₁, ‖A‖_HS, |A|). Same off-by-one pattern as Ch17 §17.1's "five classes"/six bullets.
+  - **Recommendation:** "six".
+  - **Certainty:** High.
+
+- **Severity:** Low · **Category:** Incomplete reference entry · **Location:** §A.4 (line 254)
+  - **Problem:** The fidelity entry says "Several conventional definitions are in use … the book uses one consistently and notes the choice where it matters (Chapter 12)" — but never *states* the choice. A notation reference exists precisely to record the convention: Ch12 §12.7 fixes the **unsquared** form F = tr√(√ρ σ √ρ).
+  - **Recommendation:** State the formula and "unsquared, F ∈ [0,1], F(pure,pure) = |⟨ψ|φ⟩|" inline.
+  - **Certainty:** High.
+
+**Assessment:** the strongest of the possible appendix designs — every entry carries its section-of-record link, and the recurring traps (bar-counting, Qiskit endianness, QFT sign) each get a dedicated warning at the point of lookup. **Rendering:** correct throughout; the deliberate avoidance of tables for ket-bearing content is exactly right per the book's own renderer-bug memo.
+
+### book/99-back-matter/appendix-b-common-gates.md (Appendix B, 442 lines, 9 H2 sections)
+
+**Overall:** Exceptionally clean — I verified **every matrix and every algebraic property** in the appendix and found no errors. Highlights of the verification: Pauli algebra (XY = iZ cycle, commutators 2i-cycle, anticommutators zero — consistent with Ch10/Ch35) ✓; Y = iXZ recomputed ✓; H eigenvectors at π/8 ✓; HYH = −Y ✓; P(φ) = e^{iφ/2}R_z(φ) recomputed ✓; X = iR_x(π) family recomputed ✓; **both CNOT matrices** (1→2 and 2→1 under MSB-first) verified entry-by-entry ✓; the (H⊗H)-conjugation control-swap identity ✓; **the Qiskit mapping `cx(0,1)` ↔ CNOT₂→₁ is correct** — the single most error-prone claim a book with this convention can make, and it is right ✓; CCX permutation (swaps indices 6,7) ✓; SWAP symmetric/antisymmetric eigenspace multiplicities (3,1) ✓; the C(e^{iα}U) = (P(α)⊗I)C(U) global-to-relative-phase identity recomputed ✓ — and the resulting warning that C(R_z(θ)) ≠ CP(θ) is exactly the trap §B.3 promised to disarm, closed loop ✓. The per-gate "Properties" bullet format (Hermitian? involutory? eigenvalues? basis action? endian note?) is uniform across all nine sections — the best-executed formatting discipline in the book.
+
+- **Severity:** Nit · **Category:** Loose claim · **Location:** §B.7 (line 268)
+  - **Problem:** SWAP called "the **only** non-trivial two-qubit gate that is also symmetric and computational-basis-permutation" — strictly, other symmetric non-product basis permutations exist (e.g. the 00↔11 transposition); the claim holds only for *named/common* gates.
+  - **Recommendation:** "the only common two-qubit gate…".
+  - **Certainty:** Medium (depends on reading of "non-trivial").
+
+**Assessment:** with Appendix A, this forms exactly the reference pair the book needs; the deliberate re-derivation avoidance ("point back to §4.8 … rather than re-derive it here") keeps the single-source-of-truth discipline. Status 9/9 ✓. **Rendering:** heavy `pmatrix` throughout, all with correct `\\\\` row separators ✓; no tables (consistent with the Bug-5 policy) ✓.
+
+### book/99-back-matter/appendix-c-identities-and-decompositions.md (Appendix C, 385 lines, 6 H2 sections)
+
+**Overall:** A high-value identities appendix, almost entirely verified correct by recomputation: the full Pauli product table (all 16 entries) ✓; the clever Hermitian-from-non-Hermitian tensor counterexample (A = iH, B = iK) ✓; det(A⊗B) = (det A)ⁿ(det B)^m ✓; AB = ½[A,B]+½{A,B}, both Leibniz rules, Jacobi, [A,B]† = [B†,A†] ✓; SXS† = Y and SYS† = −X recomputed by matrix multiplication ✓; T = e^{iπ/8}R_z(π/4) recomputed ✓; **H = e^{iπ/2}R_y(π/2)R_z(π) recomputed and correct** ✓ (a formula that is wrong in a surprising number of references); all four CNOT-Pauli propagation identities with the X-forward/Z-backward mnemonic ✓; SH/HS† Y-basis recipes **exactly consistent with Ch11 §11.7's measurement instructions** ✓; MUB facts (d+1 bound, prime powers, d = 6 open) ✓. Three findings, one of them a genuine mathematical error:
+
+- **Severity:** Medium · **Category:** Mathematical (false criterion, contradicts §8.14) · **Location:** §C.5 (lines 307–309)
+  - **Problem:** "Two-CNOT decomposition is enough iff … c_z = 0 ✓. **One-CNOT decomposition is enough iff additionally c_y = 0.**" False: the one-CNOT class is exactly the local-equivalence class of CNOT, c = (π/4, 0, 0) — not the whole (c_x, 0, 0) line. A partial controlled-phase CP(θ), θ ≠ π, has KAK vector (θ/4, 0, 0)-type with c_y = c_z = 0 yet requires **two** CNOTs (Shende–Bullock–Markov). Ch8 §8.14 states this correctly ("a point locally equivalent to CNOT needs one"), so the appendix contradicts the chapter of record.
+  - **Recommendation:** "One CNOT suffices iff (c_x, c_y, c_z) = (π/4, 0, 0) — i.e., U is locally equivalent to CNOT."
+  - **Certainty:** High (verified against §8.14 in-repo; SBM classification standard).
+
+- **Severity:** Low · **Category:** Cross-reference (wrong chapter) · **Location:** §C.6 (line 380)
+  - **Problem:** MUB "general construction and applications (random access codes, tomography) are taken up in **Chapter 12**" — grep-verified: neither Ch12 nor Ch11 discusses mutually unbiased bases at all (Ch11's only "unbiased" is the estimator sense). The reference points at content that does not exist.
+  - **Recommendation:** Point at the sections that actually touch MUB-adjacent material (BB84's two bases, §27.7/§33.2; tomography, §11.4) or drop the pointer.
+  - **Certainty:** High (grep-verified).
+
+- **Severity:** Nit · **Category:** Convention drift · **Location:** §C.5 (line 284) vs §8.14
+  - **Problem:** The KAK exponent is written e^{+i(c_xXX+…)} here but e^{−i(…)} in §8.14. Locally absorbable, but a single book should print one sign.
+  - **Recommendation:** Match §8.14.
+  - **Certainty:** High (in-repo).
+
+**Assessment:** with A and B this completes a genuinely usable reference triptych; the §C.4 CNOT-propagation block explicitly wired to §19.8 ("workhorse identities of the stabilizer formalism") is exactly the right forward linkage. Status 6/6 ✓. **Rendering:** clean; bullets-not-tables policy maintained ✓.
