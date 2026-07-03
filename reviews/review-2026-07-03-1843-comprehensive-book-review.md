@@ -596,3 +596,69 @@ During the Ch13 review I briefly suspected Ch11's two references to "variational
   - **Certainty:** High.
 
 **Positive verifications:** BQP ⊆ PP (Adleman–DeMarrais–Huang) ✓; BQP ⊆ AWPP ⊆ PP ✓; Sipser–Gács–Lautemann BPP ⊆ Σ₂ᵖ∩Π₂ᵖ ✓; Savitch ✓; factoring ∈ NP∩coNP with witness argument ✓; Jones polynomial at 5th root of unity (AJL) BQP-complete ✓; Schuch–Verstraete DFT implication ✓; IP = PSPACE, QIP = QIP(3) = PSPACE (JJUW 2010) ✓; MIP = NEXP (BFL) ✓; MIP* = RE details all correct ✓; QMA(2) ⊆ NEXP and N-representability ✓; Raz–Tal forrelation oracle ✓; DJ bounded-error honesty (O(1) classical) ✓; Reichardt tightness correctly scoped to *total* functions ✓; Aaronson–Shi ✓; Gottesman–Irani QMA_EXP ✓; Cubitt–Pérez-García–Wolf undecidability ✓; Sycamore/IBM/Pan–Zhang narrative arc ✓; stabiliser/matchgate/tensor-network simulability triad with the "noise lowers effective bond dimension" explanation of the classical pushbacks ✓. **Entertainment:** high — "without being pushed around by marketing rhetoric in either direction" is the book's thesis in one clause. **Pedagogy:** the VQE-cannot-have-worst-case-guarantees lesson (§17.3) and the "input has to come from somewhere" rule (§17.9) are the two most transferable insights in Part 7. Sanity checks: 5, policy-compliant ✓. **Rendering:** clean throughout; `\mathrm{}` class names consistent; backtick-#P used to dodge the renderer's #-in-math bug — consistent with the documented workaround ✓.
+
+### book/part-08-noise-and-qec/18-noise-decoherence-and-errors.md (Chapter 18, 353 lines, 19 H2 sections)
+
+**Overall:** Outstanding — the best practitioner-facing noise chapter I have seen at this level, and the chapter where the book's "experienced developers" premise pays off hardest (error budgets that must "reconcile to within a factor of two", the benchmark hierarchy of §18.14, the honest bias-variance framing of mitigation). Mathematics recomputed and verified: the GAD Kraus set is complete (K₀†K₀+K₁†K₁ = pI, K₂†K₂+K₃†K₃ = (1−p)I) ✓ with the correct T = 0 reduction and thermal fixed point ✓; 1/T₂ = 1/2T₁ + 1/T_φ consistent with Ch10 ✓; the "1000 gates at 99.9% → ≈63%" arithmetic (1−0.999¹⁰⁰⁰ = 1−e⁻¹) ✓; free-evolution filter t²sinc²(ωt/2) and Hahn-echo sin⁴(ωt/4)/ω² forms ✓; coherent (nδ)² vs incoherent np compounding ✓; RB conversion ε = (1−p)(d−1)/d ✓; QPT cost Θ(16ⁿ/ε²) consistent with Ch11's "4ⁿ× costlier than state tomography" ✓; PEC γ^{2d} ✓. All five sanity checks recomputed correct — notably check 5's linear-ZNE weights (4/3, 1/3, −2/3; Σw = 1, Σλw = 0, Σw² = 21/9 ≈ 2.33) ✓ and check 1's T₂ = 153.8 µs → 2T₁ bound ✓. The XEB aside ("computing the ideal probabilities … is the reason XEB is itself a quantum-advantage demonstration") and the leakage observation ("mitigating leakage is a precondition for the fault-tolerance theorems, not a consequence") are exactly the insights that separate this book from its competitors. Cross-refs verified: §10.11/§10.12 Lindblad/amplitude-damping ✓ (from Ch10 review), §11.4/§11.7 ✓, §12.6 does mention the diamond norm ✓, ZNE/PEC treated here in full as Ch15 promised ✓.
+
+- **Severity:** Low · **Category:** Numerical (recomputed) · **Location:** §18.1 (line 15)
+  - **Problem:** "a superconducting transmon at 15 mK with a 5 GHz transition [has] equilibrium excited-state population … **around 10⁻⁵**". Recomputed: hν/k_BT = (6.63×10⁻³⁴·5×10⁹)/(1.38×10⁻²³·0.015) ≈ 16.0, so p₁^eq ≈ e⁻¹⁶ ≈ **10⁻⁷**. The stated 10⁻⁵ corresponds to ≈20–21 mK. The paragraph's actual point (measured effective temperature far exceeds equilibrium) is unaffected — indeed *strengthened* by the correct number, since the gap to the observed 10⁻³–10⁻² becomes even more dramatic.
+  - **Recommendation:** "around 10⁻⁷" (or change the stated temperature).
+  - **Certainty:** High (recomputed this session).
+
+- **Severity:** Low · **Category:** Currency (requires verification) · **Location:** §18.4 (line 86)
+  - **Problem:** Two-qubit fidelities "taken from leading platforms over 2023–2025" list "**99.0% on neutral atoms**" — but Evered et al. (Nature 2023) reported 99.5% Rydberg CZ, and 2024–2025 neutral-atom results are at or above that. Within the stated window, 99.0% undersells the platform.
+  - **Recommendation:** "≈99.5% on neutral atoms" or hedge; verify against latest published numbers.
+  - **Certainty:** Medium-high (added to uncertainty ledger).
+
+- **Severity:** Nit · **Category:** Consistency · **Location:** line 338 (bridge heading) + line 3 (status)
+  - **Problem:** Unnumbered "## Bridge to Chapter 19" — second unnumbered bridge in a row (with Ch17), where Chapters 9–16 number theirs. Status 18/18 counts only the numbered sections.
+  - **Recommendation:** Number it §18.19 (or adopt unnumbered bridges book-wide); lint rule (§13).
+  - **Certainty:** High.
+
+**Entertainment:** remarkably high for a catalogue chapter — "the gap between simulation and reality is where the residual physics lives" and the TLS-bath narrative give it a working-lab texture. **Pedagogy:** the §18.10 coherent/incoherent → §18.12 RB-blindness → §18.13 purity-benchmarking chain is beautifully sequenced (each section motivates the tool the next one introduces); the §18.18 "when mitigation hurts" list is the kind of negative knowledge textbooks usually omit. The five-family noise taxonomy (§18.1) with the promise that platform-specific mechanisms come in Ch21 keeps scope discipline. Sanity checks: 5, policy-compliant, all recomputed ✓. **Rendering:** long chapter, heavy math, house escaping consistent throughout ✓; the four-display GAD Kraus block renders cleanly; no figures — a filter-function plot (free vs echo vs CPMG) would be the single highest-value figure addition in Part 8 so far.
+
+### book/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md (Chapter 19, 341 lines, 23 H2 sections)
+
+**Overall:** The pipeline chapter the whole Part exists for, and the hard technical content is impressively right. I recomputed the delicate bits: the **Shor-code logical operators** (X̄ = Z₁Z₄Z₇, Z̄ = X₁X₂X₃ — the book correctly navigates the classic trap, even noting that X₁⋯X₉ acts as Z̄ and that Z₁Z₂Z₃ anticommutes with the X₁⋯X₆ stabiliser and is therefore a detectable error, not a logical) ✓; the **CSS recipe** (X-stabilisers from H(C₁), Z from H(C₂⊥)) — checked for consistency: generator/parity-check counts give k = k₁−k₂ and the orthogonality argument makes the two families commute; instantiated on Steane it reproduces exactly the six listed stabilisers, whose supports match the binary-of-1..7 Hamming columns ✓; the bit-flip syndrome table ✓; the [[9,1,3]]/[[7,1,3]] parameter claims ✓; the "3-qubit code has quantum distance 1" honesty ✓ (most books get this wrong); Eastin–Knill stated correctly (finite transversal group) ✓; sanity checks 1–5 recomputed ✓ (check 5's arithmetic: 0.1·(0.1)^{(d+1)/2} ≤ 10⁻¹⁵ → d = 27 ✓); Willow d=3/5/7, 105 qubits, Λ ≈ 2.14, logical-beats-physical ~2× ✓; Bravyi–Kitaev 15-to-1 with 35p³ ✓; Panteleev–Kalachev / Leverrier–Zémor good-qLDPC attribution ✓; IBM bivariate-bicycle ~10× rate at d=12 ✓ ([[144,12,12]]); Horsman–Fowler–Devitt–Van Meter 2012 and Litinski 2019 ✓.
+
+- **Severity:** Low · **Category:** Cross-reference (wrong section) · **Location:** §19.1 (line 7)
+  - **Problem:** "the no-cloning theorem (**§5.7**)" — §5.7 is "Probability Amplitudes vs. Classical Probabilities"; no-cloning is **§5.13** (headings verified this session; Ch12 §12.8 cites §5.13 correctly).
+  - **Recommendation:** §5.13.
+  - **Certainty:** High.
+
+- **Severity:** Low · **Category:** Mathematical (typo, self-inconsistent) · **Location:** §19.19 (line 262)
+  - **Problem:** Concatenation error scaling: "one level … ∼Cp², two levels ∼C³p⁴, ℓ levels to ∼**p^{2^ℓ}/C^{2^ℓ−1}**". The ℓ-level formula divides by C^{2^ℓ−1} where the recursion multiplies: pℓ = C^{2^ℓ−1}p^{2^ℓ} (= (Cp)^{2^ℓ}/C). The stated two-level case C³p⁴ contradicts the stated general formula in the same sentence.
+  - **Recommendation:** C^{2^ℓ−1}p^{2^ℓ}, or the cleaner p_th(p/p_th)^{2^ℓ} with p_th = 1/C.
+  - **Certainty:** High (recomputed).
+
+- **Severity:** Low · **Category:** Technical (labels swapped) · **Location:** §19.12 (line 194) vs §19.8 (line 139)
+  - **Problem:** "total qubit count is ∼2d² (**or d² + (d−1)² for the rotated variant**)" — d²+(d−1)² is the **unrotated** planar code's *data*-qubit count (exactly what §19.8 says in giving [[d²+(d−1)², 1, d]]); the **rotated** variant has d² data qubits (2d²−1 total with ancillas). The parenthetical swaps the variants and mixes data-only with total counts.
+  - **Recommendation:** "≈2d² total including ancillas; the rotated variant reduces data qubits to d² (2d²−1 total)."
+  - **Certainty:** Medium-high.
+
+- **Severity:** Low · **Category:** Internal consistency · **Location:** §19.16 (line 236)
+  - **Problem:** "Cutting p_L in half typically requires increasing d by 2" — under the formula given two lines earlier with p/p_th ~ 0.1, a +2 increase in d cuts p_L by **10×**, not 2×. The 2× figure matches Google's *empirical* Λ ≈ 2.14 (quoted in §19.17) at that experiment's effective noise ratio; mixing the empirical Λ with the theoretical ratio-0.1 regime in adjacent sentences will confuse a careful reader.
+  - **Recommendation:** Attribute the ×2-per-(d+2) figure to near-threshold operation (Λ ≈ 2) and the ×10 to p/p_th = 0.1 explicitly.
+  - **Certainty:** High (internal tension).
+
+- **Severity:** Low · **Category:** Consistency (book policy) + verify · **Location:** §19.23 sanity check 5 (line 334) and §19.21 (line 290)
+  - **Problem:** (i) Sanity check 5 ends "**（Answer: (d+1)/2 = 14, so d = 27.)**" — the first inline answer in the book; every earlier chapter's checks deliberately withhold answers (a consistency the review has been tracking since Ch7). (ii) §19.21 says T-gate teleportation uses "one copy of |T⟩, **two CNOTs**, an S gate" — the standard gadget uses **one** CNOT plus a conditioned S/Pauli; worth verifying which circuit the author intends.
+  - **Recommendation:** Drop the inline answer (or add answers everywhere); check the gadget gate count.
+  - **Certainty:** High on (i); medium on (ii) — ledgered.
+
+- **Severity:** Nit · **Category:** Attribution · **Location:** §19.23 (line 324)
+  - **Problem:** "Google's Stim **and PyMatching**" — Stim is Gidney's (Google); PyMatching is Higgott's (academic, UCL-origin). Bundling both under "Google's" misattributes the latter.
+  - **Recommendation:** "Stim (Gidney) and PyMatching (Higgott)".
+  - **Certainty:** Medium-high.
+
+- **Severity:** Nit · **Category:** Consistency (structure) · **Location:** end of chapter
+  - **Problem:** No bridge heading at all — the Chapter-20 hand-off is an unheaded paragraph after the sanity checks (a *third* bridge style, after numbered [Ch9–16] and unnumbered-heading [Ch17–18]). Status 23/23 matches the numbered sections, so the count is accidentally clean.
+  - **Recommendation:** Pick one bridge convention book-wide; lint (§13).
+  - **Certainty:** High.
+
+- **Severity:** Nit · **Category:** Requires verification (ledgered) · **Location:** §19.23 (line 326), §19.20 (line 274), §19.14 (line 212), §19.12 (line 198)
+  - **Problem:** (i) "order-of-magnitude logical error suppression from d = 3 to d = 7" — Λ² ≈ 4.6× is half an order of magnitude; check against the Willow paper's actual endpoint numbers. (ii) "S̄ = S^{⊗7} up to a Pauli correction" — for Steane the transversal S-type gate is usually (S†)^{⊗7}; the hedge doesn't cover a dagger. (iii) Colour codes "on the honeycomb lattice's **medial graph**" — the 6.6.6 colour code lives on the honeycomb lattice directly. (iv) "bosonic codes (Chapter 32)" — Ch32 checklist grows again (now: CV, MBQC, thermodynamic resource theory, bosonic codes).
+  - **Certainty:** Medium (all ledgered).
+
+**Entertainment:** high — "the miracle is that quantum error correction is nevertheless possible", the 3×3-block reading of Shor's code, and "the road from d = 7 to d = 27 is the road of the next five years" give the chapter momentum across 23 sections. **Pedagogy:** the §19.3 failure-first sequencing (show the bit-flip code amplifying phase errors *before* stating discretisation) is exactly right; boxed informal statements of the two big theorems serve the stated audience; §19.16's inline resource walk-through (10¹⁰ logical gates → p_L ≤ 10⁻¹¹ → d ≈ 21–27 → millions of qubits) is the single most useful calculation in the book so far. **Completeness:** only one figure (bit-flip code) in the entire chapter — §19.12 badly needs a surface-code lattice diagram (stars/plaquettes/strings), and §19.22 a merge/split cartoon; these are the two highest-value missing figures in the book. **Rendering:** heavy notation, house escaping consistent ✓; the `\mathsf{\#P}`-in-backticks workaround used again ✓.
