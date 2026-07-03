@@ -927,3 +927,63 @@ During the Ch13 review I briefly suspected Ch11's two references to "variational
   - **Certainty:** High.
 
 **Entertainment:** high — FeMoco as "the chemistry community's standard challenge instance" gets the full narrative treatment (biology → Haber–Bosch economics → multireference physics → resource-estimate history), which is exactly how to make a resource table matter to a reader. **Pedagogy:** §28.4's "the quantum computer never sees the full 10⁶-orbital problem; it sees a 50-orbital impurity model, hundreds of times" is the single sentence that makes near-term chemistry roadmaps intelligible; the embedded cross-links to §§15.5/15.8/16.x are dense and all verified valid ✓; sanity check 5 (read a real DMET-VQE paper and extract four specific numbers) is the most research-adjacent exercise in the book and perfectly placed. **Rendering:** heavy display math, all house-escaped correctly ✓; inline links to chapter files use correct relative paths ✓; no figures — a lattice-model cartoon (Hubbard hopping/interaction) would help §28.2 but the formulas carry it.
+
+### book/part-11-applications/29-optimization-finance-and-industrial.md (Chapter 29, 169 lines, 7 H2 sections)
+
+**Overall:** The deflationary chapter the field needs, executed with receipts — "the pilots are real, the tooling is real, the funded teams are real; the advantage is not" is earned by the section-by-section classical baselines. Verified: Goemans–Williamson 0.8786 with the UGC-optimality caveat ✓; QUBO↔Ising substitution s = 1−2x ✓; Max-Cut-as-Ising derivation ✓; penalty/slack encoding mechanics ✓; QAOA p=1 ratio 0.6924 (consistent with Ch15) and the p=2 value 0.7559 ✓; the careful "p→∞ is the same regime where exact classical methods also succeed" framing ✓; RQAOA/Bravyi–Kliesch–Koenig–Tang ✓; adiabatic 1/Δ²_min consistent with Ch20 ✓; simulated bifurcation (Goto–Tatsumura–Dixon) and CIM correctly classified as classical ✓; **the seven-author Stamatopoulos et al. citation is exact** ✓; the ~10⁷ T-gate option-pricing figure consistent with Ch16 §16.8 ✓; the QRAM state-preparation caveat ("most quantum option pricing papers quietly assume QRAM-style state preparation") is the single most important sentence in the finance section and it is correct ✓; sanity checks recomputed (K₃ ground energy −1, six-fold degenerate ✓; crossover C_Q/C_C < 10³ ✓; N²/15 ≈ 27 ✓). §29.5's "the structure transfer is the bottleneck, not the qubit count" and the three-rule constraint-encoding hygiene list are practitioner gold.
+
+- **Severity:** Low · **Category:** Internal inconsistency (hardware facts) · **Location:** §29.1 (line 43) vs §29.3 (line 77)
+  - **Problem:** §29.1: "D-Wave **Advantage2** system offers about 7,000 qubits but with restricted connectivity (**Pegasus topology, degree 15**)". §29.3 (correctly): "**Zephyr** (Advantage2 prototype, **degree-20**)" with Pegasus belonging to Advantage. The two sections contradict each other; §29.3 matches D-Wave's actual generations.
+  - **Recommendation:** Fix §29.1 to Zephyr/degree-20 (or say "Advantage (Pegasus, degree 15)" if that's the intended reference device).
+  - **Certainty:** High (in-repo contradiction; external facts well-established).
+
+- **Severity:** Nit · **Category:** Factual detail · **Location:** §29.3 (line 77), §29.5 (line 124)
+  - **Problem:** (i) "Chimera (**D-Wave 2X and earlier, 2048 qubits**…)" — 2048 qubits was the 2000Q; the 2X had ~1,100. (ii) "routing **taxis** in Beijing and **Lisbon**" — the Lisbon pilot routed *buses* (WebSummit 2019); Beijing was the taxi study.
+  - **Recommendation:** "(Chimera: through the 2000Q's 2048 qubits)"; "taxis in Beijing and buses in Lisbon".
+  - **Certainty:** Medium-high.
+
+- **Severity:** Nit · **Category:** Consistency (structure) · **Location:** lines 150–154
+  - **Problem:** Bridge is an unheaded trailing paragraph *and* the sanity checks get their own H2 heading ("## Sanity Checks") — both firsts. The H2 makes the true section count 7 vs the status block's 6/6, and the heading style diverges from the "**Sanity checks before moving on.**" bold-paragraph convention used everywhere else.
+  - **Recommendation:** Fold into the book-wide bridge/checks convention (§13 lint).
+  - **Certainty:** High.
+
+- **Severity:** Nit · **Category:** Requires verification (ledgered) · **Location:** §29.3 (line 79)
+  - **Problem:** "on a ~7,000-qubit Advantage2 that is a dense problem of only **~180 variables**" — the largest-embeddable-clique figure needs a source check against D-Wave's published numbers for Zephyr.
+  - **Certainty:** Low-medium (ledgered).
+
+**Entertainment:** high — "the path of least encoding pain", "uniform quadratic penalty soup", and the forbidden-sentence gag in the how-to-read give the most sceptical chapter in the book a light touch. **Pedagogy:** the recurring template (quantum proposal → *specific* classical incumbent → verdict) is the chapter's real lesson; §29.4's continuous-vs-discrete Markowitz distinction ("the version that maps to quantum optimisers is the NP-hard one — the version practitioners solve is convex") is a subtlety every finance-pilot press release obscures; sanity check 5 is unusually good (the simple formula *and* why it underestimates). **Rendering:** clean; horizontal rules used as section separators (unique to this chapter — another style variant for the lint list); math correctly escaped throughout.
+
+### book/part-11-applications/30-quantum-machine-learning.md (Chapter 30, 150 lines, 9 H2 sections)
+
+**Overall:** The best-organised chapter in Part 11 — the three-category taxonomy (classical-data algorithms / learning about quantum systems / parameterised circuits as models) does exactly what the intro promises and should frankly be adopted by the field. Verified: Kerenidis–Prakash 2016, Lloyd–Mohseni–Rebentrost 2014 (qPCA), Rebentrost–Mohseni–Lloyd 2014 (qSVM) ✓; QRAM bucket-brigade noise-instability caveat ✓; Tang dequantisation narrative consistent with Ch16 §16.8 and Ch17 §17.12 (the book now tells this story three times, each at the right altitude, without contradiction ✓); classical-shadows summary consistent with Ch11 §11.5 ✓; McClean et al. barren plateaus + the local-cost and noise-induced extensions correctly scoped ✓; **Liu–Arunachalam–Temme 2021** kernel separation stated exactly right, including the honest "artificial problem" verdict ✓; QCNN (Cong–Choi–Lukin 2019) with the sharp observation that its successes are *Category-2 problems in disguise* ✓ — that reclassification is the most insightful move in the chapter; QGAN attributions (Lloyd–Weedbrook; Dallaire-Demers–Killoran, both 2018) ✓; **Cerezo–Verdon–Huang–Cincio–Coles 2022** author list exact ✓; **Stokes–Izaac–Killoran–Carleo 2020** quantum natural gradient exact ✓; wall-clock arithmetic (2pSK·1 ms = 2×10⁶ s ≈ 23 days) ✓ and sanity check 3 recomputable (≈2.9 days) ✓; the §30.8 dequantisation checklist with the Shor/HHL-on-quantum-input exceptions is the definitive statement of a thread the book has been building since Ch13.
+
+- **Severity:** Low · **Category:** Attribution (requires verification) · **Location:** §30.3 (line 45)
+  - **Problem:** Hamiltonian learning credited to "**Anshu–Arunachalam–Kueng–Lin** and follow-ups" — the landmark sample-efficient Hamiltonian-learning result is Anshu–Arunachalam–**Kuwahara–Soleimanifar** (Nature Physics 2021). "Kueng" (classical shadows) and "Lin" (Heisenberg-limited Hamiltonian learning line) look spliced in from adjacent literatures.
+  - **Recommendation:** Verify; expect Anshu–Arunachalam–Kuwahara–Soleimanifar, optionally plus Huang–Tong–Fang–Su or Haah–Kothari–Tang for the dynamics-based line.
+  - **Certainty:** Medium.
+
+- **Severity:** Nit · **Category:** Consistency (positive note) · **Location:** line 3
+  - **Problem:** None — status 9/9 matches 9 H2 sections with the bridge merged into numbered §30.9 (the Ch22/Ch27 convention). Recorded for the tally: merged-bridge chapters count their bridge; separate-bridge chapters don't. The lint rule (§13) should normalise on one of these.
+  - **Certainty:** High.
+
+**Entertainment:** high — "the most reliable thing a quantum computer can learn is something about itself, or about another quantum system" is the best one-sentence verdict in the book, and the chapter's willingness to say "not embarrassing either" about quantum kernels shows calibration rather than reflexive negativity. **Pedagogy:** §30.9's defence of QML as a *teaching* topic ("a reader who works through … hitting a barren plateau, redesigning the ansatz — has internalised most of what one needs to know about variational quantum algorithms") is self-aware and true; sanity check 5 (interrogate a vendor's fraud-detection claim) operationalises the whole chapter; the QQ-cell observation in §30.1 preempts a common taxonomy quibble. **Rendering:** clean; light math correctly escaped; no figures needed — the three-category table is carried in prose but would also make a good rendered table.
+
+### book/part-11-applications/31-quantum-sensing-metrology-and-tomography.md (Chapter 31, 122 lines, 6 H2 sections)
+
+**Overall:** A confident, precise close to Part 11 — the "already in production" framing is correct and the numbers back it up. Mathematics recomputed: QFI = 4Var(H) for pure-state probes ✓; SQL derivation (|+⟩ under Z/2: Var = 1/4, F_Q = 1, Δφ = 1/√N) ✓; Heisenberg derivation (GHZ under ΣZᵢ/2: Var = N²/4, F_Q = N², Δφ = 1/N) ✓ — both sanity checks 1–2 verified; the noise-fragility caveat (generic Markovian noise collapses Heisenberg scaling to constant-factor-over-SQL) is exactly the right hedge ✓. Facts verified: Sr 429 THz and Yb 518 THz clock transitions ✓ (exact); **NIST Al⁺ quantum-logic clock 9.4×10⁻¹⁹** ✓ (exact); Φ₀ = h/2e ≈ 2.07×10⁻¹⁵ Wb ✓; NV S = 1 ground state, pT–nT/√Hz sensitivity tiers ✓; SERF/OPM-MEG vendors (QuSpin, FieldLine, Cerca) ✓; matter-wave phase k_eff·g·T² ✓; quantum illumination 6 dB error-exponent advantage (Tan et al.) with the honest joint-measurement caveat ✓; compressed-sensing O(rd log²d) ✓; **Mahadev 2018** described precisely, including the deliberate distinction between *cryptographic* soundness (LWE) and *device-independent* (Bell-based) verification — a distinction most secondary accounts blur ✓; sanity checks 3–5 recomputable (0.43 mHz; τ = 10⁴ s; 16⁵ ≈ 10⁶ factor) ✓. Cross-refs to Ch11/Ch18 all consistent ✓, and the bridge's preview of Ch32 (MBQC, adiabatic, CV, topological) matches the accumulated Ch32 checklist exactly — a good omen for the next review.
+
+- **Severity:** Low · **Category:** Numerical (unit conversion, recomputed) · **Location:** §31.2 (line 59)
+  - **Problem:** "Commercial absolute gravimeters … reach ∼1 µGal sensitivity (**10⁻⁸ g**)" — 1 Gal = 10⁻² m/s², so 1 µGal = 10⁻⁸ m/s² ≈ **1.0×10⁻⁹ g** (g ≈ 9.81 m/s² ≈ 981 Gal). The parenthetical is off by 10× (10⁻⁸ g corresponds to 10 µGal).
+  - **Recommendation:** "(≈10⁻⁹ g)".
+  - **Certainty:** High (recomputed).
+
+- **Severity:** Low · **Category:** Factual detail · **Location:** §31.2 (line 61)
+  - **Problem:** LIGO's frequency-dependent squeezing routed through "a **kilometre-long** filter cavity" — the A+ filter cavity is **300 m** (Virgo's similar). "Kilometre-long" overstates by ~3×.
+  - **Recommendation:** "a 300-metre filter cavity".
+  - **Certainty:** Medium-high.
+
+- **Severity:** Nit · **Category:** Consistency (inherited) · **Location:** §31.4 (line 87)
+  - **Problem:** Direct fidelity estimation again stated as "O(1/ε²) independent of n" without the well-conditioned-states caveat — same simplification already ledgered at Ch11 §11.4; the two statements are at least mutually consistent.
+  - **Certainty:** Medium (ledgered previously).
+
+**Entertainment:** high — the opening ("quantum sensing … already in production") earns the whole chapter, and the parade of deployed systems (MEG rooms, LIGO's dark port, benchtop NMR of single biomolecules) gives the book's most concrete payoff pages. **Pedagogy:** the SQL→Heisenberg derivation pair as sanity checks 1–2 is exactly the right difficulty; §31.4's layered characterisation pyramid (RB every shift → DFE per state → shadows per panel → full tomography for post-mortems) mirrors Ch18's benchmark hierarchy and closes the loop cleanly; §31.5's placement of Mahadev next to self-testing next to cross-platform comparison is a genuinely good synthesis. Status 6/6 with the bridge merged into counted §31.6 ✓. **Rendering:** clean; one stray horizontal rule before §31.6 (minor); math correctly escaped throughout.
