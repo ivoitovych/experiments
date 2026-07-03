@@ -833,3 +833,43 @@ During the Ch13 review I briefly suspected Ch11's two references to "variational
   - **Certainty:** Medium (all ledgered).
 
 **Entertainment:** high — "not the failure mode of quantum computing but its constant companion" is a thesis worth the chapter, and the closing "which lever … will move the boundary in their favour" lands the plural-methods message. **Pedagogy:** the three-constituencies opening (§24.1) prevents the classic conflation; the decision tree is immediately usable; sanity check 5 (sampling agreement ≠ unitary equivalence) is a subtle and excellent trap. Bridge style: bold run-in paragraph — a **fifth** variant; and the checks are headed "Sanity checks." (dropping "before moving on") — minor style drift for the §13 lint list. **Rendering:** clean throughout; code block + output block verified ✓.
+
+### book/part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md (Chapter 25, 141 lines, 6 H2 sections)
+
+**Overall:** The book's expectation-setting chapter, and it does the job with unusual honesty ("the intersection … is still nearly empty"; "these projections have been wrong before" with the 2010/2020-vintage track record). Verified: depth-budget arithmetic (ndε ≳ 1 → d ≈ 2 at ε = 5×10⁻³, n = 100; per-qubit 1/ε = 200, with the wide-vs-deep distinction explained) ✓; barren-plateau Var ~ 2⁻ⁿ ✓; VQE shot arithmetic (10⁶/step, 10⁸/run) ✓; p_L scaling consistent with Ch19 ✓; d = 7 → ~100 and d = 21 → ~900 physical/logical consistent with Ch19/Ch22 ✓; sanity checks recomputed (check 2: d = 29 exactly at A = 1 ✓ — a nice complement to Ch19's A = 0.1, d = 27 version; check 5 well-posed with "fidelity is the constraint" as the intended answer ✓); platform snapshot consistent with Ch20/Ch22 ✓; Sycamore/IBM-2.5-days and Jiuzhang-76-photon histories ✓; the supremacy-vs-advantage distinction (useless-task vs useful-task) cleanly drawn ✓; the four-bullet "why build capability now" case (tooling lead time, algorithm R&D, PQC migration asymmetry, workforce) is the best two paragraphs in the book for an engineering manager.
+
+- **Severity:** Low · **Category:** Factual (narrative mischaracterisation) · **Location:** §25.4 (line 80)
+  - **Problem:** "The original paper **claimed advantage**; … The IBM team's stance **subsequently shifted from 'advantage' to 'utility'**." The Kim et al. 2023 Nature paper was titled "Evidence for the **utility** of quantum computing before fault tolerance" and IBM's framing was "utility" from day one — deliberately avoiding an advantage claim. What actually softened under the classical reproductions was the paper's "beyond brute-force classical methods" scope, not an advantage→utility rebranding.
+  - **Recommendation:** "IBM framed the result as 'utility' from the outset; the classical-simulation reproductions narrowed what 'beyond classical methods' could mean."
+  - **Certainty:** Medium-high.
+
+- **Severity:** Low · **Category:** Cross-reference/duplication · **Location:** §25.3 (lines 61–67)
+  - **Problem:** ZNE, PEC, CDR, and virtual distillation are re-explained in full with **no cross-reference to Ch18 §18.18**, which covers the same four *plus symmetry verification* in more depth ("Five families are widely deployed" vs this section's "Four techniques matter"). A reader hits the same material twice with no signpost, and the counts disagree.
+  - **Recommendation:** Compress to one paragraph + "see §18.18 for the full treatment including symmetry verification and the bias-variance analysis".
+  - **Certainty:** High (in-repo).
+
+- **Severity:** Nit · **Category:** Precision (recap drift) · **Location:** §25.5 (line 91)
+  - **Problem:** QV recapped as "random n×n circuit succeeds with above-2/3 **fidelity**" — the criterion is heavy-output *probability*, as Ch22 states correctly; and "QV scales roughly **multiplicatively in qubit count**" is garbled (QV is 2^{d*}; presumably "exponentially in achievable width" was meant).
+  - **Recommendation:** Align the recap with §22.7's wording.
+  - **Certainty:** High.
+
+- **Severity:** Nit · **Category:** Consistency (conventions tally) · **Location:** whole chapter
+  - **Problem:** (i) No formal Moving-target banner despite this being (with Ch20/Ch22) the most perishable content in the book — though the inline hedging here is the strongest anywhere ("treat with appropriate scepticism", the projections-track-record paragraph), so the banner is nearly redundant. (ii) No bridge section — the Chapter 26 hand-off lives in the how-to-read block and §25.6's closing; status 6/6 matches the numbered sections.
+  - **Certainty:** High.
+
+**Entertainment:** high — "NISQ is the awkward middle", "wide but shallow", and "do not bet the quarter on the short one" give the chapter a memorable managerial register distinct from the technical chapters. **Pedagogy:** the two depth budgets (whole-device vs single-worldline) resolve the exact confusion most readers carry out of vendor announcements; §25.4's "the pattern" paragraph teaches how to read the *next* claim, which is worth more than the history itself; the closing recommendation pattern (simulators → small hardware runs → deferred capital) is concrete and defensible. **Rendering:** clean; single display equation correctly escaped; no figures needed at this altitude.
+
+### book/part-10-practice-and-era/26-practical-access-and-hands-on-work.md (Chapter 26, 135 lines, 8 H2 sections)
+
+**Overall:** Short, operational, and almost entirely correct — the book's most directly actionable chapter. Verified: the simulator memory figures (16 GB @ 30, 512 GB @ 35 double precision, "half that in single") are **mutually consistent with Ch23 and Ch24** ✓ — the three chapters now form a coherent set with precision labelled each time; the Bell-program code is correct including the subtle detail that `measure_all()` names the classical register `meas`, so `result[0].data.meas.get_counts()` is exactly right ✓; `examples/first_bell_program.py` exists ✓; shot-budget arithmetic (0.5/√N; 10⁴ → 5×10⁻³; sanity check 2 → 10⁶) ✓; the three-way baseline discipline (ideal sim → noise-model sim → hardware) and the §26.6 reproducibility checklist ("run on `ibm_brisbane`, calibration `2026-02-14T08:00Z`" as the citation standard) are the kind of concrete practice that most books never write down; "Qiskit deprecated several APIs between 1.0 and 1.4" ✓.
+
+- **Severity:** Low · **Category:** Factual + internal inconsistency · **Location:** §26.2 (line 24)
+  - **Problem:** Amazon Braket described as offering "IonQ, Rigetti, QuEra, **Quantinuum**" — Quantinuum has not been a Braket provider (its cloud paths are Azure Quantum and direct access, exactly as this chapter's own Azure bullet and §26.4 imply). Ch23 §23.4's Braket list (IonQ, Rigetti, QuEra, Oxford Quantum Circuits) disagrees with this one — the two lists should match, and neither should include Quantinuum.
+  - **Recommendation:** Align both lists (IonQ, Rigetti, QuEra, IQM/OQC as of the snapshot date); verify against Braket's current device roster.
+  - **Certainty:** Medium-high.
+
+- **Severity:** Nit · **Category:** Consistency (tally) + deferred cross-ref · **Location:** line 3; §26.4 (line 76)
+  - **Problem:** (i) Status 7/7 vs 8 H2 sections (§26.8 Bridge numbered but uncounted — the bridge-excluded pattern). (ii) "a fundamentally different computational model (**Chapter 32**)" for D-Wave/annealing — Ch32 verification checklist grows again (now: CV, MBQC, thermodynamic resource theory, bosonic codes, §32.4 T-injection/topological, adiabatic/annealing).
+  - **Certainty:** High (count); deferred (Ch32).
+
+**Entertainment:** good for a logistics chapter — "avoid the trap of installing six SDKs at once", "subscribing to arXiv listings is a path to madness", and "epistemic frugality" keep it human. **Pedagogy:** §26.7 (reading papers) is a genuinely rare inclusion that fits the book's practitioner thesis; the three claim types with their distinct failure modes compress Part 7's lessons into a field guide; sanity checks are appropriately *hands-on* (run this, price this, trace this) rather than pencil-and-paper — right for this chapter. **Rendering:** clean; code and output blocks fine.
