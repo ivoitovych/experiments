@@ -1150,3 +1150,65 @@ During the Ch13 review I briefly suspected Ch11's two references to "variational
   - **Certainty:** High (in-repo).
 
 **Assessment:** with A and B this completes a genuinely usable reference triptych; the §C.4 CNOT-propagation block explicitly wired to §19.8 ("workhorse identities of the stabilizer formalism") is exactly the right forward linkage. Status 6/6 ✓. **Rendering:** clean; bullets-not-tables policy maintained ✓.
+
+### book/99-back-matter/appendix-d-suggested-reading.md (Appendix D, 329 lines, 8 H2 sections)
+
+**Overall:** A genuinely curated bibliography — every entry annotated with *why* and *when* to read it, which is rarer than it should be. I checked ~40 bibliographic entries: the overwhelming majority are exact, including several easy-to-fumble details (Tang **arXiv:1807.04271** ✓; Vidick–Watrous *Quantum Proofs*, FnT-TCS 2016 ✓; Campbell–Terhal–Vuillot, Nature 2017 ✓; Bharti et al., RMP 2022 ✓; Childs–van Dam, RMP 2010 ✓; Krantz/Bruzewicz/Slussarenko APR trio ✓; Koch 2007, Saffman 2016, Zwanenburg 2013 ✓). Notably, **Low–Chuang qubitization is dated correctly here (Quantum, 2019)** — cleaner than Ch16's body-text "2017" — and the presence of **Martyn–Rossi–Tan–Chuang 2021 "Grand unification of quantum algorithms"** corroborates the Ch16 §16.7 ledger item (the "QSVT is to quantum algorithms…" slogan likely belongs to this survey, not to GSLW). The D.8 Qiskit note (QFT *class* deprecated in 2.1, removed in 3.0, → `QFTGate`/`synth_qft_full`) is consistent with Appendix A's QFTGate warning ✓, and PyMatching is correctly credited here (unlike Ch19) ✓.
+
+- **Severity:** Low · **Category:** Bibliographic (title likely confabulated) · **Location:** §D.4 (line 155)
+  - **Problem:** "*Limitations on the simulation of non-stabilizer states.* Sergey Bravyi and David Gosset. PRL, 2016" — the Bravyi–Gosset PRL 2016 paper is titled "**Improved classical simulation of quantum circuits dominated by Clifford gates**"; no BG paper carries the listed title.
+  - **Recommendation:** Correct the title.
+  - **Certainty:** Medium-high.
+
+- **Severity:** Low · **Category:** Bibliographic (title/venue mismatch) · **Location:** §D.4 (line 159)
+  - **Problem:** "*Quantum LDPC codes with almost linear minimum distance.* Panteleev and Kalachev. **STOC, 2022**" — that title is their IEEE Trans. Inf. Theory 2021 paper; the STOC 2022 paper is "**Asymptotically good quantum and locally testable classical LDPC codes**" (the one Ch19 §19.15 actually leans on).
+  - **Recommendation:** Cite the STOC 2022 title (or both papers).
+  - **Certainty:** Medium-high.
+
+- **Severity:** Nit · **Category:** In-repo consistency · **Location:** §D.5 (line 197), §D.8, whole appendix
+  - **Problem:** (i) D.5 recommends "the Qiskit Pulse module documentation" with no mention that Qiskit Pulse was **removed in Qiskit 2.0** — a caveat Ch21 §21.3 and Ch23 §23.5 both state carefully. (ii) §37.6 promised "Appendix D collects this list with current URLs" including the three conferences — D has no conference entries and URLs only in D.8. (iii) Part references in Roman numerals ("Parts I–IV", "Part XI") — the recurring Arabic/Roman inconsistency.
+  - **Recommendation:** Add the removal caveat; add a short conferences block; normalise part numbering (§13 lint).
+  - **Certainty:** High (all in-repo).
+
+**Assessment:** the annotations are the appendix's real value ("read for the engineering rather than the headline" on Arute 2019; "read this once even if you only intend to use the result" on Shor) — this is a bibliography that teaches. Status 8/8 ✓. **Rendering:** clean; backticked URLs render safely.
+
+### book/99-back-matter/appendix-e-glossary.md (Appendix E, 538 lines, 7 H2 sections)
+
+**Overall:** A high-quality glossary, and in two places *more* correct than the body of the book: the **fidelity entry states the unsquared convention explicitly** (exactly the fix Appendix A §A.4 needs — the text can be copied verbatim), and the **density-matrix-simulator entry gets the half-the-qubit-count arithmetic right** (where Ch24 §24.4 slipped to "n = 22 on a server"). Verified: all E.1 core definitions consistent with the postulates chapters ✓ (the three-senses split of "state" — ray / density matrix / vector representation — is model glossary practice); the Collapse entry ("an ingredient of the measurement postulate, not a physical process separate from it") is Ch35-consistent ✓; E.2 math entries all correct incl. {σᵢ,σⱼ} = 2δᵢⱼI ✓; E.3 algorithmic entries correct — notably amplitude amplification's O(1/a)-vs-O(1/a²) stated correctly *in amplitude* (a frequent error) ✓ and phase estimation's O(2ⁿ)-controlled-U-for-n-bits ✓; E.4 hardware entries consistent with Ch18/20/22 incl. T₂ ≤ 2T₁ and the 1/T₂ decomposition ✓; E.6 PostBQP = PP (Aaronson 2005) ✓; E.7 statevector 16 GB @ n = 30 double precision consistent with Ch24/26 ✓; Stim "(Gidney 2021)" correctly attributed ✓.
+
+- **Severity:** Low · **Category:** Convention drift (in-repo) · **Location:** §E.5 depolarising entry (line 368)
+  - **Problem:** Glossary canonical form: 𝓔(ρ) = (1−p)ρ + (p/3)(XρX+YρY+ZρZ). Ch10 §10.12's canonical Kraus form uses the *other* standard parameterisation (√(1−3p/4)·I, √(p/4)·σ, i.e. (1−3p/4)ρ + (p/4)Σ). Both are correct individually, but p means different things in the two places (p_glossary = 3p_ch10/4) and neither notes the reparameterisation.
+  - **Recommendation:** One convention book-wide, or a one-line reconciliation in the glossary entry.
+  - **Certainty:** High (in-repo).
+
+- **Severity:** Nit · **Category:** Date consistency · **Location:** §E.6 (line 422)
+  - **Problem:** "Raz–Tal (**2018**)" vs Ch17's "Raz–Tal (**2019**)" — preprint year vs STOC year; pick one.
+  - **Certainty:** High (in-repo).
+
+**Rendering:** bullets-not-tables policy maintained ✓; clean throughout. Status 7/7 ✓.
+
+### book/99-back-matter/appendix-f-hardware-snapshot-2026.md (Appendix F, 175 lines, 8 H2 sections)
+
+**Overall:** The best-designed perishable content in the book — the **formal Moving-target banner is present** (with a pointer to the fact-check ledger), the F.8 "replace wholesale rather than patching" revision protocol is exactly right, and the design rationale ("time-sensitive numbers live in one place") retroactively explains what Ch20/Ch22/Ch25 *should* be doing (deferring their numbers here). In several spots F is more accurate than the body chapters, which converts earlier external-verification findings into **in-repo inconsistencies**: F correctly says Condor "1,121-qubit … (2023)" where Ch20 §20.1 says "approaching 1000" ✓; F correctly credits the >1,000-atom result to Atom Computing *without* the erroneous "Phoenix" name Ch20 uses ✓; F cites **Bluvstein et al., Nature, December 2023** for the 48-logical-qubit result with exact venue/date ✓; the Microsoft+Quantinuum 4-logical-qubits-on-H2 (2024) milestone is right ✓; the Majorana-1 treatment is consistent with Ch20/Ch32's calibrated scepticism ✓. The F.6 table safely uses pipes (no in-cell math bars — Bug-5 compliant) ✓.
+
+- **Severity:** Low-Medium · **Category:** In-repo inconsistency (two snapshots disagree) · **Location:** §F.3 vs Ch22 §§22.9/22.13
+  - **Problem:** The book's two hardware-numbers surfaces contradict each other. (i) **IonQ:** F says "Forte at **#AQ 29** today, with Forte Enterprise **#AQ 35** and Tempo **#AQ 64** announced"; Ch22 says "**AQ = 36**" (at "64 physical qubits" in §22.9, "36 qubits" in §22.13). (ii) **Quantinuum H2 two-qubit fidelity:** F says "around **99.9%** (best-pair >**99.91%**)"; Ch22 says "≈**0.9997**". F's figures are the more defensible in both cases.
+  - **Recommendation:** Make Ch22 §22.13 defer to Appendix F for all vendor numbers (one sentence + link), or reconcile the figures with dated sources; fix §22.9's 64-qubit claim regardless (already filed at Ch22).
+  - **Certainty:** High (in-repo disagreement); medium-high (which side is right).
+
+**Assessment:** F.1's three caveats and F.8's aging forecast ("architectural direction is the most stable signal") are the distilled Ch22/Ch36 discipline applied to the appendix's own content — self-consistent scepticism. Status 8/8 ✓.
+
+### book/99-back-matter/index.md (Index, 126 lines, generated)
+
+**Overall:** Generated artifact (scripts/generate_index.py, curated TERMS list) with a clear policy statement (link to *main development*, not first mention). **Anchor spot-checks all pass** — I verified nine section anchors against the actual headings this session (§9.3 Ancilla Qubits, §10.2 Interference, §10.5 No-Cloning Restated, §10.9 Decoherence, §10.10 Mixed States, §10.13 Kraus, §14.x series, §8.x series, §16.x series) ✓; the GitHub slug for "Clifford + T" (`#810-clifford--t`) is correctly double-hyphenated ✓.
+
+- **Severity:** Low · **Category:** Completeness (draft-stage) · **Location:** whole file
+  - **Problem:** 37 entries is skeletal for a 37-chapter book. Missing, among others: **POVM, magic state, teleportation, surface code** (only reachable via "Stabilizer formalism"→Ch19), **density matrix, trace distance, QKD/BB84, barren plateau, error mitigation, quantum volume, Trotterisation, classical shadows** — all terms a reader would plausibly look up, most with obvious main-development sections. The generator design makes expansion cheap (edit TERMS).
+  - **Recommendation:** Roughly triple the TERMS list before release; harvest candidates from the Appendix E entry names (every glossary headword should be indexable).
+  - **Certainty:** High.
+
+- **Severity:** Nit · **Category:** Policy application · **Location:** N entry
+  - **Problem:** "No-cloning theorem → §10.5" — §10.5 is "No-Cloning *Restated*"; the main development (statement + proof) is §5.13, which the index's own policy ("main development … most thorough treatment") would seem to prefer.
+  - **Certainty:** Medium (policy judgement).
+
+**Rendering:** clean; per-letter H2 grouping renders well. This completes the §7 file-by-file review of all 48 planned book files.
