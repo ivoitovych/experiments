@@ -514,3 +514,85 @@ During the Ch13 review I briefly suspected Ch11's two references to "variational
   - **Certainty:** High.
 
 **Entertainment:** high — QML as "the most over-promised and under-delivered subarea in the field" sets the tone, and §15.3's "difference of degree, not kind" is the single best sentence I've seen on the CRQC timeline debate. **Pedagogy:** the three HHL caveats as a numbered list is exactly how that algorithm should be taught; the deflationary QAOA/QML verdicts protect the reader's calibration. Three moving-target warnings correctly deployed (§15.3, §15.8, §15.10) ✓. Sanity checks: 5, policy-compliant ✓ (check 1 recomputed: N=256, M=4 → k=6, success ≈ 0.997 ✓; check 2's r=4 for a=7, N=15 verified ✓). **Rendering:** clean; QAOA display equation escaping correct; figure `grover-iteration.svg` exists with descriptive alt text ✓.
+
+### book/part-06-algorithms/16-modern-algorithmic-frontier.md (Chapter 16, 231 lines, 9 H2 sections)
+
+**Overall:** The hardest chapter to write in Part 6 and largely a success — the LCU → block-encoding → qubitization → QSP/QSVT dependency chain is presented in the right order with the right emphasis ("once you know the polynomial you want, you know the algorithm"). Verified: first-order Trotter error O(t²Σ‖[Hⱼ,Hₖ]‖/r) and the r-choices for ε ✓; S₂ palindrome kills the leading BCH term ✓; LCU prepare–select–unprepare algebra incl. success probability ‖H|ψ⟩‖²/α² and the AA-improved O(α/‖H|ψ⟩‖) ✓; Taylor truncation K = O(log(1/ε)/log log(1/ε)) ✓ (BCCKS); block-encoding definition, (α, a, ε) notation, sparse-access subnormalisation s‖A‖_max, purification-gives-α=1, product-composition rules ✓; qubitization 2D-invariant-subspace rotation with cos θ_λ = λ and spectrum e^{±i arccos λ} ✓; QSP characterisation (parity, degree, |P|²+(1−x²)|Q|² = 1) stated exactly right ✓, sanity check 3's degree-1 instance verified (x² + (1−x²) = 1) ✓; phase-finding lineage (Haah 2019; Chao–Ding–Gilyén–Huang–Szegedy 2020 — author list correct; Dong–Meng–Whaley–Lin symmetric QSP) ✓; matrix-inversion degree Θ(κ log(κ/ε)) vs original HHL O(κ²/ε) ✓; Carleman linearisation with the R < 1 dissipativity condition and the Liu et al. 2021 attribution ✓; QMC O(σ/N) via amplitude estimation with the coherent-encoding caveat ✓; GE-2019-consistent "3×10⁹ Toffolis" ✓; the dequantisation narrative (stable-rank dependence, access-model lesson) is the best short account of that episode I know of. The §16.8 classical-shadows contrast ("dequantisation removes a speedup; shadows combine with quantum primitives") is a genuinely clarifying original touch.
+
+- **Severity:** Low · **Category:** Mathematical precision + attribution · **Location:** §16.1 (lines 21–27) and §16.5 (line 137)
+  - **Problem:** Two related slips in the "optimal scaling" claim. (i) T(t,ε) = **Θ**(t‖H‖ + log(1/ε)) drops the log log denominator: the tight bound is Θ(t‖H‖ + log(1/ε)/log log(1/ε)), and the book's own §16.3 keeps the log log in the Taylor-series truncation — so the chapter is internally inconsistent, and as a Θ-statement §16.1's form is strictly false (log/log log = o(log)). (ii) The lower bound is credited wholly to Berry–Ahokas–Cleve–Sanders (twice): BACS 2007 gives the Ω(t) no-fast-forwarding part; the Ω(log(1/ε)/log log(1/ε)) precision part is BCCKS 2014.
+  - **Recommendation:** Either write O(·) instead of Θ(·) with a footnote, or state the exact form once; credit the ε-part to BCCKS.
+  - **Certainty:** High on the internal inconsistency; medium-high on the exact lower-bound form.
+
+- **Severity:** Low · **Category:** Terminology (mislabel) · **Location:** §16.2 (line 53)
+  - **Problem:** "the **per-step** error drops to O(t³/r²) from O(t²/r)" — both expressions are the *total* (accumulated) errors; the per-step errors are O((t/r)²) and O((t/r)³). Same mislabel for the order-2k formula ("per-step error O(t^{2k+1}/r^{2k})" — that is r·O((t/r)^{2k+1}), the total). The subsequent r-choices are computed from the totals, confirming the mislabel.
+  - **Recommendation:** Replace "per-step" with "total" (or give both).
+  - **Certainty:** High.
+
+- **Severity:** Low · **Category:** Overclaim · **Location:** §16.8 (line 200)
+  - **Problem:** Sampling problems "where the classical analogue is **provably hard** (boson sampling, random-circuit sampling)". The hardness is *conditional* — exact-sampling hardness rests on polynomial-hierarchy non-collapse; approximate-sampling hardness needs further conjectures (anticoncentration, average-case #P). A book this careful about "believed but not proven" elsewhere (§13.7) should not say "provably" here.
+  - **Recommendation:** "…provably hard under widely believed complexity conjectures".
+  - **Certainty:** Medium-high.
+
+- **Severity:** Nit · **Category:** Attribution (requires verification) · **Location:** §16.7 (line 184)
+  - **Problem:** The slogan "QSVT is to quantum algorithms what Fourier analysis is to classical signal processing" is attributed to "the original paper" (Gilyén–Su–Low–Wiebe 2019). I could not place that sentence in GSLW from memory; it reads like the framing of the later "Grand Unification of Quantum Algorithms" survey (Martyn–Rossi–Tan–Chuang 2021).
+  - **Recommendation:** Verify the source; if it is Martyn et al., re-attribute.
+  - **Certainty:** Low-medium (added to uncertainty ledger).
+
+- **Severity:** Nit · **Category:** Consistency (running tally) · **Location:** line 3 (status block)
+  - **Problem:** 8/8 vs 9 H2 sections (§16.9 Bridge uncounted). Tally: bridge-excluded Ch9/10/11/14/15/16; bridge-included Ch12/13.
+  - **Recommendation:** Covered by the §13 lint-rule recommendation.
+  - **Certainty:** High.
+
+**Entertainment:** good for the most technical chapter in the book — the "spectral lift" framing of qubitization and the closing "better representations, better polynomials, tighter accounting" triad give shape to what could have been a formula dump. **Pedagogy:** the how-to-read's dependency-order note (§§16.3→16.4→16.5) is accurate and important; "Trotter for NISQ, qubitization/QSVT for fault-tolerant" is the right take-home; the §16.1 note that simulation outputs a *state*, not statistics, preempts the classic misreading. Sanity checks: 5, policy-compliant ✓ (check 1: α = 3 ✓; check 3 verified above ✓). **Rendering:** heavy display math all correctly escaped (`\\|`, `\\,`, `\\\\` in the pmatrix) ✓; no figures (the 2×2 block-encoding matrix serves as the visual anchor — adequate, though a QSP phase-sequence diagram would help §16.6).
+
+### book/part-07-complexity/17-complexity-theory.md (Chapter 17, 331 lines, 14 H2 sections)
+
+**Overall:** Ambitious and mostly excellent — the practitioner framing ("the working complexity vocabulary … after Arora–Barak distils"), the honest NP-vs-BQP treatment ("believed to be incomparable"), the MIP* = RE account (correct on all the delicate points: unbounded *entanglement* not communication, halting problem membership, Connes embedding resolved negatively), Raz–Tal, BQP^BQP = BQP, the four-meanings taxonomy of "exponential speedup", and the three-islands simulability section are all first-rate. But this chapter has the highest defect density so far — several checkable claims are wrong or internally inconsistent, which matters most in precisely the chapter that teaches readers to parse claims carefully.
+
+- **Severity:** Medium · **Category:** Mathematical (false theorem claim) · **Location:** §17.7 (line 171)
+  - **Problem:** Lists as an unconditional separation "BQP ≠ EXP (combining the hierarchy with BQP ⊆ PSPACE ⊆ EXP)". This argument is invalid: P ⊊ EXP plus P ⊆ BQP ⊆ PSPACE ⊆ EXP yields only the *disjunction* "BQP ≠ P **or** BQP ≠ EXP" — you cannot conclude which inequality holds. BQP = EXP would imply PSPACE = EXP, which is **open**, so BQP vs EXP is open. A section explicitly cataloguing which separations are unconditional must not contain a false one.
+  - **Recommendation:** Replace with a correct coarse separation: **BQP ⊊ EXPSPACE** (BQP ⊆ PSPACE ⊊ EXPSPACE by the space hierarchy), or state the disjunction honestly.
+  - **Certainty:** High.
+
+- **Severity:** Medium · **Category:** Internal consistency (numbers) · **Location:** §17.10 (line 247) and the Bridge (line 318)
+  - **Problem:** "Shor's algorithm at RSA-2048 sizes is roughly **7×10⁹ Toffoli** gates … drives the **~10 million physical qubits, ~10 hour** estimates of §15.3." Three-way conflict: §15.3 (the section explicitly cited) says **20 million qubits, 8 hours** (Gidney–Ekerå), and §16.8 says "**3×10⁹** Toffolis for RSA-2048". Gidney–Ekerå's published figures are ≈2.7×10⁹ Toffolis, 20M qubits, 8h — so §16.8 is right and §17.10 is wrong on all three numbers, while citing §15.3 as its source. The bridge repeats "ten million physical qubits, ten hours".
+  - **Recommendation:** Align §17.10 and the bridge with §15.3/§16.8 (2.7–3×10⁹ Toffoli, 20M qubits, 8h — or the 2025 Gidney figures, consistently).
+  - **Certainty:** High (internal inconsistency verifiable in-repo; external figures from the cited papers).
+
+- **Severity:** Low · **Category:** Mathematical (impossible claim) · **Location:** §17.3 (line 86)
+  - **Problem:** On QCMA vs QMA: "**oracle separations exist on both sides**". Impossible — QCMA ⊆ QMA holds unconditionally (relativised too), so no oracle can make QCMA strictly larger. The literature has quantum-oracle separations in one direction only (Aaronson–Kuperberg 2007; later in-place/distributional refinements), which §17.7 states correctly.
+  - **Recommendation:** "an oracle separation is known (Aaronson–Kuperberg 2007), and the natural conjecture is that they are distinct."
+  - **Certainty:** High.
+
+- **Severity:** Low · **Category:** Attribution · **Location:** §17.3 (line 88)
+  - **Problem:** Two slips in the local-Hamiltonian lineage. (i) "Kempe–Kitaev–Regev showed k = 3, then k = 2" — 3-local is **Kempe–Regev** (2003); 2-local is Kempe–**Kitaev**–Regev (2006). (ii) Geometric locality "on a 2D lattice — by results of Oliveira–Terhal **and Aharonov–Gottesman–Irani–Kempe**" — AGIK is the **1D line-of-qudits** result, strictly stronger than 2D and mislabelled here.
+  - **Recommendation:** "(Kempe–Regev: k = 3; Kempe–Kitaev–Regev: k = 2) … 2D lattice (Oliveira–Terhal) and even a 1D line of qudits (Aharonov–Gottesman–Irani–Kempe)."
+  - **Certainty:** Medium-high.
+
+- **Severity:** Low · **Category:** Factual (stale bound) · **Location:** §17.6 (line 148)
+  - **Problem:** Forrelation "(Aaronson 2010, **refined by Aaronson–Ambainis**): Õ(1) vs **Ω̃(N^{1/4})**" — N^{1/4} is the *original 2010* lower bound; the Aaronson–Ambainis refinement raised it to Ω̃(√N) (tight). As written, the refinement is cited while the pre-refinement number is given.
+  - **Recommendation:** "1 quantum query vs Ω̃(√N) classical (Aaronson–Ambainis)".
+  - **Certainty:** Medium-high.
+
+- **Severity:** Low · **Category:** Internal consistency · **Location:** §17.8 (line 182)
+  - **Problem:** "quantum walks giving … **n^{1.26…}** for triangle finding" — Ch15 §15.6 (correctly) gives the current best as Õ(n^{5/4}) = n^{1.25}; no stage of the known progression is 1.26 (MSS 1.3, Belovs ≈1.296, LMS ≈1.286, Le Gall 1.25).
+  - **Recommendation:** "n^{5/4}" to match Ch15.
+  - **Certainty:** High (internal); high (external).
+
+- **Severity:** Low · **Category:** Factual (date, requires verification) · **Location:** §17.8 (line 211)
+  - **Problem:** "the **2024** Jiuzhang 3.0 refinements" — Jiuzhang 3.0 was announced/published in **2023**. Also line 209's "USTC … culminating in 2024" and "Hefei and Wuxi" supercomputing-centre RCS claims are specific enough to need source verification.
+  - **Recommendation:** Verify dates and the Hefei/Wuxi attribution against sources; adjust.
+  - **Certainty:** Medium (added to uncertainty ledger).
+
+- **Severity:** Low · **Category:** Copy edit · **Location:** §17.1 (line 15)
+  - **Problem:** "We need **five** classes for the rest of the chapter:" — followed by **six** bullets (P, NP, coNP, BPP, PSPACE, EXP).
+  - **Recommendation:** "six".
+  - **Certainty:** High.
+
+- **Severity:** Nit · **Category:** Consistency · **Location:** line 316 (bridge heading) + line 3 (status)
+  - **Problem:** The bridge heading is unnumbered ("## Bridge to Chapter 18") — every other chapter so far numbers its bridge (§9.14, §12.13, §16.9, …). Status 13/13 vs 14 H2 sections is then "consistent" only by the accident of the missing number. Tally: bridge-excluded Ch9/10/11/14/15/16/17; bridge-included Ch12/13.
+  - **Recommendation:** Number it §17.14 and fix the count; lint rule (§13).
+  - **Certainty:** High.
+
+**Positive verifications:** BQP ⊆ PP (Adleman–DeMarrais–Huang) ✓; BQP ⊆ AWPP ⊆ PP ✓; Sipser–Gács–Lautemann BPP ⊆ Σ₂ᵖ∩Π₂ᵖ ✓; Savitch ✓; factoring ∈ NP∩coNP with witness argument ✓; Jones polynomial at 5th root of unity (AJL) BQP-complete ✓; Schuch–Verstraete DFT implication ✓; IP = PSPACE, QIP = QIP(3) = PSPACE (JJUW 2010) ✓; MIP = NEXP (BFL) ✓; MIP* = RE details all correct ✓; QMA(2) ⊆ NEXP and N-representability ✓; Raz–Tal forrelation oracle ✓; DJ bounded-error honesty (O(1) classical) ✓; Reichardt tightness correctly scoped to *total* functions ✓; Aaronson–Shi ✓; Gottesman–Irani QMA_EXP ✓; Cubitt–Pérez-García–Wolf undecidability ✓; Sycamore/IBM/Pan–Zhang narrative arc ✓; stabiliser/matchgate/tensor-network simulability triad with the "noise lowers effective bond dimension" explanation of the classical pushbacks ✓. **Entertainment:** high — "without being pushed around by marketing rhetoric in either direction" is the book's thesis in one clause. **Pedagogy:** the VQE-cannot-have-worst-case-guarantees lesson (§17.3) and the "input has to come from somewhere" rule (§17.9) are the two most transferable insights in Part 7. Sanity checks: 5, policy-compliant ✓. **Rendering:** clean throughout; `\mathrm{}` class names consistent; backtick-#P used to dodge the renderer's #-in-math bug — consistent with the documented workaround ✓.
