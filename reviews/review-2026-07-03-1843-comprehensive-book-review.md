@@ -662,3 +662,103 @@ During the Ch13 review I briefly suspected Ch11's two references to "variational
   - **Certainty:** Medium (all ledgered).
 
 **Entertainment:** high — "the miracle is that quantum error correction is nevertheless possible", the 3×3-block reading of Shor's code, and "the road from d = 7 to d = 27 is the road of the next five years" give the chapter momentum across 23 sections. **Pedagogy:** the §19.3 failure-first sequencing (show the bit-flip code amplifying phase errors *before* stating discretisation) is exactly right; boxed informal statements of the two big theorems serve the stated audience; §19.16's inline resource walk-through (10¹⁰ logical gates → p_L ≤ 10⁻¹¹ → d ≈ 21–27 → millions of qubits) is the single most useful calculation in the book so far. **Completeness:** only one figure (bit-flip code) in the entire chapter — §19.12 badly needs a surface-code lattice diagram (stars/plaquettes/strings), and §19.22 a merge/split cartoon; these are the two highest-value missing figures in the book. **Rendering:** heavy notation, house escaping consistent ✓; the `\mathsf{\#P}`-in-backticks workaround used again ✓.
+
+### book/part-09-hardware-and-software/20-quantum-hardware-platforms.md (Chapter 20, 142 lines, 13 H2 sections)
+
+**Overall:** A well-judged platform tour that stays at exactly the right altitude for the audience — physics mechanism, native gate, decisive architectural feature, honest scaling question, per modality. Verified physics: Josephson I(φ) = I_c sin φ and the anharmonicity story ✓; transmon charge-dispersion suppression e^{−√(8E_J/E_C)} at E_J/E_C ≈ 50–100 ✓; MS(θ) = exp(−iθX⊗X) matching §8.12's native-set claim ✓; Rydberg blockade radius 5–10 µm and 100–500 ns gates ✓; KLM original success probability 1/16 ✓; adiabatic condition correctly stated as slow relative to **inverse-square** of the minimum gap ✓; the Majorana-1 paragraph is a model of calibrated skepticism (contested zero-bias-peak interpretation, the 2018–2021 Kouwenhoven retraction as cautionary tale, "high-payoff, currently unrealised long bet") ✓; braiding-gives-only-Clifford with T-injection still required ✓; the honest D-Wave verdict with the "universally accepted as fair" hedge ✓. Sanity checks recomputed: 50 ns/100 µs = 5×10⁻⁴ decoherence floor vs 99.5% reported → control-dominated ✓; ion ratio 10⁻⁵ ✓; 0.99¹⁰⁰ ≈ 0.37 ✓. Bridge numbered (§20.13) — back to the Ch9–16 convention.
+
+- **Severity:** Low · **Category:** Consistency (book convention) · **Location:** whole chapter
+  - **Problem:** No **Moving-target warning** banner — the book's own convention (deployed in §8.12, §15.3, §15.8, §15.10 for dated vendor/hardware content) is absent from the single most perishable chapter in the book. Inline hedges exist ("as of 2026", §20.12's check-the-system-level note), but the formal banner a skimming reader would catch is missing.
+  - **Recommendation:** Add the standard banner after the intro (and/or before §20.12's numbers).
+  - **Certainty:** High (absence verified; severity judgment: Low because inline hedging partially covers it).
+
+- **Severity:** Low · **Category:** Factual (vendor history) · **Location:** §20.5 (line 53)
+  - **Problem:** "Atom Computing (whose **Phoenix** system was the first to publish 1000-atom operation)" — Phoenix was Atom Computing's *first-generation ~100-qubit* system (2021); the 1,180-atom array announced in 2023 was the unnamed second-generation machine.
+  - **Recommendation:** "whose second-generation system was the first to operate >1000 atomic qubits (2023)".
+  - **Certainty:** Medium-high.
+
+- **Severity:** Low · **Category:** Currency/internal tension · **Location:** §20.2 (line 23) vs §20.1 (line 17)
+  - **Problem:** §20.2 describes Rigetti's topology as "an octagonal '**Aspen**' tiling" while §20.1 cites "Rigetti's **Ankaa**" as the current device — Ankaa (2023+) moved to a square lattice with tunable couplers; the octagonal tiling describes the retired Aspen generation.
+  - **Recommendation:** "Rigetti's earlier Aspen devices used an octagonal tiling; the current Ankaa generation uses a square lattice."
+  - **Certainty:** Medium.
+
+- **Severity:** Low · **Category:** Requires verification (ledgered) · **Location:** §20.7 (line 69, 71), §20.8 (line 77)
+  - **Problem:** (i) Silicon-spin "10–100 ns for single-qubit rotations" — typical ESR/EDSR single-qubit gates run 0.1–1 µs; 10–100 ns is optimistic outside hole-spin outliers. (ii) "Quantum Motion's 1024-dot quantum-classical chip" — plausible but specific; verify. (iii) NV computing programs "Delft and **TU Wien**" — Delft yes; the second flagship NV program is usually Stuttgart (Wrachtrup) or the commercial Quantum Brilliance; TU Wien is an unexpected pick.
+  - **Recommendation:** Verify all three against sources.
+  - **Certainty:** Medium (ledgered).
+
+- **Severity:** Nit · **Category:** Factual (internal tension) · **Location:** §20.1 (line 17)
+  - **Problem:** "several hundred (IBM's Heron and **Condor** families), with the largest announced processors **approaching** 1000 physical qubits" — Condor, named in the same sentence, is 1,121 qubits, i.e. *past* 1000.
+  - **Recommendation:** "exceeding 1000 (Condor, 1,121)".
+  - **Certainty:** Medium-high.
+
+- **Severity:** Nit · **Category:** Copy edit · **Location:** §20.9 (line 85)
+  - **Problem:** "in **a** indium-arsenide / aluminium nanowire architecture" — "an indium-arsenide".
+  - **Certainty:** High.
+
+- **Severity:** Nit · **Category:** Cross-reference (deferred) + status tally · **Location:** §20.9 (line 83), line 3
+  - **Problem:** (i) "$T$ state, §32.4" — Ch32 verification checklist grows again (now: CV, MBQC, thermodynamic resource theory, bosonic codes, §32.4 = topological/T-injection). (ii) Status 12/12 vs 13 H2 sections — bridge numbered §20.13 but uncounted; excluded-tally: Ch9/10/11/14/15/16/17*/18*/20 (*unnumbered).
+  - **Certainty:** High (counts); deferred (Ch32).
+
+**Entertainment:** high — "Real hardware is much more interesting", the QCCD-vs-photonic-interconnect fork, and the closing "no single modality has won" verdict keep a spec-sheet chapter readable. **Pedagogy:** the mechanism→native-gate→architecture→open-question template per modality is consistent and effective; sanity checks 1–2 (compute the decoherence floor, then notice the reported fidelity sits *above* it) actively teach the control-vs-coherence distinction rather than stating it. Neutral-atom 2q "approaching 99.5%" is at least *consistent* with Ch18's conservative 99.0% — both trail the published 99.5% (Evered 2023); one coordinated update should fix both (ledgered at Ch18). **Rendering:** clean; unit spacing via `\\,` house-escaped ✓; no figures — a per-modality comparison table in §20.12 rendered as an actual Markdown table (it is currently prose paragraphs) would improve scanability, though prose keeps the hedges attached to the numbers.
+
+### book/part-09-hardware-and-software/21-quantum-control-and-electronics.md (Chapter 21, 160 lines, 16 H2 sections)
+
+**Overall:** Excellent — the rare chapter that treats control engineering as a first-class subject rather than an appendix, and the currency is impressive: the Qiskit Pulse lifecycle (deprecated 1.3, removed 2.0 in 2025, replaced by OpenQASM 3 defcal) is stated exactly right ✓, and the §21.2 parenthetical that a directional coupler is reciprocal and provides no isolation is the kind of precision that will save a reader from a real mistake ✓. Verified: rotating-frame drive Hamiltonian and t_g = π/Ω₀ ✓; DRAG quadrature = derivative × (−1/α) ✓; fridge stage ladder (50 K / 4 K / still ~700 mK / cold plate ~100 mK / MXC ~10 mK) ✓; standard 20/10/20 dB attenuation rationale ✓; 14-bit DAC ≈ 84 dB dynamic range ✓; virtual-Z-as-frame-advance ✓; reset-loop suppression p_e^k with the independence assumption stated ✓; GRAPE/Krotov/CRAB taxonomy ✓; QUA and LabOne Q ✓; sanity checks recomputed (check 3: φ = 2π·50 kHz·1 µs ≈ 0.314 rad ✓; check 4: k = 3 rounds for 0.02^k < 10⁻⁴ ✓).
+
+- **Severity:** Low · **Category:** Cross-chapter consistency · **Location:** §21.9 (line 93) vs Ch18 §18.6
+  - **Problem:** §21.9: "residual excited-state population after active reset (typically **1–3%** on current devices)"; Ch18 §18.6: measurement-based reset residual "typically **10⁻³ to 10⁻⁴**". Two orders of magnitude apart. Both are defensible under different assumptions — 1–3% is single-pass (≈ readout error), 10⁻³–10⁻⁴ is after the 2–3 iterations §21.8 itself recommends — but neither chapter states its assumption, and a reader comparing them will see a contradiction.
+  - **Recommendation:** Qualify both: "per single reset round" (Ch21) / "after repeated heralded reset" (Ch18).
+  - **Certainty:** High (tension verifiable in-repo).
+
+- **Severity:** Low · **Category:** Garbled sentence (physics) · **Location:** §21.6 (line 59)
+  - **Problem:** "infrared (IR) absorbers … to attenuate room-temperature blackbody photons that would otherwise dephase the qubit **at rates of order 1/T₁ ≈ 1 photon per coherence time at 4 K**". The clause mixes a rate (1/T₁), a photon count, and a temperature in a way that parses to nothing definite; the underlying physics (stray IR photons → photon-shot-noise dephasing and quasiparticle generation) deserves a clean sentence.
+  - **Recommendation:** Rewrite, e.g. "…which at the ~1-photon-per-µs flux typical of unfiltered lines would limit both T₁ (via quasiparticle generation) and T₂ (via photon-shot-noise dephasing)".
+  - **Certainty:** High that the sentence is broken; medium on the intended numbers.
+
+- **Severity:** Low · **Category:** Requires verification (product names) · **Location:** §21.3 (line 37), §21.4 (line 45)
+  - **Problem:** (i) "**Cirq's PulseSchedule**" — Cirq has no public pulse-level API by that name (Google's pulse access is internal); this looks like an invented symmetry with Qiskit Pulse. (ii) "Rigetti's **Lodgepole**" as an in-house control system — unverifiable from memory.
+  - **Recommendation:** Verify both; if Cirq lacks a public pulse API, say so — that asymmetry is itself informative.
+  - **Certainty:** Medium-high on (i), low on (ii) — both ledgered.
+
+- **Severity:** Nit · **Category:** Numerical precision · **Location:** §21.7 (line 65)
+  - **Problem:** "the mixing chamber dissipates only **a few hundred microwatts**" — that is the cooling power at ~100 mK; at the 10 mK base temperature quoted in the same sentence, typical dilution refrigerators provide only **tens of microwatts** (e.g. ~20 µW at 20 mK).
+  - **Recommendation:** "tens of microwatts at base temperature (a few hundred µW at 100 mK)".
+  - **Certainty:** Medium-high.
+
+- **Severity:** Nit · **Category:** Consistency (running tally) · **Location:** line 3
+  - **Problem:** Status 15/15 vs 16 H2 sections (§21.15 Bridge, numbered, uncounted).
+  - **Certainty:** High.
+
+**Entertainment:** high — "a control system that only plays open-loop pulses is an instrument; one that closes a loop is a computer" is the best sentence in Part 9, and the closing speed/fidelity/parallelism trilemma lands. **Pedagogy:** the walk *down* the stack (unitary → waveform → converter → fridge) and back *up* (feedback → calibration → interfaces) is the right narrative shape; the calibration cadence as a numbered coarse-to-fine list is directly actionable; sanity check 5 (choose your own calibration cadence and justify by drift mechanism) is the best open-ended exercise in the book so far. **Rendering:** clean; the text-block pseudocode for reset renders fine; unit spacing house-escaped ✓; no figures — a fridge-stack diagram with the attenuation ladder would serve §21.7 well but the prose is self-sufficient.
+
+### book/part-09-hardware-and-software/22-hardware-engineering-metrics.md (Chapter 22, 259 lines, 14 H2 sections)
+
+**Overall:** The "adversarial document" framing of vendor sheets is the right stance and the chapter delivers on it — the four-meanings-of-qubit-count taxonomy, the T₂-family disambiguation, the QV saturation critique, and the six-step reading guide (§22.14) are all genuinely useful to the stated audience. Verified: F_avg = (dF_pro+1)/(d+1) with the worked 0.99 → 0.9933 example ✓ (and the "larger is printed" heuristic is mathematically right, F_avg > F_pro for F < 1 ✓); 0.999¹⁰⁰⁰ ≈ 0.37 ✓; heavy-hex avg degree ≈2.5, √127·3 ≈ 33 SWAP-overhead arithmetic ✓; QV protocol (square circuits, heavy-output > 2/3, QV = 2^{d*}) ✓; linear-XEB estimator 2ⁿ⟨p_ideal⟩−1 with correct limits ✓; readout asymmetry mechanism consistent with Ch18 ✓; sanity checks recomputed (check 1: N = 100 gates to 1/e ✓; check 5: ≈30 cycles ✓). Bridge style: merged into numbered §22.14 — a *fourth* bridge convention (tally: numbered separate / unnumbered / absent / merged). **Ledger item resolved:** Ch2's forward promise is now checkable — Ch2 calls the coherent two-qubit-gate budget "**circuit volume**"; Ch22 §22.5 names the same quantity the "**gate-count budget**" (N_ops = T₂^echo/t_2q) and never uses "circuit volume", which moreover collides with §22.7's *Quantum Volume* in the reader's mind. Cross-chapter terminology finding (Low): align Ch2 to "gate-count budget" or add a disambiguating clause.
+
+- **Severity:** Medium · **Category:** Internal inconsistency (×2) + dubious claim · **Location:** §22.9 (lines 155–157) vs §22.13 (line 224)
+  - **Problem:** Three mutually inconsistent statements about the same device. (i) §22.9: "AQ scales approximately as **√N_phys** … a 100-physical-qubit device might yield AQ ∼ 10". (ii) §22.9, next paragraph: "IonQ Forte Enterprise reports **AQ = 36 at 64 physical qubits**" — √64 = 8, wildly off the rule just stated. (iii) §22.13: "IonQ Forte / Forte Enterprise — **36 qubits** all-to-all, AQ = 36". Externally, Forte has 36 physical qubits and IonQ's achieved pattern is AQ ≈ N_phys (Aria: 25/25; Forte: 36/36) — which contradicts the √N rule entirely; that heuristic appears to be invented.
+  - **Recommendation:** Fix the qubit count to 36 in §22.9, delete or drastically weaken the √N rule (AQ ≈ N on all-to-all ion traps; sublinear on sparse-connectivity devices), and keep §22.13 as the source of truth.
+  - **Certainty:** High on the internal contradictions; medium-high on the external facts.
+
+- **Severity:** Low · **Category:** Factual (requires verification, likely wrong) · **Location:** §22.7 (line 131) and §22.13 (line 221)
+  - **Problem:** "QV … **2^15 on IBM Heron**" (stated twice). IBM's last *published* QV milestone was 512 (2⁹, Falcon, 2022); IBM then publicly deprecated QV in favour of EPLG/CLOPS-style metrics and, to my knowledge, has never reported a Heron QV. A 2^15 figure has no obvious source.
+  - **Recommendation:** Verify; if unsourced, replace with "IBM no longer reports QV (last published: 512 in 2022)" — which is itself a useful data point for the chapter's thesis.
+  - **Certainty:** Medium-high.
+
+- **Severity:** Low · **Category:** Factual (conflation, requires verification) · **Location:** §22.10 (line 175)
+  - **Problem:** "**Willow's** 2024 results report F_XEB in the 10⁻³–10⁻² range at **n = 67, d = 24**" — those parameters match the Morvan et al. random-circuit-sampling campaign on the 67/70-qubit **Sycamore-class** processor (2023, Nature 2024); Willow's own 2024 RCS demonstration used its 105-qubit lattice. Two experiments appear merged.
+  - **Recommendation:** Split the attribution or update the parameters.
+  - **Certainty:** Medium.
+
+- **Severity:** Low · **Category:** Cross-chapter consistency · **Location:** §22.4 (line 85) vs Ch20 §20.4
+  - **Problem:** Ch22: trapped-ion "T₁ measured in **seconds**"; Ch20: "T₁ > **10⁴ s** (essentially infinite on circuit timescales)" for hyperfine qubits. The Ch22 figure describes optical-transition qubits (metastable D-states, T₁ ≈ 1 s); for the hyperfine qubits both chapters otherwise assume, Ch20 is right.
+  - **Recommendation:** "effectively unbounded for hyperfine qubits; ~1 s for optical-transition qubits".
+  - **Certainty:** Medium-high.
+
+- **Severity:** Low · **Category:** Requires verification (dates/names/numbers, all ledgered) · **Location:** §22.13
+  - **Problem:** (i) "QV 32 on Falcon in **2019**" — announced January 2020. (ii) "64 on Honeywell **System Model H1** in 2020" — QV 64 was **H0** (June 2020); H1 launched at QV 128. (iii) "**Q-PERFECT**" as an EC benchmark project — cannot be placed; verify existence and spelling. (iv) Quantinuum H2 "F_2q ≈ **0.9997**" — published H2 figures are ≈0.999; 0.9997 may be a record single-pair number. (v) "**H3** (announced)" — Quantinuum's announced next generation is named **Helios**. (vi) H2 QV quoted as ~2^19 "as of 2025" — Quantinuum continued climbing (2^20 in 2024, higher since); likely stale.
+  - **Recommendation:** Source-check the §22.13 cohort table as a block before publication; it is the highest-perishability content in the book (the section's own self-warning acknowledges this).
+  - **Certainty:** Medium (all ledgered).
+
+**Entertainment:** high — "every vendor benchmark sheet … is a small adversarial document" is a thesis statement the whole chapter earns; "mistrust everything new" closes it honestly. **Pedagogy:** §22.14's six-step reading protocol is the most directly reusable artifact in Part 9; the QV critique (saturating, 2q-dominated, non-algorithmic) is fair and balanced; the T₂*/echo/CPMG ladder with "the ratios tell you about the noise spectrum" teaches diagnosis, not just definitions. Sanity check 2 (infer the noise spectrum from T₁ = 200 µs, T₂* = 30 µs) is excellent. **Rendering:** clean; house escaping consistent; the §22.13 vendor list as bullets works, though this chapter (unlike §20.12) would genuinely benefit from a comparison table — with the moving-target banner it currently lacks (the §22.13 inline caveat partially covers it).
