@@ -353,3 +353,77 @@
   - **Certainty:** Medium (pending Ch32 read).
 
 **Positive verifications recorded:** Kochen–Specker facts correct (117 vectors in ℝ³ original, shorter Cabello/Peres–Mermin proofs, d = 2 admits a hidden-variable model); Robertson-bound vacuousness remark on Z-eigenstates correct and pedagogically sharp; no-cloning one-liner ⟨ψ|φ⟩ = ⟨ψ|φ⟩² correct; Kraus-rank bound dim(H_A)·dim(H_B) correct; Stinespring K_i = ⟨i_E|U_SE|0_E⟩ correct; Lindblad↔Kraus first-order correspondence correct.
+
+### book/part-05-measurement-and-information/11-measurement-theory.md (Chapter 11, 166 lines, 8 H2 sections)
+
+**Overall:** A very strong operational chapter — arguably the best-organized in the book so far. The "How to read this chapter" paragraph gives an honest dependency map; the trine POVM and the readout-error POVM are exactly the right two concrete examples; and §11.7 is a genuinely practitioner-grade treatment (basis rotation, qubit-wise vs. general commutation, parameter-shift, calibration-matrix mitigation) that most textbooks omit entirely. Mathematics recomputed and verified: trine POVM Σₖ (2/3)|ψₖ⟩⟨ψₖ| = I via Σₖ n̂ₖ = 0 ✓; readout-error POVM E₀+E₁ = I with correct conditional-probability reading ✓; Kraus update rule and E_m = M_m†M_m ✓; Naimark dilation statement and the ancilla-dimension-≤-outcomes bound ✓ (qubit ancilla for the trine: joint dim 4 ≥ 3 ✓); Pauli-basis orthonormality under tr(A†B)/2ⁿ ✓; Helstrom bound in both prior-weighted and equal-prior forms ✓; sanity check 2's ½(1+√(1−|c|²)) ✓ (standard pure-state Helstrom); IDP inconclusive probability P₍?₎ = |c| ✓; the mixed-state USD support condition (neither support contained in the other) ✓ — a precision most references get wrong; HS† as the Y-basis rotation ✓ (recomputed: (HS†)Y(HS†)† = HXH = Z); parity formula ∏(−1)^{bᵢ} over non-identity slots ✓; parameter-shift ½(⟨O⟩(θ+π/2)−⟨O⟩(θ−π/2)) ✓ incl. sanity check 4's −sin θ ✓; shot-noise variance 1−⟨Z⟩² ✓; calibration matrix singular at ε→1/2 (det = 1−2ε) ✓; factorized-inverse cost O(n·2ⁿ) ✓. HKP classical-shadows citation (2020) and sample-complexity form N = O(log M · max‖O‖²_shadow/ε²) with ‖O‖²_shadow ≤ 4^k for k-local Paulis ✓ (4^k is HKP's stated bound; the exact Pauli variance ~3^k is tighter, so the text is safe). The honest caveat that shadow reuse guarantees are class-dependent (adversarial post-hoc queries erase the advantage) is exactly right and rarely stated. Cross-refs verified: §5.4 (Measurement Postulate) ✓, §5.6 (Observables) ✓, §5.10 (Density Matrices) ✓, §§9.6–9.9 (circuit measurement/deferred/mid-circuit/feedforward — heading titles match) ✓.
+
+- **Severity:** Low · **Category:** Cross-reference precision · **Location:** §11.3 (line 71) and §11.8 (line 153)
+  - **Problem:** Both cite "the partial trace (§5.11)" / "the partial-trace structure of §5.11" — but §5.11 is "Reduced States"; the Partial Trace section is **§5.12** (verified against Ch5 headings). Reduced states are defined *via* the partial trace, so the reference is adjacent, not wrong-topic, but a reader following it lands one section early.
+  - **Recommendation:** Cite §5.12, or §§5.11–5.12.
+  - **Certainty:** High (headings checked this session).
+
+- **Severity:** Low · **Category:** Factual (history) · **Location:** §11.4 (line 89)
+  - **Problem:** "alternatives developed since 2010" introduces a list that includes randomised benchmarking — but RB dates to Emerson et al. 2005 and Knill et al. 2008, before 2010. GST (~2013) and DFE (2011) fit the claim; RB does not.
+  - **Recommendation:** "developed since the mid-2000s", or move RB out of the "since 2010" framing.
+  - **Certainty:** High.
+
+- **Severity:** Low · **Category:** Technical precision · **Location:** §11.5 (line 105)
+  - **Problem:** "random global Cliffords on n qubits require **depth** O(n²/log n) to compile" — Θ(n²/log n) is the Aaronson–Gottesman **gate-count** bound for Clifford circuits, not depth; Cliffords compile to depth O(n) (linear-nearest-neighbour constructions achieve ~2n+O(1)). The stated conclusion (global Cliffords are expensive at large n, so random-Pauli depth-1 is the default) survives either way.
+  - **Recommendation:** Replace "depth" with "circuit size (gate count)", or state depth O(n).
+  - **Certainty:** Medium-high (gate-count bound certain; exact best-known depth constants from memory).
+
+- **Severity:** Low · **Category:** Requires verification · **Location:** §11.4 (line 89)
+  - **Problem:** Direct fidelity estimation described as "O(1/ε²) Pauli measurements … **regardless of n**". Flammia–Liu 2011: the number of measurement *settings* is O(1/ε²) regardless of n, but the total copy count is n-independent only for well-conditioned states (stabilizer states, W states); for general pure states the worst-case shot count picks up dimension-dependent factors. As a blanket claim this is a mild overstatement.
+  - **Recommendation:** Qualify ("for stabilizer-like target states") or soften to "settings". Added to the uncertainty ledger for citation check.
+  - **Certainty:** Medium (recalled from the DFE literature; worth verifying against Flammia–Liu Theorem 1).
+
+- **Severity:** Nit · **Category:** Redundancy · **Location:** §11.2 (line 45)
+  - **Problem:** "the symmetric informationally-complete POVM on a qubit has exactly four outcomes; the Bloch-tetrahedron POVM has four" — these are the *same object* (the qubit SIC-POVM **is** the Bloch tetrahedron), but the sentence lists them as two distinct examples.
+  - **Recommendation:** Merge: "the symmetric informationally-complete (Bloch-tetrahedron) POVM has four".
+  - **Certainty:** High.
+
+- **Severity:** Nit · **Category:** Terminology precision · **Location:** §11.4 (line 89)
+  - **Problem:** Randomised benchmarking "extract[s] a single fidelity-like figure of merit **per Clifford gate**" — standard RB yields the *average* error per Clifford over the group; a per-specific-gate figure requires interleaved RB. Loose but potentially misleading next to Ch25's presumably careful treatment.
+  - **Recommendation:** "average error per Clifford"; defer detail to Ch25.
+  - **Certainty:** Medium-high.
+
+- **Severity:** Nit · **Category:** Consistency · **Location:** line 3 (status block)
+  - **Problem:** `Sections drafted: 7 / 7` vs 8 H2 sections (§11.1–§11.7 + §11.8 Bridge) — same bridge-not-counted pattern as Ch9/Ch10 (8th instance). At this frequency it looks like a deliberate convention (bridges excluded), in which case the convention should be documented in PROCESS.md/generate_progress.py rather than "fixed" file-by-file.
+  - **Recommendation:** Decide the convention once, document it, and lint for it (see §13 recommendation).
+  - **Certainty:** High (count); Medium (whether it is drift or convention).
+
+**Entertainment:** high for formal material — "the measurement either tells you the state or admits failure" and the POVM-as-partial-trace-of-projective unification give the chapter a satisfying arc from postulate to practice. **Pedagogy:** the §11.1 list of three projective features that each fail in general (outcome count, repeatability, known post-state) is a model setup for a generalisation; sanity checks (5, no inline answers — policy-compliant ✓, and check 1's hint is the precise version of §11.2's loose parenthetical — nice layering). **Completeness:** no figures and no code in a chapter about *procedures* — a calibration-matrix numeric example (2×2, ε = 0.05) or a shadows shot-count table would land well, but the prose carries it. **Rendering:** house escaping (`\\{`, `\\,`, `\\|`) applied consistently throughout, including inside display blocks ✓; `\succeq` renders on GitHub MathJax ✓.
+
+### book/part-05-measurement-and-information/12-quantum-information-theory.md (Chapter 12, 707 lines, 13 H2 sections)
+
+**Overall:** The strongest theory chapter so far. The "operational meanings matter more than algebraic definitions" thesis is executed consistently — every quantity gets its protocol (entropy→Schumacher, trace distance→Helstrom, χ→accessible information, S(A|B)→state merging). Mathematics recomputed and verified: Bell-state entropy arithmetic (S_A = S_B = 1, S_AB = 0, I(A:B) = 2, S(A|B) = −1) ✓; coherent information on a product state = −S(ρ_A) ✓ (S(ρ_B) − S(ρ_A⊗ρ_B) = −S(ρ_A)); I_c(A⟩B) = −S(A|B) ✓; the Helstrom form ½+½D consistent with Ch11's ½(1+½‖·‖₁) ✓; SSA-with-trivial-B reduction to ordinary subadditivity (sanity check 5) ✓; sanity check 3 recomputed (ρ−σ eigenvalues ±1/√2, D = 1/√2 = √(1−F²) with F = 1/√2) ✓; sanity check 4 recomputed (average-state eigenvalues (1±1/√2)/2, S ≈ 0.60 < 1) ✓. Attributions and dates all check: Lieb–Ruskai 1973, Holevo 1973, HSW 1997–98, Hastings 2009 superadditivity, LSD (Lloyd 1997/Shor 2002/Devetak 2005), BSST single-letter C_E, BCFJS 1996 no-broadcasting (incl. the correct commuting-ensemble condition), Pati–Braunstein 2000, Schumacher 1995, Wootters–Zurek/Dieks 1982. The state-merging resource-ledger paragraph (classical communication is used but not priced by S(A|B)) and the no-deleting caveat ("not a formal Noether-style conservation law") are exactly the honest precision the book promises. Cross-refs verified this session: §4.7 Spectral Decomposition ✓, §4.9 defines the trace norm ✓, §4.14 contains shot-budget accounting ✓, §7.12 contains superdense coding ✓, §7.13 Entanglement Measures ✓, Ch18 = "Noise, Decoherence, and Errors" ✓, Ch27 = "Cryptography and Security" ✓.
+
+- **Severity:** Low · **Category:** Cross-reference (factual) · **Location:** "How to read" block (line 43)
+  - **Problem:** "§§12.8–12.10 preview material expanded in Part 8 (error correction) and **Part 12 (cryptography)**" — cryptography is Chapter 27, which lives in **Part 11** (part-11-applications, verified); Part 12 is Adjacent Computational Models. Off-by-one part number.
+  - **Recommendation:** "Part 11 (applications/cryptography)".
+  - **Certainty:** High (directory structure checked).
+
+- **Severity:** Low · **Category:** Mathematical (scope ambiguity → false if read generally) · **Location:** §12.7 (lines 408–409)
+  - **Problem:** "the lower bound is generally strict (it saturates only at the endpoints F = 0 and F = 1)". Scoped to *pure states* (how the sentence begins), this is true. But the clause reads as a general claim, and for general states it is **false**: take commuting states ρ = diag(½, ½, 0), σ = diag(½, 0, ½). Then F = Σ√(p_iq_i) = ½ and D = ½Σ|p_i−q_i| = ½, so 1−F = D = ½ with F = ½ — saturation far from either endpoint. (Classical saturation condition: for every outcome, p_i = q_i or p_iq_i = 0.)
+  - **Recommendation:** Scope explicitly: "for a pair of pure states the lower bound saturates only at F ∈ {0,1}"; or state the general saturation condition.
+  - **Certainty:** High (counterexample recomputed this session).
+
+- **Severity:** Nit · **Category:** Terminology · **Location:** §12.4 (line 239)
+  - **Problem:** State merging "(sometimes called the *mother protocol*)" — in the Devetak–Harrow–Winter resource calculus, the "mother" is the fully-quantum-Slepian–Wolf protocol, from which state merging is *derived*; naming state merging itself the mother is loose. The section's closing paragraph (acknowledging the FQSW formulation as equivalent) partly redeems this.
+  - **Recommendation:** Attach the "mother" label to the FQSW picture in that closing paragraph instead.
+  - **Certainty:** Medium.
+
+- **Severity:** Nit · **Category:** Notation continuity · **Location:** §12.10 (line 522) vs §12.3 (line 205)
+  - **Problem:** §12.3 defines the *state* coherent information I_c(A⟩B)_ρ; §12.10's LSD formula uses the *channel* version I_c(ρ, 𝒩) without the one-line bridging definition (feed half of ρ's purification through 𝒩, compute S(B) − S(RB)). A careful reader can't reconstruct the LSD formula from what's on the page.
+  - **Recommendation:** Add one bridging sentence or a parenthetical definition at first use in §12.10.
+  - **Certainty:** High.
+
+- **Severity:** Low · **Category:** Requires verification (deferred) · **Location:** intro (line 12), §12.11 (line 594), §12.12
+  - **Problem:** (i) "quantum channel capacities (Chapter 18)" — Ch18 is titled "Noise, Decoherence, and Errors"; confirm capacities are actually treated there when Ch18 is reviewed. (ii) "thermodynamic free energy (briefly, in Chapter 32)" — added to the growing Ch32 verification list (now: CV, MBQC, thermodynamic resource theory).
+  - **Recommendation:** Track in uncertainty ledger; resolve at Ch18/Ch32 reads.
+  - **Certainty:** — (deferred).
+
+**Status-block note (upgrades a global finding):** `Sections drafted: 13 / 13` — and the chapter has exactly 13 H2 sections *including* the §12.13 Bridge. So Ch12 **counts** its bridge while Ch10 (13/13 of 14) and Ch11 (7/7 of 8) **exclude** theirs. This settles the drift-vs-convention question from the Ch11 entry: the counting is *inconsistent across chapters*, not a deliberate convention. Strengthens the case for the §13 lint-rule recommendation (compare status count to `grep -c '^## '`).
+
+**Entertainment:** excellent — "every classical theorem has a quantum shadow", the negative-entropy payoff in §12.4 (entanglement "falls out of the protocol ... free of charge"), and the Schumacher origin-of-the-qubit closer give the chapter a real narrative spine. **Pedagogy:** the three-point preamble and the skim-depth guidance per section block are exactly right for the book's stated audience; §12.4's resource-ledger paragraph preempts the most common misreading of state merging. Sanity checks: 5, no inline answers beyond confirmable targets — policy-compliant ✓, all recomputed correct ✓. **Rendering:** house escaping consistent (`\\{`, `\\,`, `\\|` incl. inside display math) ✓; hard-wrapped source lines inside `$...$` spans avoided ✓.
