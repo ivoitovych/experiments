@@ -1044,3 +1044,13 @@ Historical Prelude's own perishable hardware claims into the dated
 ledger; and publishing the mdBook build via GitHub Pages / CI, which
 would also reopen the EPUB and PDF question once a compatible toolchain
 is pinned.
+
+---
+
+*Archival note (2026-07-04): the working artifacts named in this narrative —
+`chapter0_attempt1-4.md`, `chapter_0_review_1-4.md`,
+`historical_chapter__new_attempt_1.md`, `historical_chapter__unified_opinion_1.md`,
+`review-2026-05-29-0144.md`, `review-2026-05-30-0356.md` — were moved from the
+repository root into `archive/` (see `archive/README.md`), and the single-file
+`review/` directory was merged into `reviews/`. Mentions above refer to their
+original root-level locations; git history preserves the full lineage.*

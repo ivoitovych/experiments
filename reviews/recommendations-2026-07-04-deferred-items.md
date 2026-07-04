@@ -296,3 +296,4 @@ bookkeeping.
 ## Execution log (2026-07-04, insert-only)
 
 - ✅ **Step 1 (this commit): quick wins** — O1 (Quantum Motion characterisation-chip precision, Ch20), O2 (SPDC rate range, Ch3), O3 (Qiskit 1.3 version pin, Ch23), O4 (FIPS 206 two-step process phrasing, Ch27 ×2), O7 (Alibaba "Tai Zhang", Ch24), D5 (§32.8 thermodynamic resource-theory paragraph closing the §12.11 promise). O5/O6/O8 skipped as recommended.
+- ✅ **Step 2 (this commit): D7 repo hygiene** — 12 root artifacts moved to `archive/chapter0-drafts/` and `archive/reviews-2026-05/` via `git mv`; `review/code-review-2026-06-17-1840.md` merged into `reviews/`; `archive/README.md` added; insert-only archival note appended to HISTORY.md (prose filename mentions left intact — they are historical narrative, not links).
