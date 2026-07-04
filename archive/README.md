@@ -9,6 +9,9 @@ reports).
   chapter is `book/part-00-historical-prelude/00-historical-prelude.md`.
 - `reviews-2026-05/` — the May 2026 review passes, superseded by the comprehensive
   2026-07-03 review in `reviews/`.
+- `plan-original-toc.md` — the original planned section outline (formerly TOC.md,
+  with its reconciliation note). TOC.md is now generated from the delivered
+  manuscript's headings by `scripts/generate_toc.py` (`make toc`).
 
 Archived 2026-07-04 (moved from the repository root; git history preserves the
 original paths).
