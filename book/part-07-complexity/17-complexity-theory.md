@@ -1,6 +1,6 @@
 # Chapter 17. Complexity Theory Around Quantum Computing
 
-> **Status:** draft · **Phase:** 3 · **Sections drafted:** 13 / 13
+> **Status:** draft · **Phase:** 3 · **Sections drafted:** 14 / 14
 
 [← Previous: Chapter 16](../part-06-algorithms/16-modern-algorithmic-frontier.md) · [Table of Contents](../../README.md) · [Next: Chapter 18 →](../part-08-noise-and-qec/18-noise-decoherence-and-errors.md)
 
@@ -12,7 +12,7 @@ The chapter is not a textbook on complexity. It is the working complexity vocabu
 
 ## 17.1 P, NP, NP-Complete, and BPP
 
-Classical complexity classes are *sets of decision problems* — functions from $\\{0,1\\}^*$ to $\\{0,1\\}$ — graded by the resources a Turing machine uses to compute them. We need five classes for the rest of the chapter:
+Classical complexity classes are *sets of decision problems* — functions from $\\{0,1\\}^*$ to $\\{0,1\\}$ — graded by the resources a Turing machine uses to compute them. We need six classes for the rest of the chapter:
 
 - $\mathrm{P}$ is the class of decision problems solvable by a deterministic Turing machine in time polynomial in the input length.
 - $\mathrm{NP}$ is the class of problems for which a "yes" instance admits a polynomial-length **witness** that a deterministic verifier checks in polynomial time. Equivalently: solvable in polynomial time by a *nondeterministic* machine.
@@ -83,9 +83,9 @@ $$
 \mathrm{NP} \;\subseteq\; \mathrm{MA} \;\subseteq\; \mathrm{QCMA} \;\subseteq\; \mathrm{QMA} \;\subseteq\; \mathrm{PP} \;\subseteq\; \mathrm{PSPACE},
 $$
 
-where $\mathrm{MA}$ (Merlin–Arthur) is the randomised classical version of $\mathrm{NP}$ — a classical witness, a $\mathrm{BPP}$ verifier — and **$\mathrm{QCMA}$** (Quantum Classical Merlin–Arthur) is the in-between class with a *classical* witness but a *quantum* verifier. Whether the witness benefits from being quantum is the $\mathrm{QCMA}$ vs $\mathrm{QMA}$ question. It is open whether $\mathrm{QCMA} = \mathrm{QMA}$; oracle separations exist on both sides, and the natural conjecture is that they are distinct.
+where $\mathrm{MA}$ (Merlin–Arthur) is the randomised classical version of $\mathrm{NP}$ — a classical witness, a $\mathrm{BPP}$ verifier — and **$\mathrm{QCMA}$** (Quantum Classical Merlin–Arthur) is the in-between class with a *classical* witness but a *quantum* verifier. Whether the witness benefits from being quantum is the $\mathrm{QCMA}$ vs $\mathrm{QMA}$ question. It is open whether $\mathrm{QCMA} = \mathrm{QMA}$; a quantum-oracle separation is known (Aaronson–Kuperberg 2007, with later refinements), and the natural conjecture is that they are distinct. (Since $\mathrm{QCMA} \subseteq \mathrm{QMA}$ holds unconditionally, any separation can only run one way.)
 
-**The local Hamiltonian problem.** The flagship $\mathrm{QMA}$-complete problem, due to Kitaev (2002), is the **$k$-local Hamiltonian problem**: given a Hamiltonian $H = \sum_j H_j$ that is a sum of polynomially many $k$-local terms (each $H_j$ acts non-trivially on at most $k$ qubits), and two thresholds $a < b$ with $b - a \geq 1/\mathrm{poly}(n)$, decide whether the smallest eigenvalue of $H$ is at most $a$ or at least $b$. Kitaev showed this is $\mathrm{QMA}$-complete for $k = 5$; subsequent refinements pushed it down: Kempe–Kitaev–Regev showed $k = 3$, then $k = 2$. Even more strikingly, the problem remains $\mathrm{QMA}$-complete for *geometrically local* Hamiltonians — terms involving only neighbouring qubits on a 2D lattice — by results of Oliveira–Terhal and Aharonov–Gottesman–Irani–Kempe. **Finding the ground-state energy of an interacting quantum system is, in the worst case, $\mathrm{QMA}$-hard**, and this is the formal statement of the intuition that condensed-matter physics is computationally non-trivial.
+**The local Hamiltonian problem.** The flagship $\mathrm{QMA}$-complete problem, due to Kitaev (2002), is the **$k$-local Hamiltonian problem**: given a Hamiltonian $H = \sum_j H_j$ that is a sum of polynomially many $k$-local terms (each $H_j$ acts non-trivially on at most $k$ qubits), and two thresholds $a < b$ with $b - a \geq 1/\mathrm{poly}(n)$, decide whether the smallest eigenvalue of $H$ is at most $a$ or at least $b$. Kitaev showed this is $\mathrm{QMA}$-complete for $k = 5$; subsequent refinements pushed it down: Kempe–Regev showed $k = 3$, then Kempe–Kitaev–Regev $k = 2$. Even more strikingly, the problem remains $\mathrm{QMA}$-complete for *geometrically local* Hamiltonians — on a 2D lattice of qubits (Oliveira–Terhal), and even on a 1D line of qudits (Aharonov–Gottesman–Irani–Kempe). **Finding the ground-state energy of an interacting quantum system is, in the worst case, $\mathrm{QMA}$-hard**, and this is the formal statement of the intuition that condensed-matter physics is computationally non-trivial.
 
 Other $\mathrm{QMA}$-complete problems include:
 
@@ -145,7 +145,7 @@ The query model dominates quantum-algorithm exposition for a reason: most of the
 - **Bernstein–Vazirani**: $1$ quantum query vs $\Theta(n)$ classical queries to recover a hidden $n$-bit string $s$ from $f(x) = s \cdot x$.
 - **Simon**: $O(n)$ quantum queries vs $\Omega(2^{n/2})$ classical queries for the hidden-XOR-period problem. This is an *exponential* bounded-error separation in the query model, and was the direct inspiration for Shor.
 - **Grover**: $\Theta(\sqrt{N})$ quantum queries vs $\Theta(N)$ classical queries for unstructured search, with a matching lower bound (Bennett–Bernstein–Brassard–Vazirani).
-- **Forrelation** (Aaronson 2010, refined by Aaronson–Ambainis): $\tilde{O}(1)$ vs $\tilde\Omega(N^{1/4})$, with the optimal separation underlying the Raz–Tal oracle.
+- **Forrelation** (Aaronson 2010, refined by Aaronson–Ambainis): $1$ quantum query vs $\tilde\Omega(\sqrt{N})$ classical (the original 2010 lower bound was $\Omega(N^{1/4})$; the refinement is tight), with the optimal separation underlying the Raz–Tal oracle.
 
 A key warning: **query separations do not automatically lift to time separations.** The oracle has to be implementable. For Shor, the oracle $|x\rangle|y\rangle \mapsto |x\rangle|y \oplus a^x \bmod N\rangle$ is implementable in $\mathrm{poly}(n)$ gates — modular exponentiation — and the quantum advantage survives the lift. For random oracles, no efficient implementation exists, and the query separation is purely a *relativised* result.
 
@@ -168,7 +168,7 @@ Quantum-complexity oracle separations:
 **Unconditional separations** in quantum complexity remain mostly out of reach. The closest things to "real" separations are:
 
 - $\mathrm{P} \neq \mathrm{EXP}$ (time hierarchy).
-- $\mathrm{BQP} \neq \mathrm{EXP}$ (combining the hierarchy with $\mathrm{BQP} \subseteq \mathrm{PSPACE} \subseteq \mathrm{EXP}$, giving a *coarse* separation but not the one we want).
+- $\mathrm{BQP} \subsetneq \mathrm{EXPSPACE}$ (from $\mathrm{BQP} \subseteq \mathrm{PSPACE} \subsetneq \mathrm{EXPSPACE}$ by the space hierarchy — a *coarse* separation but not the one we want; note that $\mathrm{BQP}$ vs $\mathrm{EXP}$ itself is open, since $\mathrm{BQP} = \mathrm{EXP}$ would merely force the equally open $\mathrm{PSPACE} = \mathrm{EXP}$).
 
 The honest assessment is that no proof of $\mathrm{BPP} \neq \mathrm{BQP}$ is in sight; the field's belief that the two classes differ rests on **(a)** the oracle separations above, **(b)** the existence of plausible candidate problems in $\mathrm{BQP} \setminus \mathrm{BPP}$ (factoring, discrete log, simulating local Hamiltonians, certain sampling problems), and **(c)** the absence of any classical algorithm matching the quantum ones for those candidates. Conditional separations — assuming polynomial-hierarchy non-collapse, or specific cryptographic assumptions — are the most that current technique can deliver.
 
@@ -179,7 +179,7 @@ It is useful to taxonomise the *kinds* of speedup the field claims, because the 
 **Polynomial speedups.** Provable, robust, and ubiquitous. Examples:
 
 - Grover's $\sqrt{N}$ for unstructured search.
-- Quantum walks giving $n^{2/3}$ for element distinctness, $n^{1.26\ldots}$ for triangle finding.
+- Quantum walks giving $n^{2/3}$ for element distinctness, $\tilde O(n^{5/4})$ for triangle finding.
 - $O(\sqrt{T})$ speedups for Monte Carlo estimation (Montanaro 2015).
 - Amplitude-amplified subroutines inside many graph and number-theoretic algorithms.
 
@@ -208,7 +208,7 @@ What makes sampling complexity an attractive setting for quantum-advantage demon
 
 The 2019 Google Sycamore experiment claimed an advantage of "ten thousand years of classical simulation" reduced to 200 seconds on a 53-qubit random-circuit sampling task. The headline figure was rapidly contested. IBM responded that with sufficient classical secondary storage and a tensor-network simulation, the same task could be classically completed in days rather than millennia. Subsequent improvements to classical algorithms — particularly the Pan–Zhang–Chen tensor-network advances of 2021–2022, and the simulation push by the USTC group culminating in 2024 — pushed the classical baseline down by further orders of magnitude. By 2024 the Chinese supercomputing centres in Hefei and Wuxi had publicly demonstrated classical RCS simulations at parameter sets equalling or surpassing the original 2019 quantum claim, often using GPU-tensor-network methods that did not exist when the supremacy claim was made.
 
-The 2020 Chinese **Jiuzhang** Gaussian-BosonSampling experiment and the 2024 **Jiuzhang 3.0** refinements remain the strongest unrebutted advantage demonstrations, in part because Gaussian-BosonSampling sits on different classical-hardness assumptions than RCS. The 2024–2025 honest summary: every claimed advantage demonstration is being pursued by a classical-simulation team, the gap is narrowing rather than widening for shallow-circuit RCS, and the line between "quantum advantage" and "expensive-but-feasible classical simulation" continues to move.
+The 2020 Chinese **Jiuzhang** Gaussian-BosonSampling experiment and the 2023 **Jiuzhang 3.0** refinements remain the strongest unrebutted advantage demonstrations, in part because Gaussian-BosonSampling sits on different classical-hardness assumptions than RCS. The 2024–2025 honest summary: every claimed advantage demonstration is being pursued by a classical-simulation team, the gap is narrowing rather than widening for shallow-circuit RCS, and the line between "quantum advantage" and "expensive-but-feasible classical simulation" continues to move.
 
 The lesson for a working practitioner: when reading a supremacy claim, ask three questions. *Which task, precisely?* (RCS, BosonSampling, IQP, or something else.) *Which classical baseline?* (Strong simulation, weak simulation, tensor network with how much memory.) *Has the result been rebutted by an improved classical algorithm?* (Almost always within 18–24 months.) The methodology is closer to cryptographic security claims than to clean asymptotic separations.
 
@@ -244,7 +244,7 @@ A typical practitioner's resource ledger for a quantum algorithm has four column
 - **Circuit depth**: longest chain of sequentially-dependent gates, relevant for total wall-clock time and coherence budget.
 - **Space**: total qubit count, including ancillas for the oracle, the algorithm body, and (in fault-tolerant settings) error-correction.
 
-For fault-tolerant algorithms a fifth metric dominates: the **$T$-count**, the number of $T$ (or Toffoli) gates in the circuit. The reason is the resource asymmetry §8.10 detailed: Clifford gates are cheap to execute fault-tolerantly via transversal operations, while every $T$ gate must be implemented by injecting a **magic state** that is itself the output of an expensive magic-state-distillation factory. For surface-code-based fault tolerance at realistic noise rates, the magic-state factories dominate the spacetime volume of a logical computation, and "the $T$-count" is in practice synonymous with "the cost of the algorithm". Shor's algorithm at RSA-2048 sizes is roughly $7 \times 10^9$ Toffoli gates, and the corresponding $T$-count is what drives the $\sim 10$ million physical qubits, $\sim 10$ hour estimates of §15.3.
+For fault-tolerant algorithms a fifth metric dominates: the **$T$-count**, the number of $T$ (or Toffoli) gates in the circuit. The reason is the resource asymmetry §8.10 detailed: Clifford gates are cheap to execute fault-tolerantly via transversal operations, while every $T$ gate must be implemented by injecting a **magic state** that is itself the output of an expensive magic-state-distillation factory. For surface-code-based fault tolerance at realistic noise rates, the magic-state factories dominate the spacetime volume of a logical computation, and "the $T$-count" is in practice synonymous with "the cost of the algorithm". Shor's algorithm at RSA-2048 sizes is roughly $3 \times 10^9$ Toffoli gates, and the corresponding $T$-count is what drives the $\sim 20$ million physical qubits, $\sim 8$ hour estimates of §15.3 (and the 2025 sub-million-qubit refinements quoted there).
 
 The takeaway: a quantum algorithm's *interest* is often determined by query complexity, but its *practicality* is determined by $T$-count. When evaluating an algorithm for near-future deployment, ask for the $T$-count, not the asymptotic query bound.
 
@@ -313,9 +313,9 @@ The relevance for quantum-advantage claims: to demonstrate advantage, the device
 
 This back-and-forth is now the field's normal mode. Quantum-advantage claims live in a moving frontier defined by the best classical algorithm available at the time of the claim. The frontier itself is not collapsing — genuine quantum advantage is widely believed — but the cleanest formal statement of where it lies remains stubbornly open. The complexity-theoretic background of this chapter is the toolkit one uses to read the next claim, the next rebuttal, and the next refinement, without being pushed around by marketing rhetoric in either direction.
 
-## Bridge to Chapter 18
+## 17.14 Bridge to Chapter 18
 
-Complexity theory framed *what can be done in principle* with idealised quantum computation. Chapter 18 starts the part on **noise, decoherence, and errors** — the physical reality that determines whether the polynomial-time algorithms of $\mathrm{BQP}$ can actually run on a real device, and at what cost in extra qubits and extra time. The bridge is direct: the $T$-count and gate-count metrics of §17.10 acquire their real teeth only once Chapter 18 explains where the $T$ gates come from (magic states, themselves the output of distillation circuits running on top of a noisy substrate), why the surface code is the leading candidate to host them, and why the resource estimates of §15.3 — ten million physical qubits, ten hours — are dominated by error-correction overhead rather than by the logical algorithm. The complexity-theoretic upper bound on what is *possible* meets the physical lower bound on what is *affordable*; everything in the rest of the book lives at that intersection.
+Complexity theory framed *what can be done in principle* with idealised quantum computation. Chapter 18 starts the part on **noise, decoherence, and errors** — the physical reality that determines whether the polynomial-time algorithms of $\mathrm{BQP}$ can actually run on a real device, and at what cost in extra qubits and extra time. The bridge is direct: the $T$-count and gate-count metrics of §17.10 acquire their real teeth only once Chapter 18 explains where the $T$ gates come from (magic states, themselves the output of distillation circuits running on top of a noisy substrate), why the surface code is the leading candidate to host them, and why the resource estimates of §15.3 — tens of millions of physical qubits and hours of runtime in the 2019 baseline — are dominated by error-correction overhead rather than by the logical algorithm. The complexity-theoretic upper bound on what is *possible* meets the physical lower bound on what is *affordable*; everything in the rest of the book lives at that intersection.
 
 **Sanity checks before moving on.**
 

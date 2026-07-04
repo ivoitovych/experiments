@@ -40,7 +40,7 @@ Three points to keep in mind:
 > bread-and-butter distance measures used constantly in the rest of the
 > book and can be skimmed for definitions and revisited for proofs.
 > §§12.8–12.10 (Schumacher compression, channel capacities) preview
-> material expanded in Part 8 (error correction) and Part 12 (cryptography) and can be read at "what's the
+> material expanded in Part 8 (error correction) and Part 11 (applications and cryptography) and can be read at "what's the
 > headline result" depth on a first pass. §§12.11–12.12 collect the
 > no-go theorems and the LOCC resource picture; both are short and worth
 > rereading once the channel-capacity sections settle.
@@ -236,8 +236,9 @@ conditioning on a system $B$ that is entangled with $A$ produces a
 means.
 
 The operational meaning was found by Horodecki, Oppenheim, and Winter
-(2005) in the **state-merging protocol** (sometimes called the *mother
-protocol*). Two parties Alice and Bob share many copies of $\rho_{AB}$
+(2005) in the **state-merging protocol** (a close relative of the
+"mother protocol" of the quantum resource calculus — see the note at
+the end of this section). Two parties Alice and Bob share many copies of $\rho_{AB}$
 along with a third reference system $R$ that purifies the global state.
 Alice wants to transfer her share $A$ to Bob while preserving
 correlations with $R$. The asymptotic rate of *quantum communication*
@@ -276,8 +277,10 @@ intended emphasis.
 The state-merging account given here is one of two standard, equivalent
 formulations of the Horodecki–Oppenheim–Winter result; the other casts
 the same content as a quantum-communication-versus-shared-entanglement
-trade-off (the "fully quantum Slepian–Wolf" picture), so a reader who
-learned it in that form is looking at the same theorem.
+trade-off — the "fully quantum Slepian–Wolf" picture, which is the
+protocol the resource-calculus literature properly calls the *mother
+protocol* — so a reader who learned it in that form is looking at the
+same theorem.
 
 ## 12.5 The Holevo Bound
 
@@ -406,7 +409,7 @@ $$
 $$
 
 On pure states the upper bound is tight — $D = \sqrt{1 - F^2}$ — while the
-lower bound is generally strict (it saturates only at the endpoints $F = 0$ and $F = 1$). Both quantities go to zero together. In practice, one chooses whichever is easier to
+lower bound is generally strict for pure-state pairs, saturating only at the endpoints $F = 0$ and $F = 1$ (for general mixed states it can saturate elsewhere — e.g. commuting states whose distributions agree or are disjoint outcome-by-outcome). Both quantities go to zero together. In practice, one chooses whichever is easier to
 compute: fidelity is often analytically tractable through Uhlmann,
 trace distance is the right object for direct distinguishability
 statements, and the inequalities convert between them as needed.
@@ -522,7 +525,7 @@ $$
 Q(\mathcal{N}) = \lim_{n \to \infty} \tfrac{1}{n}\\, \max_{\rho^{(n)}} I_c(\rho^{(n)}, \mathcal{N}^{\otimes n}),
 $$
 
-where $I_c$ is the coherent information (§12.3) and the maximisation is over input states $\rho^{(n)}$ on $n$ channel uses (not single-letter — that is what the regularisation tracks). Like the classical capacity, the formula requires
+where $I_c(\rho, \mathcal{N})$ is the *channel* coherent information — feed half of a purification of $\rho$ through $\mathcal{N}$ and evaluate §12.3's $I_c(A\rangle B)$ on the output — and the maximisation is over input states $\rho^{(n)}$ on $n$ channel uses (not single-letter — that is what the regularisation tracks). Like the classical capacity, the formula requires
 regularisation because coherent information is generically
 superadditive. The quantum capacity is the rate at which the channel
 can be turned into a perfect quantum wire after enough error correction;

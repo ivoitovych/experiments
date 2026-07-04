@@ -1,6 +1,6 @@
 # Chapter 18. Noise, Decoherence, and Errors
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 18 / 18
+> **Status:** draft · **Phase:** 1 · **Sections drafted:** 19 / 19
 
 [← Previous: Chapter 17](../part-07-complexity/17-complexity-theory.md) · [Table of Contents](../../README.md) · [Next: Chapter 19 →](19-quantum-error-correction-and-fault-tolerance.md)
 
@@ -12,7 +12,7 @@ Chapter 10 introduced decoherence, channels, and the Kraus representation as the
 
 A useful first taxonomy of noise on a quantum processor sorts mechanisms by **where the bath lives** and **what the system couples to**. Five families dominate the published budgets of every contemporary platform.
 
-**Thermal noise.** The qubit is at some effective temperature $T_{\mathrm{eff}}$, and the bath is the residual thermal population of the modes that couple to it. For a superconducting transmon at 15 mK with a 5 GHz transition, the equilibrium excited-state population $p_1^{\mathrm{eq}} = (1 + e^{\hbar\omega/k_B T})^{-1}$ is around $10^{-5}$, but the *effective* temperature inferred from steady-state populations is typically 50–100 mK because non-equilibrium quasiparticles, infrared photons, and stray microwave radiation excite the qubit above the fridge temperature. Thermal excitations drive both $|0\rangle \to |1\rangle$ and $|1\rangle \to |0\rangle$ transitions; the standard "amplitude damping" model (§10.12) is the zero-temperature limit and over-attributes errors to the relaxation direction when $T_{\mathrm{eff}}$ is finite.
+**Thermal noise.** The qubit is at some effective temperature $T_{\mathrm{eff}}$, and the bath is the residual thermal population of the modes that couple to it. For a superconducting transmon at 15 mK with a 5 GHz transition, the equilibrium excited-state population $p_1^{\mathrm{eq}} = (1 + e^{\hbar\omega/k_B T})^{-1}$ is around $10^{-7}$, but the *effective* temperature inferred from steady-state populations is typically 50–100 mK because non-equilibrium quasiparticles, infrared photons, and stray microwave radiation excite the qubit above the fridge temperature. Thermal excitations drive both $|0\rangle \to |1\rangle$ and $|1\rangle \to |0\rangle$ transitions; the standard "amplitude damping" model (§10.12) is the zero-temperature limit and over-attributes errors to the relaxation direction when $T_{\mathrm{eff}}$ is finite.
 
 **Control noise.** The microwave pulses, flux drives, and laser fields that implement gates carry their own imperfections: amplitude drift over hours, phase noise on the local oscillator, timing jitter on the AWG, and finite anharmonicity that lets a pulse drive transitions other than the target one. A gate fidelity ceiling set by control electronics is *systematic* — it produces the same error on every shot rather than a stochastic one — and shows up as a coherent rotation error (§18.10) until calibration drift randomises it across a long run.
 
@@ -83,7 +83,7 @@ A gate-error budget on a real device sorts into three rough buckets.
 **Where the field stands today.** Published gate fidelities, taken from leading platforms over 2023–2025:
 
 - Single-qubit Clifford gates: $99.99\%$ on best-in-class trapped ions, $99.95\%$ on superconducting transmons, $99.5\%$–$99.9\%$ on neutral atoms.
-- Two-qubit entangling gates (CZ, CNOT, Mølmer–Sørensen, Rydberg CZ): $99.9\%$ on best-in-class ions and on the latest superconducting devices, $99.5\%$ on most current devices, $99.0\%$ on neutral atoms.
+- Two-qubit entangling gates (CZ, CNOT, Mølmer–Sørensen, Rydberg CZ): $99.9\%$ on best-in-class ions and on the latest superconducting devices, $99.5\%$ on most current devices, and approaching $99.5\%$ on neutral atoms (Evered et al. 2023 and successors).
 - Measurement (single-shot, single-qubit): $99\%$–$99.9\%$, varying widely with integration time and assignment threshold.
 - Idle errors: dominated by $T_1$ and $T_2$; usually small ($10^{-4}$ per microsecond) on coherence-dominant platforms.
 
@@ -113,7 +113,7 @@ The error in preparing the initial $|0\rangle^{\otimes n}$ state is usually subd
 
 **Residual thermal population.** Even at fridge temperatures, a transmon's steady-state $|1\rangle$ population is $10^{-3}$ to $10^{-2}$ rather than the equilibrium prediction. Without active reset, the initial state is the thermal-equilibrium mixture $\rho_{\mathrm{th}} = (1 - p_1^{\mathrm{eq}})|0\rangle\langle 0| + p_1^{\mathrm{eq}}|1\rangle\langle 1|$ rather than $|0\rangle\langle 0|$.
 
-**Active reset.** Measurement-based reset performs a projective measurement and conditionally applies an $X$ pulse if the outcome is "1"; the residual error is the readout error of the measurement *plus* any $T_1$ event during the conditional pulse, typically $10^{-3}$ to $10^{-4}$. Unconditional reset (e.g., via a fast-decay readout resonator pumping protocol) achieves comparable numbers without conditional logic.
+**Active reset.** Measurement-based reset performs a projective measurement and conditionally applies an $X$ pulse if the outcome is "1"; the residual error is the readout error of the measurement *plus* any $T_1$ event during the conditional pulse, typically $10^{-3}$ to $10^{-4}$ after two to three repeated heralded rounds (a single pass leaves roughly the readout error, at the percent level — see §21.9). Unconditional reset (e.g., via a fast-decay readout resonator pumping protocol) achieves comparable numbers without conditional logic.
 
 **SPAM error is hard to separate from gate error.** A benchmark that prepares $|0\rangle$, applies a gate, and measures cannot distinguish a state-preparation error from a measurement error or a small gate error — all three corrupt the final outcome the same way. Randomised benchmarking (§18.12) is designed to be *SPAM-robust*: the decay rate is sensitive to gate error but not to constant preparation and measurement offsets. Gate-set tomography (§18.14) takes the harder route of estimating everything jointly. The single-letter acronym **SPAM** ("state-preparation and measurement") collects these effects because in many analyses they appear inseparably and the only thing one can hope to do is subtract their combined contribution from gate-level metrics.
 
@@ -335,7 +335,7 @@ A widely-cited theoretical result: at scale, the *number of shots* required for 
 
 ---
 
-## Bridge to Chapter 19
+## 18.19 Bridge to Chapter 19
 
 This chapter described the noise in operational terms: where it comes from, how it is parameterised, how it is measured, how it is modelled, and how its bias on expectation values is partially undone by mitigation. The next chapter takes the same noise and *suppresses* it by encoding logical information across many physical qubits. The transition is in the goal: mitigation reduces the bias on an expectation but leaves the underlying state corrupted; error correction restores the encoded state, recovering arbitrary computations from arbitrary errors as long as the physical error rate is below threshold. The physical error rate that determines whether the threshold is met is *exactly* the per-cycle Pauli error rate (§18.13) of this chapter, characterised via the same RB/cycle benchmarks. The link is direct: Chapter 18's measurement of $\epsilon$ is the input to Chapter 19's threshold inequality.
 
