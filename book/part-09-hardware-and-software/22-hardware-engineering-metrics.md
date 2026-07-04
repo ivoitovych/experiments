@@ -8,6 +8,8 @@ Every vendor benchmark sheet for a quantum processor is a small adversarial docu
 
 > **How to read this chapter.** §§22.1–22.6 cover the device-level numbers a developer cannot avoid: qubit count, connectivity, gate fidelity, coherence, gate speed, readout. §§22.7–22.9 cover the suite-level metrics — Quantum Volume, CLOPS, Algorithmic Qubits, XEB — that compress a whole device into a single headline. §§22.10–22.12 cover the operational metrics that decide whether mid-circuit measurement, reset, and feedforward actually work. §22.13 surveys current vendor numbers (2024–2026 cohort). §22.14 is the practical reading guide and bridge to Chapter 23. Skim the parts you already know; the per-vendor section is the one most likely to be out of date by the time you read it.
 
+> **Moving-target warning — snapshot as of May 2026.** The vendor figures in this chapter (especially §22.13) are a dated snapshot. [Appendix F](../99-back-matter/appendix-f-hardware-snapshot-2026.md) is the single maintained home for hardware numbers: where this chapter and Appendix F disagree, Appendix F wins.
+
 ## 22.1 Qubit Count
 
 The first number on any vendor sheet is the qubit count, and it is the first number to mistrust. There are at least four distinct things "qubit count" can mean and a press release rarely distinguishes between them.
@@ -82,7 +84,7 @@ Confusingly, there are several different "$T_2$" numbers in circulation, disting
 
 The ratios between these numbers tell you about the noise spectrum. $T_2^{\mathrm{echo}} \gg T_2^{\ast}$ means the qubit is environment-limited by slow drift — usually correctable by recalibration or by dynamical decoupling at the algorithm level. $T_2^{\mathrm{echo}} \approx 2 T_1$ means the qubit is intrinsically coherent; you cannot squeeze more by software tricks.
 
-Per-device values on the 2025 cohort: superconducting transmons report $T_1 \sim 100$–$300\\,\mu\mathrm{s}$, $T_2^{\mathrm{echo}} \sim 80$–$300\\,\mu\mathrm{s}$. Trapped-ion qubits report $T_1$ measured in *seconds* and $T_2^{\mathrm{echo}}$ in the multi-second to minute range — five to seven orders of magnitude more coherent per shot than superconducting hardware. The catch is that ion gate times are also a hundred to a thousand times longer (§22.5), so the ratio of coherence to gate time — the **gate count budget** before decoherence — is closer than the raw $T_2$ comparison suggests.
+Per-device values on the 2025 cohort: superconducting transmons report $T_1 \sim 100$–$300\\,\mu\mathrm{s}$, $T_2^{\mathrm{echo}} \sim 80$–$300\\,\mu\mathrm{s}$. Trapped-ion qubits report $T_1$ that is effectively unbounded for hyperfine encodings (about a second for optical-transition encodings) and $T_2^{\mathrm{echo}}$ in the multi-second to minute range — five to seven orders of magnitude more coherent per shot than superconducting hardware. The catch is that ion gate times are also a hundred to a thousand times longer (§22.5), so the ratio of coherence to gate time — the **gate count budget** before decoherence — is closer than the raw $T_2$ comparison suggests.
 
 When a vendor sheet quotes a single "$T_2$" without specifying the protocol, default to assuming $T_2^{\mathrm{echo}}$; that has become the common convention. For algorithm planning, the right number is the one matching how the circuit *will* be dynamically decoupled — if at all.
 
@@ -128,7 +130,7 @@ where $d^{\ast}$ is the largest $d$ at which the device passes. So QV $= 2^{10} 
 
 QV has real virtues. It is end-to-end — it measures whatever the *compiled* circuit does on the *actual* device, so it incorporates the compiler's intelligence and the device's calibration together. It is hardware-agnostic — superconducting and ion-trap devices report comparable QV numbers without protocol-level adjustment. It is a single number, which is easy to communicate.
 
-Its weaknesses are now well understood. **It saturates** around $d = 10$–$15$ on current devices: the protocol's compile-and-run loop hits a wall when device noise overwhelms the heavy-output threshold, and beyond that wall the metric returns no signal. The best published QV numbers as of 2025 sit around $2^{19}$–$2^{20}$ on Quantinuum H2 and $2^{15}$ on IBM Heron, but the trajectory is now slow because the bound is increasingly compiler-dominated.
+Its weaknesses are now well understood. **It saturates** around $d = 10$–$15$ on current devices: the protocol's compile-and-run loop hits a wall when device noise overwhelms the heavy-output threshold, and beyond that wall the metric returns no signal. The best published QV numbers sit with Quantinuum's H-series ($2^{19}$–$2^{20}$ by 2024, still climbing); IBM stopped reporting QV after 512 ($2^9$, 2022) in favour of throughput- and error-per-layer-style metrics — itself a data point on the metric's saturation. The trajectory is now slow because the bound is increasingly compiler-dominated.
 
 It does not measure **algorithmic capacity**. A device with QV $= 1024$ has demonstrated that *some* 10-qubit, 10-deep random circuit works; it has not demonstrated that *your* 50-qubit, depth-200 algorithm will work, even when scaled down. Two devices with the same QV can have wildly different performance on a structured algorithm.
 
@@ -152,9 +154,9 @@ The weakness of CLOPS is that it is tied to QV-style circuits at a particular $d
 
 **Algorithmic Qubits (AQ)** is IonQ's headline metric. The motivation is to report not the count of *fabricated* qubits but the count of qubits actually usable for *algorithms* on a device, accounting for connectivity and noise. The construction is operational: run a suite of structured algorithmic benchmarks (originally derived from QED-C — see §22.13) at increasing problem size; the AQ number is the largest problem size at which the device passes a fidelity threshold.
 
-Roughly, the construction translates as: AQ is the largest $N$ such that the device successfully executes the suite's $N$-qubit instances. As a quick rule of thumb, AQ scales approximately as $\sqrt{N_{\mathrm{phys}}}$ on a noisy, well-connected device — a 100-physical-qubit device might yield AQ $\sim 10$, reflecting the cost of routing and noise accumulation. The ratio is not literal; it is just that the curve of "what an algorithm can use" against "what was fabricated" is sub-linear for the noise regimes current devices live in.
+Roughly, the construction translates as: AQ is the largest $N$ such that the device successfully executes the suite's $N$-qubit instances. How AQ tracks physical qubit count depends strongly on connectivity and noise: on all-to-all trapped-ion systems IonQ's achieved AQ has run close to the physical qubit count (Aria: 25 of 25; Forte: 36 of 36), while on sparse-connectivity devices routing and noise accumulation make the usable count markedly sub-linear in the fabricated count.
 
-Current numbers (2025): IonQ Forte Enterprise reports AQ $= 36$ at 64 physical qubits. The compression ratio reflects both the all-to-all connectivity (which raises AQ vs sparse-graph devices) and the noise accumulation budget set by the benchmark suite's fidelity threshold.
+Current numbers (2025): IonQ's Forte-class systems (36 physical qubits) report AQ $= 36$; see Appendix F for the maintained figures. The near-1:1 ratio reflects the all-to-all connectivity (which raises AQ vs sparse-graph devices) within the noise budget set by the benchmark suite's fidelity threshold.
 
 AQ is honest about its dependencies. The number depends on the benchmark suite chosen and the pass threshold. Reporting AQ $= 36$ requires specifying *which* suite and *which* threshold; a different suite gives a different AQ for the same device. The convention is the QED-C suite at the "high" fidelity threshold (probability of correct answer above $1/e \approx 0.37$).
 
@@ -172,7 +174,7 @@ $$
 
 For an ideal device $F_{\mathrm{XEB}} \to 1$; for a fully depolarised device that samples uniformly $F_{\mathrm{XEB}} \to 0$. Crucially, $F_{\mathrm{XEB}}$ factorises across the circuit as a product of per-gate fidelities (in the limit of large random circuits), so it gives a clean operational fidelity that can be compared against the product of per-gate RB numbers as a consistency check.
 
-XEB's strength is that it scales naturally to the regime where classical simulation is barely feasible — exactly the regime where the supremacy / quantum-utility claims live. Willow's 2024 results report $F_{\mathrm{XEB}}$ in the $10^{-3}$–$10^{-2}$ range at $n = 67$, $d = 24$, which is above the classical-simulation crossover for those circuit dimensions.
+XEB's strength is that it scales naturally to the regime where classical simulation is barely feasible — exactly the regime where the supremacy / quantum-utility claims live. Google's 67–70-qubit random-circuit-sampling campaign (Morvan et al., published 2024) reports $F_{\mathrm{XEB}}$ in the $10^{-3}$–$10^{-2}$ range at $n \approx 70$, $d = 24$, with the 2024 Willow demonstration extending the programme to its 105-qubit lattice, which is above the classical-simulation crossover for those circuit dimensions.
 
 XEB's weaknesses are dual. First, it requires *exponential* classical work to compute $p_{\mathrm{ideal}}$, so it stops being computable beyond $n \sim 50$–$70$ qubits — exactly the regime where the metric is most interesting. Beyond that, $F_{\mathrm{XEB}}$ is *extrapolated* from per-gate fidelities measured at smaller scales, with all the assumptions that extrapolation carries. Second, like RB, XEB is an *average* fidelity: a device can have low XEB on random circuits but fail catastrophically on structured ones, and vice versa.
 
@@ -214,13 +216,13 @@ Several community-organised benchmark suites have emerged to give cross-vendor c
 
 **Mirror benchmarks** — circuits of the form $U^{\dagger} U$ — have a known answer (the all-zeros bit string) and measure noise accumulation under a structured noise channel. They are cheap and reveal coherent error patterns that random benchmarks average over.
 
-**IBM's QV history** is a public running record of QV milestones: QV $32$ on Falcon in 2019, $64$ on Honeywell System Model H1 in 2020, $128$, $256$, $512$ through 2021, $4096$ on Quantinuum H1-2 in 2022, $2^{19} = 524\\,288$ on Quantinuum H2 in 2024. The progression tells a real story about fidelity improvements; the slowing rate tells a real story about the metric saturating.
+**IBM's QV history** is a public running record of QV milestones: QV $32$ on IBM Falcon (announced January 2020), $64$ on Honeywell's System Model H0 later in 2020, $128$–$512$ across both vendors through 2021, $4096$ on Quantinuum H1-2 in 2022, and $2^{19} = 524\\,288$ on Quantinuum H2 in 2024. The progression tells a real story about fidelity improvements; the slowing rate tells a real story about the metric saturating.
 
 Per-vendor headline numbers in the 2024–2026 cohort (as of late 2025; subject to revision):
 
-- **IBM Heron r2** — 156 physical qubits, heavy-hex coupling, $F_{2q} \approx 0.997$, $T_2^{\mathrm{echo}} \sim 250\\,\mu\mathrm{s}$, QV around $2^{15}$, CLOPS $\sim 200\\,000$, sub-microsecond feedforward.
+- **IBM Heron r2** — 156 physical qubits, heavy-hex coupling, $F_{2q} \approx 0.997$, $T_2^{\mathrm{echo}} \sim 250\\,\mu\mathrm{s}$, CLOPS $\sim 200\\,000$, sub-microsecond feedforward (IBM no longer reports QV).
 - **Google Willow** — 105 physical qubits, square lattice, $F_{2q} \approx 0.9986$, supports surface-code distance-7 demonstration with below-threshold logical error.
-- **Quantinuum H2** — 56 trapped-ion qubits, all-to-all via shuttling, $F_{2q} \approx 0.9997$, $T_2^{\mathrm{echo}}$ measured in seconds, QV $\sim 2^{19}$, multi-second logical qubit operations demonstrated. H3 (announced) targets 100+ qubits with similar fidelity.
+- **Quantinuum H2** — 56 trapped-ion qubits, all-to-all via shuttling, $F_{2q} \approx 0.999$, $T_2^{\mathrm{echo}}$ measured in seconds, QV $\geq 2^{19}$ (still climbing), multi-second logical qubit operations demonstrated. The announced next generation (Helios) targets ~100 qubits with similar fidelity.
 - **IonQ Forte / Forte Enterprise** — 36 qubits all-to-all, AQ $= 36$, $F_{2q} \approx 0.997$. Forte Enterprise is the production-grade variant.
 - **IQM Crystal / Star** — superconducting devices targeting modular architectures, 20–150 qubit variants with $F_{2q} \approx 0.995$.
 - **QuEra Aquila** — neutral-atom analog mode, $256$ atoms with Rydberg interactions; the metric set is different (analog evolution time vs digital gate count), so direct comparison with gate-model devices is fraught.
