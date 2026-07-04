@@ -1455,3 +1455,14 @@ Implemented in five commits on this branch, with per-entry dispositions inserted
 **Scoreboard against §8's confirmed-error list (items 1–20): all 20 fixed.** Cross-chapter inconsistency list: all fixed except the §32.8 thermodynamics sentence (deferred as a content extension — author choice between adding the sentence or softening Ch12 §12.11). §13 recommendations: items 1, 2, 4 (STYLE portion), 6, 7 (index portion), 9 (verified pre-existing), 10 — done; item 3 (lint rules) — conventions now specified in STYLE.md, lint automation left for tooling pass; item 5 (uncertainty ledger → factcheck/) — open items enumerated in §10 remain routed there; item 7 (figures) and item 8 (repo hygiene) — deferred with reasons in the per-entry annotations.
 
 **Deferred inventory (requires author decision or external sources):** front-matter §1.x/§2.x renumbering scheme; phases.py re-baseline; Prelude paragraph-splitting pass; §4.8 sub-headings; five new figures (§18.3, §19.12, §19.22, §27.7, §33.3); §32.8 thermodynamics sentence; root-artifact archiving and review/-vs-reviews/ merge; all §10 uncertainty-ledger source checks (Hefei/Wuxi, Q-PERFECT, Lodgepole, QNE-sim, BTI, FIPS 206 IPD date, Quantum Motion, TU Wien, Fugaku run details, ~180-variable clique).
+
+> **Hash-map addendum (2026-07-04, insert-only).** The branch history was
+> rewritten on 2026-07-04 (metadata only — every commit's file tree was
+> verified byte-identical before and after, via full tree-hash comparison and
+> an independent SHA-256 check of all 166 tracked files). Commit hashes cited
+> above and in the §7 annotations therefore resolve to new identifiers:
+> b1d9f12 → c7d0fee (batch 1) · 98e1f45 → 902b779 (batch 2) ·
+> 0d569bb → 6e69a3e (batch 3a) · aa7a5a3 → 06b0668 (batch 3b) ·
+> 5060e75 → e6970d9 (marker pass 1–3a) · 5a1c816 → 5df4220 (batch 4).
+> The insert-only property of this file is preserved across the rewrite and
+> by this addendum.
