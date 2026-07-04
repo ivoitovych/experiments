@@ -1450,6 +1450,7 @@ Implemented in five commits on this branch, with per-entry dispositions inserted
 - **0d569bb** — Batch 3a: Chapters 20–24 (banners + Appendix-F deference, vendor-fact corrections, Ch24 GHZ/volume-law and threshold fixes, tool misattributions).
 - **aa7a5a3** — Batch 3b: Chapters 25–29 + first synchronized markers (IBM-utility narrative, TF-QKD paragraph, QKD numeric fixes, Advantage2 topology).
 - **Batch 4 commit (this one)** — Chapters 30–37, Appendices A–E, Index (TERMS 51→93, regenerated), STYLE.md completion (escape table, bridge/checks/status/part conventions, Prelude adjudications), remaining markers, this log.
+  (Recorded post-commit: batch 4 = **5a1c816**; batch 3b = **aa7a5a3**; the batches-1–3a marker pass = **5060e75**. Every "batch 3b/batch 4 commit" reference in the §7 annotations resolves to aa7a5a3/5a1c816 respectively.)
 
 **Scoreboard against §8's confirmed-error list (items 1–20): all 20 fixed.** Cross-chapter inconsistency list: all fixed except the §32.8 thermodynamics sentence (deferred as a content extension — author choice between adding the sentence or softening Ch12 §12.11). §13 recommendations: items 1, 2, 4 (STYLE portion), 6, 7 (index portion), 9 (verified pre-existing), 10 — done; item 3 (lint rules) — conventions now specified in STYLE.md, lint automation left for tooling pass; item 5 (uncertainty ledger → factcheck/) — open items enumerated in §10 remain routed there; item 7 (figures) and item 8 (repo hygiene) — deferred with reasons in the per-entry annotations.
 
