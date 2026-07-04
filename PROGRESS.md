@@ -21,21 +21,21 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 
 ## Phase 1 — Foundations
 
-- [x] [Preface](book/00-front-matter/00-preface.md) — *draft* — sections 11/11
+- [x] [Preface](book/00-front-matter/00-preface.md) — *draft* — sections 12/12
 - [x] [Recommended / Assumed Background and Self-Check](book/00-front-matter/01-background-and-self-check.md) — *draft* — sections 7/7
 - [x] [Notation and Conventions](book/00-front-matter/02-notation-and-conventions.md) — *draft* — sections 7/7
 - [x] [Appendix A. Notation Reference](book/99-back-matter/appendix-a-notation-reference.md) — *draft* — sections 6/6
 - [x] [Historical Prelude — From Quanta to Qubits](book/part-00-historical-prelude/00-historical-prelude.md) — *draft* — sections 16/16
-- [x] [Chapter 1. Why Quantum Computing Exists](book/part-01-orientation/01-why-quantum-computing-exists.md) — *draft* — sections 6/6
+- [x] [Chapter 1. Why Quantum Computing Exists](book/part-01-orientation/01-why-quantum-computing-exists.md) — *draft* — sections 7/7
 - [x] [Chapter 2. Classical-to-Quantum Contrast](book/part-01-orientation/02-classical-to-quantum-contrast.md) — *draft* — sections 7/7
-- [x] [Chapter 3. Physical Intuition Behind Quantum Mechanics](book/part-01-orientation/03-physical-intuition.md) — *draft* — sections 10/10
+- [x] [Chapter 3. Physical Intuition Behind Quantum Mechanics](book/part-01-orientation/03-physical-intuition.md) — *draft* — sections 11/11
 - [x] [Chapter 4. Mathematical Background for Quantum Computing](book/part-02-formalism/04-mathematical-background.md) — *draft* — sections 17/17
-- [x] [Chapter 5. Postulates of Quantum Mechanics for Computing](book/part-02-formalism/05-postulates.md) — *draft* — sections 14/14
-- [x] [Chapter 6. The Qubit](book/part-03-qubits/06-the-qubit.md) — *draft* — sections 10/10
-- [x] [Chapter 7. Multiple Qubits and Entanglement](book/part-03-qubits/07-multiple-qubits-and-entanglement.md) — *draft* — sections 13/13
+- [x] [Chapter 5. Postulates of Quantum Mechanics for Computing](book/part-02-formalism/05-postulates.md) — *draft* — sections 15/15
+- [x] [Chapter 6. The Qubit](book/part-03-qubits/06-the-qubit.md) — *draft* — sections 11/11
+- [x] [Chapter 7. Multiple Qubits and Entanglement](book/part-03-qubits/07-multiple-qubits-and-entanglement.md) — *draft* — sections 14/14
 - [x] [Chapter 8. Quantum Gates](book/part-04-gates-and-circuits/08-quantum-gates.md) — *draft* — sections 14/14
-- [x] [Chapter 9. Quantum Circuits](book/part-04-gates-and-circuits/09-quantum-circuits.md) — *draft* — sections 13/13
-- [x] [Chapter 10. Core Quantum Phenomena from a Computational View](book/part-04-gates-and-circuits/10-core-quantum-phenomena.md) — *draft* — sections 13/13
+- [x] [Chapter 9. Quantum Circuits](book/part-04-gates-and-circuits/09-quantum-circuits.md) — *draft* — sections 14/14
+- [x] [Chapter 10. Core Quantum Phenomena from a Computational View](book/part-04-gates-and-circuits/10-core-quantum-phenomena.md) — *draft* — sections 14/14
 - [x] [Chapter 11. Measurement Theory](book/part-05-measurement-and-information/11-measurement-theory.md) — *draft* — sections 7/7
 - [x] [Chapter 13. The Quantum Algorithms Mindset](book/part-06-algorithms/13-quantum-algorithms-mindset.md) — *draft* — sections 8/8
 - [x] [Chapter 14. Foundational Algorithms](book/part-06-algorithms/14-foundational-algorithms.md) — *draft* — sections 9/9

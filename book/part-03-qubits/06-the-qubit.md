@@ -1,6 +1,6 @@
 # Chapter 6. The Qubit
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 10 / 10
+> **Status:** draft · **Phase:** 1 · **Sections drafted:** 11 / 11
 
 [← Previous: Chapter 5](../part-02-formalism/05-postulates.md) · [Table of Contents](../../README.md) · [Next: Chapter 7 →](07-multiple-qubits-and-entanglement.md)
 
@@ -313,8 +313,10 @@ in the angle $\theta/2$ is what reconciles the two: the Bloch sphere
 is the projective sphere, and the half-angle is the standard
 double-cover relation between $\mathrm{SU}(2)$ (acting on the
 Hilbert space) and $\mathrm{SO}(3)$ (acting on the Bloch sphere).
-A $2\pi$ rotation on the Bloch sphere is a $4\pi$ rotation in
-Hilbert space — a fact that has measurable consequences in
+A full $2\pi$ rotation of the Bloch vector multiplies the
+Hilbert-space state by $-1$; only a $4\pi$ Bloch rotation restores
+the identity exactly — the double cover at work, and a fact that has
+measurable consequences in
 multi-qubit interferometry (Chapter 7's Bell-state phase
 manipulations are the most accessible example).
 
@@ -331,9 +333,10 @@ unitaries act on the Bloch sphere as *rotations*. Specifically:
   axes (up to global phase).
 - The Hadamard $H$ is the $\pi$-rotation around the axis
   $(x + z)/\sqrt{2}$ (the diagonal in the $XZ$-plane).
-- The phase gate $S = R_z(\pi/2)$ up to global phase is a
-  $\pi/2$-rotation around $z$, and $T = R_z(\pi/4)$ is a $\pi/4$
-  rotation around $z$.
+- The phase gate $S = R_z(\pi/2)$ is a $\pi/2$-rotation around $z$,
+  and $T = R_z(\pi/4)$ a $\pi/4$-rotation around $z$ — both equalities
+  holding up to global phase ($e^{i\pi/4}$ and $e^{i\pi/8}$
+  respectively).
 
 Every single-qubit unitary is a rotation of the Bloch sphere by some
 angle around some axis. This is the geometric content of the
@@ -445,7 +448,7 @@ projective measurement in the *same* basis immediately after the
 first gives the same outcome with probability 1. The first
 measurement projects onto an eigenstate of the measurement; the
 second has no further effect. This is the basis-aligned-measurement
-*idempotence* that the Lüders rule encodes.
+*idempotence* that the Lüders rule (Chapter 11) encodes.
 
 **Sample complexity.** A single measurement returns one bit (the
 outcome). To estimate an unknown amplitude squared $|\alpha|^2$ to

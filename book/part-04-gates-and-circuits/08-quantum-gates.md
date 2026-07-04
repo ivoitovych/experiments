@@ -210,7 +210,7 @@ Chapter 23 returns to compilation; Chapter 19 to fault-tolerant resource estimat
 
 1. Verify directly that $H X H = Z$ and $H Z H = X$ from the matrices in §8.2–8.3.
 2. Show that $S^2 = Z$ and $T^2 = S$. Conclude $T^4 = Z$ and $T^8 = I$.
-3. Expand $R_Y(\pi)|0\rangle$ and confirm it equals $|1\rangle$ exactly; then check $R_Y(\pi)|1\rangle = -|0\rangle$. Conclude that $R_Y(\pi) = -iY$ acts as a bit-flip up to phases on the basis states, so it is a perfectly good NOT despite not equalling $X$ on the nose. (The phases are physically harmless because $R_Y(\pi)$, like every gate, is fixed only up to a global phase.)
+3. Expand $R_Y(\pi)|0\rangle$ and confirm it equals $|1\rangle$ exactly; then check $R_Y(\pi)|1\rangle = -|0\rangle$. Conclude that $R_Y(\pi) = -iY$ acts as a bit-flip up to phases on the basis states, so it is a perfectly good NOT despite not equalling $X$ on the nose. (The phases are harmless *when the input is a computational-basis state* — each branch's phase is then global. On a superposition the sign becomes a relative phase: $R_Y(\pi)|+\rangle = -|-\rangle$ while $X|+\rangle = |+\rangle$, so $R_Y(\pi)$ and $X$ are genuinely different gates — exactly trap 2 of §4.15.)
 4. Apply the identity $\mathrm{CZ} = (I \otimes H)\\,\mathrm{CNOT}\\,(I \otimes H)$ to $|+\rangle|+\rangle$ and check both sides give the same state.
 5. Derive the Toffoli truth table from its matrix, and verify it implements classical AND when the third qubit is initialised to $|0\rangle$.
 

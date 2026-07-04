@@ -1,6 +1,6 @@
 # Chapter 7. Multiple Qubits and Entanglement
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 13 / 13
+> **Status:** draft · **Phase:** 1 · **Sections drafted:** 14 / 14
 
 [← Previous: Chapter 6](06-the-qubit.md) · [Table of Contents](../../README.md) · [Next: Chapter 8 →](../part-04-gates-and-circuits/08-quantum-gates.md)
 
@@ -18,7 +18,7 @@ $$
 |a\rangle \otimes |b\rangle \;=\; \alpha_0 \beta_0 |00\rangle + \alpha_0 \beta_1 |01\rangle + \alpha_1 \beta_0 |10\rangle + \alpha_1 \beta_1 |11\rangle.
 $$
 
-Notational shorthands: $|a\rangle \otimes |b\rangle = |a\rangle|b\rangle = |ab\rangle$, and for basis states $|0\rangle \otimes |1\rangle = |01\rangle$. The convention used throughout this book is that the leftmost ket is the most-significant qubit (qubit 0), matching the bit-string ordering: $|01\rangle$ means qubit 0 is in $|0\rangle$, qubit 1 is in $|1\rangle$. (Heads-up on labels: "qubit 0" here is *this book's* leftmost, most-significant qubit; Qiskit numbers from the *least*-significant end, so its qubit 0 is our rightmost — see §4.2 and Appendix A before comparing with code.)
+Notational shorthands: $|a\rangle \otimes |b\rangle = |a\rangle|b\rangle = |ab\rangle$, and for basis states $|0\rangle \otimes |1\rangle = |01\rangle$. The convention used throughout this book is that the leftmost ket is the most-significant, *first* qubit — $x_1$ in the book's $x_1 \ldots x_n$ labelling (§4.2) — matching the bit-string ordering: $|01\rangle$ means the first qubit is in $|0\rangle$, the second in $|1\rangle$. (Heads-up on labels: Qiskit numbers qubits from the *least*-significant end, so Qiskit's qubit 0 is this book's rightmost, last qubit — see §4.2, §4.8, and Appendix A before comparing with code.)
 
 For matrices and operators acting on the joint space, the tensor product is the Kronecker product. If $A$ acts on $\mathcal{H}_A$ and $B$ acts on $\mathcal{H}_B$, then $A \otimes B$ acts on $\mathcal{H}_A \otimes \mathcal{H}_B$ by
 
@@ -30,7 +30,7 @@ extended by linearity. The matrix form, in the basis $\\{|00\rangle, |01\rangle,
 
 ## 7.2 Multi-Qubit Dimensionality
 
-An $n$-qubit system lives in $(\mathbb{C}^2)^{\otimes n} = \mathbb{C}^{2^n}$. The computational basis has $2^n$ elements, labelled by bit strings $|x_0 x_1 \cdots x_{n-1}\rangle$ with $x_i \in \\{0,1\\}$. A general pure state is therefore
+An $n$-qubit system lives in $(\mathbb{C}^2)^{\otimes n} = \mathbb{C}^{2^n}$. The computational basis has $2^n$ elements, labelled by bit strings $|x_1 x_2 \cdots x_n\rangle$ with $x_i \in \\{0,1\\}$. A general pure state is therefore
 
 $$
 |\psi\rangle \;=\; \sum_{x \in \\{0,1\\}^n} \alpha_x |x\rangle, \qquad \sum_x |\alpha_x|^2 = 1,
@@ -131,7 +131,7 @@ $$
 
 It is saturated by the singlet $|\Psi^-\rangle$ with the right measurement angles: take Alice's settings $A_0 = Z$, $A_1 = X$, and Bob's $B_0 = -(Z+X)/\sqrt{2}$, $B_1 = -(Z-X)/\sqrt{2}$. On the singlet $\langle(\hat a\cdot\vec\sigma)\otimes(\hat b\cdot\vec\sigma)\rangle = -\hat a\cdot\hat b$, so with these settings each of $\langle A_0 B_0\rangle, \langle A_0 B_1\rangle, \langle A_1 B_0\rangle$ equals $+\tfrac{1}{\sqrt 2}$ and $\langle A_1 B_1\rangle = -\tfrac{1}{\sqrt 2}$, giving $S = 2\sqrt 2$. (The overall sign of $S$ is conventional — dropping the minus signs on Bob's settings flips it to $-2\sqrt 2$ — but $|S| = 2\sqrt 2$ either way.)
 
-The experimental verdict — from Aspect's experiments in the 1980s through the loophole-free tests of 2015 — is that nature violates the classical bound. Local hidden variables, as a model of physical reality, are ruled out. Quantum mechanics correctly predicts the observed values up to the Tsirelson bound.
+The experimental verdict — from Aspect's experiments in the 1980s through the loophole-free tests of 2015 — is that nature violates the classical bound. Local hidden variables — granted the locality, freedom-of-choice, and fair-sampling assumptions the experiments test (§3.8 and the Prelude spell out the fine print) — are ruled out as a model of physical reality. Quantum mechanics correctly predicts the observed values up to the Tsirelson bound.
 
 A separate fact, often confused with Bell-inequality violation, is that this correlation **cannot be used to signal**. Alice's marginal distribution is independent of Bob's choice of setting; the violation is visible only when the two sides compare records and compute the correlator. No information travels faster than light.
 
@@ -200,8 +200,8 @@ Chapters 5–7 give the static picture: states of one or many qubits, what count
 **Sanity checks before moving on.**
 
 1. Verify that $|\Phi^+\rangle, |\Phi^-\rangle, |\Psi^+\rangle, |\Psi^-\rangle$ are mutually orthogonal and normalised.
-2. Show that applying $H \otimes I$ followed by CNOT (control on qubit 0) to each of $|00\rangle, |01\rangle, |10\rangle, |11\rangle$ produces the four Bell states (up to sign).
-3. Compute the reduced state on qubit 0 of the GHZ state and confirm it is $I/2$.
+2. Show that applying $H \otimes I$ followed by CNOT (control on the first qubit) to each of $|00\rangle, |01\rangle, |10\rangle, |11\rangle$ produces the four Bell states (up to sign).
+3. Compute the reduced state of the first qubit of the GHZ state and confirm it is $I/2$.
 4. For $|\psi\rangle = \tfrac{1}{2}(|00\rangle + |01\rangle + |10\rangle + |11\rangle)$, find a single-qubit factorisation and conclude $|\psi\rangle$ is a product state.
 5. Verify the Tsirelson saturation: with $A_0 = Z$, $A_1 = X$ on the singlet and the Bob settings in §7.9, compute each correlator $\langle A_i B_j\rangle$ explicitly.
 
