@@ -1,6 +1,6 @@
 # Chapter 9. Quantum Circuits
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 13 / 13
+> **Status:** draft · **Phase:** 1 · **Sections drafted:** 14 / 14
 
 [← Previous: Chapter 8](08-quantum-gates.md) · [Table of Contents](../../README.md) · [Next: Chapter 10 →](10-core-quantum-phenomena.md)
 
@@ -19,7 +19,7 @@ A handful of glyph conventions are near-universal across vendors:
 - A measurement is a meter-style box, often with a "$D$"-shaped icon, followed by a double-line classical wire carrying the outcome bit.
 - Single-qubit gates are usually labelled by a letter or symbol ($H$, $X$, $T$, $R_Y(\theta)$); their box width is purely cosmetic.
 
-Three conventions are *not* universal and trip up readers crossing between sources. **Qubit ordering**: textbooks usually put the most-significant qubit on top (this book does), but Qiskit puts the least-significant qubit on top (so it lines up with classical bit-string order; see the endianness discussion in Chapter 7). **Time direction**: most diagrams run left-to-right, but a few physics texts run right-to-left to match the algebraic order $U_n \cdots U_2 U_1$. **Endianness in bit strings**: $|q_0 q_1 q_2\rangle$ might mean either $q_0$ is the top wire or the leftmost bit of the integer — check before computing. This book uses leftmost-as-most-significant throughout (Chapter 7) and matches the top-wire convention. Note these are two independent choices — wire position on the diagram and bit position in the integer — that this book deliberately aligns and Qiskit deliberately reverses on both; Appendix A gives the explicit index-conversion recipe for reading Qiskit output against this book's kets.
+Three conventions are *not* universal and trip up readers crossing between sources. **Qubit ordering**: textbooks usually put the most-significant qubit on top (this book does), but Qiskit puts the least-significant qubit on top (so it lines up with classical bit-string order; see the endianness discussion in §4.8). **Time direction**: most diagrams run left-to-right, but a few physics texts run right-to-left to match the algebraic order $U_n \cdots U_2 U_1$. **Endianness in bit strings**: $|q_0 q_1 q_2\rangle$ might mean either $q_0$ is the top wire or the leftmost bit of the integer — check before computing. This book uses leftmost-as-most-significant throughout (§4.2, §4.8) and matches the top-wire convention. Note these are two independent choices — wire position on the diagram and bit position in the integer — that this book deliberately aligns and Qiskit deliberately reverses on both; Appendix A gives the explicit index-conversion recipe for reading Qiskit output against this book's kets.
 
 ![Bell-state preparation: a Hadamard on the top qubit, then a CNOT, then measurement of both qubits into a two-bit classical register — illustrating the control dot, the target, the meter symbol, and the double-line classical wire.](figures/bell-state.svg)
 

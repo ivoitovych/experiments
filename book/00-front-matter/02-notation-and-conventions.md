@@ -39,8 +39,8 @@ reference and §4.16 as the in-context checklist.
 The book lives in finite-dimensional complex Hilbert spaces unless
 explicitly stated otherwise. The default field of scalars is
 $\mathbb{C}$, and the default state space on $n$ qubits is
-$\mathbb{C}^{2^n}$ with the standard Hermitian inner product. Infinite-
-dimensional considerations appear only at boundary problems
+$\mathbb{C}^{2^n}$ with the standard Hermitian inner product.
+Infinite-dimensional considerations appear only at boundary problems
 (bosonic modes, continuous-variable systems) and are flagged where
 they enter.
 
@@ -106,7 +106,9 @@ its amplitudes:
 - $\epsilon, \delta$ — error and failure-probability parameters
   ($\epsilon$ for additive error, $\delta$ for confidence
   $1 - \delta$).
-- $\omega$ — primitive root of unity.
+- $\omega$ — primitive root of unity. (The same glyph appears as
+  little-omega $\omega(g(n))$ in asymptotic notation above;
+  as with $\sigma$, context disambiguates.)
 
 ## 2.2 Matrix Notation
 
@@ -133,7 +135,11 @@ explicitly when both conventions appear in the same passage.
 - $\\{A, B\\} = AB + BA$ — anticommutator. Pauli operators
   anticommute pairwise: $\\{X, Y\\} = \\{Y, Z\\} = \\{X, Z\\} = 0$.
 - $I$ (or $I_n$) — identity operator (on $n$ qubits, an
-  $n$-fold tensor product of single-qubit identities).
+  $n$-fold tensor product of single-qubit identities). **Warning:**
+  the subscript counts *qubits*, not matrix dimension — $I_2$ here is
+  the $4 \times 4$ identity, whereas most linear-algebra texts (and
+  `np.eye(n)`) use $I_n$ for the $n \times n$ identity. Context makes
+  the intent clear, but check before comparing with code.
 - $A \succeq 0$ — $A$ is **positive semidefinite**: Hermitian with
   $\langle v | A | v\rangle \ge 0$ for all $v$. The shorthand
   $A \succeq B$ means $A - B \succeq 0$.
@@ -426,7 +432,9 @@ of $U$.
 **Status block.** Every chapter file begins with a blockquoted
 status line directly after its top-level heading:
 
+```text
 > **Status:** *state* · **Phase:** N · **Sections drafted:** k / M
+```
 
 States in order of completeness:
 `stub` → `outlined` → `draft` → `reviewed` → `final`. The block is

@@ -159,7 +159,8 @@ Find the eigenvalues and a pair of orthonormal eigenvectors.
 *Answer.* Eigenvalues $\lambda = 3$ and $\lambda = 1$. Eigenvectors
 $\tfrac{1}{\sqrt{2}}(1, 1)^T$ and $\tfrac{1}{\sqrt{2}}(1, -1)^T$
 respectively. These are also the eigenvectors of the Pauli $X$ matrix,
-which is no coincidence — $A = I + X$.
+which is no coincidence — $A = 2I + X$ (so the eigenvalues $3 = 2 + 1$
+and $1 = 2 - 1$ are the identity's $2$ shifted by $X$'s $\pm 1$).
 
 **Sample problem 1.3.2.** Let
 

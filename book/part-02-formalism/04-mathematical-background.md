@@ -1273,9 +1273,12 @@ the rest of the book:
 3. **Inner products over $\mathbb{C}$ require conjugation.** Omitting the
    conjugate on the bra side silently breaks Hermiticity, probability
    normalization, and unitarity calculations.
-4. **Tensor-product order matters.** The mapping from $|q_{n-1} \cdots q_0\rangle$
-   to a Kronecker-product index is a *convention*; always check the
-   bit-ordering of any framework before comparing with a hand derivation.
+4. **Tensor-product order matters.** The mapping from a bit string
+   $x_1 \cdots x_n$ (this book: leftmost is most significant) to a
+   Kronecker-product index is a *convention* — frameworks that label
+   qubits $q_{n-1} \cdots q_0$ little-endian make the opposite choice —
+   so always check the bit-ordering of any framework before comparing
+   with a hand derivation.
 5. **The QFT is not a faster FFT for arbitrary arrays.** Input preparation
    and output measurement both cap what you can actually do with it.
 6. **A large Hilbert space does not by itself imply a speedup.** Useful

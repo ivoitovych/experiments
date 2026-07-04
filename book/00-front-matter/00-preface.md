@@ -1,6 +1,6 @@
 # Preface
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 11 / 11
+> **Status:** draft · **Phase:** 1 · **Sections drafted:** 12 / 12
 
 [Table of Contents](../../README.md) · [Next: Recommended / Assumed Background and Self-Check →](01-background-and-self-check.md)
 
@@ -147,7 +147,7 @@ introduction to quantum hardware platforms, control electronics, and
 the metrics by which devices are judged: enough to understand vendor
 datasheets, follow a control-systems paper, and reason about why a
 particular device behaves the way it does. It is not enough to design
-a superconducting qubit, dilution refrigerator, or trapped-ion ion
+a superconducting qubit, dilution refrigerator, or ion
 trap from scratch. Experimental physicists looking for that depth
 should treat Part IX as a software engineer's view onto the hardware
 stack, useful as orientation, not as a substitute for the
@@ -162,13 +162,20 @@ explicitly.
 
 ## How to Use This Book
 
-The book is organised as thirteen parts spanning roughly
+The book is organised as thirteen parts spanning
 thirty-seven chapters, plus front matter and appendices. On a first
 pass through unfamiliar material, read linearly: each chapter
 deliberately leans on prerequisites from earlier chapters, the
 notation accumulates, and the conventions established early are used
 throughout. The order has been chosen so that no chapter needs a
 forward reference to make sense.
+
+Between the front matter and Chapter 1 sits an unnumbered
+**Historical Prelude** — a self-contained narrative history of how
+quantum mechanics became quantum computing. It introduces no
+formalism that later chapters depend on, so it can be read first,
+saved for later, or skipped entirely without affecting the technical
+sequence; readers who enjoy history-first framing should start there.
 
 On a second pass, or as a working reference, the book is intended to
 be read selectively. Each chapter is self-contained enough to stand
@@ -178,7 +185,8 @@ Appendix A, the gate matrices in Appendix B, and the identity tables
 in Appendix C are designed to be looked up rather than read through.
 
 Most chapters end with a small set of sanity-check exercises (the
-self-check chapter in the front matter is the exception: it is
+self-check chapter in the front matter and the experiment-driven
+checks of Chapter 3 are the exceptions: it is
 calibration rather than practice and gives sample problems with inline
 answers). These are not problem sets in the textbook-with-solutions-in-the-back
 sense. They are short, concrete questions that you should be able to
@@ -256,6 +264,9 @@ rereading the whole book.
 
 ## Suggested Reading Paths
 
+Whichever path you choose, you may optionally begin with the
+unnumbered Historical Prelude; none of the paths below depends on it.
+
 A few concrete paths through the material may help.
 
 *The full linear path*: read every chapter in order. This is the
@@ -307,9 +318,14 @@ Qubit indices are read left-to-right in ket strings, with the
 *leftmost* qubit treated as the most significant. So $|x_1 x_2
 \ldots x_n\rangle$ maps to the integer $\sum_i x_i \cdot 2^{n-i}$.
 This is the textbook convention. It is the *opposite* of Qiskit's
-display order, which is little-endian: a Qiskit `0b01` printout
-corresponds to this book's $|10\rangle$. That mapping is flagged here
-as a cross-convention pitfall, not as a convention this book adopts —
+display order, which is little-endian — and whether a Qiskit `0b01`
+printout means this book's $|01\rangle$ or $|10\rangle$ depends on how
+tensor factors are matched to Qiskit's qubit labels. Under this
+book's recommended mapping (leftmost factor ↔ highest-numbered
+Qiskit qubit, §4.8), the printed strings *coincide*; only under the
+naive mapping that identifies the first factor with Qiskit's `q0` do
+they reverse. That subtlety is flagged here as a cross-convention
+pitfall, not as a convention this book adopts —
 the book stays leftmost-most-significant throughout. Chapter 4
 documents the conversion in detail; if you are reading along with
 Qiskit code, keep the difference visible.

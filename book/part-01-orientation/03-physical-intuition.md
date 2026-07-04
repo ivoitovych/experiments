@@ -1,6 +1,6 @@
 # Chapter 3. Physical Intuition Behind Quantum Mechanics
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 10 / 10
+> **Status:** draft · **Phase:** 1 · **Sections drafted:** 11 / 11
 
 [← Previous: Chapter 2](02-classical-to-quantum-contrast.md) · [Table of Contents](../../README.md) · [Next: Chapter 4 →](../part-02-formalism/04-mathematical-background.md)
 
@@ -204,7 +204,7 @@ predicts both detectors fire with probability $1/2$.
 
 That prediction is wrong. With paths of equal length, one detector
 fires every time and the other never fires. The pattern is
-*deterministic*, not random; reversing one of the mirrors by a
+*deterministic*, not random; displacing one of the mirrors by a
 fraction of a wavelength continuously shifts the firing probability
 between the two detectors, sweeping through the full pattern of a
 standard two-slit interference fringe. The photon — a single
@@ -505,16 +505,18 @@ value $2\sqrt{2}$ — a *factor* of $\sqrt{2}$ above the classical bound
 of $2$.
 
 Alain Aspect and collaborators in 1982 carried out the first
-experiment that closed the *locality* loophole — the worry that
+experiment that addressed the *locality* loophole (within the limits
+of 1980s detection technology) — the worry that
 the two distant detectors might somehow communicate during the
 measurement and rig the correlations — by switching the measurement
 settings on each side faster than light could travel between them.
 The result agreed with quantum mechanics and violated the Bell
 inequality by many standard deviations. Subsequent decades closed
 the remaining loopholes one by one: detection efficiency
-(Rowe et al., 2001, with trapped ions; Giustina et al. and
-Shalm et al., 2015, with photons), freedom-of-choice (the
-2010s Vienna and Stockholm experiments), and finally a series of
+(Rowe et al., 2001, with trapped ions; first with photons by
+Giustina et al. and Christensen et al. in 2013), freedom-of-choice
+(the 2010s Vienna cosmic-photon experiments — Handsteiner et al.
+2017, Rauch et al. 2018 — and the 2018 BIG Bell Test), and finally a series of
 **simultaneously loophole-free** Bell tests in 2015 (Hensen et al.
 in Delft with NV-center spins; the Vienna and NIST photon
 experiments later that year). The 2015 experiments are the
@@ -624,7 +626,7 @@ the system itself plus the environment. The composite evolves
 unitarily (the laws of physics do not stop applying because the
 boundary is hard to draw); the *subsystem*, viewed in isolation,
 does not. The local description of the subsystem requires the
-**mixed-state formalism** of §5.9-§5.11 — density matrices and
+**mixed-state formalism** of §5.9-§5.12 — density matrices and
 partial traces — and its evolution requires **quantum channels**,
 the open-system generalization of unitary maps.
 

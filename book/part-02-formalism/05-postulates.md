@@ -1,6 +1,6 @@
 # Chapter 5. Postulates of Quantum Mechanics for Computing
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 14 / 14
+> **Status:** draft · **Phase:** 1 · **Sections drafted:** 15 / 15
 
 [← Previous: Chapter 4](04-mathematical-background.md) · [Table of Contents](../../README.md) · [Next: Chapter 6 →](../part-03-qubits/06-the-qubit.md)
 
@@ -564,6 +564,17 @@ mixed. This is how entanglement manifests at the subsystem level
 (§4.8 introduced the example; here we have the full operational
 machinery to explain it).
 
+A direct operational consequence is **no-signalling**: if a
+measurement is performed on subsystem $B$ and its outcome is not
+communicated, subsystem $A$'s reduced state is unchanged. Summing the
+unread post-measurement branches gives
+$\sum_m (I \otimes M_m)\\,\rho\\,(I \otimes M_m)^\dagger$, and tracing
+out $B$ returns exactly $\rho_A$, because the trace over $B$ lets the
+$M_m$ collect via cyclicity into $\sum_m M_m^\dagger M_m = I$. Local
+statistics on one side are therefore identical whether or not the
+other side has been measured — the fact Chapter 3 (§3.8) leaned on,
+developed further in §7.11 and §10.6.
+
 The reduced-state construction is the formal mechanism behind every
 "trace out the environment" argument in noise modelling, every
 local-only protocol analysis in quantum communication, and the
@@ -676,7 +687,7 @@ $$
 So $\langle\psi|\phi\rangle = \langle\psi|\phi\rangle^2$, which forces
 $\langle\psi|\phi\rangle \in \\{0, 1\\}$ for every pair. But that
 fails for any two non-orthogonal, non-identical states — whose overlap
-lies strictly between $0$ and $1$ — for example $|0\rangle$ and
+is neither $0$ nor $1$ — for example $|0\rangle$ and
 $|+\rangle$, which have overlap $1/\sqrt{2}$. Hence no such $U$
 exists. ∎
 
@@ -711,15 +722,20 @@ Chapter 27's analysis of attacks on quantum cryptographic protocols.
 
 ## 5.14 No-Deleting Theorem
 
-**Theorem (no-deleting, Pati and Braunstein 2000).** There is no
-unitary $U$ on $\mathcal{H} \otimes \mathcal{H}$ and no fixed
-"blank" state $|\text{blank}\rangle$ such that
+**Theorem (no-deleting; simplified from Pati and Braunstein 2000).**
+There is no unitary $U$ on $\mathcal{H} \otimes \mathcal{H}$ and no
+fixed "blank" state $|\text{blank}\rangle$ such that
 
 $$
 U\bigl(|\psi\rangle \otimes |\psi\rangle\bigr) = |\psi\rangle \otimes |\text{blank}\rangle
 $$
 
 for every $|\psi\rangle$.
+
+(Pati and Braunstein's full statement includes an ancilla and proves
+something strictly stronger: the second copy's information can only be
+*moved* — into the ancilla — never destroyed. The ancilla-free form
+above is the simplified special case.)
 
 In other words, given two identical copies of an unknown quantum
 state, you cannot deterministically reduce them to one copy by
@@ -757,6 +773,17 @@ Three consequences worth naming:
 ---
 
 ## 5.15 Bridge to Chapter 6
+
+The computational fingerprints promised in the introduction,
+collected in one place: **Postulate 1** (state space) →
+*superposition* — the register carries amplitudes over all basis
+states; **Postulate 2** (unitary evolution) → *reversibility and
+interference* — every computation step is invertible and amplitudes
+can cancel; **Postulate 3** (measurement) → *the classical boundary* —
+one sampled outcome per shot, at Born-rule probabilities, which is
+what every algorithm's read-out step must budget for; **Postulate 4**
+(composition) → *entanglement* — joint states that no per-qubit
+description reproduces.
 
 This chapter promoted the linear-algebra objects of Chapter 4 to
 physical postulates and developed the density-matrix formalism that

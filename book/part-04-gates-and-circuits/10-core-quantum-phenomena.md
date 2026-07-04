@@ -1,6 +1,6 @@
 # Chapter 10. Core Quantum Phenomena from a Computational View
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 13 / 13
+> **Status:** draft · **Phase:** 1 · **Sections drafted:** 14 / 14
 
 [← Previous: Chapter 9](09-quantum-circuits.md) · [Table of Contents](../../README.md) · [Next: Chapter 11 →](../part-05-measurement-and-information/11-measurement-theory.md)
 
@@ -132,7 +132,7 @@ $$
 
 in which every row and every column is a pairwise-commuting triple. Each of the three rows and the first two columns multiplies to $+I$, but the last column multiplies to $-I$. If each observable had a context-independent value $\pm 1$, multiplying those values row by row would give $+1$, while multiplying them column by column would give $-1$ — a contradiction, independent of the state. So the value an observable takes is not fixed in advance; it depends on the compatible context — the maximal commuting set — measured alongside it.
 
-The cleanest computational manifestation is the **GHZ contradiction** (§7.6 and §7.7). For the three-qubit GHZ state $(|000\rangle + |111\rangle)/\sqrt{2}$, the four observables $X_1 X_2 X_3$, $X_1 Y_2 Y_3$, $Y_1 X_2 Y_3$, $Y_1 Y_2 X_3$ all commute pairwise on this state and have definite values $+1, -1, -1, -1$ respectively. Their product is $-1$, but the product of pre-assigned $\pm 1$ values would always yield $+1$ because each Pauli appears twice. No hidden-variable assignment is consistent; the contradiction is a single shot, not a statistical inequality.
+The cleanest computational manifestation is the **GHZ contradiction** (§7.6 and §7.7). For the three-qubit GHZ state $(|000\rangle + |111\rangle)/\sqrt{2}$, the four observables $X_1 X_2 X_3$, $X_1 Y_2 Y_3$, $Y_1 X_2 Y_3$, $Y_1 Y_2 X_3$ all commute pairwise — as operators, unconditionally (each pair differs in exactly two slots, giving two local anticommutations that cancel) — and, on this state, have definite values $+1, -1, -1, -1$ respectively. Their product is $-1$, but the product of pre-assigned $\pm 1$ values would always yield $+1$ because each Pauli appears twice. No hidden-variable assignment is consistent; the contradiction is a single shot, not a statistical inequality.
 
 Contextuality is widely conjectured to be a resource powering certain quantum advantages — notably magic-state distillation (Chapter 19) and measurement-based quantum computation (Chapter 32) — and the formal connection is an active research area.
 
@@ -154,7 +154,7 @@ $$
 
 The system gets pinned to $|\psi\rangle$ even though $H$ would normally drive it away. The mechanism is the quadratic-in-$t$ leak: shrinking $t$ by a factor of $N$ shrinks the leak by $N^2$, and only $N$ chances accumulate.
 
-**Why this matters operationally.** The Zeno effect is the simplest example of *measurement-based error suppression*. Continuous (or frequent) syndrome extraction in stabiliser codes (Chapter 19) is partly a Zeno-style mechanism: each measurement projects onto a definite syndrome subspace — digitising the small coherent errors that environmental coupling induces — and the paired correction returns the state to the code space, suppressing the slow drift. The **dynamical decoupling** sequences used to extend $T_2$ (§10.9, Chapter 21) are coherent cousins of the Zeno effect, exploiting frequent gate operations rather than measurements to average out unwanted Hamiltonian terms. The generalised **quantum Zeno dynamics** picture says that frequent projection onto a *subspace* (rather than a single state) restricts evolution to that subspace, which is the conceptual underpinning of the **decoherence-free subspace** strategy for error mitigation.
+**Why this matters operationally.** The Zeno effect is the simplest example of *measurement-based error suppression*. Continuous (or frequent) syndrome extraction in stabiliser codes (Chapter 19) is partly a Zeno-style mechanism: each measurement projects onto a definite syndrome subspace — digitising the small coherent errors that environmental coupling induces — and the paired correction returns the state to the code space, suppressing the slow drift. The **dynamical decoupling** sequences used to extend $T_2$ (§10.9, Chapter 21) are coherent cousins of the Zeno effect, exploiting frequent gate operations rather than measurements to average out unwanted Hamiltonian terms. The generalised **quantum Zeno dynamics** picture says that frequent projection onto a *subspace* (rather than a single state) restricts evolution to that subspace, which is the conceptual underpinning of the **decoherence-free subspace** strategy for passive error avoidance (distinct from the statistical error *mitigation* of Chapter 25).
 
 ## 10.9 Decoherence
 
