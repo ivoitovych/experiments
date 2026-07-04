@@ -49,6 +49,11 @@ comprehensive review found seven coexisting styles):
   not blockquoted. Answers stay out of the checks; the two sanctioned
   exceptions (the front-matter self-check and Chapter 3) are named in
   the Preface.
+- **Phase field**: the status block's `**Phase:** N` records the file's
+  assignment in the *original writing plan* (`scripts/phases.py`) and is
+  retained as historical metadata; it does not track revision state
+  (that is what **Status** is for). `tools/lint.py` checks each file's
+  Phase against `phases.py`.
 - **Status-block section count**: `Sections drafted: k / M` counts the
   chapter's *numbered* `## N.x` sections — including a numbered bridge,
   excluding unnumbered extras (timeline, source notes, per-letter index

@@ -1,6 +1,6 @@
 # Chapter 15. Landmark Quantum Algorithms
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 11 / 11
+> **Status:** draft · **Phase:** 3 · **Sections drafted:** 11 / 11
 
 [← Previous: Chapter 14](14-foundational-algorithms.md) · [Table of Contents](../../README.md) · [Next: Chapter 16 →](16-modern-algorithmic-frontier.md)
 

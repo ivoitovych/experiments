@@ -1,6 +1,6 @@
 # Chapter 36. How to Judge Claims in Quantum Computing
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 8 / 8
+> **Status:** draft · **Phase:** 6 · **Sections drafted:** 8 / 8
 
 [← Previous: Chapter 35](35-interpretational-and-conceptual-pitfalls.md) · [Table of Contents](../../README.md) · [Next: Chapter 37 →](37-endgame.md)
 

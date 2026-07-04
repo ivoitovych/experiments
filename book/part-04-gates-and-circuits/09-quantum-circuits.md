@@ -1,6 +1,6 @@
 # Chapter 9. Quantum Circuits
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 14 / 14
+> **Status:** draft · **Phase:** 2 · **Sections drafted:** 14 / 14
 
 [← Previous: Chapter 8](08-quantum-gates.md) · [Table of Contents](../../README.md) · [Next: Chapter 10 →](10-core-quantum-phenomena.md)
 

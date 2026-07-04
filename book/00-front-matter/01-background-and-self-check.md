@@ -1,6 +1,6 @@
 # Recommended / Assumed Background and Self-Check
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 7 / 7
+> **Status:** draft · **Phase:** 6 · **Sections drafted:** 7 / 7
 
 [← Previous: Preface](00-preface.md) · [Table of Contents](../../README.md) · [Next: Notation and Conventions →](02-notation-and-conventions.md)
 

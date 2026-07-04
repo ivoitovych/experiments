@@ -1,6 +1,6 @@
 # Chapter 37. Endgame
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 8 / 8
+> **Status:** draft · **Phase:** 6 · **Sections drafted:** 8 / 8
 
 [← Previous: Chapter 36](36-how-to-judge-claims.md) · [Table of Contents](../../README.md) · [Next: Appendix A. Notation Reference →](../99-back-matter/appendix-a-notation-reference.md)
 

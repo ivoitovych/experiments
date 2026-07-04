@@ -177,6 +177,27 @@ MERGED_OR_NO_BRIDGE = {
     "37-endgame.md",
 }
 
+PHASE_RE = re.compile(r"\*\*Phase:\*\*\s*(\d+)")
+try:
+    import sys as _sys
+    _sys.path.insert(0, str(ROOT / "scripts"))
+    from phases import PHASE_BY_FILE  # type: ignore
+except Exception:  # pragma: no cover — phases.py is part of the repo
+    PHASE_BY_FILE = {}
+
+
+def check_phase(rel, md: pathlib.Path, content: str) -> None:
+    """The status block's Phase is historical writing-plan metadata and
+    must match scripts/phases.py (STYLE.md, *Phase field*)."""
+    planned = PHASE_BY_FILE.get(md.name)
+    if planned is None:
+        return
+    m = PHASE_RE.search(content)
+    if m and int(m.group(1)) != planned:
+        fail(rel, f"status block says 'Phase: {m.group(1)}' but scripts/phases.py "
+                  f"assigns phase {planned} — sync the status block (STYLE.md, Phase field)")
+
+
 SANITY_HEADING_RE = re.compile(r"^#{1,6}\s.*[Ss]anity\s+[Cc]hecks", re.MULTILINE)
 PART_ROMAN_RE = re.compile(r"\bPart\s+[IVX]+\b")
 PART_ARABIC_RE = re.compile(r"\bPart\s+\d+\b")
@@ -275,6 +296,7 @@ def check_book_file(md: pathlib.Path) -> None:
     check_inline_latex_env(rel, content)
     check_list_marker_continuation(rel, content)
     check_status_count(rel, md, content)
+    check_phase(rel, md, content)
     check_bridge(rel, md, content)
     check_sanity_check_form(rel, content)
     check_part_numerals(rel, content)

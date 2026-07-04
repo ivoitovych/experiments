@@ -1,6 +1,6 @@
 # Chapter 8. Quantum Gates
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 14 / 14
+> **Status:** draft · **Phase:** 2 · **Sections drafted:** 14 / 14
 
 [← Previous: Chapter 7](../part-03-qubits/07-multiple-qubits-and-entanglement.md) · [Table of Contents](../../README.md) · [Next: Chapter 9 →](09-quantum-circuits.md)
 

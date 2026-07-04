@@ -1,6 +1,6 @@
 # Chapter 11. Measurement Theory
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 8 / 8
+> **Status:** draft · **Phase:** 2 · **Sections drafted:** 8 / 8
 
 [← Previous: Chapter 10](../part-04-gates-and-circuits/10-core-quantum-phenomena.md) · [Table of Contents](../../README.md) · [Next: Chapter 12 →](12-quantum-information-theory.md)
 

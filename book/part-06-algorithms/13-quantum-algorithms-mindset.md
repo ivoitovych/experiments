@@ -1,6 +1,6 @@
 # Chapter 13. The Quantum Algorithms Mindset
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 8 / 8
+> **Status:** draft · **Phase:** 3 · **Sections drafted:** 8 / 8
 
 [← Previous: Chapter 12](../part-05-measurement-and-information/12-quantum-information-theory.md) · [Table of Contents](../../README.md) · [Next: Chapter 14 →](14-foundational-algorithms.md)
 

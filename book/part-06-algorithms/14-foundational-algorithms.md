@@ -1,6 +1,6 @@
 # Chapter 14. Foundational Algorithms
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 10 / 10
+> **Status:** draft · **Phase:** 3 · **Sections drafted:** 10 / 10
 
 [← Previous: Chapter 13](13-quantum-algorithms-mindset.md) · [Table of Contents](../../README.md) · [Next: Chapter 15 →](15-landmark-quantum-algorithms.md)
 

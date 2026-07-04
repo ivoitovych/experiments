@@ -1,6 +1,6 @@
 # Appendix D. Suggested Reading and Reference Papers
 
-> **Status:** draft · **Phase:** 2 · **Sections drafted:** 8 / 8
+> **Status:** draft · **Phase:** 6 · **Sections drafted:** 8 / 8
 
 [← Previous: Appendix C. Useful Identities and Decompositions](appendix-c-identities-and-decompositions.md) · [Table of Contents](../../README.md) · [Next: Appendix E. Glossary →](appendix-e-glossary.md)
 
