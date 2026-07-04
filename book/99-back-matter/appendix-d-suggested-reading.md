@@ -152,11 +152,11 @@ literature has consolidated to a handful of papers that everyone cites.
 - *A theory of fault-tolerant quantum computation.* Daniel Gottesman.
   Physical Review A, 1998. The transversal-gate analysis underlying
   the Eastin-Knill no-go and most fault-tolerant constructions.
-- *Limitations on the simulation of non-stabilizer states.* Sergey
+- *Improved classical simulation of quantum circuits dominated by Clifford gates.* Sergey
   Bravyi and David Gosset. Physical Review Letters, 2016. Useful
   perspective on magic-state distillation and what classical
   simulation can and cannot do near the Clifford boundary.
-- *Quantum LDPC codes with almost linear minimum distance.* Pavel
+- *Asymptotically good quantum and locally testable classical LDPC codes.* Pavel
   Panteleev and Gleb Kalachev. STOC, 2022. Representative of the
   recent qLDPC line; worth at least skimming for context on why the
   surface code is not the end of the story.
@@ -195,9 +195,11 @@ recently re-stated.
   than the headline: the supplementary material is a tour of the
   control stack.
 - *Open-source pulse-level control: Qiskit Pulse and OpenPulse.*
-  Thomas Alexander et al. The OpenPulse specification papers and the
-  Qiskit Pulse module documentation together describe what
-  pulse-level programming looks like on a real system.
+  Thomas Alexander et al. The OpenPulse specification papers describe
+  what pulse-level programming looks like on a real system. (Note:
+  the Qiskit Pulse API itself was removed in Qiskit 2.0 (2025) —
+  §21.3, §23.5 — so read these as design documentation; the living
+  pulse interface is OpenQASM 3 `defcal`.)
 
 ## D.6 Complexity Theory
 
@@ -317,6 +319,12 @@ documentation rather than as stable artifacts.
   backends. The SDK itself is thin; the value is in the uniform
   device-capability description, which is a useful study in how to
   expose noisy hardware to users.
+- **Conferences.** Three matter most (see §37.6): **QIP** — the
+  theory venue where algorithmic and complexity results break first
+  (no formal proceedings; papers on arXiv); **IEEE Quantum Week
+  (QCE)** — the engineering-and-applications venue, with tooling and
+  benchmarking workshops; **APS March Meeting** — where hardware
+  platform progress is reported in raw experimental form.
 - **Companion notebooks.** Mermin's *Quantum Computer Science* and
   the IBM *Learn Quantum Computation using Qiskit* online materials
   both ship with substantial notebook collections. Working through

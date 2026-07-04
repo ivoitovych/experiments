@@ -30,6 +30,39 @@ Every chapter file begins with:
 Use `---` (horizontal rule) before the trailing nav block to separate it
 from chapter content.
 
+**Chapter-closing conventions** (adjudicated 2026-07-04, after the
+comprehensive review found seven coexisting styles):
+
+- **Bridge section**: each chapter ends with a *numbered* H2 bridge
+  section (`## N.M Bridge to Chapter N+1`). Merging the bridge into the
+  chapter's final numbered section (as Chapters 22, 27, 30–32, 35 do)
+  is also acceptable; unnumbered or unheaded bridges are not.
+- **Sanity checks**: rendered as a bold run-in paragraph
+  `**Sanity checks before moving on.**` followed by a numbered list,
+  inside the bridge (or final) section — not as their own H2 heading,
+  not blockquoted. Answers stay out of the checks; the two sanctioned
+  exceptions (the front-matter self-check and Chapter 3) are named in
+  the Preface.
+- **Status-block section count**: `Sections drafted: k / M` counts the
+  chapter's *numbered* `## N.x` sections — including a numbered bridge,
+  excluding unnumbered extras (timeline, source notes, per-letter index
+  groups). Front-matter files without numbered sections count all H2s.
+- **Part references**: canonical part names are Roman (Part I–XIII), as
+  in README/TOC/Preface; Arabic shorthand ("Part 8") is accepted in
+  running chapter prose. Do not mix the two styles within one file.
+
+**Historical Prelude local conventions** (adjudicated 2026-07-04; these
+are deliberate, not drift):
+
+- The Prelude sets its math in backtick code spans with Unicode
+  (`` `|Φ⁺⟩ = (|00⟩+|11⟩)/√2` ``) rather than `$…$` LaTeX. This is an
+  accepted file-local convention: the chapter is narrative history, the
+  code style is renderer-bug-proof, and converting it would churn a
+  heavily verified file for no reader benefit.
+- The Prelude's four `# Episode` headings are additional H1s by design
+  (episode structure outranks section structure there). Tooling that
+  slices by H2 should treat the Prelude as a known exception.
+
 ## Math
 
 Math is written in **LaTeX**, restricted to features that render natively
@@ -52,6 +85,15 @@ on **all** of: GitHub web view, mdBook + MathJax, and Pandoc.
 - **Set braces**: similarly, `\{` and `\}` get unescaped to `{` `}` before
   MathJax sees them, which makes the braces invisible. Write `\\{` and
   `\\}` in source whenever you want visible set braces (e.g. `\\{0,1\\}^n`).
+- **Thin spaces and norm bars**: the same backslash-eating applies to
+  `\,` (thin space) and `\|` (norm bars) — a single backslash renders
+  as a literal `,` or breaks the norm. Write `\\,` and `\\|` in source.
+  Full escape table (single → doubled in source): `\\` → `\\\\` (matrix
+  row breaks), `\{`/`\}` → `\\{`/`\\}`, `\,` → `\\,`, `\|` → `\\|`.
+  The empirical basis for all of these is the canonical renderer-bug
+  memo, [docs/github-markdown-math-bugs.md](docs/github-markdown-math-bugs.md),
+  with its live test sheet in `docs/render-tests/`; consult it before
+  introducing any new math construct.
 - Number equations manually if needed: end the line with `\quad (1.3.1)`
   or similar.
 - Avoid heavy math inside Markdown tables — escapes get fragile.

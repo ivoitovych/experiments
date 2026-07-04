@@ -43,7 +43,7 @@ The honest one-sentence summary: the hardware is real, the engineering is hard, 
 
 Three things are roughly knowable about the next decade; many things are not. The knowable ones come from extrapolating the trend lines fitted in §25.5 plus the surface-code arithmetic of §25.6.
 
-**Knowable: trend extrapolation.** Physical qubit counts grew $\sim 1.5\times$ per year over $2018$–$2026$; two-qubit fidelity improved by roughly a factor of two per platform-generation. Continuing those rates to $\sim 2030$ gives $\sim 10^4$ physical qubits per system at two-qubit error $\sim 10^{-3}$ — the regime where small distance-$d$ codes start to comfortably outperform their constituent physical qubits. To $\sim 2035$–$2040$, the same extrapolation suggests $\sim 10^5$–$10^6$ physical qubits and the first algorithms running at $\sim 10^9$ logical operations. The trend lines have been wrong before in both directions; treat the extrapolations as central scenarios, not predictions.
+**Knowable: trend extrapolation.** Physical qubit counts grew $\sim 1.5\times$ per year over $2018$–$2026$; two-qubit *error* roughly halved per platform-generation. Continuing those rates to $\sim 2030$ gives $\sim 10^4$ physical qubits per system at two-qubit error $\sim 10^{-3}$ — the regime where small distance-$d$ codes start to comfortably outperform their constituent physical qubits. To $\sim 2035$–$2040$, the same extrapolation suggests $\sim 10^5$–$10^6$ physical qubits and the first algorithms running at $\sim 10^9$ logical operations. The trend lines have been wrong before in both directions; treat the extrapolations as central scenarios, not predictions.
 
 **Knowable: what arrives first.** Resource estimates across the literature consistently place applications in a rough order, by physical-qubit demand:
 
@@ -108,7 +108,7 @@ A short, opinionated list. The principle is breadth over volume — three textbo
 
 **Conferences.** Three matter most:
 
-- **QIP** (Quantum Information Processing). The theory conference; the place where algorithmic and complexity-theoretic results break first. Proceedings are open-access.
+- **QIP** (Quantum Information Processing). The theory conference; the place where algorithmic and complexity-theoretic results break first. There are no formal proceedings — accepted papers live on arXiv.
 - **IEEE Quantum Week**. The engineering-and-application conference; broader scope, more industry presence, more workshops on tooling and benchmarking.
 - **APS March Meeting**. The physics conference; where the hardware-platform progress is reported in raw experimental form before it reaches the engineering venues.
 
@@ -131,7 +131,7 @@ A specific anti-pattern to avoid: chasing the "quantum gold rush" by taking a sh
 
 The closing argument of this book is one that has been implicit throughout but deserves explicit statement at the end.
 
-Quantum mechanics as a *computational model* — independently of any device that might one day run it — is an intrinsically interesting object. The mathematical structure (unitary evolution on a Hilbert space, projective measurement, tensor-product composition) sits at the intersection of linear algebra, probability theory, and the structure of physical reality, and it produces algorithmic phenomena (Shor's exponential speedup over the best known classical factoring algorithm, Grover's quadratic speedup over unstructured search, quantum simulation as the natural classical-inverse of the simulation problem that motivated the whole field in the first place) that have no classical analogue. Studying it is intellectually rewarding in the way that learning category theory or general relativity is rewarding: the ideas are beautiful, they connect to a wide range of other ideas, and they change how you see other problems even when you are not actively working on them.
+Quantum mechanics as a *computational model* — independently of any device that might one day run it — is an intrinsically interesting object. The mathematical structure (unitary evolution on a Hilbert space, projective measurement, tensor-product composition) sits at the intersection of linear algebra, probability theory, and the structure of physical reality, and it produces algorithmic phenomena (Shor's exponential speedup over the best known classical factoring algorithm, Grover's quadratic speedup over unstructured search, quantum simulation as the direct answer to the simulation problem that motivated the whole field in the first place) that have no classical analogue. Studying it is intellectually rewarding in the way that learning category theory or general relativity is rewarding: the ideas are beautiful, they connect to a wide range of other ideas, and they change how you see other problems even when you are not actively working on them.
 
 This matters because no one knows what the deployment timeline is. The most optimistic published forecasts place useful quantum advantage in industrial workloads at the end of this decade; the pessimistic ones place it past the middle of the next; the genuinely cautious answer is "we will know when we see it." A reader who studies the subject *only* for the application is implicitly betting on a specific timeline, and the bet may take longer than a career to resolve.
 
