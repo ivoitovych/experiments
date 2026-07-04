@@ -27,14 +27,14 @@ reference and §4.16 as the in-context checklist.
 > **How to read this chapter.** Skim it once now to catch the
 > conventions that will look unfamiliar (qubit-label ordering, QFT
 > sign, norm-bar bookkeeping, log base for entropy), and bookmark
-> §2.3 (Dirac notation), §2.4 (tensor-product order), and §2.6
+> §N.3 (Dirac notation), §N.4 (tensor-product order), and §N.6
 > (probability / measurement) for later reference. The Greek-letter
-> conventions and circuit-symbol legend in §2.5 are worth a single
+> conventions and circuit-symbol legend in §N.5 are worth a single
 > read-through before the first circuit diagram appears in Chapter 6.
 > Nothing here needs to be memorised — it just needs to be findable
 > when a later formula does not type-check.
 
-## 2.1 Mathematical Notation
+## N.1 Mathematical Notation
 
 The book lives in finite-dimensional complex Hilbert spaces unless
 explicitly stated otherwise. The default field of scalars is
@@ -110,7 +110,7 @@ its amplitudes:
   little-omega $\omega(g(n))$ in asymptotic notation above;
   as with $\sigma$, context disambiguates.)
 
-## 2.2 Matrix Notation
+## N.2 Matrix Notation
 
 Matrices in this book act on column vectors from the left:
 $v \mapsto A v$. Indices run from $0$ in code listings and from $1$
@@ -194,7 +194,7 @@ the bar conflicts with the column separator (Bug 5 in the renderer
 memo), which is why this chapter — and the Appendix A reference —
 uses bullet lists instead of tables wherever norm bars or kets appear.
 
-## 2.3 Dirac Notation
+## N.3 Dirac Notation
 
 The book uses raw `\langle` and `\rangle` for all bra-ket notation.
 The `physics`-package macros `\ket`, `\bra`, `\braket` are *not* used
@@ -262,7 +262,7 @@ $|A|$, even though the three look identical in source. Kets are
 always paired with a closing `\rangle`; the parser disambiguates by
 the closing delimiter.
 
-## 2.4 Tensor Product Notation
+## N.4 Tensor Product Notation
 
 Tensor-factor order is the single place where book formulas most
 often disagree with code. The convention is fixed once here and
@@ -320,7 +320,7 @@ ordering conventions are detailed in
   operators. Produces the reduced density matrix of the remaining
   subsystem (Chapter 5).
 
-## 2.5 Circuit Notation
+## N.5 Circuit Notation
 
 Circuit drawing conventions are introduced in Chapter 6 and used
 throughout Parts 3–6. The diagram conventions are uniform across
@@ -333,7 +333,7 @@ the book:
   $0$ is the top wire; qubit $n-1$ is the bottom wire. This is a
   drawing convention only — it does *not* automatically pin down the
   bit-string ordering, which is the separate convention fixed in
-  §2.4.
+  §N.4.
 - **Single-qubit gates** are boxed letters: $X$, $Y$, $Z$, $H$, $S$,
   $T$, and the rotation families $R_x(\theta)$, $R_y(\theta)$,
   $R_z(\theta)$, $P(\theta)$.
@@ -378,7 +378,7 @@ explicit symbolic names:
   $U$, drawn as $U$ with a dagger superscript or as a box labelled
   $U^{-1}$.
 
-## 2.6 Probability and Measurement Notation
+## N.6 Probability and Measurement Notation
 
 Discrete distributions are the default for this section; continuous
 and quantum extensions are introduced at their points of first use.
@@ -427,7 +427,7 @@ register; a unitary $U^\dagger$ applied just before measurement
 implements measurement in the basis whose elements are the columns
 of $U$.
 
-## 2.7 Boxed Callouts, Cross-References, and Source Conventions
+## N.7 Boxed Callouts, Cross-References, and Source Conventions
 
 **Status block.** Every chapter file begins with a blockquoted
 status line directly after its top-level heading:

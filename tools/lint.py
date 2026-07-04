@@ -146,7 +146,7 @@ def check_list_marker_continuation(rel, content: str) -> None:
 # entry requires a matching STYLE.md adjudication, not just a lint edit.
 
 SECTIONS_DRAFTED_RE = re.compile(r"\*\*Sections drafted:\*\*\s*(\d+)\s*/\s*(\d+)")
-NUMBERED_H2_RE = re.compile(r"^## (?:\d+|[A-Z])\.\d+ ", re.MULTILINE)
+NUMBERED_H2_RE = re.compile(r"^## (?:\d+|[A-Z]{1,2})\.\d+ ", re.MULTILINE)
 ANY_H2_RE = re.compile(r"^## ", re.MULTILINE)
 
 # Files whose H2s are organisational groups, not drafted sections
@@ -208,7 +208,7 @@ def check_bridge(rel, md: pathlib.Path, content: str) -> None:
         return
     if md.name in MERGED_OR_NO_BRIDGE:
         return
-    numbered_lines = [ln for ln in content.splitlines() if re.match(r"^## (?:\d+|[A-Z])\.\d+ ", ln)]
+    numbered_lines = [ln for ln in content.splitlines() if re.match(r"^## (?:\d+|[A-Z]{1,2})\.\d+ ", ln)]
     if numbered_lines and "Bridge to Chapter" not in numbered_lines[-1]:
         fail(rel, f"last numbered section is {numbered_lines[-1][3:40]!r}, not a "
                   "'Bridge to Chapter' section, and the file is not in the "

@@ -8,7 +8,7 @@ This chapter is a **self-check**, not an introduction. The book proper
 starts at Chapter 1. If you can work the problems below from memory — or
 with only minor stumbling — you have the background to read this book
 linearly. If you cannot, most sections close with a standard reference
-that will get you there in a few weeks of evening study, and §1.6
+that will get you there in a few weeks of evening study, and §SC.6
 collects them in one place.
 
 The bar is deliberately set at "fluent enough that the math does not
@@ -33,7 +33,7 @@ background, it is stated, motivated, and either proved or cited.
 
 ---
 
-## 1.1 Required: Programming Proficiency
+## SC.1 Required: Programming Proficiency
 
 You should be comfortable reading and writing Python at the level of a
 working developer. The book's tooling and practice chapters (Chapter 23,
@@ -65,7 +65,7 @@ work through the first half of *Python Data Science Handbook*
 and to `np.kron` specifically — tensor products will be a constant
 companion.
 
-**Sample problem 1.1.1.** Given a complex matrix `A` of shape
+**Sample problem SC.1.1.** Given a complex matrix `A` of shape
 `(4, 4)`, write a one-line NumPy expression that returns `True` iff `A`
 is unitary to within numerical tolerance.
 
@@ -73,7 +73,7 @@ is unitary to within numerical tolerance.
 `np.allclose(A @ A.conj().T, np.eye(4))`. Both should hold for a
 unitary.
 
-**Sample problem 1.1.2.** Express the two-qubit state
+**Sample problem SC.1.2.** Express the two-qubit state
 $|01\rangle$ as a length-4 NumPy column vector with `dtype=complex`,
 using zero-based indexing where the leftmost factor is the most
 significant bit.
@@ -84,7 +84,7 @@ Chapter 4, §4.2 for the ordering rule.
 
 ---
 
-## 1.2 Required: Mathematical Maturity
+## SC.2 Required: Mathematical Maturity
 
 By "mathematical maturity" we mean the habits a reader picks up after
 a couple of proof-based undergraduate courses: reading a statement and
@@ -105,7 +105,7 @@ reconstruct it within an hour? If yes, you are calibrated.
 
 ---
 
-## 1.3 Required: Linear Algebra
+## SC.3 Required: Linear Algebra
 
 This is the largest single prerequisite. Quantum computing **is**
 applied finite-dimensional complex linear algebra plus a measurement
@@ -148,7 +148,7 @@ Two related topics are optional but useful if you have seen them:
 singular value decomposition (the book reintroduces it in §4.9) and
 positive semidefinite operators (§4.5). Neither is assumed background.
 
-**Sample problem 1.3.1.** Let
+**Sample problem SC.3.1.** Let
 
 $$
 A = \begin{pmatrix} 2 & 1 \\\\ 1 & 2 \end{pmatrix}.
@@ -162,7 +162,7 @@ respectively. These are also the eigenvectors of the Pauli $X$ matrix,
 which is no coincidence — $A = 2I + X$ (so the eigenvalues $3 = 2 + 1$
 and $1 = 2 - 1$ are the identity's $2$ shifted by $X$'s $\pm 1$).
 
-**Sample problem 1.3.2.** Let
+**Sample problem SC.3.2.** Let
 
 $$
 U = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \end{pmatrix}.
@@ -174,7 +174,7 @@ Verify by direct computation that $U^\dagger U = I$ and find $U^2$.
 multiplication gives $U^2 = I$. This is the Hadamard gate $H$; the
 property $H^2 = I$ is used constantly.
 
-**Sample problem 1.3.3.** Let
+**Sample problem SC.3.3.** Let
 $|0\rangle = (1, 0)^T$, $|1\rangle = (0, 1)^T$. Write out the
 $4 \times 4$ matrix of the tensor product $X \otimes Z$, where $X$ is the
 Pauli-$X$ matrix with rows $(0, 1)$ and $(1, 0)$, and $Z$ is the Pauli-$Z$
@@ -201,7 +201,7 @@ common mix-up), reread the definition: in $A \otimes B$ the matrix
 $A$ governs the *block* structure and $B$ governs the within-block
 structure.
 
-**Sample problem 1.3.4.** Compute the trace and determinant of
+**Sample problem SC.3.4.** Compute the trace and determinant of
 $A \otimes B$ when $A$ is $m \times m$ with $\mathrm{tr}(A) = a$ and
 $\det(A) = \alpha$, and similarly $B$ is $n \times n$ with
 $\mathrm{tr}(B) = b$, $\det(B) = \beta$.
@@ -211,7 +211,7 @@ $\det(A \otimes B) = \alpha^n \beta^m$. The trace identity falls out
 of the block structure directly; the determinant identity is the
 useful one to commit to memory.
 
-**Sample problem 1.3.5.** A $4 \times 4$ matrix $M$ has rank $2$.
+**Sample problem SC.3.5.** A $4 \times 4$ matrix $M$ has rank $2$.
 What is the dimension of its kernel? What can you say about the number
 of nonzero singular values?
 
@@ -229,7 +229,7 @@ what the postulates of quantum mechanics ask for).
 
 ---
 
-### 1.3.1 Complex Numbers
+### SC.3.1 Complex Numbers
 
 Complex numbers are background to all of the above and deserve a
 moment of their own. You should be fluent with:
@@ -246,12 +246,12 @@ moment of their own. You should be fluent with:
   e^{i(\theta + \phi)}$, $\overline{e^{i\theta}} = e^{-i\theta}$,
   $|e^{i\theta}| = 1$.
 
-**Sample problem 1.3.6.** Simplify $(1 + i)^4$ using polar form.
+**Sample problem SC.3.6.** Simplify $(1 + i)^4$ using polar form.
 
 *Answer.* $1 + i = \sqrt{2}\\, e^{i\pi/4}$, so
 $(1 + i)^4 = (\sqrt{2})^4 e^{i\pi} = 4 \cdot (-1) = -4$.
 
-**Sample problem 1.3.7.** Show that for any real $\theta$ the matrix
+**Sample problem SC.3.7.** Show that for any real $\theta$ the matrix
 
 $$
 R(\theta) = \begin{pmatrix} e^{i\theta} & 0 \\\\ 0 & e^{-i\theta} \end{pmatrix}
@@ -267,7 +267,7 @@ $e^{\pm i\theta}$ are read off the diagonal.
 
 ---
 
-## 1.4 Required: Probability and Basic Information Theory
+## SC.4 Required: Probability and Basic Information Theory
 
 Quantum measurement is fundamentally probabilistic, and a working
 mental model of probability is non-negotiable. You should be at ease
@@ -302,14 +302,14 @@ uncertainty in bits — is useful and recurs in the book (channel
 capacity, Holevo bound, quantum source coding), but is not assumed.
 The book reintroduces it where needed.
 
-**Sample problem 1.4.1.** A biased coin shows heads with probability
+**Sample problem SC.4.1.** A biased coin shows heads with probability
 $p$. Compute the mean and variance of the number of heads in $n$
 independent tosses.
 
 *Answer.* Mean $np$, variance $np(1 - p)$. This is the binomial
 distribution; the variance is maximized at $p = 1/2$.
 
-**Sample problem 1.4.2.** A diagnostic test has $99$ percent
+**Sample problem SC.4.2.** A diagnostic test has $99$ percent
 sensitivity (probability of positive given disease) and $99$ percent
 specificity (probability of negative given no disease). The disease
 prevalence is $1$ in $10{,}000$. A randomly chosen person tests
@@ -323,7 +323,7 @@ positive. If this is unfamiliar, work through it slowly — the same
 inversion drives the analysis of every probabilistic quantum
 subroutine.
 
-**Sample problem 1.4.3.** You repeatedly sample a discrete
+**Sample problem SC.4.3.** You repeatedly sample a discrete
 distribution $p$ on $\\{0, 1\\}^n$ defined implicitly by a quantum
 circuit. After $N$ shots, you estimate the probability of outcome
 $x$ as $\hat p_x = (\text{count of } x) / N$. What is the standard
@@ -346,7 +346,7 @@ in this section and are sized for self-study. Either is fine.
 
 ---
 
-## 1.5 Required: Complexity Basics
+## SC.5 Required: Complexity Basics
 
 You should recognize the terms below at a vocabulary level; the book
 does not assume you can construct reductions or prove hardness
@@ -380,7 +380,7 @@ time. The famous quantum speedups (Shor, Grover, HHL) attack
 different problems — factoring, unstructured search, certain linear
 systems — and the relationship between BQP and NP is itself open.
 
-**Sample problem 1.5.1.** Sort the following functions in order of
+**Sample problem SC.5.1.** Sort the following functions in order of
 asymptotic growth: $n^{100}$, $2^n$, $n \log n$, $\log n$, $n!$,
 $2^{\sqrt n}$.
 
@@ -394,7 +394,7 @@ in the integer $N = 2^n$ — the $L[1/3]$ form — whereas $2^{\sqrt n}$
 corresponds to the older $L[1/2]$ algorithms such as the quadratic
 sieve.)
 
-**Sample problem 1.5.2.** True or false: if a problem is in NP, then
+**Sample problem SC.5.2.** True or false: if a problem is in NP, then
 a quantum computer can solve it in polynomial time.
 
 *Answer.* False (or at least: not known to be true, and widely
@@ -410,7 +410,7 @@ than enough.
 
 ---
 
-## 1.6 Recommended but Not Required
+## SC.6 Recommended but Not Required
 
 Three further areas help if you have them, but the book does not
 assume any of them.
@@ -460,17 +460,17 @@ unfamiliar rather than reinforcing.
   the book's Chapter 4.
 
 A simple decision rule. If you struggled with the linear-algebra
-problems in §1.3, work through Strang or Axler **before** reading
-Chapter 4. If you struggled with the probability problems in §1.4,
+problems in §SC.3, work through Strang or Axler **before** reading
+Chapter 4. If you struggled with the probability problems in §SC.4,
 work through Ross or MIT 6.042 **before** reading Chapter 5. If you
-struggled with the complexity problems in §1.5, the first chapter of
+struggled with the complexity problems in §SC.5, the first chapter of
 Arora and Barak is enough; the book carries you through anything
-beyond that. If you struggled with the Python problems in §1.1, work
+beyond that. If you struggled with the Python problems in §SC.1, work
 through the NumPy quickstart **before** reading Chapter 6.
 
 ---
 
-## 1.7 Why DSP Helps
+## SC.7 Why DSP Helps
 
 If you have a background in digital signal processing — discrete
 Fourier transforms, sampling theorems, filters, convolutions — a
@@ -484,7 +484,7 @@ resolution and frequency resolution.
 
 DSP is **not** a prerequisite. The book builds the Fourier machinery
 it needs in §4.13 and Chapter 14 from the linear-algebra foundations
-of §1.3, and treats the quantum Fourier transform as a unitary matrix
+of §SC.3, and treats the quantum Fourier transform as a unitary matrix
 first and a frequency-domain transform second. But if you have ever
 written code that does an FFT, the phase-estimation chapters will
 land faster and the quantum-signal-processing material (Chapter 16)
