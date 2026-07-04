@@ -578,6 +578,8 @@ $$
 = |01\rangle.
 $$
 
+### Kets, indices, and ordering conventions
+
 The notation $|a\rangle \otimes |b\rangle$ is often abbreviated to
 $|a\rangle |b\rangle$ or $|ab\rangle$ once the order of subsystems is fixed.
 
@@ -632,6 +634,8 @@ $1$, qubit $0$ is $0$." That is the same basis vector.
 > book factor 2 ↔ `q_0`. If instead you map book factor 1 ↔ `q_0`,
 > insert an explicit SWAP (or qubit-label permutation) when comparing
 > hand-derived matrices with code.
+
+### Inner products and operators
 
 The tensor product also respects inner products. For product vectors,
 
@@ -713,6 +717,8 @@ Useful identities:
 - $\mathrm{tr}(A \otimes B) = \mathrm{tr}(A) \cdot \mathrm{tr}(B)$
 - If $A$ is $m \times m$ and $B$ is $n \times n$, then $\det(A \otimes B) = (\det A)^n (\det B)^m$.
 
+### Product vs. entangled states
+
 A nonzero pure state in $V \otimes W$ is **product** if it can be written as
 $u \otimes v$ for some $u \in V$ and $v \in W$, up to normalization and
 global phase. Otherwise it is **entangled**. For pure states, "product" and
@@ -750,6 +756,8 @@ $|\psi\rangle \in V \otimes W$ admits the form
 $|\psi\rangle = \sum_i s_i\\, |u_i\rangle |v_i\rangle$ with $s_i \ge 0$, and
 $|\psi\rangle$ is a product state iff exactly one $s_i$ is nonzero. Chapter 7
 develops this in detail.
+
+### The partial trace
 
 A related operation we will use throughout the rest of the book is the
 **partial trace**, which extracts the state of a subsystem from a state of
