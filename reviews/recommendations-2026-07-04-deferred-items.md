@@ -290,3 +290,9 @@ audience gains nothing; the sentence would grow a qualifier chain.
 Items 1–3 are unambiguous wins and could proceed on a single approval; items 4–8 each touch
 verified content or add generated artifacts and deserve individual sign-off; item 9 is
 bookkeeping.
+
+---
+
+## Execution log (2026-07-04, insert-only)
+
+- ✅ **Step 1 (this commit): quick wins** — O1 (Quantum Motion characterisation-chip precision, Ch20), O2 (SPDC rate range, Ch3), O3 (Qiskit 1.3 version pin, Ch23), O4 (FIPS 206 two-step process phrasing, Ch27 ×2), O7 (Alibaba "Tai Zhang", Ch24), D5 (§32.8 thermodynamic resource-theory paragraph closing the §12.11 promise). O5/O6/O8 skipped as recommended.

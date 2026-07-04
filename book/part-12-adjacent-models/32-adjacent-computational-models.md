@@ -112,6 +112,8 @@ Childs (2009) proved that **continuous-time quantum walks are universal for quan
 
 The historical bridge between classical and quantum computing is **reversible classical computing**. Bennett (1973) showed that any classical computation can be made logically reversible — every step is a bijection on the computer's state space — at the cost of a polynomial-bounded amount of extra space for "history" bits that record enough information to undo each step. Landauer (1961) had earlier shown that *irreversible* logical operations dissipate at least $k_B T \ln 2$ of heat per erased bit, so reversibility is also the thermodynamic-floor argument for energy-efficient computing.
 
+Landauer's bound is also the seed of a full **resource theory of thermodynamics**: take thermal (Gibbs) states as the free states and energy-conserving "thermal operations" as the free operations, and the resource that remains is *athermality* — out-of-equilibrium free energy, consumed whenever a bit is erased. This is the thermodynamic member of the resource-theory family catalogued in §12.11, with the same free-states/free-operations/conversion-rates structure as entanglement under LOCC.
+
 The gate-level vocabulary of reversible computing predates quantum computing:
 
 - The **Toffoli gate** (controlled-controlled-NOT, three-input, three-output) is universal for reversible classical computation. It is also a quantum gate, applied as a permutation in the computational basis.

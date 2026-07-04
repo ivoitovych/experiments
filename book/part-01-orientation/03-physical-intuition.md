@@ -488,8 +488,9 @@ lower-energy "signal" and "idler" photons whose polarizations,
 momenta, and emission times are quantum-correlated. The geometry of
 the crystal and the pump polarization determine the entanglement
 structure; the textbook configuration produces polarization-entangled
-Bell pairs at a rate of thousands per second per milliwatt of pump
-power. SPDC sources have been the workhorse of essentially every
+Bell pairs at rates ranging from hundreds of detected pairs per second
+per milliwatt of pump power for the classic BBO arrangement to hundreds
+of thousands for modern optimized sources. SPDC sources have been the workhorse of essentially every
 optical Bell-test experiment since the mid-1990s.
 
 The empirical case for entanglement as something genuinely
