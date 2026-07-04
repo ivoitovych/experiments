@@ -1466,3 +1466,11 @@ Implemented in five commits on this branch, with per-entry dispositions inserted
 > 5060e75 → e6970d9 (marker pass 1–3a) · 5a1c816 → 5df4220 (batch 4).
 > The insert-only property of this file is preserved across the rewrite and
 > by this addendum.
+
+> **External-verification addendum (2026-07-04, insert-only).** All §10 uncertainty-ledger
+> items and the remediation pass's deferred fact-check items (44 claims) were externally
+> verified against primary sources; results in
+> [factcheck-2026-07-04-external-verification.md](factcheck-2026-07-04-external-verification.md)
+> (22 confirmed / 11 partially correct / 8 incorrect / 3 no longer present). The 19 substantive
+> corrections were applied to the manuscript in the same commit as that report's application
+> log. This closes the §15 deferred item "all §10 uncertainty-ledger source checks".

@@ -83,7 +83,7 @@ A gate-error budget on a real device sorts into three rough buckets.
 **Where the field stands today.** Published gate fidelities, taken from leading platforms over 2023–2025:
 
 - Single-qubit Clifford gates: $99.99\%$ on best-in-class trapped ions, $99.95\%$ on superconducting transmons, $99.5\%$–$99.9\%$ on neutral atoms.
-- Two-qubit entangling gates (CZ, CNOT, Mølmer–Sørensen, Rydberg CZ): $99.9\%$ on best-in-class ions and on the latest superconducting devices, $99.5\%$ on most current devices, and approaching $99.5\%$ on neutral atoms (Evered et al. 2023 and successors).
+- Two-qubit entangling gates (CZ, CNOT, Mølmer–Sørensen, Rydberg CZ): $99.9\%$ on best-in-class ions and on the latest superconducting devices, $99.5\%$ on most current devices, and $99.5\%$–$99.7\%$ on neutral atoms ($99.5\%$ demonstrated by Evered et al. 2023; successors have since exceeded it).
 - Measurement (single-shot, single-qubit): $99\%$–$99.9\%$, varying widely with integration time and assignment threshold.
 - Idle errors: dominated by $T_1$ and $T_2$; usually small ($10^{-4}$ per microsecond) on coherence-dominant platforms.
 

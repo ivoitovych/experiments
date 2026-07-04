@@ -659,3 +659,59 @@ Pre-remediation said "2010s Vienna and Stockholm experiments" — the review's s
 - https://dblp.org/pid/156/0010.html — dblp confirmation.
 
 **Recommended action**: None.
+
+---
+
+## Application log (2026-07-04, same-day; insert-only addendum)
+
+The recommended corrections were applied to the manuscript in the commit that adds this
+section (fixes and markers synchronized). Per-item disposition:
+
+- **1C** ✅ APPLIED — Ch16: line-139 scaling corrected to Θ(t + log(1/ε)/loglog(1/ε)); LCU
+  credited to Childs–Wiebe 2012 with BCCKS 2015 building on it; STOC-2014 provenance of the
+  precision lower bound noted.
+- **1F** ✅ APPLIED — Ch17 §advantage history: actors/dates corrected (2021 Sunway/Wuxi
+  Gordon Bell run; 2024 USTC-led 1,432-GPU run); "supercomputing centres in Hefei and Wuxi"
+  wording removed.
+- **2B** ✅ APPLIED — Ch20: "TU Wien" replaced with Delft (QuTech), Stuttgart, and Quantum
+  Brilliance.
+- **2C** ✅ APPLIED — Ch20: silicon 1q gate times widened to ~100 ns–1 µs (tens of ns for the
+  fastest EDSR devices).
+- **2D** ✅ APPLIED — Ch21: "Rigetti's Lodgepole" → "Rigetti's Quil-T pulse-level layer in the
+  QCS stack".
+- **2E** ✅ APPLIED — Ch22: "Q-PERFECT" entry replaced with BACQ (Thales/CEA and partners).
+- **2F** ✅ APPLIED — Ch22: QV history corrected (2¹⁹ = H1-1/2023, 2²¹ = H2 launch/2024,
+  2²⁵ = H2/2025); H2 entry updated to QV 2²⁵; Helios updated to launched (Nov 2025, 98 qubits).
+- **2G** ✅ APPLIED — Ch18: neutral-atom 2q fidelity restated as 99.5%–99.7% (99.5% reached by
+  Evered et al. 2023, since exceeded).
+- **3B** ✅ APPLIED — Ch19: "per increase in d" disambiguated to per two-unit distance step
+  (d = 3 → 5 → 7) in both passages; lifetime claim tightened to 2.4× vs best physical qubit.
+- **4B** ✅ APPLIED — Ch23 (three places): TFQ restated as dormant-then-maintenance-mode with
+  the Dec 2025 / Feb 2026 compatibility releases; "prefer PennyLane" advice retained.
+- **4D** ✅ APPLIED — Ch24: Fugaku-48-qubit conflation replaced with JUQCS-A record
+  (TaihuLight/K computer, ~0.5 PiB), Fugaku ~46 qubits, JUPITER 50-qubit run (late 2025).
+- **4F** ✅ APPLIED — Ch24: stabiliser-rank exponents split correctly (2016: 2^{0.23k}
+  approximate; 2019: exact α ≤ 0.3963) and the 40-qubit/2016 vs 50-qubit/2019 demonstrations
+  attributed to the right papers.
+- **4G** ✅ APPLIED — Ch24: 2021 Sunway run relabelled as Gordon-Bell tensor-network simulation
+  on the new-generation Sunway (not statevector, not TaihuLight); line-192 statevector example
+  corrected to the 2018 TaihuLight 48-qubit JUQCS-A run.
+- **4J** ✅ APPLIED — Ch26 roster updated (IonQ, IQM, Rigetti, QuEra, AQT); Ch23 stale roster
+  fixed (OQC departure noted, IQM/AQT added).
+- **5B** ✅ APPLIED — Ch27: CNS memory corrected to 2^{n/5} classical memory + polynomially
+  many qubits, no QRAM.
+- **5F** ✅ APPLIED — Ch29: Advantage2 qubit count corrected to ~4,400 (roadmap 7,000+ noted);
+  ~180-variable clique reattributed to the Pegasus-based Advantage, with Zephyr noted as
+  embedding larger cliques per qubit.
+- **5G** ✅ APPLIED — Ch30: access-model/citation mismatch fixed — dynamics results credited to
+  Huang–Tong–Fang–Su 2023 and Haah–Kothari–Tang 2024 (with "low-intersection" moved to the
+  latter), AAKS 2021 kept as the Gibbs-state result.
+- **5H** ✅ APPLIED — Ch33: "QNE-sim" replaced with SimulaQron + Quantum Network Explorer
+  (QNE, QuTech, NetSquid-backed).
+- **5I** ✅ APPLIED — Ch33: "BTI Long Island" → "the Brookhaven–Stony Brook Long Island
+  testbed".
+- Optional-only items (2A, 3H, 4C, 5A, 5D and the Steane/Alibaba naming notes) — NOT APPLIED,
+  by design: each was verdict-confirmed or hedge-optional; left for a future editorial pass.
+- Post-application checks: repo-wide grep confirms "Lodgepole", "Q-PERFECT", "QNE-sim", "BTI",
+  "TU Wien", and "Hefei and Wuxi" no longer appear in `book/`; `tools/lint.py` passes
+  (48 files OK).

@@ -66,7 +66,7 @@ The SDK landscape in 2026 has consolidated around a handful of mature stacks, ea
 
 **Qiskit** (IBM, open source). The largest community, the most extensive documentation, and the deepest tooling for IBM superconducting hardware. The Python API is the most common entry point in the field. The current shipping line is the **Qiskit SDK 2.x** (released March 2025; a slimmed-down core with the transpiler, circuit construction, and quantum-info modules, plus a new C interface) paired with **Qiskit Runtime** (the cloud-side execution service, exposing the `Sampler` and `Estimator` *Primitives* — see §23.13). Qiskit Aer is the local simulator backend.
 
-**Cirq** (Google, open source). Targets Google's superconducting hardware and the Quantum Engine cloud service. Cirq's design emphasises gate-level circuit construction with explicit qubit objects (a `GridQubit` knows its physical position), and it was the entry point for **TensorFlow Quantum** for hybrid quantum-classical ML workloads (TFQ has been effectively unmaintained since ~2023–24 — treat it as legacy; see §23.15).
+**Cirq** (Google, open source). Targets Google's superconducting hardware and the Quantum Engine cloud service. Cirq's design emphasises gate-level circuit construction with explicit qubit objects (a `GridQubit` knows its physical position), and it was the entry point for **TensorFlow Quantum** for hybrid quantum-classical ML workloads (TFQ was dormant through 2024–25 and now receives only occasional compatibility releases — v0.7.6 in February 2026; treat it as maintenance-mode, see §23.15).
 
 **PennyLane** (Xanadu, open source). Built for variational and quantum-machine-learning workflows. PennyLane's distinguishing feature is its *device-agnostic* model: the same `qnode` runs on Xanadu photonic hardware, IBM superconducting backends (via a Qiskit plugin), IonQ trapped-ion backends, AWS Braket, or a local simulator, and the framework computes parameter-shift gradients that propagate through PyTorch or JAX. The default Python integration is the smoothest in the field for QML.
 
@@ -76,7 +76,7 @@ The SDK landscape in 2026 has consolidated around a handful of mature stacks, ea
 
 **pyQuil** (Rigetti). The Python entry to Quil. Mainly used by people running on Rigetti hardware (the current Ankaa generation; the earlier Aspen line is retired) via the Rigetti Quantum Cloud Service.
 
-**Amazon Braket SDK** (AWS, open source). A Python SDK that targets the **Amazon Braket** service, which proxies access to multiple hardware vendors (IonQ, Rigetti, QuEra, Oxford Quantum Circuits) and AWS-hosted simulators under one API. The SDK can also accept OpenQASM 3 and parameterised circuits from PennyLane.
+**Amazon Braket SDK** (AWS, open source). A Python SDK that targets the **Amazon Braket** service, which proxies access to multiple hardware vendors (IonQ, IQM, Rigetti, QuEra, AQT as of mid-2026; Oxford Quantum Circuits left the roster in 2024) and AWS-hosted simulators under one API. The SDK can also accept OpenQASM 3 and parameterised circuits from PennyLane.
 
 **Other ecosystems**: **Quipper** (a Haskell-embedded DSL, mostly used in academic resource-counting work), **Silq** (a typed quantum language with automatic uncomputation), and various smaller frameworks (ProjectQ, Strawberry Fields for photonics) are still active but occupy specialist niches.
 
@@ -231,7 +231,7 @@ with Session(backend) as session:
         parameter_values = classical_update(values)
 ```
 
-Comparable abstractions exist elsewhere: **Amazon Braket Hybrid Jobs** ship a containerised classical workload to AWS adjacent to the QPU; **Azure Quantum Sessions** play the same role for Microsoft's stack; **PennyLane**'s `qml.qnode` is a Pythonic wrapper that submits asynchronously and integrates with PyTorch/JAX autodiff. **Cirq with TensorFlow Quantum** was the corresponding stack for Google's hardware, though TFQ is no longer actively maintained.
+Comparable abstractions exist elsewhere: **Amazon Braket Hybrid Jobs** ship a containerised classical workload to AWS adjacent to the QPU; **Azure Quantum Sessions** play the same role for Microsoft's stack; **PennyLane**'s `qml.qnode` is a Pythonic wrapper that submits asynchronously and integrates with PyTorch/JAX autodiff. **Cirq with TensorFlow Quantum** was the corresponding stack for Google's hardware, though TFQ now sees only occasional compatibility releases.
 
 Two patterns specific to variational programming.
 
@@ -259,7 +259,7 @@ Quantum machine learning is the largest sustained user of the variational stack 
 
 **PennyLane**'s `qml.qnode` integrates as a layer in PyTorch, JAX, and TensorFlow. A quantum node can be differentiated through (via parameter-shift on hardware, automatic differentiation on simulators), composed with classical layers (`nn.Linear(...)`, `nn.Conv2d(...)`), trained with standard optimisers (Adam, RMSProp), and saved/loaded as part of a `state_dict`.
 
-**TensorFlow Quantum** wraps Cirq circuits as TF layers, with the parameter-shift gradient implemented as a TensorFlow op. The integration is tighter than PennyLane's PyTorch path but ties the user to TF and to Cirq's circuit model — and the project has been effectively unmaintained since ~2023–24, so prefer PennyLane for new work.
+**TensorFlow Quantum** wraps Cirq circuits as TF layers, with the parameter-shift gradient implemented as a TensorFlow op. The integration is tighter than PennyLane's PyTorch path but ties the user to TF and to Cirq's circuit model — and the project was dormant through 2024–25 and now receives only occasional compatibility releases (v0.7.5 December 2025, v0.7.6 February 2026), so prefer PennyLane for new work.
 
 **Qiskit Machine Learning** offers `EstimatorQNN` (expectation-value outputs) and `SamplerQNN` (probability-distribution outputs) as scikit-learn-compatible estimators and PyTorch modules. Convenient for Qiskit-native users; the integration story is not as smooth as PennyLane's because Qiskit's Primitives were not initially designed with autodiff in mind.
 

@@ -210,19 +210,19 @@ Several community-organised benchmark suites have emerged to give cross-vendor c
 
 **QED-C (Quantum Economic Development Consortium)** publishes an open suite of structured algorithmic benchmarks: Bernstein–Vazirani, Grover, QFT, Shor (small instances), VQE on small molecules, Hamiltonian simulation, amplitude estimation, MaxCut. Each benchmark is parameterised by problem size; the device reports the largest size at which the fidelity threshold is met. The suite underpins IonQ's AQ metric (§22.9) and is increasingly cited in vendor documentation.
 
-**Q-PERFECT** is a European Commission-funded benchmark project producing protocols specifically designed to compare quantum hardware platforms across architectures, including emerging neutral-atom and photonic devices.
+**BACQ** is a French/European application-oriented benchmarking initiative (Thales, CEA, and partners) defining application-level performance references designed to compare quantum hardware platforms across architectures, including emerging neutral-atom and photonic devices.
 
 **Q-score (Atos)** is a measure of the largest MaxCut problem instance a device can solve at a fixed approximation ratio (typically $\beta \geq 0.2$). It is one of the few metrics specifically designed to track *useful* algorithmic capability rather than abstract circuit capacity.
 
 **Mirror benchmarks** — circuits of the form $U^{\dagger} U$ — have a known answer (the all-zeros bit string) and measure noise accumulation under a structured noise channel. They are cheap and reveal coherent error patterns that random benchmarks average over.
 
-**IBM's QV history** is a public running record of QV milestones: QV $32$ on IBM Falcon (announced January 2020), $64$ on Honeywell's System Model H0 later in 2020, $128$–$512$ across both vendors through 2021, $4096$ on Quantinuum H1-2 in 2022, and $2^{19} = 524\\,288$ on Quantinuum H2 in 2024. The progression tells a real story about fidelity improvements; the slowing rate tells a real story about the metric saturating.
+**IBM's QV history** is a public running record of QV milestones: QV $32$ on IBM Falcon (announced January 2020), $64$ on Honeywell's System Model H0 later in 2020, $128$–$512$ across both vendors through 2021, $4096$ on Quantinuum H1-2 in 2022, $2^{19} = 524\\,288$ on Quantinuum H1-1 in 2023, $2^{21}$ at the H2 56-qubit launch in 2024, and $2^{25} = 33\\,554\\,432$ on H2 in 2025. The progression tells a real story about fidelity improvements; the slowing rate elsewhere tells a real story about the metric saturating.
 
 Per-vendor headline numbers in the 2024–2026 cohort (as of late 2025; subject to revision):
 
 - **IBM Heron r2** — 156 physical qubits, heavy-hex coupling, $F_{2q} \approx 0.997$, $T_2^{\mathrm{echo}} \sim 250\\,\mu\mathrm{s}$, CLOPS $\sim 200\\,000$, sub-microsecond feedforward (IBM no longer reports QV).
 - **Google Willow** — 105 physical qubits, square lattice, $F_{2q} \approx 0.9986$, supports surface-code distance-7 demonstration with below-threshold logical error.
-- **Quantinuum H2** — 56 trapped-ion qubits, all-to-all via shuttling, $F_{2q} \approx 0.999$, $T_2^{\mathrm{echo}}$ measured in seconds, QV $\geq 2^{19}$ (still climbing), multi-second logical qubit operations demonstrated. The announced next generation (Helios) targets ~100 qubits with similar fidelity.
+- **Quantinuum H2** — 56 trapped-ion qubits, all-to-all via shuttling, $F_{2q} \approx 0.999$, $T_2^{\mathrm{echo}}$ measured in seconds, QV $= 2^{25}$ (as of late 2025, still climbing), multi-second logical qubit operations demonstrated. Its successor Helios launched commercially in November 2025 with 98 physical qubits and higher fidelity.
 - **IonQ Forte / Forte Enterprise** — 36 qubits all-to-all, AQ $= 36$, $F_{2q} \approx 0.997$. Forte Enterprise is the production-grade variant.
 - **IQM Crystal / Star** — superconducting devices targeting modular architectures, 20–150 qubit variants with $F_{2q} \approx 0.995$.
 - **QuEra Aquila** — neutral-atom analog mode, $256$ atoms with Rydberg interactions; the metric set is different (analog evolution time vs digital gate count), so direct comparison with gate-model devices is fraught.

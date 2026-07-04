@@ -21,7 +21,7 @@ A practical wrinkle: simulator noise models are *approximate*. Real-device error
 In 2026, real quantum hardware is accessed almost exclusively over the cloud. The major providers:
 
 - **IBM Quantum** — Qiskit Runtime, with a free tier (limited shots, queue-bound) and paid plans for dedicated time. Heron and Eagle devices in the ~100–200 qubit range; the Sampler and Estimator primitives are the standard entry points.
-- **Amazon Braket** — managed access to multiple vendors' devices (IonQ, Rigetti, QuEra, IQM — the roster changes over time) through a single SDK; pricing per shot plus per-task overhead. Useful for cross-vendor benchmarking.
+- **Amazon Braket** — managed access to multiple vendors' devices (IonQ, IQM, Rigetti, QuEra, AQT — the roster changes over time) through a single SDK; pricing per shot plus per-task overhead. Useful for cross-vendor benchmarking.
 - **Microsoft Azure Quantum** — gateway to IonQ, Quantinuum, Rigetti, Pasqal; Q# and the Quantum Development Kit on top.
 - **Google Quantum AI / Quantum Engine** — restricted access; you typically need a research collaboration.
 - **Direct vendor access** — Quantinuum's H-series, IonQ Cloud, IQM Resonance, QuEra Aquila; each offers reserved-time and pay-per-shot models.
