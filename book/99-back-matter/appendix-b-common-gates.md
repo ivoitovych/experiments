@@ -265,7 +265,7 @@ Properties:
 ## B.7 SWAP
 
 The **SWAP** gate exchanges the states of two qubits, $|a, b\rangle \mapsto
-|b, a\rangle$. It is the only non-trivial two-qubit gate that is also
+|b, a\rangle$. It is the only common two-qubit gate that is also
 symmetric and computational-basis-permutation; it can be decomposed into
 three CNOTs.
 

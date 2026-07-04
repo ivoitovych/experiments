@@ -367,7 +367,9 @@ Chapter 19; physical noise sources are covered in Chapter 18.
 - **Depolarising channel.** Noise model
   $\mathcal{E}(\rho) = (1 - p)\\, \rho + (p/3)(X\rho X + Y\rho Y + Z\rho Z)$
   for a single qubit; the standard analytic stand-in for "uniformly
-  random Pauli noise". See Chapter 18.
+  random Pauli noise". (Note the parameterisation: §10.12's Kraus
+  form uses $1 - 3p'/4$ and $p'/4$ per Pauli, so $p_{\text{here}} = 3p'/4$;
+  both conventions are standard — check which one a source means.) See Chapter 18.
 - **Error budget.** The allocation of allowable logical error
   across components of a fault-tolerant computation (gates, idle
   qubits, magic-state distillation, routing). The accounting
@@ -419,7 +421,7 @@ computation. Full treatment is in Chapter 17.
   quantum circuits with bounded error probability. The quantum
   analogue of BPP. See Chapter 17.
 - **BQP vs PH question.** Whether $\mathrm{BQP}$ is contained in
-  the polynomial hierarchy. Raz–Tal (2018) gave an oracle
+  the polynomial hierarchy. Raz–Tal (2019) gave an oracle
   separation, providing strong evidence that BQP is not contained
   in PH relative to oracles; the unrelativised question is open.
   See Chapter 17.

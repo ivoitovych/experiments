@@ -14,33 +14,46 @@ edit `TERMS` in the generator and regenerate. The
 
 ## A
 
+- **Adiabatic quantum computation** — [§32.1](../part-12-adjacent-models/32-adjacent-computational-models.md#321-adiabatic-quantum-computation)
 - **Amplitude amplification** — [§14.7](../part-06-algorithms/14-foundational-algorithms.md#147-amplitude-amplification)
 - **Amplitude estimation** — [§14.8](../part-06-algorithms/14-foundational-algorithms.md#148-amplitude-estimation)
 - **Ancilla qubit** — [§9.3](../part-04-gates-and-circuits/09-quantum-circuits.md#93-ancilla-qubits)
 
 ## B
 
+- **Barren plateaus** — [§15.7](../part-06-algorithms/15-landmark-quantum-algorithms.md#157-variational-quantum-algorithms), [§30.4](../part-11-applications/30-quantum-machine-learning.md#304-category-3-parameterised-quantum-circuits-as-neural-networks)
+- **BB84 protocol** — [§27.7](../part-11-applications/27-cryptography-and-security.md#277-quantum-key-distribution-bb84), [§33.2](../part-12-adjacent-models/33-quantum-communication-and-networking.md#332-quantum-key-distribution)
 - **Bell states** — [§7.5](../part-03-qubits/07-multiple-qubits-and-entanglement.md#75-bell-states)
 - **Bernstein–Vazirani algorithm** — [§14.3](../part-06-algorithms/14-foundational-algorithms.md#143-bernsteinvazirani-algorithm)
 - **Bloch sphere** — [§6.8](../part-03-qubits/06-the-qubit.md#68-the-bloch-sphere)
 - **Block encoding** — [§16.4](../part-06-algorithms/16-modern-algorithmic-frontier.md#164-block-encodings)
 - **Born rule** — [§5.4](../part-02-formalism/05-postulates.md#54-the-measurement-postulate)
+- **Boson sampling** — [§32.6](../part-12-adjacent-models/32-adjacent-computational-models.md#326-boson-sampling)
 - **BQP (complexity class)** — [Chapter 17](../part-07-complexity/17-complexity-theory.md)
 
 ## C
 
+- **Classical shadows** — [§11.5](../part-05-measurement-and-information/11-measurement-theory.md#115-classical-shadows)
 - **Clifford + T** — [§8.10](../part-04-gates-and-circuits/08-quantum-gates.md#810-clifford--t)
+- **CLOPS** — [§22.8](../part-09-hardware-and-software/22-hardware-engineering-metrics.md#228-clops)
 - **CNOT gate** — [§8.6](../part-04-gates-and-circuits/08-quantum-gates.md#86-two-qubit-gates)
+- **Continuous-variable quantum computing** — [§32.5](../part-12-adjacent-models/32-adjacent-computational-models.md#325-continuous-variable-quantum-computing)
+- **Cross-entropy benchmarking (XEB)** — [§22.10](../part-09-hardware-and-software/22-hardware-engineering-metrics.md#2210-cross-entropy-benchmarking-and-xeb)
 
 ## D
 
 - **Decoherence** — [§10.9](../part-04-gates-and-circuits/10-core-quantum-phenomena.md#109-decoherence)
+- **Density matrix** — [§5.10](../part-02-formalism/05-postulates.md#510-density-matrices)
+- **Dequantization** — [§17.12](../part-07-complexity/17-complexity-theory.md#1712-dequantization), [§30.8](../part-11-applications/30-quantum-machine-learning.md#308-the-dequantisation-lesson)
 - **Deutsch–Jozsa algorithm** — [§14.2](../part-06-algorithms/14-foundational-algorithms.md#142-deutschjozsa-algorithm)
 - **Discrete logarithm** — [§15.4](../part-06-algorithms/15-landmark-quantum-algorithms.md#154-discrete-logarithm)
+- **Dynamical decoupling** — [§18.3](../part-08-noise-and-qec/18-noise-decoherence-and-errors.md#183-dephasing), [§21.11](../part-09-hardware-and-software/21-quantum-control-and-electronics.md#2111-control-plane-engineering)
 
 ## E
 
 - **Entanglement** — [Chapter 7](../part-03-qubits/07-multiple-qubits-and-entanglement.md)
+- **Error budget** — [§18.16](../part-08-noise-and-qec/18-noise-decoherence-and-errors.md#1816-fidelities-error-rates-and-building-an-error-budget)
+- **Error mitigation** — [§18.18](../part-08-noise-and-qec/18-noise-decoherence-and-errors.md#1818-error-mitigation-pre-qec), [§25.3](../part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md#253-variational-algorithms-in-practice)
 
 ## F
 
@@ -49,6 +62,8 @@ edit `TERMS` in the generator and regenerate. The
 
 ## G
 
+- **Gate teleportation** — [§19.21](../part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md#1921-magic-state-distillation)
+- **GHZ state** — [§7.6](../part-03-qubits/07-multiple-qubits-and-entanglement.md#76-ghz-and-w-states)
 - **Glossary** — [Appendix E](appendix-e-glossary.md)
 - **Grover's algorithm** — [§15.1](../part-06-algorithms/15-landmark-quantum-algorithms.md#151-grovers-algorithm)
 
@@ -57,6 +72,7 @@ edit `TERMS` in the generator and regenerate. The
 - **Hadamard gate** — [§8.3](../part-04-gates-and-circuits/08-quantum-gates.md#83-hadamard-gate)
 - **Hamiltonian simulation** — [§16.1](../part-06-algorithms/16-modern-algorithmic-frontier.md#161-hamiltonian-simulation)
 - **Hardware platforms** — [Chapter 20](../part-09-hardware-and-software/20-quantum-hardware-platforms.md)
+- **Harvest now, decrypt later** — [§27.6](../part-11-applications/27-cryptography-and-security.md#276-harvest-now-decrypt-later)
 - **HHL algorithm** — [§15.5](../part-06-algorithms/15-landmark-quantum-algorithms.md#155-hhl-algorithm-for-linear-systems)
 - **Hidden subgroup problem** — [§14.9](../part-06-algorithms/14-foundational-algorithms.md#149-hidden-subgroup-problem-framework)
 
@@ -70,55 +86,84 @@ edit `TERMS` in the generator and regenerate. The
 
 ## L
 
+- **Lattice surgery** — [§19.22](../part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md#1922-lattice-surgery)
 - **Linear combination of unitaries** — [§16.3](../part-06-algorithms/16-modern-algorithmic-frontier.md#163-linear-combination-of-unitaries)
 
 ## M
 
+- **Magic state distillation** — [§19.21](../part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md#1921-magic-state-distillation)
 - **Measurement** — [Chapter 11](../part-05-measurement-and-information/11-measurement-theory.md)
+- **Measurement-based quantum computation** — [§32.3](../part-12-adjacent-models/32-adjacent-computational-models.md#323-measurement-based-quantum-computation)
+- **Mid-circuit measurement** — [§9.8](../part-04-gates-and-circuits/09-quantum-circuits.md#98-mid-circuit-measurement), [§22.11](../part-09-hardware-and-software/22-hardware-engineering-metrics.md#2211-mid-circuit-measurement-reset-and-feedforward-latency)
 - **Mixed states** — [§10.10](../part-04-gates-and-circuits/10-core-quantum-phenomena.md#1010-mixed-states-in-practice)
 
 ## N
 
 - **NISQ** — [Chapter 25](../part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md)
-- **No-cloning theorem** — [§10.5](../part-04-gates-and-circuits/10-core-quantum-phenomena.md#105-no-cloning-restated)
+- **No-cloning theorem** — [§5.13](../part-02-formalism/05-postulates.md#513-no-cloning-theorem), [§10.5](../part-04-gates-and-circuits/10-core-quantum-phenomena.md#105-no-cloning-restated)
+- **No-signalling** — [§5.11](../part-02-formalism/05-postulates.md#511-reduced-states), [§10.6](../part-04-gates-and-circuits/10-core-quantum-phenomena.md#106-no-signalling)
 
 ## P
 
+- **Parameter-shift rule** — [§8.13](../part-04-gates-and-circuits/08-quantum-gates.md#813-parameterized-gates), [§11.7](../part-05-measurement-and-information/11-measurement-theory.md#117-estimation-joint-measurements-and-readout-error-mitigation)
+- **Partial trace** — [§5.12](../part-02-formalism/05-postulates.md#512-partial-trace)
 - **Pauli gates** — [§8.2](../part-04-gates-and-circuits/08-quantum-gates.md#82-pauli-gates)
 - **Phase estimation** — [§14.6](../part-06-algorithms/14-foundational-algorithms.md#146-quantum-phase-estimation)
 - **Postulates of quantum mechanics** — [Chapter 5](../part-02-formalism/05-postulates.md)
+- **POVM** — [§11.2](../part-05-measurement-and-information/11-measurement-theory.md#112-povms-and-general-measurements)
 
 ## Q
 
 - **QAOA** — [§15.9](../part-06-algorithms/15-landmark-quantum-algorithms.md#159-quantum-approximate-optimization-algorithm)
+- **Quantum annealing** — [§20.11](../part-09-hardware-and-software/20-quantum-hardware-platforms.md#2011-quantum-annealers-vs-gate-based-machines), [§32.2](../part-12-adjacent-models/32-adjacent-computational-models.md#322-quantum-annealing)
+- **Quantum channel (CPTP map)** — [§10.13](../part-04-gates-and-circuits/10-core-quantum-phenomena.md#1013-operator-sum-representation-kraus)
 - **Quantum Fourier transform** — [§14.5](../part-06-algorithms/14-foundational-algorithms.md#145-quantum-fourier-transform)
+- **Quantum key distribution** — [§27.7](../part-11-applications/27-cryptography-and-security.md#277-quantum-key-distribution-bb84), [§33.2](../part-12-adjacent-models/33-quantum-communication-and-networking.md#332-quantum-key-distribution)
+- **Quantum repeaters** — [§33.3](../part-12-adjacent-models/33-quantum-communication-and-networking.md#333-distance-limits-and-quantum-repeaters)
 - **Quantum signal processing** — [§16.6](../part-06-algorithms/16-modern-algorithmic-frontier.md#166-quantum-signal-processing)
 - **Quantum singular value transformation** — [§16.7](../part-06-algorithms/16-modern-algorithmic-frontier.md#167-quantum-singular-value-transformation)
+- **Quantum teleportation** — [§7.12](../part-03-qubits/07-multiple-qubits-and-entanglement.md#712-entanglement-as-a-resource), [§33.1](../part-12-adjacent-models/33-quantum-communication-and-networking.md#331-communication-via-quantum-teleportation-and-superdense-coding)
+- **Quantum volume** — [§22.7](../part-09-hardware-and-software/22-hardware-engineering-metrics.md#227-quantum-volume)
 - **Quantum walks** — [§15.6](../part-06-algorithms/15-landmark-quantum-algorithms.md#156-quantum-walks)
+- **Qubit-wise commuting Pauli groups** — [§11.7](../part-05-measurement-and-information/11-measurement-theory.md#117-estimation-joint-measurements-and-readout-error-mitigation)
 - **Qubitization** — [§16.5](../part-06-algorithms/16-modern-algorithmic-frontier.md#165-qubitization)
 
 ## R
 
-- **Randomized benchmarking** — [Chapter 18](../part-08-noise-and-qec/18-noise-decoherence-and-errors.md)
+- **Randomized benchmarking** — [§18.12](../part-08-noise-and-qec/18-noise-decoherence-and-errors.md#1812-single-number-benchmarks-rb-and-variants)
+- **Readout-error mitigation** — [§11.7](../part-05-measurement-and-information/11-measurement-theory.md#117-estimation-joint-measurements-and-readout-error-mitigation), [§18.5](../part-08-noise-and-qec/18-noise-decoherence-and-errors.md#185-readout-errors)
 - **Rotation gates** — [§8.5](../part-04-gates-and-circuits/08-quantum-gates.md#85-rotation-gates)
 
 ## S
 
+- **Schmidt decomposition** — [§4.9](../part-02-formalism/04-mathematical-background.md#49-singular-values-and-the-singular-value-decomposition)
 - **Shor's algorithm** — [§15.2](../part-06-algorithms/15-landmark-quantum-algorithms.md#152-shors-algorithm)
 - **Simon's algorithm** — [§14.4](../part-06-algorithms/14-foundational-algorithms.md#144-simons-algorithm)
 - **Solovay–Kitaev theorem** — [§8.11](../part-04-gates-and-circuits/08-quantum-gates.md#811-solovaykitaev-theorem)
 - **Stabilizer formalism** — [Chapter 19](../part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md)
 - **Superposition** — [§10.1](../part-04-gates-and-circuits/10-core-quantum-phenomena.md#101-superposition-revisited)
+- **Surface code** — [§19.12](../part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md#1912-surface-codes)
 - **SWAP gate** — [§8.6](../part-04-gates-and-circuits/08-quantum-gates.md#86-two-qubit-gates)
 
 ## T
 
 - **Tensor product** — [Chapter 4](../part-02-formalism/04-mathematical-background.md)
+- **Threshold theorem** — [§19.19](../part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md#1919-threshold-theorem)
 - **Toffoli gate** — [§8.8](../part-04-gates-and-circuits/08-quantum-gates.md#88-toffoli-and-fredkin-gates)
+- **Trace distance** — [§12.6](../part-05-measurement-and-information/12-quantum-information-theory.md#126-trace-distance)
+- **Transpilation** — [§23.6](../part-09-hardware-and-software/23-quantum-programming-compilation-and-tooling.md#236-transpilation)
+- **Trotterization** — [§16.2](../part-06-algorithms/16-modern-algorithmic-frontier.md#162-trottersuzuki-decompositions)
+- **Twin-field QKD** — [§33.4](../part-12-adjacent-models/33-quantum-communication-and-networking.md#334-satellite-qkd-and-twin-field-protocols)
+
+## U
+
+- **Uncomputation** — [§9.4](../part-04-gates-and-circuits/09-quantum-circuits.md#94-uncomputation)
 
 ## V
 
+- **Variational quantum algorithms** — [§15.7](../part-06-algorithms/15-landmark-quantum-algorithms.md#157-variational-quantum-algorithms)
 - **Variational quantum eigensolver** — [§15.8](../part-06-algorithms/15-landmark-quantum-algorithms.md#158-variational-quantum-eigensolver)
+- **Von Neumann entropy** — [§12.2](../part-05-measurement-and-information/12-quantum-information-theory.md#122-von-neumann-entropy)
 
 ---
 

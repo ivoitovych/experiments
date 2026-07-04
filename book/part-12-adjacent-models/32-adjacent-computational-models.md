@@ -42,7 +42,7 @@ $$
 H_1 \;=\; \sum_i h_i\\, Z_i \;+\; \sum_{i < j} J_{ij}\\, Z_i Z_j,
 $$
 
-on a hardware-restricted coupling graph (Chimera, Pegasus, and now Zephyr topologies). Problems expressed as **QUBO** (quadratic unconstrained binary optimisation) instances map directly onto this Ising form via the substitution $x_i \in \\{0, 1\\} \leftrightarrow Z_i = 1 - 2 x_i$. The user submits couplings, the device anneals for microseconds, and the user reads out a bit string. Repeated runs give a sample of candidate solutions.
+on a hardware-restricted coupling graph (Chimera, Pegasus, and now Zephyr topologies). Problems expressed as **QUBO** (quadratic unconstrained binary optimisation) instances map directly onto this Ising form via the substitution $x_i \in \\{0, 1\\} \leftrightarrow s_i = 1 - 2 x_i$ (spin eigenvalues $s_i = \pm 1$). The user submits couplings, the device anneals for microseconds, and the user reads out a bit string. Repeated runs give a sample of candidate solutions.
 
 Quantum annealing is **not provably equivalent** to the circuit model. The theoretical question of whether annealers achieve a genuine quantum speedup on practically relevant problems remains open; published comparisons against well-tuned classical solvers (simulated annealing, parallel tempering, branch-and-bound) have produced a mixed record. Where annealers do shine is on certain structured Ising instances where the energy landscape favours quantum tunnelling over thermal hopping. The honest summary: a useful heuristic tool with a clear hardware-software pipeline, not a demonstrated path to provable quantum advantage.
 
@@ -135,7 +135,7 @@ Whether BPP equals BQP is the central open question of quantum complexity theory
 Pulling the models together. The following relationships are established theorems, with citations covered in Appendix D.
 
 - **Circuit model** $\equiv$ **adiabatic quantum computation** (Aharonov et al., 2004): polynomially equivalent.
-- **Circuit model** $\equiv$ **measurement-based quantum computation on a 2D cluster state** (Raussendorf and Briegel, 2001): polynomially equivalent.
+- **Circuit model** $\equiv$ **measurement-based quantum computation on a 2D cluster state** (Raussendorf–Briegel 2001; universality theorem Raussendorf–Browne–Briegel): polynomially equivalent.
 - **Circuit model** $\equiv$ **continuous-time quantum walks on an appropriate graph** (Childs, 2009): polynomially equivalent.
 - **Circuit model** $\equiv$ **continuous-variable computation with a finite Gaussian gate set plus any non-Gaussian gate** (Lloyd and Braunstein, 1999): universal, polynomially equivalent under reasonable encodings.
 - **Topological quantum computation** with non-Abelian anyons of universal braid representation (e.g., Fibonacci): polynomially equivalent — *if* such anyons can be realised.

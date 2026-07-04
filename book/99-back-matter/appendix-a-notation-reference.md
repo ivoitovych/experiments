@@ -76,7 +76,7 @@ with a closing `\rangle`.
 
 Established in [§4.3](../part-02-formalism/04-mathematical-background.md#43-inner-products-norms-and-orthonormal-bases)
 (norm notation) and [§4.4](../part-02-formalism/04-mathematical-background.md#44-matrices-and-linear-operators)
-(operator algebra). The norm symbols are reused for five distinct roles
+(operator algebra). The norm symbols are reused for six distinct roles
 — get the bar count right or the type signature lies.
 
 - $A^\dagger$ — **adjoint** (conjugate transpose):
@@ -99,7 +99,7 @@ Established in [§4.3](../part-02-formalism/04-mathematical-background.md#43-inn
   $\langle v|A|v\rangle \ge 0$ for all $v$ ([§4.5](../part-02-formalism/04-mathematical-background.md#45-hermitian-unitary-normal-and-positive-operators)).
 - $A \succeq B$ — shorthand for $A - B \succeq 0$.
 
-**Norm and modulus bars** — five distinct symbols share two glyphs.
+**Norm and modulus bars** — six distinct symbols share two glyphs.
 Mis-counting the bars is the most common type-signature bug in this
 notation:
 
@@ -251,10 +251,12 @@ Chapters 11–12.
 - $D(\rho, \sigma) = \tfrac{1}{2}\\|\rho - \sigma\\|_1$ — **trace
   distance** between density matrices. Determines the optimal
   equal-prior discrimination success probability.
-- $F(\rho, \sigma)$ — **fidelity** between density matrices. Several
-  conventional definitions are in use (the squared and unsquared
-  forms); the book uses one consistently and notes the choice where
-  it matters (Chapter 12).
+- $F(\rho, \sigma) = \mathrm{tr}\\,\sqrt{\sqrt{\rho}\\,\sigma\\,\sqrt{\rho}}$ —
+  **fidelity** between density matrices, in this book's convention:
+  the **unsquared** (square-root) form, so $F \in [0, 1]$ and
+  $F(|\psi\rangle, |\phi\rangle) = |\langle\psi|\phi\rangle|$ on pure
+  states. (Some sources square this quantity and call *that* the
+  fidelity; §12.7 fixes the choice.)
 
 Shorthand: measurement of the **computational basis** on a register is
 the default; a basis change unitary $U^\dagger$ applied before the

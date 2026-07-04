@@ -113,10 +113,12 @@ A common subtle confusion: the *post-measurement* state on Bob's side,
 conditioned on Alice's outcome, *does* depend on Alice's measurement.
 But conditioning requires Alice to tell Bob the outcome. Without the
 classical channel, Bob's accessible description is the unconditional
-average, which is invariant. This is the same distinction as
-"a coin flip determines whether the safe was opened" versus "I can
-open the safe by knowing which way the coin landed": correlation is
-not causation, and certainly not communication.
+average, which is invariant. This is the same distinction as two
+sealed envelopes prepared with perfectly correlated cards and mailed
+to different cities: opening one instantly tells you what the other
+contains, but nothing travelled between the cities, and no message
+can be sent by choosing *when* to open an envelope. Correlation is
+not communication.
 
 ## 35.3 "Collapse" Is an Update Rule, Not a Physical Mechanism
 
@@ -508,9 +510,14 @@ And some problems have proven *no asymptotic quantum advantage*
 beyond constants:
 
 - The parity-of-$N$-bits function has the same query complexity
-  classically and quantumly: $\Theta(N)$.
-- Element distinctness has a quantum query lower bound of
-  $\Omega(N^{2/3})$, only marginally below classical.
+  classically and quantumly: $\Theta(N)$ (the quantum saving is
+  exactly a factor of two).
+- Majority and exact counting are likewise stuck at $\Theta(N)$
+  queries.
+
+(Element distinctness, by contrast, *does* have a proven polynomial
+speedup — $\Theta(N^{2/3})$ quantum versus $\Theta(N)$ classical,
+§15.6 — and belongs in the polynomial-speedup class above, not here.)
 
 The right operational stance is **quantum speedups are
 problem-specific and structural**. Some problems get exponential

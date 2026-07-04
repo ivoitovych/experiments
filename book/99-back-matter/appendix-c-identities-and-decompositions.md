@@ -281,7 +281,7 @@ single-axis-swap variants (Z–X–Z, X–Y–X) work analogously.
 $U \in \mathrm{U}(4)$ factors as
 
 $$
-U = (A_1 \otimes A_2)\\, e^{i(c_x X \otimes X + c_y Y \otimes Y + c_z Z \otimes Z)}\\, (B_1 \otimes B_2)
+U = (A_1 \otimes A_2)\\, e^{-i(c_x X \otimes X + c_y Y \otimes Y + c_z Z \otimes Z)}\\, (B_1 \otimes B_2)
 $$
 
 with single-qubit unitaries $A_1, A_2, B_1, B_2$ and real coefficients
@@ -306,7 +306,7 @@ and is given in §8.14.
 
 - Two-CNOT decomposition is enough iff the KAK coefficient vector
   $(c_x, c_y, c_z)$ has $c_z = 0$ after relabelling axes.
-- One-CNOT decomposition is enough iff additionally $c_y = 0$.
+- One-CNOT decomposition is enough iff $(c_x, c_y, c_z) = (\pi/4, 0, 0)$ — i.e. $U$ is locally equivalent to CNOT itself. (Having $c_y = c_z = 0$ alone is *not* sufficient: a partial controlled-phase has that form yet needs two CNOTs; see §8.14.)
 - Zero CNOTs is enough iff $U = A_1 \otimes A_2$.
 
 **Toffoli into 6 CNOTs.** The Toffoli gate $\mathrm{CCX}$ (§B.8) admits a
@@ -376,8 +376,9 @@ $$
   (so a complete set of $d + 1$ MUBs is known for $d = 2, 3, 4, 5, 7, 8, 9, \ldots$).
   Smaller MUB sets exist trivially in any dimension; whether $d + 1$ is
   achievable for non-prime-power $d$ — the smallest open case is $d = 6$ —
-  is a long-standing open problem. The general construction and
-  applications (random access codes, tomography) are taken up in Chapter 12.
+  is a long-standing open problem. Operationally, mutually unbiased
+  bases are the mechanism behind BB84's two-basis encoding (§27.7,
+  §33.2) and appear in tomography basis choices (§11.4).
 
 ---
 
