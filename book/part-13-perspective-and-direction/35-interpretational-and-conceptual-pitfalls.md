@@ -600,7 +600,7 @@ exists and is named here so that "Bell rules out hidden variables"
 can be qualified properly to "Bell rules out hidden variables
 *under measurement independence*".
 
-## 35.14 Bridge to Chapter 36 and Sanity Checks
+## 35.14 Bridge to Chapter 36
 
 The unifying message of this chapter is operational: **trust the
 math, distrust the metaphors**. The formalism — unit vectors,

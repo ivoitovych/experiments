@@ -34,9 +34,15 @@ from chapter content.
 comprehensive review found seven coexisting styles):
 
 - **Bridge section**: each chapter ends with a *numbered* H2 bridge
-  section (`## N.M Bridge to Chapter N+1`). Merging the bridge into the
-  chapter's final numbered section (as Chapters 22, 27, 30–32, 35 do)
-  is also acceptable; unnumbered or unheaded bridges are not.
+  section (`## N.M Bridge to Chapter N+1`). Merging the bridge into a
+  transitional final numbered section (as Chapters 2, 22, 24, 25, 27,
+  and 29–32 do) is also acceptable; unnumbered or unheaded bridges are
+  not. Chapters 8, 19, 23, 34, and 36 end on their last content section
+  with no bridge (documented in TOC.md's reconciliation note), the
+  Historical Prelude closes on its own runway, and Chapter 37 has
+  nothing to bridge to. `tools/lint.py` enforces this list
+  (`MERGED_OR_NO_BRIDGE`); extending it requires a matching
+  adjudication here.
 - **Sanity checks**: rendered as a bold run-in paragraph
   `**Sanity checks before moving on.**` followed by a numbered list,
   inside the bridge (or final) section — not as their own H2 heading,

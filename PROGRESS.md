@@ -46,7 +46,7 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 - [x] [Chapter 25. NISQ and the Early Fault-Tolerant Era](book/part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md) — *draft* — sections 6/6
 - [x] [Chapter 26. Practical Access and Hands-On Work](book/part-10-practice-and-era/26-practical-access-and-hands-on-work.md) — *draft* — sections 8/8
 - [x] [Chapter 36. How to Judge Claims in Quantum Computing](book/part-13-perspective-and-direction/36-how-to-judge-claims.md) — *draft* — sections 8/8
-- [x] [Chapter 37. Endgame](book/part-13-perspective-and-direction/37-endgame.md) — *draft* — sections 9/9
+- [x] [Chapter 37. Endgame](book/part-13-perspective-and-direction/37-endgame.md) — *draft* — sections 8/8
 
 ## Phase 2 — Core mechanics
 
@@ -64,7 +64,7 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 
 - [x] [Appendix F. 2026 Hardware Snapshot](book/99-back-matter/appendix-f-hardware-snapshot-2026.md) — *draft* — sections 8/8
 - [x] [Chapter 19. Quantum Error Correction and Fault Tolerance](book/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md) — *draft* — sections 23/23
-- [x] [Chapter 21. Quantum Control and Electronics](book/part-09-hardware-and-software/21-quantum-control-and-electronics.md) — *draft* — sections 16/16
+- [x] [Chapter 21. Quantum Control and Electronics](book/part-09-hardware-and-software/21-quantum-control-and-electronics.md) — *draft* — sections 15/15
 - [x] [Chapter 22. Hardware Engineering Metrics](book/part-09-hardware-and-software/22-hardware-engineering-metrics.md) — *draft* — sections 14/14
 - [x] [Chapter 23. Quantum Programming, Compilation, and Tooling](book/part-09-hardware-and-software/23-quantum-programming-compilation-and-tooling.md) — *draft* — sections 15/15
 - [x] [Chapter 24. Classical Simulation of Quantum Systems](book/part-09-hardware-and-software/24-classical-simulation-of-quantum-systems.md) — *draft* — sections 15/15

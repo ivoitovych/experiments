@@ -138,6 +138,101 @@ def check_list_marker_continuation(rel, content: str) -> None:
                 break
 
 
+# --- Convention checks (STYLE.md, adjudicated 2026-07-04) -------------------
+#
+# These four rules enforce the chapter-closing and consistency conventions
+# specified in STYLE.md (*Per-chapter structure*). Exception lists below
+# enumerate the files STYLE.md itself names as deliberate deviations; a new
+# entry requires a matching STYLE.md adjudication, not just a lint edit.
+
+SECTIONS_DRAFTED_RE = re.compile(r"\*\*Sections drafted:\*\*\s*(\d+)\s*/\s*(\d+)")
+NUMBERED_H2_RE = re.compile(r"^## (?:\d+|[A-Z])\.\d+ ", re.MULTILINE)
+ANY_H2_RE = re.compile(r"^## ", re.MULTILINE)
+
+# Files whose H2s are organisational groups, not drafted sections
+# (per-letter index groups; STYLE.md status-count rule).
+STATUS_COUNT_EXEMPT = {"index.md"}
+
+# Chapters adjudicated as merging the bridge into a transitional final
+# numbered section (STYLE.md: acceptable), plus chapters with no bridge
+# by design: 8, 19, 23, 34, 36 end on their last content section (per the
+# TOC.md reconciliation note), the Prelude closes on its own runway, and
+# Chapter 37 has nothing to bridge to.
+MERGED_OR_NO_BRIDGE = {
+    "00-historical-prelude.md",
+    "02-classical-to-quantum-contrast.md",
+    "08-quantum-gates.md",
+    "19-quantum-error-correction-and-fault-tolerance.md",
+    "22-hardware-engineering-metrics.md",
+    "23-quantum-programming-compilation-and-tooling.md",
+    "24-classical-simulation-of-quantum-systems.md",
+    "25-nisq-and-early-fault-tolerant-era.md",
+    "27-cryptography-and-security.md",
+    "29-optimization-finance-and-industrial.md",
+    "30-quantum-machine-learning.md",
+    "31-quantum-sensing-metrology-and-tomography.md",
+    "32-adjacent-computational-models.md",
+    "34-bridging-to-familiar-engineering-ideas.md",
+    "36-how-to-judge-claims.md",
+    "37-endgame.md",
+}
+
+SANITY_HEADING_RE = re.compile(r"^#{1,6}\s.*[Ss]anity\s+[Cc]hecks", re.MULTILINE)
+PART_ROMAN_RE = re.compile(r"\bPart\s+[IVX]+\b")
+PART_ARABIC_RE = re.compile(r"\bPart\s+\d+\b")
+CHAPTER_FILE_RE = re.compile(r"^\d{2}-.+\.md$")
+
+
+def check_status_count(rel, md: pathlib.Path, content: str) -> None:
+    """`Sections drafted: k / M` must equal the count of numbered `## N.x`
+    sections; files with no numbered sections count all H2s (front-matter
+    rule), except the enumerated organisational-H2 files."""
+    if md.name in STATUS_COUNT_EXEMPT:
+        return
+    m = SECTIONS_DRAFTED_RE.search(content)
+    if not m:
+        return  # absence of the counter is covered by the status-block check
+    k, total = int(m.group(1)), int(m.group(2))
+    numbered = len(NUMBERED_H2_RE.findall(content))
+    actual = numbered if numbered else len(ANY_H2_RE.findall(content))
+    if total != actual or k != actual:
+        fail(rel, f"status block says 'Sections drafted: {k} / {total}' but the file "
+                  f"has {actual} countable section(s) (numbered `## N.x`, or all H2s "
+                  f"when none are numbered) — see STYLE.md status-count rule")
+
+
+def check_bridge(rel, md: pathlib.Path, content: str) -> None:
+    """Every chapter's last numbered section is a bridge (`Bridge to Chapter`)
+    unless STYLE.md adjudicates it as merged or bridge-free."""
+    if not CHAPTER_FILE_RE.match(md.name) or "front-matter" in str(rel) or "back-matter" in str(rel):
+        return
+    if md.name in MERGED_OR_NO_BRIDGE:
+        return
+    numbered_lines = [ln for ln in content.splitlines() if re.match(r"^## (?:\d+|[A-Z])\.\d+ ", ln)]
+    if numbered_lines and "Bridge to Chapter" not in numbered_lines[-1]:
+        fail(rel, f"last numbered section is {numbered_lines[-1][3:40]!r}, not a "
+                  "'Bridge to Chapter' section, and the file is not in the "
+                  "adjudicated merged/no-bridge list (STYLE.md)")
+
+
+def check_sanity_check_form(rel, content: str) -> None:
+    """Sanity checks are a bold run-in paragraph, never a heading."""
+    for m in SANITY_HEADING_RE.finditer(content):
+        n = content[: m.start()].count("\n") + 1
+        fail(rel, f"line {n}: sanity checks must be the bold run-in paragraph "
+                  "'**Sanity checks before moving on.**', not a heading (STYLE.md)")
+
+
+def check_part_numerals(rel, content: str) -> None:
+    """Roman and Arabic part references must not be mixed within one file."""
+    prose = strip_code(content)
+    if PART_ROMAN_RE.search(prose) and PART_ARABIC_RE.search(prose):
+        roman = PART_ROMAN_RE.search(prose).group(0)
+        arabic = PART_ARABIC_RE.search(prose).group(0)
+        fail(rel, f"mixes Roman ({roman!r}) and Arabic ({arabic!r}) part references "
+                  "in one file (STYLE.md: don't mix the two styles within a file)")
+
+
 def strip_code(content: str) -> str:
     """Remove fenced and inline code spans so forbidden-pattern checks
     don't false-positive on documentation that mentions the forbidden
@@ -179,6 +274,10 @@ def check_book_file(md: pathlib.Path) -> None:
     check_nested_display_math(rel, content)
     check_inline_latex_env(rel, content)
     check_list_marker_continuation(rel, content)
+    check_status_count(rel, md, content)
+    check_bridge(rel, md, content)
+    check_sanity_check_form(rel, content)
+    check_part_numerals(rel, content)
 
     m = STATUS_RE.search(content)
     if m:

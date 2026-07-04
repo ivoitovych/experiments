@@ -1,6 +1,6 @@
 # Chapter 37. Endgame
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 9 / 9
+> **Status:** draft · **Phase:** 1 · **Sections drafted:** 8 / 8
 
 [← Previous: Chapter 36](36-how-to-judge-claims.md) · [Table of Contents](../../README.md) · [Next: Appendix A. Notation Reference →](../99-back-matter/appendix-a-notation-reference.md)
 
@@ -139,7 +139,7 @@ A reader who studies the subject because *quantum mechanics as a computational m
 
 The book has tried to support that second framing throughout. The point was never to teach a recipe for a quantum-advantage demonstration; it was to leave the reader with a working internal model of the subject that does not depend on the marketing cycle and does not collapse the first time a press release overstates a result. If the model is in place, the rest is exercise.
 
-## 37.9 Sanity Checks Before Closing the Book
+**Sanity checks before closing the book.**
 
 1. Without rereading Chapter 5, state the four postulates of quantum mechanics in the form a programmer can compute against. Identify which postulate is responsible for entanglement, which for interference, and which for the classical-quantum boundary at measurement.
 2. Given a developer with five years of distributed-systems experience and no physics background, pick the most natural of the six roles in §37.5 for them to start in. Justify the pick in two sentences. Pick the second-most-natural and contrast.
