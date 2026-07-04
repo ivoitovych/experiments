@@ -66,7 +66,7 @@ The SDK landscape in 2026 has consolidated around a handful of mature stacks, ea
 
 **Qiskit** (IBM, open source). The largest community, the most extensive documentation, and the deepest tooling for IBM superconducting hardware. The Python API is the most common entry point in the field. The current shipping line is the **Qiskit SDK 2.x** (released March 2025; a slimmed-down core with the transpiler, circuit construction, and quantum-info modules, plus a new C interface) paired with **Qiskit Runtime** (the cloud-side execution service, exposing the `Sampler` and `Estimator` *Primitives* — see §23.13). Qiskit Aer is the local simulator backend.
 
-**Cirq** (Google, open source). Targets Google's superconducting hardware and the Quantum Engine cloud service. Cirq's design emphasises gate-level circuit construction with explicit qubit objects (a `GridQubit` knows its physical position), and it is the primary entry point for **TensorFlow Quantum** for hybrid quantum-classical ML workloads.
+**Cirq** (Google, open source). Targets Google's superconducting hardware and the Quantum Engine cloud service. Cirq's design emphasises gate-level circuit construction with explicit qubit objects (a `GridQubit` knows its physical position), and it was the entry point for **TensorFlow Quantum** for hybrid quantum-classical ML workloads (TFQ has been effectively unmaintained since ~2023–24 — treat it as legacy; see §23.15).
 
 **PennyLane** (Xanadu, open source). Built for variational and quantum-machine-learning workflows. PennyLane's distinguishing feature is its *device-agnostic* model: the same `qnode` runs on Xanadu photonic hardware, IBM superconducting backends (via a Qiskit plugin), IonQ trapped-ion backends, AWS Braket, or a local simulator, and the framework computes parameter-shift gradients that propagate through PyTorch or JAX. The default Python integration is the smoothest in the field for QML.
 
@@ -74,7 +74,7 @@ The SDK landscape in 2026 has consolidated around a handful of mature stacks, ea
 
 **Q#** (Microsoft). A standalone typed quantum programming language with its own compiler, shipped as the **Quantum Development Kit (QDK)** and integrated into Azure Quantum. Q# emphasises **resource estimation** (§23.11) and integration into classical-quantum workflows from C# or Python. The 2024 rewrite of Q# (the "Modern QDK") simplified the language considerably; it now compiles to QIR and uses LLVM-based backends.
 
-**pyQuil** (Rigetti). The Python entry to Quil. Mainly used by people running on Rigetti Aspen and Ankaa hardware via the Rigetti Quantum Cloud Service.
+**pyQuil** (Rigetti). The Python entry to Quil. Mainly used by people running on Rigetti hardware (the current Ankaa generation; the earlier Aspen line is retired) via the Rigetti Quantum Cloud Service.
 
 **Amazon Braket SDK** (AWS, open source). A Python SDK that targets the **Amazon Braket** service, which proxies access to multiple hardware vendors (IonQ, Rigetti, QuEra, Oxford Quantum Circuits) and AWS-hosted simulators under one API. The SDK can also accept OpenQASM 3 and parameterised circuits from PennyLane.
 
@@ -107,7 +107,7 @@ The canonical pipeline has four stages:
 3. **Optimisation** — peephole rewrites, rotation merging, template matching, synthesis-based optimisation (§9.13). Optimisation runs both before and after routing because SWAP insertion creates new patterns that benefit from re-optimisation.
 4. **Scheduling** — assign concrete start times and durations to every operation, respecting the device's instruction timing model (§23.8).
 
-In Qiskit the entry point is `transpile(circuit, backend, optimization_level=N)`. Level 0 only does the bare-minimum legality fixes; level 1 is the default; level 3 runs heavier optimisation passes and is what most published benchmarks use. The Cirq equivalent is `cirq.optimize_for_target_gateset`; the tket equivalent is `pytket.passes.SequencePass([...])` with a user-chosen list. All three frameworks let you inspect the pass list, plug in your own pass, or replace the whole pipeline.
+In Qiskit the entry point is `transpile(circuit, backend, optimization_level=N)`. Level 0 only does the bare-minimum legality fixes; level 1 was the long-time default (recent releases moved the default to level 2 — check your installed version); level 3 runs heavier optimisation passes and is what most published benchmarks use. The Cirq equivalent is `cirq.optimize_for_target_gateset`; the tket equivalent is `pytket.passes.SequencePass([...])` with a user-chosen list. All three frameworks let you inspect the pass list, plug in your own pass, or replace the whole pipeline.
 
 Two metrics matter when comparing transpiler runs. The **two-qubit gate count** (CNOT count on superconducting devices, $ZZ$ or $XX$ count on ion traps) is the dominant fidelity cost; reducing it by 10% typically improves end-to-end success probability by a meaningful margin. The **circuit depth in nanoseconds** — not in gate count, but in real time — determines how much $T_2$ decoherence accrues; on a device with $T_2 \approx 100~\mu s$ and gate times around 50 ns, the depth budget is roughly $2000$ gate slots, and exceeding it pushes the circuit into the noise-dominated regime.
 
@@ -167,7 +167,7 @@ More sophisticated approaches.
 
 **Dynamical decoupling (DD).** Insert sequences of $X$ or $XY4$ pulses into idle slots so that low-frequency noise averages out. The pattern is structurally identical to NMR refocusing pulses (and has the same theoretical justification: a fast classical drive cancels the slow noise Hamiltonian to first order in the Magnus expansion). Both Qiskit (`PadDynamicalDecoupling`) and tket apply DD automatically at high optimisation levels.
 
-**Pauli twirling.** Conjugate a noisy gate with random Pauli operators averaged over many shots. The effective noise channel becomes a Pauli channel even if the underlying noise was not, which makes subsequent error-mitigation passes (Chapter 18) simpler. Implemented in Qiskit's `PauliTwirl` and the `mthree` mitigation toolkit.
+**Pauli twirling.** Conjugate a noisy gate with random Pauli operators averaged over many shots. The effective noise channel becomes a Pauli channel even if the underlying noise was not, which makes subsequent error-mitigation passes (Chapter 18) simpler. Implemented via Qiskit's transpiler twirling passes and Qiskit Runtime's twirling options. (The `mthree` toolkit is *readout*-error mitigation, a different layer.)
 
 **Probabilistic error cancellation (PEC).** Sample circuits from a quasi-probability distribution chosen so that the noise channel inverts in expectation. Implemented in Qiskit Runtime's `Estimator` as the `pec` resilience level.
 
@@ -188,7 +188,7 @@ The motivating use case is **fault-tolerant resource forecasting** for algorithm
 5. Apply the *space-time tradeoff* curves for the chosen code (more physical qubits per logical patch ↔ more T-state factories ↔ less time).
 6. Multiply through and report.
 
-Microsoft's **Azure Quantum Resource Estimator** is the most mature publicly-available tool: a Q# (or Qiskit) circuit goes in; a JSON breakdown of physical qubits, runtime, magic-state-factory layout, and surface-code parameters comes out. Quantinuum's **Resource Estimator** (and the older `qsharp.estimator` Python integration) plays a similar role. The `PyZX` and `pyLIQUi|>` ecosystems offer logical-level T-counting passes that feed those estimators.
+Microsoft's **Azure Quantum Resource Estimator** is the most mature publicly-available tool: a Q# (or Qiskit) circuit goes in; a JSON breakdown of physical qubits, runtime, magic-state-factory layout, and surface-code parameters comes out. Quantinuum's **Resource Estimator** (and the older `qsharp.estimator` Python integration) plays a similar role. The `PyZX` ecosystem (ZX-calculus T-count reduction) and `pytket`'s gate-statistics reporting offer logical-level T-counting passes that feed those estimators.
 
 A frequently-cited datapoint, current to 2026: factoring a 2048-bit RSA key with surface-code-encoded Shor's algorithm under standard parameter assumptions ($p_{\mathrm{phys}} = 10^{-3}$, target $\epsilon = 10^{-2}$, magic-state-distillation overhead) requires roughly $2 \times 10^7$ physical qubits and several hours of runtime. Different cost models give numbers spanning roughly an order of magnitude; the resource estimator's value is not in giving "the" answer but in letting you sweep the assumptions and see the elasticity.
 
@@ -231,7 +231,7 @@ with Session(backend) as session:
         parameter_values = classical_update(values)
 ```
 
-Comparable abstractions exist elsewhere: **Amazon Braket Hybrid Jobs** ship a containerised classical workload to AWS adjacent to the QPU; **Azure Quantum Sessions** play the same role for Microsoft's stack; **PennyLane**'s `qml.qnode` is a Pythonic wrapper that submits asynchronously and integrates with PyTorch/JAX autodiff. **Cirq with TensorFlow Quantum** is the corresponding stack for Google's hardware.
+Comparable abstractions exist elsewhere: **Amazon Braket Hybrid Jobs** ship a containerised classical workload to AWS adjacent to the QPU; **Azure Quantum Sessions** play the same role for Microsoft's stack; **PennyLane**'s `qml.qnode` is a Pythonic wrapper that submits asynchronously and integrates with PyTorch/JAX autodiff. **Cirq with TensorFlow Quantum** was the corresponding stack for Google's hardware, though TFQ is no longer actively maintained.
 
 Two patterns specific to variational programming.
 
@@ -259,7 +259,7 @@ Quantum machine learning is the largest sustained user of the variational stack 
 
 **PennyLane**'s `qml.qnode` integrates as a layer in PyTorch, JAX, and TensorFlow. A quantum node can be differentiated through (via parameter-shift on hardware, automatic differentiation on simulators), composed with classical layers (`nn.Linear(...)`, `nn.Conv2d(...)`), trained with standard optimisers (Adam, RMSProp), and saved/loaded as part of a `state_dict`.
 
-**TensorFlow Quantum** wraps Cirq circuits as TF layers, with the parameter-shift gradient implemented as a TensorFlow op. The integration is tighter than PennyLane's PyTorch path but ties the user to TF and to Cirq's circuit model.
+**TensorFlow Quantum** wraps Cirq circuits as TF layers, with the parameter-shift gradient implemented as a TensorFlow op. The integration is tighter than PennyLane's PyTorch path but ties the user to TF and to Cirq's circuit model — and the project has been effectively unmaintained since ~2023–24, so prefer PennyLane for new work.
 
 **Qiskit Machine Learning** offers `EstimatorQNN` (expectation-value outputs) and `SamplerQNN` (probability-distribution outputs) as scikit-learn-compatible estimators and PyTorch modules. Convenient for Qiskit-native users; the integration story is not as smooth as PennyLane's because Qiskit's Primitives were not initially designed with autodiff in mind.
 
