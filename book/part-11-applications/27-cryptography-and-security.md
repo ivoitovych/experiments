@@ -105,6 +105,20 @@ Authentication is different. A forged signature in 2040 is a problem only for do
 
 The original protocol is **BB84** (Bennett–Brassard 1984). Alice prepares a long sequence of single qubits, each chosen uniformly at random from the set $\\{|0\rangle, |1\rangle, |+\rangle, |-\rangle\\}$ — four states across two mutually unbiased bases. She records, for each qubit, the *basis* (rectilinear $Z$ or diagonal $X$) and the *bit* ($0$ or $1$). Bob, for each arriving qubit, picks $Z$ or $X$ uniformly at random and measures. Bob's bit matches Alice's whenever his basis matches hers (half the time, in expectation); when the bases mismatch, his result is independent of Alice's bit.
 
+The complete case analysis fits in one table (states in code spans; the
+kept rows are exactly the basis-match rows):
+
+| Alice's bit | Alice's basis | State sent | Bob's basis | Bob's outcome  | Kept after sifting? |
+|-------------|---------------|------------|-------------|----------------|---------------------|
+| 0           | Z             | `\|0⟩`     | Z           | 0, always      | yes                 |
+| 0           | Z             | `\|0⟩`     | X           | 0 or 1, random | no                  |
+| 1           | Z             | `\|1⟩`     | Z           | 1, always      | yes                 |
+| 1           | Z             | `\|1⟩`     | X           | 0 or 1, random | no                  |
+| 0           | X             | `\|+⟩`     | X           | 0, always      | yes                 |
+| 0           | X             | `\|+⟩`     | Z           | 0 or 1, random | no                  |
+| 1           | X             | `\|−⟩`     | X           | 1, always      | yes                 |
+| 1           | X             | `\|−⟩`     | Z           | 0 or 1, random | no                  |
+
 After the quantum transmission, Alice and Bob run a classical post-processing phase over an authenticated public channel:
 
 1. **Basis sifting.** They announce their basis choice for each qubit. They keep the bits where the bases match and discard the rest. This leaves the **sifted key** — half the original length in expectation.

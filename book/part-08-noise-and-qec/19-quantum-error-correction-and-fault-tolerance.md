@@ -191,7 +191,9 @@ $$
 
 Star and plaquette stabilisers always overlap on an even number of edges (zero or two), so they commute. The code subspace is their joint $+1$ eigenspace, with one logical qubit per "hole" or pair of rough/smooth boundaries on the surface. A code patch with one rough boundary pair and one smooth boundary pair encodes one logical qubit.
 
-The **logical operators** are products of $X$ along an "$X$-string" from one rough boundary to the other, and products of $Z$ along a "$Z$-string" from one smooth boundary to the other. Both strings have length proportional to $d$, so the code distance is $d$ — the minimum length of a non-trivial homological cycle. The total qubit count is $\sim 2d^2$ including ancillas — $d^2 + (d-1)^2$ *data* qubits for the planar layout above, reduced to $d^2$ data qubits ($2d^2 - 1$ total) by the rotated variant — with a roughly 1:1 ratio of data to ancilla qubits.
+The **logical operators** are products of $X$ along an "$X$-string" from one rough boundary to the other, and products of $Z$ along a "$Z$-string" from one smooth boundary to the other. Both strings have length proportional to $d$, so the code distance is $d$ — the minimum length of a non-trivial homological cycle.
+
+![Rotated distance-3 surface code: nine data qubits on a 3-by-3 grid, four X-checks and four Z-checks alternating checkerboard-fashion (four bulk plaquettes plus four boundary half-plaquettes), with the logical Z string running along the bottom row and the logical X string along the left column](figures/surface-code-lattice.svg) The total qubit count is $\sim 2d^2$ including ancillas — $d^2 + (d-1)^2$ *data* qubits for the planar layout above, reduced to $d^2$ data qubits ($2d^2 - 1$ total) by the rotated variant — with a roughly 1:1 ratio of data to ancilla qubits.
 
 Errors create syndrome defects in pairs: an $X$ error on a data qubit flips two adjacent plaquettes; a $Z$ error flips two adjacent stars. Chains of errors create defects only at their endpoints. Decoding is finding the most-likely pairing of defects, which MWPM solves efficiently. The **threshold** of the surface code under standard depolarising noise is approximately 1% per physical gate — the highest of any code family currently known with implementable syndrome circuits.
 
@@ -305,6 +307,8 @@ The two primitives are:
 
 - **Merge**: convert two adjacent surface-code patches into a single, larger patch by measuring the stabilisers that span their shared boundary. This implements a joint logical Pauli measurement ($\bar Z_1 \bar Z_2$ for a smooth-boundary merge, $\bar X_1 \bar X_2$ for a rough-boundary merge) without physically moving any qubits.
 - **Split**: convert one patch back into two adjacent patches by stopping the measurement of the boundary stabilisers and re-extracting the original two patches' stabilisers.
+
+![Lattice-surgery merge and split: two encoded patches, the seam stabilisers measured for d rounds yielding the joint logical Z1Z2 outcome, then the patches split apart with a Pauli correction conditioned on the outcome](figures/lattice-surgery.svg)
 
 A logical CNOT between two patches is then a sequence: merge along an $\bar X \otimes \bar X$ boundary, split, measure, condition on the outcome, possibly apply a Pauli correction. The whole operation takes $O(d)$ syndrome rounds and uses an ancillary patch of comparable size. A logical $T$ gate is similar but consumes a magic state: prepare an encoded $|T\rangle$ patch, merge it with the target patch via lattice surgery, measure the appropriate logical operator, condition on the outcome.
 
