@@ -1,6 +1,6 @@
 # Chapter 24. Classical Simulation of Quantum Systems
 
-> **Status:** draft · **Phase:** 4 · **Sections drafted:** 15 / 15
+> **Status:** prereviewed · **Phase:** 4 · **Sections drafted:** 15 / 15
 
 [← Previous: Chapter 23](23-quantum-programming-compilation-and-tooling.md) · [Table of Contents](../../README.md) · [Next: Chapter 25 →](../part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md)
 

@@ -1,6 +1,6 @@
 # Chapter 26. Practical Access and Hands-On Work
 
-> **Status:** draft · **Phase:** 5 · **Sections drafted:** 8 / 8
+> **Status:** prereviewed · **Phase:** 5 · **Sections drafted:** 8 / 8
 
 [← Previous: Chapter 25](25-nisq-and-early-fault-tolerant-era.md) · [Table of Contents](../../README.md) · [Next: Chapter 27 →](../part-11-applications/27-cryptography-and-security.md)
 

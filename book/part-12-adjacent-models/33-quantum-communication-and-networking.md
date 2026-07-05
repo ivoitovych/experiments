@@ -1,6 +1,6 @@
 # Chapter 33. Quantum Communication and Networking
 
-> **Status:** draft · **Phase:** 5 · **Sections drafted:** 6 / 6
+> **Status:** prereviewed · **Phase:** 5 · **Sections drafted:** 6 / 6
 
 [← Previous: Chapter 32](32-adjacent-computational-models.md) · [Table of Contents](../../README.md) · [Next: Chapter 34 →](../part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md)
 

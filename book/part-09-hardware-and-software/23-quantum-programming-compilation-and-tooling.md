@@ -1,6 +1,6 @@
 # Chapter 23. Quantum Programming, Compilation, and Tooling
 
-> **Status:** draft · **Phase:** 4 · **Sections drafted:** 15 / 15
+> **Status:** prereviewed · **Phase:** 4 · **Sections drafted:** 15 / 15
 
 [← Previous: Chapter 22](22-hardware-engineering-metrics.md) · [Table of Contents](../../README.md) · [Next: Chapter 24 →](24-classical-simulation-of-quantum-systems.md)
 

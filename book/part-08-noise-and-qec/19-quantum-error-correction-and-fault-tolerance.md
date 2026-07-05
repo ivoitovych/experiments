@@ -1,6 +1,6 @@
 # Chapter 19. Quantum Error Correction and Fault Tolerance
 
-> **Status:** draft · **Phase:** 4 · **Sections drafted:** 23 / 23
+> **Status:** prereviewed · **Phase:** 4 · **Sections drafted:** 23 / 23
 
 [← Previous: Chapter 18](18-noise-decoherence-and-errors.md) · [Table of Contents](../../README.md) · [Next: Chapter 20 →](../part-09-hardware-and-software/20-quantum-hardware-platforms.md)
 

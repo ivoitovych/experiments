@@ -1,6 +1,6 @@
 # Chapter 29. Optimization, Finance, and Industrial Use Cases
 
-> **Status:** draft · **Phase:** 5 · **Sections drafted:** 6 / 6
+> **Status:** prereviewed · **Phase:** 5 · **Sections drafted:** 6 / 6
 
 [← Previous: Chapter 28](28-scientific-computing-and-physical-simulation.md) · [Table of Contents](../../README.md) · [Next: Chapter 30 →](30-quantum-machine-learning.md)
 

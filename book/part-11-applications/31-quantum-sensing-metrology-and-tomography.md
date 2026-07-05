@@ -1,6 +1,6 @@
 # Chapter 31. Quantum Sensing, Metrology, and Tomography
 
-> **Status:** draft · **Phase:** 5 · **Sections drafted:** 6 / 6
+> **Status:** prereviewed · **Phase:** 5 · **Sections drafted:** 6 / 6
 
 [← Previous: Chapter 30](30-quantum-machine-learning.md) · [Table of Contents](../../README.md) · [Next: Chapter 32 →](../part-12-adjacent-models/32-adjacent-computational-models.md)
 

@@ -1,6 +1,6 @@
 # Chapter 12. Quantum Information Theory
 
-> **Status:** draft · **Phase:** 2 · **Sections drafted:** 13 / 13
+> **Status:** prereviewed · **Phase:** 2 · **Sections drafted:** 13 / 13
 
 [← Previous: Chapter 11](11-measurement-theory.md) · [Table of Contents](../../README.md) · [Next: Chapter 13 →](../part-06-algorithms/13-quantum-algorithms-mindset.md)
 

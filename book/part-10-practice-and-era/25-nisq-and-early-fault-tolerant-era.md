@@ -1,6 +1,6 @@
 # Chapter 25. NISQ and the Early Fault-Tolerant Era
 
-> **Status:** draft · **Phase:** 5 · **Sections drafted:** 6 / 6
+> **Status:** prereviewed · **Phase:** 5 · **Sections drafted:** 6 / 6
 
 [← Previous: Chapter 24](../part-09-hardware-and-software/24-classical-simulation-of-quantum-systems.md) · [Table of Contents](../../README.md) · [Next: Chapter 26 →](26-practical-access-and-hands-on-work.md)
 

@@ -416,3 +416,27 @@ One short retrospective per chapter, added when the chapter reaches
   artifacts, the Makefile, and the prereq-detection logic in
   `make setup` / `make setup-system-deps`. The next chapter
   inherits all of it for free.
+
+## Status-promotion criteria (adopted 2026-07-05)
+
+The status ladder is `stub` → `outlined` → `draft` → `prereviewed` →
+`reviewed` → `final`. Promotion gates:
+
+- **prereviewed** — the file has been through a complete *internal* review
+  cycle: the comprehensive section-by-section review of 2026-07-03
+  (`reviews/review-2026-07-03-1843-comprehensive-book-review.md`, 197
+  findings), full remediation of its findings, external web verification of
+  every factual item the review flagged
+  (`reviews/factcheck-2026-07-04-external-verification.md`), and a clean run
+  of the structural lint. "Internal" is the operative word: the reviewing was
+  done inside the project, not by an independent expert, and the author has
+  not yet done a start-to-end read.
+- **reviewed** — reserved for after a respected independent reviewer's review
+  has been received and incorporated.
+- **final** — additionally requires, per file: the `factcheck/` mirror file
+  closed (no `open` verdicts), every Moving-target warning re-verified
+  against current sources and logged (enforced by `tools/lint.py`), and a
+  GitHub-rendering spot-check of the file.
+
+All 48 manuscript files were promoted `draft` → `prereviewed` on 2026-07-05
+under these criteria.

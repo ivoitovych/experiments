@@ -1,6 +1,6 @@
 # Appendix F. 2026 Hardware Snapshot
 
-> **Status:** draft · **Phase:** 4 · **Sections drafted:** 8 / 8
+> **Status:** prereviewed · **Phase:** 4 · **Sections drafted:** 8 / 8
 
 [← Previous: Appendix E. Glossary](appendix-e-glossary.md) · [Table of Contents](../../README.md) · [Next: Index →](index.md)
 

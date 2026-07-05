@@ -1,6 +1,6 @@
 # Chapter 3. Physical Intuition Behind Quantum Mechanics
 
-> **Status:** draft · **Phase:** 6 · **Sections drafted:** 11 / 11
+> **Status:** prereviewed · **Phase:** 6 · **Sections drafted:** 11 / 11
 
 [← Previous: Chapter 2](02-classical-to-quantum-contrast.md) · [Table of Contents](../../README.md) · [Next: Chapter 4 →](../part-02-formalism/04-mathematical-background.md)
 

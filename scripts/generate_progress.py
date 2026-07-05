@@ -24,7 +24,7 @@ STATUS_RE = re.compile(
 )
 
 # States in increasing order of completeness.
-STATE_ORDER = ["stub", "outlined", "draft", "reviewed", "final"]
+STATE_ORDER = ["stub", "outlined", "draft", "prereviewed", "reviewed", "final"]
 COMPLETED = {"draft", "reviewed", "final"}
 
 
@@ -71,7 +71,7 @@ def main() -> None:
     lines.append("")
     lines.append("Writing progress per chapter, front-matter file, and appendix.")
     lines.append("")
-    lines.append("Status states (in order): `stub` → `outlined` → `draft` → `reviewed` → `final`.")
+    lines.append("Status states (in order): `stub` → `outlined` → `draft` → `prereviewed` → `reviewed` → `final`.")
     lines.append("")
     lines.append(
         "To update: edit the status block at the top of any file, then run "

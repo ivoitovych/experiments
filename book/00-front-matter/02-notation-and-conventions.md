@@ -1,6 +1,6 @@
 # Notation and Conventions
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 7 / 7
+> **Status:** prereviewed · **Phase:** 1 · **Sections drafted:** 7 / 7
 
 [← Previous: Recommended / Assumed Background and Self-Check](01-background-and-self-check.md) · [Table of Contents](../../README.md) · [Next: Historical Prelude →](../part-00-historical-prelude/00-historical-prelude.md)
 

@@ -1,6 +1,6 @@
 # Chapter 17. Complexity Theory Around Quantum Computing
 
-> **Status:** draft · **Phase:** 3 · **Sections drafted:** 14 / 14
+> **Status:** prereviewed · **Phase:** 3 · **Sections drafted:** 14 / 14
 
 [← Previous: Chapter 16](../part-06-algorithms/16-modern-algorithmic-frontier.md) · [Table of Contents](../../README.md) · [Next: Chapter 18 →](../part-08-noise-and-qec/18-noise-decoherence-and-errors.md)
 

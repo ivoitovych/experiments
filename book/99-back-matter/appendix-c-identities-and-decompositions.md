@@ -1,6 +1,6 @@
 # Appendix C. Useful Identities and Decompositions
 
-> **Status:** draft · **Phase:** 2 · **Sections drafted:** 6 / 6
+> **Status:** prereviewed · **Phase:** 2 · **Sections drafted:** 6 / 6
 
 [← Previous: Appendix B. Common Gates and Their Matrices](appendix-b-common-gates.md) · [Table of Contents](../../README.md) · [Next: Appendix D. Suggested Reading and Reference Papers →](appendix-d-suggested-reading.md)
 

@@ -1,6 +1,6 @@
 # Appendix A. Notation Reference
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 6 / 6
+> **Status:** prereviewed · **Phase:** 1 · **Sections drafted:** 6 / 6
 
 [← Previous: Chapter 37](../part-13-perspective-and-direction/37-endgame.md) · [Table of Contents](../../README.md) · [Next: Appendix B. Common Gates and Their Matrices →](appendix-b-common-gates.md)
 

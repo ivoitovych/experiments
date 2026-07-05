@@ -1,6 +1,6 @@
 # Chapter 2. Classical-to-Quantum Contrast
 
-> **Status:** draft · **Phase:** 6 · **Sections drafted:** 7 / 7
+> **Status:** prereviewed · **Phase:** 6 · **Sections drafted:** 7 / 7
 
 [← Previous: Chapter 1](01-why-quantum-computing-exists.md) · [Table of Contents](../../README.md) · [Next: Chapter 3 →](03-physical-intuition.md)
 

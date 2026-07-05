@@ -1,6 +1,6 @@
 # Chapter 22. Hardware Engineering Metrics
 
-> **Status:** draft · **Phase:** 4 · **Sections drafted:** 14 / 14
+> **Status:** prereviewed · **Phase:** 4 · **Sections drafted:** 14 / 14
 
 [← Previous: Chapter 21](21-quantum-control-and-electronics.md) · [Table of Contents](../../README.md) · [Next: Chapter 23 →](23-quantum-programming-compilation-and-tooling.md)
 

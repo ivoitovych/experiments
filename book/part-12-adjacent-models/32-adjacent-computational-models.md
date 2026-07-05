@@ -1,6 +1,6 @@
 # Chapter 32. Adjacent Computational Models
 
-> **Status:** draft · **Phase:** 5 · **Sections drafted:** 10 / 10
+> **Status:** prereviewed · **Phase:** 5 · **Sections drafted:** 10 / 10
 
 [← Previous: Chapter 31](../part-11-applications/31-quantum-sensing-metrology-and-tomography.md) · [Table of Contents](../../README.md) · [Next: Chapter 33 →](33-quantum-communication-and-networking.md)
 

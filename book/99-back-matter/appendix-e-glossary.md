@@ -1,6 +1,6 @@
 # Appendix E. Glossary
 
-> **Status:** draft · **Phase:** 6 · **Sections drafted:** 7 / 7
+> **Status:** prereviewed · **Phase:** 6 · **Sections drafted:** 7 / 7
 
 [← Previous: Appendix D. Suggested Reading and Reference Papers](appendix-d-suggested-reading.md) · [Table of Contents](../../README.md) · [Next: Appendix F. 2026 Hardware Snapshot →](appendix-f-hardware-snapshot-2026.md)
 

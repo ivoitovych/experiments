@@ -1,6 +1,6 @@
 # Chapter 20. Quantum Hardware Platforms
 
-> **Status:** draft · **Phase:** 4 · **Sections drafted:** 13 / 13
+> **Status:** prereviewed · **Phase:** 4 · **Sections drafted:** 13 / 13
 
 [← Previous: Chapter 19](../part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md) · [Table of Contents](../../README.md) · [Next: Chapter 21 →](21-quantum-control-and-electronics.md)
 

@@ -1,6 +1,6 @@
 # Chapter 27. Cryptography and Security
 
-> **Status:** draft · **Phase:** 5 · **Sections drafted:** 11 / 11
+> **Status:** prereviewed · **Phase:** 5 · **Sections drafted:** 11 / 11
 
 [← Previous: Chapter 26](../part-10-practice-and-era/26-practical-access-and-hands-on-work.md) · [Table of Contents](../../README.md) · [Next: Chapter 28 →](28-scientific-computing-and-physical-simulation.md)
 

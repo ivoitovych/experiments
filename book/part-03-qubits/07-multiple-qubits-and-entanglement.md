@@ -1,6 +1,6 @@
 # Chapter 7. Multiple Qubits and Entanglement
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 14 / 14
+> **Status:** prereviewed · **Phase:** 1 · **Sections drafted:** 14 / 14
 
 [← Previous: Chapter 6](06-the-qubit.md) · [Table of Contents](../../README.md) · [Next: Chapter 8 →](../part-04-gates-and-circuits/08-quantum-gates.md)
 

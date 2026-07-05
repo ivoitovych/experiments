@@ -1,6 +1,6 @@
 # Chapter 30. Quantum Machine Learning
 
-> **Status:** draft · **Phase:** 5 · **Sections drafted:** 9 / 9
+> **Status:** prereviewed · **Phase:** 5 · **Sections drafted:** 9 / 9
 
 [← Previous: Chapter 29](29-optimization-finance-and-industrial.md) · [Table of Contents](../../README.md) · [Next: Chapter 31 →](31-quantum-sensing-metrology-and-tomography.md)
 

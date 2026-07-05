@@ -1,6 +1,6 @@
 # Chapter 4. Mathematical Background for Quantum Computing
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 17 / 17
+> **Status:** prereviewed · **Phase:** 1 · **Sections drafted:** 17 / 17
 
 [← Previous: Chapter 3](../part-01-orientation/03-physical-intuition.md) · [Table of Contents](../../README.md) · [Next: Chapter 5 →](05-postulates.md)
 

@@ -234,3 +234,25 @@ the attributed history).
 Items 3–6 I can execute autonomously on approval; items 1–2 need author actions or explicit
 authorisation; item 7's sweep needs a pacing decision (serial sessions vs multi-agent
 fan-out).
+
+---
+
+## Decision & execution log (2026-07-05, insert-only)
+
+Author decisions on this report:
+
+- **P8 — REJECTED (no `main`).** This repository hosts many different projects; the book will
+  be published as a *separate repository* once it reaches a serious degree of completeness.
+  No default-branch change; no `main` here.
+- **P7 — MODIFIED AND EXECUTED.** Instead of `main`: the working branch is renamed to a
+  properly-named branch (`quantum-computing-book`), pushed, and all obsolete branches deleted
+  (the pre-rewrite backup with the old attributed history, the old `claude/…` working branch,
+  and `empty`, subject to GitHub default-branch constraints noted below).
+- **P2 — MODIFIED AND EXECUTED.** Status value is **`prereviewed`**, not `reviewed`:
+  `reviewed` is reserved for a respected independent reviewer's review (and the author has
+  not yet done a start-to-end read). Executed in this commit: all 48 files promoted
+  `draft` → `prereviewed`; ladder updated in `generate_progress.py` and the generated-index
+  template; promotion criteria documented in PROCESS.md (*Status-promotion criteria*);
+  README Status section rewritten; PROGRESS.md and the Index regenerated; lint clean.
+- **P1 — DEFERRED** by the author ("let's return to the factcheck later"). P3/P4/P6 remain
+  open proposals, undecided.

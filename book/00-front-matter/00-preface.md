@@ -1,6 +1,6 @@
 # Preface
 
-> **Status:** draft · **Phase:** 6 · **Sections drafted:** 12 / 12
+> **Status:** prereviewed · **Phase:** 6 · **Sections drafted:** 12 / 12
 
 [Table of Contents](../../README.md) · [Next: Recommended / Assumed Background and Self-Check →](01-background-and-self-check.md)
 

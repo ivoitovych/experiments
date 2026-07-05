@@ -1,6 +1,6 @@
 # Chapter 5. Postulates of Quantum Mechanics for Computing
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 15 / 15
+> **Status:** prereviewed · **Phase:** 1 · **Sections drafted:** 15 / 15
 
 [← Previous: Chapter 4](04-mathematical-background.md) · [Table of Contents](../../README.md) · [Next: Chapter 6 →](../part-03-qubits/06-the-qubit.md)
 

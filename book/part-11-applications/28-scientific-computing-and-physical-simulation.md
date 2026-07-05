@@ -1,6 +1,6 @@
 # Chapter 28. Scientific Computing and Physical Simulation
 
-> **Status:** draft · **Phase:** 5 · **Sections drafted:** 9 / 9
+> **Status:** prereviewed · **Phase:** 5 · **Sections drafted:** 9 / 9
 
 [← Previous: Chapter 27](27-cryptography-and-security.md) · [Table of Contents](../../README.md) · [Next: Chapter 29 →](29-optimization-finance-and-industrial.md)
 

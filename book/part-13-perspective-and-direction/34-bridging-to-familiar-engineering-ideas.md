@@ -1,6 +1,6 @@
 # Chapter 34. Bridging Quantum Computing to Familiar Engineering Ideas
 
-> **Status:** draft · **Phase:** 6 · **Sections drafted:** 9 / 9
+> **Status:** prereviewed · **Phase:** 6 · **Sections drafted:** 9 / 9
 
 [← Previous: Chapter 33](../part-12-adjacent-models/33-quantum-communication-and-networking.md) · [Table of Contents](../../README.md) · [Next: Chapter 35 →](35-interpretational-and-conceptual-pitfalls.md)
 

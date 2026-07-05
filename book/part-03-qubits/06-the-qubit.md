@@ -1,6 +1,6 @@
 # Chapter 6. The Qubit
 
-> **Status:** draft · **Phase:** 1 · **Sections drafted:** 11 / 11
+> **Status:** prereviewed · **Phase:** 1 · **Sections drafted:** 11 / 11
 
 [← Previous: Chapter 5](../part-02-formalism/05-postulates.md) · [Table of Contents](../../README.md) · [Next: Chapter 7 →](07-multiple-qubits-and-entanglement.md)
 

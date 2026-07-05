@@ -1,6 +1,6 @@
 # Chapter 1. Why Quantum Computing Exists
 
-> **Status:** draft · **Phase:** 6 · **Sections drafted:** 7 / 7
+> **Status:** prereviewed · **Phase:** 6 · **Sections drafted:** 7 / 7
 
 [← Previous: Historical Prelude](../part-00-historical-prelude/00-historical-prelude.md) · [Table of Contents](../../README.md) · [Next: Chapter 2 →](02-classical-to-quantum-contrast.md)
 

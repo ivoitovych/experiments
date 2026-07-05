@@ -1,6 +1,6 @@
 # Chapter 10. Core Quantum Phenomena from a Computational View
 
-> **Status:** draft · **Phase:** 2 · **Sections drafted:** 14 / 14
+> **Status:** prereviewed · **Phase:** 2 · **Sections drafted:** 14 / 14
 
 [← Previous: Chapter 9](09-quantum-circuits.md) · [Table of Contents](../../README.md) · [Next: Chapter 11 →](../part-05-measurement-and-information/11-measurement-theory.md)
 

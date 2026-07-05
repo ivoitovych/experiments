@@ -18,11 +18,17 @@ the full charter and [TOC.md](TOC.md) for every section heading.
 
 ## Status
 
-**Full manuscript drafted; technical and editorial review in progress.** All
-37 chapters plus front matter and appendices are written and readable, but
-every file is currently at `draft` status — not yet `reviewed` or `final`.
-Treat the text as a complete draft under active revision. See
-[PROGRESS.md](PROGRESS.md) for per-chapter status and the writing plan.
+**Full manuscript drafted and internally reviewed.** All 37 chapters plus
+front matter and appendices are written and readable, and every file is at
+`prereviewed` status: a complete internal review cycle — comprehensive
+section-by-section review, remediation, and external verification of the
+flagged factual claims — has been applied (see [reviews/](reviews/)). The
+manuscript has not yet had an independent expert review (`reviewed`) or a
+closed claim-level fact-check (`final`); treat specific perishable numbers
+with the care the in-text Moving-target warnings ask for. See
+[PROGRESS.md](PROGRESS.md) for per-chapter status and
+[PROCESS.md](PROCESS.md) (*Status-promotion criteria*) for what each status
+guarantees.
 
 ## Who this is for
 

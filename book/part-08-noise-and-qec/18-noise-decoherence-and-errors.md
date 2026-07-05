@@ -1,6 +1,6 @@
 # Chapter 18. Noise, Decoherence, and Errors
 
-> **Status:** draft · **Phase:** 4 · **Sections drafted:** 19 / 19
+> **Status:** prereviewed · **Phase:** 4 · **Sections drafted:** 19 / 19
 
 [← Previous: Chapter 17](../part-07-complexity/17-complexity-theory.md) · [Table of Contents](../../README.md) · [Next: Chapter 19 →](19-quantum-error-correction-and-fault-tolerance.md)
 
