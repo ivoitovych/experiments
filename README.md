@@ -59,7 +59,9 @@ Pick an entry path by goal (fuller versions in
 
 Each chapter is a separate Markdown file under [`book/`](book/). Click any
 chapter title in the table of contents below to read it. Math is written in
-LaTeX and renders natively in the GitHub web viewer.
+LaTeX and renders natively in the GitHub web viewer. The code listings in
+Chapters 14, 15, 24, and 26 are backed by runnable programs in
+[`examples/`](examples/), verified end-to-end by `make check-examples`.
 
 For a continuous, offline copy you can build a single HTML book with
 [mdBook](https://rust-lang.github.io/mdBook/): install the toolchain once and
@@ -98,6 +100,7 @@ matrix, the dependency rationale, and troubleshooting.
 - [PROCESS.md](PROCESS.md) — working method, toolchain, and decision log.
 - [HISTORY.md](HISTORY.md) — chronological narrative of how the project reached its current state.
 - [CITATION.cff](CITATION.cff) — how to cite this work.
+- [examples/](examples/) — four runnable Python programs (Bell state, statevector simulation, Deutsch–Jozsa, Grover) embedded in Chapters 14, 15, 24, and 26 and kept honest by `make check-examples`, which runs them end-to-end against the in-text listings.
 - [reviews/](reviews/) — the review, verification, and planning reports (comprehensive review, external fact verification, recommendations, programme analyses).
 - [factcheck/](factcheck/) — the claim-level verification mirror: one file per chapter listing its check-worthy claims with verdicts and sources.
 - [archive/](archive/) — frozen working artifacts (early drafts, superseded reviews, the original planned outline), preserved for provenance.

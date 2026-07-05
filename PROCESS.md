@@ -451,7 +451,13 @@ The status ladder is `stub` → `outlined` → `draft` → `prereviewed` →
   done inside the project, not by an independent expert, and the author has
   not yet done a start-to-end read.
 - **reviewed** — reserved for after a respected independent reviewer's review
-  has been received and incorporated.
+  has been received and incorporated. The intended mechanism is **targeted
+  per-chapter expert review** (status is per-file, so chapters advance
+  individually): send the highest wrong-in-public-risk chapters to domain
+  experts first — Chapter 16 (QSVT/modern algorithms), Chapter 19 (QEC),
+  Chapters 20–22 (hardware, control, metrics), Chapter 30 (QML), plus one
+  applications chapter (28 or 29) as a depth probe — rather than waiting
+  for a single whole-book review.
 - **final** — additionally requires, per file: the `factcheck/` mirror file
   closed (no `open` verdicts), every Moving-target warning re-verified
   against current sources and logged (enforced by `tools/lint.py`), and a

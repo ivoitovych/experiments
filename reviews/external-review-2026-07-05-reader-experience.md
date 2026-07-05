@@ -296,3 +296,10 @@ low-profile-by-design posture); the Ch. 1 word count (wrong).
    translation licenses on request) when the book moves to its own repository.
 4. **R4 (no action):** everything in the corroboration list — the review independently
    validates decisions already made; keep this file as the record.
+
+---
+
+*Execution note (2026-07-05, insert-only): R1 and R2 applied in the commit that adds this
+line — README now surfaces `examples/` in both the reading section and the Project-documents
+list, and PROCESS.md's `reviewed` criterion names targeted per-chapter expert review with the
+initial chapter list. R3 remains on the publication checklist; R4 requires no action.*
