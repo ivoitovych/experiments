@@ -7,8 +7,11 @@ the conventions are*. The three files complement each other and do
 not duplicate.
 
 This log covers the period from the first commit through the full
-manuscript draft, the external-review and fact-check cycles, and the
-addition of the unnumbered Historical Prelude.
+manuscript draft, the external-review and fact-check cycles, the
+addition of the unnumbered Historical Prelude, and the 2026-07
+comprehensive internal review, external verification, and
+conventions-hardening cycle that promoted the manuscript to
+`prereviewed`.
 
 ---
 
@@ -895,21 +898,105 @@ phase and now govern manuscript editing generally:
   suggestions were rejected outright as conflicting with the two
   principles above, with the reason recorded in the commit.
 
+## Phase 14 — Comprehensive internal review, external verification, and conventions hardening (2026-07)
+
+Early July brought the pass that Phase 13's closing note had named as
+"what remains": a single reviewer working end-to-end through all 48
+manuscript files in one sustained arc, writing the report incrementally
+to `reviews/review-2026-07-03-1843-comprehensive-book-review.md` with
+per-batch backup commits so no partial work could be lost. The result
+was a 14-section report with **197 tagged findings** (1 High, 21
+Medium, 107 Low, 68 nits) spanning correctness, cross-chapter
+consistency, rendering, pedagogy, completeness, and project hygiene —
+including a §10 "uncertainty ledger" of claims the review could flag
+but not settle from internal evidence, and a handful of transparent
+mid-review retractions where a finding did not survive its own
+verification.
+
+Remediation followed on 2026-07-04 under a new audit discipline
+proposed by the user: the review file may only ever *gain* lines, and
+every fix batch inserts its disposition markers into the review file
+**in the same commit** as the fixes, so the inventory and the work can
+never desynchronise (the property is machine-checked with
+`git diff --numstat`). Outcome: 165 findings fixed across four batches,
+15 adjudicated as deliberate conventions and written into STYLE.md
+(chapter-closing forms, the Prelude's code-span math, status-count
+semantics, part-numeral usage), 13 deferred as author decisions, and
+the uncertainty-ledger items routed to the fact-check system.
+
+The deferred factual items then got the treatment the fact-check
+system was designed for, but *outside* it (the card system being still
+in pilot): a dedicated external-verification pass checked **44
+review-flagged claims against primary web sources** in five domain
+groups, producing
+`reviews/factcheck-2026-07-04-external-verification.md` — 22 confirmed,
+11 partially correct, 8 incorrect, 3 no longer present. The most
+instructive outcomes were four **confabulated names** the review had
+suspected and verification confirmed non-existent ("Rigetti Lodgepole",
+"Q-PERFECT", "QNE-sim", "BTI Long Island") — plausible-sounding,
+wrong, and exactly the failure class the verify-before-apply principle
+exists to catch. Nineteen corrections landed across 14 chapters in a
+paired commit with synchronized report markers, including untangling
+the Quantinuum quantum-volume history, reattributing the D-Wave
+clique-embedding figure, and repairing a Fugaku/JUQCS-A conflation.
+
+A recommendations report
+(`reviews/recommendations-2026-07-04-deferred-items.md`) then worked
+the deferred inventory to zero in nine linear commits: precision
+tightenings; archiving the root drafting artifacts into `archive/` and
+merging the stray `review/` directory into `reviews/`; **five new lint
+rules** encoding the adjudicated conventions (which immediately caught
+real drift — a wrong section count, a conflated bridge heading, a
+heading-form sanity check, and 21 status blocks whose Phase numbers
+disagreed with `phases.py`); a machine-verified *whitespace-only*
+paragraph-splitting pass over the Historical Prelude (word stream
+byte-identical before and after); sub-headings for §4.8; renumbering
+the front matter to `SC.x`/`N.x` to end the §1.x/§2.x collision with
+Chapters 1–2; a generated TOC (`make toc`) replacing the 788-line
+planned outline (archived); and the five figures the review had ranked
+highest — a BB84 case table plus four generated diagrams
+(`figures-src/generate_diagrams.py`: filter functions, rotated d=3
+surface code, lattice surgery, repeater chain).
+
+Repository governance was put in order in the same window: commit
+metadata across the branch was normalised to the author's identity
+(with the full tree contents verified byte-identical before and after
+via tree-hash comparison and an independent SHA-256 check of all
+tracked files, recorded in `SHA256SUMS`), tool-generated attribution
+trailers were disabled via project settings, and the working branch
+was renamed **`quantum-computing-book`**. The status ladder gained a
+new rung, **`prereviewed`**, defined in PROCESS.md (*Status-promotion
+criteria*): a complete *internal* review cycle — comprehensive review,
+remediation, external verification of flagged claims, clean lint —
+with `reviewed` reserved for a respected independent reviewer and
+`final` gated on the fact-check mirror closing. All 48 files were
+promoted `draft` → `prereviewed` on 2026-07-05.
+
+The phase closed with two forward-looking analyses:
+`reviews/proposals-2026-07-05-remaining-programmes.md` (eight items,
+with author decisions recorded in its log) and
+`reviews/analysis-2026-07-05-factcheck-programme.md`, which measured
+the verification backlog precisely — 1,219 claim entries, of which
+941 need external lookups, 219 are recomputable derivations, 56 are
+convention checks; 97 anchors already stale from the July editing —
+and laid out a phased programme from drift repair through the external
+sweep to a steady-state staleness gate.
+
 ## Snapshot at this point
 
 | Area | State |
 |---|---|
-| Manuscript | Full draft — 37 chapters plus the unnumbered Historical Prelude, 3 front-matter files, appendices A–F, and the Index; all `draft`; `PROGRESS.md` at 48/48 |
+| Manuscript | Full draft — 37 chapters plus the unnumbered Historical Prelude, 3 front-matter files, appendices A–F, and the Index; all `prereviewed` (promotion criteria in PROCESS.md); `PROGRESS.md` at 48/48 |
 | Historical Prelude | `book/part-00-historical-prelude/` — 16 sections across four Episodes, ~470 lines; heavily iterated under verified external review; end-of-chapter Source Notes and a three-track convergence timeline |
-| External-review verification | Multiple 2026-05/06 reviews worked through end-to-end under the verify-before-apply discipline; see Phases 11–13 |
-| Fact-check | `docs/fact-check-ledger.md` records the dated perishable-claims passes; `factcheck/` holds the section-mirror card system (v2 spec, template, pilot) with the verdict-vs-freshness split, linted by `scripts/factcheck_lint.py` |
+| External-review verification | Multiple 2026-05/06 reviews worked through end-to-end under the verify-before-apply discipline (Phases 11–13); the 2026-07 comprehensive internal review, remediation, and 44-claim external verification recorded in `reviews/` (Phase 14) |
+| Fact-check | `docs/fact-check-ledger.md` records the dated perishable-claims passes; `factcheck/` holds the section-mirror card system (v2 spec, template, pilot) with the verdict-vs-freshness split, linted by `scripts/factcheck_lint.py`; measured backlog 1,219 entries / 1,176 open, programme plan in `reviews/analysis-2026-07-05-factcheck-programme.md` |
 | Format consistency | All manuscript files follow `STYLE.md`'s heading → status → nav order; `STYLE.md` now also records the signpost-not-prerequisite cross-reference rule |
 | Cross-references | Systematic review pass complete (19 `Review:` commits + the Phase-11 sweep); stale section / chapter pointers corrected; QFT sign convention unified across §14.5, §14.6, §15.2 |
-| Figures | `figures-src/generate_figures.py` (`make figures`) — 15 Qiskit-rendered SVGs across Ch7–10, 14–15, 19; PNG previews for QA; byte-deterministic output |
+| Figures | `figures-src/generate_figures.py` + `generate_diagrams.py` (`make figures`) — 15 Qiskit-rendered circuit SVGs plus 4 matplotlib diagrams (filter functions, surface code, lattice surgery, repeater chain); PNG previews for QA |
 | Code examples | `examples/` run end to end by `make check-examples`; embedded in Ch14, 15, 24, 26 |
-| Index | Generated by `scripts/generate_index.py` (`make index`) — 51 anchored entries |
+| Index | Generated by `scripts/generate_index.py` (`make index`) — 93 anchored entries |
 | Offline book | `make book` → mdBook HTML via build-time KaTeX (`mdbook-katex`), README as landing page; 0 broken links, 0 `katex-error`; EPUB deferred on a tool-version conflict |
-| Source-level lint | Structural invariants, forbidden mentions, renderer-gotcha rules; clean on all manuscript files |
+| Source-level lint | Structural invariants, forbidden mentions, renderer-gotcha rules, plus five 2026-07 convention rules (status counts, bridges, sanity-check form, part numerals, Phase sync); clean on all manuscript files |
 | Bug knowledge | `docs/github-markdown-math-bugs.md` canonical memo; `docs/render-tests/math-context-matrix.md` live test sheet |
 | Screenshot pipeline | `make screenshots CHAPTER=...` and `make render-gist FILE=...` (Playwright/Chromium), unchanged from Phase 5 |
 
@@ -1028,22 +1115,26 @@ phase and now govern manuscript editing generally:
 ---
 
 This file will continue to be appended to as the manuscript moves from
-full draft toward review. After Phase 13 the manuscript has gained an
-unnumbered Historical Prelude (`PROGRESS.md` at 48/48), the fact-check
-card system has a v2 spec and a pilot, and three editing principles —
-quality over compactness, self-contained sections, reviews-are-verified
-— are written down and applied. What remains is the substantive
-technical-and-editorial pass that takes chapters from `draft` to
-`reviewed`; migrating the interim v1 fact-check anchors to the v2 card
-format across the remaining sections; backfilling figures into the
-chapters that still lack them (QEC depth, hardware, measurement);
-extending the runnable examples beyond the four currently checked in;
-pinning the §15.8 VQE shot-budget estimate to a specific 2024–2026
-paper (the last open row in the fact-check ledger); folding the
-Historical Prelude's own perishable hardware claims into the dated
-ledger; and publishing the mdBook build via GitHub Pages / CI, which
-would also reopen the EPUB and PDF question once a compatible toolchain
-is pinned.
+`prereviewed` toward `reviewed` and `final`. After Phase 14 the
+substantive internal pass is complete: every file carries
+`prereviewed` status under documented criteria, the review /
+remediation / verification chain is recorded in `reviews/`, the
+adjudicated conventions are lint-enforced, and the deferred-items
+inventory is worked to zero. What remains, in rough order of leverage:
+the claim-level fact-check sweep (1,176 open entries; phased plan in
+`reviews/analysis-2026-07-05-factcheck-programme.md`, starting with
+anchor-drift repair and folding in the 2026-07-04 verdicts); the
+web-verified July-2026 wholesale refresh of Appendix F (which currently
+disagrees with §22.9 on IonQ's AQ figure while being the designated
+source of truth); a GitHub-rendering spot-check of the newest additions
+(the BB84 table's escaped pipes, the four generated diagrams, the
+SC.x/N.x anchors) plus a matching row in the render-test sheet; two
+further lint rules (Bug-5 table-cell hazards, anchor-fragment
+resolution); an independent expert review to earn `reviewed`; the
+author's own start-to-end read; extending the runnable examples beyond
+the four currently checked in; and — once the content bar is met —
+publishing the book as its own repository, at which point the mdBook /
+GitHub Pages / EPUB questions reopen.
 
 ---
 

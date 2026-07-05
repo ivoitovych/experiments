@@ -98,6 +98,9 @@ matrix, the dependency rationale, and troubleshooting.
 - [PROCESS.md](PROCESS.md) — working method, toolchain, and decision log.
 - [HISTORY.md](HISTORY.md) — chronological narrative of how the project reached its current state.
 - [CITATION.cff](CITATION.cff) — how to cite this work.
+- [reviews/](reviews/) — the review, verification, and planning reports (comprehensive review, external fact verification, recommendations, programme analyses).
+- [factcheck/](factcheck/) — the claim-level verification mirror: one file per chapter listing its check-worthy claims with verdicts and sources.
+- [archive/](archive/) — frozen working artifacts (early drafts, superseded reviews, the original planned outline), preserved for provenance.
 - [docs/github-markdown-math-bugs.md](docs/github-markdown-math-bugs.md) — canonical memo on GitHub Markdown + MathJax rendering bugs and their workarounds; [docs/render-tests/math-context-matrix.md](docs/render-tests/math-context-matrix.md) is its live test sheet.
 
 ## License

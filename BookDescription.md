@@ -14,8 +14,9 @@
 > fulfils. The book evolved during writing — normal and expected — so a few
 > structural details in the descriptions below predate the delivered layout.
 > Part structure, chapter numbering, chapter titles, and every chapter number
-> cited in the *Suggested Reading Paths* remain accurate. `TOC.md` carries the
-> full section-level reconciliation.
+> cited in the *Suggested Reading Paths* remain accurate. the original planned outline, with its
+> reconciliation note, is preserved at `archive/plan-original-toc.md`;
+> `TOC.md` is generated from the delivered headings.
 
 Points where the descriptions below predate the delivered manuscript:
 
@@ -30,7 +31,7 @@ Points where the descriptions below predate the delivered manuscript:
 - Several chapters grew beyond the scope sketched here — notably Chapter 4's
   added singular-value-decomposition material, and the substantially expanded
   application and perspective chapters (27, 30, 32, 35, 37). See the
-  reconciliation note at the top of `TOC.md` for the full catalogue.
+  reconciliation note in `archive/plan-original-toc.md` for the full catalogue.
 
 <!-- ============================================================ -->
 <!-- END RECONCILIATION NOTE — original description follows.       -->

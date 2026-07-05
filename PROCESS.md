@@ -27,7 +27,8 @@ chapter heading:
 > **Status:** *state* · **Phase:** N · **Sections drafted:** k / M
 
 Status states in order of completeness:
-`stub` → `outlined` → `draft` → `reviewed` → `final`.
+`stub` → `outlined` → `draft` → `prereviewed` → `reviewed` → `final`
+(promotion gates in *Status-promotion criteria* below).
 
 `PROGRESS.md` is generated from these blocks by
 `scripts/generate_progress.py` and should be regenerated after any
@@ -161,7 +162,7 @@ The callout serves two purposes at once:
   granularity), not the bare year — hardware numbers move within months.
 - **Publication gate.** The bold lead `**Moving-target warning` is a
   greppable sentinel. `tools/lint.py` treats it like `_TODO_`: harmless
-  while a file is `draft`/`reviewed`, but a **hard lint failure** once a
+  while a file is `draft`/`prereviewed`/`reviewed`, but a **hard lint failure** once a
   file is marked `final`. To clear it, re-verify the claim against current
   sources, log the check in `docs/fact-check-ledger.md`, update the
   figure, and remove the callout. This makes it structurally impossible
@@ -267,6 +268,24 @@ lockstep.
 ## Decision log
 
 Append-only. New entries go at the top.
+
+### 2026-07-05: prereviewed rung, lint-enforced conventions, generated TOC, repo hygiene
+
+The July internal-review cycle (HISTORY.md Phase 14) produced four
+standing decisions. (1) The status ladder gained a **`prereviewed`**
+rung between `draft` and `reviewed` — a complete internal review cycle
+does not claim the independent-reviewer bar; gates are in
+*Status-promotion criteria* below. (2) The chapter-closing and
+consistency conventions adjudicated in STYLE.md are now **enforced by
+`tools/lint.py`** (status counts, bridge forms, sanity-check form,
+part numerals, Phase sync against `scripts/phases.py`); extending an
+exception list requires a matching STYLE.md adjudication. (3) `TOC.md`
+is **generated** from the delivered headings (`make toc`,
+`scripts/generate_toc.py`); the original planned outline lives at
+`archive/plan-original-toc.md`. (4) Root drafting artifacts moved to
+`archive/`; review reports live in `reviews/` only; the review-file
+audit trail is insert-only, with fixes and their markers landing in the
+same commit.
 
 ### 2026-05-12: portability hardening on fresh OS installs
 
