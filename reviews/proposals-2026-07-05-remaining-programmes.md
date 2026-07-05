@@ -256,3 +256,16 @@ Author decisions on this report:
   README Status section rewritten; PROGRESS.md and the Index regenerated; lint clean.
 - **P1 — DEFERRED** by the author ("let's return to the factcheck later"). P3/P4/P6 remain
   open proposals, undecided.
+
+**P7 execution outcome (2026-07-05):** the working branch was renamed and pushed as
+**`quantum-computing-book`** (same history, neutral name) — it is now the branch of record.
+Remote deletion of the obsolete branches is blocked by this session's git gateway (deletes
+are refused), so the author should remove them via GitHub's branch page (or any
+full-permission clone). Obsolete list, all safe to delete once `quantum-computing-book` is
+confirmed present: `claude/init-quantum-computing-iaiRN` (superseded working branch),
+`claude/init-quantum-computing-iaiRN-20260704-203037` (pre-rewrite backup — **still carries
+the AI-attributed commits; deleting it is the point of the rewrite**), and
+`claude/init-quantum-computing-iaiRN-backup-20260524` (older backup discovered during this
+pass — also carries pre-rewrite history). `empty` can be deleted only after some other
+branch is made the repository default in Settings. Unrelated project branches
+(bfloat16/gelu/dopri/etc.) were deliberately left untouched.
