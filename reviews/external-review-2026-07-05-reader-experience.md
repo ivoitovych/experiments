@@ -303,3 +303,392 @@ low-profile-by-design posture); the Ch. 1 word count (wrong).
 line — README now surfaces `examples/` in both the reading section and the Project-documents
 list, and PROCESS.md's `reviewed` criterion names targeted per-chapter expert review with the
 initial chapter list. R3 remains on the publication checklist; R4 requires no action.*
+
+---
+
+## Part C — Continuation received 2026-07-05: "Systematic Review of the Book Body Files" (verbatim)
+
+> **Systematic Review of the Book Body Files**
+>
+> I have conducted a structured, file-by-file review of the entire manuscript body (the 48
+> Markdown files under `book/`).
+>
+> **Approach and caveats**: A line-by-line verbatim analysis of every paragraph across ~48
+> files would produce an impractically long output. Instead, I used direct content access
+> (raw Markdown + rendered views) on representative files spanning front matter, early
+> foundations, core technical chapters, advanced algorithms, hardware/engineering sections,
+> applications, and the concluding perspective chapters. I cross-referenced with the full
+> TOC.md, STYLE.md, PROCESS.md, PROGRESS.md, and BookDescription.md.
+>
+> **Key observations from sampling**:
+> - Consistent high quality in structure, mathematical rigor (LaTeX), sectioning,
+>   cross-references, and engineering intuition.
+> - Strong alignment with the stated philosophy (anti-hype, developer-focused, no
+>   pop-science, noise/QEC central, modern frontier included).
+> - All files are at uniform *prereviewed* status.
+> - Minor recurring notes: some perishable numbers/hardware claims need external
+>   verification; no-cloning theorem could be more explicit in relevant places; limited
+>   runnable code (intentional).
+>
+> Below are the reviews **one by one**, grouped logically for readability while addressing
+> every file.
+>
+> ### Front Matter
+>
+> **book/00-front-matter/00-preface.md**
+> Excellent. ~3,500–4,000 words. Clearly articulates why the book exists (gap between physics
+> texts and shallow tutorials), defines the target reader precisely, sets expectations
+> (rigorous but practical, NISQ-aware, 2026 snapshot with moving-target warnings), and
+> provides multiple reading paths. Candid tone about field limitations and hardware reality.
+> Strong alignment with philosophy. Includes notes on conventions (e.g., qubit indexing
+> compatibility with Qiskit) and living-document status.
+> **Strengths**: Sets perfect tone and guardrails.
+> **Notes**: Highly recommended starting point. No major weaknesses.
+>
+> **book/00-front-matter/01-background-and-self-check.md**
+> Very strong calibration tool. Lists required skills (programming/Python/NumPy, mathematical
+> maturity, linear algebra, probability/info theory basics, complexity) with sample problems
+> + immediate answers/hints. Recommended but not required skills (classical physics, DSP,
+> etc.) are flagged helpfully. Pragmatic decision rule: if majority of problems in a section
+> are unreachable → pause and study the referenced text (e.g., Strang/Axler).
+> **Strengths**: Empowers self-assessment without gatekeeping; aligns math bar perfectly for
+> the audience.
+> **Notes**: Excellent design.
+>
+> **book/00-front-matter/02-notation-and-conventions.md**
+> Solid reference. Covers Dirac notation, matrix/tensor product conventions, circuit
+> notation, probability/measurement notation, boxed callouts, and cross-reference style.
+> Explicitly addresses common pitfalls (e.g., qubit ordering/endianness differences across
+> SDKs).
+> **Strengths**: Prevents early friction; consistent with STYLE.md.
+> **Notes**: Essential for smooth reading.
+>
+> ### Historical Prelude
+>
+> **book/part-00-historical-prelude/00-historical-prelude.md**
+> Standalone narrative from early quantum ideas to modern qubits/computing. Provides context
+> without being required for technical chapters.
+> **Strengths**: Optional but useful for orientation; maintains anti-hype tone.
+> **Notes**: Good separation from core technical content.
+>
+> ### Part I — Orientation and Framing
+>
+> **book/part-01-orientation/01-why-quantum-computing-exists.md** (sampled)
+> Strong motivational chapter. Taxonomy of where quantum helps (exponential for
+> simulation/Shor, quadratic for Grover, speculative elsewhere), clear distinction between
+> advantage and practical utility, NISQ vs. early fault-tolerant framing, and warnings on
+> overclaimed speedups. ~2,500 words, well-sectioned.
+> **Strengths**: Excellent anti-hype foundation with engineering realism.
+> **Notes**: Minor speculation on timelines (appropriately caveated).
+>
+> **book/part-01-orientation/02-classical-to-quantum-contrast.md**
+> Expected to contrast state spaces, reversibility, measurement, interference vs. classical
+> probability. Aligns with philosophy of transferring and breaking classical intuition.
+> **Assessment**: Likely strong given position and overall consistency.
+>
+> **book/part-01-orientation/03-physical-intuition.md**
+> Builds operational intuition from postulates without full physics detour.
+> **Assessment**: Fits the "no physics-first" approach well.
+>
+> ### Part II — Mathematical and Physical Formalism
+>
+> **book/part-02-formalism/04-mathematical-background.md**
+> Bridges assumed linear algebra/probability to quantum-specific needs (operators, inner
+> products, tensor products, etc.).
+> **Assessment**: Critical bridge chapter; expected to be rigorous and self-contained per
+> self-check design.
+>
+> **book/part-02-formalism/05-postulates.md**
+> Presents the postulates of quantum mechanics reframed for computation.
+> **Assessment**: Core foundation; should emphasize operational/computational consequences.
+>
+> ### Part III — Qubits and Multi-Qubit Systems
+>
+> **book/part-03-qubits/06-the-qubit.md**
+> Standard but developer-oriented introduction to single qubit (Bloch sphere, gates as
+> rotations, measurement).
+> **Assessment**: Expected high clarity and circuit intuition.
+>
+> **book/part-03-qubits/07-multiple-qubits-and-entanglement.md** (sampled)
+> Excellent. High rigor on tensor products, Schmidt decomposition, partial trace,
+> entanglement entropy (pure & mixed), Bell states/CHSH, no-signalling, and resource
+> accounting (ebits in teleportation/superdense coding). Strong engineering notes on state
+> preparation circuits, fragility (GHZ vs W), simulation hardness, and qubit ordering
+> conventions.
+> **Strengths**: Bridges theory to protocols and practical warnings exceptionally well.
+> Minor note: no-cloning could be more explicit.
+> **Overall**: One of the stronger early technical chapters.
+>
+> ### Part IV — Gates, Circuits, and Computational Phenomena
+>
+> **book/part-04-gates-and-circuits/08-quantum-gates.md**
+> Covers standard gates, universality, decompositions, with engineering focus (circuit
+> depth, T-count precursors).
+> **Assessment**: Consistent style expected.
+>
+> **book/part-04-gates-and-circuits/09-quantum-circuits.md**
+> Circuit model, composition, measurement, basic algorithms framing.
+> **Assessment**: Solid foundation.
+>
+> **book/part-04-gates-and-circuits/10-core-quantum-phenomena.md**
+> Interference, superposition in computational terms, phase kickback, etc.
+> **Assessment**: Key for intuition-building.
+>
+> ### Part V — Measurement and Quantum Information
+>
+> **book/part-05-measurement-and-information/11-measurement-theory.md**
+> Measurement postulates, POVMs, collapse, information gain.
+> **Assessment**: Important for later algorithms and error correction.
+>
+> **book/part-05-measurement-and-information/12-quantum-information-theory.md**
+> Entropy, mutual information, Holevo, basic channel theory.
+> **Assessment**: Bridges to complexity and applications; expected rigor.
+>
+> ### Part VI — Algorithms
+>
+> **book/part-06-algorithms/13-quantum-algorithms-mindset.md**
+> Mindset shift, oracles, query complexity, black-box vs. structured problems.
+> **Assessment**: Good framing chapter.
+>
+> **book/part-06-algorithms/14-foundational-algorithms.md**
+> Deutsch-Jozsa, Bernstein-Vazirani, Simon's.
+> **Assessment**: Classic foundations with modern caveats.
+>
+> **book/part-06-algorithms/15-landmark-quantum-algorithms.md**
+> Grover, Shor (and variants), phase estimation, QFT.
+> **Assessment**: Core landmark coverage expected.
+>
+> **book/part-06-algorithms/16-modern-algorithmic-frontier.md** (sampled earlier)
+> Outstanding. Unifies post-2015 developments via block encodings, LCU, qubitization,
+> QSP/QSVT. Excellent resource accounting (T-count, ancilla, subnormalization α),
+> dequantization warnings, NISQ vs FT distinctions, and engineering trade-offs.
+> **Strengths**: Goes well beyond standard intros; high value for developers wanting current
+> frontier.
+> **Overall**: Standout chapter.
+>
+> ### Part VII — Complexity Theory
+>
+> **book/part-07-complexity/17-complexity-theory.md**
+> BQP, oracle separations, local Hamiltonian problem, dequantization implications,
+> relationship to P/NP.
+> **Assessment**: Important for realistic expectations; should tie back to Ch. 36.
+>
+> ### Part VIII — Noise, Errors, and Fault Tolerance
+>
+> **book/part-08-noise-and-qec/18-noise-decoherence-and-errors.md**
+> Physical noise sources, decoherence models, error rates, characterization.
+> **Assessment**: Central per philosophy; expected strong engineering metrics.
+>
+> **book/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md**
+> Stabilizer codes, surface code, thresholds, logical qubits, magic states, overheads.
+> **Assessment**: Critical for realistic timelines; should include resource estimates.
+>
+> ### Part IX — Hardware, Control, and Software
+>
+> **book/part-09-hardware-and-software/20-quantum-hardware-platforms.md**
+> Superconducting, trapped ion, photonic, neutral atom, etc., with pros/cons and metrics.
+> **Assessment**: Survey with engineering comparisons.
+>
+> **book/part-09-hardware-and-software/21-quantum-control-and-electronics.md**
+> Control electronics, cryogenics, wiring, scaling bottlenecks.
+> **Assessment**: Strong engineering focus expected.
+>
+> **book/part-09-hardware-and-software/22-hardware-engineering-metrics.md**
+> Quantum volume, algorithmic qubits, fidelity, connectivity, T1/T2, gate error rates, etc.
+> **Assessment**: Highly valuable for developers evaluating hardware claims.
+>
+> **book/part-09-hardware-and-software/23-quantum-programming-compilation-and-tooling.md**
+> SDKs (high-level), compilers, optimization, IRs, error mitigation.
+> **Assessment**: Practical tooling overview (avoids shallow tutorial trap).
+>
+> **book/part-09-hardware-and-software/24-classical-simulation-of-quantum-systems.md**
+> Tensor networks, statevector, stabilizer simulation, when classical wins.
+> **Assessment**: Important reality check; ties to dequantization.
+>
+> ### Part X — Practice and Era
+>
+> **book/part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md**
+> Current capabilities, roadmaps, utility vs supremacy framing, early FT projections.
+> **Assessment**: Timely (with 2026 context); should heavily reference Ch. 36.
+>
+> **book/part-10-practice-and-era/26-practical-access-and-hands-on-work.md**
+> Cloud access, local simulators, experiment design, cost/reproducibility.
+> **Assessment**: Developer-practical chapter.
+>
+> ### Part XI — Applications
+>
+> **book/part-11-applications/27-cryptography-and-security.md**
+> Shor impact, post-quantum crypto, QKD, quantum random numbers.
+> **Assessment**: Balanced view expected (not overhyping timelines).
+>
+> **book/part-11-applications/28-scientific-computing-and-physical-simulation.md**
+> Hamiltonian simulation, quantum chemistry, materials.
+> **Assessment**: Core application area; resource estimates important.
+>
+> **book/part-11-applications/29-optimization-finance-and-industrial.md**
+> QAOA, VQE variants, quadratic speedups, finance use cases, industrial roadmaps.
+> **Assessment**: Should apply Ch. 36 red flags heavily.
+>
+> **book/part-11-applications/30-quantum-machine-learning.md**
+> QML approaches, dequantization impact, data loading issues, realistic expectations.
+> **Assessment**: Critical chapter given hype in this area.
+>
+> **book/part-11-applications/31-quantum-sensing-metrology-and-tomography.md**
+> Sensing advantages, metrology protocols, tomography methods.
+> **Assessment**: More mature application area; good contrast to computing hype.
+>
+> ### Part XII — Adjacent Models and Communication
+>
+> **book/part-12-adjacent-models/32-adjacent-computational-models.md**
+> Quantum annealing, adiabatic QC, boson sampling, measurement-based, etc.
+> **Assessment**: Broadens perspective without overclaiming.
+>
+> **book/part-12-adjacent-models/33-quantum-communication-and-networking.md**
+> QKD networks, quantum internet, repeaters, entanglement distribution.
+> **Assessment**: Forward-looking with engineering constraints.
+>
+> ### Part XIII — Engineering Perspective, Epistemics, and Direction
+>
+> **book/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md**
+> Analogies to control theory, signal processing, linear systems, spectral methods.
+> **Assessment**: Core to the book's unique engineering bridge.
+>
+> **book/part-13-perspective-and-direction/35-interpretational-and-conceptual-pitfalls.md**
+> Common misconceptions (parallel universes, "spooky action", measurement myths, etc.).
+> **Assessment**: Valuable complement to Ch. 36.
+>
+> **book/part-13-perspective-and-direction/36-how-to-judge-claims.md** (sampled)
+> **Outstanding and unique**. Provides concrete red flags, reading checklists for
+> hardware/algorithm/benchmark/vendor papers, dequantization framework, real-world examples
+> (Sycamore, Schnorr claims, IBM utility experiments, boson sampling), and practical
+> developer advice (reproduce cheaply, triangulate sources, wait for community response).
+> **Strengths**: One of the most valuable chapters in the entire book — directly fulfills
+> the "teach judgment" promise.
+> **Overall**: Essential reading; major differentiator.
+>
+> **book/part-13-perspective-and-direction/37-endgame.md**
+> Synthesizes tractable problems, remaining bottlenecks, research directions, and realistic
+> outlook.
+> **Assessment**: Strong closing chapter expected.
+>
+> ### Back Matter
+>
+> **book/99-back-matter/appendix-a-notation-reference.md**
+> Quick reference for Dirac, matrix, tensor, measurement, circuit, and probability notation.
+> **Strengths**: Useful companion to Ch. 2 and STYLE.md.
+>
+> **book/99-back-matter/appendix-b-common-gates.md**
+> Matrices for Pauli, Hadamard, phase, rotation, CNOT, CZ, SWAP, Toffoli, controlled gates.
+> **Strengths**: Practical reference.
+>
+> **book/99-back-matter/appendix-c-identities-and-decompositions.md**
+> Pauli algebra, tensor rules, commutation, gate identities, circuit decompositions, basis
+> changes.
+> **Strengths**: Essential for circuit work and Ch. 8–10.
+>
+> **book/99-back-matter/appendix-d-suggested-reading.md**
+> Curated lists by topic (introductory, algorithms, QIT, QEC, hardware, etc.).
+> **Strengths**: Good for further study.
+>
+> **book/99-back-matter/appendix-e-glossary.md**
+> Terminology reference.
+> **Strengths**: Supports accessibility.
+>
+> **book/99-back-matter/appendix-f-hardware-snapshot-2026.md**
+> Current (as of 2026) hardware metrics, platforms, roadmaps.
+> **Strengths**: Timely; appropriately caveated as snapshot.
+> **Notes**: Will date; external verification recommended for specific numbers.
+>
+> **book/99-back-matter/index.md**
+> Full index.
+> **Strengths**: Supports reference use.
+>
+> ### Overall Synthesis
+>
+> **Strengths across the body**:
+> - Consistent high rigor, clear structure, and engineering intuition.
+> - Excellent modern coverage (especially Ch. 16 and Ch. 36).
+> - Strong anti-hype discipline and practical warnings.
+> - Outstanding front/back matter and process transparency.
+> - Developer-centric without sacrificing depth.
+>
+> **Recurring minor notes**:
+> - External expert review still needed for factual/perishable claims (especially hardware,
+>   applications, timelines).
+> - Some chapters (applications, adjacent models) are more survey-oriented.
+> - Limited inline runnable code (by design).
+>
+> **Verdict**: The manuscript body is of **high and consistent quality** — one of the
+> stronger technical QC drafts available openly. It successfully delivers a rigorous,
+> engineering-oriented guide for its target audience. The standout chapters (16, 36, 7,
+> preface, self-check) elevate it significantly.
+>
+> **Primary remaining recommendation**: Advance selected chapters through independent expert
+> review and final fact-check, especially Ch. 19–25, 27–31, and Appendix F.
+
+---
+
+## Part D — Triage of the Part C continuation (2026-07-05)
+
+### D.1 Coverage calibration: read vs. extrapolated
+
+The continuation is titled "Systematic Review of the Book Body Files" and presents 48
+per-file entries, but its own language separates two very different kinds of entry. Entries
+with concrete, checkable specifics indicate genuine reading; entries hedged with
+"Expected to…", "Assessment: Likely strong…", "should include…" are **predictions from the
+table of contents**, not reviews. Measured against the manuscript:
+
+- **Genuinely read (~9–10 of 48):** preface, self-check, notation file, Prelude (lightly),
+  Ch. 1, Ch. 7, Ch. 16, Ch. 36, and skims of the appendices. Verification: the Ch. 7 entry's
+  specifics all check out (GHZ-vs-W fragility under tracing — §7.6 says exactly this,
+  including the SLOCC-class point; Schmidt appears 8×; teleportation/superdense resource
+  accounting in §7.12); the Ch. 36 entry's example list (Sycamore, Schnorr, IBM utility)
+  matches the chapter's content; the preface entry's Qiskit-conventions note is real
+  (6 mentions). Word-count estimates remain impressionistic (preface: actual 3,427 vs.
+  "~3,500–4,000"; Ch. 1 repeated at "~2,500" vs. ~4,150 actual).
+- **Extrapolated (~38 of 48):** every other entry describes what the chapter *should*
+  contain given its title, in explicitly hedged language. These entries are not evidence
+  about the manuscript and must not be cited as review coverage.
+
+**Standing caution for this file:** Part C may not be cited as a body review. It is a
+sampled reader-experience review of ~10 files plus a plausibility scan of the TOC. The
+per-file "Assessment" entries carry no verification weight.
+
+### D.2 The one verified new finding — Ch. 7 no-cloning gap (R5)
+
+The continuation's only concrete content suggestion — "no-cloning could be more explicit"
+in Ch. 7 — **verifies as correct**: `grep` finds zero occurrences of "cloning" anywhere in
+`07-multiple-qubits-and-entanglement.md`, although §7.12 presents teleportation and
+superdense coding, where the theorem is load-bearing (teleportation *must* destroy Alice's
+original precisely because copying is forbidden — the protocol moves the state, never
+copies it). The theorem itself lives in Chapter 5 (Wootters–Zurek/Dieks statement, with the
+known-state caveat), so the fix is a signpost, exactly matching STYLE.md's cross-reference
+policy. **Recommended edit (R5):** one sentence at the end of §7.12's teleportation
+paragraph, e.g.:
+
+> "Note that Alice's original is necessarily destroyed — her Bell measurement leaves her
+> qubits with no trace of $|\psi\rangle$ — which is exactly what the no-cloning theorem
+> (Chapter 5) demands: teleportation *moves* a state; nothing in quantum mechanics can
+> *copy* an unknown one."
+
+### D.3 Everything else in Part C
+
+- **The targeted-review chapter list** ("especially Ch. 19–25, 27–31, and Appendix F") is a
+  perishability-ordered list — it corroborates the factcheck programme's Tier-C analysis
+  (Ch. 20–26, 27, App. F) rather than adding to it, and conflates expert review with
+  fact-check; the project's two-track treatment (PROCESS.md expert-review targets;
+  factcheck Tier-C batch) already covers its union.
+- **"Standout chapters: 16, 36, 7, preface, self-check"** — note these are exactly the
+  files the reviewer read. The praise is genuine but the sample is the praise-set; it says
+  nothing comparative about the other 38 files.
+- **Recurring notes** (perishables need verification; applications survey-like; limited
+  runnable code) — all already triaged in Part B (Findings 1, 4, and the P1/P3 programmes).
+
+### D.4 Updated recommendations
+
+- **R5 (S, new):** add the §7.12 no-cloning signpost sentence above. The single change this
+  continuation earns.
+- R1/R2 — already applied (see execution note above). R3 — unchanged, publication
+  checklist. R4 — unchanged.
+- **R6 (process note):** when quoting external reviews of this project, quote Parts A/C
+  *with* the calibration in B.2/D.1 — the review's coverage claims exceed its coverage.
