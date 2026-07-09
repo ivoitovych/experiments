@@ -12,7 +12,7 @@ later quantum-computing formula type-check in your head. If a topic here is
 unfamiliar, work through a standard reference — Strang, Axler, or Nielsen and
 Chuang's Appendix A — and return.
 
-Three points to keep in mind:
+Two points to keep in mind:
 
 1. Everything is **finite-dimensional and complex** unless stated otherwise.
    We work in $\mathbb{C}^n$ and rarely worry about convergence, domains, or
@@ -22,10 +22,6 @@ Three points to keep in mind:
    in the first argument) and Dirac notation. Mathematicians' linear algebra
    textbooks typically swap the conjugate side; if your reflexes come from
    pure math, watch for that.
-3. We never use the `physics` macro package (`\ket{}`, `\bra{}`, ...). All
-   math in this book is written in plain LaTeX with raw `\langle` and
-   `\rangle` so the source renders on GitHub, mdBook, and Pandoc alike.
-   You should write your own derivations the same way.
 
 > **How to read this chapter.** Most of the material here is core for
 > Chapter 5: §§4.1–4.8, §§4.10–4.12, and the sampling paragraph of §4.14
@@ -46,17 +42,20 @@ $\theta$.
 
 In the standard formulation of quantum mechanics used for quantum computing,
 complex numbers are not a notational convenience but a structural ingredient.
-The state of a qubit is
+The state of a qubit is a pair of complex **amplitudes** — a unit-length
+vector $(\alpha, \beta)^{T}$ in $\mathbb{C}^2$, with
+$|\alpha|^2 + |\beta|^2 = 1$. Quantum computing writes that vector in
+**Dirac notation**:
 
 $$
 |\psi\rangle = \alpha |0\rangle + \beta |1\rangle,
 $$
 
-with complex amplitudes $\alpha, \beta$ satisfying the normalization
-condition $|\alpha|^2 + |\beta|^2 = 1$. (Read $|\psi\rangle$ as "the state
-psi": this is Dirac's **ket** notation, used from here on. §4.12 treats it
-fully, and the front-matter notation reference is the quick lookup; until
-§4.12, a ket is simply a labelled column vector.) The **Born rule** says
+read concretely: $|0\rangle$ is the basis column $(1, 0)^{T}$, $|1\rangle$
+is $(0, 1)^{T}$, and $|\psi\rangle$ — "ket psi" — is the column
+$(\alpha, \beta)^{T}$. The symbol inside $|\\,\rangle$ is a label, nothing
+more. This column-vector reading is all the notation this chapter needs
+until §4.12 develops the full bra-ket machinery. The **Born rule** says
 that the probability of obtaining outcome $0$ on measurement is
 $|\alpha|^2$ and of outcome $1$ is $|\beta|^2$. These amplitudes can add, cancel, and rotate —
 which is why interference, the engine of quantum speedups, exists.
@@ -955,21 +954,20 @@ matrix, you have already chosen a basis — remember which.
 ## 4.11 Hilbert Spaces
 
 For almost all of this book, a **Hilbert space** is simply $\mathbb{C}^n$
-with the standard inner product — a finite-dimensional complex inner-product
-space, exactly the object §§4.2–4.3 built. We say *Hilbert space* because
-the term is standard in quantum mechanics, not because anything new is being
-added.
+with the standard inner product — a finite-dimensional complex vector space
+that comes equipped with an inner product, exactly the object §§4.2–4.3
+built. We say *Hilbert space* because the term is standard in quantum
+mechanics, not because anything new is being added.
 
-The general definition does add one technical condition, and it is worth
-seeing once so the term never intimidates: a Hilbert space is an
-inner-product space that is *complete*, meaning that every **Cauchy
-sequence** — a sequence of vectors whose members eventually stay arbitrarily
-close to one another — converges to a limit *inside* the space (no
-"missing points" at the edge, the way the rationals are missing
-$\sqrt{2}$). In finite dimensions every inner-product space is
-automatically complete, so for $\mathbb{C}^n$ the condition holds by itself
-and you never need to check it. Completeness only has teeth in infinite
-dimensions.
+The general definition — covering any dimension, finite or infinite — adds
+one technical condition, worth seeing once so the term never intimidates: a
+Hilbert space is a vector space with an inner product that is also
+*complete*, meaning that every **Cauchy sequence** — a sequence of vectors
+whose members eventually stay arbitrarily close to one another — converges
+to a limit *inside* the space (no "missing points" at the edge, the way the
+rationals are missing $\sqrt{2}$). In finite dimensions completeness is
+automatic, so for $\mathbb{C}^n$ the condition holds by itself and you
+never need to check it. Completeness only has teeth in infinite dimensions.
 
 Infinite-dimensional Hilbert spaces appear in two contexts:
 
@@ -984,34 +982,63 @@ Infinite-dimensional Hilbert spaces appear in two contexts:
    important physical models, such as lattice spin systems and qubit arrays,
    are finite-dimensional from the start.
 
-For most of this book, "Hilbert space" means the finite-dimensional complex
-inner-product space appropriate to the register being discussed — usually
-$\mathbb{C}^{2^n}$ for an $n$-qubit register, but also ancilla spaces,
-qudit-dimension spaces, and truncated mode spaces — unless we say otherwise.
+For most of this book, "Hilbert space" means the finite-dimensional space
+$\mathbb{C}^d$ (with its standard inner product) appropriate to the register
+being discussed — usually $\mathbb{C}^{2^n}$ for an $n$-qubit register, but
+also ancilla spaces, qudit-dimension spaces, and truncated mode spaces —
+unless we say otherwise.
 
 ## 4.12 Dirac Notation
 
-The Dirac (bra-ket) notation is a convention for working in finite-dimensional
-Hilbert spaces. It is not new mathematics — every bra-ket statement translates
-directly into matrix algebra — but it makes the structure of quantum mechanics
-readable.
+Dirac (bra-ket) notation is the field's standard interface to the linear
+algebra this chapter has built. It is not new mathematics — every bra-ket
+expression *is* a matrix expression — and in this book you can always read
+it concretely. There are exactly four objects:
 
-- A **ket** $|\psi\rangle$ is an abstract state vector; after a basis is
-  chosen it is *represented* by a column vector in $\mathbb{C}^n$.
-- A **bra** $\langle\phi|$ is the adjoint of the ket $|\phi\rangle$, i.e., a
-  row vector.
-- The **inner product** $\langle\phi|\psi\rangle$ is a scalar,
-  $\sum_i \overline{\phi_i}\\, \psi_i$.
-- The **outer product** $|\psi\rangle\langle\phi|$ is the matrix with entries
-  $\psi_i \overline{\phi_j}$. It is rank one if $|\psi\rangle, |\phi\rangle \ne 0$.
-  Its adjoint flips the two sides:
+- A **ket** $|\psi\rangle$ is a column vector, shape $n \times 1$. The
+  symbol inside $|\\,\rangle$ is a label — a variable name — and carries no
+  mathematics of its own: $|0\rangle$, $|\psi\rangle$, $|{+}\rangle$,
+  $|\mathrm{foo}\rangle$ are all just named column vectors.
+- A **bra** $\langle\phi|$ is the conjugate transpose of the ket
+  $|\phi\rangle$: the row vector $\phi^\dagger$, shape $1 \times n$.
+- The **inner product** $\langle\phi|\psi\rangle$ is a bra times a ket
+  ("bra-ket"): the number $\phi^\dagger \psi = \sum_i \overline{\phi_i}\\,
+  \psi_i$, shape $1 \times 1$.
+- The **outer product** $|\psi\rangle\langle\phi|$ is a ket times a bra: the
+  matrix $\psi\\, \phi^\dagger$, shape $n \times n$, with entries
+  $\psi_i \overline{\phi_j}$. It is rank one whenever both vectors are
+  nonzero, and its adjoint flips the two sides:
   $\bigl(|\psi\rangle\langle\phi|\bigr)^\dagger = |\phi\rangle\langle\psi|$.
   The special case $|\psi\rangle\langle\psi|$ is a rank-one orthogonal
   projector exactly when $|\psi\rangle$ is normalized, and it is the
   pure-state density matrix that returns in Chapter 5.
-- An operator $A$ acts on a ket: $A|\psi\rangle$. The scalar
-  $\langle\phi| A |\psi\rangle$ is the **matrix element** of $A$ between
-  $|\phi\rangle$ and $|\psi\rangle$.
+
+An operator $A$ acts on a ket by ordinary matrix-vector product,
+$A|\psi\rangle$ (shape $n \times 1$), and the number
+$\langle\phi| A |\psi\rangle = \phi^\dagger A \psi$ is the **matrix
+element** of $A$ between $|\phi\rangle$ and $|\psi\rangle$. Everything
+composes by ordinary matrix multiplication, and the shapes always match:
+reading left to right, $(1 \times n)(n \times n)(n \times 1) = 1 \times 1$.
+Checking shapes this way catches most Dirac-vs-matrix bugs mechanically —
+if an expression does not type-check as matrix algebra, it is being misread.
+
+A worked example in $\mathbb{C}^2$, with $|0\rangle = (1, 0)^{T}$ and
+$|{+}\rangle = (|0\rangle + |1\rangle)/\sqrt{2}$:
+
+$$
+\langle 0 | {+} \rangle
+= \begin{pmatrix} 1 & 0 \end{pmatrix}
+\cdot \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\\\ 1 \end{pmatrix}
+= \frac{1}{\sqrt{2}},
+\qquad
+|0\rangle\langle 0|
+= \begin{pmatrix} 1 \\\\ 0 \end{pmatrix}
+\begin{pmatrix} 1 & 0 \end{pmatrix}
+= \begin{pmatrix} 1 & 0 \\\\ 0 & 0 \end{pmatrix}.
+$$
+
+The first is the amplitude of $|{+}\rangle$ along $|0\rangle$; the second is
+the projector onto $|0\rangle$.
 
 The bra map is **anti-linear** — the most common source of slow-burn
 errors in Dirac calculations:
@@ -1021,22 +1048,6 @@ $$
 $$
 
 Distributing a bra over a sum should always carry the complex conjugates.
-
-The translation between Dirac notation and column/row vectors is mechanical:
-
-- $|\psi\rangle$ corresponds to a column vector $\psi$ of shape $n \times 1$.
-- $\langle\phi|$ corresponds to the row vector $\phi^\dagger$ of shape $1 \times n$.
-- $\langle\phi|\psi\rangle$ corresponds to the scalar $\phi^\dagger \psi$
-  (shape $1 \times 1$).
-- $|\psi\rangle\langle\phi|$ corresponds to the rank-one matrix
-  $\psi\\, \phi^\dagger$ of shape $n \times n$.
-- $A|\psi\rangle$ corresponds to the matrix-vector product $A\psi$
-  (shape $n \times 1$).
-- $\langle\phi| A |\psi\rangle$ corresponds to the scalar $\phi^\dagger A \psi$
-  (shape $1 \times 1$).
-
-This "type signature" view is enough to catch most Dirac-vs-matrix bugs
-mechanically.
 
 The computational basis kets are $|0\rangle, |1\rangle$ for a single qubit and
 $|x\rangle$ for $x \in \\{0,1\\}^n$ for $n$ qubits. We use the convention
@@ -1069,11 +1080,15 @@ Hermitian operator $A$ has the spectral decomposition
 $A = \sum_i \lambda_i |v_i\rangle\langle v_i|$. The outer-product form is
 manifestly Hermitian and diagonal in the $\\{|v_i\rangle\\}$ basis.
 
-**Source convention.** Throughout this book we write Dirac notation with
-explicit `\langle` and `\rangle`, e.g., `|\psi\rangle`, `\langle\phi|`,
-`\langle\phi|\psi\rangle`. We do not use `\ket{}`, `\bra{}`, or
-`\braket{}{}` macros — they require the MathJax `physics` package, which is
-not loaded by the GitHub Markdown renderer.
+A finer point, safe to skip on a first read: careful mathematics
+distinguishes a vector from its *coordinates*. The same state has a
+different column of numbers in each basis — the way the same value has a
+different byte representation under each serialization format — so physics
+texts say a ket "is" an abstract vector which a chosen basis *represents*
+as a column. In this book the computational basis is fixed once (§4.2), so
+"ket = column vector" is safe throughout; the distinction only earns its
+keep at changes of basis (§4.10), where the vector stays put and its
+coordinates change.
 
 ## 4.13 Fourier Transform Basics
 

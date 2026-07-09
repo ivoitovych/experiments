@@ -30,6 +30,32 @@ reasoned adjudication. Notes are never deleted.
 
 ---
 
+- 2026-07-09, checkpoint feedback: Prelude opening is better now.
+- 2026-07-09, Ch4 intro: "We never use the physics macro package…" — why should a paper-book
+  or GitHub reader attend to source-level LaTeX? → **Triaged E (audience mismatch); FIXED**:
+  point 3 deleted from the chapter intro and the §4.12 "Source convention" paragraph removed
+  (STYLE.md remains the contributor-facing home for both).
+- 2026-07-09, §4.1: math still uses ket-bra in the complex-numbers introduction section. →
+  **Triaged B; FIXED (structural this time)**: §4.1 now derives the state as a concrete
+  unit vector $(\alpha,\beta)^T$ in $\mathbb{C}^2$ *first*, then introduces Dirac notation
+  at the point of first use with the column-vector reading of $|0\rangle, |1\rangle,
+  |\psi\rangle$ — introduce-then-use, not gloss-after-use.
+- 2026-07-09, §4.11: "a finite-dimensional complex inner-product space" parses as "a space
+  where inner products live"; unclear whether the remark covers finite or infinite
+  dimensions. → **Triaged C; FIXED**: rephrased to "vector space that comes equipped with an
+  inner product"; the general definition now says explicitly "covering any dimension, finite
+  or infinite"; the later recap sentence de-jargoned to "$\mathbb{C}^d$ (with its standard
+  inner product)".
+- 2026-07-09, §4.12: Dirac notation used 42 times on the page before its definition;
+  "abstract state vector … represented by a column vector" very puzzling; the section is
+  foggy, misunderstandings multiply — "open Wikipedia" impulse. → **Triaged B+C; FIXED
+  (rewrite)**: §4.12 rewritten concrete-first — four objects defined directly as
+  column/row/number/matrix with shapes, the merged type-check rule, a worked numeric
+  example in $\mathbb{C}^2$ (amplitude and projector), anti-linearity kept; the
+  abstract-vs-representation point demoted to a closing "finer point, safe to skip" with
+  the value-vs-serialization analogy. The 42-uses complaint is addressed at the root by the
+  §4.1 introduce-at-first-use fix.
+
 ## Triage log
 
 *(maintained by the review pass; insert-only)*
