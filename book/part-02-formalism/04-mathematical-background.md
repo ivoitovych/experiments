@@ -85,7 +85,9 @@ observable after interference or a change of basis. As a concrete example,
 the two states $(|0\rangle + |1\rangle)/\sqrt{2}$ and
 $(|0\rangle - |1\rangle)/\sqrt{2}$ both give probability $1/2$ for each
 computational-basis outcome — they are indistinguishable in that basis. But
-applying a Hadamard gate maps them to
+applying a Hadamard gate — here $H$ is just a standard one-qubit
+basis-change operation; §4.5 gives its matrix, and Chapter 8 treats it as a
+circuit gate — maps them to
 
 $$
 H\\,\frac{|0\rangle + |1\rangle}{\sqrt{2}} = |0\rangle, \qquad

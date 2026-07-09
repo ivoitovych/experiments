@@ -59,3 +59,6 @@ reasoned adjudication. Notes are never deleted.
 ## Triage log
 
 *(maintained by the review pass; insert-only)*
+- 2026-07-09, via external reviewer (filed in external-review-2026-07-09-cold-reader.md):
+  §4.1 uses the Hadamard gate before §4.5 introduces its matrix. → **Triaged B; FIXED**
+  (one-sentence gloss with §4.5/Chapter-8 pointers, per the reviewer's suggested wording).

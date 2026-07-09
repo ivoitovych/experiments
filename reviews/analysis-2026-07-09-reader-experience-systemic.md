@@ -278,3 +278,13 @@ assessment.
   complaints logged and marked fixed.
 - ⏭ Next per plan: author checkpoint on the three sites, then F1 entry batch (cold-reader
   pass with dependency ledger over front matter + Prelude + Ch. 1–5).
+- ✅ **F1 amended and Hadamard fix applied (2026-07-09):** an external reviewer's opinion and
+  follow-up (filed with triage in
+  `external-review-2026-07-09-cold-reader.md`) independently converged on this report's
+  diagnosis, endorsed the three site repairs, caught one surviving class-B defect (the
+  Hadamard gate used in §4.1's relative-phase example before its §4.5 matrix — fixed with a
+  one-sentence gloss), and sharpened F1 into a **triage-first pass**: Green/Yellow/Red
+  classification of all 48 files on five scored dimensions before any deep per-chapter
+  repair, with Chapter 1 as the Green calibration anchor and a queued Ch.4→Ch.5
+  dependency-contract check. The first-use dependency probe is widened to include gate
+  names.
