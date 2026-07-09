@@ -35,7 +35,7 @@ eb56dd759ac766e94d8b9f38440cf971c4d13aff1a2287bb9e316e0fbeed4bd2  book/99-back-m
 bed3b968cb8305bce824d07ae6f6aae4c5b1e92c906eb6ef136cc16d7b81f01f  book/99-back-matter/appendix-e-glossary.md
 9d63218d5f056218ea8054d4b2024539d81dc4b79469b9a858250e2bbb4a03d8  book/99-back-matter/appendix-f-hardware-snapshot-2026.md
 a74293fa910fb65ef10ab372ef884d9ab3d1fd71ca6768c567f9a557f516da83  book/99-back-matter/index.md
-56a40a70cbb29929bb7d2685523eaf48995baeeec84168ba4fce361cbea218e4  book/part-00-historical-prelude/00-historical-prelude.md
+f12215b34dde29f5517d002dda326bd1264218046b427861d6fa96cb70942bb8  book/part-00-historical-prelude/00-historical-prelude.md
 589b3c03bae4c76765c8647e6191c530ac3e90292ceb713d0acee8cc7d67ff4e  book/part-01-orientation/01-why-quantum-computing-exists.md
 d3fd44f5feb5d1b2da660929a163a2bca4d393fb653c7fe572851fa4c54e299c  book/part-01-orientation/02-classical-to-quantum-contrast.md
 257c2a8b85f86453744f57a91202610087cc5c267a95386b39eea64d6fbd4f39  book/part-01-orientation/03-physical-intuition.md
@@ -158,6 +158,7 @@ ecd2ef44ec949f911ebe89bd147a183295f6629ceacd5ebeb1c5be08b5729e15  figures-src/ge
 2b4ee0491833a52df5c8e705565ab8c7fdff24a307736ac333eef7820ccf5837  figures-src/generate_figures.py
 2ad1fdd4ffd8b99ea5896a227c53abded112b6f6327b705afb0fd5658d5617d1  figures-src/requirements.txt
 def8c5c1b00aac13ce7d0281e670bc9b1518efc67573ce93026a514dce420112  reviews/analysis-2026-07-05-factcheck-programme.md
+364a42bfc1cbe3c62a55a4abe73bbf6348145a95980088d21e2951a7731891bb  reviews/analysis-2026-07-09-reader-experience-systemic.md
 059752f769353ca4004b403bc55fbbfed8979c2d5b9ac63368b1a6d18242ef68  reviews/code-review-2026-06-17-1840.md
 477dad42ec25ab6b9e61eed4888a379ba99e67195955e44511551353a6529f6f  reviews/external-review-2026-07-05-reader-experience.md
 95cd5962ed6cf39a1b5f5e2f859bc5c2d03b78d3d435891c3fd6b11a012b6584  reviews/factcheck-2026-07-04-external-verification.md

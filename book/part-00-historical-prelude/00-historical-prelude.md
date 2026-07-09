@@ -6,37 +6,21 @@
 
 The rest of this book teaches a model: states, gates, measurement, error correction, algorithms, hardware. This chapter explains *why the model has the shape it does*. It is the only chapter ordered chronologically, and it is the only chapter you can safely skip — Chapter 1 onward does not lean on it. If you want to start with the formalism, jump to Chapter 1; this prelude will still be here later.
 
-What the prelude offers, to the reader who does *not* skip it, is a working sense of how the field's body of knowledge was built. Quantum mechanics was not invented; it was forced — experiment by experiment — over twenty-five years, and quantum computing was assembled from it over roughly another five decades. Knowing that history changes how the postulates of Chapter 5 read. They stop looking like axioms imposed from above and start looking like the compressed summary of every classical assumption that failed. The mathematical object later called the *state vector*, and the operational formalism that surrounds it, is not a definition; it is the survivor of black-body radiation, the photoelectric effect, the Bohr atom, matter waves, the EPR challenge, Bell's inequalities, the Aspect experiments, and the loophole-free tests of 2015 — the chain selected first against classical continuity and definiteness (Planck, Einstein, Bohr, Born), then against local hidden-variable completions (Bell, Aspect, the 2015 tests). Knowing how that survivor was selected is what turns a reader from a stranger to the field into a literate inhabitant of it.
+> **How to read this chapter.** Read linearly on first pass. The four episodes trace a single causal arc — *the classical model breaks; a formal replacement is built; physics becomes engineering and computation becomes mathematical; the two streams converge into a discipline* — and each episode hands off to the next with one bridging sentence. Names and dates accumulate; do not try to memorise them.
 
-> **How to read this chapter.** Read linearly on first pass. The four episodes trace a single causal arc — *the classical model breaks; a formal replacement is built; physics becomes engineering and computation becomes mathematical; the two streams converge into a discipline* — and each episode hands off to the next with one bridging sentence. Names and dates accumulate; do not try to memorise them. The chapter cross-references forward into the technical chapters (so the curious reader knows where the operational treatment lives) but is otherwise self-contained, and no later chapter assumes you have read it.
+**Quantum computing is not weird mathematics invented for its own sake.** It is the result of a century-long sequence in which failed classical models forced new physical abstractions, those abstractions became formal mathematics, computation and information became physical, and quantum computation emerged as an engineering discipline. The path is recognisable to any working developer — a model works, edge cases appear, patches accumulate, the abstraction fails, a new model is introduced, the model becomes formal, the formalism becomes technology, the technology becomes a discipline — and the rest of this prelude walks that path.
 
-The thesis the chapter argues, in one paragraph: **quantum computing is not weird mathematics invented for its own sake.** It is the result of a century-long sequence in which failed classical models forced new physical abstractions, those abstractions became formal mathematics, computation and information became physical, and quantum computation emerged as an engineering discipline. The path is recognisable to any working developer — a model works, edge cases appear, patches accumulate, the abstraction fails, a new model is introduced, the model becomes formal, the formalism becomes technology, the technology becomes a discipline — and the rest of this prelude walks that path.
+The chapter runs in four *Episodes*, each self-contained enough to be
+entered cold:
 
-If some of the names in this chapter are unfamiliar, that is fine. The goal is not to memorise a museum of discoveries. The goal is to notice a pattern: whenever classical intuition failed, the replacement was not arbitrary. It was forced by experiment, sharpened by mathematics, and eventually turned into engineering. A reader who comes away remembering only the *pattern* — pressure, replacement, formalisation, technology, discipline — has read this chapter correctly.
-
-> **What you should be able to read more naturally after this chapter.**
-> By the end of the prelude, the following technical moves in the later chapters should feel less arbitrary and more inevitable:
-> - why states are amplitudes rather than hidden classical records (§0.4);
-> - why observables are operators and the order in which they act matters (§0.4);
-> - why measurement is not the passive reading of a pre-existing value (§0.5);
-> - why composite systems are tensor products rather than ordinary products (§0.5);
-> - why entanglement is treated as a resource rather than a curiosity (§0.6);
-> - why information is physical, and quantum computation must be reversible (§0.9, §0.11);
-> - why quantum speedups depend on structure, not on "trying every answer at once" (§0.12);
-> - why error correction is the central engineering problem of scaling (§0.13).
-
-The chapter is structured around four causal arcs — what we call *Episodes* below, both because each is self-contained enough that a reader can enter it on its own (which is how this chapter is meant to be read by anyone who lands in it cold) and because the label avoids colliding with the book's numbered Parts. They are not crisp historical compartments; they overlap. But each carries a distinct movement of the argument:
-
-| Episode | Historical movement | What it gives quantum computing |
-|---|---|---|
-| I — The Classical Model Breaks | Black-body radiation, atomic spectra, the photoelectric effect, atomic stability; old quantum theory as patch | The classical picture of state, exchange, and measurement is not enough |
-| II — Quantum Mechanics Becomes a Formal Model | Matrix mechanics, wave mechanics, Born's rule, uncertainty, Dirac, von Neumann; entanglement | The mathematical interface — amplitudes, operators, Hilbert spaces, tensor products, measurement |
-| III — Quantum Physics Becomes Technology and Information | Semiconductors, lasers, NMR, superconductivity; Turing, Shannon, Landauer, Bennett; Wiesner, BB84 | Quantum mechanics becomes ordinary engineering; information becomes physical; quantum information becomes a deployable protocol |
-| IV — Quantum Computation Becomes a Discipline | Benioff, Feynman, Lloyd, Deutsch; Shor, Grover; quantum error correction; the hardware and NISQ era | Computation under quantum rules; algorithms with practical consequence; a path to scale under noise |
-
-Read the table now as a map; the rest of the chapter walks each row.
-
-None of these episodes is invented for narrative effect; the drama is in the material itself. Planck spent fifteen years trying to wish away his own constant. Einstein received his Nobel Prize for the very theory — light quanta — that he would then spend three decades arguing was incomplete. Classical electrodynamics predicted that atoms cannot exist; atoms exist anyway. A single inequality, derived by John Bell in 1964, turned a thirty-year philosophical stalemate into an experimentally distinguishable claim. Quantum error correction looked structurally impossible because measurement disturbs the state and no-cloning forbids backups — until someone noticed that you can measure the *error* without measuring the *data*. The Episode label is not theatrical packaging; it is the honest description of what the chapter walks through.
+- **I — The classical model breaks**: black-body radiation, atomic spectra,
+  the photoelectric effect; old quantum theory as a patch.
+- **II — Quantum mechanics becomes a formal model**: matrix and wave
+  mechanics, Born's rule, Dirac and von Neumann, entanglement.
+- **III — Quantum physics becomes technology and information**:
+  semiconductors, lasers, NMR; Turing, Shannon, Landauer, Bennett; BB84.
+- **IV — Quantum computation becomes a discipline**: Benioff, Feynman,
+  Deutsch; Shor and Grover; error correction; the hardware and NISQ era.
 
 ---
 
@@ -488,6 +472,18 @@ What the experienced developer should carry forward from this prelude:
 - Information is physical. Landauer and Bennett's classical reversibility programme rehearsed exactly the discipline quantum computation now demands. The "uncomputation" pattern Chapter 9 spends a section on is Bennett's reversibility trick applied to quantum garbage. The no-cloning theorem (Chapter 5) is the new structural fact that turns the classical discipline into a quantum *requirement*.
 - Quantum computing is the convergence of three streams. Physics, computation, information. Each was independently mature before the convergence happened. The rest of this book is about what computing looks like once they are joined.
 - Quantum computing is not magic parallelism. Superposition does not let a quantum computer try every answer and read the right one. Quantum algorithms work only when amplitudes can be arranged so wrong paths interfere destructively and useful structure is amplified. Shor's exponential speedup is a *structural* result on a problem with a hidden periodicity; Grover's quadratic speedup is what you get when no such structure is available. Chapter 1 returns to this point — it is the single most important misreading to avoid.
+
+> **A closing checklist.** Having read the prelude, the following technical
+> moves in the later chapters should now feel less arbitrary and more
+> inevitable:
+> - why states are amplitudes rather than hidden classical records (§0.4);
+> - why observables are operators and the order in which they act matters (§0.4);
+> - why measurement is not the passive reading of a pre-existing value (§0.5);
+> - why composite systems are tensor products rather than ordinary products (§0.5);
+> - why entanglement is treated as a resource rather than a curiosity (§0.6);
+> - why information is physical, and quantum computation must be reversible (§0.9, §0.11);
+> - why quantum speedups depend on structure, not on "trying every answer at once" (§0.12);
+> - why error correction is the central engineering problem of scaling (§0.13).
 
 > **Interpretation boundary.** Because this chapter has discussed EPR, the measurement problem, Bell, complementarity, hidden variables, and Einstein's resistance, a reader may reasonably expect the rest of the book to take a stand on the Copenhagen / many-worlds / Bohmian / QBist debates. It does not. The book throughout uses the *operational* formalism: states, transformations, measurements, probabilities, circuits, noise, and error correction. Interpretational questions matter philosophically and remain genuinely open, but the engineering model of quantum computing does not require choosing one — every gate-model algorithm, every error-correction code, every hardware platform discussed in this book is interpretation-agnostic. When the prose appears to use a Copenhagen-style "the state collapses on measurement" phrasing, read it as shorthand for the operational rule (Born's rule applied to a projective measurement); it is not a metaphysical commitment.
 
