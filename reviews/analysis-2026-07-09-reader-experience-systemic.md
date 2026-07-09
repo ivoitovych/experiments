@@ -259,3 +259,22 @@ the first hour is exactly where these defects sit. Conversely, the fact that the
 are heavy does not indict the whole manuscript: the same probes that confirmed the entry
 path's problems confirmed the body's discipline. Both halves of that sentence are the
 assessment.
+
+---
+
+## Execution log (insert-only)
+
+- ✅ **F4 applied (2026-07-09):** Prelude opening restructured, 1,042 → 323 words — one
+  thesis statement kept, two restatements and the defensive paragraph deleted, the reader
+  checklist re-homed at §0.16 as "A closing checklist", the episode table replaced with four
+  one-line bullets (commit `c7e7689`). §4.1 ket reading gloss added and the global-phase
+  demonstration restated per-amplitude, deferring bra-ket inner products to §4.3/§4.12
+  (commit `83e3767`). §4.11 inverted: concrete $\mathbb{C}^n$ definition first,
+  completeness/Cauchy as a plainly glossed remark (commit `c3f0bdf`). Lint, build selftest,
+  and anchor-staleness count (unchanged at the pre-existing 97) verified per commit. Note:
+  the Prelude edit deletes meta-discourse text — a recorded, deliberate departure from the
+  earlier whitespace-only discipline for that file; body/history content untouched.
+- ✅ **F3 opened (2026-07-09):** `reviews/author-read-notes.md` created; the three founding
+  complaints logged and marked fixed.
+- ⏭ Next per plan: author checkpoint on the three sites, then F1 entry batch (cold-reader
+  pass with dependency ledger over front matter + Prelude + Ch. 1–5).
