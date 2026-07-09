@@ -53,9 +53,12 @@ $$
 $$
 
 with complex amplitudes $\alpha, \beta$ satisfying the normalization
-condition $|\alpha|^2 + |\beta|^2 = 1$. The **Born rule** says that the
-probability of obtaining outcome $0$ on measurement is $|\alpha|^2$ and of
-outcome $1$ is $|\beta|^2$. These amplitudes can add, cancel, and rotate —
+condition $|\alpha|^2 + |\beta|^2 = 1$. (Read $|\psi\rangle$ as "the state
+psi": this is Dirac's **ket** notation, used from here on. §4.12 treats it
+fully, and the front-matter notation reference is the quick lookup; until
+§4.12, a ket is simply a labelled column vector.) The **Born rule** says
+that the probability of obtaining outcome $0$ on measurement is
+$|\alpha|^2$ and of outcome $1$ is $|\beta|^2$. These amplitudes can add, cancel, and rotate —
 which is why interference, the engine of quantum speedups, exists.
 
 An ordinary probabilistic computer cannot assign negative literal
@@ -66,12 +69,12 @@ become probabilities only relative to a *specified measurement*, most
 commonly an orthonormal measurement basis in the early chapters and more
 general measurements (POVMs) later (Chapter 11). A **global phase**
 multiplies the entire state by the same $e^{i\theta}$ and cancels from every
-probability — for any outcome $x$,
+probability — each amplitude picks up the same factor, and
 
 $$
-\bigl|\langle x | (e^{i\theta} |\psi\rangle)\bigr|^2
-= |e^{i\theta}|^2\\, |\langle x|\psi\rangle|^2
-= |\langle x|\psi\rangle|^2,
+|e^{i\theta} \alpha|^2 = |e^{i\theta}|^2\\, |\alpha|^2 = |\alpha|^2,
+\qquad
+|e^{i\theta} \beta|^2 = |\beta|^2,
 $$
 
 so global phase is physically irrelevant. A phase is not "hidden
