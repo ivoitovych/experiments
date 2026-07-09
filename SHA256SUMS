@@ -39,7 +39,7 @@ f12215b34dde29f5517d002dda326bd1264218046b427861d6fa96cb70942bb8  book/part-00-h
 589b3c03bae4c76765c8647e6191c530ac3e90292ceb713d0acee8cc7d67ff4e  book/part-01-orientation/01-why-quantum-computing-exists.md
 d3fd44f5feb5d1b2da660929a163a2bca4d393fb653c7fe572851fa4c54e299c  book/part-01-orientation/02-classical-to-quantum-contrast.md
 257c2a8b85f86453744f57a91202610087cc5c267a95386b39eea64d6fbd4f39  book/part-01-orientation/03-physical-intuition.md
-0aa772fc633bb8923db73b3840101d658783860d26bbf1f146bda2631e2c0e5d  book/part-02-formalism/04-mathematical-background.md
+0c7da8aef3b15498fccab51e1c83f342c39ca2b4e8d05746af09cef8bb82ea11  book/part-02-formalism/04-mathematical-background.md
 35d142b02e5300db0bca3401a813a048fee26ead365f39307c44daa6febc28c6  book/part-02-formalism/05-postulates.md
 e92a5103fca1580f16f4c2414d3d3928dee5d0b672e260b7c50e20cfd9b099f7  book/part-03-qubits/06-the-qubit.md
 e495a55b6a7276d47d5a10f74caba6bbd1219f0667b3ddc462457ecb5a3faf99  book/part-03-qubits/07-multiple-qubits-and-entanglement.md

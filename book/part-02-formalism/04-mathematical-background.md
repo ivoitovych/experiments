@@ -954,12 +954,22 @@ matrix, you have already chosen a basis — remember which.
 
 ## 4.11 Hilbert Spaces
 
-A **Hilbert space** is a complete inner-product space — every Cauchy sequence
-converges. In finite dimensions every inner-product space is automatically
-complete, so for almost all of this book "Hilbert space" simply means
-"finite-dimensional complex inner-product space," i.e., $\mathbb{C}^n$ with
-the standard inner product. We say *Hilbert space* because the term is
-standard in quantum mechanics, not because finiteness is in doubt.
+For almost all of this book, a **Hilbert space** is simply $\mathbb{C}^n$
+with the standard inner product — a finite-dimensional complex inner-product
+space, exactly the object §§4.2–4.3 built. We say *Hilbert space* because
+the term is standard in quantum mechanics, not because anything new is being
+added.
+
+The general definition does add one technical condition, and it is worth
+seeing once so the term never intimidates: a Hilbert space is an
+inner-product space that is *complete*, meaning that every **Cauchy
+sequence** — a sequence of vectors whose members eventually stay arbitrarily
+close to one another — converges to a limit *inside* the space (no
+"missing points" at the edge, the way the rationals are missing
+$\sqrt{2}$). In finite dimensions every inner-product space is
+automatically complete, so for $\mathbb{C}^n$ the condition holds by itself
+and you never need to check it. Completeness only has teeth in infinite
+dimensions.
 
 Infinite-dimensional Hilbert spaces appear in two contexts:
 
