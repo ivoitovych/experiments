@@ -85,7 +85,7 @@ CV cluster states extend MBQC to continuous variables and form the basis of seve
 
 **Boson sampling** (Aaronson and Arkhipov, 2011) is not a model of universal quantum computation. It is a precisely defined **sampling task** that is conjectured to be classically hard, designed to be implementable with a much simpler resource than a full quantum computer: a linear-optical interferometer with single-photon inputs.
 
-The setup. Send $n$ indistinguishable photons into $n$ of $m \gg n$ input ports of a randomly chosen $m \times m$ unitary interferometer $U$ (built from beam-splitters and phase-shifters); count the number of photons exiting each output port. The output probability distribution is
+The setup. Send $n$ indistinguishable photons into $n$ of $m \gg n$ input ports of a randomly chosen $m \times m$ unitary interferometer $U$ (built from beam-splitters and phase-shifters); count the number of photons exiting each output port. The output probability distribution is governed by the **permanent** of a submatrix of $U$ — written $\mathrm{Perm}(U_S)$ below, a determinant-like matrix function with all signs positive:
 
 $$
 P(s_1, \ldots, s_m) \;=\; \frac{|\mathrm{Perm}(U_S)|^2}{s_1! \cdots s_m!},
