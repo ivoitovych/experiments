@@ -40,13 +40,13 @@ A subtle point: "connectivity" on a benchmark sheet sometimes means coupling-gra
 
 ## 22.3 Gate Fidelity
 
-A single-qubit gate $G_{\mathrm{ideal}}$ is implemented physically as a noisy channel $\mathcal{G}$. The **gate fidelity** quantifies how close $\mathcal{G}$ is to $G_{\mathrm{ideal}}$. The simplest scalar is the **average gate fidelity**:
+A single-qubit gate $G_{\mathrm{ideal}}$ is implemented physically as a noisy channel $\mathcal{G}$. The **gate fidelity** quantifies how close $\mathcal{G}$ is to $G_{\mathrm{ideal}}$ — operationally: prepare a random state, apply the real gate, and ask how much of the result overlaps what the ideal gate would have produced, averaged over all input states. The simplest scalar form is the **average gate fidelity**:
 
 $$
 F_{\mathrm{avg}}(\mathcal{G}, G) \;=\; \int d\psi \; \langle \psi | \\, G^{\dagger} \\, \mathcal{G}(|\psi\rangle \langle \psi |) \\, G \\, | \psi \rangle,
 $$
 
-averaged over the Haar measure on pure input states. It is the number reported by most vendors. For an $n$-qubit gate the relation to the **average gate error** $\varepsilon = 1 - F_{\mathrm{avg}}$ and the more fundamental **process fidelity** $F_{\mathrm{pro}}$ is
+averaged over the Haar measure on pure input states. It is the number reported by most vendors. For an $n$-qubit gate the relation to the **average gate error** $\varepsilon = 1 - F_{\mathrm{avg}}$ and the more fundamental **process fidelity** $F_{\mathrm{pro}}$ — the overlap between the actual and ideal *processes* as a whole, insensitive to which input states are tried — is
 
 $$
 F_{\mathrm{avg}} \;=\; \frac{d \\, F_{\mathrm{pro}} + 1}{d + 1}, \qquad d = 2^n .
@@ -54,7 +54,7 @@ $$
 
 So a process fidelity of $0.99$ on a single-qubit gate corresponds to an average gate fidelity of $\tfrac{2 \cdot 0.99 + 1}{3} \approx 0.9933$. The two numbers differ by a small constant factor, but vendor sheets do not always say which one they are reporting; in case of doubt the larger of the two is usually the one printed.
 
-**Randomised benchmarking (RB)** is the standard measurement protocol. It samples sequences of Clifford gates of increasing length, ending with the unique Clifford that should return the state to $|0\rangle$, and fits the survival probability vs sequence length to an exponential decay. The decay constant gives the **average error per Clifford**. RB has two desirable properties: it is insensitive to state preparation and measurement (SPAM) errors, and it averages over the Clifford group, which is enough to twirl any noise channel to a depolarising channel of equal average fidelity.
+**Randomised benchmarking (RB)** is the standard measurement protocol. It samples sequences of Clifford gates of increasing length, ending with the unique Clifford that should return the state to $|0\rangle$, and fits the survival probability vs sequence length to an exponential decay. The decay constant gives the **average error per Clifford**. RB has two desirable properties: it is insensitive to state preparation and measurement (SPAM) errors, and it averages over the Clifford group, which is enough to *twirl* any noise channel — average it over random Clifford conjugations — into a depolarising channel of equal average fidelity.
 
 But that very averaging is RB's weakness. The number RB reports is an *average* over Cliffords; the channel that an algorithm actually applies has gate-specific noise that can be worse than the average by a substantial factor. **Cycle benchmarking** and **interleaved RB** address this by measuring fidelity of a target gate inserted into RB sequences. **Direct fidelity estimation** and **process tomography** give the full process matrix at much higher cost.
 

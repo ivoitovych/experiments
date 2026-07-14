@@ -10,7 +10,7 @@ The gate alphabet of Chapter 8 and the circuit model of Chapter 9 hide a substan
 
 ## 21.1 Pulse Shaping
 
-At the bottom of the stack, every single-qubit gate is a **Rabi oscillation** driven by a resonant control field. The two-level Hamiltonian in the rotating frame of the drive is
+At the bottom of the stack, every single-qubit gate is a **Rabi oscillation** driven by a resonant control field: operationally, the qubit's Bloch vector traces an arc whose speed is set by the drive amplitude and whose axis is set by the drive phase — the gate *is* that arc. The two-level Hamiltonian in the rotating frame of the drive is
 
 $$
 H_{\mathrm{drive}}(t) \;=\; \tfrac{1}{2}\\,\Omega(t)\\,\big(\cos\phi(t)\\,X + \sin\phi(t)\\,Y\big) \;+\; \tfrac{1}{2}\\,\Delta\\,Z,
@@ -115,7 +115,7 @@ A typical superconducting cadence walks from coarse to fine:
 Optimal control turns calibration's hand-fit pulses into numerically optimised ones. Given a model Hamiltonian $H(t; \vec{c}) = H_0 + \sum_k c_k(t)\\,H_k$ with control envelopes $c_k(t)$ and a target unitary $U_{\mathrm{target}}$, the goal is to choose $c_k(t)$ such that the realised evolution achieves $U_{\mathrm{target}}$ with high fidelity in the shortest pulse time. Three algorithm families dominate:
 
 - **GRAPE** (Gradient Ascent Pulse Engineering): discretise the pulse into $N$ piecewise-constant slices, compute the analytic gradient of the fidelity with respect to each slice's amplitude, and ascend. Standard for time-discretised problems with a known Hamiltonian.
-- **Krotov**: a monotonic-improvement variant that updates the control field by an integral equation that the algorithm's structure guarantees to improve fidelity at every iteration. Numerically robust on stiff problems.
+- **Krotov**: a monotonic-improvement variant — think of GRAPE's gradient step with the step size chosen so that fidelity provably never decreases — implemented via an integral-equation update. Numerically robust on stiff problems.
 - **CRAB** (Chopped Random Basis): expand the control into a small basis (Fourier modes, randomised orthogonal functions) with $O(10)$ parameters and run derivative-free optimisation on those. Tradeoff is expressive power for parameter count, which matters when the only feedback is closed-loop on the device itself.
 
 In practice, **DRAG** (Derivative Removal by Adiabatic Gate) pulses are the workhorse for single-qubit gates: the in-phase quadrature is a Gaussian and the out-of-phase quadrature is its derivative scaled by $-1/\alpha$ (the inverse anharmonicity). The construction analytically suppresses leakage to $|2\rangle$ to first order in $1/\alpha$ and is calibrated by a one-parameter scan of the DRAG coefficient on the device. Two-qubit gates often use **echoed cross-resonance** with rotary-echo refocusing pulses to suppress slow drifts and residual $ZZ$. **Dynamical decoupling** sequences — **CPMG** (Carr–Purcell–Meiboom–Gill) for $T_2$ extension, **XY8** for robustness against pulse errors and inhomogeneous dephasing — are inserted into idle stretches of a circuit to push the effective coherence time of an idling qubit toward $T_1$ rather than $T_2^*$.
