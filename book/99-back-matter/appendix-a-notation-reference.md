@@ -16,7 +16,7 @@ these symbols contain literal `|` characters (kets, bras, norm bars),
 and `|` is the Markdown table column separator — putting kets inside a
 table cell silently collapses the bars (Bug 5 in
 [`docs/github-markdown-math-bugs.md`](../../docs/github-markdown-math-bugs.md)).
-The same precedent set §4.12 and §4.16 of Chapter 4.
+The same precedent is set in §4.12 and §4.16 of Chapter 4.
 
 ## A.1 Dirac Notation
 
@@ -112,7 +112,8 @@ notation:
   Double bars, operator argument, nonnegative real value.
 - $\\|A\\|_1 = \mathrm{tr}\sqrt{A^\dagger A} = \sum_i \sigma_i$ —
   **trace norm** (nuclear norm). The basis for trace distance between
-  density matrices, $D(\rho, \sigma) = \tfrac{1}{2}\\|\rho - \sigma\\|_1$.
+  density matrices, $D(\rho, \sigma) = \tfrac{1}{2}\\|\rho - \sigma\\|_1$
+  (glossed in §A.4 below).
 - $\\|A\\|_{\mathrm{HS}} = \sqrt{\mathrm{tr}(A^\dagger A)}$ —
   **Hilbert–Schmidt norm** (Frobenius norm). Induced by the
   Hilbert–Schmidt inner product $\langle A, B\rangle_{\mathrm{HS}} = \mathrm{tr}(A^\dagger B)$.

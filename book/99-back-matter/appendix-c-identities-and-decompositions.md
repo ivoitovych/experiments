@@ -161,7 +161,8 @@ the named gates of Appendix B that get reused most often. Matrices are in
 §B.1–B.9; the relations here are basis-independent.
 
 **Hadamard conjugation of Paulis.** $H$ exchanges $X$ and $Z$ in the
-Heisenberg picture and flips the sign of $Y$:
+Heisenberg picture (operator-conjugation view — glossed in Appendix B)
+and flips the sign of $Y$:
 
 $$
 H X H = Z, \qquad H Z H = X, \qquad H Y H = -Y.

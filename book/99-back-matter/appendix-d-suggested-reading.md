@@ -225,7 +225,7 @@ Chapter 17 cites directly.
   Trends in Theoretical Computer Science, 2016. The standard survey
   for QMA, QIP, and quantum interactive proofs.
 - *A quantum-inspired classical algorithm for recommendation systems.*
-  Ewin Tang (STOC 2019; arXiv:1807.04271) — the paper that launched the
+  Ewin Tang. STOC, 2019 (arXiv:1807.04271). The paper that launched the
   dequantization phenomenon discussed in §17.12, followed by a wave of
   dequantizations of PCA, low-rank regression, and kernel methods.
 - *The query complexity of the hidden subgroup problem.* Various
