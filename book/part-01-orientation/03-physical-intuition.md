@@ -84,7 +84,9 @@ That is not what happens. The beam splits into exactly *two* spots,
 symmetrically placed above and below the original beam axis. The
 silver atom's outermost electron carries angular momentum whose
 $z$-component, when measured, takes one of exactly two values —
-later identified as $+\hbar/2$ and $-\hbar/2$, the eigenvalues of
+later identified as $+\hbar/2$ and $-\hbar/2$ ($\hbar$ is Planck's
+reduced constant — a fixed, tiny quantum of action set by nature,
+quantified in §3.10), the eigenvalues of
 spin-$1/2$. There is no intermediate value, ever. Whatever the
 prior history of the atom, the $z$-component of its spin reads out
 as one of two discrete numbers.
@@ -408,8 +410,9 @@ not a passive reading**, and the interaction reshapes the state.
 The incompatibility of $x$-spin and $z$-spin is one instance of a
 general phenomenon called the **uncertainty principle**. Stated
 quantitatively (the Heisenberg-Robertson form, derived in Chapter 4),
-two observables $A$ and $B$ with non-zero commutator satisfy a
-relation of the form
+two observables $A$ and $B$ with non-zero commutator ($[A, B] = AB - BA$,
+the measure of how much the order of applying $A$ and $B$ matters)
+satisfy a relation of the form
 
 $$
 \Delta A\\, \Delta B \ge \tfrac{1}{2} |\langle [A, B] \rangle|,

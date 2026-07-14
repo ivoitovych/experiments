@@ -34,7 +34,8 @@ Quantum Information* is the canonical example, is excellent for what
 it sets out to do — a thorough mathematical introduction aimed at
 graduate students with a physics or theoretical-CS background — but
 its audience and its publication date are not ours. It does not address
-NISQ-era practice, did not have current hardware platforms to compare,
+NISQ-era practice (NISQ: noisy intermediate-scale quantum, the current
+hardware era — Chapter 25), did not have current hardware platforms to compare,
 and assumes a level of mathematical patience that an experienced
 software engineer can absolutely meet but that is not its primary
 target. At the other end, popular-science books skip the linear algebra
@@ -332,7 +333,9 @@ Qiskit code, keep the difference visible.
 
 Two-qubit gate matrices are written in the
 $|00\rangle, |01\rangle, |10\rangle, |11\rangle$ basis in that
-order. With the leftmost-most-significant convention, the CNOT with
+order. With the leftmost-most-significant convention, the CNOT (the
+controlled-NOT gate; this and the Pauli $X$ matrix are defined in
+Chapters 4 and 8 — this paragraph can be skimmed until then) with
 control on the first qubit and target on the second has its
 familiar block-diagonal form $\mathrm{diag}(I, X)$. Other vendors
 and other textbooks sometimes use the reverse basis ordering; when

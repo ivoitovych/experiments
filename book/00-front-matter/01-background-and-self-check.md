@@ -74,7 +74,10 @@ is unitary to within numerical tolerance.
 unitary.
 
 **Sample problem SC.1.2.** Express the two-qubit state
-$|01\rangle$ as a length-4 NumPy column vector with `dtype=complex`,
+$|01\rangle$ (Dirac *ket* notation: $|b\rangle$ names the basis state
+labelled by bit string $b$ — introduced fully in Chapter 4; if this
+notation is new to you, skip this problem and return after §4.1) as a
+length-4 NumPy column vector with `dtype=complex`,
 using zero-based indexing where the leftmost factor is the most
 significant bit.
 
@@ -158,7 +161,8 @@ Find the eigenvalues and a pair of orthonormal eigenvectors.
 
 *Answer.* Eigenvalues $\lambda = 3$ and $\lambda = 1$. Eigenvectors
 $\tfrac{1}{\sqrt{2}}(1, 1)^T$ and $\tfrac{1}{\sqrt{2}}(1, -1)^T$
-respectively. These are also the eigenvectors of the Pauli $X$ matrix,
+respectively. These are also the eigenvectors of the Pauli $X$ matrix (its entries
+are given in problem SC.3.3 below),
 which is no coincidence — $A = 2I + X$ (so the eigenvalues $3 = 2 + 1$
 and $1 = 2 - 1$ are the identity's $2$ shifted by $X$'s $\pm 1$).
 

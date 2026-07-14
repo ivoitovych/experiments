@@ -69,7 +69,9 @@ primitive $N$-th root of unity (used in the Fourier transform of
 §4.13). Planck's reduced constant $\hbar$ appears at the
 quantum-mechanics boundary; algorithmic chapters set $\hbar = 1$ so
 that the Schrödinger evolution reads $U(t) = e^{-iHt}$ with no
-prefactor.
+prefactor (here $H$ is the Hamiltonian, the energy operator formalised
+in Chapter 5 — not the Hadamard gate $H$ of §N.2; context always
+disambiguates the two).
 
 **Asymptotic complexity.** The standard Knuth conventions, used both
 classically and quantumly:
@@ -91,15 +93,16 @@ sections use base 2 throughout, so entropies are measured in bits.
 
 **Greek-letter conventions.** Greek letters carry a default role.
 Pinning these defaults down once means a later formula like
-$\alpha |0\rangle + \beta |1\rangle$ does not need to re-introduce
-its amplitudes:
+$\alpha |0\rangle + \beta |1\rangle$ (ket notation — defined in §N.3
+below) does not need to re-introduce its amplitudes:
 
 - $\alpha, \beta, \gamma, \delta$ — complex amplitudes of a state.
 - $\theta, \phi$ — Bloch-sphere angles (polar and azimuthal), and
   more generally rotation / phase angles.
 - $\lambda, \mu$ — eigenvalues. $\lambda_i$ enumerates them.
 - $\sigma$ — singular values, *and* Pauli operators when written as a
-  vector $\sigma = (X, Y, Z)$. Disambiguated by context.
+  vector $\sigma = (X, Y, Z)$ (matrices given in §N.2 below).
+  Disambiguated by context.
 - $\psi, \phi, \chi, \varphi$ — state vectors (kets and bras).
 - $\rho, \sigma$ — density matrices (Chapter 5). The collision with
   singular values is named at the point of conflict.
