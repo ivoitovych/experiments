@@ -236,9 +236,10 @@ conditioning on a system $B$ that is entangled with $A$ produces a
 means.
 
 The operational meaning was found by Horodecki, Oppenheim, and Winter
-(2005) in the **state-merging protocol** (a close relative of the
-"mother protocol" of the quantum resource calculus — see the note at
-the end of this section). Two parties Alice and Bob share many copies of $\rho_{AB}$
+(2005) in the **state-merging protocol** (a close relative of what the
+literature calls the "mother protocol" — a name explained, along with
+the surrounding quantum resource calculus, in the note at the end of
+this section; nothing before that note depends on it). Two parties Alice and Bob share many copies of $\rho_{AB}$
 along with a third reference system $R$ that purifies the global state.
 Alice wants to transfer her share $A$ to Bob while preserving
 correlations with $R$. The asymptotic rate of *quantum communication*

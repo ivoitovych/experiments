@@ -42,7 +42,7 @@ $$
 p(m) = \mathrm{tr}(\rho\\, E_m),
 $$
 
-which is non-negative because $\rho \succeq 0$ and $E_m \succeq 0$, and sums to one because $\sum_m E_m = I$ and $\mathrm{tr}(\rho) = 1$. POVMs strictly generalise projective measurements: every set of orthogonal projectors is a POVM with $E_m = P_m$, but most POVMs are not projective. The number of outcomes is unbounded by the dimension — a qubit can support a POVM with three, four, six, or more outcomes (the symmetric informationally-complete POVM on a qubit — geometrically, the Bloch-tetrahedron POVM — has exactly four outcomes; the trine has three).
+which is non-negative because $\rho \succeq 0$ and $E_m \succeq 0$, and sums to one because $\sum_m E_m = I$ and $\mathrm{tr}(\rho) = 1$. POVMs strictly generalise projective measurements: every set of orthogonal projectors is a POVM with $E_m = P_m$, but most POVMs are not projective. The number of outcomes is unbounded by the dimension — a qubit can support a POVM with three, four, six, or more outcomes (the symmetric informationally-complete POVM on a qubit — geometrically, the Bloch-tetrahedron POVM — has exactly four outcomes; the trine — defined just below — has three).
 
 POVMs are the right object whenever you care only about the outcome statistics and not about the post-measurement state. When you do care about the post-measurement state, you need more structure: a family of **Kraus operators** $\\{M_m\\}$ with $E_m = M_m^\dagger M_m$. The Kraus form gives both the probability and the update rule:
 

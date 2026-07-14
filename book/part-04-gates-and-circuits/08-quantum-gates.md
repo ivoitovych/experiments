@@ -10,7 +10,7 @@ Chapters 5–7 fixed the static picture: states, composite systems, entanglement
 
 ## 8.1 Reversibility and Unitary Evolution
 
-Postulate 2 (§5.2) says that closed-system evolution is unitary: $|\psi'\rangle = U|\psi\rangle$ with $U^{\dagger}U = U U^{\dagger} = I$. Unitarity is a strong constraint, and the quantum-computing model takes it as the definition of a gate: a quantum gate on $n$ qubits is any element of the unitary group $\mathrm{U}(2^n)$.
+Postulate 2 (§5.2) says that closed-system evolution is unitary: $|\psi'\rangle = U|\psi\rangle$ with $U^{\dagger}U = U U^{\dagger} = I$. Unitarity is a strong constraint, and the quantum-computing model takes it as the definition of a gate. Operationally: a gate takes amplitudes in and gives amplitudes out, linearly and reversibly, losing nothing. Formally: a quantum gate on $n$ qubits is any element of the unitary group $\mathrm{U}(2^n)$.
 
 Three consequences are worth saying explicitly. **Reversibility**: every gate has an inverse, namely $U^{\dagger}$, which is also a valid gate. There is no quantum analogue of the classical AND or OR gate, both of which lose bits; the quantum versions must be made reversible by adding output wires (as Toffoli does for AND). **Norm preservation**: $\\|U|\psi\rangle\\| = \\||\psi\rangle\\|$, so states remain unit-norm under any sequence of gates. **Linearity**: $U(\alpha|\psi_1\rangle + \beta|\psi_2\rangle) = \alpha U|\psi_1\rangle + \beta U|\psi_2\rangle$ — a gate acts on every basis component of a superposition at once. This linear action is *not* a computational speedup by itself; useful advantage requires arranging interference (§10.2, §13.1), not merely touching every component.
 
@@ -32,7 +32,7 @@ Operationally: $X$ is the "quantum NOT" — it swaps $|0\rangle \leftrightarrow 
 
 ## 8.3 Hadamard Gate
 
-The Hadamard gate is
+The Hadamard gate — this fixed matrix $H$, not the generic Hermitian generator $H$ of §8.1; the letter is overloaded by convention and context disambiguates — is
 
 $$
 H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \end{pmatrix}.

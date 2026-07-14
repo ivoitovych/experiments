@@ -102,7 +102,7 @@ The cryptographic upshot is the inversion most worth remembering: **no-cloning i
 
 The **no-signalling principle** says that local operations and measurements on one half of a multipartite state cannot change the local statistics on the other half. Concretely, if $\rho_{AB}$ is the joint state and Alice performs a measurement on $A$ with outcomes labelled by $a$, then the reduced state $\rho_B = \mathrm{Tr}_A(\rho_{AB})$ that Bob's marginal statistics depend on is *unchanged* whether or not Alice measures, and is independent of what basis she chooses.
 
-The proof is a direct partial-trace calculation. For Alice's measurement (Kraus) operators $\\{M_a\\}$ — the POVM *effects* being $E_a = M_a^{\dagger} M_a$ — the post-measurement ensemble on Bob's side, *averaged over Alice's outcomes*, is
+The proof is a direct partial-trace calculation. For Alice's measurement (Kraus) operators $\\{M_a\\}$ — the POVM *effects* being $E_a = M_a^{\dagger} M_a$; both terms are introduced properly in §10.13 and Chapter 11, and for this proof $M_a$ is just "the operator applied when outcome $a$ occurs" — the post-measurement ensemble on Bob's side, *averaged over Alice's outcomes*, is
 
 $$
 \sum_a p_a \\, \rho_{B|a} \;=\; \sum_a \mathrm{Tr}_A\bigl((M_a \otimes I) \rho_{AB} (M_a^{\dagger} \otimes I)\bigr) \;=\; \mathrm{Tr}_A(\rho_{AB}) \;=\; \rho_B,
