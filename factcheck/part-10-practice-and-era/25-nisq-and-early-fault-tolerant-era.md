@@ -109,7 +109,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.3 — VQE hardware demonstrations up to ~50 spin-orbitals (2026)
 
-- **Claim** (anchor): "small-molecule chemistry up to roughly 50 spin-orbitals with active-space reduction"
+- **Claim** (anchor): "small-molecule chemistry up to roughly 50 spin-orbitals (per-electron basis functions — Chapter 28) with active-space reduction (restricting the problem to the chemically active orbitals)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

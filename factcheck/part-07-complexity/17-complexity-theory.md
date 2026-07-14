@@ -25,7 +25,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §17.1 — BPP ⊆ Σ₂ᵖ ∩ Π₂ᵖ (Sipser–Gács–Lautemann)
 
-- **Claim** (anchor): "$\mathrm{BPP} \subseteq \Sigma_2^p \cap \Pi_2^p$ (Sipser–Gács–Lautemann)"
+- **Claim** (anchor): "$\mathrm{BPP} \subseteq \Sigma_2^p \cap \Pi_2^p$ (Sipser–Gács–Lautemann; $\Sigma_2^p$ and $\Pi_2^p$ are the second level of the polynomial hierarchy, defined in §17.5 — for now, read them as "just above NP")"
 - **Method**: external
 - **Source**: Lautemann (1983), Sipser (1983), Gács (attributed); TBD — needs verification of consolidated citation
 - **Verified**: — · **Verdict**: open

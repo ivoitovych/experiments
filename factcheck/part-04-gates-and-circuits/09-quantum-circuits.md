@@ -167,7 +167,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §9.9 — T-gate implemented via magic state and S-gate correction in surface codes
 
-- **Claim** (anchor): "the $T$ gate on a logical qubit, in many surface-code schemes, is implemented by consuming a magic state and applying a measurement-conditioned Clifford correction (an $S$ gate)"
+- **Claim** (anchor): "the $T$ gate on a logical qubit, in many surface-code schemes, is implemented by consuming a magic state (a specially prepared resource state, introduced properly in Chapter 19) and applying a measurement-conditioned Clifford correction (an $S$ gate)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

@@ -95,7 +95,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §7.6 — GHZ and W states are in different SLOCC classes
 
-- **Claim** (anchor): "They cannot be converted into one another by local operations and classical communication (LOCC) — they sit in different SLOCC classes"
+- **Claim** (anchor): "They cannot be converted into one another by local operations and classical communication (LOCC) — they sit in different SLOCC (stochastic LOCC — LOCC allowed to succeed only with some probability) classes"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -226,7 +226,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §7.12 — Teleportation: one ebit and two classical bits consumed
 
-- **Claim** (anchor): "No qubit travelled; one ebit and two classical bits were consumed"
+- **Claim** (anchor): "No qubit travelled; one ebit (one maximally entangled pair — the unit of entanglement) and two classical bits were consumed"
 - **Method**: external
 - **Source**: Bennett et al., Physical Review Letters 70, 1895 (1993)
 - **Verified**: — · **Verdict**: open

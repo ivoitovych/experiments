@@ -285,7 +285,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §21.11 — Krotov algorithm monotonic improvement property
 
-- **Claim** (anchor): "Krotov: a monotonic-improvement variant that updates the control field by an integral equation that the algorithm's structure guarantees to improve fidelity at every iteration"
+- **Claim** (anchor): "Krotov: a monotonic-improvement variant — think of GRAPE's gradient step with the step size chosen so that fidelity provably never decreases — implemented via an integral-equation update"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

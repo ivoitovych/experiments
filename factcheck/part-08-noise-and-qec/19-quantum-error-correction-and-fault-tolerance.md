@@ -7,7 +7,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §19.2 — Hamming bound and Singleton bound have quantum analogues
 
-- **Claim** (anchor): "The **Hamming bound** and **Singleton bound** constrain how many errors can be corrected for given $n$ and $k$. Both bounds have direct quantum analogues."
+- **Claim** (anchor): "the **Hamming bound** and **Singleton bound** — two classical counting inequalities that cap how many errors any code with $n$ bits and $k$ data bits can correct — constrain the achievable trade-off. Both bounds have direct quantum analogues."
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -27,7 +27,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §19.6 — Shor code parameters [[9,1,3]]
 
-- **Claim** (anchor): "The Shor code has parameters $[[9, 1, 3]]$ (nine physical qubits, one logical qubit, distance three)"
+- **Claim** (anchor): "The Shor code has parameters $[[9, 1, 3]]$ (nine physical qubits, one logical qubit, distance three — the general $[[n, k, d]]$ convention is fixed in §19.8)"
 - **Method**: derivation
 - **Source**: → §19.6 (stabiliser count and logical operator weight argument in this section)
 - **Verified**: — · **Verdict**: open

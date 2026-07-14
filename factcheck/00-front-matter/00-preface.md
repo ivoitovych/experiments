@@ -9,7 +9,7 @@ claims are recorded below; all remaining content is out-of-scope front-matter pr
 
 ## Preface — Nielsen & Chuang audience and NISQ-era gap
 
-- **Claim** (anchor): "aimed at graduate students with a physics or theoretical-CS background — but its audience and its publication date are not ours. It does not address NISQ-era practice, did not have current hardware platforms to compare"
+- **Claim** (anchor): "aimed at graduate students with a physics or theoretical-CS background — but its audience and its publication date are not ours. It does not address NISQ-era practice (NISQ: noisy intermediate-scale quantum, the current hardware era — Chapter 25), did not have current hardware platforms to compare"
 - **Method**: external
 - **Source**: TBD — needs verification against Nielsen & Chuang, *Quantum Computation and Quantum Information* (Cambridge UP, 2000/2010)
 - **Verified**: — · **Verdict**: open

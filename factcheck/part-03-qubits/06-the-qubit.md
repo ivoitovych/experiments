@@ -104,7 +104,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §6.8 — Half-angle is the SU(2)/SO(3) double cover
 
-- **Claim** (anchor): "the half-angle is the standard"
+- **Claim** (anchor): "the double-cover relation between $\mathrm{SU}(2)$ (acting on the Hilbert space) and $\mathrm{SO}(3)$"
 - **Method**: external
 - **Source**: TBD — needs verification (standard Lie-group / quantum-mechanics reference)
 - **Verified**: — · **Verdict**: open

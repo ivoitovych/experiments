@@ -97,14 +97,14 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §14.5 — QFT sign convention
 
-- **Claim** (anchor): "This is the negative-exponent ("QFT-sign-minus") convention fixed in §4.13; some sources and SDKs use the opposite sign, so check before porting phase angles."
+- **Claim** (anchor): "The definition above uses the negative-exponent ("QFT-sign-minus") convention fixed in §4.13; some sources and SDKs use the opposite sign, so check before porting phase angles."
 - **Method**: convention
 - **Source**: → §4.13 notation
 - **Verified**: — · **Verdict**: open
 
 ## §14.5 — For N=2 QFT equals Hadamard
 
-- **Claim** (anchor): "For $N = 2$ the QFT is just the Hadamard gate."
+- **Claim** (anchor): "For $N = 2$ the QFT is just the Hadamard gate — the familiar $H$ is the smallest Fourier transform."
 - **Method**: derivation
 - **Source**: → §14.5 (follows from QFT definition with N=2)
 - **Verified**: — · **Verdict**: open

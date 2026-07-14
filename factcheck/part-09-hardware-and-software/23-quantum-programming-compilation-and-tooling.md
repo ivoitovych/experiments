@@ -323,7 +323,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.10 — Dynamical decoupling Magnus expansion justification
 
-- **Claim** (anchor): "The pattern is structurally identical to NMR refocusing pulses (and has the same theoretical justification: a fast classical drive cancels the slow noise Hamiltonian to first order in the Magnus expansion)"
+- **Claim** (anchor): "The pattern is structurally identical to NMR refocusing pulses (and has the same theoretical justification: a fast drive averages the slow noise away before it can accumulate — first-order cancellation in the perturbation series control theorists call the Magnus expansion)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
