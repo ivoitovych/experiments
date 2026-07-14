@@ -83,7 +83,7 @@ Beware of vendor benchmarks on first contact. The number a vendor leads with —
 
 A quantum experiment on a real device is much closer to a physics experiment than to a unit test: it costs money, it costs time, and the result is statistical. A few habits pay back many times their cost.
 
-**Calibrate the shot budget**. The shot count $N$ controls the standard error of any expectation value as $\sigma/\sqrt{N}$ where $\sigma$ is the observable's variance. For a probability $p$ near $0.5$, the standard error is roughly $0.5/\sqrt N$ — so $N = 10^4$ shots gives precision $\sim 5 \cdot 10^{-3}$. Many serious estimates need $N = 10^6$ or more, which is real money. Pre-compute the shot budget from the precision you need, not the precision you can afford.
+**Calibrate the shot budget**. The shot count $N$ controls the standard error of any expectation value as $\sigma/\sqrt{N}$ where $\sigma$ is the observable's standard deviation. For a probability $p$ near $0.5$, the standard error is roughly $0.5/\sqrt N$ — so $N = 10^4$ shots gives precision $\sim 5 \cdot 10^{-3}$. Many serious estimates need $N = 10^6$ or more, which is real money. Pre-compute the shot budget from the precision you need, not the precision you can afford.
 
 **Use the right primitive**. On Qiskit Runtime, the Sampler is for raw bit-string outcomes; the Estimator is for observable expectation values, including error-mitigation passes. Don't read shot statistics through the Estimator (you'll get rounded numbers); don't manually sum Pauli expectations from the Sampler if the Estimator can do it more accurately.
 
