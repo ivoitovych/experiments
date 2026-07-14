@@ -309,16 +309,16 @@ Conditions:
 are antipodal; $|+\rangle$ and $|-\rangle$ are antipodal; and so
 on. But in the underlying Hilbert space, the Hadamard basis is
 $\pi/2$ from the computational basis, not $\pi$. The factor of $1/2$
-in the angle $\theta/2$ is what reconciles the two: the Bloch sphere
-is the projective sphere, and the half-angle is the standard
-double-cover relation between $\mathrm{SU}(2)$ (acting on the
-Hilbert space) and $\mathrm{SO}(3)$ (acting on the Bloch sphere).
-A full $2\pi$ rotation of the Bloch vector multiplies the
-Hilbert-space state by $-1$; only a $4\pi$ Bloch rotation restores
-the identity exactly — the double cover at work, and a fact that has
-measurable consequences in
-multi-qubit interferometry (Chapter 7's Bell-state phase
-manipulations are the most accessible example).
+in the angle $\theta/2$ is what reconciles the two. The operational
+fact first: rotating the Bloch vector a full $2\pi$ multiplies the
+state by $-1$ (a sign a later interference experiment can see), and
+only a $4\pi$ rotation restores the state exactly. The mathematical
+name for this is the double-cover relation between $\mathrm{SU}(2)$
+(acting on the Hilbert space) and $\mathrm{SO}(3)$ (acting on the
+Bloch sphere): the Bloch sphere is the projective sphere, and two
+opposite points of $\mathrm{SU}(2)$ map to each rotation. The sign
+has measurable consequences in multi-qubit interferometry (Chapter 7's
+Bell-state phase manipulations are the most accessible example).
 
 **Geometric reading of single-qubit operations.** Single-qubit
 unitaries act on the Bloch sphere as *rotations*. Specifically:
@@ -380,7 +380,9 @@ $$
 U = R_z(\alpha)\\, R_y(\beta)\\, R_z(\gamma),
 $$
 
-with $\alpha, \beta, \gamma$ Euler-like angles. This is the
+with $\alpha, \beta, \gamma$ Euler-like angles (real rotation angles —
+unrelated to the complex amplitudes $\alpha, \beta$ of the state; the
+letters are simply reused by convention). This is the
 single-qubit specialisation of the "every unitary is a product of
 generators" pattern; it underwrites every compilation step that
 expresses a circuit unitary in terms of a hardware-native gate set

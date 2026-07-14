@@ -19,7 +19,8 @@ Two points to keep in mind:
    unbounded operators. When continuous variables appear (Chapter 32), they
    are clearly marked.
 2. We use **physicists' conventions** for the inner product (conjugate-linear
-   in the first argument) and Dirac notation. Mathematicians' linear algebra
+   in the first argument — this convention is defined and illustrated in
+   §4.3) and Dirac notation. Mathematicians' linear algebra
    textbooks typically swap the conjugate side; if your reflexes come from
    pure math, watch for that.
 
@@ -276,7 +277,9 @@ $$
 This is one operator-level way to view many overlaps and
 expectation-value expressions. For a normalized pure state
 $|\psi\rangle$, the expectation value of an observable $O$ is the
-familiar bra-ket sandwich
+bra-ket sandwich (read it right to left: apply $O$ to the column
+vector $|\psi\rangle$, then take the inner product with $|\psi\rangle$
+itself — the full notation grammar is in §4.12)
 
 $$
 \langle O\rangle_\psi = \langle\psi| O |\psi\rangle.

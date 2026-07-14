@@ -95,7 +95,8 @@ $$
 |\mathrm{GHZ}\rangle \;=\; \frac{1}{\sqrt{2}}\bigl(|000\rangle + |111\rangle\bigr), \qquad |W\rangle \;=\; \frac{1}{\sqrt{3}}\bigl(|001\rangle + |010\rangle + |100\rangle\bigr).
 $$
 
-They cannot be converted into one another by local operations and classical communication (LOCC) — they sit in different SLOCC classes — and they behave very differently under loss. If you trace out one qubit of $|\mathrm{GHZ}\rangle$, the remaining two are in a classical mixture of $|00\rangle$ and $|11\rangle$ with no remaining entanglement. If you trace out one qubit of $|W\rangle$, the remaining two are still entangled. GHZ is "fragile" and used in extremal tests of nonlocality (Greenberger-Horne-Zeilinger contradiction); W is "robust" and useful as a memory state for distributed protocols.
+They cannot be converted into one another by local operations and classical communication (LOCC) — they sit in different SLOCC (stochastic LOCC — LOCC allowed to succeed
+only with some probability) classes — and they behave very differently under loss. If you trace out one qubit of $|\mathrm{GHZ}\rangle$, the remaining two are in a classical mixture of $|00\rangle$ and $|11\rangle$ with no remaining entanglement. If you trace out one qubit of $|W\rangle$, the remaining two are still entangled. GHZ is "fragile" and used in extremal tests of nonlocality (Greenberger-Horne-Zeilinger contradiction); W is "robust" and useful as a memory state for distributed protocols.
 
 The GHZ state generalises to $n$ qubits as $(|0^n\rangle + |1^n\rangle)/\sqrt{2}$; the W state as the uniform superposition over single-excitation strings. Preparing GHZ on $n$ qubits requires only one $H$ and $n{-}1$ CNOTs; preparing W requires a more involved staircase circuit.
 
@@ -169,7 +170,8 @@ This is the maximally mixed single-qubit state. From Alice's local perspective, 
 
 Entanglement is consumed and produced by protocols. Three canonical examples:
 
-**Teleportation.** Alice and Bob share one Bell pair. Alice has an unknown qubit $|\psi\rangle$ she wants to send to Bob. She performs a Bell-basis measurement on her unknown qubit together with her half of the shared pair, getting two classical bits as outcome. She sends those bits over a classical channel. Bob applies one of four single-qubit corrections, indexed by Alice's two bits $(m_1 m_2)$: $00 \to I$, $01 \to X$, $10 \to Z$, $11 \to ZX$ (apply $X$ first, then $Z$, so the composite operator is $Z \cdot X$, read right to left), and now holds $|\psi\rangle$. No qubit travelled; one ebit and two classical bits were consumed.
+**Teleportation.** Alice and Bob share one Bell pair. Alice has an unknown qubit $|\psi\rangle$ she wants to send to Bob. She performs a Bell-basis measurement on her unknown qubit together with her half of the shared pair, getting two classical bits as outcome. She sends those bits over a classical channel. Bob applies one of four single-qubit corrections, indexed by Alice's two bits $(m_1 m_2)$: $00 \to I$, $01 \to X$, $10 \to Z$, $11 \to ZX$ (apply $X$ first, then $Z$, so the composite operator is $Z \cdot X$, read right to left), and now holds $|\psi\rangle$. No qubit travelled; one ebit (one maximally entangled pair — the unit
+of entanglement) and two classical bits were consumed.
 
 ![Teleportation circuit: a Bell pair on q1–q2, Alice's Bell measurement on the message qubit q0 and her half q1, and Bob's classically-conditioned X and Z corrections on q2.](figures/teleportation.svg)
 
