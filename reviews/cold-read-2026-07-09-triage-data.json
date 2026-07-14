@@ -1,0 +1,1737 @@
+[
+ {
+  "file": "book/00-front-matter/00-preface.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 1,
+  "d2": 1,
+  "d3": 2,
+  "d4": 1,
+  "d5": 0,
+  "dim_notes": "D1: Opening (lines 9-18) frames a genuine tension (\"two reputations that do it no favours\"... \"Neither picture is right\") before any machinery \u2014 good. But by line 31 the ~700-word opening span pivots into meta positioning against Nielsen & Chuang (lines 31-43) and a reader-profile checklist (lines 45-55) rather than a concrete example/paradox to care about, so the opening is weighted toward comparison-meta rather than lived experience. D2: line 26 stacks four undefined technical nouns in a row (\"measurement, unitarity, error correction, complexity\") as an abstract-noun pile with no gloss \u2014 mild debt, but it's a topic-preview list, not something the reader must operate on. D3: \"NISQ-era\" is used at line 37 (recurs lines 220, 287) with no definition or forward pointer anywhere in the file; \"CNOT\" and the shorthand matrix \"diag(I, X)\" are used at lines 336-337 assuming the reader already knows what a CNOT gate and the Pauli-X matrix are \u2014 the only cover is a generic \"stated in full... reiterated in Chapter 4\" pointer at lines 305-308 that applies to sign/ordering conventions, not to defining the gate names/operators themselves. D4: roughly a third of the file (lines 163-301: \"How to Use This Book,\" \"Core Topics, Deep Dives, and Frontier Topics,\" \"Reading Linearly vs. Reading Selectively,\" \"Suggested Reading Paths\") is pure navigation/roadmap material, including five fully enumerated reading paths (lines 272-301) \u2014 normal for a preface, not tables-with-prose, but a heavy meta-to-substance ratio.",
+  "findings": [
+   {
+    "file": "book/00-front-matter/00-preface.md",
+    "line": 37,
+    "quote": "NISQ-era practice, did not have current hardware platforms",
+    "statement": "The term of art \"NISQ\" is used without any gloss or forward pointer, and is never defined anywhere in the file.",
+    "fix": "Add a brief inline gloss on first use, e.g. \"NISQ-era (noisy intermediate-scale quantum) practice\", or an explicit forward pointer to where NISQ is defined.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/00-front-matter/00-preface.md",
+    "line": 337,
+    "quote": "control on the first qubit and target on the second has its",
+    "statement": "The CNOT gate and the Pauli-X-based shorthand diag(I, X) are used as if already known, with no operational gloss and only a generic (not per-term) forward pointer to Chapter 4.",
+    "fix": "Either gloss CNOT/X in one clause here (\"CNOT, the controlled-NOT gate\") or explicitly flag this whole paragraph as forward-referencing material to be understood after Chapter 4.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/00-front-matter/00-preface.md",
+    "line": 26,
+    "quote": "measurement, unitarity, error correction, complexity",
+    "statement": "Four undefined technical nouns are piled in a list in the opening ~700 words, adding abstract-noun debt before any of them is grounded.",
+    "fix": "Replace the list with one concrete instance (e.g., a one-line teaser about what unitarity rules out) or move the list later after motivation is established.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/00-front-matter/01-background-and-self-check.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 1,
+  "d3": 2,
+  "d4": 1,
+  "d5": 0,
+  "dim_notes": "D1(2): First ~700 words (lines 7-32) are pure meta/structural framing \u2014 what kind of chapter this is, how the bar is set, and a blockquote instructing HOW to read the chapter ('Skim the section openings first to calibrate...') \u2014 with zero concrete example, conflict, or paradox; the first concrete artifact (Sample problem SC.1.1) doesn't land until line 68, right at the edge of the opening window. D2(1): the opening is mostly transparent about its own structure (explicit pointers to \u00a7SC.6, Chapter 4) rather than silently building debt, so only mild \u2014 the 'how to read this chapter' instructional block before any content is itself a mild caveat-before-story pattern. D3(2): line 161 uses the term 'Pauli $X$ matrix' as settled vocabulary before it is ever defined in-file (the actual Pauli-X/Pauli-Z matrices aren't given until SC.3.3, lines 179-184); more seriously, line 77's Sample problem SC.1.2 asks the reader to work with ket notation $|01\\rangle$ 'from memory' for a two-qubit state, but bra-ket notation is never introduced anywhere in this file or in the preceding Preface (reading order so far), only forward-cited to 'Chapter 4, \u00a74.2' in the answer \u2014 a reader with the stated 'no prior QM' profile cannot even parse the question. D4(1): no literal tables in the file; caveat density ('not assumed', 'not required', 'you do not need') is high but consistent with a checklist/self-check genre, so only mildly penalized. D5(0): no clear instance of a load-bearing concept given in full formal rigor before an operational gloss beyond the already-captured D1/D2 issue in SC.2's definition-first paragraph on 'mathematical maturity'.",
+  "findings": [
+   {
+    "file": "book/00-front-matter/01-background-and-self-check.md",
+    "line": 77,
+    "quote": "$|01\\rangle$ as a length-4 NumPy column vector with",
+    "statement": "Sample problem SC.1.2 requires the reader to parse bra-ket notation for a two-qubit state 'from memory', but ket notation is never introduced anywhere earlier in the reading order (Preface, or this file) \u2014 only glossed retroactively in the answer with a forward pointer to Chapter 4 \u00a74.2.",
+    "fix": "Either gloss ket notation inline before the problem ('using Dirac/ket notation |b> for basis state b, introduced fully in Ch.4 \u00a74.2') or replace the problem with a plain-vector version that doesn't require pre-knowledge of an undefined notation.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/00-front-matter/01-background-and-self-check.md",
+    "line": 161,
+    "quote": "These are also the eigenvectors of the Pauli $X$ matrix,",
+    "statement": "The term 'Pauli X matrix' is used as if already known in the SC.3.1 answer, but the Pauli-X matrix is not actually defined (with its matrix entries) until Sample problem SC.3.3, two problems later.",
+    "fix": "Either move the explicit Pauli-X/Z definitions from SC.3.3 up before this first mention, or drop the aside connecting A to Pauli X here and save it until after X has been defined.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/00-front-matter/01-background-and-self-check.md",
+    "line": 7,
+    "quote": "This chapter is a self-check, not an introduction.",
+    "statement": "The chapter opens with roughly 700 words of pure meta/roadmap content (what kind of chapter this is, how the bar is set, explicit instructions on how to read the chapter) before any concrete example, conflict, or problem for the reader to engage with.",
+    "fix": "Lead with a compact, concrete calibration item (e.g., one short sample problem) before the meta explanation of how to use the chapter, so the reader has something to try before being told how to try it.",
+    "verify": "NOT-FOUND"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 2,
+  "d3": 2,
+  "d4": 1,
+  "d5": 1,
+  "dim_notes": "D1(2): opening hook at lines 7-14 is genuinely concrete (\"Bra-ket symbols collide with set-builder braces; norm bars collide with the modulus of a scalar\"), but it is immediately followed by two solid roadmap/meta blocks before any content resumes: lines 16-25 (pointers to \u00a74.16, Appendix A, Appendix B) and the \"How to read this chapter\" blockquote lines 27-35 (bookmark \u00a7N.3/\u00a7N.4/\u00a7N.6, \"Nothing here needs to be memorised\"). Roadmap word count clearly exceeds the concrete hook in the first ~500 words. D2(2): the opening trades on undefined terms of art (\"Bra-ket symbols\" line 9, \"norm bars\" line 10) before any gloss, and stacks caveat/forward-pointer sentences (\"reiterated... in \u00a74.16\" line 16-17, \"collected in Appendix A\" line 19-20, \"bookmark \u00a7N.3... for later reference\" line 30-31) ahead of any worked example \u2014 classic caveat/table-before-story debt. D3(2): concrete in-file forward-use violations found \u2014 see findings (H-as-Hamiltonian at line 71 used and never glossed, colliding unflagged with Hadamard H at line 158; ket notation used at line 94 before N.3 defines kets at line 206; Pauli X,Y,Z invoked as \"$\\sigma=(X,Y,Z)$\" at line 101 before N.2 gives the Pauli matrices at lines 152-154). D4(1): no actual Markdown tables are used (the chapter explicitly avoids them, lines 192-195, 488-490), so no table-prose overload; some bullets carry multi-clause caveats (e.g. lines 137-142 on I_n vs I_2) which is mildly dense but appropriate for a lookup-style notation chapter. D5(1): this is by design a notation/convention reference rather than a concept-teaching chapter, and it consistently defers operational meaning to later chapters via explicit pointers (e.g. POVM at lines 421-423 points to \"Chapter 11\"); this is reasonable for the genre and only mildly dockable.",
+  "findings": [
+   {
+    "file": "book/00-front-matter/02-notation-and-conventions.md",
+    "line": 71,
+    "quote": "Schr\u00f6dinger evolution reads $U(t) = e^{-iHt}$ with no",
+    "statement": "The symbol H is used for the Hamiltonian without ever naming or glossing it, and it silently collides with the Hadamard gate H defined 87 lines later with no disambiguation note (unlike the chapter's own explicit disambiguation of \u03c3 and \u03c9).",
+    "fix": "Add an inline gloss (\"H is the Hamiltonian, formalized in Chapter 5\") here and a one-line disambiguation note where Hadamard H is introduced at line 158, matching the treatment given to \u03c3 and \u03c9.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/00-front-matter/02-notation-and-conventions.md",
+    "line": 94,
+    "quote": "does not need to re-introduce its amplitudes",
+    "statement": "Ket notation ($|0\\rangle$, $|1\\rangle$) is used in the N.1 Greek-letter list before Dirac/ket notation is formally introduced in N.3 (line 206), an in-file forward reference.",
+    "fix": "Add a forward pointer (\"ket notation defined in \u00a7N.3 below\") next to the example, or move this example after N.3.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/00-front-matter/02-notation-and-conventions.md",
+    "line": 101,
+    "quote": "Pauli operators when written as a vector",
+    "statement": "Pauli operators X, Y, Z are named and used as a vector in N.1 before the Pauli matrices are formally given with their matrix forms in N.2 (lines 152-154).",
+    "fix": "Add \"(matrices given in N.2 below)\" at first mention, or reorder so the gate-matrix definitions precede the Greek-letter role list.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high",
+  "file": "book/00-front-matter/02-notation-and-conventions.md",
+  "model": "run1-recovered"
+ },
+ {
+  "file": "book/part-00-historical-prelude/00-historical-prelude.md",
+  "model": "sonnet (experiment)",
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 2,
+  "d3": 2,
+  "d4": 2,
+  "d5": 1,
+  "confidence": "high",
+  "dim_notes": "From the 2026-07-09 four-model experiment; all findings ground-truth verified there.",
+  "findings": [
+   {
+    "line": 7,
+    "quote": "(from experiment, verified)",
+    "statement": "Opening interleaves meta blocks around the thesis; real narrative starts \u00a70.1",
+    "fix": "largely addressed by the 07-09 restructure; residual ~320w is the deliberate contract",
+    "verify": "OK"
+   },
+   {
+    "line": 181,
+    "quote": "so no-cloning is respected",
+    "statement": "no-cloning used 84 lines before its \u00a70.10 definition, no pointer at first use",
+    "fix": "add 4-6 word gloss or forward pointer at line 181",
+    "verify": "OK"
+   },
+   {
+    "line": 332,
+    "quote": "Phase kickback on a hidden bit-string",
+    "statement": "phase kickback appears only as an undefined table label",
+    "fix": "add a one-line gloss or drop the label for prose",
+    "verify": "OK"
+   }
+  ]
+ },
+ {
+  "file": "book/part-01-orientation/01-why-quantum-computing-exists.md",
+  "model": "sonnet",
+  "verdict": "GREEN",
+  "d1": 1,
+  "d2": 1,
+  "d3": 1,
+  "d4": 1,
+  "d5": 0,
+  "dim_notes": "D1(1): Lines 7-9 match the calibration anchor exactly (direct claim \"Quantum computing is not a faster classical computer\" \u2192 three motivating questions \u2192 concrete historical narrative \"Four papers between 1982 and 1996...\"). But line 11's blockquote appends a six-part section-by-section roadmap (\"\u00a71.1 sets up... \u00a71.2 demarcates... \u00a71.6 places us on the 2025\u20132026 hardware timeline\") right after, so a meaningful fraction of the ~500-word opening screen is meta/roadmap rather than experience. D2(1): the same line-11 roadmap promises content not yet delivered (\"\u00a71.3 and \u00a71.4 separate the problem classes where quantum genuinely helps... \u00a71.5 distinguishes provable advantage from end-to-end utility\") \u2014 mild caveat/promissory debt, though it follows the historical story rather than preceding it, so it is not blocking. D3(1): isolated terms of art appear with no inline gloss and no explicit forward pointer in their own sentence: \"BQP\" (line 33, \"$\\mathrm{NP}\\not\\subseteq\\mathrm{BQP}$\"), the \"phase kickback\"/quantum Fourier transform/Hamiltonian trio (line 31), and \"quantum walks\" (line 53) are all named without definition. This is meaningfully mitigated by the chapter's own line-11 disclaimer that it is \"the only chapter in the book that is allowed to gesture,\" and most other jargon (unitary, interference, HHL) does carry either an inline operational gloss or an explicit \"Chapter N\" pointer. D4(1): the taxonomy bullets (lines 49-55, 63-73) use bold-label-plus-sentence structure rather than short scannable labels \u2014 e.g. the line-53 quantum-walk entry and line-71 HHL entry pack full clauses with nested parenthetical complexity notation into a single bullet, borderline \"table of prose\" even though no literal markdown table is used.",
+  "findings": [
+   {
+    "file": "book/part-01-orientation/01-why-quantum-computing-exists.md",
+    "line": 33,
+    "quote": "$\\mathrm{NP} \\not\\subseteq \\mathrm{BQP}$ is supported by oracle",
+    "statement": "BQP is used as a load-bearing term of art with no inline gloss and no explicit forward pointer defining what the class means.",
+    "fix": "Add a short parenthetical gloss (e.g. \"BQP, the class of problems a quantum computer solves efficiently\") or point explicitly to Chapter 17 for the definition before using the symbol.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-01-orientation/01-why-quantum-computing-exists.md",
+    "line": 31,
+    "quote": "a symmetry that phase kickback exploits, a Hamiltonian that",
+    "statement": "Three quantum terms of art (quantum Fourier transform, phase kickback, Hamiltonian) are dropped in one clause with zero gloss and no forward chapter pointer.",
+    "fix": "Either paraphrase in plain language for this illustrative sentence, or append a forward pointer (\"terms formalized in Chapters 4/10\") right after the list.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-01-orientation/01-why-quantum-computing-exists.md",
+    "line": 53,
+    "quote": "quantum walks for element distinctness ($O(N^{2/3})$ against classical",
+    "statement": "\"Quantum walks\" is used as a named algorithmic technique in the taxonomy without any definition or forward pointer elsewhere in the file.",
+    "fix": "Add a one-clause gloss (\"quantum walks, a quantum analogue of random walks\") or a forward pointer to the chapter that defines them.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-01-orientation/02-classical-to-quantum-contrast.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 2,
+  "d3": 2,
+  "d4": 1,
+  "d5": 1,
+  "dim_notes": "D1(2): The opening two paragraphs (lines 7 and 9, ~300 words) are 100% meta/roadmap \u2014 line 7 is a bare topic list (\"bits, randomness, reversibility, gates, state-space size, hardware realisation, and control flow\") and line 9 is a section-by-section reading map \u2014 before any concrete example, conflict, or thing-to-care-about appears; concrete content (the flip-flop/SRAM contrast) only starts at line 13. Contrast with the ch.1 GREEN anchor, which leads with a claim and motivation before its own roadmap. D2(2): line 9 stacks reader debt before content \u2014 it names three undefined symbols (\"$\\mathrm{P}$, $\\mathrm{NP}$, $\\mathrm{BQP}$\") as \"recognition level only,\" defers rigor to Chapter 17, and states \"Nothing here is load-bearing for the rest of the book\" \u2014 a caveat-about-the-chapter's-own-importance placed before a single example is given. D3(2): concrete in-file forward-use \u2014 $\\mathrm{P}$ is used substantively at line 80 (\"$\\mathrm{BPP}$ is conjectured equal to $\\mathrm{P}$\") two lines before its definition at line 82 (\"$\\mathrm{P}$ is the set of decision problems solvable in classical polynomial time\"); the same symbol is also previewed undefined in the line-9 roadmap, ~73 lines ahead of its definition. Softened somewhat because P/NP are common CS-background terms for this reader profile, but it is still a bookkeeping slip within a single file. D4(1): no literal tables misused, but \u00a72.6's hardware bullets (lines 90-94) pack 3-4 dense numeric facts per bullet (\"Coherence times of tens to hundreds of microseconds; gate times of tens to hundreds of nanoseconds; two-qubit gate error rates at the 10^-2 to 10^-3 level\") \u2014 scannable via semicolons but border on prose overload. D5(1): the no-cloning theorem (line 49) is stated in fully formal terms first (\"There is no unitary $U$ such that $U(|\\psi\\rangle \\otimes |0\\rangle) = |\\psi\\rangle \\otimes |\\psi\\rangle$...\") before the operational \"classical data is freely copyable; quantum data is not\" gloss and C++/Rust move-only analogy that follow immediately after \u2014 minor since the grounding arrives within the same short paragraph.",
+  "findings": [
+   {
+    "file": "book/part-01-orientation/02-classical-to-quantum-contrast.md",
+    "line": 80,
+    "quote": "BPP$ is conjectured equal to $\\mathrm{P}$, though this remains open",
+    "statement": "The symbol $\\mathrm{P}$ is used in an argumentative claim two lines before it is actually defined in the same section.",
+    "fix": "Move the one-clause definition of P earlier (or inline a 3-word gloss \"P, polynomial-time problems,\" at first use) so line 80 doesn't outrun line 82.",
+    "verify": "OK-loose"
+   },
+   {
+    "file": "book/part-01-orientation/02-classical-to-quantum-contrast.md",
+    "line": 7,
+    "quote": "it lists, side by side and without yet introducing formal machinery",
+    "statement": "The chapter's opening paragraph is pure topic-roadmap with no concrete example, conflict, or motivating stake, unlike the Chapter 1 GREEN anchor which opens with a direct claim.",
+    "fix": "Lead with one concrete transfer/non-transfer example (e.g. the AND-gate irreversibility puzzle from \u00a72.3) before the topic list, then follow with the roadmap.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-01-orientation/02-classical-to-quantum-contrast.md",
+    "line": 9,
+    "quote": "Nothing here is load-bearing for the rest of the book",
+    "statement": "The \"how to read\" callout previews undefined symbols (P, NP, BQP) and disclaims the chapter's own importance before any content has been presented, compounding opening reader-debt.",
+    "fix": "Move the load-bearing/recognition-level caveat to \u00a72.5 where those symbols are actually introduced, rather than stating it in the chapter's opening frame.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-01-orientation/03-physical-intuition.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 2,
+  "d3": 2,
+  "d4": 1,
+  "d5": 1,
+  "dim_notes": "D1(2): Lines 1-60 (title, status badge, nav links, then four paragraphs of meta-purpose framing, a 'Three points to keep in mind' list, and a 'How to read this chapter' navigational callout) are almost entirely roadmap/self-description; the first concrete thing to happen \u2014 the Stern-Gerlach beam actually splitting \u2014 doesn't land until line 83 ('The beam splits into exactly two spots'), roughly 800 words in, well past the calibration anchor's immediate-motivation shape. Point 3 (lines 40-45) does contain a direct-claim-style sentence, which keeps this from being a 3. D2(2): opening sentences repeatedly bank debt against later chapters rather than resolving locally \u2014 'The mathematics arrives in Chapter 4; the postulates that compress this physics into rules arrive in Chapter 5' (20-21) and 'Every postulate of Chapter 5 is the compressed summary...' (28-29) \u2014 and point 3 (41-45) previews 'Hilbert space', 'unitaries', and 'interfere' as an unglossed forecast before any of them is earned. D3(2): $\\hbar$ is used at first-mention (line 87, '+\\hbar/2 and -\\hbar/2') with no gloss and is not actually defined/quantified until line 649 in \u00a73.10 ('Planck's constant $\\hbar \\approx 10^{-34}$ J s'), ~550 lines later; separately, the commutator bracket $[A,B]$ appears live inside the uncertainty-principle formula at line 415 even though only the word 'commutator' (not its notation) was used earlier (379) and the formal treatment is explicitly deferred to Chapter 4 (410) \u2014 the notation itself is never glossed in this file. D4(1): no literal tables; bulleted 'things to take from this' lists (141-163, 332-346, 385-396, 531-546) are prose-heavy but each bullet leads with a bolded term, keeping them scannable. The \u00a73.9 'Moving-target warning' callout (line 550) is a caveat-before-content block opening that section, a mild instance of the caveat-before-example pattern. D5(1): the uncertainty-principle section states the quantitative inequality (412-416) slightly before the clarifying operational paragraph ('not a statement about measurement imprecision...', 425-431), though the preceding \u00a73.6 Stern-Gerlach sequence already supplies real operational intuition for incompatibility, so this is mild rather than severe.",
+  "findings": [
+   {
+    "file": "book/part-01-orientation/03-physical-intuition.md",
+    "line": 20,
+    "quote": "The mathematics arrives in Chapter 4; the postulates that compress",
+    "statement": "The chapter's opening ~800 words (title through the 'How to read this chapter' box) are almost entirely meta/roadmap and forward-reference debt rather than concrete experience, delaying the first actual example (Stern-Gerlach splitting) well past the calibration-anchor shape.",
+    "fix": "Open with a compressed version of the Stern-Gerlach split (or another concrete surprise) in the first paragraph, then fold the roadmap/status material after it or into a trailing note.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-01-orientation/03-physical-intuition.md",
+    "line": 87,
+    "quote": "later identified as $+\\hbar/2$ and $-\\hbar/2$, the eigenvalues",
+    "statement": "Planck's constant $\\hbar$ is used at first mention in \u00a73.1 with no gloss and isn't actually introduced/quantified until \u00a73.10 (line 649), ~550 lines later, so a reader with no prior QM exposure has no idea what the symbol denotes when it first appears.",
+    "fix": "Add a one-clause gloss at first use, e.g. '...\u00b1\u210f/2 (\u210f is Planck's constant, a fixed tiny number set by nature)...', or move the \u210f \u2248 10\u207b\u00b3\u2074 J\u00b7s remark from \u00a73.10 up to a footnote here.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-01-orientation/03-physical-intuition.md",
+    "line": 415,
+    "quote": "\\Delta A\\\\, \\Delta B \\ge \\tfrac{1}{2} |\\langle [A, B] \\rangle|",
+    "statement": "The uncertainty-principle formula uses commutator bracket notation $[A,B]$ live in a display equation, but the notation itself (as opposed to the word 'commutator') is never defined anywhere in this file and is explicitly deferred to Chapter 4.",
+    "fix": "Either gloss $[A,B]=AB-BA$ in a parenthetical at first use, or replace the live formula with prose ('the spreads satisfy a lower bound tied to how much A and B fail to commute, made precise in Chapter 4') and move the equation itself to Chapter 4.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "medium"
+ },
+ {
+  "file": "book/part-02-formalism/04-mathematical-background.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 2,
+  "d3": 2,
+  "d4": 1,
+  "d5": 1,
+  "dim_notes": "D1(2): lines 1-33 are pure scope/roadmap (\"refresher, not a textbook treatment\", \"Two points to keep in mind\", \"How to read this chapter\" section-map) with zero concrete example; the first motivating payoff (\"interference, the engine of quantum speedups\", line 61) lands only after ~580 words of meta text plus a dry complex-number definition (line 35-41). D2(2): line 21-22 names \"conjugate-linear in the first argument\" as a convention to watch for before the inner product itself is ever defined (only arrives at line 165, \u00a74.3); lines 26-31 front-load a multi-section roadmap (\u00a74.1-4.8, \u00a74.9, \u00a74.10-4.12, \u00a74.13, \u00a74.14) before the reader has seen any of that content. D3(2): line 56-58 explicitly promises \"This column-vector reading is all the notation this chapter needs until \u00a74.12 develops the full bra-ket machinery,\" yet outer-product/bra-ket-sandwich notation is used well before \u00a74.12 \u2014 e.g. line 258 \"$P = |0\\rangle\\langle 0|$\" and line 278-282's \"familiar bra-ket sandwich $\\langle\\psi|O|\\psi\\rangle$\" \u2014 both preceding the formal bra/outer-product definitions at lines 1004-1013. D4(1): no literal markdown tables exist (deliberately avoided, line 1368-1372), but the Qiskit endian-warning callout (lines 590-614) packs four dense sentence-length numbered caveats into one aside \u2014 mild, confined overload. D5(1): a couple of sections open with textbook rigor before quantum framing (line 35 raw complex-number definition; line 104-106 \"eight axioms\" vector-space definition) while most others (e.g. \u00a74.11 Hilbert spaces, line 958-962) correctly lead with an operational \"for this book, X means\" framing.",
+  "findings": [
+   {
+    "file": "book/part-02-formalism/04-mathematical-background.md",
+    "line": 278,
+    "quote": "the expectation value of an observable $O$ is the",
+    "statement": "The bra-operator-ket sandwich notation is used and called 'familiar' in \u00a74.4 even though bras and the sandwich construction are not formally defined until \u00a74.12, breaking the chapter's own earlier promise that column-vector notation suffices until then.",
+    "fix": "Move the minimal bra/sandwich grammar into \u00a74.1's notation aside, or rewrite the \u00a74.4 expectation-value formula in the phi-dagger-A-psi form already established, deferring bra-ket sandwich notation until after \u00a74.12.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-02-formalism/04-mathematical-background.md",
+    "line": 27,
+    "quote": "\u00a7\u00a74.1\u20134.8, \u00a7\u00a74.10\u20134.12, and the sampling paragraph of \u00a74.14",
+    "statement": "The chapter opens with a section-number roadmap naming five section ranges before the reader has encountered any of the content those numbers refer to, ahead of any concrete example.",
+    "fix": "Cut the 'How to read this chapter' roadmap paragraph from the opening (or shrink it to one sentence) and move the concrete amplitude/interference example (currently lines 43-61) or Hadamard-basis example (lines 82-100) to the front.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-02-formalism/04-mathematical-background.md",
+    "line": 22,
+    "quote": "in the first argument) and Dirac notation. Mathematicians' linear algebra",
+    "statement": "The opening 'two points' list names the convention 'conjugate-linear in the first argument' before the inner product it modifies is ever defined (it only appears at line 165 in \u00a74.3), so the phrase carries no operational meaning on first read.",
+    "fix": "Either move this convention note to sit right after the inner product is defined in \u00a74.3, or replace it in the opening with a bare forward pointer ('see \u00a74.3') instead of the unexplained technical phrase.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-02-formalism/05-postulates.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 2,
+  "d3": 2,
+  "d4": 1,
+  "d5": 1,
+  "dim_notes": "D1(2): opening from line 7 (Ch4 recap) through line 45 (~500 words) is entirely recap + a numbered 'three points' list (14-33) + a dense per-section reading-guide (34-44); zero concrete example, paradox, or stake appears before Postulate 1 begins at line 46 \u2014 inverted relative to the Ch1 calibration shape. D2(2): the opening banks debt it doesn't pay off in-scene \u2014 'the formalism is extended to cover the deviations (mixed states here, quantum channels in Chapter 10, POVMs in Chapter 11)' (line 19-20) stacks three forward pointers before any of them is shown, and 'computational fingerprint' (line 29) is promised as a payoff but not demonstrated until section 5.15. D3(2): several gate/operator names are used as bare terms of art with no gloss or forward pointer, even though the chapter's own closing section (789-798) says single-qubit gates are first properly developed in Chapter 6: Pauli matrices and R_x/R_y/R_z (line 300-304, with symbol P in e^{-i\u03b8P/2} never defined), phase/basis gates S, T, R_z, H (line 384-386), and CNOT (line 713). D4(1): the 'How to read this chapter' block (34-44) crams four different per-range reading instructions (\u00a75.1-5.6 carefully, \u00a75.7-5.8 skim, \u00a75.9-5.12 with care, \u00a75.13-5.14 once) into one paragraph \u2014 roadmap/caveat density without being a literal table. D5(1): Postulate 1 (48-54) opens with the fully axiomatic 'ray ... equivalence class of nonzero vectors under multiplication by any nonzero complex scalar' before its operational payoff a few lines later, and Postulate 4 (232-235) states the tensor-product axiom before the motivating 'This is the postulate that makes quantum computation interesting' (237) \u2014 mild theorem-before-motivation, softened by quick follow-up unpacking in both cases.",
+  "findings": [
+   {
+    "file": "book/part-02-formalism/05-postulates.md",
+    "line": 301,
+    "quote": "matrices are themselves Hermitian observables, and the rotation",
+    "statement": "Pauli matrices and the rotation gates R_x/R_y/R_z (plus the generator symbol P in the following e^{-i\u03b8P/2} formula) are used as unglossed terms of art, even though the chapter's own bridge section says gates are first properly taught in Chapter 6.",
+    "fix": "Add an inline gloss or explicit forward pointer, e.g. 'the Pauli matrices X, Y, Z (introduced in Chapter 6) are themselves Hermitian observables'.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-02-formalism/05-postulates.md",
+    "line": 14,
+    "quote": "Three points to keep in mind as you read:",
+    "statement": "The entire first ~500-word screen (Ch4 recap, this numbered list, and the following per-section reading-guide) is roadmap/meta with no concrete example, paradox, or stake, inverting the experience-before-roadmap shape set by the Chapter 1 calibration anchor.",
+    "fix": "Open with one concrete payoff (e.g. the interference example from \u00a75.7 that distinguishes (|0>+|1>)/\u221a2 from (|0>-|1>)/\u221a2) before the recap and the three-point/reading-guide meta material.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-02-formalism/05-postulates.md",
+    "line": 384,
+    "quote": "phase gates like $S$, $T$, $R_z$), *manipulated*",
+    "statement": "S, T, R_z, and H are named as phase/basis-changing gates with no definition or forward pointer, ahead of their real introduction later in the book (per the chapter's own bridge section, line 791-798).",
+    "fix": "Gloss briefly or add '(defined in Chapter 6)' after the gate list so the cold reader knows these are forward references, not expected prior knowledge.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-03-qubits/06-the-qubit.md",
+  "model": "sonnet",
+  "verdict": "GREEN",
+  "d1": 1,
+  "d2": 1,
+  "d3": 1,
+  "d4": 0,
+  "d5": 1,
+  "dim_notes": "D1(1): Lines 7-16 open with a direct claim (qubit = C^2) and concrete imagery (Bloch sphere as 'visible' geometry) before any equation \u2014 good ratio; the only meta drag is the second paragraph (lines 18-22, 'This chapter is short on purpose... the value here is concrete formulas for the bases that recur throughout the book') which is a roadmap sentence, but it's short relative to the surrounding concrete content that follows immediately in \u00a76.1. D2(1): the same roadmap sentence (line 20, 'for the bases that recur throughout the book (computational,') names three bases (computational/Hadamard/circular) before any of them is defined \u2014 mild preview-before-story, but each is resolved within a page or two (\u00a7\u00a76.4-6.6), so debt is short-lived. D3(1): symbol reuse rather than true undefined-use \u2014 alpha and beta are established as complex amplitudes in \u00a76.2 (line 61) then silently repurposed as real Euler rotation angles in \u00a76.9 (line 383, 'with $\\alpha, \\beta, \\gamma$ Euler-like angles') with no acknowledgment of the collision; a cold linear reader who is still anchoring alpha/beta as 'amplitude coefficients' could stumble for a sentence. No genuine forward-reference-without-pointer violations found \u2014 every Bloch-sphere symbol (theta, phi) introduced in \u00a76.2 carries an explicit '(\u00a76.8)' pointer to where it is built, and terms like Born rule, Postulate 3, density matrix all carry \u00a75.x pointers consistent with prior-chapter fair-game status. D4(0): no tables in the file; all lists are short scannable bullets (e.g. lines 89-90, 281-284, 440-444). D5(1): lines 307-321 ('Why the half-angle') name the rigorous object first \u2014 'the standard double-cover relation between SU(2)... and SO(3)' (line 314) \u2014 before giving the operational cash-out ('A full 2\u03c0 rotation... multiplies the state by -1; only a 4\u03c0 rotation restores the identity'); the operational sentence does arrive immediately after, softening this, so it's a mild instance rather than a hard-definition wall.",
+  "findings": [
+   {
+    "line": 383,
+    "quote": "with $\\alpha, \\beta, \\gamma$ Euler-like angles",
+    "statement": "The symbols alpha and beta are reused for Euler rotation angles in the three-parameter decomposition of \u00a76.9 after having been fixed as the complex state amplitudes alpha, beta throughout \u00a76.2-6.3, with no acknowledgment of the collision.",
+    "fix": "Rename the Euler angles (e.g. phi1, phi2, phi3 or a, b, c) or add a one-clause note that these are unrelated to the earlier amplitude alpha/beta.",
+    "verify": "OK"
+   },
+   {
+    "line": 20,
+    "quote": "for the bases that recur throughout the book (computational,",
+    "statement": "The chapter's opening roadmap paragraph names the three recurring bases (computational, Hadamard, circular) before any of them has been defined in this file.",
+    "fix": "Either trim the parenthetical list from the roadmap sentence or move this preview to just after \u00a76.1 once the computational basis exists to anchor it.",
+    "verify": "OK"
+   },
+   {
+    "line": 314,
+    "quote": "double-cover relation between $\\mathrm{SU}(2)$ (acting on the Hilbert",
+    "statement": "The half-angle explanation names the rigorous SU(2)/SO(3) double-cover relation before giving its operational meaning (2\u03c0 flips sign, 4\u03c0 restores identity), which follows immediately but only after the formal label.",
+    "fix": "Lead with the operational fact (2\u03c0 rotation flips sign; 4\u03c0 restores it) and attach the SU(2)/SO(3) double-cover label afterward as the formal name for what was just shown.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-03-qubits/07-multiple-qubits-and-entanglement.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 2,
+  "d3": 2,
+  "d4": 0,
+  "d5": 1,
+  "dim_notes": "D1=2: opening ~700-900 words (lines 7-29) is almost entirely a chapter topic-list (\"the tensor product, product vs. entangled states, the Bell zoo, the EPR/Bell argument... the Schmidt decomposition, partial traces...\", line 7) plus a meta \"How to read this chapter\" box (line 9), then straight into bare notation ($\\mathcal{H}=\\mathbb{C}^2$, line 13) with no worked example or paradox first; the first genuinely concrete hook (\"more amplitudes than there are atoms in the observable universe\", line 39) lands well after the window, unlike Ch.1's direct-claim-first opening cited as the GREEN anchor. D2=2: line 9's \"How to read this chapter\" box is a roadmap/caveat block (prerequisites, mandatory-vs-skimmable sections) placed before any example; line 7 piles up unglossed jargon labels (Bell zoo, EPR/Bell argument, local hidden-variable model) as a preview list; line 21 inserts a caveat aside about Qiskit's reversed qubit-numbering convention (with three forward pointers) in the middle of the very first notational paragraph, before the reader has used the convention once. D3=2: \"ebit\" is used at line 172 (\"one ebit and two classical bits were consumed\") as if already familiar, but is only glossed two paragraphs later at line 180 (\"an ebit (one maximally entangled pair) is a quantifiable resource\") \u2014 in-file forward use with no pointer; \"SLOCC\" is used at line 98 (\"they sit in different SLOCC classes\") and is never defined or expanded anywhere in this file or (per repo-wide grep) anywhere else in the book. D4=0: no tables in the file; prose density in \u00a77.12-7.13 is high but is ordinary running prose, not tabular cells. D5=1: \u00a77.10 Schmidt Decomposition opens with the full existence theorem (orthonormal sets, \u03bb_i, SVD provenance, line 140) before any operational payoff, and \u00a77.13 opens with the entropy-of-entanglement formula (line 187) before explaining what it's for \u2014 but in both cases the operational \"what this buys you\" follows within 1-2 sentences in the same section, so the debt is short-lived rather than structural.",
+  "findings": [
+   {
+    "file": "book/part-03-qubits/07-multiple-qubits-and-entanglement.md",
+    "line": 172,
+    "quote": "one ebit and two classical bits were consumed",
+    "statement": "The term \"ebit\" is used in the teleportation walkthrough as if already familiar, but its operational gloss appears only two paragraphs later.",
+    "fix": "Move the gloss \"(one maximally entangled pair)\" from line 180 up to this first use at line 172, or add a one-clause aside here.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-03-qubits/07-multiple-qubits-and-entanglement.md",
+    "line": 98,
+    "quote": "they sit in different SLOCC classes",
+    "statement": "\"SLOCC\" is introduced as an acronym immediately after LOCC is glossed, but SLOCC itself is never expanded or explained anywhere in this file or elsewhere in the book.",
+    "fix": "Expand on first use, e.g. \"different SLOCC (stochastic-LOCC) classes\" with a half-sentence of what that adds over LOCC, or cut the aside if not load-bearing.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-03-qubits/07-multiple-qubits-and-entanglement.md",
+    "line": 7,
+    "quote": "the Bell zoo, the EPR/Bell argument",
+    "statement": "The chapter's opening paragraph is a dense roadmap of forward-referenced jargon (Bell zoo, EPR/Bell argument, Schmidt decomposition) rather than a concrete example or paradox, and is followed immediately by a second meta block (the \"How to read this chapter\" box, line 9) before any worked example appears.",
+    "fix": "Lead with one concrete entangled-pair example or the EPR paradox intuition before the topic-list/roadmap paragraph, matching the Chapter 1 direct-claim-first pattern.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-04-gates-and-circuits/08-quantum-gates.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 2,
+  "d3": 1,
+  "d4": 0,
+  "d5": 2,
+  "dim_notes": "D1=2: first ~460 words (lines 7,9,13,15,17) are almost entirely chapter recap + reading-path logistics + formal postulate restatement; the only concrete grounding is the AND/OR/Toffoli aside buried inside a bolded \"consequences\" list on line 15 \u2014 no standalone hook/example/paradox precedes the machinery, unlike the Ch.1 calibration anchor. D2=2: line 9's \"How to read this chapter\" box front-loads unglossed forward pointers (\"universality, Clifford+T, Solovay\u2013Kitaev... essential before reading Part 8\") before any of those terms have appeared even once in the chapter; line 15 presents a bolded Reversibility/Norm-preservation/Linearity list (abstract-noun pile) before a single worked gate example exists. D5=2: line 13 states the chapter's central object (\"a quantum gate on n qubits is any element of the unitary group U(2^n)\") in full group-theoretic form immediately, with no prior \"operationally, a gate just does X\" framing; the same pattern recurs at line 146 where the Clifford group is defined as \"the normaliser of the Pauli group\" before any operational payoff (classical simulability) is given. D3=1: mild, non-blocking \u2014 the symbol H is used for a generic Hermitian generator/Hamiltonian at line 17 and then silently reassigned to the fixed Hadamard matrix at line 35 with no acknowledgment of the clash; separately, \"densely generate the real-orthogonal group\" (line 138) is a topological/real-analysis term used without a gloss, though it sits in a citation-heavy aside, not load-bearing text. D4=0: no markdown tables in the file; the \u00a78.12 native-gate bullet list uses scannable bold lead terms, not sentence-prose cells.",
+  "findings": [
+   {
+    "file": "book/part-04-gates-and-circuits/08-quantum-gates.md",
+    "line": 9,
+    "quote": "\u00a7\u00a78.1\u20138.6 are mandatory; everything later assumes them",
+    "statement": "The chapter opens with a full section-by-section reading-path map that name-drops 'universality, Clifford+T, Solovay\u2013Kitaev' before any of those terms exist in the chapter, putting the reader in pure-logistics mode before any motivating content.",
+    "fix": "Move the 'How to read this chapter' box to after \u00a78.1's first concrete gate example, or trim it to a one-line marginal note.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-04-gates-and-circuits/08-quantum-gates.md",
+    "line": 13,
+    "quote": "gate on $n$ qubits is any element of the unitary group",
+    "statement": "Section 8.1 opens with the fully general formal definition of a gate (element of U(2^n)) before any operational example of what a single gate does to a state.",
+    "fix": "Lead with one concrete operational sentence (e.g., 'a gate takes amplitudes in, amplitudes out, reversibly') before stating the U(2^n) definition, deferring the group-theoretic phrasing by a sentence or two.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-04-gates-and-circuits/08-quantum-gates.md",
+    "line": 17,
+    "quote": "the generator $H$ is the *Hamiltonian* one would engineer",
+    "statement": "The symbol H is used here for a generic Hermitian generator/Hamiltonian, then reused eighteen lines later (\u00a78.3) for the fixed Hadamard matrix, with no note flagging the collision.",
+    "fix": "Add a one-clause aside at the Hadamard definition ('this H, the fixed Hadamard matrix, is distinct from the generic generator H above') or use a different placeholder letter for the generic Hermitian generator.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-04-gates-and-circuits/09-quantum-circuits.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 2,
+  "d3": 2,
+  "d4": 1,
+  "d5": 1,
+  "dim_notes": "D1(2): opening is one 7-word metaphor (\"Gates are the alphabet; circuits are the sentences,\" L7) followed immediately by a topic-list paragraph (L7) and then a full \"How to read this chapter\" navigation box (L9) \u2014 roughly 600+ words pass before any concrete worked example (the Bell-state figure doesn't appear until L24, after the conventions list/paragraph L15-22). No conflict/paradox/thing-to-care-about is given, unlike the Ch1 anchor. D2(2): L9's box is pure roadmap/caveat (\"you cannot read any later chapter without them\"; \"essential for error correction (Part 8)\"; \"indispensable when targeting real hardware (Part 9)\") placed before any story or example \u2014 classic roadmap-before-story debt at the very top of the file. D3(2): two real forward-use violations \u2014 L78 drops \"VQE, QAOA\" as parenthetical acronyms with zero gloss, referring to algorithms not covered until Part 6 (\"begins the algorithms,\" L150, i.e. after this file); L104 uses \"magic state\" with no definition or forward pointer, a term that belongs to Part 8 (error correction, referenced two sentences later in the same paragraph) \u2014 reader is expected to just accept it. D4(1): no tables in the file; only mild caveat-overload in \u00a79.8, which opens with a \"Moving-target warning\" callout (L90) and closes by re-warning that \"this is a fast-moving snapshot rather than a settled ranking\" (L98), doubling up cautionary framing around thin technical content. D5(1): \u00a79.2 opens with the formal sequence definition $C=U_L\\cdots U_1$ (L28-32) before operational grounding, but the very next sentences (L34) supply the \"acts on $|0\\rangle^{\\otimes n}$, produces $C|0\\rangle^{\\otimes n}$, measured\" operational reading quickly, so severity is low.",
+  "findings": [
+   {
+    "file": "book/part-04-gates-and-circuits/09-quantum-circuits.md",
+    "line": 9,
+    "quote": "you cannot read any later chapter without them",
+    "statement": "The chapter opens with a metaphor sentence and then two consecutive blocks of pure roadmap/navigation text (topic list at L7, \"How to read this chapter\" box at L9) before any concrete example, inverting the GREEN calibration shape of claim-plus-motivation-before-machinery.",
+    "fix": "Cut or shrink the L9 box to a single deferred forward-pointer footnote, and open instead with a concrete circuit (e.g. the Bell-state example already at L24) before the roadmap.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-04-gates-and-circuits/09-quantum-circuits.md",
+    "line": 78,
+    "quote": "Algorithms that depend on expectation values (VQE, QAOA)",
+    "statement": "VQE and QAOA are named as bare acronyms with no gloss, referring to algorithms not introduced until Part 6 (per the chapter's own bridge at L150), so a cold linear reader hits two undefined forward-referenced terms of art.",
+    "fix": "Either drop the parenthetical or add a 4-6 word gloss plus explicit forward pointer, e.g. \"(VQE, QAOA \u2014 variational algorithms covered in Part 6)\".",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-04-gates-and-circuits/09-quantum-circuits.md",
+    "line": 104,
+    "quote": "implemented by consuming a magic state and applying",
+    "statement": "\"Magic state\" is used with zero definition or forward pointer, even though magic-state distillation belongs to Part 8 (error correction), which is cited two sentences later in the same paragraph for an unrelated claim.",
+    "fix": "Add a short forward pointer, e.g. \"a magic state (a specially prepared resource state introduced in Part 8)\".",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "medium"
+ },
+ {
+  "file": "book/part-04-gates-and-circuits/10-core-quantum-phenomena.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 2,
+  "d3": 2,
+  "d4": 0,
+  "d5": 1,
+  "dim_notes": "D1(2): Before any concrete example/claim, the reader passes two purely meta paragraphs: line 7 is a 13-term recap list of the whole chapter's contents with no motivating hook, and line 9 is an explicit \"How to read this chapter\" navigational box (which sections to read, which to skim, where to return). Only at line 13 (\u00a710.1) does anything resembling the Ch1-style direct-claim-then-example pattern begin, and even that opens with a formal definition rather than a puzzle/stake. Roughly 300 of the first ~700 words are pure roadmap/meta, not experience. D2(2): line 7's sentence is an abstract-noun pile (\"superposition, interference, the Born rule, measurement disturbance, no-cloning, no-signalling, contextuality, the Zeno effect, decoherence, mixed states, open-system evolution, channels, and the Kraus representation\") that pre-announces terms (several \u2014 Zeno effect, contextuality, Kraus representation \u2014 not yet defined anywhere) with no motivation; line 9 is a textbook table-before-story instance, sequencing \u00a7\u00a7 ranges and telling the reader what to skip before any content has been earned. D3(2): line 105 (\u00a710.6) uses \"Kraus operators\" and \"the POVM *effects*\" as if already known \u2014 POVM is not formally introduced anywhere until Chapter 11 (confirmed by this file's own line 261, \"Chapter 11 develops projective and POVM measurements\"), and \"Kraus operators\" is not formally defined until \u00a710.13 (line 239), later in this same file \u2014 with no forward pointer given at the point of first use in \u00a710.6. Secondarily, \"Robertson bound\" is named at line 87 without ever explicitly tying that name to the inequality stated at line 76. D5(1): the Kochen\u2013Specker statement at line 121 packs a dense formal parenthetical (\"for any orthonormal basis, exactly one projector is assigned value 1...\") ahead of the concrete Peres\u2013Mermin illustration that actually builds intuition; similarly the Lindblad equation (lines 200\u2013204) is presented in full formal form with the operational gloss (dissipator/jump-operator meaning) only following at line 206. Neither is severe since each is preceded by at least one operational framing sentence.",
+  "findings": [
+   {
+    "file": "book/part-04-gates-and-circuits/10-core-quantum-phenomena.md",
+    "line": 105,
+    "quote": "For Alice's measurement (Kraus) operators $\\{M_a\\}$ \u2014 the POVM *effects*",
+    "statement": "POVM and Kraus-operator terminology is used in \u00a710.6 before either term is formally introduced anywhere in the book (POVM is defined only in Chapter 11, which comes after this chapter; Kraus operators are defined later in this same file at \u00a710.13), with no forward pointer at the point of use.",
+    "fix": "Either add an explicit forward pointer (e.g. \"see \u00a710.13 / Ch.11\") at first use, or move/duplicate a one-line operational gloss of Kraus operators and POVM effects before line 105.",
+    "verify": "OK-loose"
+   },
+   {
+    "file": "book/part-04-gates-and-circuits/10-core-quantum-phenomena.md",
+    "line": 9,
+    "quote": "\u00a7\u00a710.1\u201310.4 are the core that every reader needs",
+    "statement": "The chapter's second paragraph is a pure section-routing/reading-guide box placed before any concrete example or claim, front-loading roadmap over experience in violation of the Ch.1 GREEN shape.",
+    "fix": "Move this reading-guide box to the end of the chapter opening (after the first concrete example in \u00a710.1) or condense it to one sentence.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-04-gates-and-circuits/10-core-quantum-phenomena.md",
+    "line": 7,
+    "quote": "superposition, interference, the Born rule, measurement disturbance, no-cloning",
+    "statement": "The chapter's opening sentence is an abstract-noun pile enumerating thirteen terms of art (several not yet defined anywhere in the book) before any motivating example, creating reader debt on the very first screen.",
+    "fix": "Replace the list with a single motivating example or question, and defer the full topic list to after \u00a710.1 has grounded the reader.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-05-measurement-and-information/11-measurement-theory.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 1,
+  "d3": 1,
+  "d4": 1,
+  "d5": 1,
+  "dim_notes": "D1=2: Opening (~lines 7-25) is dominated by roadmap and formal recap, not experience. Line 7's one motivating paragraph (~180 words: \"Real detectors are noisy, real measurement procedures sometimes have more outcomes...\") is immediately followed by a pure roadmap block (line 9, ~140 words: \"\u00a7\u00a711.1\u201311.2 are the formal core...\") and then ~500 words of axiomatic recap in \u00a711.1 (lines 13-25: projector algebra, density-matrix trace rule, three enumerated \"structural features\"). No worked/concrete example appears until the trine POVM at line 55, well past the 800-word window. D2=1: Line 7 fires eight named topics (\"POVMs, Naimark dilation, tomography, classical shadows, state discrimination, sampling estimators...\") as an unglossed term-dump before any is explained \u2014 a mild abstract-noun pile, though framed as an explicit chapter preview. D3=1: Line 45 names \"the trine\" (\"the Bloch-tetrahedron POVM \u2014 has exactly four outcomes; the trine has three\") ten lines before its formal definition at line 55 (\"Trine POVM on a qubit...\"); also \"$k$-local Pauli\" (line 99) is used without an in-file gloss (inferable from context but not defined). D4=1: The line-9 \"How to read this chapter\" box is a second roadmap layer stacked directly on top of the chapter-opening topic list in line 7, doubling the meta content before any content lands. D5=1: The POVM axioms are given in full rigor first (lines 33-37: \"$E_m \\succeq 0$... $\\sum_m E_m = I$\") with the operational probability rule and effect terminology following in the next two sentences rather than preceding \u2014 mild rigor-first ordering, though not severe since the operational payoff (outcome probability, then concrete trine/readout examples) follows within the same section.",
+  "findings": [
+   {
+    "file": "book/part-05-measurement-and-information/11-measurement-theory.md",
+    "line": 9,
+    "quote": "\u00a7\u00a711.1\u201311.2 are the formal core: the projective measurement recap",
+    "statement": "A full 'how to read this chapter' roadmap box sits immediately after the opening motivation paragraph and before any concrete content, doubling the front-matter meta before the reader gets a single worked example.",
+    "fix": "Cut the reading-guide box to one sentence (or move it after \u00a711.2's trine example) so the opening leads with experience rather than a second section map.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-05-measurement-and-information/11-measurement-theory.md",
+    "line": 7,
+    "quote": "POVMs, Naimark dilation, tomography, classical shadows, state discrimination, sampling estimators",
+    "statement": "The opening paragraph fires eight named topics as an unglossed list before any of them is explained, front-loading terminology ahead of motivation.",
+    "fix": "Trim the list to 2-3 items with a one-clause gloss each, and let the rest surface naturally as each section is reached.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-05-measurement-and-information/11-measurement-theory.md",
+    "line": 45,
+    "quote": "has exactly four outcomes; the trine has three",
+    "statement": "\"The trine\" is named and used as a known term ten lines before its formal definition (\"Trine POVM on a qubit\") appears at line 55, so a cold reader hits an unglossed proper noun mid-sentence.",
+    "fix": "Either delay naming it until the formal definition at line 55, or add a three-word parenthetical gloss on first mention.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-05-measurement-and-information/12-quantum-information-theory.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 2,
+  "d3": 1,
+  "d4": 1,
+  "d5": 2,
+  "dim_notes": "D1(2): Real motivation is only lines 7-13 (\"how much information does a quantum state carry, and how well can two states be told apart?\"); the remaining ~500 words of the opening (lines 15-33 numbered list, lines 35-46 'How to read this chapter' blockquote) are pure meta/roadmap before \u00a712.1 begins, well past the anchor's 'claim then motivation' shape. D2(2): line 15 'Three points to keep in mind:' opens a list that names von Neumann entropy, trace distance, and the Holevo quantity with operational claims (lines 28-33) before any of them is defined in this file; the reading-guide blockquote (35-46) is section-number-heavy caveat/roadmap stacked before any worked example. D3(1): 'mother protocol' / 'quantum resource calculus' (line 240) is named with only a vague same-section forward pointer ('see the note at the end of this section') and not actually explained until lines 277-283, ~40 lines later; 'LSD theorem' (line 521) is never expanded even though the author-initial derivation is inferable. D4(1): the 'How to read this chapter' blockquote (lines 35-46) functions as a dense roadmap-table mapping section ranges to reading strategy, front-loaded before content; no literal markdown tables in the file. D5(2): \u00a712.2 (lines 104-159) delivers von Neumann entropy's full formal property list (range, unitary invariance, concavity, subadditivity, and strong subadditivity with a hard citation, line 139-152) with the operational payoff (compression rate) explicitly deferred to \u00a712.9 (only teased in the front-matter list, line 28-29); the section itself contains a stretch of pure inequality-stacking with no operational anchor.",
+  "findings": [
+   {
+    "line": 15,
+    "quote": "Three points to keep in mind:",
+    "statement": "The chapter opens with two consecutive meta/roadmap blocks (a numbered 'points to keep in mind' list and a long 'how to read this chapter' guide) totaling roughly 500 words before any worked example, well past the two-sentence motivating question that precedes them.",
+    "fix": "Cut the numbered list and reading-guide blockquote to a few sentences, or move the section-by-section reading strategy to a footnote/appendix so the opening reaches concrete content faster.",
+    "verify": "OK"
+   },
+   {
+    "line": 240,
+    "quote": "of the quantum resource calculus \u2014 see the note at",
+    "statement": "The term 'mother protocol' (and 'quantum resource calculus') is introduced by name inside an aside with only a vague same-section pointer, and is not actually explained until roughly 40 lines later (lines 277-283), leaving the term undefined in the reader's working memory in between.",
+    "fix": "Either drop the 'mother protocol' aside from this earlier mention entirely (keep it only at lines 277-283 where it's explained) or give a one-clause gloss at first mention instead of deferring.",
+    "verify": "OK"
+   },
+   {
+    "line": 146,
+    "quote": "Strong subadditivity is the deepest single inequality in quantum",
+    "statement": "Section 12.2 stacks formal properties of von Neumann entropy (range, unitary invariance, concavity, subadditivity, and strong subadditivity with a hard citation) in full rigor while the entropy's operational meaning (compression rate) is deferred to \u00a712.9, leaving a purely mathematical stretch with no 'why this matters now' anchor inside the section itself.",
+    "fix": "Add a one-sentence operational forward-anchor at the top of \u00a712.2 (e.g., a compressed preview of the Schumacher-compression payoff) before the property list, so the math has a stated purpose before it accumulates.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-06-algorithms/14-foundational-algorithms.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 1,
+  "d2": 1,
+  "d3": 1,
+  "d4": 0,
+  "d5": 2,
+  "dim_notes": "D1(1): Lines 1-9 spend two paragraphs (chapter synopsis, line 7; \"how to read\" navigational blockquote, line 9) previewing section numbers/topic names before any concrete example, but \u00a714.1 (line 13) then opens with a genuine problem statement (\"The Deutsch problem is the smallest case where a quantum algorithm provably beats a classical one...\"), so meta precedes but doesn't dominate the first ~500-800 words. D2(1): line 9 previews the term \"phase kickback\" (\"the right mental model for \\\"phase kickback as the engine of quantum advantage\\\"\") before it is ever defined (definition arrives at line 21); line 9 also front-loads a skim/skip instruction (\"\u00a714.9 is structural; skim on first pass\") before the reader has seen any content. D3(1): line 105 uses \"Trotter\" (\"$e^{-iHt}$ via Trotter\") as a known technique with zero gloss at first mention; the only Chapter-16 forward-pointer in that paragraph is attached to a later, second mention of the same idea, not this first one. Otherwise the file is disciplined \u2014 U_f, phase kickback, Grover operator G, P_good, S_0/S_f, and the HSP terms are all glossed at or immediately after first use, and cross-chapter notation (\u00a74.13 sign convention, \u00a78.11 Solovay-Kitaev) is correctly treated as already-known per reading order. D4(0): no tables in the file; the HSP correspondence list (lines 127-130) uses short \"G = ..., H = ...: AlgorithmName\" entries, not sentence-length prose. D5(2): \u00a714.5 (line 85) states the QFT's full rigorous unitary-sum definition first, then immediately wedges in a sign-convention caveat (line 91: \"some sources and SDKs use the opposite sign, so check before porting phase angles\") before the first operational anchor (\"For N=2 the QFT is just the Hadamard gate,\" also line 91) \u2014 rigor and caveat both precede the intuitive grounding for one of the two named \"workhorse\" primitives of the chapter.",
+  "findings": [
+   {
+    "file": "book/part-06-algorithms/14-foundational-algorithms.md",
+    "line": 91,
+    "quote": "some sources and SDKs use the opposite sign",
+    "statement": "The QFT is given in full rigorous form and immediately followed by a sign-convention caveat before any operational/intuitive grounding is offered.",
+    "fix": "Move 'For N=2 the QFT is just the Hadamard gate' to sit directly after the definition, before the sign-convention caveat.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-06-algorithms/14-foundational-algorithms.md",
+    "line": 9,
+    "quote": "phase kickback as the engine of quantum advantage",
+    "statement": "The chapter's 'how to read' preamble names 'phase kickback' as the key mental model before the term is defined anywhere (definition appears 12 lines later at line 21).",
+    "fix": "Either gloss phase kickback in one clause in the preamble or drop the term from the preview and let \u00a714.1 introduce it fresh.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-06-algorithms/14-foundational-algorithms.md",
+    "line": 105,
+    "quote": "modular-exponentiation circuits, $e^{-iHt}$ via Trotter",
+    "statement": "'Trotter' is used as a known technique with no gloss at its first mention; the explicit Chapter-16 forward-pointer appears later in the same paragraph attached to a different clause, not here.",
+    "fix": "Attach the '(Chapter 16)' forward-pointer to this first mention of Trotter, or add a three-word gloss.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-06-algorithms/15-landmark-quantum-algorithms.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 2,
+  "d3": 1,
+  "d4": 1,
+  "d5": 2,
+  "dim_notes": "D1(2): Opening is two consecutive meta paragraphs \u2014 line 7 is a whole-chapter roadmap naming all six algorithm families with one-clause tags (\"HHL is the linear-systems analogue with subtle preconditions; quantum walks generalise random walks for graph problems\"), and line 9 is an explicit \"How to read this chapter\" section-skipping guide (\"\u00a7\u00a715.1\u201315.4 are mandatory if you want to understand the cryptographic stakes\") \u2014 before any concrete example, paradox, or thing-to-care-about; \u00a715.1 then opens directly into oracle/notation setup with no motivating scenario. D2(2): line 13's iteration-count sentence stacks three formula variants and a caveat in one breath (\"often abbreviated to $\\lfloor \\pi/(4\\theta) \\rfloor$ in the small-$\\theta$ limit, with $\\sin\\theta = \\sqrt{M/N}$\") before the reader has any plain-English picture of what a Grover iteration does \u2014 that plain-English picture only arrives afterward, in the figure caption on line 15. D3(1): \"magic-state distillation\" is named as a load-bearing cost driver three times (lines 19, 65, 68) but never operationally glossed in this file; similarly $d$ in \"roughly $2d^2$ physical qubits per logical, with $d$ in the high twenties\" (line 68) is used without saying $d$ is code distance, and Jordan\u2013Wigner/Bravyi\u2013Kitaev (line 116) and QRAM (line 91) are named without a gloss \u2014 these may be covered in an earlier chapter (not verifiable from this file alone), so severity is kept low/uncertain rather than a confirmed violation. D4(1): three repeated \"Moving-target warning\" caveat callouts (lines 59, 114, 138) interrupt narrative flow, and the \u00a715.10 bullet list (lines 144-147) carries full argumentative sentences rather than scannable labels \u2014 not severe table overload, but a mild caveat/roadmap-heavy pattern. D5(2): Grover (line 13) and HHL (line 84) both state a complexity/probability bound in full symbolic rigor essentially concurrently with, rather than clearly after, the one-line operational gloss, and in Grover's case the intuitive mechanism (oracle phase-flip + diffusion-as-reflection) is deferred past the rigor to the figure caption on line 15 instead of preceding it.",
+  "findings": [
+   {
+    "line": 13,
+    "quote": "often abbreviated to $\\lfloor \\pi/(4\\theta) \\rfloor$ in the small-$\\theta$ limit",
+    "statement": "The optimal-iteration-count sentence for Grover piles three formula variants (round, floor, sin\u03b8 definition) and a small-\u03b8 caveat into one clause before the reader has been given any plain-English picture of what a Grover iteration actually does.",
+    "fix": "Move the intuitive mechanism now stuck in the figure 15 caption (\"oracle phase-flips the marked state... diffusion operator reflects about the mean\") before the formula, then present the exact vs. rounded iteration-count variants as a follow-on detail.",
+    "verify": "OK"
+   },
+   {
+    "line": 7,
+    "quote": "HHL is the linear-systems analogue with subtle preconditions",
+    "statement": "The chapter's opening paragraph is a dense whole-chapter roadmap naming all six algorithm families with terse tags, rather than a concrete example, conflict, or claim to hook the reader, and is immediately followed by a second roadmap paragraph (line 9) before any content begins.",
+    "fix": "Lead with one concrete hook (e.g., a specific unstructured-search or factoring instance) before the survey paragraph, or compress the two roadmap paragraphs into one and let each section's own opening line carry its preview.",
+    "verify": "OK"
+   },
+   {
+    "line": 19,
+    "quote": "Toffoli-heavy circuits, magic-state distillation), the constant factors are substantial",
+    "statement": "\"Magic-state distillation\" is invoked as the reason constant factors are large in three places in this file (lines 19, 65, 68) but is never given even a one-clause operational gloss anywhere in the chapter.",
+    "fix": "Add a short parenthetical gloss at first use, e.g. \"magic-state distillation (the standard fault-tolerant procedure for manufacturing precise non-Clifford gates)\".",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "medium"
+ },
+ {
+  "file": "book/part-06-algorithms/16-modern-algorithmic-frontier.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 2,
+  "d3": 1,
+  "d4": 2,
+  "d5": 2,
+  "dim_notes": "D1(2): first ~600 words = chapter recap/thesis (line 7) + a full section-by-section \"How to read this chapter\" roadmap paragraph (line 9) + an immediate formal problem statement with fresh notation (line 13). Only one clause of genuine motivation (\"the problem quantum computers were invented to solve\") appears before the structural-classes taxonomy bullets (lines 17-19); no worked example, story, or paradox precedes the machinery, unlike the Ch.1 anchor. D2(2): the roadmap paragraph (line 9) front-loads unglossed acronym \"QSP\" and section-mapped promises before any content; the Hamiltonian-simulation-problem definition (line 13) states $H,t,\\epsilon,V$ formally and only afterward supplies the \"why\" sentence in the same breath, a theorem/definition-before-motivation shape. D3(1): \"magic-state distillation\" is used at line 194 with zero gloss; only ~10 paragraphs later (lines 204/206) does the text obliquely explain what a magic state is (\"the magic states each $T$-gate consumes\") \u2014 a genuine but isolated first-use violation, not a recurring pattern. D4(2): several bullets read as paragraph-in-list-form rather than scannable labels, e.g. the k-local/sparse/block-encoded bullets (lines 17-19) and the T-count/logical-depth/ancilla-count bullets in \u00a716.8 (lines 206-208), each packing 2-4 dense technical sentences per bullet. D5(2): the pattern of rigorous-definition-then-operational-gloss recurs structurally: the Hamiltonian simulation problem is stated in full formal form (line 13) before its \"Feynman motivation\" framing in the same sentence, and the block-encoding definition is given as a bare matrix equation (lines 95-104) before the plain-English \"interface\" description that follows it (line 109).",
+  "findings": [
+   {
+    "file": "book/part-06-algorithms/16-modern-algorithmic-frontier.md",
+    "line": 9,
+    "quote": "\u00a7\u00a716.3\u201316.5 build the modern stack in dependency order",
+    "statement": "The chapter opens with a full section-by-section roadmap paragraph before any concrete example, example-conflict, or paradox has been given, front-loading meta over experience.",
+    "fix": "Move the section-map to the end of the intro (or trim it) and open \u00a716.1 with a concrete simulation scenario before the roadmap.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-06-algorithms/16-modern-algorithmic-frontier.md",
+    "line": 13,
+    "quote": "construct a quantum circuit $V$ such that",
+    "statement": "The Hamiltonian simulation problem is given in full formal notation before the one-sentence motivation that follows it, reversing the motivate-then-formalize order the book's own Ch.1 anchor models.",
+    "fix": "Lead with the Feynman-motivation sentence, then state the formal $\\|V-e^{-iHt}\\|\\le\\epsilon$ definition as the payoff.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-06-algorithms/16-modern-algorithmic-frontier.md",
+    "line": 194,
+    "quote": "depends sensitively on the cost of magic-state distillation",
+    "statement": "\"Magic-state distillation\" is used here with no gloss anywhere earlier in the file or an explicit forward pointer; the only later contextualization (line 204) is oblique and arrives many paragraphs after first use.",
+    "fix": "Add a one-clause gloss at first use (e.g., \"magic-state distillation, the T-gate resource-purification step\") or an explicit forward pointer to where it is explained.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-06-algorithms/16-modern-algorithmic-frontier.md",
+    "line": 206,
+    "quote": "T-count is the standard cost metric because magic-state",
+    "statement": "The resource-accounting bullets in \u00a716.8 pack multiple full sentences of argument into single list items rather than short scannable labels, causing prose/roadmap overload in list form.",
+    "fix": "Split each bullet into a short bolded label plus a separate explanatory sentence, or convert to a compact comparison table with terse cells.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "medium"
+ },
+ {
+  "file": "book/part-07-complexity/17-complexity-theory.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 2,
+  "d3": 2,
+  "d4": 0,
+  "d5": 1,
+  "dim_notes": "D1(2): L7 opens with a real framing question (\"which problems can a quantum computer solve efficiently... before you write a single circuit\") which is good, but it is immediately followed by two more paragraphs of pure meta before any concrete example: L9 is a citation/scope caveat (\"consult Arora\u2013Barak for the classical foundations and Watrous's notes for the quantum extensions\"), and L11 is a full explicit chapter roadmap walking through every section number (\u00a717.1\u2013\u00a717.13). No worked example, paradox, or concrete stake appears until the formal class definitions start at L17. Three paragraphs of framing/roadmap precede any concrete content. D2(2): L11's roadmap names six-plus acronyms (BQP, QMA, QIP, PH, PSPACE, T-count, dequantisation) with zero glosses, purely as a map of \"read this section for X\" \u2014 an abstract-noun/acronym pile before the reader has any anchor. L9 is a caveat-before-example (\"The chapter is not a textbook on complexity... consult Arora\u2013Barak / Watrous's notes\") that defers rather than orients. D3(2): L31 uses $\\Sigma_2^p \\cap \\Pi_2^p$ (\"the strongest known placement of BPP in the hierarchy is BPP \u2286 \u03a3_2^p \u2229 \u03a0_2^p\") with zero gloss; the polynomial hierarchy and \u03a3_k^p are only formally defined ~85 lines later in \u00a717.5 (L116-120) \u2014 a genuine in-file forward-use violation with no pointer. Secondarily, a recurring lesser pattern: complexity-class symbols appear inside containment display-equations before their prose definition, e.g. PP at L50 (in \"$$BPP\u2286BQP\u2286PP\u2286PSPACE$$\") is not defined until L59; MA and QCMA appear in the containment chain at L83 (\"NP \u2286 MA \u2286 QCMA \u2286 QMA \u2286 PP \u2286 PSPACE\") before being glossed at L86; AWPP appears at L56 and is never actually defined, only described as \"more obscure\" at L59. These are short-distance (same-paragraph) infractions, milder than the \u03a3_2^p case. D4(0): no literal tables in the file; bullet lists (e.g. \u00a717.8, \u00a717.6) are dense but function as scannable catalogues, not prose-in-cells tables. D5(1): class definitions (BQP L39, QMA L73-77) go straight to full formal circuit/witness definitions with no preceding \"for this book, X means\" operational gloss \u2014 but this is consistent with the stated reader profile (comfortable with computational complexity), so it reads as appropriately-pitched rigor rather than a real-analysis-style violation; scored low.",
+  "findings": [
+   {
+    "file": "book/part-07-complexity/17-complexity-theory.md",
+    "line": 31,
+    "quote": "strongest known placement of $\\mathrm{BPP}$ in the hierarchy is",
+    "statement": "\u03a3_2^p and \u03a0_2^p are used in a containment claim roughly 85 lines before the polynomial hierarchy / \u03a3_k^p notation is actually defined in \u00a717.5.",
+    "fix": "Either add a one-clause inline gloss (\"\u03a3_2^p, a level of the polynomial hierarchy defined in \u00a717.5\") or move this remark to after \u00a717.5 introduces PH.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-07-complexity/17-complexity-theory.md",
+    "line": 11,
+    "quote": "\u00a717.2 and \u00a717.3 (BQP and QMA) are the spine",
+    "statement": "The opening 'How to read this chapter' box is a full section-by-section roadmap naming six-plus undefined acronyms (BQP, QMA, QIP, PH, T-count, dequantisation) before any concrete motivation or example appears.",
+    "fix": "Trim the roadmap to one or two sentences and move the section-map to a footnote or end-of-intro aside, letting a concrete example open the chapter first.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-07-complexity/17-complexity-theory.md",
+    "line": 83,
+    "quote": "\\mathrm{NP} \\;\\subseteq\\; \\mathrm{MA} \\;\\subseteq\\; \\mathrm{QCMA} \\;\\subseteq\\; \\mathrm{QMA}",
+    "statement": "MA and QCMA appear inside a containment display-equation before either is defined in the following prose (and AWPP at L56 is never operationally defined at all, only called 'more obscure').",
+    "fix": "State the one-line gloss for MA/QCMA immediately before the containment chain rather than after it, and give AWPP at least a one-clause operational description or drop it if non-load-bearing.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-08-noise-and-qec/18-noise-decoherence-and-errors.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 2,
+  "d3": 1,
+  "d4": 1,
+  "d5": 1,
+  "dim_notes": "D1=2: opening ~600 words (lines 7,9,11-13) are entirely meta \u2014 a cross-chapter status report (line 7: \"Chapter 10 introduced decoherence, channels, and the Kraus representation...\") followed by a full navigational roadmap (line 9), before any concrete example/number appears (first concrete content is the transmon-temperature paragraph starting line 15). D2=2: line 9's \"How to read this chapter\" block is a table-before-story roadmap that name-drops five unglossed acronyms (RB, GST, ZNE, PEC, SPAM) purely as section labels (\"fidelity, RB and its variants, GST, cycle benchmarking\") with no motivating conflict/example preceding it \u2014 classic caveat/roadmap-before-experience debt. D3=1: mostly mitigated by explicit \"\u00a7X returns to Y\" forward pointers (e.g. line 19, line 130 for \"simultaneous RB\"), but line 94 uses \"Clifford-RB\" as a load-bearing term with no gloss and no forward pointer at all, well before RB is defined at line 202/214. D4=1: no literal sentence-in-cell tables exist in the file (bullet lists at lines 87-90, 249-252, 286-291 are short scannable labels), but the line-9 roadmap paragraph itself functions as prose-table overload. D5=1: the generalised-amplitude-damping Kraus operators (lines 148-166) are given in full formal form immediately after a one-line pointer to \u00a710.12, with the operational gloss (what \u03b3 and p mean) arriving only after the equations rather than before \u2014 mild rigor-before-meaning ordering, though it leans on already-established Kraus machinery from Ch10 so severity is low.",
+  "findings": [
+   {
+    "file": "book/part-08-noise-and-qec/18-noise-decoherence-and-errors.md",
+    "line": 9,
+    "quote": "fidelity, RB and its variants, GST, cycle benchmarking",
+    "statement": "The opening \"How to read this chapter\" roadmap fires off five acronyms (RB, GST, ZNE, PEC, SPAM) as bare section labels before any concrete example has appeared in the chapter, front-loading the opening with an unglossed table-of-contents.",
+    "fix": "Move or trim the reading-guide block after \u00a718.1's first concrete example, or gloss each acronym in one parenthetical word on first mention even in the roadmap.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-08-noise-and-qec/18-noise-decoherence-and-errors.md",
+    "line": 7,
+    "quote": "Chapter 10 introduced decoherence, channels, and the Kraus representation",
+    "statement": "The chapter's very first paragraph is pure cross-chapter bookkeeping (what Ch.10 and Ch.11 did, where this chapter sits) rather than a concrete claim or motivating example, delaying reader payoff.",
+    "fix": "Open with the concrete claim/paradox (e.g. the T1/T2-become-real-numbers idea already buried mid-paragraph) and push the chapter-lineage bookkeeping to a second paragraph.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-08-noise-and-qec/18-noise-decoherence-and-errors.md",
+    "line": 94,
+    "quote": "Clifford-RB returns an average gate error that approximates",
+    "statement": "\"Clifford-RB\" is used as a load-bearing term of art in \u00a718.4 with no gloss and no forward pointer, roughly 100 lines before Randomised Benchmarking is actually introduced and named in \u00a718.12 (line 202).",
+    "fix": "Add a short inline gloss or an explicit \"(\u00a718.12)\" forward pointer at first bare use of RB/Clifford-RB outside its defining section.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 1,
+  "d2": 1,
+  "d3": 1,
+  "d4": 0,
+  "d5": 1,
+  "dim_notes": "D1(1): Line 7's opening paragraph is genuinely concrete/motivating (classical margin+copy-vote vs. quantum continuous-state+no-cloning), ~160 words of real conflict before any machinery \u2014 close to the GREEN shape. But it is immediately followed (line 9) by a ~140-word \"How to read this chapter\" roadmap block naming seven not-yet-defined terms before \u00a719.1 even starts, so the first ~300 words are roughly half roadmap. Still majority-experience once \u00a719.1 (lines 11-17) is counted, hence mild not severe. D2(1): the roadmap block (line 9) piles up \"the discretisation insight,\" \"stabiliser formalism,\" \"the CSS construction,\" \"topological codes,\" \"the threshold theorem,\" \"transversal gates,\" \"magic state distillation,\" \"lattice surgery\" \u2014 all named with zero gloss, immediately after the strong opening paragraph. It is self-flagged as a reading guide, which softens it, but it is still debt sitting between the reader and the first real section. D3(1): the $[[n,k,d]]$ code-parameter notation is used with a parenthetical gloss at line 99 (\"parameters $[[9, 1, 3]]$ (nine physical qubits, one logical qubit, distance three)\") and again at line 123, but is only formally generalized in \u00a719.8 at line 139 \u2014 a real in-file forward-use, mitigated by the inline gloss at first occurrence. Also line 27 names \"Hamming bound\" and \"Singleton bound\" with no gloss anywhere in the file and no forward pointer, in a section explicitly labeled a \"recap,\" which presumes outside familiarity the target reader may not have. D4(0): no tables in the file; bullet lists (lines 171-174, 306-309) use bold-term-then-clause format that stays scannable, not prose-in-cells. D5(1): \u00a719.11 CSS (line 167) opens with the fully formal \"$C_1, C_2 \\subseteq \\mathbb{F}_2^n$ with $C_2 \\subseteq C_1$\" set-up before any plain-English \"CSS codes work by...\" sentence \u2014 mitigated because the reader has already seen two concrete CSS-shaped codes (Shor, Steane) worked out by hand in \u00a7\u00a719.6-19.7, so the operational meaning was established earlier even though this section's own opening is rigor-first.",
+  "findings": [
+   {
+    "file": "book/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md",
+    "line": 99,
+    "quote": "has parameters $[[9, 1, 3]]$ (nine physical qubits, one logical",
+    "statement": "The [[n,k,d]] parameter notation is used (in \u00a719.6 and again in \u00a719.7) before it is formally defined as a general convention in \u00a719.8.",
+    "fix": "Add a forward pointer '([[n,k,d]] notation defined in \u00a719.8)' at first use, or move the general definition earlier.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md",
+    "line": 27,
+    "quote": "constrain how many errors can be corrected for given",
+    "statement": "The Hamming bound and Singleton bound are named in a 'recap' section but never glossed anywhere in the file, presuming outside classical-coding-theory familiarity.",
+    "fix": "Add a half-sentence gloss (e.g. 'bound the tradeoff between n, k, and correctable errors') or cut the sentence since neither bound is used again.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md",
+    "line": 9,
+    "quote": "the discretisation insight that rescues them, and the three-",
+    "statement": "The 'How to read this chapter' box, placed immediately after the opening paragraph, names seven forward-referenced terms of art (discretisation insight, stabiliser formalism, CSS construction, threshold theorem, transversal gates, magic state distillation, lattice surgery) with zero gloss before the reader has seen any of the chapter's content.",
+    "fix": "Move the reading-guide box to after \u00a719.1 has established the core conflict, or trim it to bare section-number ranges without naming undefined concepts.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-09-hardware-and-software/20-quantum-hardware-platforms.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 1,
+  "d2": 1,
+  "d3": 1,
+  "d4": 1,
+  "d5": 0,
+  "dim_notes": "D1(1): Opening paragraph (line 7, ~190 words) is decently concrete (contrasts idealized qubit vs. real physical embodiments: superconducting circuit, trapped atom, photon, silicon spin, topological mode), matching the anchor's \"claim then motivate\" shape. But it is immediately followed by two dense blockquotes \u2014 the \"How to read this chapter\" roadmap (line 9, ~140 words listing \u00a7\u00a720.1-20.12) and the \"Moving-target warning\" (line 11, ~55 words) \u2014 ~195 words of pure meta/caveat before any modality content begins. Content still edges out roadmap within an 800-word window once \u00a720.1's concrete physics (line 15-19) is counted, so this is mild, not severe. D2(1): line 11's warning (\"Every qubit count, fidelity, and vendor claim in this chapter is a dated snapshot and *dates quickly*\") is a caveat that lands before the reader has encountered a single concrete hardware fact \u2014 textbook caveat-before-example placement, though brief. D3(1): most load-bearing terms (Josephson junction, transmon, fluxonium, M\u00f8lmer-S\u00f8rensen, Rydberg blockade, KLM, Majorana mode, adiabatic theorem) are defined operationally at first use. But two peripheral terms of art are used with zero gloss anywhere in-file: \"SQUID loop\" (line 27: \"threading a SQUID loop in place of a single junction\") and the acronym \"EDSR\" (line 71: \"tens of nanoseconds in the fastest EDSR devices\") \u2014 a reader who doesn't already know these physics acronyms has no anchor. D4(1): \u00a720.12's seven bolded platform summaries (e.g. line 109 \"Superconducting transmons. $T_1, T_2 \\sim 100\\mu$s; 1-qubit gate fidelity...\" ) pack 6-8 dense semicolon-joined stats per entry \u2014 functions as a lookup table but is written as unbroken prose rather than a scannable table, though the chapter itself flags it as reference material to consult later (line 9), softening the concern. D5(0): definitional sentences (e.g. topological qubit, analog simulator, quantum annealer) are consistently paired with an operational unpacking in the same or next sentence, so no case of rigor-before-meaning found.",
+  "findings": [
+   {
+    "file": "book/part-09-hardware-and-software/20-quantum-hardware-platforms.md",
+    "line": 11,
+    "quote": "is a dated snapshot and *dates quickly*",
+    "statement": "A perishability caveat about the chapter's data lands in a blockquote before the reader has met a single concrete hardware fact, adding debt at the very top of the file.",
+    "fix": "Move the moving-target warning to the end of the intro paragraph or into \u00a720.12 where the numbers actually appear, so the reader gets content before caveats.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-09-hardware-and-software/20-quantum-hardware-platforms.md",
+    "line": 27,
+    "quote": "threading a SQUID loop in place of a single junction",
+    "statement": "SQUID is used as a load-bearing mechanism for tunable-frequency transmons without ever being expanded or glossed, in this file or (per the chapter's own dependency list in line 9) any prerequisite chapter.",
+    "fix": "Add a 4-6 word parenthetical gloss, e.g. \"a SQUID loop (a small superconducting ring interrupted by two junctions, acting as a flux-tunable inductor)\".",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-09-hardware-and-software/20-quantum-hardware-platforms.md",
+    "line": 71,
+    "quote": "tens of nanoseconds in the fastest EDSR devices",
+    "statement": "The acronym EDSR is used parenthetically with no expansion or definition anywhere in the file.",
+    "fix": "Expand on first use: \"electric dipole spin resonance (EDSR)\".",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-09-hardware-and-software/21-quantum-control-and-electronics.md",
+  "model": "sonnet",
+  "verdict": "GREEN",
+  "d1": 1,
+  "d2": 1,
+  "d3": 0,
+  "d4": 0,
+  "d5": 1,
+  "dim_notes": "D1: Opening paragraph (line 7) is concretely motivated (X, \u221aX, CNOT, ECR, OpenQASM, nanosecond waveforms, coaxial lines, cryogenic stages) but is immediately followed by a ~230-word pure section-map callout (line 9, beginning '\u00a7\u00a721.1\u201321.3 are the pulse-level core...') before any worked example develops \u2014 roughly a quarter to a third of the first 800 words is roadmap rather than experience, mild but not dominant. D2: the line-9 callout enumerates every remaining sub-range of the chapter (\u00a7\u00a721.4\u201321.7, \u00a7\u00a721.8\u201321.10, \u00a7\u00a721.11\u201321.14) with reading advice attached, creating light debt ('essential reading if you ever expect to debug a real device') before any concrete scenario has been shown. D5: line 13's Hamiltonian is introduced via 'The two-level Hamiltonian in the rotating frame of the drive is' immediately followed by the full rotating-frame equation, with the operational Bloch-sphere picture ('the qubit traces a circle on the Bloch sphere at angular velocity \u03a90') arriving only afterward in the same paragraph (line 19); similarly Krotov (line 118) is glossed only as an abstract 'integral equation that ... guarantees to improve fidelity' with no operational analogy given at all.",
+  "findings": [
+   {
+    "file": "book/part-09-hardware-and-software/21-quantum-control-and-electronics.md",
+    "line": 9,
+    "quote": "\u00a7\u00a721.1\u201321.3 are the pulse-level core: how a gate becomes a waveform",
+    "statement": "The chapter's second paragraph is a full section-by-section roadmap box that front-loads the entire chapter map before any concrete example has developed.",
+    "fix": "Trim the how-to-read box to one or two sentences of steering advice; move the detailed \u00a7-range breakdown later or into a footnote so the concrete opening carries further before meta content lands.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-09-hardware-and-software/21-quantum-control-and-electronics.md",
+    "line": 13,
+    "quote": "The two-level Hamiltonian in the rotating frame of the drive is",
+    "statement": "The rotating-frame drive Hamiltonian is presented in full notation before the operational Bloch-sphere picture that explains what it means physically, which arrives only in the following paragraph's tail sentence.",
+    "fix": "Lead with the operational sentence ('a gate is the qubit's Bloch vector tracing an arc at angular velocity set by the drive amplitude') and then present the Hamiltonian as its formalization.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-09-hardware-and-software/21-quantum-control-and-electronics.md",
+    "line": 118,
+    "quote": "updates the control field by an integral equation that",
+    "statement": "Krotov is defined purely through an abstract-noun description of an integral-equation update rule, with no operational or intuitive gloss offered anywhere in the bullet.",
+    "fix": "Add a one-clause operational analogy (e.g., 'like GRAPE's gradient step but with a step size chosen so fidelity provably never decreases') before or instead of the integral-equation phrasing.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-09-hardware-and-software/22-hardware-engineering-metrics.md",
+  "model": "sonnet",
+  "verdict": "GREEN",
+  "d1": 1,
+  "d2": 1,
+  "d3": 2,
+  "d4": 0,
+  "d5": 1,
+  "dim_notes": "D1(1): Opening paragraph (line 7, 'Every vendor benchmark sheet... is a small adversarial document... will this algorithm, on this device, give me the answer I want?') matches the GREEN anchor shape (concrete stakes before machinery), but it is immediately followed by two meta blockquotes -- the section-by-section roadmap (line 9) and the 'Moving-target warning' (line 11) -- before concrete content resumes at \u00a722.1 (line 13). Mild roadmap intrusion; most of the first ~800 words is still concrete once 22.1 begins. D2(1): The two opening blockquotes are low-debt (preview section numbers, defer to Appendix F) but sit between the motivating paragraph and the first substantive content -- a mild 'roadmap-before-story' pattern. D3(2): 'process fidelity' F_pro is named and used in a formula (line 49) but never given operational meaning anywhere in the file. 'twirl' (line 57) is used as a technical verb with no in-file gloss beyond its stated result. 'Haar measure' (lines 46/49, reused at 123) is used twice with no operational one-liner, a real-analysis-flavored term for a reader stated to lack that background. D4(0): No prose-overloaded tables; the per-vendor bullet list (lines 223-228) is comma-separated scannable stats, not sentence-length cells. D5(1): The average-gate-fidelity definition (line 43) goes straight into a Haar-measure integral with only a one-clause gloss beforehand, in contrast to the chapter's own better pattern for T1 (line 73, 'Operationally: prepare |1>, wait time t, measure...'), QV (line 123, 'The protocol: run square circuits...') and XEB (line 169, 'The protocol: build a random circuit...').",
+  "findings": [
+   {
+    "file": "book/part-09-hardware-and-software/22-hardware-engineering-metrics.md",
+    "line": 49,
+    "quote": "the more fundamental **process fidelity** $F_{\\mathrm{pro}}$ is",
+    "statement": "Process fidelity F_pro is used in a load-bearing formula but is never given an operational or intuitive definition anywhere in the file.",
+    "fix": "Add a clause before the formula: 'process fidelity F_pro -- the overlap between the actual and ideal process, independent of averaging over input states -- relates to F_avg by...'",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-09-hardware-and-software/22-hardware-engineering-metrics.md",
+    "line": 43,
+    "quote": "The simplest scalar is the **average gate fidelity**:",
+    "statement": "The average-gate-fidelity definition jumps to a Haar-measure integral with minimal operational lead-in, unlike the T1/QV/XEB definitions elsewhere in the same chapter which open with an explicit operational walkthrough before any formula.",
+    "fix": "Precede the formula with an operational sentence, e.g. 'Operationally: average the state fidelity between G(psi) and G_ideal(psi) over many random input states psi' before showing the integral.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-09-hardware-and-software/22-hardware-engineering-metrics.md",
+    "line": 57,
+    "quote": "is enough to twirl any noise channel to a depolarising channel",
+    "statement": "The term 'twirl' is used as unglossed technical jargon with no in-file explanation of what twirling operationally means.",
+    "fix": "Add a short parenthetical, e.g. 'twirl (average the channel over random Clifford conjugations) any noise channel...'",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-09-hardware-and-software/23-quantum-programming-compilation-and-tooling.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 1,
+  "d2": 1,
+  "d3": 2,
+  "d4": 1,
+  "d5": 0,
+  "dim_notes": "D1: Opening para (line 7) gives a concrete \"notebook unitary \u2192 pulse train\" image, but is immediately followed (line 9) by a multi-sentence \"How to read this chapter\" roadmap enumerating \u00a7\u00a723.1-23.15 before any worked example completes, tipping the first ~700 words toward meta. D2: The line-9 callout (\"\u00a7\u00a723.1\u201323.4 are the working map of the ecosystem\") front-loads section-roadmap debt after only one paragraph of motivation. D3: \"QIR\" is named as one of three major gate-level IRs (line 7) and reused later (line 75, \"it now compiles to QIR\") but is never defined or expanded anywhere in the file, unlike OpenQASM 3 and Quil which each get dedicated sections (23.2, 23.3); \"GRAPE-style or CRAB-style\" (line 89) and \"Magnus expansion\" (line 168) are dropped without gloss, the latter a real-analysis term for a reader explicitly stated to have no real-analysis background. D4: Catalog-style sections (23.4 SDK Landscape, 23.9's \"Three concrete optimisations\") are bolded-term-then-sentence lists that function like reference tables compressed into prose, though no literal markdown tables appear in the file.",
+  "findings": [
+   {
+    "file": "book/part-09-hardware-and-software/23-quantum-programming-compilation-and-tooling.md",
+    "line": 7,
+    "quote": "gate-level IR (OpenQASM 3, QIR, Quil) pins down a discrete sequence",
+    "statement": "QIR is introduced as one of three major gate-level IRs but is never defined or expanded anywhere in the chapter, unlike its two siblings which each get dedicated sections.",
+    "fix": "Add a one-sentence gloss on first use (\"QIR, the LLVM-based Quantum Intermediate Representation used by Q# and others\") or give it its own short subsection alongside 23.2/23.3.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-09-hardware-and-software/23-quantum-programming-compilation-and-tooling.md",
+    "line": 9,
+    "quote": "\u00a7\u00a723.1\u201323.4 are the working map of the ecosystem",
+    "statement": "The 'How to read this chapter' roadmap callout arrives after only one paragraph, front-loading meta/navigation content before the reader has seen a full worked example.",
+    "fix": "Move the roadmap callout after the OpenQASM 3 worked example in 23.2, or shorten it and let the concrete example in 23.1/23.2 carry the opening.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-09-hardware-and-software/23-quantum-programming-compilation-and-tooling.md",
+    "line": 168,
+    "quote": "cancels the slow noise Hamiltonian to first order in the Magnus expansion",
+    "statement": "The parenthetical invokes the Magnus expansion, a real-analysis/perturbation-series concept, for a reader explicitly stated to have no real-analysis background, with no operational gloss.",
+    "fix": "Either drop the parenthetical or replace it with a one-clause operational description (\"a fast averaging effect familiar from NMR refocusing\") instead of naming the expansion.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-09-hardware-and-software/24-classical-simulation-of-quantum-systems.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 2,
+  "d3": 1,
+  "d4": 1,
+  "d5": 1,
+  "dim_notes": "D1(2): Para at line 7 opens well (concrete claim: \"Every quantum algorithm in this book has, at some point in its life, been simulated classically\"), matching the GREEN anchor shape. But it is immediately followed by two dense preview paragraphs \u2014 line 9's one-clause-per-method survey (\"Statevector simulation is the brute-force baseline. Density-matrix simulation handles noise...\") and line 11's explicit \"How to read this chapter\" navigational block mapping every subsection range \u2014 before the concrete \"algorithm developer / hardware characteriser / complexity theorist\" personas of \u00a724.1 resume grounding. Roughly 300+ of the first ~800 words are pure roadmap/preview rather than experience.\nD2(2): Line 11's blockquote is a textbook caveat/roadmap-before-story block, arriving as the chapter's second and third paragraph, before any worked example. Line 9 also stacks four unglossed acronyms in one clause (\"MPS, PEPS, DMRG, TEBD\") that aren't expanded until much later sections (\u00a724.7-\u00a724.10), creating opening debt even though each is eventually resolved.\nD3(1): Sequencing/pointer discipline is otherwise strong \u2014 all cross-references (\u00a78.10, \u00a74.9, Chapter 11, \u00a716, Chapter 19, \u00a722.10) point backward to earlier chapters/sections, and in-file terms (Kraus form, stabiliser rank, quasi-probability, area law, MPS, PEPS) are given operational glosses close to first substantive use. Isolated exceptions: \"quench\" is used as settled jargon (\"the dynamics of a 1D Heisenberg chain after a global quench\", line 258; also line 150 body text) with no operational definition anywhere in the file or an evident earlier-chapter pointer; a few technique names (boundary MPS, corner transfer matrix, tensor renormalization group at line 168; Lanczos/Davidson at line 156) are named but never glossed, though they are parenthetical rather than load-bearing.\nD4(0-1): No literal tables in the file. The \u00a724.15 decision tree is short bolded Q&A pairs, which is scannable rather than prose-overloaded. The one roadmap block (line 11) is caveat-heavy but singular, not a repeated pattern.\nD5(1): Technical content generally pairs formal statements with fast operational grounding (e.g. line 27's $M(n)=16\\cdot2^n$ formula is followed immediately by concrete GiB thresholds at line 33; stabiliser rank at line 112 is followed immediately by the concrete \"single magic state has stabiliser rank 2\" example). No severe instances of rigor substituting for intuition.",
+  "findings": [
+   {
+    "file": "book/part-09-hardware-and-software/24-classical-simulation-of-quantum-systems.md",
+    "line": 11,
+    "quote": "\u00a724.1\u2013\u00a724.4 are mandatory: they fix the cost model",
+    "statement": "The chapter's second/third paragraph is a full navigational roadmap (a per-section reading map) placed before any concrete example or motivating problem, front-loading meta over experience.",
+    "fix": "Move the 'How to read this chapter' box to after \u00a724.1's concrete persona paragraphs, or compress it to one sentence and defer the section-range map to a footnote.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-09-hardware-and-software/24-classical-simulation-of-quantum-systems.md",
+    "line": 9,
+    "quote": "Tensor networks \u2014 MPS, PEPS, DMRG, TEBD \u2014 exploit limited entanglement",
+    "statement": "Four acronyms (MPS, PEPS, DMRG, TEBD) are introduced in a single preview clause with no gloss, in the chapter's second paragraph, well before their definitions in \u00a724.7-\u00a724.10.",
+    "fix": "Either drop the acronyms from this preview sentence (name the technique family only, e.g. 'tensor-network methods') or add a 3-4 word parenthetical gloss for each on first mention.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-09-hardware-and-software/24-classical-simulation-of-quantum-systems.md",
+    "line": 258,
+    "quote": "the dynamics of a 1D Heisenberg chain after a global quench",
+    "statement": "'Quench' (a sudden change of Hamiltonian parameters) is used as settled condensed-matter jargon both in the body (line 150) and in this sanity-check exercise, with no operational gloss anywhere in the file.",
+    "fix": "Add a short inline gloss at first use, e.g. 'a quench (an abrupt change to the Hamiltonian's parameters)'.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 1,
+  "d2": 2,
+  "d3": 2,
+  "d4": 1,
+  "d5": 1,
+  "dim_notes": "D1(1): Line 7's opening paragraph does earn attention with a real claim/tension (\"the algorithms exist on paper... and the intersection... is still nearly empty\") in the Ch.1-anchor spirit, but it is immediately followed (line 9) by a ~150-word \"How to read this chapter\" navigation box before any worked example \u2014 meta content occupies a large share of the first ~350 words. D2(2): line 9's \"How to read this chapter\" box is a textbook caveat/roadmap-before-story block \u2014 six forward references (\u00a725.3, \u00a715.8, \u00a725.4, \u00a725.5, \u00a725.6, Ch.26, Ch.27) asking the reader to hold a map of unread material immediately after the opening paragraph, e.g. \"are the load-bearing definitions: every later section refers to.\" D3(2): line 70 uses \"spin-orbitals\" and \"active-space reduction\" as unglossed chemistry jargon; grepping the whole book confirms these terms are first defined in Chapter 28 (part-11-applications), which is AFTER this chapter (25) in reading order, and Chapter 15's VQE section (which precedes ch.25 and is cited at line 51) never mentions them either \u2014 a genuine forward-use violation with no pointer. D4(1): no literal tables in the file (bullet lists are well-formed with bold lead terms), but the line-9 roadmap box itself is dense caveat/roadmap overload of the kind D4 flags. D5(1): mild \u2014 line 57 states the barren-plateau variance-scaling formula ($\\mathrm{Var}(\\partial_\\theta)\\sim 2^{-n}$) before its one-sentence plain-English gloss, though the gloss follows in the very next sentence so the debt is short-lived; not severe enough alone to change the verdict.",
+  "findings": [
+   {
+    "file": "book/part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md",
+    "line": 9,
+    "quote": "are the load-bearing definitions: every later section refers to",
+    "statement": "The chapter's second paragraph is a dense navigation/roadmap box with six forward references to unread sections and chapters, front-loading meta-structure before the reader has seen any concrete NISQ example.",
+    "fix": "Cut the how-to-read box down to one sentence or move it to a footnote/margin note after \u00a725.1 has given the reader something concrete to anchor the roadmap to.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md",
+    "line": 70,
+    "quote": "50 spin-orbitals with active-space reduction; Trotterised time evolution",
+    "statement": "\"Spin-orbitals\" and \"active-space reduction\" are used as if already known, but they are first defined only in Chapter 28, which comes after this chapter in reading order, leaving a cold reader with no gloss to fall back on.",
+    "fix": "Add a three-word parenthetical gloss (e.g. \"spin-orbitals (per-electron basis functions)\") or an explicit forward pointer to Chapter 28 at first use.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md",
+    "line": 57,
+    "quote": "scales as $\\mathrm{Var}(\\partial_\\theta) \\sim 2^{-n}$. The cost landscape",
+    "statement": "The barren-plateau claim is stated as a rigorous variance-scaling formula before its plain-English operational meaning, a minor instance of definition-before-operational-meaning ordering.",
+    "fix": "Lead with the operational sentence (\"the cost landscape goes exponentially flat\") and follow with the formula as a footnote-style confirmation, matching the better-ordered pattern used elsewhere in \u00a725.2 and \u00a725.6.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-10-practice-and-era/26-practical-access-and-hands-on-work.md",
+  "model": "sonnet",
+  "verdict": "GREEN",
+  "d1": 1,
+  "d2": 1,
+  "d3": 1,
+  "d4": 0,
+  "d5": 0,
+  "dim_notes": "D1(1): Lines 7 and 9 open with a topic-listing paragraph (\"how to pick a simulator or device, how to access real quantum hardware, which SDK is the right entry point...\") and a \"How to read this chapter\" callout before any concrete content; but this is short (~110 words) and \u00a726.1's opening line (\"debug on a simulator, deploy to hardware,\" line 13) supplies a direct claim plus concrete numbers ($2^n$, 16GB/30 qubits) well within the first 500-800 words, so the ratio stays mild rather than severe. D2(1): the line-9 callout (\"If you only read one section, read \u00a726.3...and \u00a726.6...which is where most new practitioners lose the most time\") is a meta/caveat aside placed before any example, a mild debt-creating move, but it resolves in one sentence and does not block comprehension of what follows. D3(1): line 86 glosses $\\sigma$ inconsistently (\"where $\\sigma$ is the observable's variance\") while using it in the formula $\\sigma/\\sqrt{N}$ as if it were a standard deviation \u2014 a genuine definitional/notational defect a cold reader would trip on; separately, terms like \"parameter-shift gradients\" (line 37) and \"VQE\" (line 29, unexpanded) are used with no in-file gloss \u2014 plausible if properly introduced in an earlier chapter per the reading-order rule, but not verifiable from this file alone, so flagged at low confidence rather than treated as a hard violation.",
+  "findings": [
+   {
+    "file": "book/part-10-practice-and-era/26-practical-access-and-hands-on-work.md",
+    "line": 86,
+    "quote": "where $\\sigma$ is the observable's variance",
+    "statement": "Sigma is glossed as \"the observable's variance\" but is then used in the formula sigma/sqrt(N) as if it were the standard deviation, an internally inconsistent definition at first use.",
+    "fix": "Either change the gloss to \"the observable's standard deviation\" or change the formula to sqrt(variance/N), so the symbol's stated meaning matches its use.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-10-practice-and-era/26-practical-access-and-hands-on-work.md",
+    "line": 9,
+    "quote": "If you only read one section, read \u00a726.3",
+    "statement": "The chapter opens with a meta \"how to read this chapter\" navigation callout before any concrete example or claim is given.",
+    "fix": "Move the reading-guidance callout after the first concrete paragraph (or fold it into the closing bridge section) so the opening leads with the \u00a726.1 claim.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-10-practice-and-era/26-practical-access-and-hands-on-work.md",
+    "line": 29,
+    "quote": "a single VQE optimisation loop with",
+    "statement": "The acronym VQE is used without expansion or gloss in this file, relying entirely on an earlier chapter having introduced it.",
+    "fix": "If VQE was not already spelled out at first use in an earlier chapter, add a one-time parenthetical expansion here (e.g. \"a Variational Quantum Eigensolver (VQE) loop\").",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "medium"
+ },
+ {
+  "file": "book/part-11-applications/27-cryptography-and-security.md",
+  "model": "sonnet",
+  "verdict": "GREEN",
+  "d1": 1,
+  "d2": 0,
+  "d3": 1,
+  "d4": 0,
+  "d5": 0,
+  "dim_notes": "D1=1: opening (line 7) matches the calibration shape well \u2014 direct claim (\"Cryptography is the application area where quantum computing has the sharpest, most concrete consequences\") followed immediately by concrete stakes (Shor breaks every public-key primitive, Grover chips symmetric security, PQC is production code, QKD's different security argument). But it is immediately followed by a second, fairly dense meta paragraph (line 9, \"How to read this chapter\") that previews all 11 sections and name-drops BB84/E91/B92/decoy-states/HNDL before any of them are explained \u2014 pure roadmap, no story. It's blockquoted/skippable so only a mild penalty. D2=0: no unexplained symbols or caveat-before-example moves in the opening; every algorithm named in the opening (Shor, Grover) carries an explicit backward pointer (\u00a715.1/\u00a715.2/\u00a715.4) rather than creating debt. D3=1: two acronyms are used repeatedly throughout the file (ML-KEM, Classic McEliece \"KEM only\", HQC \"(KEM)\", etc.) without ever spelling out KEM = key encapsulation mechanism anywhere in this file \u2014 first bare use at line 57 (\"KEM, signatures, identity-based encryption, fully-homomorphic encryption all have lattice constructions\"), functionally glossed only much later via \"Encapsulation and decapsulation\" at line 69, never as a definition. Similarly \"IPD\" (line 72, \"the IPD released for public comment that autumn\") is never expanded (Initial Public Draft) anywhere in the file. Both are plausible-but-unverifiable candidates for earlier-chapter coverage, and neither blocks comprehension of the surrounding argument, so this is a moderate rather than severe violation. D4=0: the sole table (BB84 case analysis, lines 111-121) uses short scannable cells (\"Z\", \"|0\u27e9\", \"0, always\", \"yes\"), not sentence-length prose, and appears only after the relevant concepts (basis, bit) are defined in prose immediately above it. D5=0: hard formalism is consistently preceded by operational framing \u2014 e.g. the PLOB bound (line 161) follows a concrete, numeric lead-in about fibre loss (\"attenuates at roughly 0.2 dB/km... falls by a factor of 100 every 100 km\") before the bound is stated; BB84's security argument (line 129) follows the protocol mechanics and post-processing steps rather than preceding them.",
+  "findings": [
+   {
+    "file": "book/part-11-applications/27-cryptography-and-security.md",
+    "line": 57,
+    "quote": "KEM, signatures, identity-based encryption, fully-homomorphic encryption all have lattice",
+    "statement": "The acronym KEM (key encapsulation mechanism) is used at first mention and throughout the chapter (ML-KEM, HQC \"(KEM)\", \"KEM only\") but is never once spelled out or glossed in this file.",
+    "fix": "On first use (line 57), write \"KEM (key encapsulation mechanism)\" or add a one-clause gloss.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-11-applications/27-cryptography-and-security.md",
+    "line": 72,
+    "quote": "IPD released for public comment that autumn",
+    "statement": "\"IPD\" (NIST's Initial Public Draft) is used without expansion and never defined anywhere in the file.",
+    "fix": "Expand to \"the Initial Public Draft (IPD)\" on first use.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-11-applications/27-cryptography-and-security.md",
+    "line": 9,
+    "quote": "is the cryptographic-impact summary: which primitives Shor breaks",
+    "statement": "The \"How to read this chapter\" block immediately follows the strong opening paragraph and previews all 11 sections plus several undefined protocol names (BB84, E91, B92, decoy states), adding a roadmap beat right where momentum from the opening claim should carry into concrete content.",
+    "fix": "Trim the roadmap paragraph to one or two sentences, or move the section-by-section map to an appendix/footnote so the opening claim leads straight into \u00a727.1's damage list.",
+    "verify": "OK-loose"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-11-applications/28-scientific-computing-and-physical-simulation.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 1,
+  "d3": 2,
+  "d4": 0,
+  "d5": 1,
+  "dim_notes": "D1=2: opening \u00a77 (~175 words) is a genuine GREEN-shaped claim+argument (Feynman motivation, structural exponential-vs-polynomial contrast), but it is immediately followed by two pure meta/roadmap blocks \u2014 the content-preview paragraph at line 9 (~130 words, \"This chapter covers what that promise looks like...\") and the \"How to read this chapter\" blockquote at line 11 (~145 words, section-by-section navigation) \u2014 so roadmap word count (~275) exceeds concrete/motivating word count (~175) before any real content (\u00a728.1) begins. D2=1: line 9 previews unglossed acronyms (\"DFT, coupled cluster, quantum Monte Carlo, tensor networks\") that are not actually defined until \u00a728.8 near the chapter's end (line ~180+), a long-distance forward reference; mild debt, not blocking since it's clearly framed as a preview. D3=2: chapter is normally careful to gloss physics jargon on first use (Born\u2013Oppenheimer explained line 21, second quantisation explained line 23, electronic-structure problem defined line 15) but several load-bearing terms of art are used with zero definition anywhere in this file or, per whole-book grep, anywhere earlier in the book: \"Hartree\u2013Fock\" (line 44, reused lines 50/52/58/88/90/92/118/140/etc.), \"Slater determinant\" (line 100, also in sanity-check 3a line 221), \"Green's function\"/\"self-energy\"/\"Dyson equation\" (line 92, formalised without explanation at line 116). These are genuine first-use violations for a reader with no prior QM/chemistry background. D4=0: no tables in the file; the bullet lists (ansatz types \u00a728.1, classical-incumbents/quantum-advantage lists \u00a728.8) are short-label-first and scannable, not sentence-dump prose-in-cells. D5=1: most core constructs get operational framing before formalism (electronic-structure problem, DMET, Hubbard model all get plain-English framing before/with their equations), but the Green's function integral (line 116) and the Lindblad master equation (lines 130-136) are dropped in as formulas with only a one-clause \"why\" before them, no \"for this book, X means\" gloss.",
+  "findings": [
+   {
+    "file": "book/part-11-applications/28-scientific-computing-and-physical-simulation.md",
+    "line": 92,
+    "quote": "the local Green's function of the impurity matches",
+    "statement": "\"Green's function\" (and its later formal definition at line 116, plus \"self-energy\"/\"Dyson equation\" in the same sentence) is used as known vocabulary but is never introduced or glossed anywhere in this file or earlier in the book, despite the reader profile explicitly having no prior QM background.",
+    "fix": "Add a short operational gloss on first use, e.g. \"the Green's function (informally: the amplitude for a particle inserted at one spacetime point to be detected at another) of the impurity...\"",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-11-applications/28-scientific-computing-and-physical-simulation.md",
+    "line": 44,
+    "quote": "from a reference (typically Hartree\u2013Fock) determinant",
+    "statement": "\"Hartree\u2013Fock\" is introduced by name only, with no explanation of what it is, and then reused as load-bearing vocabulary through \u00a728.1, \u00a728.4, and \u00a728.5 without ever being defined in this file or earlier in the book.",
+    "fix": "Gloss on first use, e.g. \"a reference (typically Hartree\u2013Fock, the mean-field single-Slater-determinant approximation) determinant\".",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-11-applications/28-scientific-computing-and-physical-simulation.md",
+    "line": 100,
+    "quote": "reach $10^{20}$ Slater determinants \u2014 well beyond exact diagonalisation",
+    "statement": "\"Slater determinant\" is a term of art (an antisymmetrized many-fermion basis state) used here and in Sanity Check 3(a) without ever being defined, even though the chapter otherwise carefully glosses comparable jargon like Born\u2013Oppenheimer and second quantisation on first use.",
+    "fix": "Define it briefly where second quantisation is introduced (\u00a728.1, line 23), e.g. \"each basis state is a Slater determinant \u2014 an antisymmetrized product of the M spin-orbitals.\"",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "medium"
+ },
+ {
+  "file": "book/part-11-applications/29-optimization-finance-and-industrial.md",
+  "model": "sonnet",
+  "verdict": "GREEN",
+  "d1": 1,
+  "d2": 1,
+  "d3": 1,
+  "d4": 0,
+  "d5": 1,
+  "dim_notes": "D1(1): Opening paragraph (line 7, ~190 words) is a genuine claim-with-stakes (\"the advantage is not\") close to the calibration anchor, but it is immediately followed by an explicit section-by-section \"How to read this chapter\" roadmap blockquote (line 9, ~150 words) before any machinery \u2014 mild but present roadmap-before-story pattern. D2(1): line 7 previews five named techniques (QAOA, \"amplitude-estimation-based Monte Carlo\", \"Grover-amplified search\", \"QUBO embeddings\") in one clause with no gloss; acceptable as a preview but stacks unexplained terms in the first paragraph. D3(1): \"barren-plateau regions\" is used at line 57 inside a sentence about QAOA optimization difficulty, then formally defined two sentences later under its own heading at line 59 (\"The barren-plateau caveat...gradients vanish exponentially\") \u2014 a same-file forward-use, though resolved within one paragraph. Also \"QAE\" is used bare in the line-9 roadmap box (\"Monte Carlo with QAE\") before being expanded/defined at line 106 (\"Quantum amplitude estimation (QAE) provides...\"), though this is a preview box and thus lower severity. D4(0): no prose-overloaded tables; the bulleted list of quantum-inspired classical algorithms (lines 85-88) uses bold short labels followed by explanation, which is standard glossary-style and scannable. D5(1): QUBO (line 19) and the Ising form (line 25-29) are introduced by naming the acronym and immediately giving the rigorous minimization formula, with operational framing (\"Encoding a problem as QUBO/Ising is the standard interface...\") arriving only after the formula rather than before it \u2014 mild given the target reader's linear-algebra fluency.",
+  "findings": [
+   {
+    "file": "book/part-11-applications/29-optimization-finance-and-industrial.md",
+    "line": 57,
+    "quote": "multiple local minima and barren-plateau regions for random initialisation",
+    "statement": "\"Barren-plateau\" is used as an established term before it is defined two sentences later under its own heading.",
+    "fix": "Either move the barren-plateau definition ahead of this sentence or add a forward pointer (e.g., \"see below\") at first use.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-11-applications/29-optimization-finance-and-industrial.md",
+    "line": 9,
+    "quote": "Monte Carlo with QAE, option pricing",
+    "statement": "The acronym QAE is used unglossed in the chapter's reading-guide box, nearly 100 lines before it is formally expanded and defined at line 106.",
+    "fix": "Spell out \"quantum amplitude estimation (QAE)\" on first mention in the roadmap box, or drop the acronym there and just say \"amplitude estimation.\"",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-11-applications/29-optimization-finance-and-industrial.md",
+    "line": 19,
+    "quote": "formulation. A QUBO instance is",
+    "statement": "QUBO's rigorous minimization formula is presented immediately after naming it, with the operational \"this is the standard interface\" framing arriving only in the following sentences rather than before the formula.",
+    "fix": "Add one plain-language sentence (e.g., \"informally: pick a 0/1 value for each variable to minimize a quadratic penalty\") before the equation.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-11-applications/30-quantum-machine-learning.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 2,
+  "d3": 2,
+  "d4": 1,
+  "d5": 0,
+  "dim_notes": "D1(2): Opening does earn some attention with a strong contrarian claim (line 7: \"the most over-promised and least-delivered application area in quantum computing\") and a real tension (line 7: gutted programme vs \"genuine bright spot\" vs \"no demonstrated advantage\"). But within the first ~500 words this concrete framing is immediately followed by a full blockquote roadmap (line 11) that walks through all nine subsections (\u00a730.1\u2013\u00a730.9) before any worked example, number, or story appears \u2014 tipping the first screen toward meta/roadmap rather than experience. D2(2): line 11's roadmap block is a \"table/outline-before-story\" pattern dumped right after the opening claims, forcing the reader to hold nine forward pointers before seeing a single concrete case; and line 7 uses the term-of-art \"dequantisation\" (\"gutted by a series of dequantisation results since 2018\") with zero gloss \u2014 it is only given operational meaning ~20 lines later (line 31), so the very first paragraph puts the reader in terminology debt. D3(2): line 45 uses \"Heisenberg-limited scaling\" with no gloss anywhere in the file and no forward pointer \u2014 its natural home (quantum metrology/Cram\u00e9r\u2013Rao bounds) is Chapter 31, which the reader has not yet read at this point in reading order, so this is a genuine forward-use violation, not just an earlier-chapter callback. The \"dequantisation\" first-use noted under D2 is also a D3-relevant in-file forward-use (term deployed before its own file later defines it). D4(1): the Category bullets in \u00a730.1 (lines 17\u201319) and \u00a730.3 (lines 45\u201348) are sentence/paragraph-length rather than scannable labels (e.g. line 17 is a single ~140-word bullet), which is dense but not a literal table, so kept low. D5(0): definitions consistently pair rigor with an operational reading at the same point of introduction (e.g. QRAM at line 29, feature map at line 70, barren plateaus at line 60), so no hard-definition-before-meaning violations found.",
+  "findings": [
+   {
+    "file": "book/part-11-applications/30-quantum-machine-learning.md",
+    "line": 11,
+    "quote": "walk through the three categories in order of decreasing scepticism",
+    "statement": "A full nine-section roadmap is dumped in a blockquote immediately after the opening claims and before any concrete worked example, front-loading the chapter with meta/navigation content.",
+    "fix": "Trim the roadmap box to one or two sentences, or move the detailed section-by-section itinerary later (e.g., end of \u00a730.1) after the taxonomy has been motivated with a concrete case.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-11-applications/30-quantum-machine-learning.md",
+    "line": 7,
+    "quote": "gutted by a series of dequantisation results since 2018",
+    "statement": "The term of art \"dequantisation\" is used in the chapter's opening sentence-cluster with no gloss; its operational meaning is not given until line 31, roughly 20 lines later.",
+    "fix": "Add a short parenthetical gloss at first use, e.g. \"dequantisation (classical algorithms matching the quantum speedup once given comparable data access)\", or move the term's first use to after its definition.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-11-applications/30-quantum-machine-learning.md",
+    "line": 45,
+    "quote": "achieve Heisenberg-limited scaling, and Haah\u2013Kothari\u2013Tang (2024) give optimal",
+    "statement": "\"Heisenberg-limited scaling\" is used with no operational gloss anywhere in the file, and its natural definitional home (quantum metrology / Cram\u00e9r\u2013Rao bounds) is Chapter 31, which the reader has not yet reached.",
+    "fix": "Add a brief in-line gloss (e.g., \"error scaling as 1/t rather than the classical 1/\u221at\") or an explicit forward pointer to \u00a731's treatment of the Heisenberg limit.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "medium"
+ },
+ {
+  "file": "book/part-11-applications/31-quantum-sensing-metrology-and-tomography.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 1,
+  "d2": 1,
+  "d3": 2,
+  "d4": 0,
+  "d5": 1,
+  "dim_notes": "D1(1): Line 7's opening paragraph is genuinely concrete (clock/NV/SQUID/LIGO examples with real numbers) matching the calibration anchor, but it is immediately followed at line 9 by a full \"How to read this chapter\" roadmap block (~150 words: \"\u00a731.1 lays the metrology fundamentals... \u00a731.2 surveys... \u00a731.3 covers... \u00a731.4 lifts... \u00a731.5 turns... \u00a731.6 is the bridge\") before any technical content begins at line 11 \u2014 a meta detour inserted between the hook and the payoff, though the hook itself does come first (unlike table-before-story). D2(1): opening paragraph (line 7) uses \"squeezed vacuum\" and the bare acronym \"SQUID\" without gloss (\"LIGO uses squeezed vacuum to extend its gravitational-wave sensitivity past the shot-noise floor\", \"SQUID arrays read out brain activity\") \u2014 SQUID is only spelled out later at line 55, and squeezing is never operationally defined in this file at all (see D3), so the opening banks debt it does not repay in-file. D3(2): \"squeezed\" states/vacuum and \"quadrature\" (phase/amplitude) are used as load-bearing technical content at lines 7, 43, 49, 61, 69 (e.g. line 61's \"rotates the squeezing angle so the noise is reduced in the *phase* quadrature... and in the *amplitude* quadrature\") but the actual operational meaning of squeezing \u2014 \"sharpen q\u0302 at the expense of p\u0302\" \u2014 is not given anywhere in this file or any earlier chapter; a targeted search of the whole book shows it first appears in Chapter 32 (part-12-adjacent-models/32-adjacent-computational-models.md, line 75), which the reader has not yet reached. This is a genuine forward-reference violation, not merely front-loading. D5(1): the LIGO paragraph (line 61) delivers a fairly technical description of squeezing-angle rotation between quadratures with no preceding \"for this book, squeezing means...\" operational gloss \u2014 the rigor/detail arrives before (in place of) any plain-language operational meaning, compounding D3. D4(0): no tables in the file; the bold-lead-in paragraphs in \u00a731.2/\u00a731.5 are prose, not table cells, and stay scannable.",
+  "findings": [
+   {
+    "file": "book/part-11-applications/31-quantum-sensing-metrology-and-tomography.md",
+    "line": 7,
+    "quote": "LIGO uses squeezed vacuum to extend its gravitational-wave sensitivity",
+    "statement": "Squeezed vacuum / quadrature squeezing is used substantively in the opening and again at lines 43, 49, 61, 69, but its operational meaning is never given in this file or any earlier chapter \u2014 the actual definition (\"squeezed states sharpen q\u0302 at the expense of p\u0302\") only appears in Chapter 32, which the reader has not yet read.",
+    "fix": "Add a one-sentence operational gloss at first use (\"squeezing redistributes quantum noise unevenly between two conjugate field quadratures, below the shot-noise level in one at the cost of excess noise in the other\") or an explicit forward pointer to Ch. 32.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-11-applications/31-quantum-sensing-metrology-and-tomography.md",
+    "line": 9,
+    "quote": "\u00a731.1 lays the metrology fundamentals: the Cram\u00e9r\u2013Rao bound",
+    "statement": "A full section-by-section roadmap block sits directly between the strong concrete opening hook (line 7) and the first technical content (line 11), adding a meta detour before the chapter's substance begins.",
+    "fix": "Trim the roadmap to one sentence or move the detailed section-by-section breakdown to a footnote/sidebar so the concrete hook flows more directly into \u00a731.1.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-11-applications/31-quantum-sensing-metrology-and-tomography.md",
+    "line": 7,
+    "quote": "SQUID arrays read out brain activity in clinical magnetoencephalography",
+    "statement": "The acronym SQUID is used unexplained in the opening paragraph and only spelled out and defined 48 lines later at its formal introduction in \u00a731.2.",
+    "fix": "Either spell out \"SQUID (superconducting quantum interference device)\" on first use in the opening, or accept it as a deliberately teased term given it's resolved within the same chapter shortly after.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-12-adjacent-models/32-adjacent-computational-models.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 1,
+  "d2": 1,
+  "d3": 1,
+  "d4": 1,
+  "d5": 0,
+  "dim_notes": "D1: opening (line 7) does lead with a direct claim + a real conflict (\"common framing error\" in line 9), matching the Ch.1 shape, but before either idea is unpacked it piles four unglossed model names into one clause (\"Adiabatic evolution, measurement-based steering of a cluster state, braiding of anyons, photonic modes carrying continuous-variable encodings\") \u2014 inventory outweighs a single grounded thing to care about in the first sentence. D2: same line-7 clause is an abstract-noun pile (four named-but-unexplained model types back to back) before any one of them is made concrete. D3 (minor): line 91's formula uses the bare LaTeX macro `\\mathrm{Perm}(U_S)` before the prose on line 94 (\"Computing the permanent of a matrix is #P-hard\") names/glosses \"permanent\" \u2014 brief but real forward-use of unlabeled notation. D4: the \"How to read this chapter\" box (line 11) packs six section-group cross-references and priority judgments into one dense paragraph immediately after the two opening paragraphs, functioning like a mini table-of-contents dropped into prose \u2014 placed after motivation (acceptable per calibration) but dense enough to read as roadmap overload right when the reader is still getting oriented.",
+  "findings": [
+   {
+    "file": "book/part-12-adjacent-models/32-adjacent-computational-models.md",
+    "line": 7,
+    "quote": "measurement-based steering of a cluster state, braiding of anyons",
+    "statement": "The opening sentence piles four unglossed technical model-names into one clause before any single one is made concrete, front-loading abstraction ahead of a grounded example.",
+    "fix": "Unpack one example (e.g., briefly ground 'cluster state' or 'anyons' in one clause) before listing the rest, or defer the full list until each gets its own section header.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-12-adjacent-models/32-adjacent-computational-models.md",
+    "line": 11,
+    "quote": "are the most algorithmically important \u2014 they each map cleanly",
+    "statement": "The 'How to read this chapter' block functions as a dense mini-table-of-contents (six section-group priority judgments in one paragraph) placed right at the start of the chapter, tipping toward roadmap overload before any technical content begins.",
+    "fix": "Shorten to 1-2 sentences of high-level guidance, or move the detailed per-section reading priorities to a footnote/end-of-chapter note.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-12-adjacent-models/32-adjacent-computational-models.md",
+    "line": 91,
+    "quote": "\\mathrm{Perm}(U_S)|^2}{s_1! \\cdots s_m!}",
+    "statement": "The notation Perm(U_S) appears in the probability formula before the term 'permanent' is named and glossed in the following sentence, a brief forward-use of unlabeled notation.",
+    "fix": "Name 'the permanent of the submatrix U_S' in prose immediately before presenting the formula, so Perm is already glossed when it appears.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "medium"
+ },
+ {
+  "file": "book/part-12-adjacent-models/33-quantum-communication-and-networking.md",
+  "model": "sonnet",
+  "verdict": "GREEN",
+  "d1": 1,
+  "d2": 1,
+  "d3": 1,
+  "d4": 0,
+  "d5": 0,
+  "dim_notes": "D1(1): Opening paragraph (line 7) is genuinely GREEN-shaped \u2014 direct claim (\"Computation is one use of quantum mechanics; communication is the other\"), stated conflict (\"The trouble is loss.\"), concrete numbers (0.2 dB/km) \u2014 but it is immediately followed by a ~170-word pure \"How to read this chapter\" roadmap blockquote (line 9) that walks through all six subsections before any real content begins, pushing the concrete:meta ratio in the first ~450 words down to roughly 60/40 rather than the near-total-motivation opening of Ch1. Mild, not severe, since the ordering (motivation, then roadmap) is correct. D2(1): line 7's second sentence lists four named protocols (\"superdense coding, teleportation, key distribution, distributed sensing\") with zero gloss, purely as a motivating list \u2014 minor debt since none is load-bearing for the sentence itself, but it front-loads terms of art before any definition appears. D3(1): the DLCZ paragraph (line 61) uses quantum-optics jargon \u2014 \"Raman pulse,\" \"Stokes photon,\" \"collective spin excitation,\" \"optical cavity\" \u2014 that is never operationally glossed anywhere in this file or in earlier chapters (checked prelude/ch27/ch31/ch32), which is a real gap for a reader with explicitly no QM/optics background; contained to one paragraph, not pervasive. All other notation/terms are either defined operationally at first use in this file (ebit, QBER, sifted key, PLOB bound, entanglement swapping via the Alice/Bob/Charlie story, gate teleportation) or carry explicit forward/backward section pointers (no-cloning \u00a75.13, Bell-basis \u00a77.12, Holevo \u00a712.5, CHSH \u00a77.9, self-testing \u00a731.5, MDI-QKD already defined in Ch27 before line 83 uses it, NOON state already defined in Ch31, GKP code already defined in Ch32). D4(0): no literal tables in the file; the taxonomy bullets (three repeater generations, network primitives, topologies) carry full sentences but are genuine scannable content, not roadmap/caveat padding. D5(0): every major primitive (teleportation, superdense coding, entanglement swapping, purification, PLOB bound, twin-field QKD) is given an operational \"resources/effect\" or worked-example framing before or alongside its formalism, matching the book's own operational-first house style.",
+  "findings": [
+   {
+    "file": "book/part-12-adjacent-models/33-quantum-communication-and-networking.md",
+    "line": 61,
+    "quote": "A Raman pulse on the ensemble generates a single Stokes photon",
+    "statement": "DLCZ's physical implementation is described using unglossed quantum-optics jargon (Raman pulse, Stokes photon, collective spin excitation, optical cavity) that is never operationally defined anywhere in the book, despite the reader having no QM/optics background.",
+    "fix": "Add a one-clause operational gloss (e.g., \"a laser pulse that scatters a photon off the ensemble while flipping one atom's spin\") or explicitly flag the mechanism as background-optional detail.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-12-adjacent-models/33-quantum-communication-and-networking.md",
+    "line": 7,
+    "quote": "superdense coding, teleportation, key distribution, distributed sensing",
+    "statement": "The chapter's second sentence lists four named protocols with no gloss, before any of them has been characterized even informally.",
+    "fix": "Either drop the list to a generic phrase (\"a handful of tasks impossible over a classical channel\") or add a 3-5 word parenthetical per term.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-12-adjacent-models/33-quantum-communication-and-networking.md",
+    "line": 9,
+    "quote": "\u00a733.2 walks through quantum key distribution: BB84, E91, B92, decoy-state",
+    "statement": "The How-to-read roadmap immediately following the strong opening paragraph front-loads six sections' worth of unglossed acronyms into the first screen, shifting the opening's concrete:meta balance toward meta.",
+    "fix": "Trim the roadmap to the two \"who should read what\" sentences and move the section-by-section content preview later or into a shorter form.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 1,
+  "d2": 1,
+  "d3": 1,
+  "d4": 1,
+  "d5": 0,
+  "dim_notes": "D1(1): Opening para (line 7) is a decent concrete hook (\"thirty-three chapters,\" \"pays that cost back\") but is immediately followed (line 9) by a full \"How to read this chapter\" navigation box before any worked example \u2014 pure meta/roadmap content sits between the hook and the first real content (34.1's Kalman-filter analogy at line 13). By ~600-800 words concrete content dominates, so this is mild rather than severe. D2(1): the how-to-read box front-loads a caveat (\"keep those open if a particular bridge is unfamiliar,\" line 9) and a dense list of six chapter cross-references before any example is given \u2014 classic caveat-before-example shape, though brief. D3(1): \"AWGs\" (line 87) is used and never spelled out or glossed anywhere in the file (Arbitrary Waveform Generators is assumed knowledge); \"M\u00f8lmer\u2013S\u00f8rensen entangling gates\" (line 49) is likewise named with zero gloss. Both are minor since they're decorative/illustrative rather than load-bearing for later argument, but they are still unglossed terms of art on first use. D4(1): no literal tables in the file, but the \"How to read this chapter\" blockquote (line 9) functions as a compressed reading-order table/roadmap bundled with six dense cross-references, which is the same overload pattern the rubric flags for tables \u2014 mild, isolated to one paragraph. D5(0): the rigor-then-operational pattern (e.g., no-cloning's formal $U(|\\psi\\rangle\\otimes|0\\rangle)=|\\psi\\rangle\\otimes|\\psi\\rangle$ at line 39 immediately followed by the move-only-type analogy) is brief and is the chapter's explicit stated purpose (translate formalism into engineering intuition), not a case of rigor displacing operational meaning.",
+  "findings": [
+   {
+    "file": "book/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md",
+    "line": 9,
+    "quote": "keep those open if a particular bridge is unfamiliar",
+    "statement": "The chapter opens with a full reading-order/roadmap box (which sections to internalise first, six dense chapter cross-references) sandwiched between the motivating hook and the first concrete example, front-loading meta content before payoff.",
+    "fix": "Move the 'how to read this chapter' guidance to a shorter trailing note after \u00a734.1's first concrete analogy, or trim it to one sentence.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md",
+    "line": 87,
+    "quote": "pulse-level instructions for the AWGs",
+    "statement": "The acronym 'AWGs' (arbitrary waveform generators) is used with no gloss or expansion anywhere in the file.",
+    "fix": "Expand on first use: 'pulse-level instructions for the AWGs (arbitrary waveform generators)'.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md",
+    "line": 49,
+    "quote": "ion traps offer M\u00f8lmer\u2013S\u00f8rensen entangling gates",
+    "statement": "M\u00f8lmer\u2013S\u00f8rensen and Rydberg gates are named without any gloss of what distinguishes them, relying purely on the reader recognizing the terms.",
+    "fix": "Add a three-word parenthetical (e.g. '(a two-qubit phase gate)') or cut the names if they are purely decorative color.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/part-13-perspective-and-direction/35-interpretational-and-conceptual-pitfalls.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 1,
+  "d2": 2,
+  "d3": 2,
+  "d4": 1,
+  "d5": 1,
+  "dim_notes": "D1(1): Opening paragraph (lines 7-20) does earn attention with a concrete hook \u2014 it quotes real popular slogans ('superposition is being in two states at once', 'spooky action at a distance', etc.) before any machinery, matching the Ch.1 shape. But before any of those slogans is actually unpacked, the reader hits a second, more abstract paragraph (22-31) and then a 14-line, all-14-section roadmap blockquote (33-46) \u2014 meta/navigation content dominates the back half of the first ~500-800 words, pushing the first real worked example (\u00a735.1's parallelism argument) past word ~470. D2(2): paragraph 2 piles up unglossed abstract nouns/terms of art in one sentence \u2014 'the measurement problem', 'Copenhagen and many-worlds', '$\\psi$-ontic versus $\\psi$-epistemic' (line 24-25) \u2014 with no operational gloss attached at point of use; the reader is told these don't need resolving, but they're still dropped as recognizable jargon on a reader who by the book's own profile has no prior QM. D3(2): '$\\psi$-ontic versus $\\psi$-epistemic' (line 24) is used with zero gloss and no forward pointer (contrast with the chapter's normal practice of explicit forward pointers, e.g. 'decoherence (\u00a735.12)' at line 218, '(\u00a735.12)' at line 461). It is only partly resolved ~550 lines later in \u00a735.13 (line 575), which glosses '$\\psi$-epistemic' but never explicitly defines '$\\psi$-ontic' even there. D4(1): the 'How to read this chapter' box (lines 33-46) is a dense, single-block preview of all 14 subsections packed with compound jargon labels ('entanglement-as-signalling', 'collapse-as-mechanism', 'uncertainty-as-measurement-disturbance', 'PBR and ontology') \u2014 roadmap overload sitting ahead of any content, though it is at least visually set off as a blockquote. D5(1): in \u00a735.13 the PBR theorem is stated in near-final form ('PBR shows that no $\\psi$-epistemic model reproduces all quantum predictions', line 574-575) one sentence before the operational gloss of what a $\\psi$-epistemic model actually is (line 575-578) \u2014 minor theorem-before-definition ordering, though the gap is only one sentence, not pages.",
+  "findings": [
+   {
+    "line": 24,
+    "quote": "take a side on $\\psi$-ontic",
+    "statement": "The terms '$\\psi$-ontic' and '$\\psi$-epistemic' are used in the opening with no gloss and no forward pointer, and only '$\\psi$-epistemic' is ever explicitly defined, ~550 lines later in \u00a735.13.",
+    "fix": "Either add a forward pointer ('see \u00a735.13') right after the phrase, or replace with a plain-language stand-in ('whether the wavefunction is real or just a state of belief') until \u00a735.13 defines the pair.",
+    "verify": "OK"
+   },
+   {
+    "line": 33,
+    "quote": "cover the four slogans that produce the most working-engineer mistakes",
+    "statement": "The 'How to read this chapter' box previews all 14 subsections in one dense block using compound jargon labels (entanglement-as-signalling, collapse-as-mechanism, PBR and ontology) before any of them has been motivated, functioning as roadmap overload right in the opening window.",
+    "fix": "Shorten to a one-line thematic summary and move the section-by-section map to a footnote or trim it to 2-3 clauses; let the slogans in the first paragraph (already concrete) carry the opening instead.",
+    "verify": "OK-loose"
+   },
+   {
+    "line": 574,
+    "quote": "PBR shows that *no $\\psi$-epistemic model",
+    "statement": "The PBR theorem is stated using the term '$\\psi$-epistemic' before that term's operational definition appears (which comes only in the following sentence).",
+    "fix": "Swap the order: give the one-sentence operational gloss of a $\\psi$-epistemic model first, then state what PBR rules out.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "medium"
+ },
+ {
+  "file": "book/part-13-perspective-and-direction/36-how-to-judge-claims.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 2,
+  "d2": 2,
+  "d3": 1,
+  "d4": 1,
+  "d5": 0,
+  "dim_notes": "D1(2): Opening para (line 7) does earn some attention with a real tension (\"the gap between 'this is a beautiful experiment' and 'this changes what an industrial customer should buy' is wide\") but pivots fast into \"how to... how to... how to...\" meta-listing; the very next block (line 9, the \"How to read this chapter\" box) is 100% section-by-section roadmap covering all eight subsections with zero worked example \u2014 roadmap volume roughly matches or exceeds the experience content in the first ~350 words. D2(2): line 7 name-drops five unglossed case studies (\"Sycamore, Jiuzhang, the IBM utility-scale experiments, Schnorr 2023, the Tang dequantisation cascade\") that the cold reader cannot yet evaluate, and line 9 is a caveat/roadmap block placed directly before any story \u2014 classic \"table-before-story\" debt at the very start of the chapter. D3(1): \"stable rank\" (line 45) is used as a load-bearing qualifier on the dequantisation result and never glossed anywhere in the file (no operational aside, no forward pointer); \"XEB scoring\" (line 49) is used as an unexpanded acronym before \"cross-entropy benchmarking\" appears unlinked to it at line 93 \u2014 minor but real first-use gaps, not severe since most other technical terms (QRAM, HHL, block encoding, classical shadows) carry explicit in-line glosses or explicit chapter back/forward pointers. D4(1): no literal markdown tables, but \u00a736.5's four \"how to read X\" checklists and \u00a736.8's advice list stack sentence-length bullets across most of the back half of the chapter; scannable via bold/italic lead-ins so only mildly over the line for a chapter whose stated purpose is a checklist/field-manual. D5(0): no instance of a rigorous definition preceding an operational one; concepts like \"quantum-inspired\" (line 51) and \"utility\" vs \"advantage\" (line 126) are introduced operationally first.",
+  "findings": [
+   {
+    "file": "book/part-13-perspective-and-direction/36-how-to-judge-claims.md",
+    "line": 9,
+    "quote": "sketches the landscape of claim sources and the incentives shaping each",
+    "statement": "The second block of the chapter (the 'How to read this chapter' box) is a pure eight-section roadmap with no concrete example, front-loading meta content immediately after the single opening paragraph.",
+    "fix": "Cut or shrink the roadmap box to one sentence, or move it after the first worked example (e.g. after the Sycamore vignette) so the reader gets a concrete case before the map of the chapter.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-13-perspective-and-direction/36-how-to-judge-claims.md",
+    "line": 7,
+    "quote": "Sycamore, Jiuzhang, the IBM utility-scale experiments, Schnorr 2023, the Tang dequantisation cascade",
+    "statement": "Five specific case-study names are dropped in the opening paragraph with no gloss, creating unexplained-term debt before the reader has any basis to evaluate them (they are not explained until \u00a736.3/\u00a736.7, several pages later).",
+    "fix": "Either drop the list from the opening (let the case studies arrive when first analyzed) or append a half-clause gloss for each, e.g. \"Sycamore (Google's 2019 supremacy chip)\".",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-13-perspective-and-direction/36-how-to-judge-claims.md",
+    "line": 45,
+    "quote": "the matrix's *stable rank* \u2014 a dependence the quantum",
+    "statement": "\"Stable rank\" is used as the load-bearing technical qualifier that limits the dequantisation claim, but it is never defined or glossed anywhere in the file.",
+    "fix": "Add a short in-line gloss, e.g. \"stable rank (roughly, the effective number of dominant singular directions, $\\|A\\|_F^2/\\|A\\|_2^2$)\".",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "medium"
+ },
+ {
+  "file": "book/part-13-perspective-and-direction/37-endgame.md",
+  "model": "sonnet",
+  "verdict": "YELLOW",
+  "d1": 3,
+  "d2": 2,
+  "d3": 0,
+  "d4": 2,
+  "d5": 0,
+  "dim_notes": "D1=3: the first ~800 words are pure meta/roadmap with zero concrete example, paradox, or story \u2014 line 7 is retrospective book-framing prose, the line-9 blockquote is an explicit section-by-section preview of all eight subsections (\"\u00a737.1 retraces... \u00a737.2 is the state-of-the-field snapshot... \u00a737.3 is the forward look...\"), and \u00a737.1 (lines 11-25) is a 13-bullet chapter-by-chapter index recap. No concrete \"thing to care about\" appears until the calibration numbers in \u00a737.2 (line 33+). D2=2: the recap bullets are abstract-noun piles rather than sentences with a throughline, e.g. line 19 \"Measurement theory (projective measurement, POVMs, tomography, classical shadows) and quantum information theory (entropies, the Holevo bound, channel capacities)\" \u2014 a term list with no connective explanation, appropriate only for a reader doing pure lookup, not for someone reading linearly for sense-making. D3=0: every technical term/symbol used (BQP, T_1/T_2, POVMs, magic-state distillation, threshold theorem, |\u03c8\u27e9 \u2208 C^{2^n}, etc.) is a backward reference explicitly tagged with its originating chapter/section number, consistent with material the reader has already passed through in reading order \u2014 no forward-use violations found. D4=2: multiple bulleted lists function as prose-dense tables rather than scannable structures \u2014 the \u00a737.1 part-recap (13 entries, each a mini-paragraph), the \u00a737.5 role list (6 entries, each 3-4 sentences, e.g. line 82's SDK-developer entry), and the explicit 8-clause roadmap sentence in the line-9 blockquote all stack roadmap/list overload on top of each other before the chapter settles into linear prose. D5=0: chapter explicitly states it introduces no new technical machinery (line 7: \"It is the only chapter that does not introduce new technical machinery\"), so there is no load-bearing new concept being defined at all, rigorously or otherwise \u2014 this dimension does not apply.",
+  "findings": [
+   {
+    "file": "book/part-13-perspective-and-direction/37-endgame.md",
+    "line": 9,
+    "quote": "\u00a737.1 retraces the technical arc of the book",
+    "statement": "The chapter's second paragraph is an explicit, section-by-section roadmap for all eight subsections, arriving before any concrete example, claim, or hook comparable to Chapter 1's opening move.",
+    "fix": "Cut or shrink the roadmap blockquote, or move it after a short concrete opening (a specific claim or vignette) so the reader has something to care about before the map.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-13-perspective-and-direction/37-endgame.md",
+    "line": 19,
+    "quote": "projective measurement, POVMs, tomography, classical shadows) and quantum",
+    "statement": "The \u00a737.1 chapter recap (13 bullets) is written as strings of technical nouns in parentheses rather than narrative sentences, reading as a lookup index rather than prose a linear reader can follow for sense-making.",
+    "fix": "Replace the noun-list bullets with one synthesizing sentence per part that states what each part let the reader do, reserving the exhaustive term list for the notation/back-matter appendix.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/part-13-perspective-and-direction/37-endgame.md",
+    "line": 82,
+    "quote": "Building and maintaining the open-source quantum SDKs (Qiskit, Cirq",
+    "statement": "Each entry in the \u00a737.5 role list is a 3-4 sentence paragraph rather than a scannable label, so the list reads as six stacked mini-essays rather than a table a reader can compare at a glance.",
+    "fix": "Lead each bullet with a short bolded one-line definition of the role, then follow with the supporting detail already present.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/99-back-matter/appendix-a-notation-reference.md",
+  "model": "sonnet",
+  "verdict": "GREEN",
+  "d1": 0,
+  "d2": 1,
+  "d3": 1,
+  "d4": 1,
+  "d5": 0,
+  "dim_notes": "D1=0: per triage instructions this is reference material judged as a lookup surface, not narrative; its opening (lines 7-20) is meta-explanation of the lookup format itself, which is the correct genre move for an appendix, not a GREEN-anchor violation. D2=1 (mild): line 19 \"The same precedent set \u00a74.12 and \u00a74.16 of Chapter 4\" is a garbled/unparseable sentence that reads as debt (unclear referent) right in the opening block before any entry is given, though it resolves once \u00a74.1x links are followed. D3=1 (mild, in-file only): line 113-115 uses \u03c1, \u03c3 and the trace-distance formula D(\u03c1,\u03c3) inside the \"trace norm\" bullet before D(\u03c1,\u03c3) is formally glossed at line 251 in \u00a7A.4 of this same file, with no forward pointer at the point of first use (\u03c1/\u03c3 as density-matrix symbols are fine from Ch.5, but the specific D(\u03c1,\u03c3) notation is used ahead of its own definition). D4=1 (mild): the closing \"Sample complexity\" block (lines 354-362) breaks from the bullet-gloss format into a dense, unbulleted prose paragraph mixing \u0398/O asymptotics, Hoeffding/Chernoff, and amplitude estimation \u2014 scannable-lookup style lapses into a short expository essay atypical of the rest of the appendix. D5=0: as a glossary, giving compact formal definitions (adjoint, POVM, fidelity, etc.) directly is the expected and correct move for lookup material; the file is not asking the reader to parse rigor before getting an operational handle on a narrative concept.",
+  "findings": [
+   {
+    "file": "book/99-back-matter/appendix-a-notation-reference.md",
+    "line": 19,
+    "quote": "The same precedent set \u00a74.12 and \u00a74.16 of Chapter 4",
+    "statement": "Grammatically broken sentence in the opening rationale paragraph leaves the reference unclear on first pass.",
+    "fix": "Rewrite as e.g. 'The same precedent is set in \u00a74.12 and \u00a74.16 of Chapter 4' or cut the sentence.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/99-back-matter/appendix-a-notation-reference.md",
+    "line": 114,
+    "quote": "The basis for trace distance between density matrices",
+    "statement": "Trace distance D(\u03c1,\u03c3) is used and its formula given inline before it is formally glossed later at line 251 in \u00a7A.4 of the same file, with no forward pointer.",
+    "fix": "Add a forward pointer '(see \u00a7A.4)' or move/duplicate the trace-distance gloss earlier.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/99-back-matter/appendix-a-notation-reference.md",
+    "line": 354,
+    "quote": "Estimating an unknown Bernoulli probability",
+    "statement": "The closing 'Sample complexity' entry drops the bullet/gloss format used everywhere else in the appendix for a dense unbulleted prose paragraph, breaking scannability of the lookup surface.",
+    "fix": "Convert to a bulleted entry or trim to a short scannable gloss with a pointer to Chapter 14 for the full argument.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/99-back-matter/appendix-b-common-gates.md",
+  "model": "sonnet",
+  "verdict": "GREEN",
+  "d1": 1,
+  "d2": 1,
+  "d3": 1,
+  "d4": 1,
+  "d5": 0,
+  "dim_notes": "D1=1: ~200 words of meta/convention-setting (lines 7-21: appendix scope, backward pointers to Ch4 \u00a74.5/\u00a74.8, MSB-first indexing formula) precede the first concrete gate matrix at line 30; expected for a lookup appendix (per triage rules) but still zero worked example on first screen. D2=1: lines 15-21 state the index formula \"$\\sum_i x_i\\, 2^{n-i}$\" and an endian caveat before any example table \u2014 caveat-before-content, though justified since it governs every matrix that follows. D3=1: three physics-flavor asides are dropped with no gloss and no forward pointer \u2014 \"Heisenberg picture\" (line 75), \"spin-$1/2$\" (line 166), \"Clifford group\" (line 335); none are load-bearing for the stated facts (which are given plainly beforehand/alongside) but they are undefined terms of art thrown in as color. D4=1: no literal tables, but several bullets pack 2-3 clauses of dense math into one line, e.g. line 428's \"Global phase becomes relative phase...\" bullet chains a formula, a consequence, and a forward pointer in one sentence, hurting scannability of an otherwise lookup-oriented list. D5=0: every one of the 9 sections gives a plain operational sentence before the matrix/rigor, e.g. lines 180-182 (CNOT), 235-238 (CZ), 267-269 (SWAP), 302-306 (Toffoli) \u2014 consistent good pattern, no rigor-first violations found.",
+  "findings": [
+   {
+    "file": "book/99-back-matter/appendix-b-common-gates.md",
+    "line": 75,
+    "quote": "exchanges $X$ and $Z$ in the Heisenberg picture",
+    "statement": "\"Heisenberg picture\" is used as an unglossed QM term of art with no in-file definition or forward pointer, risky for a stated no-prior-QM audience.",
+    "fix": "Either gloss it inline (\"in the Heisenberg picture \u2014 i.e. tracking how operators transform under conjugation\") or cut the phrase; the preceding clause already states the fact plainly.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/99-back-matter/appendix-b-common-gates.md",
+    "line": 166,
+    "quote": "$2\\pi$-periodic \u2014 a signature of spin-$1/2$).",
+    "statement": "\"spin-1/2\" is dropped as an unexplained physics label with no gloss or pointer to where spin is discussed.",
+    "fix": "Add a 3-4 word parenthetical (\"spin-1/2 systems, i.e. qubits\") or drop the aside since the periodicity fact already stands alone.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/99-back-matter/appendix-b-common-gates.md",
+    "line": 335,
+    "quote": "a member of the Clifford group; together with any",
+    "statement": "\"Clifford group\" is used without an in-file gloss or explicit pointer to the chapter that defines it.",
+    "fix": "Add a short parenthetical gloss (\"the group generated by H, S, CNOT\") or a section pointer, consistent with how other forward/backward terms in this file are handled (e.g. \u00a74.8, \u00a7B.3 pointers).",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/99-back-matter/appendix-c-identities-and-decompositions.md",
+  "model": "sonnet",
+  "verdict": "GREEN",
+  "d1": 0,
+  "d2": 0,
+  "d3": 1,
+  "d4": 1,
+  "d5": 0,
+  "dim_notes": "D1=0: this is reference material (per triage instructions, judged as a lookup surface, not narrative); the opening (lines 7-14) is a scope statement with backward cross-refs to Ch4 \u00a74.5/\u00a74.7/\u00a74.8 and Appendix B, which is the expected/appropriate shape for an appendix, not a narrative failure. D2=0: no forward \"defined later\" debt in the opening \u2014 all cross-references in lines 9-14 point backward to already-read material (Ch4, App B). D3=1: \"Heisenberg picture\" (line 164, also App B line 75) is used as an unglossed QM term of art; grep across the whole book (incl. Ch4 \u00a74.5, Appendix A notation ref, Appendix E glossary) finds no definition of this exact phrase anywhere \u2014 severity is mitigated because the immediately-following equations ($HXH=Z$ etc.) make the operational content clear even if the label itself is opaque. All other checked symbols/terms (KAK decomposition, ancilla, R_x/R_y/R_z, Bloch, MUB, involutory) are properly pre-established in Ch8, App B, or Ch6/Ch27 per reading order. D4=1: the \"Pauli product table\" (line 47) is announced as a table but delivered as four dense bullet-lines of inline algebra (lines 49-52) rather than a scannable grid \u2014 a minor lookup-surface scannability defect, not prose overload elsewhere. D5=0: the one full formal definition in the file (MUB, lines 357-364) is preceded by prior operational use of \"mutually unbiased bases\" in Ch27's BB84 discussion (already read), and is itself followed immediately by an explicit operational gloss (line 366-368) \u2014 correct sequencing, not premature rigor.",
+  "findings": [
+   {
+    "file": "book/99-back-matter/appendix-c-identities-and-decompositions.md",
+    "line": 164,
+    "quote": "Heisenberg picture and flips the sign of $Y$",
+    "statement": "The QM term of art \"Heisenberg picture\" is used here (and once earlier in Appendix B) without ever being defined or glossed anywhere in the book \u2014 not in Ch4 \u00a74.5 (operator classes), not in Appendix A (notation reference), not in Appendix E (glossary).",
+    "fix": "Add a short parenthetical operational gloss on first use, e.g. \"in the Heisenberg picture (the gate acts on the operator, $O \\mapsto U^\\dagger O U$, rather than on the state)\", or add a one-line entry to the Appendix E glossary.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/99-back-matter/appendix-c-identities-and-decompositions.md",
+    "line": 47,
+    "quote": "rows are the left factor, columns the right factor",
+    "statement": "The \"Pauli product table\" is announced as a table but is rendered as four dense inline-algebra bullet lines rather than an actual scannable grid, undercutting the appendix's own lookup-surface purpose.",
+    "fix": "Render the 16 products as an actual 4x4 Markdown table with I/X/Y/Z as row and column headers instead of prose bullets.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/99-back-matter/appendix-d-suggested-reading.md",
+  "model": "sonnet",
+  "verdict": "GREEN",
+  "d1": 0,
+  "d2": 1,
+  "d3": 1,
+  "d4": 1,
+  "d5": 0,
+  "dim_notes": "D1=0: file is an annotated bibliography (reference/lookup surface per triage instructions), not narrative prose, so 'experience vs. roadmap' ratio doesn't apply; the scope-setting paragraph (lines 7-17) is appropriate front matter for this genre. D2=1: line 3, '> **Status:** prereviewed \u00b7 **Phase:** 6 \u00b7 **Sections drafted:** 8 / 8', is a raw production/workflow artifact sitting before any reader content \u2014 editorial tracking leaking into the manuscript, before the appendix even states its purpose. D3=1: a handful of acronyms are used as bare labels without gloss (e.g. 'PostBQP' line 212, 'QMA, QIP' lines 223/226, 'CPTP maps' line 109, 'diamond norm' line 112, 'defcal' line 202) \u2014 defensible since each is anchored to a specific earlier chapter/part the reader has already passed, so this is mild rather than a clear violation. D4=1: entries are mostly short scannable citation+annotation bullets (no prose-heavy tables), but a few entries carry caveat-stacked parentheticals (D.8 Qiskit entry lines 280-288; OpenPulse entry lines 197-202) and one entry breaks the citation-format convention with an inline parenthetical (line 227-228, Ewin Tang), slightly hurting scannability as a lookup surface. D5=0: no rigorous definitions are given in this file at all \u2014 it only points outward to sources, so hard-definition-before-operational-meaning doesn't apply.",
+  "findings": [
+   {
+    "line": 3,
+    "quote": "prereviewed \u00b7 **Phase:** 6 \u00b7 **Sections drafted:** 8 / 8",
+    "statement": "A production/workflow status line (prereviewed / Phase 6 / Sections drafted) appears as the first line of reader-facing content, before the appendix even states its purpose.",
+    "fix": "Remove or relocate this status metadata to a non-reader-facing build file; it is editorial tracking, not content for the book's audience.",
+    "verify": "OK"
+   },
+   {
+    "line": 228,
+    "quote": "Ewin Tang (STOC 2019; arXiv:1807.04271) \u2014 the paper that launched",
+    "statement": "This entry breaks the list's established citation pattern (Title in italics, then 'Author. Venue, Year.') by inlining venue/arXiv info parenthetically, reducing scannability of an otherwise consistent lookup list.",
+    "fix": "Reformat to match the surrounding entries: '*Title.* Ewin Tang. STOC, 2019 (arXiv:1807.04271).'",
+    "verify": "OK"
+   },
+   {
+    "line": 231,
+    "quote": "The query complexity of the hidden subgroup problem.* Various",
+    "statement": "Unlike every other bullet, this entry has no citable primary source ('Various authors') and instead redirects to a different paper's title, which weakens the appendix's function as a lookup surface.",
+    "fix": "Either cite a specific representative paper directly, or fold this sentence into the adjacent Childs\u2013van Dam entry rather than giving it its own bullet.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/99-back-matter/appendix-e-glossary.md",
+  "model": "sonnet",
+  "verdict": "GREEN",
+  "d1": 1,
+  "d2": 1,
+  "d3": 0,
+  "d4": 1,
+  "d5": 0,
+  "dim_notes": "D1(1): opening ~230 words (lines 7-24) are pure meta (cross-ref map to Appendices A/B/C, formatting rationale) before any entry \u2014 normal for a glossary used as lookup surface, but it is 100% roadmap/administrative, no \"thing to care about,\" consistent with genre so only mild penalty. D2(1): line 20 cites an internal build artifact (\"Bug 5 in docs/github-markdown-math-bugs.md\") in reader-facing prose \u2014 the reader is handed a pointer to a repo bug-tracking doc they cannot use, pure unexplained debt with no payoff. D3(0): entries are alphabetical within category and reference chapter sections already passed in reading order (e.g. \"Schmidt rank\" used at line 63 before its E.2 definition at line 192, but both point back to earlier chapters/\u00a74.9, Chapter 7 already read); genuine forward jargon (POVM line 78, Qiskit `Statevector` line 117) carries explicit forward pointers or is pre-established as the book's reference SDK \u2014 no unglossed orphan terms found. D4(1): format is bullet-based, mostly short scannable definitions per the stated design (line 18); one entry (Depolarising channel, lines 367-372) stacks two competing parameterisations plus a hedge \"check which one a source means,\" denser than the surrounding terse norm but isolated, not systemic. D5(0): section intros explicitly frame entries as \"the operational meaning used in this book; the formal treatment lives in the referenced section\" (lines 27-29) and entries largely honor that \u2014 full formulas are given but labeled as the book's working convention (e.g. Fidelity line 64-69 states the chosen convention before the general formula), appropriate for a reference glossary rather than a narrative violation.",
+  "findings": [
+   {
+    "file": "book/99-back-matter/appendix-e-glossary.md",
+    "line": 20,
+    "quote": "collides with the Markdown table-column separator (Bug 5 in",
+    "statement": "Reader-facing prose cites an internal repo bug-tracking file the reader has no access to or need for, leaking build/editorial metadata into the manuscript.",
+    "fix": "Move the Markdown-table-bug rationale to an author/editor comment or CONTRIBUTING note; keep the reader-facing sentence at 'kept as display blocks to avoid collisions with literal | characters.'",
+    "verify": "OK"
+   },
+   {
+    "file": "book/99-back-matter/appendix-e-glossary.md",
+    "line": 3,
+    "quote": "prereviewed \u00b7 **Phase:** 6 \u00b7 **Sections drafted:** 7 / 7",
+    "statement": "A production-status metadata line sits at the very top of the reader-facing appendix, ahead of any glossary content.",
+    "fix": "Strip this status line (or move it to a build-only front-matter field) before the reader-facing build.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/99-back-matter/appendix-e-glossary.md",
+    "line": 372,
+    "quote": "both conventions are standard \u2014 check which one a source means",
+    "statement": "The Depolarising channel entry stacks two competing parameterisations plus a hedging caveat, breaking the terse scannable-bullet norm the rest of the glossary follows.",
+    "fix": "Split into a one-line operational definition plus a short 'convention note' sub-bullet so the primary definition stays scannable.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/99-back-matter/appendix-f-hardware-snapshot-2026.md",
+  "model": "sonnet",
+  "verdict": "GREEN",
+  "d1": 1,
+  "d2": 1,
+  "d3": 0,
+  "d4": 0,
+  "d5": 0,
+  "dim_notes": "D1(1): Judged as a lookup surface per instructions, but the ~500-700 words before F.2's per-vendor content begins (lines 7-42) are almost entirely meta (why the appendix is isolated, how to read numbers, moving-target warning) rather than concrete data; F.1's own caveats (lines 28-31, \"A device with 1,000 noisy, sparsely connected qubits may run shallower useful circuits than one with 50 high-fidelity...\") redeem this somewhat by being concrete comparisons rather than empty roadmap. D2(1): three near-duplicate warning blocks stack before any substantive content \u2014 lines 7-13 (isolation rationale), 15-20 (\"How to read every number\"), and 22 (\"Moving-target warning\") all restate the same \"these figures are dated, verify before trusting\" point, which is caveat-before-example redundancy even if each individual caveat is short. D3(0): checked every term of art used in this file (QCCD, randomized benchmarking, SPAM, Rydberg, code distance, surface code, qLDPC/bivariate-bicycle \"gross\" codes, Algorithmic Qubits/AQ, Gaussian boson sampling, measurement-based/fusion-based, below-threshold) against earlier chapters (18, 19, 20, 22, 32, historical prelude) and the glossary (Appendix E) \u2014 all are pre-established in reading order, no in-file forward-use found. D4(0): the F.6 table (lines 124-130) uses short scannable cell labels, not sentence-length prose; the per-platform bullets (F.2-F.5) are dense but appropriate for a reference/data appendix rather than narrative. D5(0): no rigor-first definitions; \"below threshold\" (F.7) and other concepts are restated operationally (\"error rate decreased with increasing code distance \u2014 the defining signature of a working error-correction regime\").",
+  "findings": [
+   {
+    "file": "book/99-back-matter/appendix-f-hardware-snapshot-2026.md",
+    "line": 22,
+    "quote": "This entire appendix is a dated snapshot",
+    "statement": "Three consecutive caveat/warning blocks (lines 7-13, 15-20, 22) make essentially the same point \u2014 that the numbers are perishable and must be re-verified \u2014 before any substantive hardware content appears, front-loading redundant meta-text.",
+    "fix": "Merge the isolation-rationale, \"how to read every number,\" and \"moving-target warning\" blocks into a single caveat paragraph before F.1.",
+    "verify": "OK"
+   },
+   {
+    "file": "book/99-back-matter/appendix-f-hardware-snapshot-2026.md",
+    "line": 15,
+    "quote": "Treat each figure as an order of",
+    "statement": "This blockquote duplicates the substance of the adjacent \"Moving-target warning\" blockquote two lines later, doubling the caveat dose readers must sit through before reaching data.",
+    "fix": "Fold this sentence into the moving-target warning block or the F.1 caveats section instead of giving it a separate callout.",
+    "verify": "OK"
+   }
+  ],
+  "confidence": "high"
+ },
+ {
+  "file": "book/99-back-matter/index.md",
+  "model": "sonnet",
+  "verdict": "GREEN",
+  "d1": 0,
+  "d2": 0,
+  "d3": 0,
+  "d4": 0,
+  "d5": 0,
+  "dim_notes": "D1/D2 N/A as narrative concerns: this is back-matter reference material (an alphabetical index), not prose the reader consumes linearly for motivation \u2014 the short intro (lines 7-12) is an appropriate meta-note explaining how the index is generated and pointing to the Glossary (line 12: \"The [Glossary](appendix-e-glossary.md) remains the place for prose definitions\"), which is correct deferral rather than reader-debt. D3 N/A: entries are bare term-to-section links with no explanatory prose depending on reader comprehension, and every linked chapter/section (1-33, appendices) necessarily precedes this final back-matter file in reading order, so no forward dependency exists. D4=0: format is a scannable bullet list of \"Term \u2014 section-link\" (e.g. line 20 \"Ancilla qubit \u2014 [\u00a79.3](...)\"), not sentence-length table cells. D5=0: the index contains no definitions at all (rigorous or operational) by design, correctly outsourcing definitions to the Glossary per line 12.",
+  "findings": [],
+  "confidence": "high"
+ }
+]
