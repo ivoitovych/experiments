@@ -22,7 +22,8 @@ than the popular version.
 The goal here is operational hygiene, not philosophy. A working
 practitioner does not need to settle the measurement problem, pick
 between Copenhagen and many-worlds, or take a side on $\psi$-ontic
-versus $\psi$-epistemic before writing a circuit. What they need is
+versus $\psi$-epistemic (is the wavefunction a real physical thing, or a
+summary of someone's knowledge? — §35.13) before writing a circuit. What they need is
 to recognise which slogans are harmless shorthand, which slogans
 silently corrupt intuition about what a quantum computer can do, and
 where the underlying math actually constrains what claims can be
@@ -571,11 +572,12 @@ foundations.
 **Pusey–Barrett–Rudolph (PBR, 2012).** A theorem about the
 ontological status of the wavefunction. Under mild assumptions —
 crucially, that systems prepared independently have independent
-ontic descriptions — PBR shows that *no $\psi$-epistemic model
-reproduces all quantum predictions*. A $\psi$-epistemic model treats
-$|\psi\rangle$ as representing the observer's incomplete knowledge
-of an underlying ontic state $\lambda$; distinct $|\psi\rangle$
-might correspond to overlapping distributions over $\lambda$. The
+ontic descriptions — PBR targets the $\psi$-epistemic reading. A
+$\psi$-epistemic model treats $|\psi\rangle$ as representing the
+observer's incomplete knowledge of an underlying ontic state
+$\lambda$; distinct $|\psi\rangle$ might correspond to overlapping
+distributions over $\lambda$. PBR shows that *no such model
+reproduces all quantum predictions*. The
 PBR theorem rules this out under the preparation-independence
 assumption: any model that reproduces quantum mechanics must assign
 disjoint sets of ontic states to distinct pure $|\psi\rangle$,
