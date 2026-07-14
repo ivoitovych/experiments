@@ -30,10 +30,10 @@ de8fbac1a95f99ff3ef1b084175ad1bd12b3c9ebbeb0b98e2ee8a3c5c2f179bd  archive/chapte
 1b6f88d96bee4a9a50888d991a54cb44da616d14bee61eac9f0229833d9f3160  book/00-front-matter/02-notation-and-conventions.md
 feb7de0c59603a31f1f97862dc969f7b2a5535d586ef08873492bfeb66e3db8b  book/99-back-matter/appendix-a-notation-reference.md
 7eebfd82088a86167b8deefde3fc2f82568b50854488d6ff96e00581a012bf72  book/99-back-matter/appendix-b-common-gates.md
-40e778bc37027cc1364f4b8af94ef6c25a642ea1699a9d089f1e9dfde59028e0  book/99-back-matter/appendix-c-identities-and-decompositions.md
+8c142ba8e4a73b075e2509a9e1b14b5a28c8c4ff4e2dda988bea6deb6bf75721  book/99-back-matter/appendix-c-identities-and-decompositions.md
 bfb14428e53caa523845fe630b30600993426a2125b6a9e64c94d026fe5c7dfc  book/99-back-matter/appendix-d-suggested-reading.md
 ae0e5f15901a8cc52ffb5694614b83791b281ddb62b698e4cb8d4b3761da46d2  book/99-back-matter/appendix-e-glossary.md
-9d63218d5f056218ea8054d4b2024539d81dc4b79469b9a858250e2bbb4a03d8  book/99-back-matter/appendix-f-hardware-snapshot-2026.md
+8d0abede385c1e370714d565d4d1960c10e0ca7832a8056abacc3d58f3b25d83  book/99-back-matter/appendix-f-hardware-snapshot-2026.md
 a74293fa910fb65ef10ab372ef884d9ab3d1fd71ca6768c567f9a557f516da83  book/99-back-matter/index.md
 ac59adfcd25a4db0f811c44f9fa4a37ae8f073a471337a72b668ad8214b81f93  book/part-00-historical-prelude/00-historical-prelude.md
 cf22f262cbbdd2989a0f155460da884b68889d504c11b0c91f15ecc1d15170c7  book/part-01-orientation/01-why-quantum-computing-exists.md
@@ -60,8 +60,8 @@ f2a4a8f4e161fa82dc2a5b9f18e1566c8db48135b74d7651c5214fe48c18b605  book/part-05-m
 baa0f3ca70886ba60603f2092beb424935758fe54f7bce412ca10b0ad55a8bbb  book/part-05-measurement-and-information/12-quantum-information-theory.md
 9ad12caeede8951caae18b229a6c0954615dd9e61f3c51c0bc1cd4c688e5f021  book/part-06-algorithms/13-quantum-algorithms-mindset.md
 ff0abaa4a675eeb2224679b702f05499de9aa828d25f53b47de36e2c5e1a7366  book/part-06-algorithms/14-foundational-algorithms.md
-bdf19cc3941f03083f8877e8397bbbb39e6643f5066e06fc21f3fc87c40954df  book/part-06-algorithms/15-landmark-quantum-algorithms.md
-c2bd4b5027facb22c98cf6f64cc7a424bbe8d22f2c609646f7cbbff1aa1c9e97  book/part-06-algorithms/16-modern-algorithmic-frontier.md
+04ea5ad6afacabc1e333946989542243b43b59e61222413b88fd95b61d657c5c  book/part-06-algorithms/15-landmark-quantum-algorithms.md
+b3ca1de1ee444b9d48423e4f4c2e7c62b3798fa7b56e7a0f57a3aa04864b5ac3  book/part-06-algorithms/16-modern-algorithmic-frontier.md
 a11e6fed0514bde1e7eb1aacf11ae291dd95ee5e7190b78363816b052fa3fbe2  book/part-06-algorithms/figures/bernstein-vazirani.svg
 d52eb1f34ffb8b0633facb0c78d25291060d119d1222ec154851a285a8421516  book/part-06-algorithms/figures/deutsch-jozsa.svg
 7f0146cdff7518ecac1ab8ef452c853763494aaba4650aeb2dd7011b90b3eb57  book/part-06-algorithms/figures/grover-iteration.svg
@@ -162,7 +162,7 @@ def8c5c1b00aac13ce7d0281e670bc9b1518efc67573ce93026a514dce420112  reviews/analys
 611687faf5ec8393ff616eb6439d52ef62a4af76911da160081fdd5fcd61224a  reviews/author-read-notes.md
 059752f769353ca4004b403bc55fbbfed8979c2d5b9ac63368b1a6d18242ef68  reviews/code-review-2026-06-17-1840.md
 d5e0cec3ec5e3dbb9ada626bf551502d12d81920e68fdac4c4e7a59ed6e08a7b  reviews/cold-read-2026-07-09-triage-data.json
-f7d6cc396d67759524bd87a54a8e12303a4b3382eb2f60aec0be7972d46e05bd  reviews/cold-read-2026-07-09-triage.md
+2c70d49ac9e93d23b9047a3ce02abc0ff95139f4ccc84243dcf976ea232d76d4  reviews/cold-read-2026-07-09-triage.md
 4e04de91ac434f7dcc548b79aebe75eedf8d0953511a0502c4ed795bf87308ef  reviews/experiment-2026-07-09-triage-model-comparison.md
 477dad42ec25ab6b9e61eed4888a379ba99e67195955e44511551353a6529f6f  reviews/external-review-2026-07-05-reader-experience.md
 9ebcb90cbe4e3503f7580bd66393ad0b9a7ebdeaa828ea0af63946620fcab748  reviews/external-review-2026-07-09-cold-reader.md

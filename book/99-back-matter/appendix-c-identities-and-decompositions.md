@@ -44,7 +44,7 @@ A B = i\\, \varepsilon_{ABC}\\, C, \qquad
 [A, B] = 2 i\\, \varepsilon_{ABC}\\, C.
 $$
 
-Pauli product table (rows are the left factor, columns the right factor):
+The sixteen single-qubit Pauli products, enumerated with the left factor first (kept as bullets rather than a Markdown grid for the rendering reason noted in Appendix E):
 
 - $I \cdot X = X$, $I \cdot Y = Y$, $I \cdot Z = Z$, $I \cdot I = I$.
 - $X \cdot I = X$, $X \cdot X = I$, $X \cdot Y = iZ$, $X \cdot Z = -iY$.

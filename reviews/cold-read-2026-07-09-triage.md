@@ -464,3 +464,108 @@ nothing at all.
   wanted.
 - Raw structured results (with per-finding verification status) are preserved alongside this
   report as `cold-read-2026-07-09-triage-data.json`.
+
+## Dispositions — 2026-07-14 (insert-only)
+
+All 136 findings have now been dispositioned. Numbering below follows the per-file order of
+the findings list above (1–136, counting top to bottom). Two passes were run:
+
+**Pass 1 — mechanical/sure fixes (84 findings, applied and committed in batches 1–11 plus an
+anchor-requote commit).** Findings applied: 1, 2, 4–8, 10–15, 19–21, 23, 24, 26, 27, 29–31,
+34, 35, 37–39, 44, 46, 48–50, 53, 55, 56, 58, 60, 63–65, 68, 69, 71–76, 78, 80, 81, 83–85,
+88, 89, 91–96, 98–100, 102, 105–107, 110–112, 114, 116, 117, 121, 122, 124–127, 130, 134.
+These were glosses, forward pointers, acronym expansions, introduce-then-use reorderings,
+and two genuine defects (finding 85: variance/standard-deviation inconsistency in Ch26;
+finding 121: broken sentence in Appendix A). Fifteen factcheck anchors staled by these edits
+were requoted (verification status untouched); the anchor checker is back at its
+pre-existing baseline (97, identical stale set).
+
+**Pass 2 — deep investigation of the 52 remaining (doubtful) findings.** Verdicts:
+
+### Upgraded to FIX (5) — applied in this commit
+- **51 (Ch15 §15.1).** The Grover iteration-count sentence really did pile three formula
+  variants before any mechanism. The operational mechanism (oracle phase-flip + reflection
+  about the mean) previously lived only in the figure caption; one mechanism-first sentence
+  now precedes the formula pile. Same pattern as sure-fixes 29, 84, 96.
+- **57 (Ch16 §16.8).** The three resource-accounting bullets were the only label-less
+  multi-sentence bullets in the section's vicinity; the book's house bullet style is a
+  bolded leading label (cf. Ch12 §12.2, Ch37 §37.5). Bolded **T-count**, **Logical depth**,
+  **Ancilla count**.
+- **128 (App C).** The text announced a "Pauli product table (rows are…, columns…)" and then
+  rendered bullets. A real Markdown grid is blocked by the known `|`-in-math renderer bug
+  (Bug 5) that App E documents, so the honest fix is to stop promising a table: the
+  announcement now says the products are enumerated as bullets and points at the App E note.
+- **135 + 136 (App F).** Confirmed: the "How to read every number here" blockquote and the
+  moving-target warning made the same perishability point twice in three blocks. Merged into
+  a single **Moving-target warning** blockquote preserving every distinct obligation
+  (order-of-magnitude discipline, non-uniform reporting, contested-claims note, Ch36
+  pointer, May 2026 date, re-verify instruction, fact-check-ledger pointer) and preserving
+  the lint sentinel phrase. The isolation-rationale paragraph stays: it explains the
+  appendix's design, which is not a caveat.
+
+### AUTHOR-DECISION (2) — entry-path opening restructures, flagged for the author
+- **18 (Ch3).** The opening run to the first concrete physical fact is long, and the
+  suggested restructure (open with a compressed Stern–Gerlach surprise) is plausible. Ch3 is
+  on the entry path, where reader-reported pain concentrated, so this deserves an author
+  read rather than an editor's unilateral rewrite of the chapter's voice.
+- **25 (Ch5).** The first screen is Ch4-recap + a three-point numbered frame + the
+  how-to-read box. Each element is content-bearing (the three points are real epistemic
+  framing, not filler), but the cumulative meta-before-payoff length is the largest on the
+  entry path. Options: promote a concrete interference payoff above the numbered list, or
+  accept as-is. Author's call.
+
+### ADJUDICATED — NO CHANGE (45)
+Grouped by the reason the finding does not survive:
+
+- **How-to-read boxes flagged for existing (22, 33, 36, 40, 42, 45, 59, 61, 66, 70, 77, 79,
+  82, 86, 90, 97, 101, 104, 108, 109, 113, 115, 118).** The box is a deliberate house
+  convention — a per-chapter selective-reader contract, present in 39 of 48 files, echoing
+  the preface's reading-paths section. A reading contract only functions *before* the reader
+  commits, so "move it after the first example" defeats its purpose; and removing it in the
+  24 flagged chapters but not the other 15 would be worse than either uniform choice. The
+  cold-read rubric (D1/D2) penalises front-loaded meta by construction, so it flags this
+  convention automatically; that is the instrument disagreeing with a ratified design
+  decision, not new information. Jargon-inside-box complaints that were separable were
+  already fixed in pass 1 (findings 49, 95). **Residual signal worth keeping:** box quality
+  varies (36–142 words; up to 13 §-references and 5+ unglossed acronyms). If the author
+  wants a convention-tightening pass, the outliers are Ch33 (142w, 11 §refs, 5 protocol
+  acronyms), Ch24 (13 §refs), Ch17 (11 §refs, 5 complexity acronyms), Ch31 (10 §refs),
+  Ch12 (136w), Ch18 (132w, 5 acronyms), Ch37 (131w), Ch36 (130w). A cap of roughly two
+  sentences of steering plus ≤6 §-references would bring every box under the median.
+- **Opening paragraphs flagged as "roadmap, not concrete" (3, 16, 28, 32, 41, 43, 52, 54,
+  62, 103).** Read individually, none is the dead meta the Prelude opening was. Ch2's
+  opening poses the concrete transfer question it answers; Ch7, Ch15, Ch16, Ch18, Ch32
+  openings are content-bearing orientation prose with claims and stakes (Ch18's lands on
+  "T1/T2 stop being abstract decay times and become numbers a benchmark returns"); Ch10 and
+  Ch11 open with motivation and then preview the chapter's own subject matter, which is what
+  a preview is for; the preface's four-noun list (finding 3) is scope declaration, not
+  concept use; Ch6's roadmap naming three bases (28) previews terms the chapter defines
+  pages later. Converting survey-chapter openings to anecdote-first is a whole-book style
+  overhaul, not a defect repair.
+- **Policy/infrastructure items (67, 129, 132, 133).** The Ch20 moving-target banner (67)
+  must precede the first perishable figure, which appears in §20.1 (anharmonicity numbers),
+  so it cannot move to §20.12; its removal before publication is already lint-gated. Status
+  lines (129, 133) are lint-required production infrastructure on all 48 files and are a
+  publication-build strip, not a per-file edit. The App E internal-doc citation (132) is one
+  of four systematic citations of `docs/github-markdown-math-bugs.md` (App A, App E,
+  notation chapter, Ch4); fixing one in isolation breaks the convention — logged instead as
+  a publication-build task: rewrite or strip internal-doc references when the book leaves
+  the repo.
+- **Format items that don't survive close reading (47, 119, 120, 123, 131).** Ch12 §12.2
+  (47) already anchors von Neumann entropy operationally — "exactly the Shannon entropy of
+  the eigenvalue distribution" — for an audience whose stated background includes
+  probability. Ch37's recap bullets (119) contain narrative claims, not bare noun strings,
+  and the role list (120) already leads each bullet with a bolded label plus a defining
+  first sentence — the structure the fix asks for is the structure on the page. App A's
+  sample-complexity paragraph (123) is a closing commentary paragraph in the book's
+  bolded-label idiom, not a malformed glossary entry. App D's HSP entry (131) honestly
+  routes to Childs–van Dam's survey; substituting a token primary citation would add
+  factcheck debt without helping the reader.
+- **Previously adjudicated during pass 1 (9, 87).** The Prelude's residual ~320-word opening
+  contract (9) is the deliberate design kept in the 07-09 restructure. VQE's bare acronym in
+  Ch26 (87) rests on an actual first-use expansion — "variational quantum eigensolvers
+  (VQE)" in Ch1 §1.4 — so the finding's premise ("if it was not already spelled out") is
+  satisfied in the reader's favour.
+
+**Tally: 136 findings = 89 fixed (84 pass 1 + 5 pass 2) · 45 adjudicated no-change ·
+2 author-decision.**
