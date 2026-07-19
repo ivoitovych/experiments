@@ -624,3 +624,49 @@ One factcheck anchor requoted; baseline (97) restored.
   named; NP-hard claim scoped to standard decision formulations.
 
 Five factcheck anchors requoted; baseline (97) restored.
+
+## Batch 11 — Chapter 10 (16 substitutions)
+
+### FIXED — outright defects (including the ledger's one CRITICAL)
+- **CRITICAL: active/passive conflation** — "the thing that changes is the
+  basis, not the state" said of applying H. Replaced with an explicit
+  active-vs-passive paragraph; H's self-inverse symmetry flagged as the
+  trap that invited the conflation.
+- Contextuality defined as marginals depending on the co-measurement —
+  replaced with the correct no-noncontextual-value-assignment statement
+  (marginals of ideal compatible measurements are context-independent).
+- GHZ contradiction "is a single shot" — now logical/all-versus-nothing
+  with ensemble verification across incompatible settings.
+- Bloch-vector norm called "the purity measure" — now monotonic mixedness
+  indicator with purity = (1+|r|²)/2.
+- Lindblad "most general continuous-time evolution" — scoped to Markovian
+  semigroups; the three-pictures equivalence correspondingly narrowed
+  (operator-sum ≡ Stinespring for all CPTP; Lindblad the subfamily).
+- Kraus rank assigned to any representation — now the minimum.
+- "The classical channel is the only way information actually moves" —
+  self-contradicted by superdense coding two sentences later; now
+  entanglement-cannot-signal with the carrier requirement.
+- Decoherence-free subspaces "conceptually underpinned" by Zeno
+  projection — now symmetry-based, related-but-different; QEC's Zeno
+  flavour explicitly labelled analogy.
+- Einselection "explains why superpositions are not observed" + timescales
+  "below any experimentally accessible window" — narrowed to interference,
+  mesoscopic observations acknowledged, measurement problem left open.
+- "Noise is just unobserved entanglement" — now a representation theorem,
+  with classical-randomness mechanisms acknowledged and Knill–Laflamme
+  replacing "survives a known set of Kraus operators".
+
+### FIXED — epistemic scoping
+- "Every known speedup fits the template" → dominant pattern with HHL and
+  sampling/simulation exceptions named; "all inputs at once" guard added;
+  uniform-superposition-measure "no useful computation" → no computational
+  advantage (private randomness acknowledged).
+- Information/disturbance universal → nonorthogonal-alternatives trade-off
+  with known-eigenstate and weak-measurement caveats; BB84 disturbance as
+  one ingredient of a security proof; syndrome measurement idealisation
+  flagged.
+- "Regardless of what Alice does" → trace-preserving, outcome-not-
+  communicated.
+
+Nine factcheck anchor requotes (two needing second passes); baseline (97)
+restored.

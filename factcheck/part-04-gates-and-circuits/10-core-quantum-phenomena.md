@@ -22,7 +22,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §10.2 — Interference engine of quantum advantage
 
-- **Claim** (anchor): "Every quantum algorithm with a known speedup over classical can be read as: prepare a superposition of inputs, evaluate the problem coherently across the superposition, and arrange the gate sequence so that amplitudes for wrong answers destructively interfere and amplitudes for right answers constructively interfere."
+- **Claim** (anchor): "A great many quantum algorithms with known speedups can be read as: prepare a superposition of inputs, evaluate the problem coherently across the superposition (query access and phase kickback doing the real work — not "all inputs at once"), and arrange the gate sequence so that amplitudes for wrong answers destructively interfere and amplitudes for the sought structure constructively interfere."
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -30,7 +30,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §10.2 — Deutsch–Jozsa, Grover, QFT, HHL all fit interference template
 
-- **Claim** (anchor): "Deutsch–Jozsa, Grover, the QFT-based subroutines, and the HHL-family linear-systems solvers (Part 6) all fit this template."
+- **Claim** (anchor): "Deutsch–Jozsa, Grover, and the QFT-based subroutines (Part 6) fit this template cleanly"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -85,7 +85,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §10.4 — BB84 eavesdropper disturbance is detectable
 
-- **Claim** (anchor): "an eavesdropper who measures BB84 photons in the wrong basis disturbs the state, and the disturbance is statistically detectable in the residual bit-error rate"
+- **Claim** (anchor): "an eavesdropper who measures BB84 photons in the wrong basis disturbs the state detectably in the residual bit-error rate"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -201,7 +201,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §10.7 — GHZ contradiction is a single shot, not a statistical inequality
 
-- **Claim** (anchor): "No hidden-variable assignment is consistent; the contradiction is a single shot, not a statistical inequality."
+- **Claim** (anchor): "No hidden-variable assignment is consistent; the contradiction is logical (all-versus-nothing) rather than a statistical inequality"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -240,7 +240,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §10.9 — Pointer basis / einselection (Zurek)
 
-- **Claim** (anchor): "Zurek's einselection (environment-induced superselection) explains why macroscopic quantum superpositions are not observed"
+- **Claim** (anchor): "Zurek's einselection (environment-induced superselection) explains why macroscopic *interference* is not observed"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -263,7 +263,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §10.11 — Lindblad equation is most general Markovian CPTP generator
 
-- **Claim** (anchor): "Lindblad evolution is the most general continuous-time evolution consistent with both."
+- **Claim** (anchor): "Lindblad evolution is the most general generator of a *Markovian* (time-homogeneous, CP-divisible semigroup) evolution consistent with both — non-Markovian continuous dynamics falls outside it."
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -295,7 +295,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §10.13 — Kraus rank bound
 
-- **Claim** (anchor): "The number of Kraus operators r — the Kraus rank — is at most"
+- **Claim** (anchor): "The minimum number of Kraus operators over all representations — the Kraus rank — is at most"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
