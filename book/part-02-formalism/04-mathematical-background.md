@@ -117,14 +117,14 @@ For an $n$-qubit register, the state space is $\mathbb{C}^{2^n}$. The
 dimension doubles every time you add a qubit. Strictly speaking, this is the
 ambient vector space; a physical *pure state* is a **ray**: an equivalence
 class of nonzero vectors under multiplication by any nonzero complex scalar
-(the zero vector is excluded because it cannot be normalized and does not
-represent a state). Once we choose normalized representatives, the
+(the zero vector is excluded because it cannot be normalised and does not
+represent a state). Once we choose normalised representatives, the
 remaining equivalence is multiplication by a global phase $e^{i\theta}$.
 Chapter 5 makes this precise.
 
 > **Convention.** In calculations, a ket used as a *state vector* is
-> assumed normalized unless explicitly stated otherwise. If $v \ne 0$ is
-> just a mathematical vector, the corresponding normalized state
+> assumed normalised unless explicitly stated otherwise. If $v \ne 0$ is
+> just a mathematical vector, the corresponding normalised state
 > representative is $|v\rangle / \\|v\\|$.
 
 This exponential growth explains why generic classical simulation of quantum
@@ -279,7 +279,7 @@ $$
 $$
 
 This is one operator-level way to view many overlaps and
-expectation-value expressions. For a normalized pure state
+expectation-value expressions. For a normalised pure state
 $|\psi\rangle$, the expectation value of an observable $O$ is the
 bra-ket sandwich (read it right to left: apply $O$ to the column
 vector $|\psi\rangle$, then take the inner product with $|\psi\rangle$
@@ -447,7 +447,7 @@ operators the two coincide and the eigenspaces span $V$.
 
 In quantum mechanics, for a **projective measurement** of a Hermitian
 observable the projector $P_\lambda$ onto the eigenspace of $\lambda$ is the
-measurement-outcome operator. For a normalized state $|\psi\rangle$ the
+measurement-outcome operator. For a normalised state $|\psi\rangle$ the
 probability of outcome $\lambda$ is $\langle \psi | P_\lambda | \psi\rangle$.
 Conditioned on that outcome having actually occurred — that is, only when
 $\langle \psi | P_\lambda | \psi\rangle > 0$ — the post-measurement state is
@@ -496,7 +496,7 @@ Each $P_i$ groups together *all* eigenvectors belonging to the eigenvalue
 $\lambda_i$, so its rank equals the **geometric multiplicity** of
 $\lambda_i$ — which for normal operators coincides with the algebraic
 multiplicity (§4.6) — and is not necessarily one. For a non-degenerate eigenvalue $\lambda_i$ with
-*normalized* eigenvector $|v_i\rangle$, the projector is rank-one:
+*normalised* eigenvector $|v_i\rangle$, the projector is rank-one:
 $P_i = |v_i\rangle\langle v_i|$.
 
 The spectral decomposition gives a **functional calculus**: for any function
@@ -660,9 +660,9 @@ $$
 $$
 
 so $\\|u \otimes v\\| = \\|u\\|\\, \\|v\\|$. In particular, a product of two
-normalized single-qubit states is itself normalized — which is why our
+normalised single-qubit states is itself normalised — which is why our
 ordering convention can talk about $|x_1\rangle |x_2\rangle \cdots |x_n\rangle$
-as a state vector without writing normalization factors at every step.
+as a state vector without writing normalisation factors at every step.
 More generally, an $n$-qubit pure state has the expansion
 
 $$
@@ -735,7 +735,7 @@ Useful identities:
 ### Product vs. entangled states
 
 A nonzero pure state in $V \otimes W$ is **product** if it can be written as
-$u \otimes v$ for some $u \in V$ and $v \in W$, up to normalization and
+$u \otimes v$ for some $u \in V$ and $v \in W$, up to normalisation and
 global phase. Otherwise it is **entangled**. For pure states, "product" and
 "separable" are used interchangeably. For *mixed* states, "separable" has a
 broader meaning — a convex mixture of product states — and the gap between
@@ -1033,7 +1033,7 @@ out of them:
   nonzero, and its adjoint flips the two sides:
   $\bigl(|\psi\rangle\langle\phi|\bigr)^\dagger = |\phi\rangle\langle\psi|$.
   The special case $|\psi\rangle\langle\psi|$ is a rank-one orthogonal
-  projector exactly when $|\psi\rangle$ is normalized, and it is the
+  projector exactly when $|\psi\rangle$ is normalised, and it is the
   pure-state density matrix that returns in Chapter 5.
 
 An operator $A$ acts on a ket by ordinary matrix-vector product,
@@ -1098,7 +1098,7 @@ with coefficients $\langle i | \psi \rangle$. This is the workhorse trick of
 bra-ket manipulation.
 
 A common shorthand: after choosing an orthonormal eigenbasis (one entry per
-eigenvector, with degenerate eigenspaces orthonormalized as in §4.6), a
+eigenvector, with degenerate eigenspaces orthonormalised as in §4.6), a
 Hermitian operator $A$ has the spectral decomposition
 $A = \sum_i \lambda_i |v_i\rangle\langle v_i|$. The outer-product form is
 manifestly Hermitian and diagonal in the $\\{|v_i\rangle\\}$ basis.
@@ -1127,7 +1127,7 @@ $$
 f_j = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \hat{f}_k\\, \omega^{jk}.
 $$
 
-The $1/\sqrt{N}$ normalization makes the DFT a unitary transformation of
+The $1/\sqrt{N}$ normalisation makes the DFT a unitary transformation of
 $\mathbb{C}^N$.
 
 **Sign convention.** Different communities choose opposite signs in the
@@ -1170,7 +1170,7 @@ Key properties:
 - **Unitarity.** $F^\dagger F = I$, so the DFT preserves inner products and
   norms.
 - **Convolution theorem.** Pointwise multiplication in one domain corresponds
-  to circular convolution in the other, up to normalization factors that
+  to circular convolution in the other, up to normalisation factors that
   depend on the chosen DFT convention.
 - **Shift–phase duality.** Translation in one domain corresponds to a phase
   rotation in the other.
@@ -1188,7 +1188,7 @@ F_N |j\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \omega^{-jk}\\, |k\rangle,
 \qquad \omega = e^{2\pi i / N},
 $$
 
-i.e., the same unitary as the DFT above, realized as a quantum circuit on
+i.e., the same unitary as the DFT above, realised as a quantum circuit on
 $n = \log_2 N$ qubits; the standard *exact* construction uses
 $O(n^2) = O((\log N)^2)$ elementary gates — "exact" presuming a gate
 set with arbitrarily fine rotations; over a finite fault-tolerant set,
@@ -1338,7 +1338,7 @@ the rest of the book:
    reweighting one component of a superposition changes interference.
 3. **Inner products over $\mathbb{C}$ require conjugation.** Omitting the
    conjugate on the bra side silently breaks Hermiticity, probability
-   normalization, and unitarity calculations.
+   normalisation, and unitarity calculations.
 4. **Tensor-product order matters.** The mapping from a bit string
    $x_1 \cdots x_n$ (this book: leftmost is most significant) to a
    Kronecker-product index is a *convention* — frameworks that label qubits $q_{n-1} \cdots q_0$ little-endian order
@@ -1404,7 +1404,7 @@ records the silent failure mode.
   $\langle u, v\rangle = \sum_i \overline{u_i}\\, v_i$.
 - **Kets.** Abstract state vectors; represented as $n \times 1$
   column vectors after a basis is chosen.
-- **Pure states.** Normalized unless explicitly stated otherwise;
+- **Pure states.** Normalised unless explicitly stated otherwise;
   rays under global phase.
 - **Computational basis order.** Bit string $x = x_1 x_2 \cdots x_n$
   is interpreted with $x_1$ as the most significant bit; the
@@ -1456,13 +1456,13 @@ trace-one operators that will become density matrices — are the
 mathematical scaffolding. Chapter 5 turns them into the *postulates of
 quantum mechanics for computing*:
 
-- Normalized rays in $\mathbb{C}^{2^n}$ become **pure states**.
+- Normalised rays in $\mathbb{C}^{2^n}$ become **pure states**.
 - Unitary operators become **closed-system evolution**.
 - Hermitian operators become **observables**, and their projectors become
   **ideal projective measurements**.
 - Tensor products become **composite systems**.
 - Density matrices become the language of **mixed states**, **subsystems**,
-  and **open-system behavior**.
+  and **open-system behaviour**.
 
 With those postulates in hand the rest of the book — qubits, gates,
 measurement theory, algorithms, error correction, hardware — has a clean

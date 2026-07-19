@@ -115,7 +115,7 @@
 - **Method:** derivation — multiplicativity of the inner product on product vectors.
 - **Source:** —
 - **Status:** not yet verified
-- **Find in text:** "In particular, a product of two normalized single-qubit states is itself normalized"
+- **Find in text:** "In particular, a product of two normalised single-qubit states is itself normalised"
 
 ### Claim: Determinant of a Kronecker product: det(A ⊗ B) = (det A)ⁿ (det B)ᵐ when A is m×m and B is n×n
 - **Method:** derivation — standard Kronecker-product identity.

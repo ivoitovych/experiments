@@ -40,7 +40,7 @@ lives in the referenced section.
   Hilbert space. The **computational basis** $\\{|x\rangle : x \in \\{0,1\\}^n\\}$
   is the default reference frame throughout the book. See §4.3 and §4.10.
 - **Born rule.** Probability of outcome $\lambda$ in a projective
-  measurement on a normalized pure state is
+  measurement on a normalised pure state is
   $p(\lambda) = \langle\psi|P_\lambda|\psi\rangle$; for a density
   matrix it is $\mathrm{tr}(\rho\\, P_\lambda)$. See §5.4.
 - **Circuit.** A composition of gates and measurements acting on a
@@ -48,7 +48,7 @@ lives in the referenced section.
   $U = U_L \cdots U_2 U_1$ representations are interchangeable, modulo
   the left-to-right time convention of §A.5. See Chapter 9.
 - **Collapse.** The state update rule that replaces $|\psi\rangle$
-  with the renormalized post-measurement state
+  with the renormalised post-measurement state
   $P_\lambda |\psi\rangle / \sqrt{p(\lambda)}$ after outcome $\lambda$.
   An ingredient of the measurement postulate, not a physical process
   separate from it. See §5.4.
@@ -107,12 +107,12 @@ lives in the referenced section.
   register"). See Chapter 9.
 - **State.** Used in three distinct senses in this book:
   - **State (ray).** The physical state: an equivalence class of
-    normalized vectors modulo global phase. See §5.8.
+    normalised vectors modulo global phase. See §5.8.
   - **State (density matrix).** A positive semidefinite operator
     $\rho$ with $\mathrm{tr}(\rho) = 1$; covers pure and mixed
     states uniformly and is the right object for subsystems. See
     §5.10.
-  - **State (vector representation).** A specific normalized column
+  - **State (vector representation).** A specific normalised column
     vector chosen to represent a ray once a basis is fixed; what
     Qiskit's `Statevector` returns. See §4.12.
 - **Superposition.** A linear combination
@@ -313,7 +313,7 @@ Detailed treatment lives in Part 9 (Chapters 20–22).
   $T_2 \le 2 T_1$. The pure-dephasing component is denoted
   $T_\varphi$ with $1/T_2 = 1/(2 T_1) + 1/T_\varphi$. See Chapter 18.
 - **Gate fidelity.** Average fidelity between the ideal and
-  implemented unitary, typically measured by randomized
+  implemented unitary, typically measured by randomised
   benchmarking. Per-gate error rates of $10^{-3}$ to $10^{-4}$ are
   the state of the art as of 2026. See Chapter 22.
 - **Native gate set.** The small set of gates a given hardware

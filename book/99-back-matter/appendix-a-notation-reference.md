@@ -36,12 +36,12 @@ macros `\ket`, `\bra`, `\braket` are not used.
   with entries $\psi_i\\, \overline{\phi_j}$. Adjoint:
   $(|\psi\rangle\langle\phi|)^\dagger = |\phi\rangle\langle\psi|$.
 - $|\psi\rangle\langle\psi|$ — **rank-one projector** when
-  $|\psi\rangle$ is normalized; equivalently the pure-state density
+  $|\psi\rangle$ is normalised; equivalently the pure-state density
   matrix of $|\psi\rangle$.
 - $\langle\phi|A|\psi\rangle$ — **matrix element** of $A$ between
   $|\phi\rangle$ and $|\psi\rangle$. A scalar.
 - $\langle O\rangle_\psi = \langle\psi|O|\psi\rangle$ — **expectation
-  value** of an observable $O$ in the normalized pure state
+  value** of an observable $O$ in the normalised pure state
   $|\psi\rangle$. Real when $O$ is Hermitian.
 - $I = \sum_i |i\rangle\langle i|$ — **resolution of the identity** in
   the orthonormal basis $\\{|i\rangle\\}$. The single most useful
@@ -234,7 +234,7 @@ Chapters 11–12.
   measurement context always means an *orthogonal* projector unless
   explicitly stated otherwise.
 - $p(\lambda) = \langle\psi|P_\lambda|\psi\rangle$ — **Born rule
-  probability** of outcome $\lambda$ on a normalized pure state
+  probability** of outcome $\lambda$ on a normalised pure state
   $|\psi\rangle$.
 - $P_\lambda|\psi\rangle / \sqrt{\langle\psi|P_\lambda|\psi\rangle}$ —
   **post-measurement state** conditioned on outcome $\lambda$ having
@@ -329,7 +329,7 @@ Discrete distributions only in this appendix; continuous and quantum
 extensions are flagged at their introductions.
 
 - $p(x)$ — **probability** of outcome $x$ under a discrete
-  distribution. Nonnegative, normalized $\sum_x p(x) = 1$.
+  distribution. Nonnegative, normalised $\sum_x p(x) = 1$.
 - $p(x, y)$ — **joint distribution** of $(X, Y)$.
 - $p(x)$ from a joint — **marginal**: $p(x) = \sum_y p(x, y)$.
 - $p(y \mid x) = p(x, y) / p(x)$ — **conditional**, defined when

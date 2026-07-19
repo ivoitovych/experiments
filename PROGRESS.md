@@ -12,6 +12,11 @@ To update: edit the status block at the top of any file, then run `python3 scrip
 - **Started (past `stub`):** 48 / 48
 - **Completed (`draft` or later):** 48 / 48
 
+Checkbox legend: a checked box means the file has reached
+`draft` status or later in the lifecycle above — it does not
+by itself distinguish `prereviewed` from `reviewed`/`final`
+(the per-entry status label carries that).
+
 - **Phase 1 (Foundations):** started 7/7, completed 7/7
 - **Phase 2 (Core mechanics):** started 7/7, completed 7/7
 - **Phase 3 (Algorithms and complexity):** started 5/5, completed 5/5

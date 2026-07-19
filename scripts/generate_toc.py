@@ -71,6 +71,22 @@ def main() -> None:
                     lines.append(f"  - [{heading}]({rel}#{slugify(heading)})")
         lines.append("")
     rendered = "\n".join(lines) + "\n"
+    if "--check-readme" in sys.argv:
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        missing = []
+        for part_dir in sorted(p for p in BOOK.iterdir() if p.is_dir()):
+            for md in sorted(part_dir.glob("*.md")):
+                rel = md.relative_to(ROOT).as_posix()
+                if f"({rel})" not in readme:
+                    missing.append(rel)
+        if missing:
+            print("DRIFT: README Table of Contents is missing "
+                  f"{len(missing)} chapter link(s):")
+            for m in missing:
+                print(f"  {m}")
+            sys.exit(1)
+        print("README Table of Contents covers every manuscript file")
+        return
     if "--check" in sys.argv:
         current = OUT.read_text(encoding="utf-8") if OUT.exists() else ""
         if current != rendered:

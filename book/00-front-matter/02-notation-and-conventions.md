@@ -226,7 +226,7 @@ $$
 - $\langle\phi | A | \psi\rangle$ — **matrix element** of $A$ between
   $|\phi\rangle$ and $|\psi\rangle$. A complex scalar.
 - $\langle O\rangle_\psi = \langle\psi | O | \psi\rangle$ —
-  **expectation value** of an observable $O$ in the normalized pure
+  **expectation value** of an observable $O$ in the normalised pure
   state $|\psi\rangle$. Real whenever $O = O^\dagger$.
 
 **Single-qubit computational basis.** Column-vector form on
@@ -411,7 +411,7 @@ observable $O$ with spectral decomposition $O = \sum_\lambda \lambda\\, P_\lambd
   picture, "projector" always means orthogonal projector unless
   stated otherwise.
 - $p(\lambda) = \langle\psi | P_\lambda | \psi\rangle$ — **Born
-  rule** probability of outcome $\lambda$ on a normalized pure
+  rule** probability of outcome $\lambda$ on a normalised pure
   state $|\psi\rangle$.
 - $P_\lambda |\psi\rangle / \sqrt{p(\lambda)}$ — post-measurement
   state, defined when $p(\lambda) > 0$.
