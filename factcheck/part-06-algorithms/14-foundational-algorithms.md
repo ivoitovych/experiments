@@ -76,21 +76,21 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §14.4 — Simon's quantum query and classical post-processing complexity
 
-- **Claim** (anchor): "Simon's algorithm needs $O(n)$ quantum queries plus $O(n^3)$ classical post-processing (Gaussian elimination over $\mathbb{F}_2$)."
+- **Claim** (anchor): "Simon's algorithm needs $O(n)$ quantum queries to succeed with high (not certain) probability"
 - **Method**: external
 - **Source**: Simon (1994/1997) "On the power of quantum computation" — TBD — needs verification
 - **Verified**: — · **Verdict**: open
 
 ## §14.4 — Simon as HSP over Z_2^n; Shor as HSP over Z_N
 
-- **Claim** (anchor): "Simon is HSP over $\mathbb{Z}_2^n$ with subgroup $\\{0, s\\}$; Shor's factoring is HSP over $\mathbb{Z}_N$ with cyclic subgroup."
+- **Claim** (anchor): "Simon is HSP over $\mathbb{Z}_2^n$ with subgroup $\\{0, s\\}$; Shor's order finding is HSP over the integers (in practice a large cyclic register), with the period generating the hidden subgroup $r\mathbb{Z}$."
 - **Method**: external
 - **Source**: TBD — needs verification (see e.g. Lomonaco & Kauffman, or Mosca survey on HSP)
 - **Verified**: — · **Verdict**: open
 
 ## §14.5 — QFT gate count O(n^2) vs classical FFT O(N log N)
 
-- **Claim** (anchor): "The total gate count is $O(n^2)$, exponentially better than the $O(N \log N) = O(n 2^n)$ of the classical FFT."
+- **Claim** (anchor): "The total gate count is $O(n^2)$, against the classical FFT's $O(N \log N) = O(n 2^n)$ arithmetic operations"
 - **Method**: derivation
 - **Source**: → §14.5 (circuit factorization derivation); classical FFT: Cooley & Tukey (1965) — TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -181,7 +181,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §14.9 — Symmetric group HSP implies polynomial quantum algorithm for graph isomorphism
 
-- **Claim** (anchor): "the **symmetric group** HSP would imply a polynomial quantum algorithm for graph isomorphism (status: open, but progress is slow)"
+- **Claim** (anchor): "an efficient solution to the relevant **symmetric-group** HSP instances would yield a polynomial quantum algorithm for graph isomorphism"
 - **Method**: external
 - **Source**: TBD — needs verification (see e.g. Hallgren, Russell & Ta-Shma 2003 or Childs & van Dam 2010 survey)
 - **Verified**: — · **Verdict**: open
