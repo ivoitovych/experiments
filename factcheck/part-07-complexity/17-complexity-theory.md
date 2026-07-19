@@ -16,7 +16,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §17.1 — P ⊊ EXP via the time hierarchy theorem
 
-- **Claim** (anchor): "$\mathrm{P} \subsetneq \mathrm{EXP}$ the only strict separation proved (via the time hierarchy theorem)"
+- **Claim** (anchor): "$\mathrm{P} \subsetneq \mathrm{EXP}$ the only strict separation proved *among the classes displayed here* (via the time hierarchy theorem)"
 - **Method**: external
 - **Source**: Hartmanis & Stearns (1965); also covered in Arora & Barak, *Computational Complexity: A Modern Approach*, §3
 - **Verified**: — · **Verdict**: open
@@ -135,7 +135,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §17.4 — IP = PSPACE (Shamir–Lund–Fortnow–Karloff–Nisan 1992)
 
-- **Claim** (anchor): "The Shamir–Lund–Fortnow–Karloff–Nisan theorem (1992) established $\mathrm{IP} = \mathrm{PSPACE}$"
+- **Claim** (anchor): "Building on the arithmetization machinery of Lund–Fortnow–Karloff–Nisan, Shamir (1992) established $\mathrm{IP} = \mathrm{PSPACE}$"
 - **Method**: external
 - **Source**: Shamir (1992), "IP = PSPACE", *Journal of the ACM*; Lund, Fortnow, Karloff & Nisan (1992) — TBD — needs verification (DOIs)
 - **Verified**: — · **Verdict**: open
@@ -475,7 +475,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §17.13 — Area-law states admit efficient tensor-network simulation; DMRG
 
-- **Claim** (anchor): "For systems whose ground states satisfy an *area law* — entanglement entropy across any cut is bounded by the boundary, not the volume — bond dimension stays polynomial and tensor-network simulation is efficient"
+- **Claim** (anchor): "For gapped 1D systems, area laws come with rigorous MPS approximation and polynomial-time algorithms; in 2D an area law alone does *not* guarantee an efficiently contractible representation"
 - **Method**: external
 - **Source**: Hastings (2007) area-law theorem for 1D gapped systems; White (1992) for DMRG — TBD — needs verification (DOIs)
 - **Verified**: — · **Verdict**: open
