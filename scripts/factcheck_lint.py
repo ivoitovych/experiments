@@ -82,6 +82,40 @@ def evidence_items(value):
     return [ln for ln in value.splitlines() if re.match(r"^\s*\d+\.", ln)]
 
 
+def check_interim(fc, text):
+    """Structural check for interim-format mirror files (both dialects).
+
+    Dialect A: "### Claim:" blocks with "- **Method:**" / "- **Status:**".
+    Dialect B: "- **Claim** (anchor):" bullets with "- **Method**:" /
+    "- **Verified**:" lines.
+    Returns a list of problem strings.
+    """
+    problems = []
+    lines = text.splitlines()
+    # Dialect A blocks
+    a_idx = [i for i, l in enumerate(lines) if l.startswith("### Claim:")]
+    for i in a_idx:
+        block = lines[i:i + 8]
+        if not any(l.startswith("- **Method:**") for l in block):
+            problems.append(f"claim at line {i+1} missing Method field")
+        if not any(l.startswith("- **Status:**") for l in block):
+            problems.append(f"claim at line {i+1} missing Status field")
+    # Dialect B bullets
+    b_idx = [i for i, l in enumerate(lines)
+             if l.lstrip().startswith("- **Claim** (anchor):")]
+    for i in b_idx:
+        block = lines[i:i + 8]
+        if not any("**Method**:" in l for l in block):
+            problems.append(f"claim at line {i+1} missing Method field")
+        if not any("**Verified**:" in l for l in block):
+            problems.append(f"claim at line {i+1} missing Verified field")
+    if not a_idx and not b_idx:
+        if "no significant checkable claims" not in text.lower() \
+                and "no factcheck entries are recorded" not in text.lower():
+            problems.append("no recognisable claim entries (neither dialect)")
+    return problems
+
+
 def main(argv):
     strict_stale = "--strict-stale" in argv
     want_dash = "--dashboard" in argv
@@ -89,12 +123,16 @@ def main(argv):
     skip = {"README.md", "CARD-SPEC.md", "_template.md", "_sources.md"}
     files = []
     interim = 0
+    interim_problems = []
     for fc in sorted(FC.rglob("*.md")):
         if fc.name in skip:
             continue
         text = fc.read_text()
         if not MIRROR_RE.search(text) or "**Status:**" not in text:
             interim += 1  # interim-format / not a card file
+            for p in check_interim(fc, text):
+                print(f"INTERIM {fc.relative_to(FC)}: {p}")
+                interim_problems.append(p)
             continue
         files.append((fc, text))
 
@@ -184,8 +222,11 @@ def main(argv):
           f"{stale_count} stale, across {total} card(s) in {len(files)} file(s)")
     if interim:
         print(f"NOTE: coverage is PARTIAL — {interim} interim-format factcheck "
-              f"file(s) are not in card spec and were NOT linted "
+              f"file(s) are not in card spec; structural interim check found "
+              f"{len(interim_problems)} problem(s) "
               f"(anchor staleness for them is checked by factcheck_anchors.py)")
+    if interim_problems:
+        return 1
     return 0 if failures == 0 else 1
 
 

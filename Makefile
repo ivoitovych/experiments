@@ -20,7 +20,7 @@ PY       := $(VENV)/bin/python
 PIP      := $(VENV)/bin/pip
 SYS_PY   := python3
 
-.PHONY: help setup setup-system-deps lint progress index toc screenshots render-gist clean-artifacts figures figures-setup check-examples book
+.PHONY: help setup setup-system-deps lint progress index toc toc-check screenshots render-gist clean-artifacts figures figures-setup check-examples book
 
 help: ## Show available targets.
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?##/ \
@@ -59,6 +59,9 @@ index: ## Regenerate the back-matter Index from the curated term list.
 
 toc: ## Regenerate TOC.md from the delivered manuscript's headings.
 	$(SYS_PY) scripts/generate_toc.py
+
+toc-check: ## Fail if TOC.md has drifted from the manuscript's headings.
+	$(SYS_PY) scripts/generate_toc.py --check
 
 book: ## Build the mdBook HTML into book-build/ (needs a matched mdbook+mdbook-katex pair: 0.4.x+0.9.x or 0.5.x+0.10.x; see README).
 	$(SYS_PY) scripts/build_book.py

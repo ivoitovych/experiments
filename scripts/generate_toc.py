@@ -12,6 +12,7 @@ Usage: python3 scripts/generate_toc.py
 from __future__ import annotations
 import pathlib
 import re
+import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BOOK = ROOT / "book"
@@ -69,7 +70,15 @@ def main() -> None:
                     heading = l[3:].strip()
                     lines.append(f"  - [{heading}]({rel}#{slugify(heading)})")
         lines.append("")
-    OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    rendered = "\n".join(lines) + "\n"
+    if "--check" in sys.argv:
+        current = OUT.read_text(encoding="utf-8") if OUT.exists() else ""
+        if current != rendered:
+            print(f"DRIFT: {OUT.name} is out of date — run `make toc` to regenerate")
+            sys.exit(1)
+        print(f"{OUT.name} is in sync with the manuscript headings")
+        return
+    OUT.write_text(rendered, encoding="utf-8")
     n = sum(1 for l in lines if l.startswith("  - "))
     print(f"TOC.md written: {n} section entries")
 
