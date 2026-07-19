@@ -879,3 +879,42 @@ Zero factcheck-anchor drift this batch.
   literature.
 
 Three factcheck anchors requoted; baseline (97) restored.
+
+## Batch 18 — Chapter 17 (24 substitutions)
+
+### FIXED — outright defects
+- Factoring miscast as a language in NP∩coNP with "the factorisation itself
+  is a witness either way" (main text + sanity check 2) — now the
+  factor-below-threshold decision version, with primality certificates
+  doing the no-side work.
+- BQP-complete dynamics bullet — decision output, access model, and
+  promises restored (evolved state is not a decision output; local vs
+  sparse separated).
+- Non-identity check called "the canonical QMA-complete problem" — demoted
+  to one of several, with local Hamiltonian (Kitaev) named as the flagship.
+- "Shamir–Lund–Fortnow–Karloff–Nisan theorem" — attribution split
+  correctly (LFKN arithmetization; Shamir's IP=PSPACE), with the
+  why-surprising sentence the ledger requested.
+- Sampling-hardness logic ("weaker than BQP≠BPP, would not collapse PH if
+  violated") — replaced with the correct conditional structure.
+- Query-to-time "lift cleanly under three conditions" — the missing
+  classical-baseline and non-query-cost ingredients added; fault-tolerance
+  overhead corrected from "constant".
+- T/Toffoli conflation, "Clifford transversal/free" (twice, incl. sanity
+  check 5), and "T-count synonymous with cost" — all corrected.
+- Planar-Ising/FPRAS conflation — ferromagnetic FPRAS, high-temperature
+  correlation decay, and exact Pfaffian planar solvability separated.
+- "All three simulability families" exhaustiveness — non-exhaustive map
+  with additional families named.
+- PEPS operations claimed polynomial in n and χ, and area law ⇒ efficient
+  — the MPS/PEPS split and gapped-1D-vs-2D honesty restored (2D exact
+  contraction #P-hard).
+- Sycamore noise-as-mechanism claim — replaced with the
+  fidelity-matched-truncation account; "methods that did not exist" →
+  substantially improved; "every claimed demonstration pursued" and
+  "almost always within 18–24 months" de-universalised; "merely
+  PSPACE=EXP" upgraded to momentous.
+- "Only strict separation proved" and "strongest known placement" and
+  AWPP "tightest known cap" — all scoped.
+
+Three factcheck anchors requoted; baseline (97) restored.
