@@ -17,7 +17,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §2.2 — BQP collapses to BPP without interference
 
-- **Claim** (anchor): "Without interference, quantum computers reduce to randomised classical computers and BQP collapses to BPP"
+- **Claim** (anchor): "restrict a quantum computer to non-negative amplitudes in a fixed basis and its characteristic power evaporates"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -27,7 +27,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §2.3 — Landauer's principle: energy cost per erased bit
 
-- **Claim** (anchor): "Landauer's principle attaches a thermodynamic energy cost to each erased bit"
+- **Claim** (anchor): "Landauer's principle attaches a minimum thermodynamic cost to logically irreversible erasure"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -67,7 +67,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §2.4 — {H, T, CNOT} is a universal quantum gate set; Solovay–Kitaev theorem
 
-- **Claim** (anchor): "any unitary on n qubits can be approximated to arbitrary precision by a circuit drawn from this set"
+- **Claim** (anchor): "any unitary on n qubits can be approximated to arbitrary precision (up to an irrelevant global phase) by a circuit drawn from this set"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -77,7 +77,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §2.5 — Brute-force state-vector simulation limit around n = 50–60 qubits
 
-- **Claim** (anchor): "Around n = 50 to n = 60 is the boundary where the brute-force state-vector simulation stops fitting on the largest classical supercomputers"
+- **Claim** (anchor): "Around n = 50 to n = 60 is the (precision- and memory-dependent) boundary where the brute-force state-vector simulation stops fitting on the largest classical supercomputers"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -107,7 +107,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §2.5 — Factoring (Shor's algorithm) not known to be in BPP
 
-- **Claim** (anchor): "factoring (Shor's algorithm) is the famous example"
+- **Claim** (anchor): "factoring, in its decision formulation, is the famous example"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -117,7 +117,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §2.6 — Classical bit error rate below 10^{-15} per operation
 
-- **Claim** (anchor): "a single-bit error rate well below 10^{-15} per operation"
+- **Claim** (anchor): "per-operation error rates so low (commonly quoted around 10^{-15} or better, workload-dependent)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

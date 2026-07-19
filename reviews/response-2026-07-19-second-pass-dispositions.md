@@ -196,3 +196,62 @@
   fault-tolerant-targeted rather than NISQ.
 - Arabic part labels ("Part 1") — consistent within the file; renaming is a
   book-wide style decision, not a correctness fix.
+
+## Batch 3 — Chapter 2 (32 substitutions)
+
+### FIXED — outright defects
+- "Without interference ... BQP collapses to BPP" stated as theorem — replaced
+  with the restricted-model statement and a Chapter 17 pointer.
+- Measurement as "the only mechanism for ejecting information" and "the only
+  non-unitary primitive" (twice) — scoped to the ideal circuit model, with
+  reset/discard/environment and mid-circuit measurement acknowledged.
+- No-cloning proof summary ("the cloning map is non-linear") — replaced with
+  the correct inner-product argument; orthogonal-set copyability added;
+  wrong chapter link (Ch7) corrected to §5.13.
+- Solovay–Kitaev called "the exact statement" of {H,T,CNOT} universality —
+  universality and efficient approximation separated.
+- "A classical simulator must store all 2^n amplitudes" — scoped to
+  brute-force state-vector simulation; hardware "stores implicitly" replaced
+  with no-addressable-copy phrasing.
+- Photonics "no decoherence in flight" — corrected (loss, dispersion, mode
+  mismatch).
+- NV centres implied to be silicon spin qubits — separated.
+- QEC needed "always" — corrected to any long computation, with NISQ's
+  deliberate QEC-free short circuits noted; QEC chapter link fixed (19, not
+  19/21).
+- Amplitude-amplification/phase-estimation chapter links corrected
+  (§14.7/§14.6 vs Chapter 15 for Grover/Shor).
+- Deutsch worked example: "exponentially many computational paths" parallelism
+  regression — replaced with the phase-deposit account; separation scoped to
+  deterministic classical.
+- Row-stochastic matrix vs column-vector convention — orientation fixed.
+
+### FIXED — epistemic scoping
+- "Intractable to simulate" → appear intractable under standard assumptions;
+  "nothing here is load-bearing" contradiction resolved; phase "affects every
+  subsequent operation" scoped to phase-sensitive operations; "evaluates to"
+  → yields under computational-basis measurement; path-cancellation example
+  marked schematic; Landauer per-bit cost scoped to idealised accounting;
+  ancilla uncomputation now copy-then-invert; Hadamard "creates superposition
+  and vice versa" → basis-mapping statement; CNOT/XOR embedding made exact;
+  "all 2^n states simultaneously" de-metaphored; classical 10^-15/"only
+  power matters" figures hedged and correctness engineering acknowledged;
+  10^4-gates "randomises the state" → fault-probability statement with
+  noise-dependence; gate-budget metric marked first-order proxy; 1M-physical
+  → 100–1000-logical marked scenario-dependent; "gone for good" → not
+  recoverable from the register; Shannon limit scoped to noiseless channel
+  without pre-shared resources; factoring witness given its decision
+  formulation and NP∩coNP note; "do not brute-force NP" restated precisely;
+  sanity check 5 reworked (fault probability, not "useful depth").
+
+### ADJUDICATED — no change
+- "No mainstream classical platform is built around reversible logic" — fair
+  as stated.
+- Measurement-as-syscall guidance — kept; the mid-circuit reality is
+  explicitly cross-referenced.
+- Sanity-check block format (`> **Sanity checks.**`) — lint sanctions the
+  current form; the STYLE-text-vs-lint drift the ledger suspects is logged
+  for the author as an infrastructure question, not silently "fixed".
+
+Six factcheck anchors staled by these edits were requoted in the same commit;
+checker baseline (97) restored.
