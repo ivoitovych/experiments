@@ -17,7 +17,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §9.1 — Qiskit qubit ordering (LSB on top)
 
-- **Claim** (anchor): "Qiskit puts the least-significant qubit on top (so it lines up with classical bit-string order"
+- **Claim** (anchor): "Qiskit puts the least-significant qubit (qubit 0) on top — while its printed count strings still put the most-significant classical bit leftmost"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -37,7 +37,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §9.2 — Circuit model polynomial equivalence to other quantum models
 
-- **Claim** (anchor): "This model is polynomially equivalent to other quantum models — the quantum Turing machine, the adiabatic model (for sufficiently smooth Hamiltonians), measurement-based quantum computation with a 2D cluster state"
+- **Claim** (anchor): "This model is polynomially equivalent to other quantum models — the quantum Turing machine, the adiabatic model (under locality, bounded-norm, and spectral-gap/runtime conditions — Chapter 32), measurement-based quantum computation with a 2D cluster state"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -47,7 +47,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §9.2 — Born-rule output distribution formula
 
-- **Claim** (anchor): "produce a sample from the distribution"
+- **Claim** (anchor): "repeated runs (\"shots\") sample the distribution"
 - **Method**: derivation
 - **Source**: → §9.2; §5 (Born rule)
 - **Verified**: — · **Verdict**: open
@@ -177,7 +177,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §9.9 — OpenQASM 3 introduced first-class classical control
 
-- **Claim** (anchor): "OpenQASM 3 introduced first-class support, where prior versions of QASM did not"
+- **Claim** (anchor): "OpenQASM 3 introduced first-class classical types and control flow; OpenQASM 2 offered only a restricted register-equality conditional"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -227,7 +227,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §9.12 — Qubit routing is NP-hard in general
 
-- **Claim** (anchor): "Qubit routing is the compiler problem of choosing a SWAP schedule that minimises overhead — it is NP-hard in general"
+- **Claim** (anchor): "Qubit routing is the compiler problem of choosing a SWAP schedule that minimises overhead — in its standard decision formulations it is NP-hard"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

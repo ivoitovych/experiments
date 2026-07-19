@@ -585,3 +585,42 @@ One factcheck anchor requoted; baseline (97) restored.
 - "Controlled phase gates are central in the QFT (Chapter 14)" — correct in
   this book's TOC (QFT is §14.5); the ledger's drift suspicion checked and
   dismissed.
+
+## Batch 10 — Chapter 9 (14 substitutions)
+
+### FIXED — outright defects
+- Subset-measurement probability formula was the full-register formula —
+  now full-register vs marginal made explicit, with the static-circuit
+  scope and §9.6 pointer.
+- "Both regimes require non-demolition measurement" — false for
+  feed-forward; corrected (reset-and-reuse needs survival/replacement;
+  feed-forward needs only a reliable classical result; destructive
+  photonic detection example).
+- OpenQASM 2 "had no support" for conditionals — corrected
+  (`if (creg == int)` existed; OpenQASM 3 added rich types/control flow).
+- Initial mapping "equivalent to routing" — corrected to complementary,
+  with the placement/dynamic-routing division stated.
+- Compute–copy–uncompute output as a "clean tensor factor" — corrected:
+  the workspace is the clean factor; the output stays correlated with the
+  input (and the XOR copy is reversible fanout, not cloning).
+- Qiskit ordering explanation ("lines up with classical bit-string
+  order") — was backwards; now the top-wire/rightmost-printed-character
+  relation, with the conventions listed as separable rather than "two".
+- Endpoint-routing sanity check underdetermined — assumption added
+  (no restoration of the original wire assignment).
+
+### FIXED — epistemic scoping
+- Model equivalences: adiabatic conditions upgraded from "sufficiently
+  smooth" to locality/norm/gap-runtime; CV schemes scoped; SDK list
+  re-taxonomised (SDKs vs IRs vs compiler stacks, deduplicating TKET).
+- Oracle lifting: bitwise-⊕/width note; O(T) workspace marked as the
+  history construction with time–space trade-offs.
+- "Every phase-kickback algorithm relies on clean uncomputation" →
+  branch-indistinguishability requirement with uncomputation as the
+  standard guarantee.
+- NISQ "ε-dependence does not appear" → discrete-synthesis dependence
+  only; calibration/pulse precision remains.
+- Routing "a sequence of SWAPs" → most commonly SWAPs, alternatives
+  named; NP-hard claim scoped to standard decision formulations.
+
+Five factcheck anchors requoted; baseline (97) restored.
