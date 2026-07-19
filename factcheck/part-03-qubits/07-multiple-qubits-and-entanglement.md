@@ -247,7 +247,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §7.12 — Ekert protocol: CHSH value near 2√2 certifies security
 
-- **Claim** (anchor): "If $S$ is close to $2\\sqrt{2}$, the pairs were undisturbed, and the remaining correlated outcomes yield a shared secret key"
+- **Claim** (anchor): "A measured $S$ close to $2\\sqrt{2}$ bounds how much any eavesdropper can know about the remaining outcomes"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

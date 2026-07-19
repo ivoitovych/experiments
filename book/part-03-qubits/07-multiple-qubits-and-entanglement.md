@@ -4,7 +4,7 @@
 
 [← Previous: Chapter 6](06-the-qubit.md) · [Table of Contents](../../README.md) · [Next: Chapter 8 →](../part-04-gates-and-circuits/08-quantum-gates.md)
 
-Chapter 6 introduced one qubit. Most of the interesting physics — and all of the computational advantage we care about — lives in systems of many qubits, where the state space grows exponentially and where states can exhibit correlations with no classical analogue. This chapter builds that machinery: the tensor product, product vs. entangled states, the Bell zoo, the EPR/Bell argument that quantum correlations cannot be reproduced by any local hidden-variable model, the Schmidt decomposition, partial traces, and entanglement as a resource that powers teleportation, superdense coding, and quantum cryptography.
+Chapter 6 introduced one qubit. Most of the interesting physics — and all of the *scalable* computational advantage we care about — lives in systems of many qubits, where the state space grows exponentially and where states can exhibit correlations that no local classical model reproduces (§7.9 makes this precise). This chapter builds that machinery: the tensor product, product vs. entangled states, the Bell zoo, the EPR/Bell argument that quantum correlations cannot be reproduced by any local hidden-variable model, the Schmidt decomposition, partial traces, and entanglement as a resource that powers teleportation, superdense coding, and quantum cryptography.
 
 > **How to read this chapter.** If you skipped Chapter 5, the postulate of composite systems (§5.5) and the partial trace (§5.12) are the operational prerequisites. Sections 7.1–7.5 are mandatory; §7.9 (Bell inequalities) and §7.10 (Schmidt) can be skimmed on a first pass and revisited when you reach the algorithms in Part 6.
 
@@ -50,7 +50,7 @@ $$
 
 for some $|\phi\rangle_A \in \mathcal{H}_A$ and $|\chi\rangle_B \in \mathcal{H}_B$. For multipartite systems, the definition generalises factor by factor: $|\psi\rangle = |\phi_1\rangle \otimes |\phi_2\rangle \otimes \cdots \otimes |\phi_n\rangle$.
 
-Product states are the "boring" states from the standpoint of quantum information: the subsystems are independent. Measuring one tells you nothing about the others, and the joint description carries no more information than the list of single-qubit descriptions. Crucially, $n$ qubits in a product state require only $O(n)$ real parameters to specify — not $2^n$. Whenever a quantum system stays in (or close to) product form, classical simulation is tractable.
+Product states are the "boring" states from the standpoint of quantum information: the subsystems are independent. Measuring one tells you nothing about the others, and the joint description carries no more information than the list of single-qubit descriptions. Crucially, $n$ qubits in a product state require only $O(n)$ real parameters to specify — not $2^n$. Whenever a quantum system stays in product form under known local evolution, classical simulation is tractable ("close to" product needs an explicit error guarantee before the same conclusion holds — Chapter 24).
 
 A quick test: if $|\psi\rangle = \alpha_{00}|00\rangle + \alpha_{01}|01\rangle + \alpha_{10}|10\rangle + \alpha_{11}|11\rangle$ is a product state, then $\alpha_{00} \alpha_{11} = \alpha_{01} \alpha_{10}$ (cross-ratio condition). This is the determinant of the $2\times 2$ matrix of amplitudes; in §7.10 we will recognise it as the statement that the matrix has rank one.
 
@@ -64,7 +64,7 @@ $$
 
 Try to factor it as $(\alpha|0\rangle + \beta|1\rangle) \otimes (\gamma|0\rangle + \delta|1\rangle)$. Expanding gives $\alpha\gamma|00\rangle + \alpha\delta|01\rangle + \beta\gamma|10\rangle + \beta\delta|11\rangle$, so we need $\alpha\delta = \beta\gamma = 0$ but $\alpha\gamma = \beta\delta = 1/\sqrt{2}$. The first conditions force at least one of $\alpha,\delta$ and at least one of $\beta,\gamma$ to be zero, which contradicts the second. No factorisation exists. The state is entangled.
 
-Entanglement is a property of the joint state, not of either subsystem in isolation, and it is preserved under local unitaries: applying $U_A \otimes U_B$ to an entangled state yields another entangled state. What entanglement gives you is correlations between subsystems that are stronger than any classical correlation, in a precise sense made operational by Bell's theorem (§7.9). It is also what most quantum algorithms that achieve a speedup rely on: a pure-state computation that stays unentangled can be simulated classically in $O(n)$ space, and growing multipartite entanglement is *necessary* for any exponential speedup in the pure-state setting (Jozsa–Linden 2003). Entanglement is not the whole story, though — certain mixed-state models (such as one-clean-qubit / DQC1) show an advantage with only vanishing entanglement.
+Entanglement is a property of the joint state, not of either subsystem in isolation, and it is preserved under local unitaries: applying $U_A \otimes U_B$ to an entangled state yields another entangled state. What entanglement makes possible is correlations that — for suitable measurement choices — exceed anything a local classical model can produce, in the precise sense made operational by Bell's theorem (§7.9). (For many other measurement sets, and for many entangled mixed states, the observed statistics remain classically reproducible; entanglement is the enabling resource, not a guarantee of visible nonclassicality.) It is also what most quantum algorithms that achieve a speedup rely on: a pure-state computation that stays unentangled can be simulated classically in $O(n)$ space, and growing multipartite entanglement is *necessary* for any exponential speedup in the pure-state setting (Jozsa–Linden 2003). Entanglement is not the whole story, though — certain mixed-state models (such as one-clean-qubit / DQC1) show an advantage with only vanishing entanglement.
 
 ## 7.5 Bell States
 
@@ -85,7 +85,7 @@ $$
 |0\rangle|0\rangle \;\xrightarrow{H \otimes I}\; \tfrac{1}{\sqrt{2}}(|0\rangle+|1\rangle)|0\rangle \;\xrightarrow{\mathrm{CNOT}}\; |\Phi^+\rangle,
 $$
 
-applying $H$ to the first qubit and then CNOT with first qubit as control. The other three Bell states come from the same circuit applied to $|01\rangle$, $|10\rangle$, $|11\rangle$ respectively (up to relative signs). The singlet $|\Psi^-\rangle$ has the additional symmetry of being antisymmetric under qubit exchange and rotationally invariant: $(U \otimes U)|\Psi^-\rangle = |\Psi^-\rangle$ (up to a global phase) for every single-qubit unitary $U$.
+applying $H$ to the first qubit and then CNOT with first qubit as control. The other three Bell states come from the same circuit exactly: $|01\rangle \mapsto |\Psi^+\rangle$, $|10\rangle \mapsto |\Phi^-\rangle$, and $|11\rangle \mapsto |\Psi^-\rangle$ (note the order — the $H$ acts on the first qubit, so flipping the *second* input bit toggles $\Phi \leftrightarrow \Psi$ and flipping the first toggles the sign). The singlet $|\Psi^-\rangle$ has the additional symmetry of being antisymmetric under qubit exchange and rotationally invariant: $(U \otimes U)|\Psi^-\rangle = |\Psi^-\rangle$ (up to a global phase) for every single-qubit unitary $U$.
 
 ## 7.6 GHZ and W States
 
@@ -114,7 +114,7 @@ Quantum correlations from a shared entangled state can sit outside this polytope
 
 ## 7.9 Bell Inequalities
 
-The simplest and most-tested form is the **CHSH inequality**. Alice chooses one of two measurement settings $A_0, A_1$ with outcomes $\pm 1$; Bob chooses one of two settings $B_0, B_1$ with outcomes $\pm 1$. Define the CHSH operator (or, classically, the CHSH statistic)
+The simplest and most-tested form is the **CHSH inequality**. Alice chooses one of two measurement settings $A_0, A_1$ with outcomes $\pm 1$; Bob chooses one of two settings $B_0, B_1$ with outcomes $\pm 1$. Define the CHSH statistic (in the quantum case it is the expectation of the CHSH *operator* $\mathcal{B} = A_0 \otimes (B_0 + B_1) + A_1 \otimes (B_0 - B_1)$, with the four local observables measured on separated subsystems)
 
 $$
 S \;=\; \langle A_0 B_0 \rangle + \langle A_0 B_1 \rangle + \langle A_1 B_0 \rangle - \langle A_1 B_1 \rangle,
@@ -144,9 +144,9 @@ $$
 |\psi\rangle_{AB} \;=\; \sum_{i=1}^{r} \lambda_i |u_i\rangle_A \otimes |v_i\rangle_B.
 $$
 
-The number $r$ of nonzero $\lambda_i$ is the **Schmidt rank**; the $\lambda_i$ are the **Schmidt coefficients**. The decomposition is unique up to degeneracies in the $\lambda_i$, and it follows from the singular value decomposition of the amplitude matrix $C$ defined by $|\psi\rangle = \sum_{jk} C_{jk} |j\rangle_A |k\rangle_B$.
+The number $r$ of nonzero $\lambda_i$ is the **Schmidt rank**; the $\lambda_i$ are the **Schmidt coefficients**. The decomposition is unique up to paired phase choices on the Schmidt vectors — with correlated unitary freedom inside degenerate coefficient subspaces and arbitrary basis completion on zero coefficients — with rank bounded by $r \le \min(\dim \mathcal{H}_A, \dim \mathcal{H}_B)$; it follows from the singular value decomposition of the amplitude matrix $C$ defined by $|\psi\rangle = \sum_{jk} C_{jk} |j\rangle_A |k\rangle_B$.
 
-Two consequences are worth memorising. **First**: a pure bipartite state is a product state iff its Schmidt rank is $1$. The cross-ratio condition from §7.3 ($\alpha_{00}\alpha_{11} = \alpha_{01}\alpha_{10}$) is exactly the rank-one condition on $C$. **Second**: the reduced density matrices on $A$ and $B$ have the same nonzero spectrum, $\\{\lambda_i^2\\}$. So a state is maximally entangled (uniform Schmidt coefficients $\lambda_i = 1/\sqrt{d}$) iff the reduced state is the maximally mixed $I/d$.
+Two consequences are worth memorising. **First**: a pure bipartite state is a product state iff its Schmidt rank is $1$. The cross-ratio condition from §7.3 ($\alpha_{00}\alpha_{11} = \alpha_{01}\alpha_{10}$) is exactly the rank-one condition on $C$. **Second**: the reduced density matrices on $A$ and $B$ have the same nonzero spectrum, $\\{\lambda_i^2\\}$. So a state is maximally entangled (uniform Schmidt coefficients $\lambda_i = 1/\sqrt{d}$, with $d = \min(d_A, d_B)$) iff the smaller subsystem's reduced state is the maximally mixed $I/d$ (the larger subsystem's marginal is maximally mixed on the $d$-dimensional Schmidt support).
 
 The Schmidt rank is invariant under local unitaries: $U_A \otimes U_B$ cannot increase or decrease it. So the rank itself, and more generally the multiset of Schmidt coefficients, is an entanglement invariant for pure bipartite states.
 
@@ -164,7 +164,7 @@ $$
 \rho_A \;=\; \tfrac{1}{2}\bigl(|0\rangle\langle 0| + |1\rangle\langle 1|\bigr) \;=\; \tfrac{I}{2}.
 $$
 
-This is the maximally mixed single-qubit state. From Alice's local perspective, her qubit looks like a fair coin: every measurement, in every basis, gives uniform outcome statistics. All the structure of $|\Phi^+\rangle$ lives in the correlations with Bob's qubit, which Alice cannot access without communication. This is also why entanglement does not allow signalling: local marginals are insensitive to what happens on the other side.
+This is the maximally mixed single-qubit state. From Alice's local perspective, her qubit's readout looks like a fair coin: every orthonormal-basis measurement gives uniform outcome statistics (a biased POVM need not). All the structure that distinguishes $|\Phi^+\rangle$ from other states with the same marginal lives in the correlations with Bob's qubit, which Alice cannot access without communication. This is also why entanglement does not allow signalling: local marginals are insensitive to any operation on the other side whose outcome is not communicated — conditioning on a communicated outcome does, of course, change the conditional description.
 
 ## 7.12 Entanglement as a Resource
 
@@ -177,9 +177,9 @@ of entanglement) and two classical bits were consumed.
 
 **Superdense coding.** Reverse roles: Alice and Bob share one Bell pair. Alice applies one of four local operations ($I$, $X$, $Z$, $ZX$, using the same operator order as the teleportation corrections above) to her half, depending on a two-bit message, and sends the qubit to Bob. Bob measures both qubits in the Bell basis and recovers the two bits. One qubit transmission, aided by one ebit, carries two classical bits.
 
-**Entanglement-based key distribution (Ekert).** Alice and Bob share many Bell pairs. They measure each pair in randomly chosen bases and use a subset of outcomes to estimate the CHSH value $S$. If $S$ is close to $2\sqrt{2}$, the pairs were undisturbed, and the remaining correlated outcomes yield a shared secret key. Any eavesdropper attempting to learn information necessarily disturbs the state and reduces $S$ below the threshold.
+**Entanglement-based key distribution (Ekert).** Alice and Bob share many Bell pairs. They measure each pair in randomly chosen bases and use a subset of outcomes to estimate the CHSH value $S$. A measured $S$ close to $2\sqrt{2}$ bounds how much any eavesdropper can know about the remaining outcomes; turning that bound into a secret key takes error reconciliation, privacy amplification, and a finite-statistics security analysis (Chapter 27 — device-independent variants make the CHSH test itself the security anchor). An eavesdropper's interaction shows up as a reduced $S$.
 
-The unifying message: an ebit (one maximally entangled pair) is a quantifiable resource, and most protocols of practical interest can be analysed as conversions among ebits, qubits, and classical bits.
+The unifying message: an ebit (one maximally entangled pair) is a quantifiable resource, and the canonical bipartite communication protocols can be analysed as conversions among ebits, qubits, and classical bits.
 
 ## 7.13 Entanglement Measures
 
