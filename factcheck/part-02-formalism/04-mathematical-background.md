@@ -161,7 +161,7 @@
 - **Method:** derivation — standard QFT construction; this counts gates, not depth.
 - **Source:** —
 - **Status:** not yet verified
-- **Find in text:** "the standard *exact* construction uses $O(n^2) = O((\log N)^2)$ elementary gates."
+- **Find in text:** "the standard *exact* construction uses $O(n^2) = O((\log N)^2)$ elementary gates — \"exact\" presuming a gate set with arbitrarily fine rotations"
 
 ### Claim: This book's QFT uses the negative-exponent sign (F_N^{(−)}); Qiskit's QFTGate uses the opposite, positive-exponent sign
 - **Method:** external (perishable) — Qiskit 2.x documentation.

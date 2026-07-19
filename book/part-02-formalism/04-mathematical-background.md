@@ -59,7 +59,8 @@ more. This column-vector reading is all the notation this chapter needs
 until §4.12 develops the full bra-ket machinery. The **Born rule** says
 that the probability of obtaining outcome $0$ on measurement is
 $|\alpha|^2$ and of outcome $1$ is $|\beta|^2$. These amplitudes can add, cancel, and rotate —
-which is why interference, the engine of quantum speedups, exists.
+which is why interference — the working mechanism behind the quantum
+speedups in this book — exists.
 
 An ordinary probabilistic computer cannot assign negative literal
 probabilities to outcomes. A quantum computer carries complex amplitudes;
@@ -165,8 +166,9 @@ $$
 
 This convention is **conjugate-linear in the first argument** and linear in
 the second, which is the physics convention. (Mathematicians often write the
-opposite — both are valid; the quantum computing literature is consistent and
-we follow it.) The induced **norm** is $\\|v\\| = \sqrt{\langle v, v\rangle}$.
+opposite — both are valid; the
+quantum-computing literature sits almost uniformly on the physics
+convention, and we follow it.) The induced **norm** is $\\|v\\| = \sqrt{\langle v, v\rangle}$.
 
 For notation, this book reserves single bars and double bars for distinct
 roles:
@@ -188,7 +190,8 @@ same — Dirac kets are always paired with a closing `\rangle`.
 Two vectors are **orthogonal** when $\langle u, v\rangle = 0$. A basis
 $\\{e_1, \dots, e_n\\}$ is **orthonormal** when $\langle e_i, e_j\rangle = \delta_{ij}$.
 Any vector $v$ then decomposes as $v = \sum_i \langle e_i, v\rangle\\, e_i$,
-and Gram–Schmidt converts any basis into an orthonormal one. In Dirac notation
+and Gram–Schmidt converts any ordered basis into an orthonormal one
+(numerically fragile when vectors are nearly dependent). In Dirac notation
 (§4.12) this same decomposition becomes
 $|\psi\rangle = \sum_i |i\rangle \langle i | \psi \rangle$, the projection of
 $|\psi\rangle$ onto each basis ket.
@@ -248,8 +251,9 @@ Two distinguished operators are worth naming up front:
   means an *orthogonal* projector unless explicitly stated otherwise. If
   additionally $P^\dagger = P$ it is an **orthogonal projector**: it keeps
   the component of any vector that lies inside its image and removes the
-  component orthogonal to it. Orthogonal projectors represent subspaces and
-  reappear as measurement operators in §4.6. A non-orthogonal idempotent
+  component orthogonal to it. Orthogonal projectors represent subspaces,
+  reappear in the spectral decomposition (§4.7), and become measurement
+  operators in Chapter 5. A non-orthogonal idempotent
   still satisfies $P^2 = P$ but projects along a chosen direction that need
   not be perpendicular to its image. In this book, whenever we say
   "projector" in a *measurement* context — projective measurement, spectral
@@ -509,8 +513,7 @@ The two most important instances in quantum computing:
   time $t$, the unitary $U(t) = e^{-i H t / \hbar}$ is computed from the
   spectral decomposition of $H$ as $U(t) = \sum_i e^{-i \lambda_i t / \hbar} P_i$.
   Algorithmic quantum computing usually sets $\hbar = 1$, so this formula
-  appears later as $U(t) = e^{-i H t}$. Simulating dynamics reduces to
-  diagonalizing $H$ when feasible — which it generally is not, hence the
+  appears later as $U(t) = e^{-i H t}$. Simulating dynamics *can* reduce to diagonalizing $H$ when that is feasible — which it generally is not, hence the
   entire field of Hamiltonian simulation (Chapter 16). Time-dependent
   Hamiltonians require time-ordered exponentials, handled separately.
 - **Square roots and inverses.** For a *positive semidefinite Hermitian* $A$
@@ -518,8 +521,9 @@ The two most important instances in quantum computing:
   with the nonnegative real branch. For more general normal operators choosing
   a square root requires choosing branches on the spectrum. The inverse is
   $A^{-1} = \sum_i \lambda_i^{-1} P_i$ whenever every eigenvalue is nonzero.
-  The HHL algorithm (§15.5) is the quantum implementation of $A^{-1}|b\rangle$
-  via this calculus, under additional assumptions about Hermitian embedding,
+  The HHL algorithm (§15.5) prepares — probabilistically, and up to
+  normalisation — a state proportional to $A^{-1}|b\rangle$ via this
+  calculus, under additional assumptions about Hermitian embedding,
   conditioning, and efficient state preparation.
 
 When $A$ is Hermitian, the eigenvalues are real and $f(A)$ is Hermitian
@@ -542,10 +546,13 @@ $$
 e^A = \sum_i e^{\lambda_i}\\, P_i.
 $$
 
-This is the form actually used in Hamiltonian-simulation arguments
-(Chapter 16): the closed-form right-hand side replaces the convergent but
-unwieldy left-hand side whenever $A$ is normal, which Hamiltonians always
-are.
+This is the form used in Hamiltonian-simulation *analysis*
+(Chapter 16): the closed-form right-hand side defines what the
+algorithms must approximate. The algorithms themselves never
+diagonalise $H$ — obtaining the spectral decomposition is precisely the
+hard part — and instead approximate the evolution directly (product
+formulas, qubitisation). The identity itself holds whenever $A$ is
+normal, which finite-dimensional Hermitian Hamiltonians always are.
 
 For **non-normal** matrices the picture changes: eigenvectors need not span
 the space, the eigenbasis need not be orthonormal, and a clean spectral
@@ -639,7 +646,8 @@ $1$, qubit $0$ is $0$." That is the same basis vector.
 > leftmost tensor factor of $|x_1 \cdots x_n\rangle$ to Qiskit's
 > *highest-numbered* qubit label. For two qubits: book factor 1 ↔ `q_1`,
 > book factor 2 ↔ `q_0`. If instead you map book factor 1 ↔ `q_0`,
-> insert an explicit SWAP (or qubit-label permutation) when comparing
+> apply a qubit-label permutation — or an explicit SWAP only if a
+> circuit-level transformation is needed — when comparing
 > hand-derived matrices with code.
 
 ### Inner products and operators
@@ -793,8 +801,10 @@ $$
 
 which is a maximally mixed single-qubit state. The whole is pure but
 the part is mixed — the smallest example of why reduced density
-matrices are not bookkeeping but the language entanglement actually
-speaks at the subsystem level.
+matrices are not bookkeeping but the language entanglement actually speaks at the subsystem level.
+(For a globally *pure* state a mixed marginal certifies entanglement;
+for globally mixed states it does not — Chapter 7 has the honest
+mixed-state definition.)
 
 *Takeaway:* the tensor product is where multi-qubit systems stop being just
 collections of independent qubits and start being computational resources in
@@ -835,8 +845,9 @@ show up constantly in quantum computing:
   probability between $\rho$ and $\sigma$.
 
 For a square invertible matrix the **condition number** is
-$\kappa(A) = \sigma_{\max}(A) / \sigma_{\min}(A)$. It measures how
-ill-posed the linear system $A x = b$ is — small $\kappa$ is well-conditioned,
+$\kappa(A) = \sigma_{\max}(A) / \sigma_{\min}(A)$. It measures — in the 2-norm; condition
+numbers are norm- and problem-dependent — how *ill-conditioned* the
+linear system $A x = b$ is: small $\kappa$ is well-conditioned,
 large $\kappa$ means numerical error gets amplified. The HHL algorithm's
 asymptotic cost depends explicitly on $\kappa$.
 
@@ -866,8 +877,8 @@ SVD appears repeatedly in the rest of the book:
 - **HHL and related algorithms** (preview only — §15.5). In the simplest
   Hermitian positive-definite presentation of HHL, eigenvalues and
   singular values coincide, so
-  the algorithm implements a map proportional to $A^{-1}|b\rangle$ by
-  transforming $\lambda_i \mapsto 1/\lambda_i$ on the eigenvectors. More
+  the algorithm prepares (probabilistically, up to normalisation) a
+  state proportional to $A^{-1}|b\rangle$ by transforming $\lambda_i \mapsto 1/\lambda_i$ on the eigenvectors. More
   general Hermitian formulations allow signed eigenvalues bounded away from
   zero; non-Hermitian systems are typically handled by embedding $A$ inside
   a larger Hermitian matrix, or by block-encoding and
@@ -900,8 +911,10 @@ writing a complex number as $z = e^{i\theta} |z|$.
 > gate), and $|0\rangle\langle 0|$. Unitary matrices have all singular
 > values equal to $1$, so $X$ and $S$ both have $\sigma = (1, 1)$. The
 > rank-one projector $|0\rangle\langle 0|$ has singular values $(1, 0)$.
-> Notice how this distinguishes the *unitary*, *Hermitian*, and *projector*
-> properties even though all three matrices are $2 \times 2$.
+> Notice what singular values can and cannot see: they separate the
+> projector from the two unitaries, but they cannot distinguish $X$
+> from $S$ (both have $\sigma = (1, 1)$) — Hermiticity is invisible to
+> singular values alone.
 
 ## 4.10 Change of Basis
 
@@ -998,11 +1011,16 @@ unless we say otherwise.
 Dirac (bra-ket) notation is the field's standard interface to the linear
 algebra this chapter has built. It is not new mathematics — every bra-ket
 expression *is* a matrix expression — and in this book you can always read
-it concretely. There are exactly four objects:
+it concretely. Four core constructions do most of the work —
+everything else (operators, matrix elements, tensor products) is built
+out of them:
 
-- A **ket** $|\psi\rangle$ is a column vector, shape $n \times 1$. The
-  symbol inside $|\\,\rangle$ is a label — a variable name — and carries no
-  mathematics of its own: $|0\rangle$, $|\psi\rangle$, $|{+}\rangle$,
+- A **ket** $|\psi\rangle$ is represented, once a basis is fixed, as a
+  column vector of shape $n \times 1$ (the coda of this section returns
+  to the vector-versus-coordinates distinction). The symbol inside
+  $|\\,\rangle$ is a label — usually a variable name, occasionally an
+  eigenvalue or a composite tag — that names the vector rather than
+  computing anything: $|0\rangle$, $|\psi\rangle$, $|{+}\rangle$,
   $|\mathrm{foo}\rangle$ are all just named column vectors.
 - A **bra** $\langle\phi|$ is the conjugate transpose of the ket
   $|\phi\rangle$: the row vector $\phi^\dagger$, shape $1 \times n$.
@@ -1090,8 +1108,7 @@ distinguishes a vector from its *coordinates*. The same state has a
 different column of numbers in each basis — the way the same value has a
 different byte representation under each serialization format — so physics
 texts say a ket "is" an abstract vector which a chosen basis *represents*
-as a column. In this book the computational basis is fixed once (§4.2), so
-"ket = column vector" is safe throughout; the distinction only earns its
+as a column. In this book the computational basis is fixed once (§4.2), so "ket = column vector" is safe as the default reading throughout; the distinction only earns its
 keep at changes of basis (§4.10), where the vector stays put and its
 coordinates change.
 
@@ -1142,8 +1159,9 @@ Before comparing a formula from this book with Qiskit output, check three
 things independently: (1) exponent sign (this section);
 (2) final-swap / bit-reversal convention (§4.8);
 (3) qubit-label-to-tensor-factor mapping (§4.8). If a later algorithm uses
-the opposite QFT sign, every controlled-phase angle and every
-phase-estimation readout formula needs to be conjugated accordingly —
+the opposite QFT sign, controlled-phase angles and phase-estimation
+readout formulas need to be re-derived under the chosen convention
+(in the generic case: conjugated) —
 sign errors in QFT and quantum phase estimation are a classic source of
 off-by-a-conjugate bugs.
 
@@ -1157,8 +1175,12 @@ Key properties:
 - **Shift–phase duality.** Translation in one domain corresponds to a phase
   rotation in the other.
 
-The classical fast Fourier transform (FFT) computes a length-$N$ DFT in
-$O(N \log N)$ time. Let $N = 2^n$. In this book, **"QFT"** means the unitary
+The classical fast Fourier transform (FFT) computes a length-$N$ DFT
+in $O(N \log N)$ arithmetic operations. Let $N = 2^n$. (Keep the
+representations distinct from the start: the FFT reads and writes an
+explicit array of $N$ numbers, while the QFT acts on the amplitudes
+carried by $n$ qubits — so the two cost figures are not directly
+comparable, as the pitfalls at the end of this section spell out.) In this book, **"QFT"** means the unitary
 $F_N$ on $\mathbb{C}^N$ that acts on computational-basis states by
 
 $$
@@ -1168,7 +1190,9 @@ $$
 
 i.e., the same unitary as the DFT above, realized as a quantum circuit on
 $n = \log_2 N$ qubits; the standard *exact* construction uses
-$O(n^2) = O((\log N)^2)$ elementary gates. Approximate variants reduce
+$O(n^2) = O((\log N)^2)$ elementary gates — "exact" presuming a gate
+set with arbitrarily fine rotations; over a finite fault-tolerant set,
+synthesis costs enter (Chapter 8). Approximate variants reduce
 this further by dropping very small controlled rotations below a chosen
 threshold, at the cost of bounded approximation error; we return to this
 in Chapter 14. Some texts call the
@@ -1246,8 +1270,8 @@ Two quantum-mechanical extensions return in Chapter 12. They use the
 density-matrix formalism introduced in Chapter 5, so on a first pass it is
 fine to read this material as a *preview* and return after Chapter 5.
 
-**Von Neumann entropy.** Replace the diagonal-entry distribution by the
-spectrum of a density matrix:
+**Von Neumann entropy.** Replace the classical probability vector by
+the spectrum (the eigenvalues) of a density matrix:
 
 $$
 S(\rho) = -\mathrm{tr}(\rho \log_2 \rho),
@@ -1284,8 +1308,9 @@ density matrix formalism is in place (§5.10).
 
 One classical fact that quantum algorithms inherit unchanged: a quantum
 measurement returns a *sample* from a probability distribution determined by
-the state, not direct access to the underlying complex amplitudes. Whatever
-you eventually report is an empirical frequency from repeated trials.
+the state, not direct access to the underlying complex amplitudes. Whatever you eventually report is computed from samples accumulated
+over repeated trials — a frequency in the simplest case, a model-based
+estimate (phase estimation, classical shadows) in richer ones.
 In the worst case — for example for an unknown probability bounded
 away from $0$ and $1$ — if all you can do is prepare the state,
 measure it, and repeat independently, estimating that Bernoulli
@@ -1316,8 +1341,9 @@ the rest of the book:
    normalization, and unitarity calculations.
 4. **Tensor-product order matters.** The mapping from a bit string
    $x_1 \cdots x_n$ (this book: leftmost is most significant) to a
-   Kronecker-product index is a *convention* — frameworks that label
-   qubits $q_{n-1} \cdots q_0$ little-endian make the opposite choice —
+   Kronecker-product index is a *convention* — frameworks that label qubits $q_{n-1} \cdots q_0$ little-endian order
+   the factors differently (each framework fixes several ordering
+   conventions independently — §4.8) —
    so always check the bit-ordering of any framework before comparing
    with a hand derivation.
 5. **The QFT is not a faster FFT for arbitrary arrays.** Input preparation
@@ -1386,7 +1412,9 @@ records the silent failure mode.
   index $\sum_i x_i\\, 2^{n-i}$.
 - **Tensor-product order.** $|x_1 x_2 \cdots x_n\rangle = |x_1\rangle\\, |x_2\rangle \cdots |x_n\rangle$.
 - **Qiskit mapping.** Map this book's leftmost tensor factor to
-  Qiskit's *highest-numbered* qubit label, or insert a SWAP.
+  Qiskit's *highest-numbered* qubit label, or apply a representation
+  permutation (an explicit SWAP only when a circuit-level
+  transformation is required).
 - **QFT sign.** Convention **QFT-sign-minus**:
   $F_N\\, |j\rangle = N^{-1/2}\\, \sum_k \omega^{-jk}\\, |k\rangle$
   with $\omega = e^{2\pi i / N}$. As of Qiskit's 2.x documentation,
@@ -1401,7 +1429,8 @@ records the silent failure mode.
 - **Projectors in measurement contexts.** Always orthogonal
   ($P^2 = P$, $P^\dagger = P$) unless explicitly stated otherwise.
 
-Norm notation is reserved across five distinct roles. Note in
+Norm notation is reserved across the following roles (the
+Hilbert–Schmidt norm of §4.4 joins them as a sixth). Note in
 particular that single bars `|A|` are *not* a norm — they denote the
 operator absolute value:
 

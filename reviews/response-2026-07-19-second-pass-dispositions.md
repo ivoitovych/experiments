@@ -345,3 +345,54 @@ checker baseline (97) restored.
 - "Two-level system" for spin-1/2 (the spin degree of freedom does supply
   dimension two); the interference-slogan framing (kept — it is the
   chapter's declared organising device, now with scoped wording around it).
+
+## Batch 5 — Chapter 4 (23 substitutions)
+
+### FIXED — outright defects
+- HHL called "the quantum implementation of A⁻¹|b⟩" (twice) — now prepares,
+  probabilistically and up to normalisation, a state proportional to it.
+- Spectral closed form called "the form actually used in
+  Hamiltonian-simulation arguments" — now analysis-vs-algorithm separated:
+  algorithms never diagonalise H; they approximate the evolution directly.
+- SVD sanity check claiming singular values distinguish
+  unitary/Hermitian/projector — corrected: they cannot distinguish X from S;
+  Hermiticity is invisible to singular values.
+- §4.12 "exactly four objects" and ket-*is*-a-column — now four core
+  constructions; ket *represented as* a column once a basis is fixed
+  (resolving the section's own coda contradiction); label description
+  widened beyond variable names.
+- Qiskit mapping "or insert a SWAP" (both §4.8 and §4.16) — representation
+  permutation first, circuit SWAP only when a circuit-level transformation
+  is required.
+- Projector cross-reference (§4.6) corrected to §4.7 + Chapter 5.
+- "Whatever you report is an empirical frequency" — widened to
+  sample-derived estimators.
+- Norms "five distinct roles" — Hilbert–Schmidt norm counted in.
+- Von Neumann entropy "diagonal-entry distribution" — now the spectrum
+  (basis-independent), not basis-dependent diagonal entries.
+
+### FIXED — epistemic scoping
+- QFT/FFT comparison: representation mismatch stated up front (arithmetic
+  operations on arrays vs gates on amplitudes); "exact" gate count scoped to
+  gate sets with arbitrarily fine rotations, synthesis costs flagged.
+- "Every controlled-phase angle needs to be conjugated" → re-derived under
+  the chosen convention, conjugation as the generic case.
+- Endian note: frameworks "make the opposite choice" → maintain several
+  independent ordering conventions.
+- "Simulating dynamics reduces to diagonalizing H" → can reduce, when
+  feasible (existing hedge strengthened).
+- Condition number: 2-norm scoping, "ill-posed" → ill-conditioned.
+- Gram–Schmidt "any basis" → any ordered basis, numerical fragility noted.
+- "Quantum computing literature is consistent" → almost uniformly.
+- Interference "the engine of quantum speedups" → working mechanism behind
+  the speedups in this book.
+- Mixed-marginal entanglement diagnosis scoped to globally pure states.
+- "Ket = column vector safe throughout" → safe as the default reading.
+
+### ADJUDICATED — no change
+- Amplitude-estimation cross reference: it is §14.8 in this book's TOC, so
+  the Chapter 14 attribution the ledger asked to verify is correct.
+- §4.8's "SWAP or permutation" line at the tensor-order sanity check already
+  names permutation; left as is.
+
+One factcheck anchor requoted; baseline (97) restored.

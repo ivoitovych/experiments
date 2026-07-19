@@ -39,7 +39,7 @@ d91593210f018ee8f68a4f9c1af4ba627dfc7ab5d5909ef6fbf4338dfbdeff1e  book/part-00-h
 82eac095d2dfb0aeb0ed41c6e483560fd2bd2725f247166df124764803065f51  book/part-01-orientation/01-why-quantum-computing-exists.md
 d34957f358a8319e3185e1f4e1e680df6d1feb2cde9732f20c014ef51cb37c35  book/part-01-orientation/02-classical-to-quantum-contrast.md
 d0b7c97b18fac680f8bf1ffafc3a9048b64372957a70668dce8195ead6385325  book/part-01-orientation/03-physical-intuition.md
-3b29b215e69332c6218e947a2ee06601f439d97603c58bbcf39b64e63909f9ce  book/part-02-formalism/04-mathematical-background.md
+66bae07d9038637e5b1ff5110c35bb348679522399f7df875553ed6ddc39b9d4  book/part-02-formalism/04-mathematical-background.md
 f9d7692d6a4ff35f5a13f65f102f3a2ca7245157010394a333660c248e94269e  book/part-02-formalism/05-postulates.md
 0855f8305445d5e81f39791c498ced0c8c53e2d787323b113f5a6c4d2e2a9e82  book/part-03-qubits/06-the-qubit.md
 f9e2b6f02039794e646e42274fc7827090d26e76b488748225e207e49a35aaff  book/part-03-qubits/07-multiple-qubits-and-entanglement.md
@@ -120,7 +120,7 @@ d9874a2cb5e75909acf5869885cc08c3b86b04a25cb64861c1e97a2ed88c28cf  factcheck/_sou
 574fbf69ea1526547326a0d29e75d9d3ffc6cf5d799aae3c58e018b81e30be68  factcheck/part-01-orientation/01-why-quantum-computing-exists.md
 50521b032a843ec14e2651eda9334f4c26f79da1663dd4a6d228f1e3af17d26d  factcheck/part-01-orientation/02-classical-to-quantum-contrast.md
 bbc63ff4c6e86e6f4d4c1671b9e2955320facb3d1e7b87225375d5a6e8154d5a  factcheck/part-01-orientation/03-physical-intuition.md
-486baa0197c41ca78bb75022d987b0c8f00020f7e2f11a726778e7f983bde307  factcheck/part-02-formalism/04-mathematical-background.md
+d729773ec18565944ea2444efc14bf2d95d4565aa02ae33a4519fbe3e48c558e  factcheck/part-02-formalism/04-mathematical-background.md
 7a6d434d788d1bacdf2051a20d3b9196c909956162f5e0cb1016682fb6422280  factcheck/part-02-formalism/05-postulates.md
 33a4bc58c3cd0e71e80ac7353e6a68d8b4afe5e2c560654779b7e0fffa89cc12  factcheck/part-03-qubits/06-the-qubit.md
 027616cf14c0b2f6fba19449316fe0079f25c5f7544a29d9af06256be5c7d4c3  factcheck/part-03-qubits/07-multiple-qubits-and-entanglement.md
@@ -169,7 +169,7 @@ d5e0cec3ec5e3dbb9ada626bf551502d12d81920e68fdac4c4e7a59ed6e08a7b  reviews/cold-r
 95cd5962ed6cf39a1b5f5e2f859bc5c2d03b78d3d435891c3fd6b11a012b6584  reviews/factcheck-2026-07-04-external-verification.md
 7efd03e5b38a37de192454db8bd8d6c6b31373f9fe112096e1b27a251e30932d  reviews/proposals-2026-07-05-remaining-programmes.md
 021f81c249aa7f0e13dd66470714f49c341955324e48399b78ed4b29c1269c22  reviews/recommendations-2026-07-04-deferred-items.md
-4cc847f34ebe429c4da663484e302cad6869d624da37417e5564a57c9ba7b0f0  reviews/response-2026-07-19-second-pass-dispositions.md
+732a6a085f64958bd6b5ab92596c2dd24e384b481d60b47b0b303111d985a19d  reviews/response-2026-07-19-second-pass-dispositions.md
 95adfcedf14090d851fc34190f8b43abb422e0f94462929e7d694e174aeaf9cf  reviews/review-2026-07-03-1843-comprehensive-book-review.md
 c6916319dc95eff2195486ba887f6d126c62e0caf2496979cf301560ad15d6b7  reviews/review-2026-07-19_01-20-35_CEST.md
 2bd131ed2944aee6d792838358a75ef9efbe42c09f5a5568347bd8aa4d1d840d  reviews/roadmap-2026-07-05-path-to-publication.md
