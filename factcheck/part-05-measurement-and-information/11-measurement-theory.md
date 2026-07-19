@@ -77,7 +77,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §11.4 — Full state tomography requires exponential measurements
 
-- **Claim** (anchor): "one needs at least $\\Omega(4^n / \\varepsilon^2)$ total measurements distributed across $4^n - 1$ Pauli settings"
+- **Claim** (anchor): "one needs at least $\\Omega(4^n / \\varepsilon^2)$ total measurements — though not $4^n$ distinct *settings*"
 - **Method**: external
 - **Source**: TBD — needs verification; standard information-theoretic lower bound, e.g., Haah et al. (2017) or earlier references
 - **Verified**: — · **Verdict**: open
@@ -112,7 +112,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §11.5 — Classical shadows: k-local Pauli shadow norm bound and n-independence
 
-- **Claim** (anchor): "For Pauli observables and random-Pauli measurements, $\\|O\\|_{\\mathrm{shadow}}^2 \\le 4^k$ for a $k$-local Pauli, so estimating any number of $k$-local Paulis is **independent of qubit number** $n$."
+- **Claim** (anchor): "For Pauli observables and random-Pauli measurements, $\\|O\\|_{\\mathrm{shadow}}^2 \\le 4^k$ for a $k$-local Pauli, so the shot count is **independent of the ambient qubit number** $n$ — it grows only with locality $k$ and (logarithmically) with the number $M$ of observables requested."
 - **Method**: external
 - **Source**: Huang, Kueng & Preskill (2020)
 - **Verified**: — · **Verdict**: open
@@ -175,7 +175,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §11.7 — Shot-noise floor: O(1/ε²) shots per observable
 
-- **Claim** (anchor): "To estimate any $\\langle O\\rangle$ to additive error $\\varepsilon$ with confidence, one needs $N = \\Omega(1/\\varepsilon^2)$ shots per observable — the **shot-noise floor** of every quantum sampling estimator."
+- **Claim** (anchor): "To estimate any $\\langle O\\rangle$ to additive error $\\varepsilon$ with confidence, one needs $N = \\Omega(1/\\varepsilon^2)$ shots per observable at constant confidence — the **shot-noise floor** of direct, independent-shot sampling"
 - **Method**: derivation
 - **Source**: → §11.7 (follows from the central limit theorem applied to bounded ±1 random variables)
 - **Verified**: — · **Verdict**: open
@@ -217,7 +217,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §11.7 — Readout-error mitigation via calibration matrix inversion
 
-- **Claim** (anchor): "Estimating $A$ is a one-time calibration: prepare each computational-basis state $|b'\\rangle$, measure, and collect the empirical conditional distribution."
+- **Claim** (anchor): "Estimating $A$ is a calibration step (repeated in practice — readout drifts): prepare each computational-basis state $|b'\\rangle$, measure, and collect the empirical conditional distribution."
 - **Method**: external
 - **Source**: TBD — needs verification; standard readout-error mitigation procedure, see e.g., Temme, Bravyi & Gambetta (2017) or Maciejewski et al. (2020)
 - **Verified**: — · **Verdict**: open
