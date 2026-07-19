@@ -451,3 +451,39 @@ One factcheck anchor requoted; baseline (97) restored.
   adjudicated as house convention; the ledger's ask for a one-time
   whole-book render validation is logged as an infrastructure task.
 - No-cloning/no-deleting historical citations → factcheck programme.
+
+## Batch 7 — Chapter 6 (16 substitutions)
+
+### FIXED — outright defects
+- Bloch parametrisation "covers the sphere exactly once" — pole degeneracy
+  stated.
+- "Any basis that mixes |0⟩ and |1⟩ does see" relative phase — corrected:
+  each mixing basis sees its own quadrature (Hadamard 0 vs π; circular
+  ±π/2).
+- R_z listed as exception to phase propagation — now correctly changes
+  phase without mixing populations, visible after a later mixer.
+- I/2 "equal probability to every measurement outcome in every basis" —
+  scoped to both outcomes of orthonormal-basis measurements.
+- 2π sign "a later interference experiment can see" — now global-hence-
+  invisible for the isolated qubit, observable only against a reference
+  branch (repairing the cold-read-era wording with the reviewer's
+  reference-branch caveat).
+- "Bloch sphere is the projective sphere" — now CP¹ with the
+  antipodal-points-are-orthogonal warning.
+- Bell-state phase manipulations as the 4π example — replaced with
+  controlled-rotation interferometry, where the reference branch exists.
+- ZYZ decomposition: U(2) equality now carries its global-phase factor;
+  "underwrites every compilation step" scoped to single-qubit synthesis
+  with virtual-Z noted and angle non-uniqueness flagged.
+- Basis-mismatch → maximal entropy — scoped to mutually unbiased bases.
+- Bridge: "handled the single qubit fully" → core ideal-model toolkit;
+  "diverges from any classical model" → local classical models with
+  assumptions.
+
+### FIXED — epistemic scoping
+- "Most intuition starts on the Bloch sphere" — multi-qubit failure of the
+  picture previewed; circular basis paired with its standard "Y basis"
+  name at first mention; computational basis "natively distinguished by
+  hardware" → hardware-and-encoding convention with noisy readout noted.
+
+Three factcheck anchors requoted; baseline (97) restored.

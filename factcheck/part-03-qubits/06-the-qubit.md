@@ -5,7 +5,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §6.1 — Computational basis fixed by hardware convention
 
-- **Claim** (anchor): "fixed by hardware convention: the two states the readout device natively distinguishes"
+- **Claim** (anchor): "fixed by hardware-and-encoding convention: the two states the readout chain is calibrated to distinguish"
 - **Method**: convention
 - **Source**: → §6.1; cross-reference §6.4 for platform specifics
 - **Verified**: — · **Verdict**: open
@@ -19,7 +19,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §6.2 — Half-angle parametrisation covers the sphere exactly once
 
-- **Claim** (anchor): "it is what makes the Bloch parametrisation cover the sphere exactly once. We unpack this in §6.8"
+- **Claim** (anchor): "it is what makes the Bloch parametrisation cover the sphere exactly once — up to the usual spherical-coordinate degeneracy at the poles"
 - **Method**: derivation
 - **Source**: → §6.2; unpacked in §6.8
 - **Verified**: — · **Verdict**: open
@@ -133,7 +133,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §6.9 — Zyz Euler decomposition for SU(2)
 
-- **Claim** (anchor): "underwrites every compilation"
+- **Claim** (anchor): "underwrites single-qubit compilation"
 - **Method**: derivation
 - **Source**: → §6.9
 - **Verified**: — · **Verdict**: open

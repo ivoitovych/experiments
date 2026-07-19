@@ -10,10 +10,11 @@ specialises here, and the result is concrete enough to picture. The
 Bloch sphere makes the single-qubit state space *visible* — every
 pure state is a point on the surface of an ordinary sphere in
 three-dimensional space (the unit 2-sphere) — and
-that picture turns abstract operator algebra into geometry. Most
+that picture turns abstract operator algebra into geometry. Much of the working
 intuition about how quantum gates work, what phase does, and why
-measurement gives the answers it gives starts on the Bloch sphere
-and only later generalises to many qubits.
+measurement gives the answers it gives starts on the Bloch sphere —
+though the picture famously does *not* generalise straightforwardly
+to many qubits (Chapter 7 explains what survives).
 
 This chapter is short on purpose. The qubit is built from
 postulates already in Chapter 5; the value here is concrete formulas
@@ -25,8 +26,9 @@ single-qubit dynamics and measurement examples.
 
 A qubit's Hilbert space $\mathbb{C}^2$ has a distinguished basis
 $\\{|0\rangle, |1\rangle\\}$ — the **computational basis** — fixed by
-hardware convention: the two states the readout device natively
-distinguishes. The computational basis vectors are the standard
+hardware-and-encoding convention: the two states the readout chain is
+calibrated to distinguish (real readout is noisy, and some platforms
+map states before detection). The computational basis vectors are the standard
 column vectors
 
 $$
@@ -73,8 +75,10 @@ $$
 
 with $\theta \in [0, \pi]$ and $\varphi \in [0, 2\pi)$. The factor of
 $\tfrac{\theta}{2}$ in the angles is not a typo — it is what makes
-the Bloch parametrisation cover the sphere exactly once. We unpack
-this in §6.8.
+the Bloch parametrisation cover the sphere exactly once — up to the
+usual spherical-coordinate degeneracy at the poles, where $\varphi$
+becomes redundant (at the south pole it changes only a global phase).
+We unpack this in §6.8.
 
 Mixed single-qubit states (§5.9, §5.10) require the density-matrix
 formalism and live *inside* the Bloch sphere rather than on its
@@ -176,13 +180,16 @@ $$
 
 so a Hadamard-basis measurement of $|0\rangle$ or $|1\rangle$ is
 unbiased — $50/50$ between $|+\rangle$ and $|-\rangle$. This is the
-single-qubit shadow of the more general principle in §6.10 and
-Chapter 11: measurement-basis-mismatched preparation gives maximal
-classical entropy at readout.
+single-qubit shadow of a principle made general in §6.10 and
+Chapter 11 — with the precise scope worth noting: *maximal* readout
+entropy needs the bases to be **mutually unbiased**, as the
+computational and Hadamard pair are; a generic rotated basis gives
+biased, not uniform, outcomes.
 
 ## 6.6 Circular Basis
 
-The **circular basis** is $\\{|R\rangle, |L\rangle\\}$, the eigenbasis
+The **circular basis** (equivalently the **$Y$ basis**, the name most
+quantum-computing texts use) is $\\{|R\rangle, |L\rangle\\}$, the eigenbasis
 of the Pauli $Y$ operator: $Y|R\rangle = +|R\rangle$, $Y|L\rangle = -|L\rangle$.
 As column vectors,
 
@@ -241,12 +248,17 @@ Relative phase is operationally visible:
 - The computational-basis measurement does not see it
   (probabilities are $|\alpha|^2$ and $|\beta|^2$, independent of
   $\arg \beta - \arg \alpha$).
-- Any measurement in a basis that *mixes* $|0\rangle$ and $|1\rangle$
-  components — Hadamard, circular, anything in between — does see it.
-- Any unitary that mixes components (Hadamard, rotations $R_x$ or
-  $R_y$, almost everything except $R_z$ and global phase) propagates
-  relative phase into amplitude information that subsequent
-  computational-basis measurement can read out.
+- Suitable measurements in bases that *mix* $|0\rangle$ and
+  $|1\rangle$ components can see it — but not every mixing basis sees
+  every phase change: each basis is sensitive to its own quadrature
+  (Hadamard distinguishes $0$ from $\pi$; circular distinguishes
+  $\pm\pi/2$).
+- Unitaries that mix components (Hadamard, rotations $R_x$ or $R_y$)
+  convert relative phase into amplitude information that a subsequent
+  computational-basis measurement can read out. ($R_z$ *changes* the
+  relative phase without mixing populations — the change becomes
+  visible once a later mixer runs; diagonal unitaries as a family
+  leave computational-basis populations untouched.)
 
 Geometrically the relative phase $\varphi$ in the Bloch parametrisation
 $\cos(\theta/2)|0\rangle + e^{i\varphi} \sin(\theta/2)|1\rangle$ is the
@@ -301,8 +313,8 @@ Conditions:
 - $\rho$ is *pure* iff $\\|\vec{r}\\|_2 = 1$ (on the sphere).
 - $\rho$ is *mixed* iff $\\|\vec{r}\\|_2 < 1$ (inside the ball).
 - $\rho$ is *maximally mixed* iff $\vec{r} = 0$ (centre of the ball);
-  then $\rho = I/2$, which assigns equal probability to every
-  measurement outcome in every basis.
+  then $\rho = I/2$, which assigns equal probability to both outcomes
+  of every orthonormal-basis measurement.
 
 **Why the half-angle.** Antipodal points on the Bloch sphere are
 *orthogonal* states in $\mathbb{C}^2$: $|0\rangle$ and $|1\rangle$
@@ -310,15 +322,21 @@ are antipodal; $|+\rangle$ and $|-\rangle$ are antipodal; and so
 on. But in the underlying Hilbert space, the Hadamard basis is
 $\pi/2$ from the computational basis, not $\pi$. The factor of $1/2$
 in the angle $\theta/2$ is what reconciles the two. The operational
-fact first: rotating the Bloch vector a full $2\pi$ multiplies the
-state by $-1$ (a sign a later interference experiment can see), and
+fact first: an $\mathrm{SU}(2)$ rotation that carries the
+Bloch vector through a full $2\pi$ multiplies the state by $-1$ — a
+sign that is global, hence invisible, for the isolated qubit, and
+observable only against a reference branch (a control qubit, an
+interferometer arm) — and
 only a $4\pi$ rotation restores the state exactly. The mathematical
 name for this is the double-cover relation between $\mathrm{SU}(2)$
 (acting on the Hilbert space) and $\mathrm{SO}(3)$ (acting on the
-Bloch sphere): the Bloch sphere is the projective sphere, and two
-opposite points of $\mathrm{SU}(2)$ map to each rotation. The sign
-has measurable consequences in multi-qubit interferometry (Chapter 7's
-Bell-state phase manipulations are the most accessible example).
+Bloch sphere): the Bloch sphere realises the complex projective
+line $\mathbb{CP}^1$ (each point one ray; antipodal points are
+*orthogonal* states, not identified ones), and two opposite elements
+$\pm U$ of $\mathrm{SU}(2)$ map to each rotation. The sign has measurable consequences in
+controlled-rotation interferometry, where one branch supplies the
+reference (Chapter 7's controlled-phase examples are the most
+accessible route).
 
 **Geometric reading of single-qubit operations.** Single-qubit
 unitaries act on the Bloch sphere as *rotations*. Specifically:
@@ -373,8 +391,9 @@ $\theta \in [0, 2\pi)$. This is the *axis-angle* form. The axis
 $\hat{n}$ is the direction the Bloch vector rotates around; the
 angle $\theta$ is how far it rotates.
 
-**Three-parameter decomposition.** Up to global phase, every $U \in
-\mathrm{SU}(2)$ admits a decomposition
+**Three-parameter decomposition.** Every $U \in \mathrm{U}(2)$ equals,
+up to a global phase factor $e^{i\delta}$ (exactly, for
+$U \in \mathrm{SU}(2)$), a decomposition
 
 $$
 U = R_z(\alpha)\\, R_y(\beta)\\, R_z(\gamma),
@@ -384,9 +403,12 @@ with $\alpha, \beta, \gamma$ Euler-like angles (real rotation angles —
 unrelated to the complex amplitudes $\alpha, \beta$ of the state; the
 letters are simply reused by convention). This is the
 single-qubit specialisation of the "every unitary is a product of
-generators" pattern; it underwrites every compilation step that
-expresses a circuit unitary in terms of a hardware-native gate set
-that includes $R_y$ and $R_z$ (Chapter 23).
+generators" pattern; it underwrites single-qubit
+compilation onto native sets built from $R_y$/$R_z$-style rotations
+(virtual-$Z$ plus equatorial pulses being the common hardware variant
+— Chapters 21 and 23). The angles are not unique at the identity and
+at half/full turns — compiler output is a representative, not a
+canonical form.
 
 **Continuous Hamiltonian evolution.** A single-qubit time-independent
 Hamiltonian is, up to a constant, of the form
@@ -467,7 +489,9 @@ interesting — they bend this sample-complexity curve.
 
 ## 6.11 Bridge to Chapter 7
 
-This chapter handled the single qubit fully: state space (rays in
+This chapter established the single qubit's core ideal-model toolkit
+(POVMs, channels, tomography, and control error come later): state
+space (rays in
 $\mathbb{C}^2$), the three mutually unbiased bases, the Bloch-sphere
 picture, single-qubit dynamics as rotations on the sphere, and
 single-qubit projective measurement. The next chapter extends to
@@ -477,8 +501,9 @@ the Schmidt decomposition as a structural classification of
 bipartite pure states, and entanglement as a resource. The
 single-qubit material lifts mostly cleanly; the part that does not
 is the *correlations* across subsystems, which are where quantum
-mechanics genuinely diverges from any classical model. Chapter 7 is
-that divergence.
+mechanics genuinely diverges from *local* classical models (the
+precise statement — Bell's — comes with assumptions, and Chapter 7
+states them). Chapter 7 is that divergence.
 
 ---
 
