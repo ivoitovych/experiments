@@ -67,7 +67,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Comment**: Strong claim about the query-complexity landscape; applies specifically to promise problems like D-J. Needs a reference to a formal statement or known result.
 
 ## §13.4 — QFT implementable in O(n²) gates
-- **Claim** (anchor): "implementable on $n = \\log_2 N$ qubits with $O(n^2)$ gates (§14.5)"
+- **Claim** (anchor): "implementable, for $N = 2^n$, on $n$ qubits with $O(n^2)$ controlled rotations under an arbitrary-angle gate library (§14.5"
 - **Method**: derivation
 - **Source**: → §14.5
 - **Verified**: — · **Verdict**: open
