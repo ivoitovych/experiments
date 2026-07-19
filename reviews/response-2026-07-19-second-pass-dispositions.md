@@ -144,3 +144,55 @@
 - "Blatantly non-local" (Bohm) and similar voice choices not judged
   false — kept pending the author's own style pass; the ledger itself asks to
   preserve the chapter's voice.
+
+## Batch 2 — Chapter 1 (24 substitutions)
+
+### FIXED — outright defects
+- "Thousands to millions of logical qubits" (twice) — logical/physical
+  confusion corrected: thousands of logical, millions of physical.
+- IBM Heron placed "in the thousand-physical-qubit range" — corrected to
+  Condor (1,121 qubits) as the demonstrator with Heron as the smaller,
+  higher-fidelity roadmap line.
+- IonQ "#AQ 29" sitting grammatically as a qubit count — now labelled an
+  algorithmic-quality benchmark (factcheck anchor requoted, same commit).
+- "We are well below threshold on the best devices" from average gate error —
+  now: averages below 1% are a necessary milestone; operational
+  below-threshold means logical error falling with code distance.
+- Comparison sorting "at most polylogarithmic improvements" — corrected:
+  quantum comparison-sorting still requires Θ(n log n) comparisons.
+- Speedup taxonomy "all are believed, none unconditionally proven" —
+  now separates proven quantum runtimes from conjectural advantage.
+
+### FIXED — epistemic scoping
+- Feynman "gave a structural reason the answer is no" → appears to be no,
+  diagnosis not proof (opening also now names the four papers).
+- Hardware "demonstrating the first two regimes" → credible progress toward
+  the first regime, with estimates flagged as scenarios.
+- Deutsch: modern-clean-form qualifier added (cross-file consistency with the
+  Prelude); query conclusion scoped to deterministic classical.
+- Grover genericity scoped to the query model with coherent-predicate and
+  oracle-cost provisos; SAT/graph speedups scoped to brute force.
+- HHL: polynomial dependence on condition number and precision stated in
+  place; "speedup vanishes" → fails/degrades depending on assumption.
+- FT definition: arbitrarily long computation under below-threshold
+  assumptions; 1000:1 ratio marked as commonly quoted and
+  architecture-dependent; 10^3–10^4 ratio excludes factories/routing;
+  tenfold-reduction target marked goal-not-forecast.
+- Bridge premise (a) scoped to generic dynamics under complexity assumptions;
+  premise (c) flagged as extrapolation.
+- Reading-guide "no mathematics not seen in a popular account" softened.
+- Sanity checks 1–4 reworked: dimension-implies-hardness no longer reinforced;
+  "the word that replaces parallel" → engineered concept; molecular
+  ground-state classification now asks what the answer depends on; missing
+  speedups no longer imply structural obstruction.
+
+### DEFERRED-FACTCHECK
+- 2^50 "edge of supercomputer memory"; device counts/fidelity figures and
+  vendor roadmap claims (H2 at 56, Willow, Atom/QuEra scaling) — tracked in
+  the chapter's factcheck mirror with dated re-verification pending.
+
+### ADJUDICATED — no change
+- PsiQuantum listed among headline devices: the text already marks it as
+  fault-tolerant-targeted rather than NISQ.
+- Arabic part labels ("Part 1") — consistent within the file; renaming is a
+  book-wide style decision, not a correctness fix.
