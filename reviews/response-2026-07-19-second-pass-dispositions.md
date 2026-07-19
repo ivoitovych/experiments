@@ -706,3 +706,48 @@ restored.
 One house-escaping violation I introduced (bare \, in new math) was caught
 by lint and fixed in the same batch. Four factcheck anchors requoted;
 baseline (97) restored.
+
+## Batch 13 — Chapter 12 (16 substitutions)
+
+### FIXED — outright defects
+- Reading guide section mislabels — §12.8 (no-go theorems) vs §§12.9–12.10
+  and the §§12.11–12.12 descriptions corrected to the actual contents.
+- Trace distance called "exactly the advantage over 1/2" — off by a factor
+  of two; now the bias 2p−1, twice the additive advantage.
+- Fidelity/trace-distance "both quantities go to zero together" — false for
+  close states; now trace distance and *infidelity* go to zero together.
+- Schumacher compression posed as reproducing a known density operator —
+  task redefined over unknown signals/purification fidelity, with the
+  zero-rate cheat explicitly excluded.
+- Measurement-entropy claim scoped to rank-one orthonormal-basis
+  measurements with majorization attribution (coarse-grained
+  counterexample noted).
+- Holevo pure-ensemble bullet — "saturate" disambiguated (χ = S(ρ);
+  accessible information generally below; orthogonal-uniform case is where
+  measurement attains it), uniform-distribution condition added.
+- Classical erasure "free" slogan — Landauer-honest rewrite; the vague
+  "pays for this in one form or another" replaced with three specific
+  downstream connections.
+- Mixed-state entanglement "not interconvertible" — now not *reversibly*
+  interconvertible, with regularised-EoF-as-cost correction.
+- Pure-state interconvertibility scoped to the asymptotic limit with
+  Nielsen majorization for single copies.
+- Resource-theory definition — free states/operations with monotones,
+  replacing "whatever is preserved or destroyed".
+- "Every classical theorem has a quantum shadow" — scoped to the theorems
+  the book relies on.
+- Concavity "mixing increases uncertainty" — weak inequality with equality
+  case.
+
+### ADJUDICATED — checked against the primary formulation
+- State merging S(A|B) accounting: the manuscript's statement (quantum
+  communication rate S(A|B) with free classical communication; negative →
+  LOCC + distilled ebits) matches the original Horodecki–Oppenheim–Winter
+  "Partial quantum information" formulation, and the section already
+  presents the equivalent entanglement-cost/FQSW accounting as the second
+  standard form. Added only the explicit free-classical-communication
+  qualifier at the rate display. The ledger's stronger claim (that S(A|B)
+  is "primarily" the net entanglement cost) reflects the other, equally
+  standard convention rather than an error here.
+
+One factcheck anchor requoted; baseline (97) restored.

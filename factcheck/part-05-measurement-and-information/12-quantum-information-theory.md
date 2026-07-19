@@ -33,7 +33,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §12.2 — Measuring in any other basis increases entropy
 
-- **Claim** (anchor): "any other measurement basis can only increase the entropy (a special case of the data-processing inequality below)"
+- **Claim** (anchor): "any other rank-one orthonormal-basis measurement can only increase the outcome entropy (a majorization fact"
 - **Method**: derivation
 - **Source**: → §12.2 / §12.3 (data-processing inequality; follows from strong subadditivity)
 - **Verified**: — · **Verdict**: open
