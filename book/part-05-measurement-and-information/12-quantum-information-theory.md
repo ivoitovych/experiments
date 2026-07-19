@@ -15,8 +15,8 @@ channel capacities (Chapter 18), and quantum error correction
 Three points to keep in mind:
 
 1. Quantum information theory is a strict generalisation of Shannon's
-   classical information theory. Every classical theorem has a quantum
-   shadow — sometimes with the same form, sometimes with a strict
+   classical information theory. The classical theorems this book relies on all cast quantum
+   shadows (not every classical result survives the passage) — sometimes with the same form, sometimes with a strict
    inequality replaced by an equality, and sometimes with a sign that
    flips and produces something genuinely without classical analogue
    (the negative quantum conditional entropy of §12.4 is the canonical
@@ -39,11 +39,13 @@ Three points to keep in mind:
 > a slow first pass. §§12.6–12.7 (trace distance, fidelity) are
 > bread-and-butter distance measures used constantly in the rest of the
 > book and can be skimmed for definitions and revisited for proofs.
-> §§12.8–12.10 (Schumacher compression, channel capacities) preview
+> §12.8 (the no-go theorems) and §§12.9–12.10 (Schumacher
+> compression, channel capacities) preview
 > material expanded in Part 8 (error correction) and Part 11 (applications and cryptography) and can be read at "what's the
-> headline result" depth on a first pass. §§12.11–12.12 collect the
-> no-go theorems and the LOCC resource picture; both are short and worth
-> rereading once the channel-capacity sections settle.
+> headline result" depth on a first pass. §12.11 develops LOCC and the
+> entanglement resource picture, and §12.12 closes with application
+> teasers; both are short and worth rereading once the channel-capacity
+> sections settle.
 
 ## 12.1 Shannon Entropy and Operational Meaning
 
@@ -114,10 +116,10 @@ is the spectral decomposition, then
 $S(\rho) = -\sum_i \lambda_i \log_2 \lambda_i$ with the convention
 $0 \log 0 = 0$. The von Neumann entropy is exactly the Shannon entropy
 of the eigenvalue distribution of $\rho$. Equivalently, it is the
-Shannon entropy of the *measurement outcomes* of the projective
-measurement that diagonalises $\rho$ — any other measurement basis can
-only increase the entropy (a special case of the data-processing
-inequality below).
+Shannon entropy of the *measurement outcomes* of a rank-one projective measurement in an eigenbasis of $\rho$ — any
+other rank-one orthonormal-basis measurement can only increase the
+outcome entropy (a majorization fact; degenerate, coarse-grained
+measurements have fewer outcomes and can show less entropy).
 
 Three immediate properties:
 
@@ -128,7 +130,7 @@ Three immediate properties:
   unitary $U$. Entropy is a function of the spectrum, and unitary
   conjugation preserves the spectrum.
 - **Concavity.** $S\bigl(\sum_i p_i \rho_i\bigr) \ge \sum_i p_i S(\rho_i)$.
-  Mixing increases uncertainty.
+  Mixing weakly increases uncertainty (equality when the mixed states coincide).
 
 For composite systems, two subadditivity statements are central. Let
 $\rho_{AB}$ be a bipartite state with reduced states
@@ -242,8 +244,8 @@ the surrounding quantum resource calculus, in the note at the end of
 this section; nothing before that note depends on it). Two parties Alice and Bob share many copies of $\rho_{AB}$
 along with a third reference system $R$ that purifies the global state.
 Alice wants to transfer her share $A$ to Bob while preserving
-correlations with $R$. The asymptotic rate of *quantum communication*
-Alice needs to send is
+correlations with $R$. With unlimited free classical communication, the
+asymptotic rate of *quantum communication* Alice needs to send is
 
 $$
 Q = S(A \mid B)_\rho \quad \text{when this is non-negative,}
@@ -313,11 +315,13 @@ Two consequences are worth stating cleanly:
   accessible information per use. Superdense coding (§7.12) reaches the
   $2$-bit ceiling only with the *assistance* of a pre-shared ebit — it
   does not violate the bound, it spends an extra resource.
-- **Pure-state ensembles saturate at $S(\rho)$.** When every $\rho_x$ is
-  pure, $S(\rho_x) = 0$ and $\chi = S(\rho)$. The Holevo information
-  then equals the entropy of the *average* state — and for an ensemble
-  of $2^n$ orthogonal computational-basis kets this is exactly $n$
-  bits, the classical capacity.
+- **Pure-state ensembles push $\chi$ to $S(\rho)$.** When every
+  $\rho_x$ is pure, $S(\rho_x) = 0$ and $\chi = S(\rho)$ — though the
+  *accessible* information of a generic pure ensemble still falls short
+  of $\chi$. For a uniformly distributed ensemble of $2^n$ orthogonal
+  computational-basis kets, $\chi = n$ bits, measurement attains it, and
+  this realises the classical capacity of the noiseless $n$-qubit
+  channel under that encoding.
 
 Holevo's bound is one half of the **HSW theorem** (Holevo 1998,
 Schumacher–Westmoreland 1997) that gives the classical capacity
@@ -350,8 +354,9 @@ $$
 p_{\mathrm{succ}}^{\mathrm{opt}} = \tfrac{1}{2} + \tfrac{1}{2}\\, D(\rho, \sigma).
 $$
 
-The trace distance is exactly the *advantage* over the trivial $1/2$
-that the best quantum measurement provides. Equivalently, it equals the
+The trace distance is exactly the *bias* $2 p_{\mathrm{succ}} - 1$ of
+the best quantum discriminator — twice the additive advantage over the
+trivial $1/2$. Equivalently, it equals the
 maximum classical total-variation distance achievable from any
 measurement statistics: there exists a POVM whose induced
 classical distributions have total-variation distance equal to
@@ -410,7 +415,8 @@ $$
 $$
 
 On pure states the upper bound is tight — $D = \sqrt{1 - F^2}$ — while the
-lower bound is generally strict for pure-state pairs, saturating only at the endpoints $F = 0$ and $F = 1$ (for general mixed states it can saturate elsewhere — e.g. commuting states whose distributions agree or are disjoint outcome-by-outcome). Both quantities go to zero together. In practice, one chooses whichever is easier to
+lower bound is generally strict for pure-state pairs, saturating only at the endpoints $F = 0$ and $F = 1$ (for general mixed states it can saturate elsewhere — e.g. commuting states whose distributions agree or are disjoint outcome-by-outcome). Trace distance and *infidelity* $1 - F$ go to zero together (as states
+approach each other, $D \to 0$ while $F \to 1$). In practice, one chooses whichever is easier to
 compute: fidelity is often analytically tractable through Uhlmann,
 trace distance is the right object for direct distinguishability
 statements, and the inequalities convert between them as needed.
@@ -451,10 +457,14 @@ later piece of quantum information theory.
   no-go theorems on unknown inputs, not a formal Noether-style
   conservation law.
 
-In a sentence: classical bits can be copied and erased freely; quantum
-information cannot do either. Every later piece of quantum information
-theory — capacity formulas, distillation rates, error-correction
-overheads — pays for this in one form or another.
+In a sentence: classical *distinguishable* states can be copied freely,
+and resetting a classical bit is cheap engineering (though never
+thermodynamically free — Landauer); unknown quantum states admit
+neither copying nor unitary blanking. Later pieces of quantum
+information theory feel this in specific places: the Holevo bound and
+capacity formulas inherit no-cloning's limits on broadcast, distillation
+rates price what cannot be copied, and error correction must protect
+information it is forbidden to duplicate.
 
 ## 12.9 Schumacher Compression
 
@@ -464,10 +474,13 @@ $\rho$ be a density matrix on $\mathcal{H}$, regarded as the per-letter
 state of an i.i.d. quantum source emitting copies $\rho^{\otimes n}$
 (the idealized i.i.d. model; correlated and non-stationary sources need
 the more general machinery this chapter does not develop).
-The compression task is to faithfully encode $n$ copies of $\rho$ into
-a smaller quantum register, transmit or store it, and decode an
-approximate reconstruction $\tilde\rho$ with high fidelity to the
-original.
+The compression task concerns a source emitting *unknown* signal states
+whose average density operator is $\rho$: encode $n$ emissions into a
+smaller quantum register, transmit or store it, and decode so that the
+signals — equivalently, the entanglement with a purifying reference —
+survive with high fidelity. (The criterion matters: if the goal were
+only to output the known density operator $\rho^{\otimes n}$, the
+decoder could re-prepare it locally at zero rate.)
 
 **Theorem (Schumacher).** For any rate $R > S(\rho)$ there exists a
 sequence of encoding/decoding pairs on block length $n$, mapping
@@ -579,16 +592,18 @@ The basic statements:
   pair $\rho_A \otimes \rho_B$ stays unentangled under any sequence of
   local operations and classical messages — entanglement is *free* in
   one direction (you can always discard it) and *costly* in the other.
-- **Pure-state entanglement is interconvertible.** By the §7.13 result,
+- **Pure-state entanglement is asymptotically interconvertible.** By the §7.13 result,
   $E(|\psi\rangle_{AB}) = S(\rho_A)$ is simultaneously the asymptotic
   rate at which Bell pairs can be distilled from copies of
   $|\psi\rangle$ via LOCC and the rate at which Bell pairs are needed to
-  prepare it. Pure-state entanglement is *reversibly convertible* to
-  ebits.
-- **Mixed-state entanglement is not interconvertible.** Entanglement of
-  formation and distillable entanglement differ in general, and bound
-  entangled states (positive formation entropy, zero distillable
-  entanglement) exist. The full theory has the structure of a resource
+  prepare it. Pure-state entanglement is *reversibly convertible* to ebits in the
+  asymptotic many-copy limit (single-copy conversions are governed
+  instead by Nielsen's majorization theorem).
+- **Mixed-state entanglement is generally not *reversibly*
+  interconvertible.** Entanglement of formation and distillable
+  entanglement differ in general (the asymptotic preparation cost is the
+  *regularised* entanglement of formation), and bound entangled states
+  (positive formation entropy, zero distillable entanglement) exist. The full theory has the structure of a resource
   theory with a non-trivial "exchange rate" between dilution and
   distillation.
 
@@ -597,7 +612,8 @@ treated later: **coherence** (Chapter 18 noise discussion), **magic /
 non-stabilizer states** (Chapter 19 fault-tolerance discussion), and
 **thermodynamic free energy** (briefly, in Chapter 32). Each of them
 identifies a class of "free" states and "free" operations, defines the
-resource as whatever is preserved or destroyed under those, and asks
+resource as what the free operations cannot create (tracked by
+monotones), and asks
 for conversion rates. Entanglement under LOCC is the prototype and
 historically the first such theory worked out in detail.
 
