@@ -255,3 +255,93 @@
 
 Six factcheck anchors staled by these edits were requoted in the same commit;
 checker baseline (97) restored.
+
+## Batch 4 — Chapter 3 (48 substitutions)
+
+### FIXED — outright defects
+- Noncommuting operators claimed to have mutually unbiased eigenbases, and
+  measurement in one basis claimed to randomise any state prepared in another
+  — both scoped to the Pauli/MUB case, with the correct general statement.
+- Perfect same-basis Bell correlations called irreducible to a shared
+  classical variable — corrected: a shared coin flip reproduces one-basis
+  agreement; the multi-basis pattern is what defeats classical models
+  (harmonised with the paragraph's own later sentence).
+- Stern–Gerlach narrated as directly measuring the electron's S_z — now the
+  atom's magnetic moment, dominated by the unpaired electron; "no
+  intermediate value, ever" scoped to resolved outcomes.
+- Robertson relation: constant lower bound for spin components replaced with
+  the state-dependent bound (ℏ/2)|⟨S_y⟩| and the no-state-makes-both-sharp
+  summary.
+- "Complex amplitudes are the unique choice" (with popular-book citation) —
+  now real-amplitude simulability acknowledged, uniqueness scoped to
+  reconstruction-with-extra-axioms.
+- PBS "is a perfect projective measurement" — now excellent approximation
+  with the engineering gap named; "superpositions are intermediate
+  polarizations" corrected to linear/elliptical split.
+- Freedom-of-choice listed as closed alongside locality/detection in 2015 —
+  now pushed-back-not-closed, cosmic/human-choice tests separated.
+- Decoherence definition universalised ("indistinguishable for any
+  measurement") — now exact only in the complete-dephasing limit, partial
+  decoherence leaves partial interference.
+- Coherence-to-gate-time ratio as "how many operations can be applied" —
+  now a first-order proxy with the real budget named.
+- T_2 ≤ 2T_1 scoped to the standard Markovian two-level model; platform
+  coherence table corrected (neutral atoms protocol-dependent, photons
+  dephase/lose, NV electron-vs-nuclear split).
+- Classical limit "is the limit of very fast decoherence" — now a large part
+  of the answer with pointer states/coarse-graining/measurement problem
+  named; action ≫ ℏ marked necessary-direction-not-sufficient with the
+  superconductivity counterexample.
+- "The state vector is the underlying object" — ontology claim reduced to
+  formalism's-description with a Chapter 35 pointer.
+- Channels chapter references corrected (Chapter 10 for channels/Kraus,
+  Chapter 18 for noise phenomenology; twice).
+- Which-path "even in principle" absolutism — now visibility-tracks-overlap
+  with quantum-erasure accounting; sanity check 2 answer gains the
+  ideal-marker assumption.
+- Sanity check 3 Bell pair given a definite state (|Φ⁺⟩) so the correlation
+  claim is well-defined.
+
+### FIXED — epistemic scoping
+- "Physics forces those objects" → makes all but unavoidable; "every
+  numerical claim justified locally"/"every experiment transfers without
+  modification" → order-of-magnitude precision and lessons-transfer with
+  abstraction acknowledged; postulates "minimal description" → compact
+  codification, alternatives exist; framing point "projected by
+  measurements" → sampled, projectively in this chapter's idealisation;
+  quantization "quantities take only discrete values" → system-dependent
+  spectra; "spins confined to a projection axis" → component along a chosen
+  axis, quadratures stay continuous; phase "invisible to a single
+  measurement" → invisible in the amplitude's own basis; amplitudes "become
+  probabilities at measurement time" → computed relative to a specified
+  measurement, with the nonzero-component and diagonal-operation caveats;
+  wavefunction "not a field in any literal sense" → interpretation-flagged;
+  "every system that has been tested" → coherence-preserving conditions,
+  mass scale growing; "photon is a wave" dichotomy → classical-material-wave
+  rejection with amplitude-propagation kept; algorithms exist "because"
+  Mach–Zehnder clicks → same underlying fact; measurement section scoped to
+  ideal projective with Chapter 11 pointer; 45° analogy flagged as loose;
+  "known in advance" → what the quantum state specifies; back-action
+  no-refined-apparatus → information-disturbance trade-off; "measure to
+  arbitrary precision" → as sharply as apparatus allows; Z/X "cannot" →
+  cannot sharply, VQE grouping one-strategy-among-several; entanglement
+  "source of every protocol" → powers, pure-state definition scoped;
+  SPDC "splits"/BBO "the standard"/"essentially every Bell test" →
+  converts/a standard choice/most; rate figures hedged on
+  bandwidth/collection/efficiency; Aspect switching caveat unified with the
+  Prelude's account; QEC "stretches coherence" → suppresses logical error
+  with stretching as payoff; bridge overclaims (projection, classical joint
+  distributions, decoherence "dominant on every hardware") scoped; transmon
+  "any other two-level system" → effective two-level subsystem; Bloch sphere
+  "for the rest of the book" → single-qubit story.
+
+### DEFERRED-FACTCHECK
+- Tonomura experiment dating/categorisation details; SPDC rate figures;
+  platform coherence numbers; Fein et al. 2019 mass record — all tracked in
+  the chapter's factcheck mirror (five anchors requoted this batch, baseline
+  97 restored).
+
+### ADJUDICATED — no change
+- "Two-level system" for spin-1/2 (the spin degree of freedom does supply
+  dimension two); the interference-slogan framing (kept — it is the
+  chapter's declared organising device, now with scoped wording around it).

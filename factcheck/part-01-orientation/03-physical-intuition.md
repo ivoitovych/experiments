@@ -29,7 +29,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §3.2 — Complex amplitudes as unique choice (Aaronson reference)
 
-- **Claim** (anchor): "Aaronson's Quantum Computing Since Democritus spends a chapter on why complex amplitudes are the unique choice"
+- **Claim** (anchor): "Aaronson's Quantum Computing Since Democritus gives the reconstruction-flavoured argument; strict uniqueness claims need extra axioms"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -45,7 +45,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §3.3 — Electron matter-wave interference (Tonomura 1989)
 
-- **Claim** (anchor): "The Mach-Zehnder result is reproducible with electrons (Tonomura and collaborators, 1989)"
+- **Claim** (anchor): "The same interference physics is reproducible with electrons (Tonomura and collaborators' biprism experiments, 1989)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -133,7 +133,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §3.9 — T2 bounded above by 2T1
 
-- **Claim** (anchor): "T_2 is bounded above by 2 T_1 and is usually the practically relevant figure for interference-based algorithms"
+- **Claim** (anchor): "T_2 is bounded above by 2 T_1 in the standard two-level Markovian model, and is often the practically relevant figure for interference-based algorithms"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -141,7 +141,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §3.9 — Coherence time figures by platform
 
-- **Claim** (anchor): "superconducting transmon qubits, T_1 and T_2 both in the range of tens to hundreds of microseconds; trapped-ion qubits, seconds to minutes for hyperfine clock states; neutral-atom qubits, comparable to ions under good vacuum"
+- **Claim** (anchor): "superconducting transmon qubits, T_1 and T_2 both in the range of tens to hundreds of microseconds; trapped-ion qubits, seconds to minutes for hyperfine clock states; neutral-atom qubits, long protocol-dependent hyperfine/clock coherence under good vacuum"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -149,7 +149,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §3.9 — NV center coherence times
 
-- **Claim** (anchor): "nitrogen-vacancy centers in diamond, milliseconds at room temperature, seconds at low temperature"
+- **Claim** (anchor): "nitrogen-vacancy centers in diamond, electron-spin coherence of milliseconds at room temperature and seconds at low temperature"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
