@@ -21,8 +21,11 @@ the full charter and [TOC.md](TOC.md) for every section heading.
 **Full manuscript drafted and internally reviewed.** All 37 chapters plus
 front matter and appendices are written and readable, and every file is at
 `prereviewed` status: a complete internal review cycle — comprehensive
-section-by-section review, remediation, and external verification of the
-flagged factual claims — has been applied (see [reviews/](reviews/)). The
+section-by-section review, remediation, and external verification of
+flagged factual claims — has been applied (see [reviews/](reviews/));
+note that the fact-check mirror is still being reconciled with the
+evolving text (the anchor audit tracks the drift), so "verified"
+applies to the claims as reviewed, not to every current sentence. The
 manuscript has not yet had an independent expert review (`reviewed`) or a
 closed claim-level fact-check (`final`); treat specific perishable numbers
 with the care the in-text Moving-target warnings ask for. See
@@ -75,7 +78,7 @@ install a matched pair from one of these lines:
 | 0.4.x | 0.9.x | stable; the combination tested in this repo (0.4.48 + 0.9.4) |
 | 0.5.x | 0.10.x | newer protocol; the matching line per the crate manifests, but `mdbook-katex 0.10` is currently pre-release and not re-verified here |
 
-```
+```bash
 # stable pair (recommended):
 cargo install mdbook --version '>=0.4,<0.5' --locked --force
 cargo install mdbook-katex --version 0.9.4 --locked --force

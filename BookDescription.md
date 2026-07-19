@@ -14,7 +14,7 @@
 > fulfils. The book evolved during writing — normal and expected — so a few
 > structural details in the descriptions below predate the delivered layout.
 > Part structure, chapter numbering, chapter titles, and every chapter number
-> cited in the *Suggested Reading Paths* remain accurate. the original planned outline, with its
+> cited in the *Suggested Reading Paths* remain accurate. The original planned outline, with its
 > reconciliation note, is preserved at `archive/plan-original-toc.md`;
 > `TOC.md` is generated from the delivered headings.
 

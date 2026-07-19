@@ -137,12 +137,13 @@ explicitly when both conventions appear in the same passage.
   $[A, B] = 0$.
 - $\\{A, B\\} = AB + BA$ — anticommutator. Pauli operators
   anticommute pairwise: $\\{X, Y\\} = \\{Y, Z\\} = \\{X, Z\\} = 0$.
-- $I$ (or $I_n$) — identity operator (on $n$ qubits, an
-  $n$-fold tensor product of single-qubit identities). **Warning:**
-  the subscript counts *qubits*, not matrix dimension — $I_2$ here is
-  the $4 \times 4$ identity, whereas most linear-algebra texts (and
-  `np.eye(n)`) use $I_n$ for the $n \times n$ identity. Context makes
-  the intent clear, but check before comparing with code.
+- $I$ (or $I^{\otimes n}$) — identity operator (on $n$ qubits, an
+  $n$-fold tensor product of single-qubit identities; equivalently
+  $I_{2^n}$ with the subscript as matrix dimension). This book avoids
+  the bare form "$I_n$ = identity on $n$ qubits" precisely because
+  most linear-algebra texts (and `np.eye(n)`) reserve the subscript
+  for the $n \times n$ matrix dimension — check conventions before
+  comparing with code.
 - $A \succeq 0$ — $A$ is **positive semidefinite**: Hermitian with
   $\langle v | A | v\rangle \ge 0$ for all $v$. The shorthand
   $A \succeq B$ means $A - B \succeq 0$.
@@ -262,8 +263,8 @@ bra-ket calculus and is used routinely throughout Parts 2–6.
 The vertical bar inside a ket `|\psi\rangle` is syntactically distinct
 from the modulus bar in $|z|$ and from the operator absolute value
 $|A|$, even though the three look identical in source. Kets are
-always paired with a closing `\rangle`; the parser disambiguates by
-the closing delimiter.
+always paired with a closing `\rangle`; the closing delimiter is what
+tells the *reader* which of the three is meant.
 
 ## N.4 Tensor Product Notation
 
