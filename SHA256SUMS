@@ -41,7 +41,7 @@ d34957f358a8319e3185e1f4e1e680df6d1feb2cde9732f20c014ef51cb37c35  book/part-01-o
 d0b7c97b18fac680f8bf1ffafc3a9048b64372957a70668dce8195ead6385325  book/part-01-orientation/03-physical-intuition.md
 66bae07d9038637e5b1ff5110c35bb348679522399f7df875553ed6ddc39b9d4  book/part-02-formalism/04-mathematical-background.md
 458178a7759904b08c31c9b1528538835902c2741250a2e654c520f919ebf631  book/part-02-formalism/05-postulates.md
-0855f8305445d5e81f39791c498ced0c8c53e2d787323b113f5a6c4d2e2a9e82  book/part-03-qubits/06-the-qubit.md
+827cc925498bca95614c12dda956388db89842892d3f1de404542439948b1cf0  book/part-03-qubits/06-the-qubit.md
 f9e2b6f02039794e646e42274fc7827090d26e76b488748225e207e49a35aaff  book/part-03-qubits/07-multiple-qubits-and-entanglement.md
 4a67059968996f05bba5eba3afc804a5634fa59f60ff8109ce74cd381395db73  book/part-03-qubits/figures/teleportation.svg
 ba79c63430ef0c794a602aff518bb6416a404c458b63160dc44628666357bd1c  book/part-04-gates-and-circuits/08-quantum-gates.md
@@ -122,7 +122,7 @@ d9874a2cb5e75909acf5869885cc08c3b86b04a25cb64861c1e97a2ed88c28cf  factcheck/_sou
 bbc63ff4c6e86e6f4d4c1671b9e2955320facb3d1e7b87225375d5a6e8154d5a  factcheck/part-01-orientation/03-physical-intuition.md
 d729773ec18565944ea2444efc14bf2d95d4565aa02ae33a4519fbe3e48c558e  factcheck/part-02-formalism/04-mathematical-background.md
 7a6d434d788d1bacdf2051a20d3b9196c909956162f5e0cb1016682fb6422280  factcheck/part-02-formalism/05-postulates.md
-33a4bc58c3cd0e71e80ac7353e6a68d8b4afe5e2c560654779b7e0fffa89cc12  factcheck/part-03-qubits/06-the-qubit.md
+0bf334d3322967e66b5c0558f3a8f5ae406db75f94cd3102ff2dc0a303fd9e28  factcheck/part-03-qubits/06-the-qubit.md
 027616cf14c0b2f6fba19449316fe0079f25c5f7544a29d9af06256be5c7d4c3  factcheck/part-03-qubits/07-multiple-qubits-and-entanglement.md
 bdc5f3192dc25552744675da21649d94cd8f6b2167511e398b80b3565deb36f9  factcheck/part-04-gates-and-circuits/08-quantum-gates.md
 d95faa160a78231f956b4c4c3edf8bf23eb607ad18c6aa6bf60fab39327c6af0  factcheck/part-04-gates-and-circuits/09-quantum-circuits.md
@@ -169,7 +169,7 @@ d5e0cec3ec5e3dbb9ada626bf551502d12d81920e68fdac4c4e7a59ed6e08a7b  reviews/cold-r
 95cd5962ed6cf39a1b5f5e2f859bc5c2d03b78d3d435891c3fd6b11a012b6584  reviews/factcheck-2026-07-04-external-verification.md
 7efd03e5b38a37de192454db8bd8d6c6b31373f9fe112096e1b27a251e30932d  reviews/proposals-2026-07-05-remaining-programmes.md
 021f81c249aa7f0e13dd66470714f49c341955324e48399b78ed4b29c1269c22  reviews/recommendations-2026-07-04-deferred-items.md
-d2b7c0c3574049f579d37446d6edf3347dedf8df6aa151c8e590b8326ec60288  reviews/response-2026-07-19-second-pass-dispositions.md
+975102cba6593bbb1e473a817c725e0914a21b3249e9786e9b5936816079b57a  reviews/response-2026-07-19-second-pass-dispositions.md
 95adfcedf14090d851fc34190f8b43abb422e0f94462929e7d694e174aeaf9cf  reviews/review-2026-07-03-1843-comprehensive-book-review.md
 c6916319dc95eff2195486ba887f6d126c62e0caf2496979cf301560ad15d6b7  reviews/review-2026-07-19_01-20-35_CEST.md
 2bd131ed2944aee6d792838358a75ef9efbe42c09f5a5568347bd8aa4d1d840d  reviews/roadmap-2026-07-05-path-to-publication.md
