@@ -487,3 +487,66 @@ One factcheck anchor requoted; baseline (97) restored.
   hardware" → hardware-and-encoding convention with noisy readout noted.
 
 Three factcheck anchors requoted; baseline (97) restored.
+
+## Protocol addendum — 2026-07-19 (agreed with the author)
+
+The review's mandate covers not only hard errors but foggy doubts,
+improvement ideas, and polish, toward continuous improvement of all aspects
+of the book. To guarantee nothing below defect grade is silently dropped,
+two lanes join the vocabulary:
+
+- **IMPROVEMENT-QUEUED** — accepted idea, scheduled for a dedicated
+  improvement pass after the correctness wave (examples: concrete qubit
+  mixture in §5.9, executable Qiskit ordering assertion, STYLE normative
+  table, deterministic example seeds, TOC drift test).
+- **POLISH-QUEUED** — accepted, lower priority (examples: README fence
+  language tags, licensing path table / SPDX headers, consolidated
+  prerequisite lists).
+
+Processing order: correctness wave first, chapter by chapter behind the
+review front (perishable, highest stakes); then a backfill sweep through
+the already-processed files and repo docs dispositioning every remaining
+minor/suspicion/polish/foggy item into these lanes (applying cheap ones
+immediately); then the improvement passes per queue — infrastructure
+batches, editorial-enrichment items to AUTHOR-DECISION, currency to the
+factcheck programme. Entertainment scores remain a preserve-this signal
+during edits, not an optimisation target. New ledger drops always take
+correctness priority on arrival.
+
+## Batch 8 — Chapter 7 (10 substitutions)
+
+### FIXED — outright defects
+- **Bell-circuit input mapping** — the "respectively" sentence mapped
+  |01⟩ and |10⟩ to the wrong named Bell states. Verified by direct
+  computation and replaced with explicit exact mappings
+  (|01⟩→Ψ⁺, |10⟩→Φ⁻, |11⟩→Ψ⁻) plus the bit-flip/sign mnemonic; the
+  "up to relative signs" hedge removed (the mappings are exact).
+- CHSH "operator" naming — S is the statistic; the operator 𝓑 now given,
+  with locality of the observables made explicit.
+- Schmidt uniqueness "up to degeneracies" — completed (paired phases,
+  degenerate-subspace unitary freedom, zero-coefficient completion) with
+  the rank bound r ≤ min(d_A, d_B).
+- Maximal entanglement with unequal subsystem dimensions — d = min(d_A,d_B)
+  and the Schmidt-support statement for the larger marginal.
+- I/2 "every measurement in every basis uniform" — scoped to
+  orthonormal-basis measurements (biased POVMs excluded).
+- No-signalling "marginals insensitive to what happens on the other side" —
+  scoped to trace-preserving, outcome-ignored operations.
+- E91 "close to 2√2 proves undisturbed pairs" — replaced with the
+  information-bound account plus reconciliation/privacy-amplification/
+  finite-statistics requirements.
+
+### FIXED — epistemic scoping
+- "All of the computational advantage" → scalable advantage; opening
+  "no classical analogue" → no-local-model with §7.9 pointer;
+  "stronger than any classical correlation" → suitable-measurement scoping
+  with the entangled-mixed-state caveat; "close to product ⇒ tractable" →
+  error-guarantee caveat; "most protocols of practical interest" →
+  canonical bipartite communication protocols; "all the structure" →
+  structure distinguishing the state from same-marginal states.
+
+### ADJUDICATED — no change
+- Jozsa–Linden already carries its pure-state scope and the DQC1
+  counterpoint in the text.
+
+One factcheck anchor requoted; baseline (97) restored.
