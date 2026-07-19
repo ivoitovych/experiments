@@ -122,7 +122,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §18.4 — Two-qubit fidelity as fault-tolerance bottleneck
 
-- **Claim** (anchor): "The two-qubit fidelity is the *bottleneck* for every fault-tolerance estimate"
+- **Claim** (anchor): "The two-qubit error rate is the usual bottleneck in fault-tolerance estimates"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -175,7 +175,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §18.7 — Surface-code threshold degradation from crosstalk
 
-- **Claim** (anchor): "a \"good\" crosstalk-free physical error rate of $0.5\%$ can be effectively $1.5\%$ once nearest-neighbor ZZ is included, sometimes pushing the system above the threshold and breaking the scaling story entirely"
+- **Claim** (anchor): "Surface-code performance degrades under crosstalk by an amount that depends on coupling strength, schedule, decoder, and noise model; there is no universal conversion from a crosstalk-free rate to an \"effective\" one"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -191,7 +191,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §18.8 — Leakage events are largest contributor to time-correlated errors in surface codes
 
-- **Claim** (anchor): "surface-code experiments report that leakage events are the single largest contributor to **time-correlated** errors that break the assumption of independent error rounds"
+- **Claim** (anchor): "Several superconducting surface-code experiments have reported leakage among the leading contributors to **time-correlated** errors that break the independent-rounds assumption"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

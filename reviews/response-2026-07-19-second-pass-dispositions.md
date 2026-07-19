@@ -1068,3 +1068,60 @@ go-ahead:
 - Note for the reviewer: chapter text under and beyond the review front
   (Ch18+) was included, as the author (who is the reviewer) ordered the
   migration; ledger quotes of pre-migration text remain valid as records.
+
+## Batch 23 — Chapter 18 (30 substitutions)
+
+### FIXED — outright defects
+- Five-source noise taxonomy "every contemporary platform" — scoped as
+  superconducting-flavored with other platforms' leading mechanisms named.
+- Leakage: "standard codes do nothing useful" (false), upward-in-energy
+  definition, and the wrong T1 persistence — corrected with the correlated-
+  fault propagation danger stated; leakage-T1 platform dependence and the
+  "single largest contributor" superlative scoped.
+- Idle error "10^-4 per microsecond" — off by orders of magnitude against
+  the quoted coherence times; now the exposure ratio (~10^-2/µs at
+  T~100 µs) with platform spread.
+- 63%-survival multiplication heuristic — corrected (0.999^1000 ≈ 37%
+  survival on the naive model, composition model-dependent); correlated
+  noise "accumulates faster" made direction-honest (can add, refocus, or
+  bias).
+- Crosstalk: decoder "cannot interpret" (false — extensions exist), the
+  unsourced 0.5%→1.5% conversion removed, single-threshold framing fixed.
+- Purity "(1-p)^n" universal — scoped to depolarizing; amplitude damping's
+  purity increase and dephasing's pure eigenstates stated.
+- Pauli twirling "becomes depolarization" — now Pauli channel, with
+  Clifford twirling as the depolarizing average; n²→n conversion scoped to
+  the idealized average.
+- Process tomography "~4^n numbers" — corrected to ~16^n parameters.
+- Bath embedding "polynomial blow-up" — corrected to dimension
+  multiplication with exponential faithful-continuum cost.
+- GST "resolves" SPAM — gauge freedom stated; germ/fiducial design defined
+  properly.
+- RB "sensitive only to average, not coherent" — corrected (coherent enters
+  the average; purity benchmarking splits it); interleaved "almost always"
+  scoped.
+- XEB "infeasible above ~50 qubits" + benchmark-equals-advantage non
+  sequitur — both corrected.
+- Depolarizing model: RB-number conversion (dimension factors,
+  per-Clifford vs native) and "crudest faithful" → crudest useful,
+  phenomenological.
+- Error-budget formula double-counting — replaced with category sums;
+  metric-compatibility warning added; factor-of-two rule demoted to habit.
+- ZNE "Richardson more robust" and PEC "guaranteed unbiased"/"few hundred
+  gates" — corrected with the real conditions and overhead scaling.
+- Virtual distillation "M·d qubits" — corrected to M·n.
+- Mitigation exponential-shots bound — hypotheses attached.
+- Bridge "threshold input is *exactly* the per-cycle Pauli rate" — now a
+  first-order proxy feeding a circuit-level noise model.
+- GAD/readout asymmetry "same origin" — relaxation-at-T=0 contribution
+  separated; steady-state vs equilibrium population notation clarified in
+  effect via §18.1's existing distinction.
+- T2/T2* ratio "direct measure" → qualitative indicator; filter-function
+  Gaussian/PSD conventions noted; two-qubit "bottleneck for every
+  estimate" and decade-to-patch mapping scoped; SPAM "subtract" licence
+  removed; simulator-vs-compiler either/or made complementary; coherent
+  (nδ)² regime-scoped with the quasistatic middle regime named.
+
+Three factcheck anchors requoted (two needing tail alignment); baseline
+(97, respelled) restored. One self-introduced escaping violation caught by
+lint and fixed in-batch.
