@@ -840,3 +840,42 @@ Four factcheck anchors requoted; baseline (97) restored.
   QRAM-artefact monocause widened.
 
 Zero factcheck-anchor drift this batch.
+
+## Batch 17 — Chapter 16 (16 substitutions)
+
+### FIXED — outright defects
+- Jordan–Wigner "k = 4 for fermionic systems" — fermionic-interaction
+  degree separated from qubit-string support.
+- Malformed correlation formula ⟨ψ0|O e^{-iHt} O†|ψ0⟩ — replaced with the
+  evolved expectation / defined transition-amplitude forms.
+- LCU post-selected output "H|ψ⟩/α up to normalisation" — corrected to the
+  normalised state with the branch amplitude doing the probability work,
+  kernel case handled.
+- Taylor-LCU "one large LCU" and its gate count — segmentation restored,
+  α and PREPARE/SELECT dependence in the count, "first algorithm" →
+  among the first.
+- Qubitized walk W = R·U_H — structural requirement (self-inverse or
+  controlled/two-reflection variant) stated for the advertised spectrum.
+- Qubitization priority/superlative — optimal scaling kept with αt,
+  overhead claim made precise, 2026 superlative flagged for re-verification.
+- Raw 1/x QSP target — corrected to the rescaled reciprocal 1/(κx) with
+  boundedness rationale; degree vs total-query distinction restored.
+- Hermitian QSVT sign/parity glossing and the false "Hermitisation doubles
+  the subnormalisation" — both corrected (norm preserved; cost is
+  dimension/bookkeeping).
+- "Unifies essentially every algorithm" and the opening "all fall out as
+  special cases" — scoped, with the harder embeddings (QPE, Monte Carlo)
+  marked as taking work.
+- Blanket "HHL on classical input via QRAM is dequantised" — scoped to
+  headline low-rank regimes, no-blanket-theorem stated.
+- Classical shadows "any modern pipeline uses" and post-processing-only
+  framing — corrected (measurement design is quantum-side; alternatives
+  named).
+- Trotter "only practical choice on NISQ" and the Trotter-for-NISQ/
+  QSVT-for-FT timeline — replaced with the trade-space account.
+- Bridge "formally weaker advantage" — replaced with the different-problem-
+  statement observation.
+- "Replaced in every modern reference" — reshaped across much of the
+  literature.
+
+Three factcheck anchors requoted; baseline (97) restored.

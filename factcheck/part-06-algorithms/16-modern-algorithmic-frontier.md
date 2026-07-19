@@ -75,7 +75,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §16.3 — Taylor-series simulation gate count and $\epsilon$-scaling
 
-- **Claim** (anchor): "gate count $O(L t \log(1/\epsilon) / \log\log(1/\epsilon))$"
+- **Claim** (anchor): "overall gate counts of order $\alpha L t \cdot \log(1/\epsilon)/\log\log(1/\epsilon)$"
 - **Method**: external
 - **Source**: Berry–Childs–Cleve–Kothari–Somma (2015) — TBD — needs verification of the exact complexity expression.
 - **Verified**: — · **Verdict**: open
@@ -98,7 +98,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §16.5 — Qubitization claimed as most resource-efficient simulation algorithm known in 2026
 
-- **Claim** (anchor): "the most resource-efficient simulation algorithm known in 2026 for many chemistry and materials Hamiltonians"
+- **Claim** (anchor): "anchors many of the most resource-efficient 2026 estimates for chemistry and materials Hamiltonians"
 - **Method**: external
 - **Source**: TBD — needs verification (perishable/empirical claim about state-of-the-art as of 2026; no single citation given)
 - **Verified**: — · **Verdict**: open
@@ -121,7 +121,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §16.6 — Matrix inversion query count via QSP: $\Theta(\kappa \log(\kappa/\epsilon))$ vs original HHL's $O(\kappa^2/\epsilon)$
 
-- **Claim** (anchor): "query count $\Theta(\kappa \log(\kappa/\epsilon))$, exponentially better in $\epsilon$ than the original HHL's $O(\kappa^2/\epsilon)$"
+- **Claim** (anchor): "approximation degree $\Theta(\kappa \log(\kappa/\epsilon))$ (post-selection and amplification multiply in condition- and overlap-dependent factors before the total query count settles), exponentially better in $\epsilon$ than the original HHL's $O(\kappa^2/\epsilon)$"
 - **Method**: external
 - **Source**: TBD — needs verification (Low–Chuang 2017 or Gilyén et al. 2019 for the improved bound; original HHL for the $O(\kappa^2/\epsilon)$ figure)
 - **Verified**: — · **Verdict**: open
