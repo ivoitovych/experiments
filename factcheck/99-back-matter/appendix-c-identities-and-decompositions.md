@@ -19,7 +19,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: States [A,[B,C]] + [B,[C,A]] + [C,[A,B]] = 0 for any operators A, B, C.
 
-## C.3 — Simultaneous diagonalisation and pairwise commuting operators
+## C.3 — Simultaneous diagonalization and pairwise commuting operators
 
 - **Claim** (anchor): "A pairwise commuting family of normal operators admits a single orthonormal basis in which every member is diagonal"
 - **Method**: derivation
@@ -109,11 +109,11 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## C.5 — Two-CNOT, one-CNOT, and zero-CNOT sufficiency conditions
 
-- **Claim** (anchor): "Two-CNOT decomposition is enough iff the KAK coefficient vector (c_x, c_y, c_z) has c_z = 0 after relabelling axes"
+- **Claim** (anchor): "Two-CNOT decomposition is enough iff the KAK coefficient vector (c_x, c_y, c_z) has c_z = 0 after relabeling axes"
 - **Method**: derivation
 - **Source**: → §8.14; follows from the KAK form and entanglement classification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Structural characterisation of how many CNOTs are needed based on KAK coefficients.
+- **Comment**: Structural characterization of how many CNOTs are needed based on KAK coefficients.
 
 ## C.5 — Toffoli gate decomposes into 6 CNOTs
 

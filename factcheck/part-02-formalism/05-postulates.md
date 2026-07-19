@@ -45,7 +45,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ---
 
-## §5.2 — Noisy evolution modelled as CPTP maps / quantum channels
+## §5.2 — Noisy evolution modeled as CPTP maps / quantum channels
 
 - **Claim** (anchor): "completely positive trace-preserving (CPTP) maps — also called quantum channels — which subsume both unitary evolution and noise"
 - **Method**: external
@@ -112,7 +112,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ---
 
-## §5.4 — POVM formalism as generalisation of projective measurement
+## §5.4 — POVM formalism as generalization of projective measurement
 
 - **Claim** (anchor): "positive operator-valued measure (POVM) formalism replaces the projectors"
 - **Method**: external

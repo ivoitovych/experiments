@@ -7,7 +7,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §2.2 — BPP definition (probabilistic polynomial-time class)
 
-- **Claim** (anchor): "Probabilistic computation is not exotic; the laptop you are reading this on runs randomised algorithms many times per second"
+- **Claim** (anchor): "Probabilistic computation is not exotic; the laptop you are reading this on runs randomized algorithms many times per second"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -91,7 +91,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: A central open problem in complexity theory; the conjecture is widely attributed to the derandomisation programme. See Impagliazzo & Wigderson (1997) or Sipser's textbook.
+- **Comment**: A central open problem in complexity theory; the conjecture is widely attributed to the derandomization program. See Impagliazzo & Wigderson (1997) or Sipser's textbook.
 
 ---
 

@@ -128,9 +128,9 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: Cross-references §19.12 for surface-code patch-size scaling; a claimed consensus result across fault-tolerance literature.
 
-## §18.4 — Diamond norm as proper worst-case metric, not standardised
+## §18.4 — Diamond norm as proper worst-case metric, not standardized
 
-- **Claim** (anchor): "The diamond norm (§12.6) is the proper worst-case metric; it is harder to measure directly, and the field has not standardised reporting it, which is a known gap in the benchmarking conventions"
+- **Claim** (anchor): "The diamond norm (§12.6) is the proper worst-case metric; it is harder to measure directly, and the field has not standardized reporting it, which is a known gap in the benchmarking conventions"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -168,14 +168,14 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §18.6 — RB is SPAM-robust by design
 
-- **Claim** (anchor): "Randomised benchmarking (§18.12) is designed to be *SPAM-robust*: the decay rate is sensitive to gate error but not to constant preparation and measurement offsets"
+- **Claim** (anchor): "Randomized benchmarking (§18.12) is designed to be *SPAM-robust*: the decay rate is sensitive to gate error but not to constant preparation and measurement offsets"
 - **Method**: derivation
 - **Source**: → §18.12 RB protocol and fitting function F(m) = A p^m + B
 - **Verified**: — · **Verdict**: open
 
 ## §18.7 — Surface-code threshold degradation from crosstalk
 
-- **Claim** (anchor): "a \"good\" crosstalk-free physical error rate of $0.5\%$ can be effectively $1.5\%$ once nearest-neighbour ZZ is included, sometimes pushing the system above the threshold and breaking the scaling story entirely"
+- **Claim** (anchor): "a \"good\" crosstalk-free physical error rate of $0.5\%$ can be effectively $1.5\%$ once nearest-neighbor ZZ is included, sometimes pushing the system above the threshold and breaking the scaling story entirely"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -199,7 +199,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §18.9 — GAD channel Kraus operators
 
-- **Claim** (anchor): "A finite-temperature bath generalises the zero-temperature amplitude-damping channel of §10.12. The **generalised amplitude damping** (GAD) channel has Kraus operators"
+- **Claim** (anchor): "A finite-temperature bath generalizes the zero-temperature amplitude-damping channel of §10.12. The **generalized amplitude damping** (GAD) channel has Kraus operators"
 - **Method**: derivation
 - **Source**: → §10.12 amplitude-damping channel; → §18.9 Kraus operator construction
 - **Verified**: — · **Verdict**: open
@@ -228,7 +228,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §18.10 — Clifford group forms 2-design
 
-- **Claim** (anchor): "The Clifford group forms a 2-design over the unitary group, which means averaging a noise channel over random Cliffords produces a depolarising channel with the same average fidelity"
+- **Claim** (anchor): "The Clifford group forms a 2-design over the unitary group, which means averaging a noise channel over random Cliffords produces a depolarizing channel with the same average fidelity"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -248,18 +248,18 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Specific spectral characterisation of 1/f noise range and features on superconducting devices.
+- **Comment**: Specific spectral characterization of 1/f noise range and features on superconducting devices.
 
 ## §18.12 — RB average gate error formula
 
 - **Claim** (anchor): "The fitted decay constant $p$ relates to the average gate error per Clifford as $\epsilon = (1 - p)(d - 1)/d$ where $d = 2^n$"
 - **Method**: derivation
-- **Source**: → §18.12 RB protocol and depolarising-channel conversion
+- **Source**: → §18.12 RB protocol and depolarizing-channel conversion
 - **Verified**: — · **Verdict**: open
 
-## §18.12 — XEB was centrepiece of 2019 supremacy experiment
+## §18.12 — XEB was centerpiece of 2019 supremacy experiment
 
-- **Claim** (anchor): "XEB was the centrepiece of the 2019 supremacy experiment"
+- **Claim** (anchor): "XEB was the centerpiece of the 2019 supremacy experiment"
 - **Method**: external
 - **Source**: Arute et al. (Google), Nature 574, 505–510 (2019)
 - **Verified**: — · **Verdict**: open
@@ -275,7 +275,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §18.13 — Simultaneous RB crosstalk contribution: 1.5×–3× isolated rate
 
-- **Claim** (anchor): "the gap is the **crosstalk contribution** to single-qubit error; on current devices it is typically 1.5×–3× the isolated rate for nearest-neighbour qubits"
+- **Claim** (anchor): "the gap is the **crosstalk contribution** to single-qubit error; on current devices it is typically 1.5×–3× the isolated rate for nearest-neighbor qubits"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

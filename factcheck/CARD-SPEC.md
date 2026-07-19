@@ -13,7 +13,7 @@ ClaimReview record. It exists to answer one question:
 
 ## The seven fields
 
-Every card has exactly these, each explicitly labelled (no guessing what a bare
+Every card has exactly these, each explicitly labeled (no guessing what a bare
 line means):
 
 | Field | Answers |
@@ -54,7 +54,7 @@ two claims (two cards); `contradicted` is `refuted`.
 
 **Freshness** — *computed by the linter*, never written into the card:
 `current` / `stale`. A card is **stale** when its Exact text no longer appears
-(normalised) in the mirrored manuscript file. Crucially, the linter does **not**
+(normalized) in the mirrored manuscript file. Crucially, the linter does **not**
 overwrite the verdict: a `verified` card whose text drifts becomes
 *verified-but-stale*, preserving the record that it once passed. A human
 re-confirms against the new wording and bumps `Last checked`. This is the
@@ -85,7 +85,7 @@ derivative, used only as background").
 
 See [`_template.md`](_template.md). Worked examples: [`_pilot.md`](_pilot.md).
 
-## File organisation
+## File organization
 
 Cards mirror the manuscript: one file per chapter file, at the same relative
 path under `factcheck/`. Headings inside a file group cards by section. The path
@@ -101,7 +101,7 @@ moves, move the card; Git records the move; the card carries no old address.
 3. `verified` ⇒ `Clarity: clear` **and** ≥1 evidence item **and** no unresolved
    placeholders; `refuted` ⇒ evidence present; `depends` ⇒ a condition stated;
 4. repo-relative paths cited in evidence exist;
-5. **staleness:** the Exact-text quote still appears (normalised) in the
+5. **staleness:** the Exact-text quote still appears (normalized) in the
    mirrored `book/` file — reported as `stale`, *without* touching the verdict.
 
 The dashboard (`--dashboard`) prints counts by verdict plus the stale count.

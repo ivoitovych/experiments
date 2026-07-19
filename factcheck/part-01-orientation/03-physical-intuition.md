@@ -29,7 +29,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §3.2 — Complex amplitudes as unique choice (Aaronson reference)
 
-- **Claim** (anchor): "Aaronson's Quantum Computing Since Democritus gives the reconstruction-flavoured argument; strict uniqueness claims need extra axioms"
+- **Claim** (anchor): "Aaronson's Quantum Computing Since Democritus gives the reconstruction-flavored argument; strict uniqueness claims need extra axioms"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

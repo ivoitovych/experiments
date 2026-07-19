@@ -35,29 +35,29 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: Empirical/community-consensus claim about the state of QRAM research; the text states consensus from ~2020 onward leans pessimistic.
 
-## §30.2 — Tang 2018 dequantisation of recommendation systems
+## §30.2 — Tang 2018 dequantization of recommendation systems
 
-- **Claim** (anchor): "Ewin Tang's 2018 work on the recommendation-systems problem showed that the Kerenidis–Prakash quantum algorithm could be dequantised: a classical algorithm, given an analogous classical access model (the ability to sample rows and entries of the matrix with probabilities proportional to squared magnitudes), runs in time polylogarithmic in"
+- **Claim** (anchor): "Ewin Tang's 2018 work on the recommendation-systems problem showed that the Kerenidis–Prakash quantum algorithm could be dequantized: a classical algorithm, given an analogous classical access model (the ability to sample rows and entries of the matrix with probabilities proportional to squared magnitudes), runs in time polylogarithmic in"
 - **Method**: external
 - **Source**: Tang, STOC 2019 (work circulated 2018)
 - **Verified**: — · **Verdict**: open
-- **Comment**: Foundational dequantisation result. The paper was first circulated as an arXiv preprint in 2018 and presented at STOC 2019.
+- **Comment**: Foundational dequantization result. The paper was first circulated as an arXiv preprint in 2018 and presented at STOC 2019.
 
-## §30.2 — Scope of Tang-style dequantisation by 2021
+## §30.2 — Scope of Tang-style dequantization by 2021
 
-- **Claim** (anchor): "By 2021, the Tang-style dequantisation had been extended to quantum PCA, quantum SVMs, quantum linear regression in the low-rank regime, the Lloyd–Mohseni–Rebentrost density-matrix algorithms, and most other named Category-1 results"
+- **Claim** (anchor): "By 2021, the Tang-style dequantization had been extended to quantum PCA, quantum SVMs, quantum linear regression in the low-rank regime, the Lloyd–Mohseni–Rebentrost density-matrix algorithms, and most other named Category-1 results"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Broad claim about the scope of the dequantisation programme through 2021; multiple follow-up papers involved.
+- **Comment**: Broad claim about the scope of the dequantization program through 2021; multiple follow-up papers involved.
 
 ## §30.3 — Classical shadows: Huang–Kueng–Preskill 2020, O(log M) sample complexity
 
-- **Claim** (anchor): "The classical shadows framework of Huang–Kueng–Preskill (2020) shows that O(log M) shadow samples — each consisting of a randomised Clifford rotation followed by a computational-basis measurement — suffice to predict M arbitrary linear properties of the state to fixed accuracy"
+- **Claim** (anchor): "The classical shadows framework of Huang–Kueng–Preskill (2020) shows that O(log M) shadow samples — each consisting of a randomized Clifford rotation followed by a computational-basis measurement — suffice to predict M arbitrary linear properties of the state to fixed accuracy"
 - **Method**: external
 - **Source**: Huang, Kueng, Preskill (2020) — TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Specific O(log M) sample-complexity claim for predicting M linear properties via randomised Clifford measurements.
+- **Comment**: Specific O(log M) sample-complexity claim for predicting M linear properties via randomized Clifford measurements.
 
 ## §30.3 — Hamiltonian learning: Anshu–Arunachalam–Kueng–Lin polynomial sample complexity
 
@@ -69,7 +69,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §30.4 — Barren plateaus: McClean et al. 2018, exponentially vanishing gradient variance
 
-- **Claim** (anchor): "McClean–Boixo–Smelyanskiy–Babbush–Neven (2018) showed that for sufficiently expressive (Haar-random) parameterised circuits on n qubits, the gradient of the loss function with respect to any parameter has variance that decays exponentially in n"
+- **Claim** (anchor): "McClean–Boixo–Smelyanskiy–Babbush–Neven (2018) showed that for sufficiently expressive (Haar-random) parameterized circuits on n qubits, the gradient of the loss function with respect to any parameter has variance that decays exponentially in n"
 - **Method**: external
 - **Source**: McClean, Boixo, Smelyanskiy, Babbush, Neven (2018) — TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -109,7 +109,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §30.6 — Lloyd–Weedbrook 2018 and Dallaire-Demers–Killoran 2018 QGAN proposals
 
-- **Claim** (anchor): "Lloyd–Weedbrook (2018) and Dallaire-Demers–Killoran (2018) proposed quantum analogues of GANs in which the generator, the discriminator, or both are parameterised quantum circuits"
+- **Claim** (anchor): "Lloyd–Weedbrook (2018) and Dallaire-Demers–Killoran (2018) proposed quantum analogs of GANs in which the generator, the discriminator, or both are parameterized quantum circuits"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -125,7 +125,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §30.7 — Quantum natural gradient: Stokes–Izaac–Killoran–Carleo 2020
 
-- **Claim** (anchor): "natural-gradient methods (the quantum Fisher information metric of Stokes–Izaac–Killoran–Carleo, 2020) that use the geometry of the parameterised-state manifold to precondition the updates"
+- **Claim** (anchor): "natural-gradient methods (the quantum Fisher information metric of Stokes–Izaac–Killoran–Carleo, 2020) that use the geometry of the parameterized-state manifold to precondition the updates"
 - **Method**: external
 - **Source**: Stokes, Izaac, Killoran, Carleo (2020) — TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -139,18 +139,18 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: The factor of 2p per step follows directly from the parameter-shift rule requiring two circuit evaluations per parameter. The downstream wall-clock estimate (≈ 23 days for p=100, S=10^4, K=10^3, 1 ms/shot) is a numerical consequence.
 
-## §30.8 — Tang programme: polylogarithmic dequantised algorithms for named problems
+## §30.8 — Tang program: polylogarithmic dequantized algorithms for named problems
 
-- **Claim** (anchor): "the Tang programme has produced classical algorithms with running times that are polylogarithmic in the data dimension for: low-rank linear regression, low-rank matrix recovery, quantum recommendation systems, quantum PCA, quantum SVD, certain classes of quantum kernel methods, and the Lloyd–Mohseni–Rebentrost family"
+- **Claim** (anchor): "the Tang program has produced classical algorithms with running times that are polylogarithmic in the data dimension for: low-rank linear regression, low-rank matrix recovery, quantum recommendation systems, quantum PCA, quantum SVD, certain classes of quantum kernel methods, and the Lloyd–Mohseni–Rebentrost family"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Enumerates the problems covered by dequantisation; each item is a verifiable claim tied to specific papers in the Tang-programme literature.
+- **Comment**: Enumerates the problems covered by dequantization; each item is a verifiable claim tied to specific papers in the Tang-program literature.
 
-## §30.8 — Shor's algorithm and discrete-log survive dequantisation
+## §30.8 — Shor's algorithm and discrete-log survive dequantization
 
 - **Claim** (anchor): "survive because their access model is to an oracle for f(x) = a^x bmod N, not to a classical dataset; there is no analogous classical sampling access"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Conceptual claim about why Shor and discrete-log algorithms are immune to the dequantisation argument; the access model is to an oracle rather than a classical dataset. Standard complexity-theoretic reasoning worth confirming the framing is accurate.
+- **Comment**: Conceptual claim about why Shor and discrete-log algorithms are immune to the dequantization argument; the access model is to an oracle rather than a classical dataset. Standard complexity-theoretic reasoning worth confirming the framing is accurate.

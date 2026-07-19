@@ -109,7 +109,7 @@ flags. The methods are:
   the manuscript still agrees with it. Cheap, because the research is cached.
 - **Self factcheck** — verify *this directory itself*, independent of the book.
   Re-resolve links, re-confirm `external` sources are reliable and faithfully
-  summarised, and run the coverage/orphan checks below.
+  summarized, and run the coverage/orphan checks below.
 
 ## Coverage and orphan checks (keeps the cache from rotting)
 
@@ -121,7 +121,7 @@ The self factcheck run should flag:
    (claim edited or removed upstream; the entry needs review).
 3. **Thin coverage** — a claim-dense section with little or no factcheck file.
 
-Checks (1) and (2) are mechanised in
+Checks (1) and (2) are mechanized in
 [`scripts/factcheck_anchors.py`](../scripts/factcheck_anchors.py) — run it from
 the repo root; exit code 0 means all locators resolve. Matching is
 **normalized**, not byte-exact: it folds case, markdown emphasis (`**`),

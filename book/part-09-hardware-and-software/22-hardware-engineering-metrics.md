@@ -26,15 +26,15 @@ A vendor that says "1000 qubits" without qualification almost always means physi
 
 ## 22.2 Connectivity
 
-After raw count, the second physical-device number is the **coupling graph**: which pairs of qubits can run a native two-qubit gate? Chapter 9 introduced the notion; this section catalogues the metrics that summarise it.
+After raw count, the second physical-device number is the **coupling graph**: which pairs of qubits can run a native two-qubit gate? Chapter 9 introduced the notion; this section catalogs the metrics that summarize it.
 
-**Average degree** is the mean number of neighbours per qubit in the coupling graph. Heavy-hex (IBM) has average degree close to $2.5$; square-lattice (Google) has average degree close to $4$; an all-to-all ion-trap chain of $N$ ions has average degree $N - 1$. Higher average degree is better, all else equal, because it shrinks routing overhead.
+**Average degree** is the mean number of neighbors per qubit in the coupling graph. Heavy-hex (IBM) has average degree close to $2.5$; square-lattice (Google) has average degree close to $4$; an all-to-all ion-trap chain of $N$ ions has average degree $N - 1$. Higher average degree is better, all else equal, because it shrinks routing overhead.
 
 **Diameter** is the longest shortest-path between any two qubits. On a planar lattice of $n$ qubits the diameter scales as $\sqrt{n}$; on an all-to-all device the diameter is $1$. Diameter sets the worst-case SWAP cost: routing a CNOT between the two most-distant qubits on a heavy-hex 127-qubit device costs roughly $\sqrt{127} \cdot 3 \approx 33$ CNOTs of SWAP overhead, almost an order of magnitude worse than the underlying two-qubit gate cost.
 
 **Layout-specific metrics** matter when the coupling graph has structure the routing compiler can exploit. Heavy-hex has long "spokes" between dense vertices; the routing cost between two spoke ends is much higher than between two vertices in the same hexagon. The QED-C benchmark suite (§22.13) probes this with circuits that deliberately mix nearby and far-apart pairs.
 
-For an all-to-all architecture the connectivity story is uninteresting — every pair is a single gate — and the relevant cost moves elsewhere (gate-time blow-up with system size, crosstalk, or shuttling time on a segmented trap). The *absence* of routing overhead is itself a metric, and ion-trap vendors emphasise it correctly.
+For an all-to-all architecture the connectivity story is uninteresting — every pair is a single gate — and the relevant cost moves elsewhere (gate-time blow-up with system size, crosstalk, or shuttling time on a segmented trap). The *absence* of routing overhead is itself a metric, and ion-trap vendors emphasize it correctly.
 
 A subtle point: "connectivity" on a benchmark sheet sometimes means coupling-graph topology and sometimes means *fraction of pairs with two-qubit gate fidelity above threshold X*. The two coincide only when the coupling graph is sparse and the device is uniformly calibrated. On a partially-calibrated 1000-qubit device, the fraction of usable pairs can be the more honest number.
 
@@ -54,7 +54,7 @@ $$
 
 So a process fidelity of $0.99$ on a single-qubit gate corresponds to an average gate fidelity of $\tfrac{2 \cdot 0.99 + 1}{3} \approx 0.9933$. The two numbers differ by a small constant factor, but vendor sheets do not always say which one they are reporting; in case of doubt the larger of the two is usually the one printed.
 
-**Randomised benchmarking (RB)** is the standard measurement protocol. It samples sequences of Clifford gates of increasing length, ending with the unique Clifford that should return the state to $|0\rangle$, and fits the survival probability vs sequence length to an exponential decay. The decay constant gives the **average error per Clifford**. RB has two desirable properties: it is insensitive to state preparation and measurement (SPAM) errors, and it averages over the Clifford group, which is enough to *twirl* any noise channel — average it over random Clifford conjugations — into a depolarising channel of equal average fidelity.
+**Randomized benchmarking (RB)** is the standard measurement protocol. It samples sequences of Clifford gates of increasing length, ending with the unique Clifford that should return the state to $|0\rangle$, and fits the survival probability vs sequence length to an exponential decay. The decay constant gives the **average error per Clifford**. RB has two desirable properties: it is insensitive to state preparation and measurement (SPAM) errors, and it averages over the Clifford group, which is enough to *twirl* any noise channel — average it over random Clifford conjugations — into a depolarizing channel of equal average fidelity.
 
 But that very averaging is RB's weakness. The number RB reports is an *average* over Cliffords; the channel that an algorithm actually applies has gate-specific noise that can be worse than the average by a substantial factor. **Cycle benchmarking** and **interleaved RB** address this by measuring fidelity of a target gate inserted into RB sequences. **Direct fidelity estimation** and **process tomography** give the full process matrix at much higher cost.
 
@@ -68,7 +68,7 @@ A trap to avoid: comparing RB averages across vendors as if they were directly c
 
 ## 22.4 Coherence Time
 
-A qubit left untouched eventually decoheres. Two timescales summarise that decay.
+A qubit left untouched eventually decoheres. Two timescales summarize that decay.
 
 **$T_1$**, the **energy relaxation time**, is the timescale on which an excited qubit decays to its ground state. Operationally: prepare $|1\rangle$, wait time $t$, measure; the population in $|1\rangle$ decays as $\exp(-t/T_1)$. $T_1$ is set by the qubit's coupling to dissipative environmental modes — for superconducting transmons, the Purcell decay through the readout resonator plus dielectric losses; for trapped ions, spontaneous emission and off-resonant scattering out of the qubit states (motional-mode heating, by contrast, degrades *gate* fidelity through the motional bus rather than the internal-state $T_1$).
 
@@ -112,9 +112,9 @@ For superconducting transmons, the dominant readout error mechanism is qubit rel
 
 The headline **readout fidelity** is usually the average $\tfrac{1}{2}(F_{0|0} + F_{1|1})$ or the **symmetric** (worst-case) error $\max(1 - F_{0|0}, 1 - F_{1|1})$. Vendors disagree on which to report; the average flatters devices with asymmetric errors.
 
-The asymmetry is exposed as a **calibration matrix** (also called the **assignment matrix** or **confusion matrix**): the $2 \times 2$ matrix $M$ with entries $M_{ij} = P(\mathrm{read}\\,i \\,|\\, \mathrm{prepared}\\,j)$. For $n$ qubits read jointly, the assignment matrix is $2^n \times 2^n$ — but on most devices the cross-qubit correlations are small, so the joint matrix factorises approximately as a tensor product of single-qubit matrices. **Readout error mitigation** post-multiplies the measured distribution by $M^{-1}$ (or its regularised pseudo-inverse) to estimate the noise-free distribution. This is a software fix with real cost — the variance of the corrected estimator grows with the condition number of $M$ — and is most useful when the readout error is the dominant noise.
+The asymmetry is exposed as a **calibration matrix** (also called the **assignment matrix** or **confusion matrix**): the $2 \times 2$ matrix $M$ with entries $M_{ij} = P(\mathrm{read}\\,i \\,|\\, \mathrm{prepared}\\,j)$. For $n$ qubits read jointly, the assignment matrix is $2^n \times 2^n$ — but on most devices the cross-qubit correlations are small, so the joint matrix factorizes approximately as a tensor product of single-qubit matrices. **Readout error mitigation** post-multiplies the measured distribution by $M^{-1}$ (or its regularized pseudo-inverse) to estimate the noise-free distribution. This is a software fix with real cost — the variance of the corrected estimator grows with the condition number of $M$ — and is most useful when the readout error is the dominant noise.
 
-On benchmark sheets, the single number to grab is the **state-preparation-and-measurement (SPAM) error**, which folds in both readout and state-preparation errors. On a well-characterised device the SPAM error sets the noise floor below which fidelity improvements are not observable.
+On benchmark sheets, the single number to grab is the **state-preparation-and-measurement (SPAM) error**, which folds in both readout and state-preparation errors. On a well-characterized device the SPAM error sets the noise floor below which fidelity improvements are not observable.
 
 ## 22.7 Quantum Volume
 
@@ -130,7 +130,7 @@ where $d^{\ast}$ is the largest $d$ at which the device passes. So QV $= 2^{10} 
 
 QV has real virtues. It is end-to-end — it measures whatever the *compiled* circuit does on the *actual* device, so it incorporates the compiler's intelligence and the device's calibration together. It is hardware-agnostic — superconducting and ion-trap devices report comparable QV numbers without protocol-level adjustment. It is a single number, which is easy to communicate.
 
-Its weaknesses are now well understood. **It saturates** around $d = 10$–$15$ on current devices: the protocol's compile-and-run loop hits a wall when device noise overwhelms the heavy-output threshold, and beyond that wall the metric returns no signal. The best published QV numbers sit with Quantinuum's H-series ($2^{19}$–$2^{20}$ by 2024, still climbing); IBM stopped reporting QV after 512 ($2^9$, 2022) in favour of throughput- and error-per-layer-style metrics — itself a data point on the metric's saturation. The trajectory is now slow because the bound is increasingly compiler-dominated.
+Its weaknesses are now well understood. **It saturates** around $d = 10$–$15$ on current devices: the protocol's compile-and-run loop hits a wall when device noise overwhelms the heavy-output threshold, and beyond that wall the metric returns no signal. The best published QV numbers sit with Quantinuum's H-series ($2^{19}$–$2^{20}$ by 2024, still climbing); IBM stopped reporting QV after 512 ($2^9$, 2022) in favor of throughput- and error-per-layer-style metrics — itself a data point on the metric's saturation. The trajectory is now slow because the bound is increasingly compiler-dominated.
 
 It does not measure **algorithmic capacity**. A device with QV $= 1024$ has demonstrated that *some* 10-qubit, 10-deep random circuit works; it has not demonstrated that *your* 50-qubit, depth-200 algorithm will work, even when scaled down. Two devices with the same QV can have wildly different performance on a structured algorithm.
 
@@ -172,9 +172,9 @@ $$
 F_{\mathrm{XEB}} \;=\; 2^n \cdot \frac{1}{N_{\mathrm{shots}}} \sum_{k} p_{\mathrm{ideal}}(x_k) \;-\; 1 .
 $$
 
-For an ideal device $F_{\mathrm{XEB}} \to 1$; for a fully depolarised device that samples uniformly $F_{\mathrm{XEB}} \to 0$. Crucially, $F_{\mathrm{XEB}}$ factorises across the circuit as a product of per-gate fidelities (in the limit of large random circuits), so it gives a clean operational fidelity that can be compared against the product of per-gate RB numbers as a consistency check.
+For an ideal device $F_{\mathrm{XEB}} \to 1$; for a fully depolarized device that samples uniformly $F_{\mathrm{XEB}} \to 0$. Crucially, $F_{\mathrm{XEB}}$ factorizes across the circuit as a product of per-gate fidelities (in the limit of large random circuits), so it gives a clean operational fidelity that can be compared against the product of per-gate RB numbers as a consistency check.
 
-XEB's strength is that it scales naturally to the regime where classical simulation is barely feasible — exactly the regime where the supremacy / quantum-utility claims live. Google's 67–70-qubit random-circuit-sampling campaign (Morvan et al., published 2024) reports $F_{\mathrm{XEB}}$ in the $10^{-3}$–$10^{-2}$ range at $n \approx 70$, $d = 24$, with the 2024 Willow demonstration extending the programme to its 105-qubit lattice, which is above the classical-simulation crossover for those circuit dimensions.
+XEB's strength is that it scales naturally to the regime where classical simulation is barely feasible — exactly the regime where the supremacy / quantum-utility claims live. Google's 67–70-qubit random-circuit-sampling campaign (Morvan et al., published 2024) reports $F_{\mathrm{XEB}}$ in the $10^{-3}$–$10^{-2}$ range at $n \approx 70$, $d = 24$, with the 2024 Willow demonstration extending the program to its 105-qubit lattice, which is above the classical-simulation crossover for those circuit dimensions.
 
 XEB's weaknesses are dual. First, it requires *exponential* classical work to compute $p_{\mathrm{ideal}}$, so it stops being computable beyond $n \sim 50$–$70$ qubits — exactly the regime where the metric is most interesting. Beyond that, $F_{\mathrm{XEB}}$ is *extrapolated* from per-gate fidelities measured at smaller scales, with all the assumptions that extrapolation carries. Second, like RB, XEB is an *average* fidelity: a device can have low XEB on random circuits but fail catastrophically on structured ones, and vice versa.
 
@@ -184,13 +184,13 @@ For a developer reading XEB numbers: treat them as a per-gate fidelity sanity ch
 
 Chapter 9 introduced mid-circuit measurement, reset, and classical feedforward as logical primitives. As a hardware metric, what matters is how *fast* and how *cleanly* they run. Three numbers govern this.
 
-**Mid-circuit measurement latency** is the wall-clock time from the start of the measurement pulse to the moment the outcome bit is available to the classical control system. On superconducting devices this is currently $1$–$5\\,\mu\mathrm{s}$ (dispersive readout integration plus discrimination time). On ion-trap devices it is $50$–$500\\,\mu\mathrm{s}$ (fluorescence collection plus shelving-state initialisation). The ratio of measurement latency to coherence time (§22.4) is the *measurement budget*: how many mid-circuit measurements can fit inside one shot.
+**Mid-circuit measurement latency** is the wall-clock time from the start of the measurement pulse to the moment the outcome bit is available to the classical control system. On superconducting devices this is currently $1$–$5\\,\mu\mathrm{s}$ (dispersive readout integration plus discrimination time). On ion-trap devices it is $50$–$500\\,\mu\mathrm{s}$ (fluorescence collection plus shelving-state initialization). The ratio of measurement latency to coherence time (§22.4) is the *measurement budget*: how many mid-circuit measurements can fit inside one shot.
 
 **Reset fidelity and time** describe how reliably a measured qubit can be returned to $|0\rangle$. **Active reset** applies an $X$ gate conditional on the measurement outcome; its fidelity is roughly the product of measurement fidelity and conditional-$X$ fidelity. **Passive reset** waits for the qubit to decay through $T_1$; its time is $5$–$10 \cdot T_1$. On a 200-$\mu\mathrm{s}$-$T_1$ transmon, passive reset takes $1$–$2\\,\mathrm{ms}$ per shot — a serious throughput tax — so active reset is the standard, with reset fidelity around $0.99$ on current devices.
 
-**Feedforward delay** is the latency between a measurement outcome becoming available and the application of a quantum gate conditioned on it — the classical processing (decoding, decision logic) plus pulse-generation latency that sits *on top of* the measurement latency above. On the best-engineered superconducting devices (Google Willow, IBM Heron) this conditional-dispatch latency is on the order of $100$–$500\\,\mathrm{ns}$, so the full measurement-to-conditioned-gate round-trip is roughly the $1$–$5\\,\mu\mathrm{s}$ measurement time plus this — still fast enough to apply teleportation-style Pauli corrections within the coherence window. On ion traps the round-trip is dominated by the much larger measurement latency, but the much longer coherence makes the *budget* in coherence-times still favourable.
+**Feedforward delay** is the latency between a measurement outcome becoming available and the application of a quantum gate conditioned on it — the classical processing (decoding, decision logic) plus pulse-generation latency that sits *on top of* the measurement latency above. On the best-engineered superconducting devices (Google Willow, IBM Heron) this conditional-dispatch latency is on the order of $100$–$500\\,\mathrm{ns}$, so the full measurement-to-conditioned-gate round-trip is roughly the $1$–$5\\,\mu\mathrm{s}$ measurement time plus this — still fast enough to apply teleportation-style Pauli corrections within the coherence window. On ion traps the round-trip is dominated by the much larger measurement latency, but the much longer coherence makes the *budget* in coherence-times still favorable.
 
-These numbers were exotic in 2020 and standard by 2025. They are now the single most important set of metrics for any algorithm using mid-circuit measurement, surface-code stabiliser readout, or measurement-based feedforward. Vendors who do not publish feedforward latency are *de facto* signalling that their device does not support real-time feedforward, regardless of what the documentation otherwise claims.
+These numbers were exotic in 2020 and standard by 2025. They are now the single most important set of metrics for any algorithm using mid-circuit measurement, surface-code stabilizer readout, or measurement-based feedforward. Vendors who do not publish feedforward latency are *de facto* signaling that their device does not support real-time feedforward, regardless of what the documentation otherwise claims.
 
 ## 22.12 Calibration Stability and Drift
 
@@ -202,13 +202,13 @@ Vendors increasingly publish **time-binned** metrics: median fidelity over a 24-
 
 A subtler stability metric is **parameter drift between training and inference** for any algorithm that uses precomputed pulse parameters or learned classical pre/post-processing. A model trained on Monday's calibration may not run as well on Friday's; this is a real problem for VQE-style workloads.
 
-The honest mental model: every metric reported by a vendor is the *peak* number reached on a well-characterised, recently-calibrated device. The *operational* number — what a user code will see, averaged across a long-running job — is typically $5\%$–$30\%$ worse. Treat published numbers as upper bounds, not as means.
+The honest mental model: every metric reported by a vendor is the *peak* number reached on a well-characterized, recently-calibrated device. The *operational* number — what a user code will see, averaged across a long-running job — is typically $5\%$–$30\%$ worse. Treat published numbers as upper bounds, not as means.
 
 ## 22.13 Benchmark Suites and the 2024–2026 Vendor Cohort
 
-Several community-organised benchmark suites have emerged to give cross-vendor comparisons more rigorous footing.
+Several community-organized benchmark suites have emerged to give cross-vendor comparisons more rigorous footing.
 
-**QED-C (Quantum Economic Development Consortium)** publishes an open suite of structured algorithmic benchmarks: Bernstein–Vazirani, Grover, QFT, Shor (small instances), VQE on small molecules, Hamiltonian simulation, amplitude estimation, MaxCut. Each benchmark is parameterised by problem size; the device reports the largest size at which the fidelity threshold is met. The suite underpins IonQ's AQ metric (§22.9) and is increasingly cited in vendor documentation.
+**QED-C (Quantum Economic Development Consortium)** publishes an open suite of structured algorithmic benchmarks: Bernstein–Vazirani, Grover, QFT, Shor (small instances), VQE on small molecules, Hamiltonian simulation, amplitude estimation, MaxCut. Each benchmark is parameterized by problem size; the device reports the largest size at which the fidelity threshold is met. The suite underpins IonQ's AQ metric (§22.9) and is increasingly cited in vendor documentation.
 
 **BACQ** is a French/European application-oriented benchmarking initiative (Thales, CEA, and partners) defining application-level performance references designed to compare quantum hardware platforms across architectures, including emerging neutral-atom and photonic devices.
 

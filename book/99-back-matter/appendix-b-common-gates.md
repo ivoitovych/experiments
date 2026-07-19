@@ -163,7 +163,7 @@ Properties:
 
 - Each $R_a(\theta)$ is unitary; $R_a(\theta)^\dagger = R_a(-\theta)$.
   $R_a(0) = I$ and $R_a(2\pi) = -I$ (so $R_a$ is $4\pi$-periodic, not
-  $2\pi$-periodic — a signature of spin-$1/2$, the two-level angular momentum that physical qubits realise, §3.1).
+  $2\pi$-periodic — a signature of spin-$1/2$, the two-level angular momentum that physical qubits realize, §3.1).
 - Composition law: $R_a(\theta_1) R_a(\theta_2) = R_a(\theta_1 + \theta_2)$
   for a single axis. Rotations about different Pauli axes do **not** commute.
 - $R_z(\theta)$ is diagonal in the computational basis; $R_x(\theta)$ and
@@ -172,7 +172,7 @@ Properties:
   $Z = i R_z(\pi)$. The factor of $i$ is a global phase and is harmless on
   uncontrolled single-qubit gates, but matters once the gate is controlled
   (§B.9).
-- $U_3$ covers every single-qubit unitary up to global phase; specialising
+- $U_3$ covers every single-qubit unitary up to global phase; specializing
   the angles recovers $R_x$, $R_y$, $R_z$, $H$, and the phase gates.
 
 ## B.5 CNOT
@@ -223,7 +223,7 @@ Properties:
   Hadamard basis is $\mathrm{CNOT}_{2 \to 1}$.
 - **Qiskit endian note** (Qiskit 2.x). Qiskit lists CNOT as `cx(control, target)` with
   qubit $0$ being the *least* significant bit of the integer index. Under
-  this book's convention the qubit labelled `q_0` in Qiskit corresponds to
+  this book's convention the qubit labeled `q_0` in Qiskit corresponds to
   the *rightmost* tensor factor, so `cx(0, 1)` matches
   $\mathrm{CNOT}_{2 \to 1}$ above, and `cx(1, 0)` matches
   $\mathrm{CNOT}_{1 \to 2}$. The index-mapping reconciliation is worked
@@ -355,7 +355,7 @@ C(U) = |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes U
 \end{pmatrix},
 $$
 
-where $U_{ij}$ are the entries of the single-qubit unitary $U$. Specialising
+where $U_{ij}$ are the entries of the single-qubit unitary $U$. Specializing
 $U$ recovers the named cases:
 
 **Controlled-Y.**

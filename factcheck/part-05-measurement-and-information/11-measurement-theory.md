@@ -98,7 +98,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §11.5 — Classical shadows: Huang–Kueng–Preskill 2020 attribution
 
-- **Claim** (anchor): "Classical shadow tomography (Huang–Kueng–Preskill, 2020) is a randomised-measurement protocol"
+- **Claim** (anchor): "Classical shadow tomography (Huang–Kueng–Preskill, 2020) is a randomized-measurement protocol"
 - **Method**: external
 - **Source**: Huang, Kueng & Preskill, "Predicting many properties of a quantum system from very few measurements," Nature Physics 16 (2020)
 - **Verified**: — · **Verdict**: open
@@ -170,7 +170,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 - **Claim** (anchor): "unambiguous discrimination is possible iff neither state's support is contained in the other's."
 - **Method**: external
-- **Source**: TBD — needs verification; generalisation to mixed states, see Rudolph, Spekkens & Turner (2003) or earlier references
+- **Source**: TBD — needs verification; generalization to mixed states, see Rudolph, Spekkens & Turner (2003) or earlier references
 - **Verified**: — · **Verdict**: open
 
 ## §11.7 — Shot-noise floor: O(1/ε²) shots per observable
@@ -201,11 +201,11 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Source**: TBD — needs verification; standard result in quantum information/measurement theory
 - **Verified**: — · **Verdict**: open
 
-## §11.7 — Qubit-wise commutativity enables tensor-product diagonalisation
+## §11.7 — Qubit-wise commutativity enables tensor-product diagonalization
 
-- **Claim** (anchor): "The *qubit-wise commuting* subcase — every pair $(P_i, Q_i)$ commutes — is exactly when the joint diagonalisation is a tensor product of *single-qubit* unitaries"
+- **Claim** (anchor): "The *qubit-wise commuting* subcase — every pair $(P_i, Q_i)$ commutes — is exactly when the joint diagonalization is a tensor product of *single-qubit* unitaries"
 - **Method**: derivation
-- **Source**: → §11.7 (follows from tensor-product structure; each qubit can be independently diagonalised)
+- **Source**: → §11.7 (follows from tensor-product structure; each qubit can be independently diagonalized)
 - **Verified**: — · **Verdict**: open
 
 ## §11.7 — Parameter-shift rule for Pauli generators
@@ -224,7 +224,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §11.7 — Tensor-product readout model reduces calibration to 2n circuits
 
-- **Claim** (anchor): "tensor-product readout models reduce calibration to $2n$ circuits (two per qubit) and apply the factorised inverse in $O(n \\cdot 2^n)$ time when single-qubit readout errors are independent"
+- **Claim** (anchor): "tensor-product readout models reduce calibration to $2n$ circuits (two per qubit) and apply the factorized inverse in $O(n \\cdot 2^n)$ time when single-qubit readout errors are independent"
 - **Method**: external
 - **Source**: TBD — needs verification; standard simplification in readout-error mitigation literature
 - **Verified**: — · **Verdict**: open

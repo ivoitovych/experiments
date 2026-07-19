@@ -15,7 +15,7 @@ decompositions* see [Appendix C](appendix-c-identities-and-decompositions.md).
 Where a term has several distinct technical senses (most prominently
 "state" and "projector") the senses are split into separate sub-entries.
 
-The format favours bullet lists over Markdown tables. Many entries contain
+The format favors bullet lists over Markdown tables. Many entries contain
 literal `|` characters (kets, norms, conditional probabilities), and `|`
 collides with the Markdown table-column separator (Bug 5 in
 [`docs/github-markdown-math-bugs.md`](../../docs/github-markdown-math-bugs.md));
@@ -40,7 +40,7 @@ lives in the referenced section.
   Hilbert space. The **computational basis** $\\{|x\rangle : x \in \\{0,1\\}^n\\}$
   is the default reference frame throughout the book. See §4.3 and §4.10.
 - **Born rule.** Probability of outcome $\lambda$ in a projective
-  measurement on a normalised pure state is
+  measurement on a normalized pure state is
   $p(\lambda) = \langle\psi|P_\lambda|\psi\rangle$; for a density
   matrix it is $\mathrm{tr}(\rho\\, P_\lambda)$. See §5.4.
 - **Circuit.** A composition of gates and measurements acting on a
@@ -48,7 +48,7 @@ lives in the referenced section.
   $U = U_L \cdots U_2 U_1$ representations are interchangeable, modulo
   the left-to-right time convention of §A.5. See Chapter 9.
 - **Collapse.** The state update rule that replaces $|\psi\rangle$
-  with the renormalised post-measurement state
+  with the renormalized post-measurement state
   $P_\lambda |\psi\rangle / \sqrt{p(\lambda)}$ after outcome $\lambda$.
   An ingredient of the measurement postulate, not a physical process
   separate from it. See §5.4.
@@ -64,20 +64,20 @@ lives in the referenced section.
 - **Fidelity.** A similarity measure between quantum states. This book
   uses the *unsquared* convention (matching §12.7): for pure states,
   $F(|\psi\rangle, |\phi\rangle) = |\langle\phi|\psi\rangle|$; for density
-  matrices, the generalised Uhlmann fidelity
+  matrices, the generalized Uhlmann fidelity
   $F(\rho, \sigma) = \mathrm{tr}\sqrt{\sqrt{\rho}\\, \sigma \sqrt{\rho}}$.
   Both range over $[0, 1]$. See §12.7.
 - **Gate.** A unitary operator applied to one or a few qubits in a
-  circuit. Common gates are catalogued in
+  circuit. Common gates are cataloged in
   [Appendix B](appendix-b-common-gates.md). See Chapter 8.
 - **Hermitian operator.** An operator $A$ with $A^\dagger = A$.
   Eigenvalues are real and eigenvectors of distinct eigenvalues are
   orthogonal. Observables are Hermitian. See §4.5.
 - **Measurement.** Extraction of classical information from a
-  quantum register; modelled in this book by a projective measurement
-  of a Hermitian observable, generalised to POVMs in Chapter 11.
+  quantum register; modeled in this book by a projective measurement
+  of a Hermitian observable, generalized to POVMs in Chapter 11.
   See §5.4.
-- **Normalisation.** The condition $\langle\psi|\psi\rangle = 1$ for
+- **Normalization.** The condition $\langle\psi|\psi\rangle = 1$ for
   a pure state; equivalently $\mathrm{tr}(\rho) = 1$ for a density
   matrix. Required for the Born rule to deliver a probability
   distribution. See §4.3.
@@ -107,12 +107,12 @@ lives in the referenced section.
   register"). See Chapter 9.
 - **State.** Used in three distinct senses in this book:
   - **State (ray).** The physical state: an equivalence class of
-    normalised vectors modulo global phase. See §5.8.
+    normalized vectors modulo global phase. See §5.8.
   - **State (density matrix).** A positive semidefinite operator
     $\rho$ with $\mathrm{tr}(\rho) = 1$; covers pure and mixed
     states uniformly and is the right object for subsystems. See
     §5.10.
-  - **State (vector representation).** A specific normalised column
+  - **State (vector representation).** A specific normalized column
     vector chosen to represent a ray once a basis is fixed; what
     Qiskit's `Statevector` returns. See §4.12.
 - **Superposition.** A linear combination
@@ -131,7 +131,7 @@ points back to the Chapter 4 section where it is established.
 - **Anticommutator.** $\\{A, B\\} = AB + BA$. The Pauli operators
   satisfy $\\{\sigma_i, \sigma_j\\} = 2\\, \delta_{ij}\\, I$. See §4.5.
 - **Commutator.** $[A, B] = AB - BA$. Two operators commute when
-  $[A, B] = 0$; simultaneously diagonalisable normal operators
+  $[A, B] = 0$; simultaneously diagonalizable normal operators
   commute. See §4.5.
 - **Condition number.** $\kappa(A) = \sigma_{\max}(A) / \sigma_{\min}(A)$,
   the ratio of largest to smallest singular value. Controls
@@ -166,7 +166,7 @@ points back to the Chapter 4 section where it is established.
   $\langle \cdot , \cdot \rangle$. This book uses the physicists'
   convention: conjugate-linear in the first argument, linear in the
   second. See §4.3.
-- **Kronecker product.** The matrix realisation of $A \otimes B$
+- **Kronecker product.** The matrix realization of $A \otimes B$
   obtained by tiling: $(A \otimes B)_{(i,k),(j,\ell)} = A_{ij}\\, B_{k\ell}$.
   See §4.8.
 - **Norm.** $\\|v\\| = \sqrt{\langle v, v\rangle}$ for vectors; for
@@ -216,7 +216,7 @@ Algorithm-level vocabulary used in Parts 6 and 8. The brief
 definitions here support cross-references from earlier chapters;
 detailed treatment lives in Chapters 14–16.
 
-- **Amplitude amplification.** A generalisation of Grover search
+- **Amplitude amplification.** A generalization of Grover search
   that boosts the success amplitude of a chosen subspace from $a$ to
   near $1$ in $O(1/a)$ oracle calls, against the $O(1/a^2)$
   classical sampling cost. See Chapter 14.
@@ -226,7 +226,7 @@ detailed treatment lives in Chapters 14–16.
   sampling. See Chapter 14.
 - **Block encoding.** A way of embedding a (possibly non-unitary)
   operator $A$ as a sub-block of a larger unitary $U$, so that
-  $\langle 0| U |0\rangle = A / \alpha$ for some subnormalisation
+  $\langle 0| U |0\rangle = A / \alpha$ for some subnormalization
   $\alpha \ge \\|A\\|$. The standard interface to QSVT. See
   Chapter 16.
 - **Grover search.** Finds a marked item in an unstructured search
@@ -250,7 +250,7 @@ detailed treatment lives in Chapters 14–16.
   to $n$ bits using $O(2^n)$ controlled-$U$ calls. The workhorse
   primitive of Shor, HHL, and chemistry. See Chapter 14.
 - **QAOA.** Quantum Approximate Optimization Algorithm. A
-  variational hybrid algorithm for combinatorial optimisation built
+  variational hybrid algorithm for combinatorial optimization built
   from alternating problem and mixer Hamiltonians. See Chapter 15.
 - **QFT.** Quantum Fourier transform on $N = 2^n$ dimensions. This
   book uses the negative-exponent convention
@@ -258,7 +258,7 @@ detailed treatment lives in Chapters 14–16.
   with $\omega = e^{2\pi i / N}$. Qiskit's `QFTGate` uses the
   opposite sign. See §4.13.
 - **QSP.** Quantum signal processing. A single-qubit framework that
-  realises polynomial transformations of a scalar parameter
+  realizes polynomial transformations of a scalar parameter
   embedded in a rotation. The scalar-version building block of
   QSVT. See Chapter 16.
 - **QSVT.** Quantum singular value transformation. Applies a
@@ -278,18 +278,18 @@ detailed treatment lives in Chapters 14–16.
   fault-tolerant quantum computer. Reduces factoring to order
   finding, which is solved by phase estimation on the modular
   multiplication unitary. See Chapter 15 and Chapter 27.
-- **Trotterisation.** A product-formula approximation of $e^{-iHt}$
+- **Trotterization.** A product-formula approximation of $e^{-iHt}$
   for $H = \sum_j H_j$, e.g., $e^{-iHt} \approx (e^{-iH_1 t/r} \cdots e^{-iH_k t/r})^r$
   for large $r$, with controlled error. See Chapter 16.
 - **VQE.** Variational Quantum Eigensolver. A hybrid
-  classical–quantum algorithm that minimises
+  classical–quantum algorithm that minimizes
   $\langle \psi(\theta) | H | \psi(\theta)\rangle$ over a
-  parameterised circuit ansatz to estimate the ground-state energy
+  parameterized circuit ansatz to estimate the ground-state energy
   of $H$. See Chapter 15.
 
 ## E.4 Hardware Terms
 
-Vocabulary for physical realisations and their device-level metrics.
+Vocabulary for physical realizations and their device-level metrics.
 Detailed treatment lives in Part 9 (Chapters 20–22).
 
 - **Calibration.** The periodic procedure of measuring drift in
@@ -313,7 +313,7 @@ Detailed treatment lives in Part 9 (Chapters 20–22).
   $T_2 \le 2 T_1$. The pure-dephasing component is denoted
   $T_\varphi$ with $1/T_2 = 1/(2 T_1) + 1/T_\varphi$. See Chapter 18.
 - **Gate fidelity.** Average fidelity between the ideal and
-  implemented unitary, typically measured by randomised
+  implemented unitary, typically measured by randomized
   benchmarking. Per-gate error rates of $10^{-3}$ to $10^{-4}$ are
   the state of the art as of 2026. See Chapter 22.
 - **Native gate set.** The small set of gates a given hardware
@@ -323,7 +323,7 @@ Detailed treatment lives in Part 9 (Chapters 20–22).
   Rydberg levels of neutral atoms trapped in optical tweezer arrays.
   Two-qubit gates use Rydberg blockade. See Chapter 20.
 - **Photonic qubit.** Qubit platform encoding states in
-  modes of light (polarisation, time-bin, dual-rail). Naturally
+  modes of light (polarization, time-bin, dual-rail). Naturally
   long-coherence but with probabilistic two-qubit gates in the
   measurement-based regime. See Chapter 20.
 - **Pulse.** The time-domain microwave or laser waveform that
@@ -339,7 +339,7 @@ Detailed treatment lives in Part 9 (Chapters 20–22).
   estimated by averaging over many shots. See Chapter 9 and
   Chapter 26.
 - **Superconducting qubit.** Qubit platform encoding states in
-  quantised modes of a nonlinear LC circuit cooled to milli-kelvin
+  quantized modes of a nonlinear LC circuit cooled to milli-kelvin
   temperatures (transmon, fluxonium). See Chapter 20.
 - **Topological qubit.** Proposed qubit platform encoding states
   non-locally in topological degrees of freedom (e.g., Majorana
@@ -364,7 +364,7 @@ Chapter 19; physical noise sources are covered in Chapter 18.
   codes, a Pauli frame update). Common families: minimum-weight
   perfect matching, union-find, neural-network decoders. See
   Chapter 19.
-- **Depolarising channel.** Noise model
+- **Depolarizing channel.** Noise model
   $\mathcal{E}(\rho) = (1 - p)\\, \rho + (p/3)(X\rho X + Y\rho Y + Z\rho Z)$
   for a single qubit; the standard analytic stand-in for "uniformly
   random Pauli noise". See Chapter 18.
@@ -387,7 +387,7 @@ Chapter 19; physical noise sources are covered in Chapter 18.
 - **Logical qubit.** A qubit encoded into many physical qubits via
   an error-correcting code; the abstraction the algorithmic layer
   programs against. See Chapter 19.
-- **Magic state.** A specific non-stabiliser resource state (e.g.,
+- **Magic state.** A specific non-stabilizer resource state (e.g.,
   $|T\rangle = T|+\rangle$) that, when injected by gate
   teleportation, implements a non-Clifford gate fault-tolerantly.
   See Chapter 19.
@@ -396,16 +396,16 @@ Chapter 19; physical noise sources are covered in Chapter 18.
   ranges over tensor products of Pauli operators. The standard
   analytical assumption underlying threshold and overhead estimates.
   See Chapter 18.
-- **Stabiliser.** A Pauli operator $S$ with $S|\psi\rangle = |\psi\rangle$
-  for every codeword $|\psi\rangle$. The stabiliser group of a code
+- **Stabilizer.** A Pauli operator $S$ with $S|\psi\rangle = |\psi\rangle$
+  for every codeword $|\psi\rangle$. The stabilizer group of a code
   generates the syndrome operators measured during error correction.
   See Chapter 19.
-- **Surface code.** A topological stabiliser code defined on a 2D
+- **Surface code.** A topological stabilizer code defined on a 2D
   lattice with weight-four plaquette and vertex checks. The leading
   candidate for near-term fault-tolerant quantum computing thanks
   to its planar layout and high threshold. See Chapter 19.
 - **Syndrome.** The classical bit string produced by measuring the
-  stabilisers of a code; a nontrivial syndrome localises an error
+  stabilizers of a code; a nontrivial syndrome localizes an error
   without collapsing the encoded information. See Chapter 19.
 - **Threshold theorem.** If physical error rates are below a
   hardware-dependent threshold $p_{\mathrm{th}}$ (and the noise is
@@ -420,11 +420,11 @@ computation. Full treatment is in Chapter 17.
 - **BQP.** Bounded-error Quantum Polynomial time. The class of
   decision problems solvable by a uniform family of polynomial-size
   quantum circuits with bounded error probability. The quantum
-  analogue of BPP. See Chapter 17.
+  analog of BPP. See Chapter 17.
 - **BQP vs PH question.** Whether $\mathrm{BQP}$ is contained in
   the polynomial hierarchy. Raz–Tal (2019) gave an oracle
   separation, providing strong evidence that BQP is not contained
-  in PH relative to oracles; the unrelativised question is open.
+  in PH relative to oracles; the unrelativized question is open.
   See Chapter 17.
 - **NP.** Nondeterministic Polynomial time. Decision problems
   whose "yes" instances admit a polynomial-length classical
@@ -439,13 +439,13 @@ computation. Full treatment is in Chapter 17.
   baseline. See Chapter 17.
 - **PH.** The polynomial hierarchy
   $\mathrm{P} \subseteq \mathrm{NP} \subseteq \Sigma_2^{\mathrm{P}} \subseteq \cdots$.
-  Generalises NP by allowing alternating quantifiers. See Chapter 17.
+  Generalizes NP by allowing alternating quantifiers. See Chapter 17.
 - **Post-selection.** Conditioning on a measurement outcome of
   vanishingly small probability. The class $\mathrm{PostBQP}$
   equals $\mathrm{PP}$ (Aaronson 2005), which is why post-selection
   is a productive theoretical device but not a physical one. See
   Chapter 17.
-- **QMA.** Quantum Merlin–Arthur. The quantum analogue of NP: yes
+- **QMA.** Quantum Merlin–Arthur. The quantum analog of NP: yes
   instances admit a polynomial-size quantum witness that a quantum
   verifier accepts with high probability. See Chapter 17.
 - **QMA-hard.** Hard for QMA under polynomial-time (or quantum
@@ -458,7 +458,7 @@ computation. Full treatment is in Chapter 17.
   and Chapter 17.
 - **Space complexity.** The number of qubits (and ancillas)
   required by a quantum algorithm as a function of input size. The
-  quantum analogue of classical space; tightly entangled with
+  quantum analog of classical space; tightly entangled with
   reversibility and uncomputation. See Chapter 17.
 - **Time complexity.** Asymptotic gate count of a uniform family
   of quantum circuits solving a problem, as a function of input
@@ -485,8 +485,8 @@ treatment is in Chapter 23 (compilation and tooling), Chapter 24
   ($4^n = 2^{2n}$) — but it handles noise channels natively. See
   Chapter 24.
 - **Noise model.** A specification of the channels applied after
-  each gate (depolarising, thermal, readout) used by simulators to
-  reproduce device behaviour. See Chapter 18 and Chapter 24.
+  each gate (depolarizing, thermal, readout) used by simulators to
+  reproduce device behavior. See Chapter 18 and Chapter 24.
 - **OpenQASM.** Open Quantum Assembly Language; a textual
   representation of quantum circuits at the gate level. OpenQASM 3
   adds pulse-level extensions and classical control flow. See
@@ -497,12 +497,12 @@ treatment is in Chapter 23 (compilation and tooling), Chapter 24
   through a plugin interface. See Chapter 23.
 - **Primitive (Sampler).** A high-level execution primitive that
   returns shot-level bit-string samples (or quasi-probabilities)
-  from a parametrised circuit. The lower-friction interface for
+  from a parametrized circuit. The lower-friction interface for
   measurement-distribution-based algorithms. See Chapter 23 and
   Chapter 26.
 - **Primitive (Estimator).** A high-level execution primitive that
   returns the expectation value $\langle H\rangle$ of a Hermitian
-  observable $H$ on the state prepared by a parametrised circuit.
+  observable $H$ on the state prepared by a parametrized circuit.
   The interface VQE-style algorithms target. See Chapter 23 and
   Chapter 26.
 - **Pulse-level control.** Programming the physical-layer
@@ -522,7 +522,7 @@ treatment is in Chapter 23 (compilation and tooling), Chapter 24
   precision — so the practical ceiling is around $n = 30$ on a
   workstation and the mid-$30$s on large-memory servers. See
   Chapter 24.
-- **Stim.** A specialised high-performance stabiliser-circuit
+- **Stim.** A specialized high-performance stabilizer-circuit
   simulator (Gidney 2021) used for surface-code research and
   decoder benchmarking. Simulates Clifford circuits in polynomial
   time. See Chapter 24.
@@ -533,7 +533,7 @@ treatment is in Chapter 23 (compilation and tooling), Chapter 24
   statevector-simulator ceiling for such circuits. See Chapter 24.
 - **Transpilation.** Rewriting a circuit so that it conforms to a
   backend's native gate set, connectivity, and timing constraints,
-  while attempting to minimise depth, gate count, or expected
+  while attempting to minimize depth, gate count, or expected
   error. See Chapter 23.
 
 ---

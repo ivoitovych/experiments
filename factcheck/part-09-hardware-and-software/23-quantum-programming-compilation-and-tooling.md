@@ -3,9 +3,9 @@
 Mirrors `book/part-09-hardware-and-software/23-quantum-programming-compilation-and-tooling.md`.
 Extraction pass 2026-05 — claims identified and anchored; verification still OPEN.
 
-## §23.1 — OpenQASM 3 as IBM runtime serialisation format
+## §23.1 — OpenQASM 3 as IBM runtime serialization format
 
-- **Claim** (anchor): "a Qiskit circuit is typically serialised to OpenQASM 3 before it leaves the client, and the IBM runtime parses that text into its own internal representation before scheduling"
+- **Claim** (anchor): "a Qiskit circuit is typically serialized to OpenQASM 3 before it leaves the client, and the IBM runtime parses that text into its own internal representation before scheduling"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -18,9 +18,9 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
 
-## §23.2 — OpenQASM 3 finalisation date
+## §23.2 — OpenQASM 3 finalization date
 
-- **Claim** (anchor): "OpenQASM 3, finalised in 2021 and now the standard target as of 2026"
+- **Claim** (anchor): "OpenQASM 3, finalized in 2021 and now the standard target as of 2026"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -28,7 +28,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.2 — OpenQASM 3 new features
 
-- **Claim** (anchor): "typed classical variables, control flow (`if`, `while`, `for`), real-time arithmetic on measurement outcomes, parameterised gate definitions, explicit timing (`delay`, `box`, `duration`), and pulse-level extensions via `defcal`"
+- **Claim** (anchor): "typed classical variables, control flow (`if`, `while`, `for`), real-time arithmetic on measurement outcomes, parameterized gate definitions, explicit timing (`delay`, `box`, `duration`), and pulse-level extensions via `defcal`"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -118,7 +118,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.4 — Cirq GridQubit design
 
-- **Claim** (anchor): "Cirq's design emphasises gate-level circuit construction with explicit qubit objects (a `GridQubit` knows its physical position)"
+- **Claim** (anchor): "Cirq's design emphasizes gate-level circuit construction with explicit qubit objects (a `GridQubit` knows its physical position)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -153,7 +153,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.4 — tket interoperability
 
-- **Claim** (anchor): "pytket parses circuits from Qiskit, Cirq, OpenQASM, Quil, and others, applies a uniformly excellent set of optimisation passes, and emits circuits for almost any backend"
+- **Claim** (anchor): "pytket parses circuits from Qiskit, Cirq, OpenQASM, Quil, and others, applies a uniformly excellent set of optimization passes, and emits circuits for almost any backend"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -219,9 +219,9 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: Standard decomposition; could also be verified by derivation/convention.
 
-## §23.6 — Qiskit transpile API and optimisation levels
+## §23.6 — Qiskit transpile API and optimization levels
 
-- **Claim** (anchor): "In Qiskit the entry point is `transpile(circuit, backend, optimization_level=N)`. Level 0 only does the bare-minimum legality fixes; level 1 is the default; level 3 runs heavier optimisation passes and is what most published benchmarks use"
+- **Claim** (anchor): "In Qiskit the entry point is `transpile(circuit, backend, optimization_level=N)`. Level 0 only does the bare-minimum legality fixes; level 1 is the default; level 3 runs heavier optimization passes and is what most published benchmarks use"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -327,15 +327,15 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Theoretical claim linking DD to NMR; well-known but verify the Magnus expansion characterisation.
+- **Comment**: Theoretical claim linking DD to NMR; well-known but verify the Magnus expansion characterization.
 
 ## §23.10 — Qiskit PadDynamicalDecoupling and tket DD
 
-- **Claim** (anchor): "Both Qiskit (`PadDynamicalDecoupling`) and tket apply DD automatically at high optimisation levels"
+- **Claim** (anchor): "Both Qiskit (`PadDynamicalDecoupling`) and tket apply DD automatically at high optimization levels"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: API name and default behaviour; perishable.
+- **Comment**: API name and default behavior; perishable.
 
 ## §23.10 — Pauli twirling implementation
 
@@ -420,9 +420,9 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: Historical claim; verify against published rebuttals (e.g., Pan & Zhang 2022 or similar).
 
-## §23.12 — stim stabiliser simulator
+## §23.12 — stim stabilizer simulator
 
-- **Claim** (anchor): "Standard in `stim` (the de facto stabiliser simulator since 2021, by Craig Gidney) and Qiskit's `Clifford` class"
+- **Claim** (anchor): "Standard in `stim` (the de facto stabilizer simulator since 2021, by Craig Gidney) and Qiskit's `Clifford` class"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -453,7 +453,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.13 — Amazon Braket Hybrid Jobs
 
-- **Claim** (anchor): "Amazon Braket Hybrid Jobs ship a containerised classical workload to AWS adjacent to the QPU"
+- **Claim** (anchor): "Amazon Braket Hybrid Jobs ship a containerized classical workload to AWS adjacent to the QPU"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

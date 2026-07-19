@@ -27,13 +27,13 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: Attributes the phrase "spooky action at a distance" to Einstein and states he did not endorse it as a description of QM.
 
-## §35.2 — No-signalling: Bob's reduced state independent of Alice's measurement
+## §35.2 — No-signaling: Bob's reduced state independent of Alice's measurement
 
 - **Claim** (anchor): "of which basis she chose, and of what outcome she got — provided Bob does not learn the outcome through a separate classical channel"
 - **Method**: derivation
 - **Source**: → §10.6
 - **Verified**: — · **Verdict**: open
-- **Comment**: Mathematical no-signalling result; cross-references §10.6 for the formal proof. Bob's reduced state is independent of Alice's measurement; anchor on prose after the inline math.
+- **Comment**: Mathematical no-signaling result; cross-references §10.6 for the formal proof. Bob's reduced state is independent of Alice's measurement; anchor on prose after the inline math.
 
 ## §35.3 — Collapse postulate reference (Postulate 3, §5.4)
 
@@ -61,11 +61,11 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §35.4 — Ozawa 2003 and Branciard 2013 error-disturbance inequalities
 
-- **Claim** (anchor): "Ozawa 2003, Branciard 2013, and others) — that formalise the Heisenberg–microscope intuition about measurement disturbance. They are quantitatively distinct from the standard relation and are an active research area"
+- **Claim** (anchor): "Ozawa 2003, Branciard 2013, and others) — that formalize the Heisenberg–microscope intuition about measurement disturbance. They are quantitatively distinct from the standard relation and are an active research area"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Names Ozawa (2003) and Branciard (2013) as authors of formalised error-disturbance inequalities distinct from the standard uncertainty relation.
+- **Comment**: Names Ozawa (2003) and Branciard (2013) as authors of formalized error-disturbance inequalities distinct from the standard uncertainty relation.
 
 ## §35.5 — EPR (1935) argument for incompleteness of QM
 
@@ -107,13 +107,13 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: Attributes the many-worlds / relative-state interpretation to Everett; describes no-collapse universal wavefunction thesis.
 
-## §35.6 — Many-worlds Born-rule derivation programme (Deutsch, Wallace)
+## §35.6 — Many-worlds Born-rule derivation program (Deutsch, Wallace)
 
-- **Claim** (anchor): "Deriving the Born rule from many-worlds rather than postulating it is an active research programme (Deutsch, Wallace, decision-theoretic arguments)"
+- **Claim** (anchor): "Deriving the Born rule from many-worlds rather than postulating it is an active research program (Deutsch, Wallace, decision-theoretic arguments)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Attributes the decision-theoretic Born-rule derivation programme to Deutsch and Wallace.
+- **Comment**: Attributes the decision-theoretic Born-rule derivation program to Deutsch and Wallace.
 
 ## §35.6 — de Broglie–Bohm pilot wave: nonlocality in particle velocity
 
@@ -129,7 +129,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Attributes QBism / Quantum Bayesianism and its subjective-probability reading of the wavefunction to the QBism programme.
+- **Comment**: Attributes QBism / Quantum Bayesianism and its subjective-probability reading of the wavefunction to the QBism program.
 
 ## §35.6 — Consistent histories: Griffiths, Omnès, Gell-Mann–Hartle
 
@@ -149,7 +149,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §35.6 — Objective collapse (GRW, Penrose, CSL) as empirically distinguishable
 
-- **Claim** (anchor): "Objective collapse (GRW, Penrose, continuous spontaneous localisation). Add a small nonlinear stochastic term to the Schrödinger equation that causes spontaneous, observer-independent collapse"
+- **Claim** (anchor): "Objective collapse (GRW, Penrose, continuous spontaneous localization). Add a small nonlinear stochastic term to the Schrödinger equation that causes spontaneous, observer-independent collapse"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -177,7 +177,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Characterises random-circuit sampling, boson sampling, and IQP sampling as the best evidence for quantum advantage outside the oracle model.
+- **Comment**: Characterizes random-circuit sampling, boson sampling, and IQP sampling as the best evidence for quantum advantage outside the oracle model.
 
 ## §35.8 — QRAM loading overhead eliminates end-to-end speedup
 
@@ -217,7 +217,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Prose anchor for Grover's quadratic (not exponential) speedup characterisation.
+- **Comment**: Prose anchor for Grover's quadratic (not exponential) speedup characterization.
 
 ## §35.11 — Parity function has same classical and quantum query complexity
 

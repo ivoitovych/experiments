@@ -29,7 +29,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §34.2 — Trotterization as finite-difference approximation
 
-- **Claim** (anchor): "Trotterization (Chapter 16) is the same finite-difference approximation that DSP engineers use when discretising a continuous filter"
+- **Claim** (anchor): "Trotterization (Chapter 16) is the same finite-difference approximation that DSP engineers use when discretizing a continuous filter"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -91,9 +91,9 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: Claims correction of ⌊(n-k)/2⌋ symbol errors in an (n,k) block. Standard coding-theory result.
 
-## §34.6 — Stabiliser codes correct up to ⌊(d-1)/2⌋ qubit errors
+## §34.6 — Stabilizer codes correct up to ⌊(d-1)/2⌋ qubit errors
 
-- **Claim** (anchor): "A quantum stabiliser code (Chapter 19) corrects up to"
+- **Claim** (anchor): "A quantum stabilizer code (Chapter 19) corrects up to"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

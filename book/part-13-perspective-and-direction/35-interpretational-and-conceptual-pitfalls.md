@@ -24,7 +24,7 @@ practitioner does not need to settle the measurement problem, pick
 between Copenhagen and many-worlds, or take a side on $\psi$-ontic
 versus $\psi$-epistemic (is the wavefunction a real physical thing, or a
 summary of someone's knowledge? — §35.13) before writing a circuit. What they need is
-to recognise which slogans are harmless shorthand, which slogans
+to recognize which slogans are harmless shorthand, which slogans
 silently corrupt intuition about what a quantum computer can do, and
 where the underlying math actually constrains what claims can be
 made. The interpretations zoo gets a tour in §35.6 — not to advocate
@@ -33,7 +33,7 @@ and so cannot be settled by experiment alone.
 
 > **How to read this chapter.** §§35.1–35.4 cover the four slogans
 > that produce the most working-engineer mistakes (parallelism,
-> entanglement-as-signalling, collapse-as-mechanism, uncertainty-as-
+> entanglement-as-signaling, collapse-as-mechanism, uncertainty-as-
 > measurement-disturbance). §35.5 walks through Schrödinger's cat,
 > the EPR pair, and Wigner's friend — the textbook thought experiments
 > and what they actually establish. §35.6 surveys the interpretations
@@ -61,7 +61,7 @@ The actual computational engine is *interference*, not parallelism
 (Chapter 10, §10.2). A useful quantum algorithm is one where, after
 encoding the problem, a structured sequence of unitaries arranges
 the amplitudes so that wrong answers destructively cancel and the
-right answer constructively reinforces. The classical analogue would
+right answer constructively reinforces. The classical analog would
 be a Monte Carlo computation in which negative probabilities were
 allowed and made paths cancel — except that quantum amplitudes are
 complex numbers and the cancellations are real.
@@ -80,7 +80,7 @@ period structure. Without that amplification step, the
 The slogan to replace "quantum parallelism" with is **structured
 interference**. It is less marketable and considerably more accurate.
 
-## 35.2 Entanglement Does Not Allow Signalling
+## 35.2 Entanglement Does Not Allow Signaling
 
 A second class of confusion treats entanglement as a covert channel.
 The phrasing "spooky action at a distance" — Einstein's complaint,
@@ -106,9 +106,9 @@ pool their classical records*. The classical channel needed to compare
 records is subluminal, and so is the entire information flow.
 
 The slogan to replace "spooky action at a distance" with is
-**nonlocal correlation without nonlocal signalling**. The first half
+**nonlocal correlation without nonlocal signaling**. The first half
 is real and Bell-tested; the second half is what relativity demands
-and what the no-signalling theorem delivers.
+and what the no-signaling theorem delivers.
 
 A common subtle confusion: the *post-measurement* state on Bob's side,
 conditioned on Alice's outcome, *does* depend on Alice's measurement.
@@ -117,7 +117,7 @@ classical channel, Bob's accessible description is the unconditional
 average, which is invariant. This is the same distinction as two
 sealed envelopes prepared with perfectly correlated cards and mailed
 to different cities: opening one instantly tells you what the other
-contains, but nothing travelled between the cities, and no message
+contains, but nothing traveled between the cities, and no message
 can be sent by choosing *when* to open an envelope. Correlation is
 not communication.
 
@@ -133,7 +133,7 @@ of §5.3, that switches on under unspecified conditions.
 
 The narrower and more defensible reading is that the collapse rule
 is an **updating rule on the observer's description** — a Bayesian
-conditionalisation on the measurement outcome. The state is the
+conditionalization on the measurement outcome. The state is the
 generator of measurement statistics; once a measurement has occurred
 and an outcome has been recorded, the rule for *future* statistics
 is given by the projected state. Whether that update reflects a
@@ -180,7 +180,7 @@ not about an act of measurement.
 
 Second, there *is* a separate, narrower set of results — error-
 disturbance inequalities (Ozawa 2003, Branciard 2013, and others) —
-that formalise the Heisenberg–microscope intuition about measurement
+that formalize the Heisenberg–microscope intuition about measurement
 disturbance. They are quantitatively distinct from the standard
 relation and are an active research area. Conflating the two
 produces a hybrid slogan that does justice to neither.
@@ -284,7 +284,7 @@ each with Born-rule weighted measure. Mathematically the cleanest
 interpretation; ontologically the most extravagant (one branches
 per measurement event, all real). Deriving the Born rule *from*
 many-worlds rather than postulating it is an active research
-programme (Deutsch, Wallace, decision-theoretic arguments).
+program (Deutsch, Wallace, decision-theoretic arguments).
 
 **de Broglie–Bohm pilot wave.** Particles always have definite
 positions; the wavefunction is a separate "pilot wave" that guides
@@ -314,12 +314,12 @@ formalism prohibits combining them naively.
 
 **Transactional interpretation** (Cramer). Quantum events are
 two-way "handshakes" between emitter and absorber, with offer waves
-travelling forward and confirmation waves backward in time. Removes
+traveling forward and confirmation waves backward in time. Removes
 the appearance of preferred forward time direction in measurement
 but adds advanced waves that have no other operational role.
 
 **Objective collapse** (GRW, Penrose, continuous spontaneous
-localisation). Add a small nonlinear stochastic term to the
+localization). Add a small nonlinear stochastic term to the
 Schrödinger equation that causes spontaneous, observer-independent
 collapse of macroscopic superpositions at a rate set by a new
 fundamental parameter. *Empirically distinguishable* from standard
@@ -339,7 +339,7 @@ one in the literature — gives identical predictions for every
 quantum circuit, every quantum-key-distribution protocol, every
 error-correction code, every variational ansatz this book has
 described. If two interpretations predicted different observable
-behaviour they would not be interpretations of the same theory;
+behavior they would not be interpretations of the same theory;
 they would be different theories.
 
 Pedagogically, yes. Interpretations *shape the metaphors a
@@ -428,7 +428,7 @@ classical baseline is being benchmarked against?
 
 Bell-inequality violations get described in popular accounts as
 "faster-than-light influences" or "violations of causality". They
-are not. The mathematics of §10.6 forbids signalling, and
+are not. The mathematics of §10.6 forbids signaling, and
 relativistic quantum field theory is constructed so that spacelike-
 separated measurements *commute*: nothing observable on one side
 depends on what happened on the other side, conditional only on
@@ -439,13 +439,13 @@ variable* model can reproduce the predictions of quantum mechanics.
 The locality assumption Bell uses is the assumption that outcomes
 on one side depend only on settings on that side plus pre-existing
 correlations. Quantum mechanics satisfies a weaker locality —
-no-signalling — but not the stronger Bell-locality. Causality, in
+no-signaling — but not the stronger Bell-locality. Causality, in
 the relativistic sense of "no signal travels faster than light", is
 preserved. Bell-locality, in the deeper sense of "all correlations
 have a local common-cause explanation", is not.
 
 The slogan upgrade: **quantum mechanics violates Bell-locality but
-not no-signalling**. Causality is fine; classical realism is not.
+not no-signaling**. Causality is fine; classical realism is not.
 
 ## 35.10 "Quantum Information Is Destroyed by Measurement"
 
@@ -611,7 +611,7 @@ traces — predicts every measurable consequence of quantum mechanics,
 and every popular slogan that contradicts the formalism is a slogan
 to be retired. The interpretations zoo is real but operationally
 downstream of the math; the foundational results (PBR, Bell,
-no-signalling) constrain the ontology you can tell but do not
+no-signaling) constrain the ontology you can tell but do not
 change the algorithms you can write. Chapter 36 takes the next step
 outward: how to evaluate quantitative *claims* — about benchmarks,
 speedups, hardware milestones — using the same discipline that this

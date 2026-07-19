@@ -31,7 +31,7 @@ reference and §4.16 as the in-context checklist.
 > (probability / measurement) for later reference. The Greek-letter
 > conventions and circuit-symbol legend in §N.5 are worth a single
 > read-through before the first circuit diagram appears in Chapter 6.
-> Nothing here needs to be memorised — it just needs to be findable
+> Nothing here needs to be memorized — it just needs to be findable
 > when a later formula does not type-check.
 
 ## N.1 Mathematical Notation
@@ -69,7 +69,7 @@ primitive $N$-th root of unity (used in the Fourier transform of
 §4.13). Planck's reduced constant $\hbar$ appears at the
 quantum-mechanics boundary; algorithmic chapters set $\hbar = 1$ so
 that the Schrödinger evolution reads $U(t) = e^{-iHt}$ with no
-prefactor (here $H$ is the Hamiltonian, the energy operator formalised
+prefactor (here $H$ is the Hamiltonian, the energy operator formalized
 in Chapter 5 — not the Hadamard gate $H$ of §N.2; context always
 disambiguates the two).
 
@@ -166,7 +166,7 @@ S = \begin{pmatrix} 1 & 0 \\\\ 0 & i \end{pmatrix},
 T = \begin{pmatrix} 1 & 0 \\\\ 0 & e^{i\pi/4} \end{pmatrix}.
 $$
 
-The full gate catalogue with two-qubit gates, rotation families, and
+The full gate catalog with two-qubit gates, rotation families, and
 their decompositions lives in
 [Appendix B](../99-back-matter/appendix-b-common-gates.md).
 
@@ -226,7 +226,7 @@ $$
 - $\langle\phi | A | \psi\rangle$ — **matrix element** of $A$ between
   $|\phi\rangle$ and $|\psi\rangle$. A complex scalar.
 - $\langle O\rangle_\psi = \langle\psi | O | \psi\rangle$ —
-  **expectation value** of an observable $O$ in the normalised pure
+  **expectation value** of an observable $O$ in the normalized pure
   state $|\psi\rangle$. Real whenever $O = O^\dagger$.
 
 **Single-qubit computational basis.** Column-vector form on
@@ -355,7 +355,7 @@ the book:
   produces continues as a double-line wire downstream.
 - **Initial state.** A label $|0\rangle$ at the start of a wire means
   the qubit is prepared in the computational $|0\rangle$ state at
-  the beginning of the circuit. Unlabelled wires default to
+  the beginning of the circuit. Unlabeled wires default to
   $|0\rangle$ unless the surrounding prose says otherwise.
 
 **Symbols used in prose.** The most common controlled gates have
@@ -379,7 +379,7 @@ explicit symbolic names:
   readout are spelled out at
   [§4.13](../part-02-formalism/04-mathematical-background.md#413-fourier-transform-basics).
 - $U^\dagger$ as a circuit block — the inverse of a unitary gate
-  $U$, drawn as $U$ with a dagger superscript or as a box labelled
+  $U$, drawn as $U$ with a dagger superscript or as a box labeled
   $U^{-1}$.
 
 ## N.6 Probability and Measurement Notation
@@ -411,7 +411,7 @@ observable $O$ with spectral decomposition $O = \sum_\lambda \lambda\\, P_\lambd
   picture, "projector" always means orthogonal projector unless
   stated otherwise.
 - $p(\lambda) = \langle\psi | P_\lambda | \psi\rangle$ — **Born
-  rule** probability of outcome $\lambda$ on a normalised pure
+  rule** probability of outcome $\lambda$ on a normalized pure
   state $|\psi\rangle$.
 - $P_\lambda |\psi\rangle / \sqrt{p(\lambda)}$ — post-measurement
   state, defined when $p(\lambda) > 0$.

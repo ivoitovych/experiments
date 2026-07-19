@@ -215,7 +215,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Source**: Barnum, Caves, Fuchs, Jozsa & Schumacher, Phys. Rev. Lett. 76 (1996)
 - **Verified**: — · **Verdict**: open
 
-## §12.8 — No-broadcasting characterises commuting ensembles
+## §12.8 — No-broadcasting characterizes commuting ensembles
 
 - **Claim** (anchor): "No physical channel can do this for an arbitrary input ensemble unless every state in the ensemble commutes with every other"
 - **Method**: external
@@ -231,7 +231,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §12.9 — Schumacher compression theorem attribution and date
 
-- **Claim** (anchor): "Schumacher's theorem (1995) is the quantum analogue of Shannon's source-coding theorem and the source of the *qubit* as a unit"
+- **Claim** (anchor): "Schumacher's theorem (1995) is the quantum analog of Shannon's source-coding theorem and the source of the *qubit* as a unit"
 - **Method**: external
 - **Source**: Schumacher, "Quantum coding," Phys. Rev. A 51 (1995)
 - **Verified**: — · **Verdict**: open
@@ -281,7 +281,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §12.10 — Bennett–Shor–Smolin–Thapliyal theorem for entanglement-assisted capacity (1999, 2002)
 
-- **Claim** (anchor): "The Bennett–Shor–Smolin–Thapliyal theorem (1999, 2002) shows this formula requires *no* regularisation — entanglement assistance restores single-letter additivity"
+- **Claim** (anchor): "The Bennett–Shor–Smolin–Thapliyal theorem (1999, 2002) shows this formula requires *no* regularization — entanglement assistance restores single-letter additivity"
 - **Method**: external
 - **Source**: Bennett, Shor, Smolin & Thapliyal, IEEE Trans. Inf. Theory 48 (2002); earlier conference version 1999
 - **Verified**: — · **Verdict**: open

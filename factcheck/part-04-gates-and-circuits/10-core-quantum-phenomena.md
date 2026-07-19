@@ -137,7 +137,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: Standard framing; traced to Bennett & Brassard 1984 and subsequent QKD security analyses.
 
-## §10.6 — No-signalling: local measurements cannot change remote statistics
+## §10.6 — No-signaling: local measurements cannot change remote statistics
 
 - **Claim** (anchor): "local operations and measurements on one half of a multipartite state cannot change the local statistics on the other half"
 - **Method**: derivation
@@ -151,13 +151,13 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Source**: → §7.11 partial trace
 - **Verified**: — · **Verdict**: open
 
-## §10.6 — Teleportation requires two classical bits because of no-signalling
+## §10.6 — Teleportation requires two classical bits because of no-signaling
 
-- **Claim** (anchor): "Teleportation (§7.12) needs the two classical bits Alice sends precisely because of no-signalling: the quantum correlations alone do not carry the message."
+- **Claim** (anchor): "Teleportation (§7.12) needs the two classical bits Alice sends precisely because of no-signaling: the quantum correlations alone do not carry the message."
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Bennett et al. 1993; the 2-cbit necessity is a direct consequence of no-signalling.
+- **Comment**: Bennett et al. 1993; the 2-cbit necessity is a direct consequence of no-signaling.
 
 ## §10.7 — Kochen–Specker theorem: no consistent value assignment for d ≥ 3
 
@@ -277,11 +277,11 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: Standard result; see Peres 1996 separability criterion; Choi 1975 on complete positivity.
 
-## §10.12 — Depolarising channel Kraus operator equivalence
+## §10.12 — Depolarizing channel Kraus operator equivalence
 
 - **Claim** (anchor): "Equivalently — using"
 - **Method**: derivation
-- **Source**: → §10.12 Kraus-operator derivation for depolarising channel
+- **Source**: → §10.12 Kraus-operator derivation for depolarizing channel
 - **Verified**: — · **Verdict**: open
 - **Comment**: The identity I/2 = (ρ + XρX + YρY + ZρZ)/4 is verified internally.
 
@@ -310,7 +310,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §10.13 — Stinespring dilation theorem
 
-- **Claim** (anchor): "Every CPTP map can be realised as unitary evolution on a system + ancilla followed by tracing out the ancilla."
+- **Claim** (anchor): "Every CPTP map can be realized as unitary evolution on a system + ancilla followed by tracing out the ancilla."
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

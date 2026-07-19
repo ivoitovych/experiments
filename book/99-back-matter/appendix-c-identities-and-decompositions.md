@@ -83,7 +83,7 @@ are in §4.8.
   $(A \otimes B)^* = A^* \otimes B^*$.
 - Inverse: if $A$ and $B$ are invertible,
   $(A \otimes B)^{-1} = A^{-1} \otimes B^{-1}$.
-- Trace factorises:
+- Trace factorizes:
   $\mathrm{tr}(A \otimes B) = \mathrm{tr}(A)\\, \mathrm{tr}(B)$.
 - Determinant: if $A$ is $m \times m$ and $B$ is $n \times n$, then
   $\det(A \otimes B) = (\det A)^n (\det B)^m$.
@@ -91,7 +91,7 @@ are in §4.8.
   $\langle u_1 \otimes v_1,\\, u_2 \otimes v_2\rangle =
   \langle u_1, u_2\rangle\\, \langle v_1, v_2\rangle$, hence
   $\\|u \otimes v\\| = \\|u\\|\\, \\|v\\|$.
-- Outer product factorises:
+- Outer product factorizes:
   $(|u\rangle \otimes |v\rangle)(\langle u'| \otimes \langle v'|) =
   |u\rangle\langle u'| \otimes |v\rangle\langle v'|$.
 - Bilinearity (mixing rules):
@@ -116,7 +116,7 @@ are in §4.8.
 
 The commutator and its sibling the anticommutator measure the failure of
 operators to commute. The general theory and the link between commuting and
-simultaneous diagonalisation are in §4.5; this section lists the working
+simultaneous diagonalization are in §4.5; this section lists the working
 formulae.
 
 - Definition of the commutator: $[A, B] = AB - BA$. Operators **commute**
@@ -149,11 +149,11 @@ formulae.
   tensor factors always commute.
 - Commutator of tensor products:
   $[A \otimes B,\\, C \otimes D] = (AC) \otimes (BD) - (CA) \otimes (DB)$.
-- Simultaneous diagonalisation. A **pairwise commuting** family of normal
+- Simultaneous diagonalization. A **pairwise commuting** family of normal
   operators admits a single orthonormal basis in which every member is
   diagonal — see §4.5 and the spectral statement in §4.7. The Pauli
   $\\{X, Y, Z\\}$ pairwise anticommute, so no two of them are simultaneously
-  diagonalisable.
+  diagonalizable.
 
 ## C.4 Common Gate Identities
 
@@ -273,7 +273,7 @@ single-axis-swap variants (Z–X–Z, X–Y–X) work analogously.
 
 - The four angles are determined by $U$ up to the usual Euler-angle
   ambiguities at $\gamma = 0$ or $\pi$.
-- Specialising the angles recovers every single-qubit gate in §B.1–B.4: for
+- Specializing the angles recovers every single-qubit gate in §B.1–B.4: for
   example $H = e^{i\pi/2}\\, R_y(\pi/2)\\, R_z(\pi)$ (the Z–Y–Z form with
   $\beta = 0$), and $X = e^{i\pi/2}\\, R_x(\pi)$.
 - The $U_3(\theta, \phi, \lambda)$ Qiskit form (§B.4) packages the same
@@ -307,7 +307,7 @@ zero) saturate strictly less. The result goes through the KAK form above
 and is given in §8.14.
 
 - Two-CNOT decomposition is enough iff the KAK coefficient vector
-  $(c_x, c_y, c_z)$ has $c_z = 0$ after relabelling axes.
+  $(c_x, c_y, c_z)$ has $c_z = 0$ after relabeling axes.
 - One-CNOT decomposition is enough iff $(c_x, c_y, c_z) = (\pi/4, 0, 0)$ — i.e. $U$ is locally equivalent to CNOT itself. (Having $c_y = c_z = 0$ alone is *not* sufficient: a partial controlled-phase has that form yet needs two CNOTs; see §8.14.)
 - Zero CNOTs is enough iff $U = A_1 \otimes A_2$.
 

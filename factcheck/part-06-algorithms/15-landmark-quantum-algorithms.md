@@ -28,13 +28,13 @@ Seeded from ledger Pass 2 and Pass 6 (2026-05-28).
 
 - **Claim** (anchor): ~50-orbital active space → $10^9$–$10^{12}$ shots, several days of device time
 - **Method**: external
-- **Source**: Cao–Romero–Aspuru-Guzik (2019) chemistry-VQE review; subsequent shot-reduction work (Pauli grouping, classical shadows, derandomisation)
+- **Source**: Cao–Romero–Aspuru-Guzik (2019) chemistry-VQE review; subsequent shot-reduction work (Pauli grouping, classical shadows, derandomization)
 - **Verified**: 2026-05 · **Verdict**: confirmed (order-of-magnitude defensible)
 - **Comment**: **open** — a specific 2024–2026 paper for this shot-budget estimate is still wanted (carried over from the ledger's open-items list).
 
 ## §15.10 — QML state of the field
 
-- **Claim** (anchor): dequantisation of HHL-style ML; barren plateaus in VQNNs; modest empirical quantum-kernel advantage; structural advantages for learning *quantum* data
+- **Claim** (anchor): dequantization of HHL-style ML; barren plateaus in VQNNs; modest empirical quantum-kernel advantage; structural advantages for learning *quantum* data
 - **Method**: external
 - **Source**: Tang (STOC 2019) and follow-ups; barren-plateau literature (McClean et al. 2018, Cerezo et al. 2021); Huang et al. shadow-tomography lines
 - **Verified**: 2026-05 · **Verdict**: confirmed

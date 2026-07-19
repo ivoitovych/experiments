@@ -57,7 +57,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Empirical claim about the aggregate literature comparing D-Wave to classical optimisers; requires citation to benchmark studies.
+- **Comment**: Empirical claim about the aggregate literature comparing D-Wave to classical optimizers; requires citation to benchmark studies.
 
 ## §32.3 — MBQC named "one-way model" after Raussendorf and Briegel, 2001
 

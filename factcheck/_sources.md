@@ -28,12 +28,12 @@ section files via short keys.
 - **Yin et al. 2017** — satellite-based entanglement distribution, *Science*
   (2017). Companion: *Science* 356, 1140 (2017).
 - **Cao–Romero–Aspuru-Guzik 2019** — chemistry-VQE review.
-- **Tang STOC 2019** — dequantisation of recommendation-system / HHL-style ML.
+- **Tang STOC 2019** — dequantization of recommendation-system / HHL-style ML.
 - **McClean et al. 2018; Cerezo et al. 2021** — barren-plateau literature.
 
 ## Standards bodies
 
-- **NIST FIPS 203 / 204 / 205** — finalised 2024-08-13 (ML-KEM / ML-DSA /
+- **NIST FIPS 203 / 204 / 205** — finalized 2024-08-13 (ML-KEM / ML-DSA /
   SLH-DSA). Press: "First 3 Finalized Post-Quantum Encryption Standards".
 - **NIST FIPS 206** — FN-DSA (Falcon); IPD submitted Aug 2025; final expected
   late 2026 / early 2027.

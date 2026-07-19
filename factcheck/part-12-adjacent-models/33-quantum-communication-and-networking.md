@@ -19,7 +19,7 @@ Seeded from ledger Pass 4 (2026-05-28).
 
 ## §33.4 — Twin-field QKD > 1000 km
 
-- **Claim** (anchor): "more than $1000\,\mathrm{km}$ of installed and ultra-low-loss fibre"
+- **Claim** (anchor): "more than $1000\,\mathrm{km}$ of installed and ultra-low-loss fiber"
 - **Method**: external
 - **Source**: Liu et al., "Experimental Twin-Field QKD Over 1000 km Fiber Distance", *Phys. Rev. Lett.* (2023), arXiv:2303.15795 (1,002 km record)
 - **Verified**: 2026-05 · **Verdict**: confirmed

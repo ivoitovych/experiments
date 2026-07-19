@@ -19,9 +19,9 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: Claims GPU acceleration (cuQuantum, qsim) roughly doubles the qubit capacity over CPU state-vector simulators.
 
-## §26.1 — Stabiliser simulators handle Clifford circuits efficiently
+## §26.1 — Stabilizer simulators handle Clifford circuits efficiently
 
-- **Claim** (anchor): "Stabiliser simulators handle Clifford-only circuits of thousands of qubits in polynomial time"
+- **Claim** (anchor): "Stabilizer simulators handle Clifford-only circuits of thousands of qubits in polynomial time"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -81,7 +81,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Characterisation of Qiskit's maturity and official IBM support is stable; Runtime Primitives design is perishable.
+- **Comment**: Characterization of Qiskit's maturity and official IBM support is stable; Runtime Primitives design is perishable.
 
 ## §26.3 — PennyLane multi-framework integration
 
@@ -99,13 +99,13 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: Vendor-agnostic positioning of tket; perishable as the ecosystem shifts.
 
-## §26.3 — Q# resource estimator characterisation
+## §26.3 — Q# resource estimator characterization
 
 - **Claim** (anchor): "the compiler is sophisticated and the resource estimator is the gold standard for fault-tolerant pre-flighting"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Subjective characterisation ("gold standard") with an implicit external claim about Q# resource estimator capabilities; perishable as other vendors improve resource estimation tools.
+- **Comment**: Subjective characterization ("gold standard") with an implicit external claim about Q# resource estimator capabilities; perishable as other vendors improve resource estimation tools.
 
 ## §26.3 — Qiskit API deprecation between versions
 
@@ -121,7 +121,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Perishable hardware specification for Quantinuum H-series and IonQ systems. The 99.9% figure is a leading-edge claim; scale and gate speed characterisations evolve rapidly.
+- **Comment**: Perishable hardware specification for Quantinuum H-series and IonQ systems. The 99.9% figure is a leading-edge claim; scale and gate speed characterizations evolve rapidly.
 
 ## §26.4 — IBM superconducting device scale and fidelity
 
@@ -137,7 +137,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Perishable: device names, qubit counts, and characterisation of application strengths for neutral-atom platforms.
+- **Comment**: Perishable: device names, qubit counts, and characterization of application strengths for neutral-atom platforms.
 
 ## §26.4 — D-Wave Advantage qubit count
 

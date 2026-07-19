@@ -4,7 +4,7 @@
 
 [← Previous: Chapter 9](09-quantum-circuits.md) · [Table of Contents](../../README.md) · [Next: Chapter 11 →](../part-05-measurement-and-information/11-measurement-theory.md)
 
-Parts 2 and 3 built the formal apparatus: Hilbert spaces and postulates in Chapter 5, the qubit in Chapter 6, multi-qubit composites and entanglement in Chapter 7. Part 4 then introduced gates and circuits as the operational vocabulary the hardware speaks. This chapter is the *phenomenology* synthesis: each of the qualitative features of quantum mechanics that an algorithm designer leans on — superposition, interference, the Born rule, measurement disturbance, no-cloning, no-signalling, contextuality, the Zeno effect, decoherence, mixed states, open-system evolution, channels, and the Kraus representation — gets a tight operational statement and a pointer back to the postulate or theorem that justifies it. Nothing in this chapter is genuinely new; everything is restated in the form algorithm and protocol designers actually use.
+Parts 2 and 3 built the formal apparatus: Hilbert spaces and postulates in Chapter 5, the qubit in Chapter 6, multi-qubit composites and entanglement in Chapter 7. Part 4 then introduced gates and circuits as the operational vocabulary the hardware speaks. This chapter is the *phenomenology* synthesis: each of the qualitative features of quantum mechanics that an algorithm designer leans on — superposition, interference, the Born rule, measurement disturbance, no-cloning, no-signaling, contextuality, the Zeno effect, decoherence, mixed states, open-system evolution, channels, and the Kraus representation — gets a tight operational statement and a pointer back to the postulate or theorem that justifies it. Nothing in this chapter is genuinely new; everything is restated in the form algorithm and protocol designers actually use.
 
 > **How to read this chapter.** The postulates of Chapter 5 (especially §5.4 on measurement) and the entanglement material of Chapter 7 (especially §7.10 Schmidt, §7.11 partial trace) are the operational prerequisites. §§10.1–10.4 are the core that every reader needs; §§10.5–10.7 are the no-go and structural theorems that constrain protocols; §§10.8–10.13 develop the open-system picture that becomes load-bearing in Parts 8 (error correction) and 9 (hardware). Readers who want the algorithm-side of the story without the open-system machinery can skim §§10.9–10.13 and return when reaching Chapter 19.
 
@@ -12,7 +12,7 @@ Parts 2 and 3 built the formal apparatus: Hilbert spaces and postulates in Chapt
 
 A pure state $|\psi\rangle = \sum_x \alpha_x |x\rangle$ is a **superposition** of the basis states $|x\rangle$ whenever more than one of the $\alpha_x$ is nonzero. The popular phrasing "the qubit is in two states at once" is *not* what superposition means; it is at best a verbal stand-in that the formalism contradicts. A qubit in the state $|+\rangle = (|0\rangle + |1\rangle)/\sqrt{2}$ is in exactly one state — namely $|+\rangle$ — which happens to be a non-trivial linear combination of $|0\rangle$ and $|1\rangle$. From the computational basis it looks like a superposition; from the Hadamard basis (§6.5) it is a basis vector.
 
-**Superposition is basis-dependent.** Every state is a superposition with respect to *some* basis (just pick a basis that does not contain it) and a basis vector with respect to *some other* basis. Keep the two ways of "changing basis" distinct. Applying the Hadamard gate to a state is an *active* transformation: $H|0\rangle = |+\rangle$ physically changes the ray. Re-*describing* a fixed state in a different basis is *passive*: nothing physical changes, only the coordinates. The basis-dependence of "superposition" is a fact of the second, passive kind: without touching the system, $|+\rangle$ is a superposition in the $Z$ basis and a basis vector in the $X$ basis. ($H$ is a tempting but treacherous mascot here, because its self-inverse symmetry $HXH = Z$ lets it masquerade as a relabelling — Chapters 4 and 6 keep the active/passive distinction straight.)
+**Superposition is basis-dependent.** Every state is a superposition with respect to *some* basis (just pick a basis that does not contain it) and a basis vector with respect to *some other* basis. Keep the two ways of "changing basis" distinct. Applying the Hadamard gate to a state is an *active* transformation: $H|0\rangle = |+\rangle$ physically changes the ray. Re-*describing* a fixed state in a different basis is *passive*: nothing physical changes, only the coordinates. The basis-dependence of "superposition" is a fact of the second, passive kind: without touching the system, $|+\rangle$ is a superposition in the $Z$ basis and a basis vector in the $X$ basis. ($H$ is a tempting but treacherous mascot here, because its self-inverse symmetry $HXH = Z$ lets it masquerade as a relabeling — Chapters 4 and 6 keep the active/passive distinction straight.)
 
 Two operational consequences. **First**, "is the state in superposition?" is not a meaningful question without specifying a basis; "is the state in superposition with respect to the computational basis?" is. **Second**, what a single shot of measurement returns is one basis label drawn from the Born distribution (§10.3); the amplitudes themselves are not directly observable from a single qubit. Repeated preparation and measurement in *several* bases — the workflow of state tomography (Chapter 11) — is required to reconstruct them.
 
@@ -34,7 +34,7 @@ $$
 H \cdot \tfrac{1}{\sqrt 2}(|0\rangle + |1\rangle) \;=\; \tfrac{1}{2}\bigl[(|0\rangle + |1\rangle) + (|0\rangle - |1\rangle)\bigr] \;=\; |0\rangle.
 $$
 
-The amplitude for $|1\rangle$ cancelled exactly — destructive interference. Classically, two coin flips cannot guarantee returning to the start. Quantumly, the two paths $|0\rangle \to |0\rangle \to |1\rangle$ and $|0\rangle \to |1\rangle \to |1\rangle$ have opposite-sign amplitudes and cancel.
+The amplitude for $|1\rangle$ canceled exactly — destructive interference. Classically, two coin flips cannot guarantee returning to the start. Quantumly, the two paths $|0\rangle \to |0\rangle \to |1\rangle$ and $|0\rangle \to |1\rangle \to |1\rangle$ have opposite-sign amplitudes and cancel.
 
 **Interference is the engine of quantum advantage.** A great many quantum algorithms with known speedups can be read as: prepare a superposition of inputs, evaluate the problem coherently across the superposition (query access and phase kickback doing the real work — not "all inputs at once"), and arrange the gate sequence so that amplitudes for wrong answers destructively interfere and amplitudes for the sought structure constructively interfere. Deutsch–Jozsa, Grover, and the QFT-based subroutines (Part 6) fit this template cleanly; others fit it only loosely — HHL-family solvers *prepare a state* proportional to a solution rather than amplifying "right answers," and sampling or simulation algorithms have different shapes. Read it as the dominant pattern, not a theorem about all advantage. An algorithm that produces a uniform superposition and then measures immediately has gained no computational advantage — no interference occurred between preparation and readout, and the output distribution is the same as classical random sampling (which can still be useful as certifiable private randomness, just not as computation).
 
@@ -68,7 +68,7 @@ Two formal points worth restating. **Non-degenerate** measurements (each $a_k$ d
 
 ## 10.4 Measurement Disturbance
 
-A projective measurement is not a passive read-out; it actively changes the state. Postulate 3 says that after observing outcome $k$, the state collapses to $|k\rangle$ (non-degenerate case) or to the normalised projection $\Pi_k|\psi\rangle/\\|\Pi_k|\psi\rangle\\|$ (degenerate). Information extraction and state disturbance are inseparable.
+A projective measurement is not a passive read-out; it actively changes the state. Postulate 3 says that after observing outcome $k$, the state collapses to $|k\rangle$ (non-degenerate case) or to the normalized projection $\Pi_k|\psi\rangle/\\|\Pi_k|\psi\rangle\\|$ (degenerate). Information extraction and state disturbance are inseparable.
 
 The standard sharpening of this fact is the **uncertainty principle**. For any two observables $A, B$ and any state $|\psi\rangle$,
 
@@ -78,7 +78,7 @@ $$
 
 where $\Delta X = \sqrt{\langle X^2\rangle - \langle X\rangle^2}$ and $[A, B] = AB - BA$. **Incompatible** observables (those with $[A, B] \neq 0$) cannot both have arbitrarily sharp values in any state.
 
-In the continuous-variable setting (Chapter 32), the canonical commutator is $[X, P] = i\hbar I$, which gives Heisenberg's $\Delta X \\, \Delta P \geq \hbar/2$. For qubits the analogue is on the Pauli operators:
+In the continuous-variable setting (Chapter 32), the canonical commutator is $[X, P] = i\hbar I$, which gives Heisenberg's $\Delta X \\, \Delta P \geq \hbar/2$. For qubits the analog is on the Pauli operators:
 
 $$
 [X, Z] \;=\; -2 i Y, \qquad [Y, Z] \;=\; 2 i X, \qquad [X, Y] \;=\; 2 i Z.
@@ -92,15 +92,15 @@ So a state with sharp $Z$ value (an eigenstate of $Z$, i.e. $|0\rangle$ or $|1\r
 
 The **no-cloning theorem** (proved in §5.13) says that no unitary $U$ exists satisfying $U(|\psi\rangle \otimes |0\rangle) = |\psi\rangle \otimes |\psi\rangle$ for every $|\psi\rangle$. The proof is one line: if it worked for two non-orthogonal states $|\psi\rangle$ and $|\phi\rangle$ with $\langle \psi|\phi\rangle \neq 0, 1$, unitarity would demand $\langle \psi|\phi\rangle = \langle \psi|\phi\rangle^2$, a contradiction. Linearity alone is enough; unitarity is a stronger constraint that gives the same conclusion.
 
-**What no-cloning forbids.** Broadcasting an unknown quantum state to many parties; making backup copies of a quantum register; constructing a deterministic state-discrimination device for non-orthogonal states. Each of these would compose into a cloner if it existed. The theorem also rules out one naive route to faster-than-light signalling, in which Alice would use her half of an entangled pair to influence the local statistics observable by Bob (see §10.6).
+**What no-cloning forbids.** Broadcasting an unknown quantum state to many parties; making backup copies of a quantum register; constructing a deterministic state-discrimination device for non-orthogonal states. Each of these would compose into a cloner if it existed. The theorem also rules out one naive route to faster-than-light signaling, in which Alice would use her half of an entangled pair to influence the local statistics observable by Bob (see §10.6).
 
 **What no-cloning does not forbid.** Cloning of *orthogonal* states is possible — and is what classical computation does, since classical bits are encoded in mutually orthogonal quantum states. Approximate cloning (with bounded fidelity) is possible and is studied as its own discipline. Teleportation (§7.12) moves an unknown state from Alice to Bob, but destroys the original in the process; it is not a cloner, and Alice ends up with garbage.
 
 The cryptographic upshot is the inversion most worth remembering: **no-cloning is what makes quantum key distribution possible**, not what makes it hard. Because an eavesdropper cannot copy a non-orthogonal signal state to read it without disturbing the original, the legitimate parties can detect tampering. The same impossibility that rules out a quantum hard-disk is the one that enables information-theoretically secure key agreement.
 
-## 10.6 No-Signalling
+## 10.6 No-Signaling
 
-The **no-signalling principle** says that local operations and measurements on one half of a multipartite state cannot change the local statistics on the other half. Concretely, if $\rho_{AB}$ is the joint state and Alice performs a measurement on $A$ with outcomes labelled by $a$, then the reduced state $\rho_B = \mathrm{Tr}_A(\rho_{AB})$ that Bob's marginal statistics depend on is *unchanged* whether or not Alice measures, and is independent of what basis she chooses.
+The **no-signaling principle** says that local operations and measurements on one half of a multipartite state cannot change the local statistics on the other half. Concretely, if $\rho_{AB}$ is the joint state and Alice performs a measurement on $A$ with outcomes labeled by $a$, then the reduced state $\rho_B = \mathrm{Tr}_A(\rho_{AB})$ that Bob's marginal statistics depend on is *unchanged* whether or not Alice measures, and is independent of what basis she chooses.
 
 The proof is a direct partial-trace calculation. For Alice's measurement (Kraus) operators $\\{M_a\\}$ — the POVM *effects* being $E_a = M_a^{\dagger} M_a$; both terms are introduced properly in §10.13 and Chapter 11, and for this proof $M_a$ is just "the operator applied when outcome $a$ occurs" — the post-measurement ensemble on Bob's side, *averaged over Alice's outcomes*, is
 
@@ -112,7 +112,7 @@ using $\sum_a M_a^{\dagger} M_a = I$ together with cyclicity *within the A subsy
 
 This is the formal statement underlying the §7.11 observation that the reduced state of one half of a Bell pair is $I/2$ regardless of which local trace-preserving operation Alice applies, so long as her outcome is not communicated. It is what reconciles the dramatic phrasing of Bell-inequality violations ("instantaneous correlations at any distance") with relativistic causality: nothing observable on Bob's side reveals Alice's measurement choice without a classical channel. Bell-inequality violations are visible only *after* the two parties pool their data.
 
-**Why this matters for protocol design.** Any candidate protocol that requires "signalling via entanglement" — using a remote measurement basis choice to encode a bit observable on the other end — is impossible. Teleportation (§7.12) needs the two classical bits Alice sends precisely because of no-signalling: the quantum correlations alone do not carry the message. Superdense coding likewise requires Alice to physically send her qubit. The classical channel is not a redundancy: entanglement alone cannot carry a message — some physically transmitted carrier, classical bits in teleportation or the sent qubit in superdense coding, must actually travel.
+**Why this matters for protocol design.** Any candidate protocol that requires "signaling via entanglement" — using a remote measurement basis choice to encode a bit observable on the other end — is impossible. Teleportation (§7.12) needs the two classical bits Alice sends precisely because of no-signaling: the quantum correlations alone do not carry the message. Superdense coding likewise requires Alice to physically send her qubit. The classical channel is not a redundancy: entanglement alone cannot carry a message — some physically transmitted carrier, classical bits in teleportation or the sent qubit in superdense coding, must actually travel.
 
 ## 10.7 Contextuality
 
@@ -154,7 +154,7 @@ $$
 
 The system gets pinned to $|\psi\rangle$ even though $H$ would normally drive it away. The mechanism is the quadratic-in-$t$ leak: shrinking $t$ by a factor of $N$ shrinks the leak by $N^2$, and only $N$ chances accumulate.
 
-**Why this matters operationally.** The Zeno effect is the simplest example of *measurement-based error suppression*. Frequent syndrome extraction in stabiliser codes (Chapter 19) has a Zeno-flavoured *analogy* to it: each measurement projects onto a definite syndrome sector — digitising small coherent errors — and the paired correction returns the state to the code space. (Standard QEC works by discretising and correcting errors; genuine Zeno error *prevention* is a distinct frequent-projection regime.) The **dynamical decoupling** sequences used to extend $T_2$ (§10.9, Chapter 21) are coherent cousins of the Zeno effect, exploiting frequent gate operations rather than measurements to average out unwanted Hamiltonian terms. The generalised **quantum Zeno dynamics** picture says that frequent projection onto a *subspace* (rather than a single state) restricts evolution to that subspace. A related-but-different passive strategy is the **decoherence-free subspace**, which arises not from projection but from symmetry — noise operators acting identically across a subspace leave the encoded information untouched (both are distinct from the statistical error *mitigation* of Chapter 25).
+**Why this matters operationally.** The Zeno effect is the simplest example of *measurement-based error suppression*. Frequent syndrome extraction in stabilizer codes (Chapter 19) has a Zeno-flavored *analogy* to it: each measurement projects onto a definite syndrome sector — digitizing small coherent errors — and the paired correction returns the state to the code space. (Standard QEC works by discretizing and correcting errors; genuine Zeno error *prevention* is a distinct frequent-projection regime.) The **dynamical decoupling** sequences used to extend $T_2$ (§10.9, Chapter 21) are coherent cousins of the Zeno effect, exploiting frequent gate operations rather than measurements to average out unwanted Hamiltonian terms. The generalized **quantum Zeno dynamics** picture says that frequent projection onto a *subspace* (rather than a single state) restricts evolution to that subspace. A related-but-different passive strategy is the **decoherence-free subspace**, which arises not from projection but from symmetry — noise operators acting identically across a subspace leave the encoded information untouched (both are distinct from the statistical error *mitigation* of Chapter 25).
 
 ## 10.9 Decoherence
 
@@ -166,7 +166,7 @@ $$
 
 and the *reduced* state of the system is $\rho_S = \sum_i |c_i|^2 |\phi_i\rangle\langle \phi_i|$ once the $|E_i\rangle$ become approximately orthogonal. The off-diagonal entries of $\rho_S$ in the $\\{|\phi_i\rangle\\}$ basis decay; their loss is the loss of interference (§10.2) between branches.
 
-**Pointer states and einselection.** The basis $\\{|\phi_i\rangle\\}$ in which decoherence appears as diagonalisation is not arbitrary: the environmental interaction selects a preferred basis — the **pointer basis** — of states that are most stable under the interaction. Zurek's *einselection* (environment-induced superselection) explains why macroscopic *interference* is not observed: the pointer basis for a macroscopic degree of freedom is approximately position-localised, and superpositions of well-separated configurations decohere on timescales that shrink rapidly with size and separation (mesoscopic superpositions are observed in the lab; the measurement problem — why one outcome — is not settled by decoherence alone, Chapter 35).
+**Pointer states and einselection.** The basis $\\{|\phi_i\rangle\\}$ in which decoherence appears as diagonalization is not arbitrary: the environmental interaction selects a preferred basis — the **pointer basis** — of states that are most stable under the interaction. Zurek's *einselection* (environment-induced superselection) explains why macroscopic *interference* is not observed: the pointer basis for a macroscopic degree of freedom is approximately position-localized, and superpositions of well-separated configurations decohere on timescales that shrink rapidly with size and separation (mesoscopic superpositions are observed in the lab; the measurement problem — why one outcome — is not settled by decoherence alone, Chapter 35).
 
 **T1 and T2.** On a qubit, two effective timescales dominate the practical noise budget.
 
@@ -185,7 +185,7 @@ $$
 
 (See §5.9.) Two operational sources of mixedness must be distinguished.
 
-**Proper mixtures.** A classical preparation device flips a $p_i$-weighted coin and prepares pure state $|\psi_i\rangle$. The experimenter does not learn $i$ but in principle could. The density matrix $\rho$ summarises everything observable about the resulting state.
+**Proper mixtures.** A classical preparation device flips a $p_i$-weighted coin and prepares pure state $|\psi_i\rangle$. The experimenter does not learn $i$ but in principle could. The density matrix $\rho$ summarizes everything observable about the resulting state.
 
 **Improper mixtures.** The system is part of a larger entangled state $|\Phi\rangle_{SE}$, and tracing out the environment yields $\rho_S = \mathrm{Tr}_E(|\Phi\rangle\langle\Phi|_{SE})$. No classical record of "which pure state" exists, because the question is meaningless — the system never *was* in a pure state in isolation.
 
@@ -193,7 +193,7 @@ $$
 
 **Practical consequence.** The decomposition $\rho = \sum_i p_i |\psi_i\rangle\langle \psi_i|$ is *not unique*. The maximally mixed single-qubit state $I/2$ admits decompositions as $\tfrac{1}{2}(|0\rangle\langle 0| + |1\rangle\langle 1|)$, as $\tfrac{1}{2}(|+\rangle\langle +| + |-\rangle\langle -|)$, and as a uniform distribution over Bloch-sphere points. No experiment on the qubit alone selects among these decompositions. Quantum tomography reconstructs $\rho$, not its hidden ensemble.
 
-For a single qubit, the Bloch-vector parametrisation (§6.8) $\rho = (I + \vec{r}\cdot\vec{\sigma})/2$ makes the geometry concrete: pure states sit on the Bloch sphere, mixed states inside the ball, and $\\|\vec{r}\\|_2$ tracks mixedness monotonically — the purity itself is $\mathrm{tr}(\rho^2) = (1 + \\|\vec{r}\\|_2^2)/2$.
+For a single qubit, the Bloch-vector parametrization (§6.8) $\rho = (I + \vec{r}\cdot\vec{\sigma})/2$ makes the geometry concrete: pure states sit on the Bloch sphere, mixed states inside the ball, and $\\|\vec{r}\\|_2$ tracks mixedness monotonically — the purity itself is $\mathrm{tr}(\rho^2) = (1 + \\|\vec{r}\\|_2^2)/2$.
 
 ## 10.11 Open System Dynamics
 
@@ -211,13 +211,13 @@ Two features make Lindblad the canonical form. **Trace preservation**: $\mathrm{
 
 - **Amplitude damping** (spontaneous emission, models $T_1$): $L = \sqrt{\gamma} \\, |0\rangle\langle 1|$. The excited state decays at rate $\gamma = 1/T_1$.
 - **Pure dephasing** (models $T_\varphi$): $L = \sqrt{\gamma_\varphi/2} \\, Z$. Off-diagonal coherences decay; populations unchanged.
-- **Depolarising** (isotropic Pauli noise): three jump operators $L_k = \sqrt{\gamma}\\, \sigma_k$ for $\sigma_k \in \\{X, Y, Z\\}$, with depolarising rate $\gamma$. The Bloch vector shrinks toward the origin uniformly.
+- **Depolarizing** (isotropic Pauli noise): three jump operators $L_k = \sqrt{\gamma}\\, \sigma_k$ for $\sigma_k \in \\{X, Y, Z\\}$, with depolarizing rate $\gamma$. The Bloch vector shrinks toward the origin uniformly.
 
-The non-Markovian generalisations (when the environment retains memory) require integro-differential equations and richer machinery; Chapter 21 returns to when the Markov approximation breaks down on real hardware.
+The non-Markovian generalizations (when the environment retains memory) require integro-differential equations and richer machinery; Chapter 21 returns to when the Markov approximation breaks down on real hardware.
 
 ## 10.12 Quantum Channels
 
-A **quantum channel** is the most general physically realisable transformation a quantum state can undergo. Formally, a channel is a map $\mathcal{E}: \mathcal{B}(\mathcal{H}_A) \to \mathcal{B}(\mathcal{H}_B)$ on density operators that is
+A **quantum channel** is the most general physically realizable transformation a quantum state can undergo. Formally, a channel is a map $\mathcal{E}: \mathcal{B}(\mathcal{H}_A) \to \mathcal{B}(\mathcal{H}_B)$ on density operators that is
 
 1. **Linear**: $\mathcal{E}(\alpha \rho + \beta \sigma) = \alpha \mathcal{E}(\rho) + \beta \mathcal{E}(\sigma)$.
 2. **Completely positive** (CP): for any auxiliary system $R$, the extension $\mathcal{E} \otimes \mathrm{id}_R$ maps positive operators on $\mathcal{H}_A \otimes \mathcal{H}_R$ to positive operators on $\mathcal{H}_B \otimes \mathcal{H}_R$. Mere positivity is not enough — the partial transpose is positive but not completely positive, and is not a physical channel.
@@ -225,14 +225,14 @@ A **quantum channel** is the most general physically realisable transformation a
 
 Together, **CPTP**: completely positive, trace-preserving. Every CPTP map is a valid quantum channel and every valid quantum channel is CPTP.
 
-**Catalogue of qubit channels.** Each is parameterised by a single noise rate $p \in [0, 1]$ unless stated otherwise.
+**Catalog of qubit channels.** Each is parameterized by a single noise rate $p \in [0, 1]$ unless stated otherwise.
 
-- **Depolarising channel**: $\mathcal{E}(\rho) = (1 - p)\rho + p \cdot I/2$. With probability $p$, the qubit is replaced by the maximally mixed state. Equivalently — using $I/2 = (\rho + X\rho X + Y\rho Y + Z\rho Z)/4$ — the qubit is left alone with probability $1 - 3p/4$ and each Pauli error $X, Y, Z$ is applied with probability $p/4$, giving Kraus operators $\sqrt{1 - 3p/4}\\, I$ and $\sqrt{p/4}\\, X$, $\sqrt{p/4}\\, Y$, $\sqrt{p/4}\\, Z$.
+- **Depolarizing channel**: $\mathcal{E}(\rho) = (1 - p)\rho + p \cdot I/2$. With probability $p$, the qubit is replaced by the maximally mixed state. Equivalently — using $I/2 = (\rho + X\rho X + Y\rho Y + Z\rho Z)/4$ — the qubit is left alone with probability $1 - 3p/4$ and each Pauli error $X, Y, Z$ is applied with probability $p/4$, giving Kraus operators $\sqrt{1 - 3p/4}\\, I$ and $\sqrt{p/4}\\, X$, $\sqrt{p/4}\\, Y$, $\sqrt{p/4}\\, Z$.
 - **Amplitude damping**: models $T_1$ relaxation. Acts on the Bloch sphere by contracting toward the north pole $|0\rangle$. The Kraus operators are $K_0 = |0\rangle\langle 0| + \sqrt{1-p}\\, |1\rangle\langle 1|$ and $K_1 = \sqrt{p}\\, |0\rangle\langle 1|$.
 - **Phase damping** (equivalently, pure dephasing): models $T_\varphi$. Diagonal entries of $\rho$ are preserved; off-diagonals shrink by $\sqrt{1 - p}$. Equivalent at the channel level to a probabilistic $Z$ application — i.e. $\mathcal{E}(\rho) = (1 - q)\rho + q Z \rho Z$ with $q = (1 - \sqrt{1-p})/2$ chosen so that off-diagonals shrink by the same factor $\sqrt{1-p}$ (a uniformly random $Z$-rotation angle gives a different shrink factor).
 - **Bit-flip / phase-flip / bit-phase-flip**: probabilistic application of $X$, $Z$, $Y$ respectively.
 
-The depolarising and amplitude-damping channels are the two workhorses of error-correction analysis (Chapter 19): depolarising because of its symmetry across the Pauli group, amplitude damping because of its physical accuracy as a $T_1$ model.
+The depolarizing and amplitude-damping channels are the two workhorses of error-correction analysis (Chapter 19): depolarizing because of its symmetry across the Pauli group, amplitude damping because of its physical accuracy as a $T_1$ model.
 
 ## 10.13 Operator-Sum Representation (Kraus)
 
@@ -246,19 +246,19 @@ The completeness relation $\sum_i K_i^{\dagger} K_i = I$ enforces trace preserva
 
 The Kraus representation is *not* unique: any unitary mixing $K'_j = \sum_i U_{ji} K_i$ gives an equivalent operator-sum form. The minimal Kraus rank, however, is an invariant of the channel.
 
-**Connection to environment dilation (Stinespring).** Every CPTP map can be realised as unitary evolution on a system + ancilla followed by tracing out the ancilla. Concretely, there exist a Hilbert space $\mathcal{H}_E$, an initial state $|0_E\rangle \in \mathcal{H}_E$, and a unitary $U_{SE}$ such that
+**Connection to environment dilation (Stinespring).** Every CPTP map can be realized as unitary evolution on a system + ancilla followed by tracing out the ancilla. Concretely, there exist a Hilbert space $\mathcal{H}_E$, an initial state $|0_E\rangle \in \mathcal{H}_E$, and a unitary $U_{SE}$ such that
 
 $$
 \mathcal{E}(\rho) \;=\; \mathrm{Tr}_E\bigl[ U_{SE} \\, (\rho \otimes |0_E\rangle\langle 0_E|) \\, U_{SE}^{\dagger} \bigr].
 $$
 
-The Kraus operators are $K_i = \langle i_E | U_{SE} | 0_E\rangle$ — the partial matrix elements of $U_{SE}$ on the environment indexed by an orthonormal basis $\\{|i_E\rangle\\}$. This **Stinespring dilation** makes precise the slogan "noise can always be *represented* as unobserved entanglement": every channel admits a unitary realisation on a larger Hilbert space with the bath traced out (the physical mechanism may equally be classical randomness — the dilation is a representation, not a unique mechanism). It underlies the standard analyses of decoherence (§10.9), the weak-coupling derivations of the Lindblad equation (§10.11), and the operational picture of error correction — where correctability is governed by the Knill–Laflamme conditions on the $K_i$, not mere survival (Chapter 19).
+The Kraus operators are $K_i = \langle i_E | U_{SE} | 0_E\rangle$ — the partial matrix elements of $U_{SE}$ on the environment indexed by an orthonormal basis $\\{|i_E\rangle\\}$. This **Stinespring dilation** makes precise the slogan "noise can always be *represented* as unobserved entanglement": every channel admits a unitary realization on a larger Hilbert space with the bath traced out (the physical mechanism may equally be classical randomness — the dilation is a representation, not a unique mechanism). It underlies the standard analyses of decoherence (§10.9), the weak-coupling derivations of the Lindblad equation (§10.11), and the operational picture of error correction — where correctability is governed by the Knill–Laflamme conditions on the $K_i$, not mere survival (Chapter 19).
 
 **Connection to Lindblad.** A Markovian channel for time $dt$ has Kraus operators approximately $K_0 = I - (i H + \tfrac{1}{2} \sum_k L_k^{\dagger} L_k) dt$ and $K_k = \sqrt{dt} \\, L_k$ for $k \geq 1$. Expanding $\rho(t + dt) = \sum_i K_i \rho K_i^{\dagger}$ to first order in $dt$ recovers the Lindblad equation of §10.11. Operator-sum and Stinespring dilation are equivalent descriptions of *any* CPTP channel; Lindblad covers the Markovian-semigroup subfamily of continuous evolutions. Within that family the three pictures interconvert, and which to use is a matter of which question is being asked.
 
 ## 10.14 Bridge to Chapter 11
 
-Chapters 5 through 10 have built the static and dynamical pictures: states (pure and mixed), unitary evolution (gates and circuits), and now the open-system extensions that govern any real device. The next part of the book turns to **measurement and information** as primary objects of study rather than as endpoints of a calculation. Chapter 11 develops projective and POVM measurements, the operational interpretation of the Born rule, and the measurement-tomography programme. Chapter 12 turns to quantum information theory: entropies, mutual information, channel capacities, the Holevo bound, and the channel-coding theorems that quantify what quantum channels (§10.12) can and cannot transmit. Part 6 then opens the algorithmic programme — the place where superposition, interference, entanglement, and contextuality are deployed as computational resources for concrete speedups.
+Chapters 5 through 10 have built the static and dynamical pictures: states (pure and mixed), unitary evolution (gates and circuits), and now the open-system extensions that govern any real device. The next part of the book turns to **measurement and information** as primary objects of study rather than as endpoints of a calculation. Chapter 11 develops projective and POVM measurements, the operational interpretation of the Born rule, and the measurement-tomography program. Chapter 12 turns to quantum information theory: entropies, mutual information, channel capacities, the Holevo bound, and the channel-coding theorems that quantify what quantum channels (§10.12) can and cannot transmit. Part 6 then opens the algorithmic program — the place where superposition, interference, entanglement, and contextuality are deployed as computational resources for concrete speedups.
 
 **Sanity checks before moving on.**
 
@@ -266,7 +266,7 @@ Chapters 5 through 10 have built the static and dynamical pictures: states (pure
 2. Verify the Hadamard interference cancellation explicitly: write out $H H |0\rangle$ as a sum of four amplitude terms and identify which two cancel.
 3. Confirm $[X, Z] = -2iY$ from the Pauli matrices of §8.2, then check it is consistent with the qubit uncertainty relation $\Delta X \\, \Delta Z \geq |\langle Y\rangle|$ on the state $|+\rangle$.
 4. For the amplitude-damping channel with parameter $p$, compute $\sum_i K_i^{\dagger} K_i$ using the Kraus operators in §10.12 and confirm it equals $I$.
-5. Starting from the Kraus form of the depolarising channel, derive the Bloch-vector contraction $\vec{r} \mapsto (1 - p)\\, \vec{r}$ and identify the fixed point.
+5. Starting from the Kraus form of the depolarizing channel, derive the Bloch-vector contraction $\vec{r} \mapsto (1 - p)\\, \vec{r}$ and identify the fixed point.
 
 ---
 

@@ -24,7 +24,7 @@ one with 50 high-fidelity, all-to-all-connected qubits. Always pair a count
 with two-qubit gate fidelity, connectivity, and coherence.
 
 Second, **fidelities are reported under favorable, non-standardized
-conditions.** "Median two-qubit fidelity" from randomised benchmarking, a
+conditions.** "Median two-qubit fidelity" from randomized benchmarking, a
 best-pair number, and a full-device average can differ by an order of
 magnitude. Cross-vendor comparison requires reading the methodology, not the
 headline.
@@ -140,7 +140,7 @@ pre-fault-tolerant at useful scale.
   and feature prominently in IBM's stated path toward a fault-tolerant machine
   later this decade.
 
-The honest summary: below-threshold behaviour has been shown in specific
+The honest summary: below-threshold behavior has been shown in specific
 systems, logical-qubit *demonstrations* are small, and no platform yet runs
 deep, fault-tolerant logical algorithms at application scale. See
 [Chapter 19](../part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md)

@@ -101,8 +101,8 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: Core complexity claim for Grover/amplitude amplification; derivation in Chapter 15.
 
-## §13.5 — Tang's dequantisation of recommendation systems
-- **Claim** (anchor): "Tang's dequantisation of recommendation systems — can sometimes match a claimed quantum speedup if the input model assumed by the quantum algorithm is correspondingly powerful classically"
+## §13.5 — Tang's dequantization of recommendation systems
+- **Claim** (anchor): "Tang's dequantization of recommendation systems — can sometimes match a claimed quantum speedup if the input model assumed by the quantum algorithm is correspondingly powerful classically"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -129,12 +129,12 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: Less standard inclusion; attributed as a known result without citation. Needs a reference (Fortnow & Rogers 1999 or similar).
 
-## §13.7 — P = BPP widely expected via derandomisation; BPP ⊊ BQP and BQP ⊊ PSPACE believed but unproven
+## §13.7 — P = BPP widely expected via derandomization; BPP ⊊ BQP and BQP ⊊ PSPACE believed but unproven
 - **Claim** (anchor): "The relationships are mostly open and the beliefs are not uniform"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Surrounding prose for the claim that P=BPP is widely expected (derandomisation) whereas strict separations BPP⊊BQP and BQP⊊PSPACE are believed but unproven; consensus belief, not theorem.
+- **Comment**: Surrounding prose for the claim that P=BPP is widely expected (derandomization) whereas strict separations BPP⊊BQP and BQP⊊PSPACE are believed but unproven; consensus belief, not theorem.
 
 ## §13.7 — P ⊊ EXP from the time hierarchy theorem
 - **Claim** (anchor): "the only nearby unconditional separation is the coarse $\\mathrm{P} \\subsetneq \\mathrm{EXP}$ from the time hierarchy theorem (§17.1)"
@@ -171,12 +171,12 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: Convention established in §8.10; T-gate magic-state consumption is a standard fault-tolerance fact.
 
-## §13.7 — Tang-style dequantisation deflates 2018-vintage exponential speedups to polynomial under corrected access model
+## §13.7 — Tang-style dequantization deflates 2018-vintage exponential speedups to polynomial under corrected access model
 - **Claim** (anchor): "A 2018-vintage exponential speedup can deflate to a polynomial one when the classical access model is corrected"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Refers to Tang (2018/2019) dequantisation results; the "2018-vintage" framing dates the Tang recommendation-systems result specifically.
+- **Comment**: Refers to Tang (2018/2019) dequantization results; the "2018-vintage" framing dates the Tang recommendation-systems result specifically.
 
 ## §13.7 — Quantum simulation of local Hamiltonians admits provable polynomial-time algorithms
 - **Claim** (anchor): "Quantum simulation of local Hamiltonians (Chapter 16) admits provable polynomial-time algorithms, and the speedup over the best known classical algorithms is exponential for many natural physical problems"

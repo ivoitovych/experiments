@@ -4,17 +4,17 @@
 
 [← Previous: Chapter 7](../part-03-qubits/07-multiple-qubits-and-entanglement.md) · [Table of Contents](../../README.md) · [Next: Chapter 9 →](09-quantum-circuits.md)
 
-Chapters 5–7 fixed the static picture: states, composite systems, entanglement. This chapter introduces the dynamics that a quantum computer can actually realise. Gates are unitaries acting on one or two qubits at a time; circuits are sequences of gates; and the questions of practical interest are which gates one can implement on a given device, which finite sets of gates are universal, and how to compile an arbitrary unitary down to those primitives. The chapter is heavy on matrices — open Appendix B alongside it for the gate cheat sheet.
+Chapters 5–7 fixed the static picture: states, composite systems, entanglement. This chapter introduces the dynamics that a quantum computer can actually realize. Gates are unitaries acting on one or two qubits at a time; circuits are sequences of gates; and the questions of practical interest are which gates one can implement on a given device, which finite sets of gates are universal, and how to compile an arbitrary unitary down to those primitives. The chapter is heavy on matrices — open Appendix B alongside it for the gate cheat sheet.
 
-> **How to read this chapter.** §§8.1–8.6 are mandatory; everything later assumes them. §§8.9–8.11 (universality, Clifford+T, Solovay–Kitaev) are essential before reading Part 8 on quantum error correction but can be deferred on a first algorithmic pass. §§8.12–8.14 (native gates, parameterised gates, synthesis) become important once you start running circuits on real hardware (Part 9) or designing variational algorithms (Part 6).
+> **How to read this chapter.** §§8.1–8.6 are mandatory; everything later assumes them. §§8.9–8.11 (universality, Clifford+T, Solovay–Kitaev) are essential before reading Part 8 on quantum error correction but can be deferred on a first algorithmic pass. §§8.12–8.14 (native gates, parameterized gates, synthesis) become important once you start running circuits on real hardware (Part 9) or designing variational algorithms (Part 6).
 
 ## 8.1 Reversibility and Unitary Evolution
 
 Postulate 2 (§5.2) says that closed-system evolution is unitary: $|\psi'\rangle = U|\psi\rangle$ with $U^{\dagger}U = U U^{\dagger} = I$. Unitarity is a strong constraint, and the quantum-computing model takes it as the definition of a gate. Operationally: a gate takes amplitudes in and gives amplitudes out, linearly and reversibly, losing nothing. Formally: a quantum gate on $n$ qubits is any element of the unitary group $\mathrm{U}(2^n)$.
 
-Three consequences are worth saying explicitly. **Reversibility**: every gate has an inverse, namely $U^{\dagger}$, which is also a valid gate. There is no quantum analogue of the classical AND or OR gate, both of which lose bits; the quantum versions must be made reversible by adding output wires (as Toffoli does for AND). **Norm preservation**: $\\|U|\psi\rangle\\| = \\||\psi\rangle\\|$, so states remain unit-norm under any sequence of gates. **Linearity**: $U(\alpha|\psi_1\rangle + \beta|\psi_2\rangle) = \alpha U|\psi_1\rangle + \beta U|\psi_2\rangle$ — a gate acts on every basis component of a superposition at once. This linear action is *not* a computational speedup by itself; useful advantage requires arranging interference (§10.2, §13.1), not merely touching every component.
+Three consequences are worth saying explicitly. **Reversibility**: every gate has an inverse, namely $U^{\dagger}$, which is also a valid gate. There is no quantum analog of the classical AND or OR gate, both of which lose bits; the quantum versions must be made reversible by adding output wires (as Toffoli does for AND). **Norm preservation**: $\\|U|\psi\rangle\\| = \\||\psi\rangle\\|$, so states remain unit-norm under any sequence of gates. **Linearity**: $U(\alpha|\psi_1\rangle + \beta|\psi_2\rangle) = \alpha U|\psi_1\rangle + \beta U|\psi_2\rangle$ — a gate acts on every basis component of a superposition at once. This linear action is *not* a computational speedup by itself; useful advantage requires arranging interference (§10.2, §13.1), not merely touching every component.
 
-A useful operator identity: if $H$ is Hermitian ($H = H^{\dagger}$), then $U = e^{-iHt}$ is unitary for any real $t$. So gates can always be exhibited as exponentials of Hermitian generators; the generator $H$ is *a possible ideal Hamiltonian* for realising the gate over time $t$ — actual hardware may instead use pulse sequences, rotating frames, or compilation through other gates entirely (Chapter 21), and the generator is only defined modulo $2\pi/t$ shifts of its eigenvalues.
+A useful operator identity: if $H$ is Hermitian ($H = H^{\dagger}$), then $U = e^{-iHt}$ is unitary for any real $t$. So gates can always be exhibited as exponentials of Hermitian generators; the generator $H$ is *a possible ideal Hamiltonian* for realizing the gate over time $t$ — actual hardware may instead use pulse sequences, rotating frames, or compilation through other gates entirely (Chapter 21), and the generator is only defined modulo $2\pi/t$ shifts of its eigenvalues.
 
 ## 8.2 Pauli Gates
 
@@ -26,7 +26,7 @@ $$
 
 Each is Hermitian and unitary, with $X^2 = Y^2 = Z^2 = I$, and they anticommute in pairs: $\\{X, Y\\} = \\{Y, Z\\} = \\{Z, X\\} = 0$. They span the traceless Hermitian $2\times 2$ matrices, so every single-qubit Hamiltonian is a real linear combination $H = h_0 I + \vec h \cdot \vec\sigma$ and every single-qubit unitary is of the form $e^{-i\alpha} R_{\hat n}(\theta)$ for some axis $\hat n$ and angle $\theta$ (§8.5).
 
-Operationally: $X$ is the "quantum NOT" — it swaps $|0\rangle \leftrightarrow |1\rangle$. $Z$ is the "phase flip" — it flips the sign of $|1\rangle$ and leaves $|0\rangle$ alone. $Y = iXZ$ does both. In the Bloch picture (§6.8), each Pauli implements a $\pi$ rotation about the corresponding axis. Pauli operators also generate the Pauli group, which is the backbone of stabiliser formalism (Part 8) and of error-correction code construction.
+Operationally: $X$ is the "quantum NOT" — it swaps $|0\rangle \leftrightarrow |1\rangle$. $Z$ is the "phase flip" — it flips the sign of $|1\rangle$ and leaves $|0\rangle$ alone. $Y = iXZ$ does both. In the Bloch picture (§6.8), each Pauli implements a $\pi$ rotation about the corresponding axis. Pauli operators also generate the Pauli group, which is the backbone of stabilizer formalism (Part 8) and of error-correction code construction.
 
 ![Circuit symbol for the Pauli-X (quantum NOT) gate acting on a single qubit.](figures/pauli-x.svg)
 
@@ -76,7 +76,7 @@ $$
 R_X(\theta) = \begin{pmatrix} \cos\tfrac{\theta}{2} & -i\sin\tfrac{\theta}{2} \\\\ -i\sin\tfrac{\theta}{2} & \cos\tfrac{\theta}{2} \end{pmatrix}, \qquad R_Z(\theta) = \begin{pmatrix} e^{-i\theta/2} & 0 \\\\ 0 & e^{i\theta/2} \end{pmatrix}.
 $$
 
-The half-angle is the same half-angle from the Bloch parametrisation (§6.8) — Bloch-sphere rotations are $2\pi$-periodic, but the underlying unitary picks up a sign and is only $4\pi$-periodic, hence the factor of two.
+The half-angle is the same half-angle from the Bloch parametrization (§6.8) — Bloch-sphere rotations are $2\pi$-periodic, but the underlying unitary picks up a sign and is only $4\pi$-periodic, hence the factor of two.
 
 Any single-qubit unitary can be decomposed as $U = e^{i\alpha} R_Z(\beta) R_Y(\gamma) R_Z(\delta)$ (the *Z–Y–Z decomposition*) for some real $\alpha, \beta, \gamma, \delta$, or equivalently $R_Z(\beta) R_X(\gamma) R_Z(\delta)$. Many hardware platforms expose continuous-angle $R_X$ and $R_Z$ as native gates; the compiler's job is to express user-level unitaries in terms of those (§8.12, §8.14).
 
@@ -92,19 +92,19 @@ It flips the target qubit (the second one, by convention here) iff the control q
 
 ![CNOT gate with a control dot on the top qubit and a target (⊕) on the bottom qubit.](figures/cnot.svg)
 
-Closely related are **CZ** (controlled-Z), which adds a minus sign to $|11\rangle$ and is symmetric in the two qubits; **SWAP**, which exchanges the two qubits; and **iSWAP** and **$\sqrt{\mathrm{SWAP}}$**, which are convenient native gates on some superconducting architectures. Useful identities to memorise:
+Closely related are **CZ** (controlled-Z), which adds a minus sign to $|11\rangle$ and is symmetric in the two qubits; **SWAP**, which exchanges the two qubits; and **iSWAP** and **$\sqrt{\mathrm{SWAP}}$**, which are convenient native gates on some superconducting architectures. Useful identities to memorize:
 
 $$
 \mathrm{CZ} = (I \otimes H)\\,\mathrm{CNOT}\\,(I \otimes H), \qquad \mathrm{SWAP} = \mathrm{CNOT}_{12}\\,\mathrm{CNOT}_{21}\\,\mathrm{CNOT}_{12},
 $$
 
-so on a device that only offers CNOTs you can synthesise CZ and SWAP, at the cost of one or three CNOTs respectively.
+so on a device that only offers CNOTs you can synthesize CZ and SWAP, at the cost of one or three CNOTs respectively.
 
 ![Controlled-Z gate, drawn symmetrically with a control dot on each of the two qubits.](figures/cz.svg)
 
 ![SWAP gate exchanging two qubits, drawn with crossed (×) symbols joined by a vertical line.](figures/swap.svg)
 
-Two-qubit gates are the *expensive* resource on hardware: they are slower, noisier, and require careful calibration. Most of the optimisation effort in a compiler is about minimising the two-qubit gate count and routing them around limited connectivity (§8.14, Chapter 23).
+Two-qubit gates are the *expensive* resource on hardware: they are slower, noisier, and require careful calibration. Most of the optimization effort in a compiler is about minimizing the two-qubit gate count and routing them around limited connectivity (§8.14, Chapter 23).
 
 ## 8.7 Controlled and Multi-Controlled Gates
 
@@ -116,7 +116,7 @@ $$
 
 CNOT is $\mathrm{C}(X)$; CZ is $\mathrm{C}(Z)$; controlled phase gates $\mathrm{C}P(\varphi)$ are central in the quantum Fourier transform (Chapter 14).
 
-Multi-controlled gates extend the same idea: $\mathrm{C}^k(U)$ applies $U$ to the target iff all $k$ controls are in $|1\rangle$. The three-qubit case $\mathrm{C}^2(X) = $ Toffoli is universal for classical reversible computation. The cost of $\mathrm{C}^k(U)$ depends on whether spare ancilla qubits are available, and the canonical decompositions all trace back to Barenco et al. (1995): with one clean ancilla a $k$-controlled-NOT decomposes into $O(k)$ Toffolis; with a single dirty (borrowed, arbitrarily initialised) ancilla it is still $O(k)$ elementary gates; and ancilla-free constructions cost $O(k^2)$ gates. The $O(k)$-Toffoli figure quoted here is the representative case with a clean ancilla. The cost growth with $k$ is one of the constant headaches of circuit synthesis; ancilla qubits, when available, buy substantial savings.
+Multi-controlled gates extend the same idea: $\mathrm{C}^k(U)$ applies $U$ to the target iff all $k$ controls are in $|1\rangle$. The three-qubit case $\mathrm{C}^2(X) = $ Toffoli is universal for classical reversible computation. The cost of $\mathrm{C}^k(U)$ depends on whether spare ancilla qubits are available, and the canonical decompositions all trace back to Barenco et al. (1995): with one clean ancilla a $k$-controlled-NOT decomposes into $O(k)$ Toffolis; with a single dirty (borrowed, arbitrarily initialized) ancilla it is still $O(k)$ elementary gates; and ancilla-free constructions cost $O(k^2)$ gates. The $O(k)$-Toffoli figure quoted here is the representative case with a clean ancilla. The cost growth with $k$ is one of the constant headaches of circuit synthesis; ancilla qubits, when available, buy substantial savings.
 
 > Barenco, Bennett, Cleve, DiVincenzo, Margolus, Shor, Sleator, Smolin, Weinfurter, "Elementary gates for quantum computation," *Phys. Rev. A* **52**, 3457 (1995), arXiv:quant-ph/9503016.
 
@@ -143,7 +143,7 @@ The relevance for hardware: a platform that exposes any one entangling two-qubit
 
 ## 8.10 Clifford + T
 
-The **Clifford group** on $n$ qubits is the normaliser of the Pauli group: the unitaries that map Pauli operators to Pauli operators under conjugation. Its single-qubit generators are $H$ and $S$; its two-qubit generator is CNOT. So $\\{H, S, \mathrm{CNOT}\\}$ generates all of Clifford.
+The **Clifford group** on $n$ qubits is the normalizer of the Pauli group: the unitaries that map Pauli operators to Pauli operators under conjugation. Its single-qubit generators are $H$ and $S$; its two-qubit generator is CNOT. So $\\{H, S, \mathrm{CNOT}\\}$ generates all of Clifford.
 
 The Gottesman–Knill theorem says that any circuit built only from Clifford gates, applied to a computational-basis state and followed by computational-basis measurement, can be efficiently simulated classically. Clifford circuits, by themselves, give no superpolynomial computational advantage in the standard model. Yet Clifford operations are essential because they form the *cheap* layer in most fault-tolerant codes (Chapter 19): relatively easy to implement fault-tolerantly — transversally in some codes, by lattice surgery or code deformation in the surface code — and far cheaper than the non-Clifford gates that complete the set (Eastin–Knill forbids any code from doing everything transversally).
 
@@ -157,9 +157,9 @@ $$
 L \;=\; O\bigl(\log^{c}(1/\epsilon)\bigr)
 $$
 
-that approximates $U$ to error $\epsilon$ in operator norm, with $c \approx 3.97$ in the standard constructive analysis (Dawson–Nielsen 2005; tighter analyses push the generic exponent down toward $c \approx 2$). Constructive algorithms exist, but for the high-precision regime needed in fault-tolerant compilation, special-purpose synthesisers like **gridsynth** produce shorter $T$-sequences than generic Solovay–Kitaev.
+that approximates $U$ to error $\epsilon$ in operator norm, with $c \approx 3.97$ in the standard constructive analysis (Dawson–Nielsen 2005; tighter analyses push the generic exponent down toward $c \approx 2$). Constructive algorithms exist, but for the high-precision regime needed in fault-tolerant compilation, special-purpose synthesizers like **gridsynth** produce shorter $T$-sequences than generic Solovay–Kitaev.
 
-A separate, sharper result governs the specific case that actually matters in practice — synthesising a single-qubit $z$-rotation in the Clifford+T basis. The Ross–Selinger algorithm (2016) is near-optimal and achieves a $T$-count of $3\log_2(1/\epsilon) + O(\log\log(1/\epsilon))$ — *linear* in $\log(1/\epsilon)$, i.e. effective exponent $c \approx 1$. This $c \approx 1$ figure refers to Clifford+T $z$-rotation synthesis and should not be confused with the generic Solovay–Kitaev exponent above, which applies to an arbitrary universal gate set and an arbitrary $\mathrm{SU}(2)$ target.
+A separate, sharper result governs the specific case that actually matters in practice — synthesizing a single-qubit $z$-rotation in the Clifford+T basis. The Ross–Selinger algorithm (2016) is near-optimal and achieves a $T$-count of $3\log_2(1/\epsilon) + O(\log\log(1/\epsilon))$ — *linear* in $\log(1/\epsilon)$, i.e. effective exponent $c \approx 1$. This $c \approx 1$ figure refers to Clifford+T $z$-rotation synthesis and should not be confused with the generic Solovay–Kitaev exponent above, which applies to an arbitrary universal gate set and an arbitrary $\mathrm{SU}(2)$ target.
 
 > C. M. Dawson and M. A. Nielsen, "The Solovay–Kitaev algorithm," *Quantum Inf. Comput.* **6**, 81 (2006), arXiv:quant-ph/0505030; N. J. Ross and P. Selinger, "Optimal ancilla-free Clifford+T approximation of z-rotations," *Quantum Inf. Comput.* **16**, 901 (2016), arXiv:1403.2975.
 
@@ -173,7 +173,7 @@ Real hardware does not implement abstract gates; it implements whatever unitary 
 
 Some common native sets, as a snapshot of the 2026 hardware landscape (the specific vendor chips named below date quickly; the *structure* of each native set is the durable part):
 
-- **Superconducting (transmons), Google/IBM-style**: arbitrary single-qubit $R_Z(\theta)$ (virtual, free), $R_X(\pi/2)$ ("sqrt-X"), and a two-qubit entangler — typically CZ via tunable couplers (current IBM Heron-class processors and Google's Willow-class processors) or cross-resonance CNOT on older fixed-coupling IBM devices, with iSWAP-family / fSim entanglers on older Google Sycamore-class chips. Recent IBM Heron also exposes parameterised "fractional" gates for variational algorithms.
+- **Superconducting (transmons), Google/IBM-style**: arbitrary single-qubit $R_Z(\theta)$ (virtual, free), $R_X(\pi/2)$ ("sqrt-X"), and a two-qubit entangler — typically CZ via tunable couplers (current IBM Heron-class processors and Google's Willow-class processors) or cross-resonance CNOT on older fixed-coupling IBM devices, with iSWAP-family / fSim entanglers on older Google Sycamore-class chips. Recent IBM Heron also exposes parameterized "fractional" gates for variational algorithms.
 - **Trapped ions (IonQ-, Quantinuum-style)**: arbitrary single-qubit rotations and a Mølmer–Sørensen entangling gate $\mathrm{XX}(\theta) = e^{-i\theta X\otimes X/2}$, often effectively all-to-all (little SWAP routing, though ion shuttling and scheduling take its place).
 - **Neutral atoms (QuEra-, Pasqal-style)**: global single-qubit rotations and Rydberg-mediated $\mathrm{CZ}$ or multi-qubit blockade gates.
 - **Photonic / measurement-based platforms**: state preparation, beam-splitter/phase shifters, and adaptive measurements, with the gate model emerging from a fusion or cluster-state pattern.
@@ -182,27 +182,27 @@ The compiler's job is to lower a logical circuit, written in the abstract gate s
 
 ## 8.13 Parameterized Gates
 
-A **parameterised gate** is a unitary whose form depends on one or more continuous parameters: $R_Z(\theta)$, $R_X(\theta)$, $\mathrm{CR}_Z(\theta)$, $\mathrm{XX}(\theta)$, and so on. Two regimes use parameterised gates extensively.
+A **parameterized gate** is a unitary whose form depends on one or more continuous parameters: $R_Z(\theta)$, $R_X(\theta)$, $\mathrm{CR}_Z(\theta)$, $\mathrm{XX}(\theta)$, and so on. Two regimes use parameterized gates extensively.
 
-**Variational algorithms** (VQE, QAOA, Chapter 15). The circuit $U(\vec\theta)$ is a parameterised *ansatz*, and a classical optimiser tunes $\vec\theta$ to minimise some cost function evaluated by repeated measurement. The dominant question becomes how to compute gradients: the **parameter-shift rule** says, for any gate of the form $e^{-i\theta P/2}$ with $P$ Hermitian and eigenvalues $\pm 1$, that
+**Variational algorithms** (VQE, QAOA, Chapter 15). The circuit $U(\vec\theta)$ is a parameterized *ansatz*, and a classical optimizer tunes $\vec\theta$ to minimize some cost function evaluated by repeated measurement. The dominant question becomes how to compute gradients: the **parameter-shift rule** says, for any gate of the form $e^{-i\theta P/2}$ with $P$ Hermitian and eigenvalues $\pm 1$, that
 
 $$
 \partial_\theta \langle O \rangle(\theta) \;=\; \tfrac{1}{2}\bigl[\langle O\rangle(\theta + \tfrac{\pi}{2}) - \langle O\rangle(\theta - \tfrac{\pi}{2})\bigr].
 $$
 
-The gradient identity is therefore analytically exact, evaluated from two shifted-parameter circuit runs with no finite-difference approximation (each expectation still carries finite-shot estimator noise). Generalisations exist for gates with more eigenvalues.
+The gradient identity is therefore analytically exact, evaluated from two shifted-parameter circuit runs with no finite-difference approximation (each expectation still carries finite-shot estimator noise). Generalizations exist for gates with more eigenvalues.
 
-**Quantum simulation** (Trotter circuits, Chapter 16). Approximating $e^{-iHt}$ for a problem Hamiltonian decomposed as $H = \sum_k H_k$ uses $N$ repetitions of the first-order step: $e^{-iHt} \approx \bigl(\prod_k e^{-i H_k \Delta t}\bigr)^{N}$ with $\Delta t = t/N$ (error controlled by the commutators of the $H_k$; Chapter 16 gives the bounds) — each Trotter step is a layer of parameterised exponentials of the $H_k$.
+**Quantum simulation** (Trotter circuits, Chapter 16). Approximating $e^{-iHt}$ for a problem Hamiltonian decomposed as $H = \sum_k H_k$ uses $N$ repetitions of the first-order step: $e^{-iHt} \approx \bigl(\prod_k e^{-i H_k \Delta t}\bigr)^{N}$ with $\Delta t = t/N$ (error controlled by the commutators of the $H_k$; Chapter 16 gives the bounds) — each Trotter step is a layer of parameterized exponentials of the $H_k$.
 
 ## 8.14 Gate Decomposition and Synthesis
 
 **Synthesis** is the process of compiling a target unitary into a sequence of gates from a chosen set. Three regimes are relevant.
 
-**Single-qubit synthesis.** Any $U \in \mathrm{SU}(2)$ decomposes exactly into Z–Y–Z or Z–X–Z form (§8.5). For discrete gate sets, use Solovay–Kitaev (§8.11) or specialised Clifford+T synthesisers.
+**Single-qubit synthesis.** Any $U \in \mathrm{SU}(2)$ decomposes exactly into Z–Y–Z or Z–X–Z form (§8.5). For discrete gate sets, use Solovay–Kitaev (§8.11) or specialized Clifford+T synthesizers.
 
 **Two-qubit synthesis.** Any two-qubit unitary can be implemented with at most three CNOTs and a constant number of single-qubit gates. The exact number is determined by the entangling power of $U$, classified by the **KAK decomposition**: $U = (A_1 \otimes A_2)\\,e^{-i(c_x XX + c_y YY + c_z ZZ)}\\,(B_1 \otimes B_2)$ for single-qubit $A_i, B_i$ and real $c_x, c_y, c_z$. The point $(c_x, c_y, c_z)$ (taking $c_x \ge c_y \ge |c_z|$) lives in the *Weyl chamber* and determines the CNOT cost: a generic point needs three CNOTs; any point on the $c_z = 0$ face needs at most two (iSWAP sits here, at $(\pi/4, \pi/4, 0)$); a point locally equivalent to CNOT needs one; a purely local gate needs none. On hardware whose native entangler is iSWAP or fSim rather than CNOT, the relevant cost is counted in that native gate instead.
 
-**Multi-qubit synthesis.** For arbitrary $n$, exact synthesis uses at most $O(4^n)$ CNOTs; finding optimal or near-optimal circuits is the central problem of compilation. Practical compilers (Qiskit's transpiler, Quantinuum's TKET — historically styled t|ket⟩ — and Google's Cirq) combine peephole rewrite rules, template matching, and search-based optimisation. The targets are usually some combination of (a) CNOT or two-qubit gate count, (b) circuit depth, (c) $T$-count in fault-tolerant settings, and (d) compatibility with hardware connectivity.
+**Multi-qubit synthesis.** For arbitrary $n$, exact synthesis uses at most $O(4^n)$ CNOTs; finding optimal or near-optimal circuits is the central problem of compilation. Practical compilers (Qiskit's transpiler, Quantinuum's TKET — historically styled t|ket⟩ — and Google's Cirq) combine peephole rewrite rules, template matching, and search-based optimization. The targets are usually some combination of (a) CNOT or two-qubit gate count, (b) circuit depth, (c) $T$-count in fault-tolerant settings, and (d) compatibility with hardware connectivity.
 
 Chapter 23 returns to compilation; Chapter 19 to fault-tolerant resource estimation. For now, the takeaway is that a well-defined target unitary is one end of a long pipeline, the other end of which is a stream of pulses sent to physical qubits.
 
@@ -212,7 +212,7 @@ Chapter 23 returns to compilation; Chapter 19 to fault-tolerant resource estimat
 2. Show that $S^2 = Z$ and $T^2 = S$. Conclude $T^4 = Z$ and $T^8 = I$.
 3. Expand $R_Y(\pi)|0\rangle$ and confirm it equals $|1\rangle$ exactly; then check $R_Y(\pi)|1\rangle = -|0\rangle$. Conclude that $R_Y(\pi) = -iY$ acts as a bit-flip up to phases on the basis states, so it is a perfectly good NOT despite not equalling $X$ on the nose. (The phases are harmless *when the input is a computational-basis state* — each branch's phase is then global. On a superposition the sign becomes a relative phase: $R_Y(\pi)|+\rangle = -|-\rangle$ while $X|+\rangle = |+\rangle$, so $R_Y(\pi)$ and $X$ are genuinely different gates — exactly trap 2 of §4.15.)
 4. Apply the identity $\mathrm{CZ} = (I \otimes H)\\,\mathrm{CNOT}\\,(I \otimes H)$ to $|+\rangle|+\rangle$ and check both sides give the same state.
-5. Write down the Toffoli gate's $8 \times 8$ matrix from its definition (§8.7), derive its truth table from that matrix, and verify it implements classical AND when the third qubit is initialised to $|0\rangle$.
+5. Write down the Toffoli gate's $8 \times 8$ matrix from its definition (§8.7), derive its truth table from that matrix, and verify it implements classical AND when the third qubit is initialized to $|0\rangle$.
 
 ---
 

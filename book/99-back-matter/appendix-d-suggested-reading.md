@@ -110,7 +110,7 @@ only summarizes.
 - *The theory of quantum information.* John Watrous. Cambridge
   University Press, 2018. More mathematical than Wilde; the
   authoritative source for the diamond norm and semidefinite-program
-  characterisations of channel distinguishability.
+  characterizations of channel distinguishability.
 - *Quantum entanglement.* Ryszard Horodecki, Paweł Horodecki, Michał
   Horodecki, and Karol Horodecki. Reviews of Modern Physics, 2009.
   The standard survey of entanglement measures, separability criteria,
@@ -282,7 +282,7 @@ documentation rather than as stable artifacts.
   current Qiskit object model; note that several historical class
   names have been renamed or split — for instance the older `QFT`
   *class* was formally deprecated in Qiskit 2.1 and is scheduled for
-  removal in Qiskit 3.0, in favour of `QFTGate` and the synthesis
+  removal in Qiskit 3.0, in favor of `QFTGate` and the synthesis
   function `qiskit.synthesis.qft.synth_qft_full`. When in doubt,
   check the module index of the installed package rather than older
   blog posts.
@@ -304,7 +304,7 @@ documentation rather than as stable artifacts.
 - **t|ket> and the Quantinuum stack.** `docs.quantinuum.com/tket`. The
   TKET compiler and `pytket` Python bindings are the strongest
   open-source pieces of compiler infrastructure for circuit
-  optimisation and hardware-aware routing across multiple backends.
+  optimization and hardware-aware routing across multiple backends.
 - **Stim.** Craig Gidney, available at `github.com/quantumlib/Stim`.
   The fastest stabilizer-circuit simulator in wide use, with a
   matched decoder ecosystem (PyMatching, Fusion Blossom). Effectively

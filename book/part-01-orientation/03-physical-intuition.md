@@ -17,12 +17,12 @@ The chapter is **deliberately light on formulas**. Numerical claims
 are kept to order-of-magnitude precision, and the named experiments
 are chosen because their *lessons* survive the transition to the
 gate model — the translation itself, from continuous variables and
-travelling photons to finite circuits, is genuine abstraction work. The mathematics arrives in Chapter 4; the postulates
+traveling photons to finite circuits, is genuine abstraction work. The mathematics arrives in Chapter 4; the postulates
 that compress this physics into rules arrive in Chapter 5. Read
 those chapters with the experiments in this one in mind, and the
 postulates should feel like a compact codification of what is
 actually observed rather than a list of axioms imposed from above —
-compact, not provably unique; alternative axiomatisations exist.
+compact, not provably unique; alternative axiomatizations exist.
 
 Three points to keep in mind:
 
@@ -41,7 +41,7 @@ Three points to keep in mind:
 3. The target intuition for a quantum-computing practitioner is
    compact: a system's state is a vector in a complex Hilbert space,
    evolved by unitaries, sampled by measurements (projectively, in
-   this chapter's idealisation), with amplitudes
+   this chapter's idealization), with amplitudes
    that **interfere** before they become probabilities. Everything
    in this chapter is in service of making that one sentence feel
    inevitable rather than imposed.
@@ -163,7 +163,7 @@ A few things to take from this:
   under a suitable encoding with one extra qubit — but complex
   amplitudes are the formulation in which composition and the
   observed phenomenology come out naturally (Aaronson's *Quantum
-  Computing Since Democritus* gives the reconstruction-flavoured
+  Computing Since Democritus* gives the reconstruction-flavored
   argument; strict uniqueness claims need extra axioms).
 - The wavefunction is best not read as a material field in ordinary
   space (how literally to take it is an interpretation question —
@@ -198,9 +198,9 @@ unlike classical state spaces.
 
 Concretely, if $|\psi_1\rangle$ and $|\psi_2\rangle$ are two physical
 states of a system, then any nonzero combination
-$\alpha |\psi_1\rangle + \beta |\psi_2\rangle$, once normalised, is also
+$\alpha |\psi_1\rangle + \beta |\psi_2\rangle$, once normalized, is also
 a physical state. When the two are orthonormal — as spin-up and
-spin-down along $z$ are — normalisation is just
+spin-down along $z$ are — normalization is just
 $|\alpha|^2 + |\beta|^2 = 1$. The Stern-Gerlach experiment reads it out as "spin up with
 probability $|\alpha|^2$ or spin down with probability $|\beta|^2$"
 when measured along $z$, but that is a property of the *measurement*,
@@ -323,7 +323,7 @@ produces a **classical record** — a pointer position, a detector
 click, a stored bit. In the ideal projective case this chapter uses, the measurement is
 described by a basis in the system's Hilbert space; the apparatus
 reports a basis element, with probabilities given by the Born rule.
-(Chapter 11 generalises: POVM outcomes need not correspond to
+(Chapter 11 generalizes: POVM outcomes need not correspond to
 orthogonal basis states, and the post-measurement state needs its
 own specification.)
 
@@ -371,7 +371,7 @@ Two practical implications:
 ## 3.6 Measurement Back-Action
 
 A second feature of quantum measurement, also without classical
-analogue, is that the measurement **changes the state**. After a
+analog, is that the measurement **changes the state**. After a
 projective measurement returns outcome $m$, the system is in the
 basis state corresponding to $m$; immediately repeating the same
 measurement returns $m$ again with certainty. This is the
@@ -422,7 +422,7 @@ Two further points about back-action:
 The mathematical compression of this physics arrives in Chapter 4
 (commutators, §4.5) and Chapter 5 (postulates of measurement, §5.4).
 For the qubit's Pauli pairs — $X$ and $Z$, say — the eigenbases are
-*mutually unbiased*: measuring in one completely randomises a state
+*mutually unbiased*: measuring in one completely randomizes a state
 prepared sharp in the other. (That total mutual blindness is special
 to mutually unbiased bases; generic noncommuting observables
 disagree less totally, though never not at all.) The conceptual fact to bring forward from
@@ -620,7 +620,7 @@ process. By convention the principal ones are:
   energy into the environment.
 - $T_2$, the **dephasing time**: the timescale over which the
   relative phase between $|0\rangle$ and $|1\rangle$ components of a
-  superposition becomes randomised. $T_2$ is bounded above by
+  superposition becomes randomized. $T_2$ is bounded above by
   $2 T_1$ in the standard two-level Markovian model, and is often the
   practically relevant figure for interference-based algorithms
   (though $T_1$, leakage, or control error can dominate instead).
@@ -708,7 +708,7 @@ are squarely in the first. Quantum computing lives in the boundary
 region: macroscopically engineered hardware operated under conditions
 extreme enough (low temperature, high vacuum, deep electromagnetic
 isolation) that the action scale of the relevant degrees of freedom
-is comparable to $\hbar$ and the quantum behaviour is preserved long
+is comparable to $\hbar$ and the quantum behavior is preserved long
 enough to compute with.
 
 Once this picture is internalized, the dichotomy that often gets
@@ -733,9 +733,9 @@ questions one asks.
 The intuition this chapter aims to leave you with is compact. A
 quantum system's state is a **vector in a complex Hilbert space**.
 Closed-system evolution is **unitary**. Measurement, in this
-chapter's idealised form, is a **projection onto a basis**,
+chapter's idealized form, is a **projection onto a basis**,
 returning a classical sample drawn from squared amplitudes
-(Chapter 11 generalises). Amplitudes **interfere** before they
+(Chapter 11 generalizes). Amplitudes **interfere** before they
 become probabilities, which is what makes quantum algorithms
 faster than their classical equivalents at the tasks where they
 are faster. Entanglement is a genuine kind of correlation between subsystems
@@ -758,7 +758,7 @@ lowest two levels of a transmon (a multilevel circuit used as an
 effective two-level system), or any other effective two-level
 system — and develops the Bloch sphere as the geometric picture you
 will rely on throughout the single-qubit story (its multi-qubit
-generalisations are weaker — Chapter 7 says why).
+generalizations are weaker — Chapter 7 says why).
 
 Before turning the page, take a moment with the following
 sanity-checks. Each is answered somewhere in this chapter; if any

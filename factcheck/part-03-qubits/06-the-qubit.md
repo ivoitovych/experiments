@@ -12,14 +12,14 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §6.2 — Pure-state physical parameter count yields two real parameters
 
-- **Claim** (anchor): "The two complex amplitudes account for four real degrees of freedom; the normalisation constraint removes one; global phase removes another; the physical state space has two real parameters left"
+- **Claim** (anchor): "The two complex amplitudes account for four real degrees of freedom; the normalization constraint removes one; global phase removes another; the physical state space has two real parameters left"
 - **Method**: derivation
 - **Source**: → §6.2
 - **Verified**: — · **Verdict**: open
 
-## §6.2 — Half-angle parametrisation covers the sphere exactly once
+## §6.2 — Half-angle parametrization covers the sphere exactly once
 
-- **Claim** (anchor): "it is what makes the Bloch parametrisation cover the sphere exactly once — up to the usual spherical-coordinate degeneracy at the poles"
+- **Claim** (anchor): "it is what makes the Bloch parametrization cover the sphere exactly once — up to the usual spherical-coordinate degeneracy at the poles"
 - **Method**: derivation
 - **Source**: → §6.2; unpacked in §6.8
 - **Verified**: — · **Verdict**: open
@@ -40,7 +40,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §6.4 — Physical realizations of computational basis per platform
 
-- **Claim** (anchor): "On superconducting qubits, for example, the two basis states are two energy levels of the qubit's Hamiltonian; on ion traps they are typically two hyperfine sublevels; on photonic qubits they are often two polarisation states; on neutral atoms they are two long-lived atomic states"
+- **Claim** (anchor): "On superconducting qubits, for example, the two basis states are two energy levels of the qubit's Hamiltonian; on ion traps they are typically two hyperfine sublevels; on photonic qubits they are often two polarization states; on neutral atoms they are two long-lived atomic states"
 - **Method**: external
 - **Source**: TBD — needs verification (platform-physics survey)
 - **Verified**: — · **Verdict**: open

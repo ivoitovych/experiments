@@ -86,7 +86,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 - **Claim** (anchor): "This is the structural reason that fault-tolerant simulation (Chapter 19) — Clifford operations with Pauli noise — is computationally tractable on circuits with millions of qubits"
 - **Method**: derivation
-- **Source**: → §24.5 Gottesman–Knill theorem; Pauli jumps preserve stabiliser subgroup
+- **Source**: → §24.5 Gottesman–Knill theorem; Pauli jumps preserve stabilizer subgroup
 - **Verified**: — · **Verdict**: open
 
 ## §24.5 — Gottesman–Knill theorem: Clifford circuits simulable in polynomial time and space
@@ -96,11 +96,11 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Source**: TBD — needs verification (Gottesman 1997 / Knill 1996, and §8.10 cross-reference)
 - **Verified**: — · **Verdict**: open
 
-## §24.5 — Stabiliser tableau: 2n×(2n+1) binary matrix, O(n²) storage
+## §24.5 — Stabilizer tableau: 2n×(2n+1) binary matrix, O(n²) storage
 
-- **Claim** (anchor): "recording the $n$ stabilisers and the $n$ "destabilisers" needed to perform measurements efficiently. The total storage is $O(n^2)$ bits"
+- **Claim** (anchor): "recording the $n$ stabilizers and the $n$ "destabilizers" needed to perform measurements efficiently. The total storage is $O(n^2)$ bits"
 - **Method**: derivation
-- **Source**: → §24.5 stabiliser-tableau algorithm; Aaronson–Gottesman 2004
+- **Source**: → §24.5 stabilizer-tableau algorithm; Aaronson–Gottesman 2004
 - **Verified**: — · **Verdict**: open
 
 ## §24.5 — Full Clifford circuit runtime O(ng + n²m)
@@ -124,7 +124,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
 
-## §24.6 — Stabiliser rank of k magic states: at most 2^(αk) with α≈0.396 (Bravyi–Gosset 2016)
+## §24.6 — Stabilizer rank of k magic states: at most 2^(αk) with α≈0.396 (Bravyi–Gosset 2016)
 
 - **Claim** (anchor): "from the **Bravyi–Gosset 2016** construction, beating the naive $2^k$"
 - **Method**: external
@@ -142,12 +142,12 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 - **Claim** (anchor): "exponential in $k$, polynomial in everything else"
 - **Method**: derivation
-- **Source**: → §24.6 stabiliser-decomposition cost model; Bravyi–Gosset 2016
+- **Source**: → §24.6 stabilizer-decomposition cost model; Bravyi–Gosset 2016
 - **Verified**: — · **Verdict**: open
 
 ## §24.6 — Pashayan–Bartlett–Gross 2015 quasi-probability scheme
 
-- **Claim** (anchor): "**Pashayan–Bartlett–Gross 2015** scheme writes every state and every operation in a "phase-space" frame where stabiliser states have nonnegative quasi-probabilities"
+- **Claim** (anchor): "**Pashayan–Bartlett–Gross 2015** scheme writes every state and every operation in a "phase-space" frame where stabilizer states have nonnegative quasi-probabilities"
 - **Method**: external
 - **Source**: TBD — needs verification (Pashayan, Wallman & Bartlett 2015; or Pashayan–Bartlett–Gross)
 - **Verified**: — · **Verdict**: open
@@ -203,7 +203,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §24.9 — DMRG introduced by Steven White in 1992
 
-- **Claim** (anchor): "The density matrix renormalisation group (DMRG), introduced by Steven White in 1992"
+- **Claim** (anchor): "The density matrix renormalization group (DMRG), introduced by Steven White in 1992"
 - **Method**: external
 - **Source**: TBD — needs verification (White, Physical Review Letters 69, 2863, 1992)
 - **Verified**: — · **Verdict**: open
@@ -259,7 +259,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §24.12 — cuStateVec, qsim, Qulacs approach memory-bandwidth peak at 30+ qubits
 
-- **Claim** (anchor): "**Qulacs** are the most heavily-optimised single-GPU statevector simulators; all approach memory-bandwidth peak and run circuits at 30+ qubits significantly faster than CPU equivalents"
+- **Claim** (anchor): "**Qulacs** are the most heavily-optimized single-GPU statevector simulators; all approach memory-bandwidth peak and run circuits at 30+ qubits significantly faster than CPU equivalents"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -285,9 +285,9 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Source**: → §24.4 and §24.13; N trajectories at cost 2^n each vs single density-matrix at cost 4^n
 - **Verified**: — · **Verdict**: open
 
-## §24.13 — Aharonov–Ben-Or 1996 and Knill 2005: constant-rate depolarising noise makes circuits classically simulable
+## §24.13 — Aharonov–Ben-Or 1996 and Knill 2005: constant-rate depolarizing noise makes circuits classically simulable
 
-- **Claim** (anchor): "The Aharonov–Ben-Or 1996 and Knill 2005 style arguments show that constant-rate depolarising noise above a (low) threshold reduces every circuit's output to nearly classical, and the simulation becomes polynomial-time"
+- **Claim** (anchor): "The Aharonov–Ben-Or 1996 and Knill 2005 style arguments show that constant-rate depolarizing noise above a (low) threshold reduces every circuit's output to nearly classical, and the simulation becomes polynomial-time"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

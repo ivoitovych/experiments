@@ -3,29 +3,29 @@
 Mirrors `book/part-13-perspective-and-direction/36-how-to-judge-claims.md`.
 Extraction pass 2026-05 — claims identified and anchored; verification still OPEN.
 
-## §36.3 — Tang 2018 dequantisation of recommendation-systems algorithm
+## §36.3 — Tang 2018 dequantization of recommendation-systems algorithm
 
-- **Claim** (anchor): "Tang's 2018 dequantisation of the quantum recommendation-systems algorithm of Kerenidis–Prakash was the first"
+- **Claim** (anchor): "Tang's 2018 dequantization of the quantum recommendation-systems algorithm of Kerenidis–Prakash was the first"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Refers to Ewin Tang's 2018 paper introducing the dequantisation technique.
+- **Comment**: Refers to Ewin Tang's 2018 paper introducing the dequantization technique.
 
-## §36.3 — Dequantisation cascade: PCA, clustering, regression, kernels
+## §36.3 — Dequantization cascade: PCA, clustering, regression, kernels
 
 - **Claim** (anchor): "the cascade extended through PCA (Tang 2018), supervised clustering (Tang 2019), low-rank linear regression (Gilyén–Lloyd–Tang 2018; Chia–Gilyén–Li–Lin–Tang–Wang 2020), and several kernel methods"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Specific author attributions and years for the full dequantisation cascade.
+- **Comment**: Specific author attributions and years for the full dequantization cascade.
 
-## §36.3 — Dequantisation consensus by 2022
+## §36.3 — Dequantization consensus by 2022
 
 - **Claim** (anchor): "By 2022 the consensus was that the entire family of"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Claims a community consensus date for QML-via-QRAM dequantisation.
+- **Comment**: Claims a community consensus date for QML-via-QRAM dequantization.
 
 ## §36.3 — Commercial quantum-inspired products 2021–2023
 

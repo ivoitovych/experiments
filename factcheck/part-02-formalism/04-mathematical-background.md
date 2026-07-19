@@ -70,7 +70,7 @@
 ## §4.4 Matrices and Linear Operators
 
 ### Claim: The adjoint A† is defined by ⟨u, Av⟩ = ⟨A†u, v⟩ for all u, v, independent of basis
-- **Method:** derivation — standard definition; the conjugate-transpose formula (A†)_{ij} = conj(A_{ji}) is its matrix realisation.
+- **Method:** derivation — standard definition; the conjugate-transpose formula (A†)_{ij} = conj(A_{ji}) is its matrix realization.
 - **Source:** —
 - **Status:** not yet verified
 - **Find in text:** "It satisfies $\langle u, A v\rangle = \langle A^\dagger u, v\rangle$, which is the defining property of the adjoint independent of basis."
@@ -115,7 +115,7 @@
 - **Method:** derivation — multiplicativity of the inner product on product vectors.
 - **Source:** —
 - **Status:** not yet verified
-- **Find in text:** "In particular, a product of two normalised single-qubit states is itself normalised"
+- **Find in text:** "In particular, a product of two normalized single-qubit states is itself normalized"
 
 ### Claim: Determinant of a Kronecker product: det(A ⊗ B) = (det A)ⁿ (det B)ᵐ when A is m×m and B is n×n
 - **Method:** derivation — standard Kronecker-product identity.
@@ -150,14 +150,14 @@
 - **Find in text:** "The $\sigma_i$ are the **singular values** of $A$; they are the square roots of the eigenvalues of the positive semidefinite operator $A^\dagger A$."
 
 ### Claim: The trace distance D(ρ, σ) = ½‖ρ−σ‖₁ equals the largest total-variation distance achievable by any POVM measurement
-- **Method:** external — Holevo–Helstrom operational characterisation of trace distance.
+- **Method:** external — Holevo–Helstrom operational characterization of trace distance.
 - **Source:** —
 - **Status:** not yet verified
 - **Find in text:** "it equals the maximum classical total-variation distance obtainable from any measurement, and determines the optimal equal-prior discrimination success probability"
 
 ## §4.13 Fourier Transform Basics
 
-### Claim: The exact QFT on n qubits can be realised by a circuit of O(n²) elementary gates (Hadamards plus controlled phases)
+### Claim: The exact QFT on n qubits can be realized by a circuit of O(n²) elementary gates (Hadamards plus controlled phases)
 - **Method:** derivation — standard QFT construction; this counts gates, not depth.
 - **Source:** —
 - **Status:** not yet verified

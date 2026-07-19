@@ -216,9 +216,9 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
 
-## §22.10 — XEB fidelity factorisation property
+## §22.10 — XEB fidelity factorization property
 
-- **Claim** (anchor): "$F_{\mathrm{XEB}}$ factorises across the circuit as a product of per-gate fidelities (in the limit of large random circuits)"
+- **Claim** (anchor): "$F_{\mathrm{XEB}}$ factorizes across the circuit as a product of per-gate fidelities (in the limit of large random circuits)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -246,7 +246,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §22.11 — Ion-trap mid-circuit measurement latency
 
-- **Claim** (anchor): "On ion-trap devices it is $50$–$500\\,\mu\mathrm{s}$ (fluorescence collection plus shelving-state initialisation)"
+- **Claim** (anchor): "On ion-trap devices it is $50$–$500\\,\mu\mathrm{s}$ (fluorescence collection plus shelving-state initialization)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

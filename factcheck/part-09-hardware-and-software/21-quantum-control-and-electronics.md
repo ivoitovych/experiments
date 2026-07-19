@@ -109,7 +109,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §21.5 — DAC dynamic range calculation
 
-- **Claim** (anchor): "A DAC (digital-to-analogue converter) at $2\\,\mathrm{GS/s}$ with $14$-bit resolution has a Nyquist bandwidth of $1\\,\mathrm{GHz}$ and a usable dynamic range of about $84\\,\mathrm{dB}$"
+- **Claim** (anchor): "A DAC (digital-to-analog converter) at $2\\,\mathrm{GS/s}$ with $14$-bit resolution has a Nyquist bandwidth of $1\\,\mathrm{GHz}$ and a usable dynamic range of about $84\\,\mathrm{dB}$"
 - **Method**: derivation
 - **Source**: → §21.5 (ENOB/SFDR formula: ~6 dB/bit × 14 bits)
 - **Verified**: — · **Verdict**: open
@@ -129,7 +129,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: ADC specs for qubit readout digitisers; should be verified against vendor datasheets.
+- **Comment**: ADC specs for qubit readout digitizers; should be verified against vendor datasheets.
 
 ## §21.6 — Classical crosstalk floor requirement
 
@@ -145,7 +145,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: ZZ coupling magnitude for fixed-coupler superconducting qubits; should be verified against device characterisation literature.
+- **Comment**: ZZ coupling magnitude for fixed-coupler superconducting qubits; should be verified against device characterization literature.
 
 ## §21.7 — Dilution refrigerator base temperature
 
@@ -201,7 +201,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Coherence time range for superconducting qubits used as the feedforward budget; should be verified against current device characterisation literature.
+- **Comment**: Coherence time range for superconducting qubits used as the feedforward budget; should be verified against current device characterization literature.
 
 ## §21.8 — End-to-end feedback latency
 
@@ -241,7 +241,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: TLS-induced frequency drift magnitude; should be verified against TLS noise characterisation literature.
+- **Comment**: TLS-induced frequency drift magnitude; should be verified against TLS noise characterization literature.
 
 ## §21.10 — Calibration cadence on stable vs. unstable platform
 
@@ -253,7 +253,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §21.10 — Single-qubit gate error rate calibration target
 
-- **Claim** (anchor): "Single-qubit randomised benchmarking: verify the Clifford error rate is below the spec ($10^{-3}$ to $10^{-4}$)"
+- **Claim** (anchor): "Single-qubit randomized benchmarking: verify the Clifford error rate is below the spec ($10^{-3}$ to $10^{-4}$)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -277,7 +277,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §21.11 — Named optimal control algorithm families
 
-- **Claim** (anchor): "GRAPE (Gradient Ascent Pulse Engineering): discretise the pulse into $N$ piecewise-constant slices, compute the analytic gradient of the fidelity with respect to each slice's amplitude, and ascend"
+- **Claim** (anchor): "GRAPE (Gradient Ascent Pulse Engineering): discretize the pulse into $N$ piecewise-constant slices, compute the analytic gradient of the fidelity with respect to each slice's amplitude, and ascend"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -293,7 +293,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §21.11 — CRAB algorithm parameter count
 
-- **Claim** (anchor): "CRAB (Chopped Random Basis): expand the control into a small basis (Fourier modes, randomised orthogonal functions) with $O(10)$ parameters and run derivative-free optimisation on those"
+- **Claim** (anchor): "CRAB (Chopped Random Basis): expand the control into a small basis (Fourier modes, randomized orthogonal functions) with $O(10)$ parameters and run derivative-free optimization on those"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -345,7 +345,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Superconducting qubit readout performance figures; should be cross-checked against recent device characterisation papers and vendor datasheets.
+- **Comment**: Superconducting qubit readout performance figures; should be cross-checked against recent device characterization papers and vendor datasheets.
 
 ## §21.14 — Trapped-ion readout fidelity
 

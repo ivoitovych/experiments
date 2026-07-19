@@ -107,7 +107,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §17.3 — 2-local Hamiltonian QMA-complete on 2D lattice (Oliveira–Terhal; Aharonov–Gottesman–Irani–Kempe)
 
-- **Claim** (anchor): "the problem remains $\mathrm{QMA}$-complete for *geometrically local* Hamiltonians — terms involving only neighbouring qubits on a 2D lattice — by results of Oliveira–Terhal and Aharonov–Gottesman–Irani–Kempe"
+- **Claim** (anchor): "the problem remains $\mathrm{QMA}$-complete for *geometrically local* Hamiltonians — terms involving only neighboring qubits on a 2D lattice — by results of Oliveira–Terhal and Aharonov–Gottesman–Irani–Kempe"
 - **Method**: external
 - **Source**: Oliveira & Terhal (2005); Aharonov, Gottesman, Irani & Kempe (2009) — TBD — needs verification (DOIs)
 - **Verified**: — · **Verdict**: open
@@ -152,9 +152,9 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ---
 
-## §17.4 — QIP = QIP(3): parallelisation to three messages
+## §17.4 — QIP = QIP(3): parallelization to three messages
 
-- **Claim** (anchor): "$\mathrm{QIP} = \mathrm{QIP}(3)$: every quantum interactive proof can be parallelised down to three messages"
+- **Claim** (anchor): "$\mathrm{QIP} = \mathrm{QIP}(3)$: every quantum interactive proof can be parallelized down to three messages"
 - **Method**: external
 - **Source**: Kitaev & Watrous (2000), "Parallelization, amplification, and exponential time simulation of quantum interactive proof systems" — TBD — needs verification (DOI)
 - **Verified**: — · **Verdict**: open
@@ -273,7 +273,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §17.6 — Negative-weight adversary method is tight for all boolean functions (Reichardt)
 
-- **Claim** (anchor): "its **negative-weight** generalisation (Høyer–Lee–Špalek) is tight for all functions (Reichardt)"
+- **Claim** (anchor): "its **negative-weight** generalization (Høyer–Lee–Špalek) is tight for all functions (Reichardt)"
 - **Method**: external
 - **Source**: Reichardt (2011), "Reflections for quantum query algorithms"; Høyer, Lee & Špalek (2007) — TBD — needs verification (DOIs)
 - **Verified**: — · **Verdict**: open
@@ -444,9 +444,9 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ---
 
-## §17.12 — Tang (2018) dequantisation of HHL recommendation-system algorithm
+## §17.12 — Tang (2018) dequantization of HHL recommendation-system algorithm
 
-- **Claim** (anchor): "The 2018 **Tang dequantisation** of the HHL-based recommendation system algorithm is the canonical case. Kerenidis–Prakash (2016) had shown an HHL-style algorithm for low-rank recommendation systems"
+- **Claim** (anchor): "The 2018 **Tang dequantization** of the HHL-based recommendation system algorithm is the canonical case. Kerenidis–Prakash (2016) had shown an HHL-style algorithm for low-rank recommendation systems"
 - **Method**: external
 - **Source**: Tang (2019), "A quantum-inspired classical algorithm for recommendation systems", *STOC 2019*; Kerenidis & Prakash (2017) — TBD — needs verification (DOIs; note possible 2018/2019 date ambiguity for Tang)
 - **Verified**: — · **Verdict**: open
@@ -454,9 +454,9 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ---
 
-## §17.13 — Gottesman–Knill theorem: stabiliser circuits efficiently classically simulable
+## §17.13 — Gottesman–Knill theorem: stabilizer circuits efficiently classically simulable
 
-- **Claim** (anchor): "Any quantum circuit built from $\\{H, S, \mathrm{CNOT}, \text{Pauli-basis measurement}\\}$, applied to a stabiliser initial state, is **efficiently classically simulable** (§8.10)"
+- **Claim** (anchor): "Any quantum circuit built from $\\{H, S, \mathrm{CNOT}, \text{Pauli-basis measurement}\\}$, applied to a stabilizer initial state, is **efficiently classically simulable** (§8.10)"
 - **Method**: external
 - **Source**: Gottesman (1998), "The Heisenberg representation of quantum computers"; also Nielsen & Chuang, §10.5 — TBD — needs verification
 - **Verified**: — · **Verdict**: open

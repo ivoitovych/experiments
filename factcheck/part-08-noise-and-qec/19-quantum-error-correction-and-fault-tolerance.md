@@ -5,13 +5,13 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ---
 
-## §19.2 — Hamming bound and Singleton bound have quantum analogues
+## §19.2 — Hamming bound and Singleton bound have quantum analogs
 
-- **Claim** (anchor): "the **Hamming bound** and **Singleton bound** — two classical counting inequalities that cap how many errors any code with $n$ bits and $k$ data bits can correct — constrain the achievable trade-off. Both bounds have direct quantum analogues."
+- **Claim** (anchor): "the **Hamming bound** and **Singleton bound** — two classical counting inequalities that cap how many errors any code with $n$ bits and $k$ data bits can correct — constrain the achievable trade-off. Both bounds have direct quantum analogs."
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Standard claim in QEC literature; quantum analogues (quantum Hamming bound, quantum Singleton / Knill–Laflamme bound) are well-established but the specific framing should be confirmed against a canonical source such as Nielsen & Chuang.
+- **Comment**: Standard claim in QEC literature; quantum analogs (quantum Hamming bound, quantum Singleton / Knill–Laflamme bound) are well-established but the specific framing should be confirmed against a canonical source such as Nielsen & Chuang.
 
 ---
 
@@ -29,7 +29,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 - **Claim** (anchor): "The Shor code has parameters $[[9, 1, 3]]$ (nine physical qubits, one logical qubit, distance three — the general $[[n, k, d]]$ convention is fixed in §19.8)"
 - **Method**: derivation
-- **Source**: → §19.6 (stabiliser count and logical operator weight argument in this section)
+- **Source**: → §19.6 (stabilizer count and logical operator weight argument in this section)
 - **Verified**: — · **Verdict**: open
 - **Comment**: Parameters follow from the explicit construction given in the section; the weight-3 logical operators $\bar X = Z_1 Z_4 Z_7$ and $\bar Z = X_1 X_2 X_3$ establish distance 3.
 
@@ -65,7 +65,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ---
 
-## §19.7 — CSS generalisation: [[n, 2k−n, d]] from self-dual-containing classical code
+## §19.7 — CSS generalization: [[n, 2k−n, d]] from self-dual-containing classical code
 
 - **Claim** (anchor): "any classical $[n, k, d]$ code that contains its dual gives a quantum CSS code with parameters $[[n, 2k - n, d]]$"
 - **Method**: derivation
@@ -75,23 +75,23 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ---
 
-## §19.8 — Stabiliser formalism attributed to Daniel Gottesman
+## §19.8 — Stabilizer formalism attributed to Daniel Gottesman
 
-- **Claim** (anchor): "The **stabiliser formalism**, due to Daniel Gottesman, makes this systematic."
+- **Claim** (anchor): "The **stabilizer formalism**, due to Daniel Gottesman, makes this systematic."
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Attribution of the stabiliser formalism to Gottesman is standard; should be confirmed against Gottesman's thesis or original papers.
+- **Comment**: Attribution of the stabilizer formalism to Gottesman is standard; should be confirmed against Gottesman's thesis or original papers.
 
 ---
 
-## §19.8 — Gottesman–Knill theorem: stabiliser circuits classically simulable in O(n²)
+## §19.8 — Gottesman–Knill theorem: stabilizer circuits classically simulable in O(n²)
 
-- **Claim** (anchor): "stabiliser states (states in $C(S)$ for some $S$) plus Clifford gates plus computational-basis measurement can all be tracked in $O(n^2)$ time per operation by updating the generators of $S$ — they are classically simulable."
+- **Claim** (anchor): "stabilizer states (states in $C(S)$ for some $S$) plus Clifford gates plus computational-basis measurement can all be tracked in $O(n^2)$ time per operation by updating the generators of $S$ — they are classically simulable."
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: The $O(n^2)$ per-operation complexity for stabiliser simulation (Aaronson–Gottesman tableau algorithm) should be confirmed. The classical simulability result is Gottesman–Knill; the specific complexity is from Aaronson & Gottesman (2004).
+- **Comment**: The $O(n^2)$ per-operation complexity for stabilizer simulation (Aaronson–Gottesman tableau algorithm) should be confirmed. The classical simulability result is Gottesman–Knill; the specific complexity is from Aaronson & Gottesman (2004).
 
 ---
 
@@ -155,9 +155,9 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ---
 
-## §19.12 — Surface code threshold approximately 1% under depolarising noise
+## §19.12 — Surface code threshold approximately 1% under depolarizing noise
 
-- **Claim** (anchor): "designed to be implementable with nearest-neighbour interactions and to tolerate physical error rates around 1% — one to two orders of magnitude above what any other code family has achieved at comparable distance"
+- **Claim** (anchor): "designed to be implementable with nearest-neighbor interactions and to tolerate physical error rates around 1% — one to two orders of magnitude above what any other code family has achieved at comparable distance"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -165,9 +165,9 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ---
 
-## §19.14 — Colour codes introduced by Bombin and Martin-Delgado in 2006
+## §19.14 — Color codes introduced by Bombin and Martin-Delgado in 2006
 
-- **Claim** (anchor): "**Colour codes**, introduced by Bombin and Martin-Delgado in 2006"
+- **Claim** (anchor): "**Color codes**, introduced by Bombin and Martin-Delgado in 2006"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -175,23 +175,23 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ---
 
-## §19.14 — 2D colour code threshold typically 0.1% to 0.5%
+## §19.14 — 2D color code threshold typically 0.1% to 0.5%
 
 - **Claim** (anchor): "their threshold is typically lower in practical noise models (0.1% to 0.5%)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: The 0.1%–0.5% threshold range for 2D colour codes under practical noise models is an empirical/simulation claim requiring external confirmation.
+- **Comment**: The 0.1%–0.5% threshold range for 2D color codes under practical noise models is an empirical/simulation claim requiring external confirmation.
 
 ---
 
-## §19.14 — 3D colour code admits transversal T gate
+## §19.14 — 3D color code admits transversal T gate
 
-- **Claim** (anchor): "The 3D colour code goes one step further and admits a transversal $T$ gate, which would in principle make magic state distillation unnecessary"
+- **Claim** (anchor): "The 3D color code goes one step further and admits a transversal $T$ gate, which would in principle make magic state distillation unnecessary"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: The transversal $T$ gate property of 3D colour codes is an attributed result in the fault-tolerance literature; should be confirmed.
+- **Comment**: The transversal $T$ gate property of 3D color codes is an attributed result in the fault-tolerance literature; should be confirmed.
 
 ---
 
@@ -281,7 +281,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: This range synthesises multiple published resource estimates; the specific bounds should be confirmed against representative papers.
+- **Comment**: This range synthesizes multiple published resource estimates; the specific bounds should be confirmed against representative papers.
 
 ---
 
@@ -335,9 +335,9 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ---
 
-## §19.19 — Surface-code threshold 1% assumes independent depolarising noise
+## §19.19 — Surface-code threshold 1% assumes independent depolarizing noise
 
-- **Claim** (anchor): "The standard surface-code threshold of 1% assumes independent depolarising noise on every gate; under more realistic noise (correlated errors, leakage, crosstalk) the effective threshold drops, sometimes by $2\times$ or more"
+- **Claim** (anchor): "The standard surface-code threshold of 1% assumes independent depolarizing noise on every gate; under more realistic noise (correlated errors, leakage, crosstalk) the effective threshold drops, sometimes by $2\times$ or more"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

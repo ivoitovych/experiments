@@ -28,12 +28,12 @@ Seeded from ledger Pass 3 and Pass 6 (2026-05-28).
 
 - **Claim** (anchor): "renamed FN-DSA in NIST's draft, FIPS 206 IPD submitted August 2025"
 - **Method**: external
-- **Source**: NIST FIPS 206 status update (Aug 2025); DigiCert / data-centre coverage
+- **Source**: NIST FIPS 206 status update (Aug 2025); DigiCert / data-center coverage
 - **Verified**: 2026-05 · **Verdict**: **updated** — status sharpened to "IPD submitted Aug 2025"
 
-## §27.5 — FIPS 203/204/205 finalisation
+## §27.5 — FIPS 203/204/205 finalization
 
-- **Claim** (anchor): "August 2024: FIPS 203 (ML-KEM), FIPS 204 (ML-DSA), FIPS 205 (SLH-DSA) finalised"
+- **Claim** (anchor): "August 2024: FIPS 203 (ML-KEM), FIPS 204 (ML-DSA), FIPS 205 (SLH-DSA) finalized"
 - **Method**: external
 - **Source**: NIST press release "First 3 Finalized Post-Quantum Encryption Standards" (2024-08-13); FIPS 203/204/205 final
 - **Verified**: 2026-05 · **Verdict**: confirmed
@@ -43,7 +43,7 @@ Seeded from ledger Pass 3 and Pass 6 (2026-05-28).
 - **Claim** (anchor): HQC selected by NIST as a 4th-round KEM (cryptographic diversity); FIPS 207 forthcoming
 - **Method**: external
 - **Source**: NIST press release 2025-03-11; NIST IR 8545; FIPS 207 presentation
-- **Verified**: 2026-05 · **Verdict**: **updated** — date pinned to March 2025; forthcoming standard correctly named FIPS 207 (was "2024–2025" / "finalised as FIPS draft")
+- **Verified**: 2026-05 · **Verdict**: **updated** — date pinned to March 2025; forthcoming standard correctly named FIPS 207 (was "2024–2025" / "finalized as FIPS draft")
 
 ## §27.2 — RSA-2048 resource bounds
 

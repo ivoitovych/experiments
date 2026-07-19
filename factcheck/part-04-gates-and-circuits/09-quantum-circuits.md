@@ -21,7 +21,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Attributed behaviour of a specific SDK. Should be confirmed against Qiskit documentation / source.
+- **Comment**: Attributed behavior of a specific SDK. Should be confirmed against Qiskit documentation / source.
 
 ---
 
@@ -185,13 +185,13 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ---
 
-## §9.10 — Depth lower bound on nearest-neighbour architecture: Ω(n)
+## §9.10 — Depth lower bound on nearest-neighbor architecture: Ω(n)
 
 - **Claim** (anchor): "Preparing an $n$-qubit state from"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Lower-bound claim for state preparation depth on linear/nearest-neighbour connectivity. Standard result in circuit complexity; needs citation.
+- **Comment**: Lower-bound claim for state preparation depth on linear/nearest-neighbor connectivity. Standard result in circuit complexity; needs citation.
 
 ---
 
@@ -227,7 +227,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §9.12 — Qubit routing is NP-hard in general
 
-- **Claim** (anchor): "Qubit routing is the compiler problem of choosing a SWAP schedule that minimises overhead — in its standard decision formulations it is NP-hard"
+- **Claim** (anchor): "Qubit routing is the compiler problem of choosing a SWAP schedule that minimizes overhead — in its standard decision formulations it is NP-hard"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

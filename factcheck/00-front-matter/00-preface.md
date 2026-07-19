@@ -4,7 +4,7 @@ Mirrors `book/00-front-matter/00-preface.md`.
 Extraction pass 2026-05 — claims identified and anchored; verification still OPEN.
 
 The preface is predominantly motivational and pedagogical (audience framing, reading
-paths, how-to-use guidance, acknowledgements, license). Three concrete external
+paths, how-to-use guidance, acknowledgments, license). Three concrete external
 claims are recorded below; all remaining content is out-of-scope front-matter prose.
 
 ## Preface — Nielsen & Chuang audience and NISQ-era gap

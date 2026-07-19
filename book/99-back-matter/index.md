@@ -21,7 +21,7 @@ edit `TERMS` in the generator and regenerate. The
 
 ## B
 
-- **Barren plateaus** — [§15.7](../part-06-algorithms/15-landmark-quantum-algorithms.md#157-variational-quantum-algorithms), [§30.4](../part-11-applications/30-quantum-machine-learning.md#304-category-3-parameterised-quantum-circuits-as-neural-networks)
+- **Barren plateaus** — [§15.7](../part-06-algorithms/15-landmark-quantum-algorithms.md#157-variational-quantum-algorithms), [§30.4](../part-11-applications/30-quantum-machine-learning.md#304-category-3-parameterized-quantum-circuits-as-neural-networks)
 - **BB84 protocol** — [§27.7](../part-11-applications/27-cryptography-and-security.md#277-quantum-key-distribution-bb84), [§33.2](../part-12-adjacent-models/33-quantum-communication-and-networking.md#332-quantum-key-distribution)
 - **Bell states** — [§7.5](../part-03-qubits/07-multiple-qubits-and-entanglement.md#75-bell-states)
 - **Bernstein–Vazirani algorithm** — [§14.3](../part-06-algorithms/14-foundational-algorithms.md#143-bernsteinvazirani-algorithm)
@@ -44,7 +44,7 @@ edit `TERMS` in the generator and regenerate. The
 
 - **Decoherence** — [§10.9](../part-04-gates-and-circuits/10-core-quantum-phenomena.md#109-decoherence)
 - **Density matrix** — [§5.10](../part-02-formalism/05-postulates.md#510-density-matrices)
-- **Dequantization** — [§17.12](../part-07-complexity/17-complexity-theory.md#1712-dequantization), [§30.8](../part-11-applications/30-quantum-machine-learning.md#308-the-dequantisation-lesson)
+- **Dequantization** — [§17.12](../part-07-complexity/17-complexity-theory.md#1712-dequantization), [§30.8](../part-11-applications/30-quantum-machine-learning.md#308-the-dequantization-lesson)
 - **Deutsch–Jozsa algorithm** — [§14.2](../part-06-algorithms/14-foundational-algorithms.md#142-deutschjozsa-algorithm)
 - **Discrete logarithm** — [§15.4](../part-06-algorithms/15-landmark-quantum-algorithms.md#154-discrete-logarithm)
 - **Dynamical decoupling** — [§18.3](../part-08-noise-and-qec/18-noise-decoherence-and-errors.md#183-dephasing), [§21.11](../part-09-hardware-and-software/21-quantum-control-and-electronics.md#2111-control-plane-engineering)
@@ -101,7 +101,7 @@ edit `TERMS` in the generator and regenerate. The
 
 - **NISQ** — [Chapter 25](../part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md)
 - **No-cloning theorem** — [§5.13](../part-02-formalism/05-postulates.md#513-no-cloning-theorem), [§10.5](../part-04-gates-and-circuits/10-core-quantum-phenomena.md#105-no-cloning-restated)
-- **No-signalling** — [§5.11](../part-02-formalism/05-postulates.md#511-reduced-states), [§10.6](../part-04-gates-and-circuits/10-core-quantum-phenomena.md#106-no-signalling)
+- **No-signaling** — [§5.11](../part-02-formalism/05-postulates.md#511-reduced-states), [§10.6](../part-04-gates-and-circuits/10-core-quantum-phenomena.md#106-no-signaling)
 
 ## P
 

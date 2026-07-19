@@ -48,7 +48,7 @@ TERMS: dict[str, list[str]] = {
     "Magic state distillation": ["19.21"],
     "Measurement-based quantum computation": ["32.3"],
     "Mid-circuit measurement": ["9.8", "22.11"],
-    "No-signalling": ["5.11", "10.6"],
+    "No-signaling": ["5.11", "10.6"],
     "Parameter-shift rule": ["8.13", "11.7"],
     "Partial trace": ["5.12"],
     "POVM": ["11.2"],

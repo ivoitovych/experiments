@@ -6,7 +6,7 @@ checks — exactly the kind of perishable claim that benefits from a cached re-c
 
 ## Appendix D — Qiskit `QFT` deprecation
 
-- **Claim** (anchor): the older `QFT` is "deprecated in Qiskit 2.1, … removal in Qiskit 3.0, in favour of `QFTGate` and the synthesis" function
+- **Claim** (anchor): the older `QFT` is "deprecated in Qiskit 2.1, … removal in Qiskit 3.0, in favor of `QFTGate` and the synthesis" function
 - **Method**: external
 - **Source**: IBM Quantum docs — `qiskit.circuit.library.QFT` deprecation notice; `QFTGate` reference; `qiskit.synthesis.qft.synth_qft_full`
 - **Verified**: 2026-05 · **Verdict**: **updated** — sharpened to "formally deprecated in Qiskit 2.1, removal in 3.0" with the alternative synthesis function named

@@ -75,7 +75,7 @@ unitary.
 
 **Sample problem SC.1.2.** Express the two-qubit state
 $|01\rangle$ (Dirac *ket* notation: $|b\rangle$ names the basis state
-labelled by bit string $b$ — introduced fully in Chapter 4; if this
+labeled by bit string $b$ — introduced fully in Chapter 4; if this
 notation is new to you, skip this problem and return after §4.1) as a
 length-4 NumPy column vector with `dtype=complex`,
 using zero-based indexing where the leftmost factor is the most

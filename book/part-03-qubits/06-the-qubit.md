@@ -6,14 +6,14 @@
 
 A qubit is the simplest non-trivial quantum system: a two-dimensional
 complex Hilbert space $\mathbb{C}^2$. Everything in Chapter 5
-specialises here, and the result is concrete enough to picture. The
+specializes here, and the result is concrete enough to picture. The
 Bloch sphere makes the single-qubit state space *visible* — every
 pure state is a point on the surface of an ordinary sphere in
 three-dimensional space (the unit 2-sphere) — and
 that picture turns abstract operator algebra into geometry. Much of the working
 intuition about how quantum gates work, what phase does, and why
 measurement gives the answers it gives starts on the Bloch sphere —
-though the picture famously does *not* generalise straightforwardly
+though the picture famously does *not* generalize straightforwardly
 to many qubits (Chapter 7 explains what survives).
 
 This chapter is short on purpose. The qubit is built from
@@ -61,12 +61,12 @@ $$
 $$
 
 with $\alpha, \beta \in \mathbb{C}$. The two complex amplitudes
-account for four real degrees of freedom; the normalisation
+account for four real degrees of freedom; the normalization
 constraint removes one; global phase removes another; the *physical*
 state space has two real parameters left. These two parameters are
 the two angles $(\theta, \varphi)$ of the Bloch sphere (§6.8).
 
-A *general* parametrisation that makes the two real parameters
+A *general* parametrization that makes the two real parameters
 explicit is
 
 $$
@@ -75,7 +75,7 @@ $$
 
 with $\theta \in [0, \pi]$ and $\varphi \in [0, 2\pi)$. The factor of
 $\tfrac{\theta}{2}$ in the angles is not a typo — it is what makes
-the Bloch parametrisation cover the sphere exactly once — up to the
+the Bloch parametrization cover the sphere exactly once — up to the
 usual spherical-coordinate degeneracy at the poles, where $\varphi$
 becomes redundant (at the south pole it changes only a global phase).
 We unpack this in §6.8.
@@ -120,7 +120,7 @@ The computational basis $\\{|0\rangle, |1\rangle\\}$ is special by
 hardware convention: it is the basis the readout device
 distinguishes. On superconducting qubits, for example, the two basis states are
 two energy levels of the qubit's Hamiltonian; on ion traps they are
-typically two hyperfine sublevels; on photonic qubits they are often two polarisation
+typically two hyperfine sublevels; on photonic qubits they are often two polarization
 states; on neutral atoms they are two long-lived atomic states. The
 encodings differ by platform (and several platforms admit more than one choice); the abstract Hilbert space does not.
 
@@ -208,8 +208,8 @@ $$
 $$
 
 The letters $R$ and $L$ are mnemonic — for **right** and **left**
-circular polarisation, since photonic qubits realise this basis
-directly via circular polarisation. On other platforms the same
+circular polarization, since photonic qubits realize this basis
+directly via circular polarization. On other platforms the same
 basis appears as the eigenbasis of $Y$ even though the physical
 content is different.
 
@@ -229,11 +229,11 @@ $\\{|R\rangle, |L\rangle\\}$ are pairwise **mutually unbiased**: for any
 state in one basis, measurement in either of the other two bases is
 $50/50$. The three Pauli operators $X$, $Y$, $Z$ pairwise anticommute,
 and their eigenbases are precisely these three mutually-unbiased bases
-of $\mathbb{C}^2$. The pattern generalises: $n$ qubits admit $2^n + 1$
+of $\mathbb{C}^2$. The pattern generalizes: $n$ qubits admit $2^n + 1$
 mutually unbiased bases (the maximal number $d + 1$ in dimension
 $d = 2^n$, which exists because $2^n$ is a prime power), and these
 structures underlie quantum key distribution protocols (Chapter 27)
-and certain randomised algorithms.
+and certain randomized algorithms.
 
 ## 6.7 Global vs. Relative Phase
 
@@ -260,7 +260,7 @@ Relative phase is operationally visible:
   visible once a later mixer runs; diagonal unitaries as a family
   leave computational-basis populations untouched.)
 
-Geometrically the relative phase $\varphi$ in the Bloch parametrisation
+Geometrically the relative phase $\varphi$ in the Bloch parametrization
 $\cos(\theta/2)|0\rangle + e^{i\varphi} \sin(\theta/2)|1\rangle$ is the
 *azimuth* of the Bloch vector — its rotation around the $z$-axis.
 The $Z$-axis projection $\cos\theta$ depends only on the
@@ -312,7 +312,7 @@ Conditions:
 - $\rho \succeq 0$ iff $\\|\vec{r}\\|_2 \le 1$.
 - $\rho$ is *pure* iff $\\|\vec{r}\\|_2 = 1$ (on the sphere).
 - $\rho$ is *mixed* iff $\\|\vec{r}\\|_2 < 1$ (inside the ball).
-- $\rho$ is *maximally mixed* iff $\vec{r} = 0$ (centre of the ball);
+- $\rho$ is *maximally mixed* iff $\vec{r} = 0$ (center of the ball);
   then $\rho = I/2$, which assigns equal probability to both outcomes
   of every orthonormal-basis measurement.
 
@@ -330,7 +330,7 @@ interferometer arm) — and
 only a $4\pi$ rotation restores the state exactly. The mathematical
 name for this is the double-cover relation between $\mathrm{SU}(2)$
 (acting on the Hilbert space) and $\mathrm{SO}(3)$ (acting on the
-Bloch sphere): the Bloch sphere realises the complex projective
+Bloch sphere): the Bloch sphere realizes the complex projective
 line $\mathbb{CP}^1$ (each point one ray; antipodal points are
 *orthogonal* states, not identified ones), and two opposite elements
 $\pm U$ of $\mathrm{SU}(2)$ map to each rotation. The sign has measurable consequences in
@@ -402,7 +402,7 @@ $$
 with $\alpha, \beta, \gamma$ Euler-like angles (real rotation angles —
 unrelated to the complex amplitudes $\alpha, \beta$ of the state; the
 letters are simply reused by convention). This is the
-single-qubit specialisation of the "every unitary is a product of
+single-qubit specialization of the "every unitary is a product of
 generators" pattern; it underwrites single-qubit
 compilation onto native sets built from $R_y$/$R_z$-style rotations
 (virtual-$Z$ plus equatorial pulses being the common hardware variant
@@ -426,7 +426,7 @@ a Hamiltonian in a chosen direction for a chosen duration.
 
 ## 6.10 Single-Qubit Measurement
 
-Single-qubit projective measurement (§5.4) specialises to the case of
+Single-qubit projective measurement (§5.4) specializes to the case of
 two outcomes. In an arbitrary orthonormal basis
 $\\{|b_0\rangle, |b_1\rangle\\}$ corresponding to a Bloch direction
 $\hat{n}$, the measurement projectors are

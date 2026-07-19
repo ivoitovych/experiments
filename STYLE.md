@@ -124,6 +124,30 @@ on **all** of: GitHub web view, mdBook + MathJax, and Pandoc.
 - Tensor product of states: `|0\rangle \otimes |1\rangle`, may be
   abbreviated to `|01\rangle` after the convention is introduced.
 
+## Language and spelling
+
+- **American English throughout** — prose, headings, code comments, and
+  figure text. This follows the field's convention, researched and
+  protocolled in
+  `reviews/analysis-2026-07-19-spelling-convention.md`: APS journals
+  (PRA/PRL/PRX Quantum) mandate American English; the field's
+  term-coining titles are American (Gottesman's *stabilizer* codes,
+  Knill's *randomized* benchmarking, Bombín's *color* codes,
+  Low–Chuang *qubitization*, Tang's *dequantization*, QAOA's
+  *optimization*); and the canonical textbooks (Nielsen–Chuang,
+  Preskill, Mermin, Watrous, Wilde) are American-spelled.
+- Enforced by lint: `tools/lint.py` checks the project dictionary
+  `tools/spelling-gb-us.txt` (always) and, when `codespell` is
+  installed, its builtin `en-GB_to_en-US` dictionary with a
+  hyphen-splitting word regex (so compounds like "nearest-neighbour"
+  are caught).
+- **Legitimate British text is exempt via allowlist**: quoted paper
+  titles, proper nouns, and institution names that are British-spelled
+  in the original go in `tools/spelling-allowlist.txt` as exact
+  phrases — never "correct" a quotation or a name.
+- Nouns identical in both dialects (e.g. "analyses", "cancellation")
+  need no attention; the verb forms (analyze/canceled) follow American.
+
 ## Markdown rules
 
 - One sentence per line is acceptable but not required; use whatever

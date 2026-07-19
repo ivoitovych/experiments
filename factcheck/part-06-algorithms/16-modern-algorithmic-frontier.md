@@ -159,13 +159,13 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §16.8 — Linear ODE solver cost scales as $O(\kappa \log(1/\epsilon))$
 
-- **Claim** (anchor): "The cost scales as $O(\kappa \log(1/\epsilon))$ in the condition number $\kappa$ of the discretised operator"
+- **Claim** (anchor): "The cost scales as $O(\kappa \log(1/\epsilon))$ in the condition number $\kappa$ of the discretized operator"
 - **Method**: external
 - **Source**: TBD — needs verification (attributed to HHL descendants / qubitization-based linear system solvers; likely Childs, Kothari, Somma or subsequent works)
 - **Verified**: — · **Verdict**: open
 - **Comment**: This cost figure is stated without a specific citation and contrasts with the original HHL $O(\kappa^2/\epsilon)$; requires confirmation against a specific linear-system-solver reference.
 
-## §16.8 — Nonlinear ODE via Carleman linearisation: Liu–Kolden–Krovi–Loureiro–Trivisa–Childs (2021)
+## §16.8 — Nonlinear ODE via Carleman linearization: Liu–Kolden–Krovi–Loureiro–Trivisa–Childs (2021)
 
 - **Claim** (anchor): "Liu–Kolden–Krovi–Loureiro–Trivisa–Childs 2021"
 - **Method**: external
@@ -181,21 +181,21 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: This is a specific technical claim (efficiency conditioned on $R < 1$) that should be checked against the Liu et al. paper.
 
-## §16.8 — Ewin Tang's 2018 dequantisation of the quantum recommendation-system algorithm
+## §16.8 — Ewin Tang's 2018 dequantization of the quantum recommendation-system algorithm
 
-- **Claim** (anchor): "Ewin Tang's 2018 dequantisation of the quantum recommendation-system algorithm"
+- **Claim** (anchor): "Ewin Tang's 2018 dequantization of the quantum recommendation-system algorithm"
 - **Method**: external
 - **Source**: Tang — "A quantum-inspired classical algorithm for recommendation systems", STOC 2019 (work circulated 2018). TBD — needs verification of exact venue/year.
 - **Verified**: — · **Verdict**: open
 - **Comment**: Well-known result; year (paper circulated 2018, published STOC 2019) and scope (polylog classical algorithm under same access assumptions) should be confirmed.
 
-## §16.8 — Dequantisation extended to PCA, supervised clustering, low-rank linear regression, kernel methods
+## §16.8 — Dequantization extended to PCA, supervised clustering, low-rank linear regression, kernel methods
 
-- **Claim** (anchor): "dequantised PCA, supervised clustering, low-rank linear regression, and several kernel methods"
+- **Claim** (anchor): "dequantized PCA, supervised clustering, low-rank linear regression, and several kernel methods"
 - **Method**: external
 - **Source**: TBD — needs verification (follow-up works by Tang, Ding, Gilyén, and others in 2018–2020)
 - **Verified**: — · **Verdict**: open
-- **Comment**: Empirical/historical claim about the scope of the dequantisation wave; no specific citations are given in the text for each algorithm.
+- **Comment**: Empirical/historical claim about the scope of the dequantization wave; no specific citations are given in the text for each algorithm.
 
 ## §16.8 — T-count headline figure for RSA-2048
 
@@ -207,7 +207,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §16.8 — Rule of thumb: order-of-magnitude reduction in $\alpha$ saves factor of 10 in T-count
 
-- **Claim** (anchor): "an order-of-magnitude reduction in $\alpha$ (the subnormalisation of the block encoding) saves a factor of $10$ in T-count"
+- **Claim** (anchor): "an order-of-magnitude reduction in $\alpha$ (the subnormalization of the block encoding) saves a factor of $10$ in T-count"
 - **Method**: derivation
 - **Source**: → §16.7 (polynomial degree scales as $\alpha t + \log(1/\epsilon)$; rule follows directly from the linear dependence on $\alpha$)
 - **Verified**: — · **Verdict**: open

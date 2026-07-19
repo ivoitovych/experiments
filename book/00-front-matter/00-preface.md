@@ -6,7 +6,7 @@
 
 ## Why This Book Exists
 
-Quantum computing has acquired two reputations that do it no favours. To
+Quantum computing has acquired two reputations that do it no favors. To
 one camp it is a fringe research subject, mathematically lovely but
 hopelessly far from practice, best left to physicists. To another it is
 an imminent revolution, just one announcement away from breaking the
@@ -22,9 +22,9 @@ first tried to learn the subject as a working software engineer: a
 single self-contained narrative that does not assume a physics
 background, does not paper over the mathematics, does not lean on
 analogies that fall apart at the second question, and does not pretend
-the field is further along than it is. It is rigorous where rigour
+the field is further along than it is. It is rigorous where rigor
 matters — measurement, unitarity, error correction, complexity — and
-practical where rigour does not by itself answer the question — gate
+practical where rigor does not by itself answer the question — gate
 sets in real hardware, the day-to-day shape of a quantum SDK, how to
 read a vendor's published device metrics critically.
 
@@ -64,7 +64,7 @@ seriously. Concretely, you will get the most out of it if:
 - You have linear algebra in your active toolkit. You should be
   comfortable with vectors, matrices, matrix multiplication, the
   determinant and trace, eigenvalues and eigenvectors,
-  diagonalisation, and the idea of a basis change. The book reviews
+  diagonalization, and the idea of a basis change. The book reviews
   these in Chapter 4, but as a refresher, not from scratch.
 - You have basic probability. Random variables, expectations,
   conditional probability, and Bayes' rule should be familiar
@@ -76,7 +76,7 @@ seriously. Concretely, you will get the most out of it if:
 - You have at least passing awareness of computational complexity:
   the difference between polynomial and exponential, what big-O
   notation means, what P and NP are roughly about. You do not need
-  to have studied complexity theory; you do need to recognise it as
+  to have studied complexity theory; you do need to recognize it as
   a thing.
 - You have written enough non-trivial code that an SDK with verbose
   type annotations and a build system feels like a tool, not an
@@ -104,10 +104,10 @@ The phrase appears in the title, so it is worth being explicit. By
 who has read other people's code carefully, who has reasoned about
 performance and correctness, and who has had to learn an unfamiliar
 domain in order to build something in it. Roughly the level of a
-mid-career software engineer, a research engineer in a neighbouring
+mid-career software engineer, a research engineer in a neighboring
 field, a graduate student in CS or applied mathematics, or a senior
 engineer about to add quantum computing to their list of working
-specialisations.
+specializations.
 
 What I am *not* assuming is that you have a degree in physics or that
 you have taken a formal course on quantum mechanics. The book is
@@ -163,7 +163,7 @@ explicitly.
 
 ## How to Use This Book
 
-The book is organised as thirteen parts spanning
+The book is organized as thirteen parts spanning
 thirty-seven chapters, plus front matter and appendices. On a first
 pass through unfamiliar material, read linearly: each chapter
 deliberately leans on prerequisites from earlier chapters, the
@@ -230,7 +230,7 @@ computational models that share its lineage, the bridges between
 quantum and classical engineering ideas, and the conceptual and
 epistemic pitfalls that recur in the literature. These chapters are
 less about establishing competence and more about turning the
-established competence into informed judgement. They are also the
+established competence into informed judgment. They are also the
 chapters most likely to age — applications mature, frontiers move —
 and the book treats them with appropriate humility about that.
 
@@ -288,7 +288,7 @@ error correction) and Part IX (hardware, control, software). Add
 Part X for the NISQ-era practical context. This serves a reader
 whose primary interest is the physical and engineering stack.
 
-*The applications and judgement path*: Chapters 1, 2, 3, the
+*The applications and judgment path*: Chapters 1, 2, 3, the
 formalism chapters as needed for vocabulary, then a fast pass
 through Parts VI and VIII for orientation, then Parts XI, XII, and
 XIII. This is the path for a reader who needs to evaluate claims,
@@ -349,10 +349,10 @@ opposite sign. Chapter 4 documents the consequences in detail; the
 short version is that any phase-estimation or controlled-phase code
 copied across the convention boundary needs its angles conjugated.
 
-The Bloch sphere is used freely as a visualisation aid for
+The Bloch sphere is used freely as a visualization aid for
 single-qubit states and gates, but no calculation in the book
 depends on the Bloch picture being literal. It is a useful intuition
-pump for one qubit; it has no honest generalisation to multi-qubit
+pump for one qubit; it has no honest generalization to multi-qubit
 systems, and the book is explicit about that distinction when it
 comes up.
 
@@ -377,7 +377,7 @@ A reader returning to the book in five years should treat such
 claims as historical observations, useful for calibration but not as
 present-tense statements about the field.
 
-## Acknowledgements
+## Acknowledgments
 
 This book draws on the field's standard reference works — Nielsen
 and Chuang first among them, alongside the lecture notes of John
@@ -414,7 +414,7 @@ it should also be possible, eventually, to publish a printed edition
 without the licensing conflict that a permissive license would create.
 If you would like to use the material in a way the non-commercial
 license does not cover — a course pack, a corporate training
-programme, a translation, a printed reader — please get in touch.
+program, a translation, a printed reader — please get in touch.
 
 With those preliminaries out of the way, the next chapter takes a
 hard look at exactly what background the book assumes, with concrete

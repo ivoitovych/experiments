@@ -11,7 +11,7 @@ is established. For the consolidated convention checklist (inner product,
 bit ordering, QFT sign, projector defaults, log base), see
 [§4.16 Conventions at a Glance](../part-02-formalism/04-mathematical-background.md#416-conventions-at-a-glance).
 
-The format favours bullet lists over Markdown tables because most of
+The format favors bullet lists over Markdown tables because most of
 these symbols contain literal `|` characters (kets, bras, norm bars),
 and `|` is the Markdown table column separator — putting kets inside a
 table cell silently collapses the bars (Bug 5 in
@@ -36,12 +36,12 @@ macros `\ket`, `\bra`, `\braket` are not used.
   with entries $\psi_i\\, \overline{\phi_j}$. Adjoint:
   $(|\psi\rangle\langle\phi|)^\dagger = |\phi\rangle\langle\psi|$.
 - $|\psi\rangle\langle\psi|$ — **rank-one projector** when
-  $|\psi\rangle$ is normalised; equivalently the pure-state density
+  $|\psi\rangle$ is normalized; equivalently the pure-state density
   matrix of $|\psi\rangle$.
 - $\langle\phi|A|\psi\rangle$ — **matrix element** of $A$ between
   $|\phi\rangle$ and $|\psi\rangle$. A scalar.
 - $\langle O\rangle_\psi = \langle\psi|O|\psi\rangle$ — **expectation
-  value** of an observable $O$ in the normalised pure state
+  value** of an observable $O$ in the normalized pure state
   $|\psi\rangle$. Real when $O$ is Hermitian.
 - $I = \sum_i |i\rangle\langle i|$ — **resolution of the identity** in
   the orthonormal basis $\\{|i\rangle\\}$. The single most useful
@@ -139,7 +139,7 @@ H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \end{pmatrix},
 S = \begin{pmatrix} 1 & 0 \\\\ 0 & i \end{pmatrix}.
 $$
 
-The full gate catalogue lives in Appendix B.
+The full gate catalog lives in Appendix B.
 
 **Spectral decomposition.** For a normal operator $A$ with distinct
 spectral values $\lambda_1, \dots, \lambda_k$ and orthogonal projectors
@@ -234,7 +234,7 @@ Chapters 11–12.
   measurement context always means an *orthogonal* projector unless
   explicitly stated otherwise.
 - $p(\lambda) = \langle\psi|P_\lambda|\psi\rangle$ — **Born rule
-  probability** of outcome $\lambda$ on a normalised pure state
+  probability** of outcome $\lambda$ on a normalized pure state
   $|\psi\rangle$.
 - $P_\lambda|\psi\rangle / \sqrt{\langle\psi|P_\lambda|\psi\rangle}$ —
   **post-measurement state** conditioned on outcome $\lambda$ having
@@ -271,7 +271,7 @@ columns of $U$ (active-versus-passive distinction in
 ## A.5 Circuit Symbols
 
 Circuit drawing conventions are introduced in Chapter 6 and used
-throughout Parts 3–6 of the book. This entry catalogues the symbols
+throughout Parts 3–6 of the book. This entry catalogs the symbols
 used in prose and inline math; the rendered diagrams themselves live
 as SVGs alongside the chapters that use them.
 
@@ -296,7 +296,7 @@ as SVGs alongside the chapters that use them.
 - $\mathrm{CZ} = |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes Z$
   — **controlled-Z**. Symmetric in its two qubits.
 - $\mathrm{C}U$ — **controlled-$U$**, gate $U$ applied to the target
-  when control is $|1\rangle$. Generalises to multi-controlled $\mathrm{C}^k U$.
+  when control is $|1\rangle$. Generalizes to multi-controlled $\mathrm{C}^k U$.
 - $\mathrm{SWAP}$ — swap of two qubits;
   $\mathrm{SWAP}|a, b\rangle = |b, a\rangle$.
 - $\times$ on two wires connected by a vertical line — **SWAP** in
@@ -319,7 +319,7 @@ Qiskit's current `QFTGate` implements the opposite, positive-exponent
 sign and therefore corresponds to the *inverse* of this book's $F_N$.
 
 - $U^\dagger$ as a circuit block — the **inverse** of a gate $U$.
-  Drawn as $U$ with a dagger superscript or with the box labelled
+  Drawn as $U$ with a dagger superscript or with the box labeled
   $U^{-1}$.
 
 ## A.6 Common Probability Notation
@@ -329,7 +329,7 @@ Discrete distributions only in this appendix; continuous and quantum
 extensions are flagged at their introductions.
 
 - $p(x)$ — **probability** of outcome $x$ under a discrete
-  distribution. Nonnegative, normalised $\sum_x p(x) = 1$.
+  distribution. Nonnegative, normalized $\sum_x p(x) = 1$.
 - $p(x, y)$ — **joint distribution** of $(X, Y)$.
 - $p(x)$ from a joint — **marginal**: $p(x) = \sum_y p(x, y)$.
 - $p(y \mid x) = p(x, y) / p(x)$ — **conditional**, defined when

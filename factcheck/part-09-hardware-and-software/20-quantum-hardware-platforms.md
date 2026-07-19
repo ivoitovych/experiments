@@ -109,7 +109,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §20.2 — IBM heavy-hex lattice topology
 
-- **Claim** (anchor): "IBM has standardised on the **heavy-hex** lattice — a hexagonal lattice with extra qubits on each edge — which has degree 2 or 3 at every site"
+- **Claim** (anchor): "IBM has standardized on the **heavy-hex** lattice — a hexagonal lattice with extra qubits on each edge — which has degree 2 or 3 at every site"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -405,7 +405,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §20.9 — Majorana 1 material platform
 
-- **Claim** (anchor): "indium-arsenide / aluminium nanowire architecture"
+- **Claim** (anchor): "indium-arsenide / aluminum nanowire architecture"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

@@ -181,10 +181,10 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: Classic self-testing result for the CHSH game; associated with Mayers–Yao and Tsirelson.
 
-## §31.5 — Hyperpolarised MRI: nuclear spin polarisation from ~10⁻⁵ to near unity, 10⁴-fold SNR gain
+## §31.5 — Hyperpolarized MRI: nuclear spin polarization from ~10⁻⁵ to near unity, 10⁴-fold SNR gain
 
-- **Claim** (anchor): "nuclear spin polarisation from"
+- **Claim** (anchor): "nuclear spin polarization from"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Describes dynamic nuclear polarisation (DNP) hyperpolarisation; specific numbers need verification against published DNP literature.
+- **Comment**: Describes dynamic nuclear polarization (DNP) hyperpolarization; specific numbers need verification against published DNP literature.

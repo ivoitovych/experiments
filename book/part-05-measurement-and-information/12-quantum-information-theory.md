@@ -14,11 +14,11 @@ channel capacities (Chapter 18), and quantum error correction
 
 Three points to keep in mind:
 
-1. Quantum information theory is a strict generalisation of Shannon's
+1. Quantum information theory is a strict generalization of Shannon's
    classical information theory. The classical theorems this book relies on all cast quantum
    shadows (not every classical result survives the passage) — sometimes with the same form, sometimes with a strict
    inequality replaced by an equality, and sometimes with a sign that
-   flips and produces something genuinely without classical analogue
+   flips and produces something genuinely without classical analog
    (the negative quantum conditional entropy of §12.4 is the canonical
    example).
 2. Most quantities in this chapter are defined for **density matrices**,
@@ -100,7 +100,7 @@ $$
 measures how much knowing $Y$ reduces uncertainty about $X$, or
 symmetrically. It is non-negative, zero iff $X$ and $Y$ are independent,
 and bounded above by $\min(H(X), H(Y))$. Most of the quantum
-generalisations in this chapter inherit one of these properties and
+generalizations in this chapter inherit one of these properties and
 break one of the others.
 
 ## 12.2 Von Neumann Entropy
@@ -149,7 +149,7 @@ Strong subadditivity is the deepest single inequality in quantum
 information theory; almost every later capacity formula and
 distinguishability bound in this chapter, in Chapter 18, and in the
 quantum-error-correction literature ultimately leans on it. The
-classical-Shannon analogue is provable in a few lines; the quantum
+classical-Shannon analog is provable in a few lines; the quantum
 proof is famously non-trivial and the result was open for several
 years before Lieb and Ruskai settled it.
 
@@ -195,7 +195,7 @@ I(A : B')_{(\mathrm{id}_A \otimes \mathcal{N})\rho} \le I(A : B)_\rho.
 $$
 
 Local processing on one side cannot increase mutual information. The
-classical analogue is the standard data-processing inequality for
+classical analog is the standard data-processing inequality for
 classical mutual information; the quantum version is a corollary of
 strong subadditivity (§12.2). Many converse bounds in this chapter —
 the Holevo bound (§12.5), the channel-capacity upper bounds (§12.10) —
@@ -234,7 +234,7 @@ $$
 Classically, conditioning on a variable cannot make you *more* than
 maximally uncertain — entropy is bounded below by zero. Quantumly,
 conditioning on a system $B$ that is entangled with $A$ produces a
-*negative* number, and there is no Shannon analogue of what that number
+*negative* number, and there is no Shannon analog of what that number
 means.
 
 The operational meaning was found by Horodecki, Oppenheim, and Winter
@@ -320,7 +320,7 @@ Two consequences are worth stating cleanly:
   *accessible* information of a generic pure ensemble still falls short
   of $\chi$. For a uniformly distributed ensemble of $2^n$ orthogonal
   computational-basis kets, $\chi = n$ bits, measurement attains it, and
-  this realises the classical capacity of the noiseless $n$-qubit
+  this realizes the classical capacity of the noiseless $n$-qubit
   channel under that encoding.
 
 Holevo's bound is one half of the **HSW theorem** (Holevo 1998,
@@ -340,7 +340,7 @@ $$
 where $\\|A\\|_1 = \mathrm{tr}\sqrt{A^\dagger A}$ is the trace norm
 (§4.9). It is a true metric on density matrices: non-negative,
 symmetric, satisfies the triangle inequality, and vanishes iff
-$\rho = \sigma$. The factor of $1/2$ normalises the range to $[0, 1]$,
+$\rho = \sigma$. The factor of $1/2$ normalizes the range to $[0, 1]$,
 with $D = 0$ on identical states and $D = 1$ on states with orthogonal
 support.
 
@@ -444,7 +444,7 @@ later piece of quantum information theory.
   both equal an unknown input $\rho$. No physical channel can do this
   for an arbitrary input ensemble unless every state in the ensemble
   commutes with every other — i.e., unless the ensemble is classical.
-  No-broadcasting is the strict mixed-state generalisation of
+  No-broadcasting is the strict mixed-state generalization of
   no-cloning and is the formal statement that classical correlations
   can be freely shared while quantum coherence cannot.
 - **No-deleting** (Pati–Braunstein 2000). Two identical copies of an
@@ -468,7 +468,7 @@ information it is forbidden to duplicate.
 
 ## 12.9 Schumacher Compression
 
-Schumacher's theorem (1995) is the quantum analogue of Shannon's
+Schumacher's theorem (1995) is the quantum analog of Shannon's
 source-coding theorem and the source of the *qubit* as a unit. Let
 $\rho$ be a density matrix on $\mathcal{H}$, regarded as the per-letter
 state of an i.i.d. quantum source emitting copies $\rho^{\otimes n}$
@@ -495,7 +495,7 @@ is the operational fact that elevates $S(\rho)$ from "Shannon entropy of
 the eigenvalues" to "the answer to a physical engineering question",
 and it is what justifies calling $S(\rho)$ the entropy of the source.
 
-The compression scheme is, in outline: diagonalise $\rho$; use a
+The compression scheme is, in outline: diagonalize $\rho$; use a
 projective measurement onto the *typical subspace* spanned by
 eigenstates whose eigenvalues lie close to $2^{-nS(\rho)}$; encode the
 support of the projection into $\lceil nS(\rho) \rceil$ qubits. The
@@ -524,8 +524,8 @@ $$
 C(\mathcal{N}) = \lim_{n \to \infty} \tfrac{1}{n}\\, \chi^*(\mathcal{N}^{\otimes n}),
 $$
 
-where $\chi^*(\mathcal{N})$ is the Holevo quantity (§12.5) maximised
-over input ensembles. The regularisation $\lim_n \tfrac{1}{n}(\cdots)$
+where $\chi^*(\mathcal{N})$ is the Holevo quantity (§12.5) maximized
+over input ensembles. The regularization $\lim_n \tfrac{1}{n}(\cdots)$
 is needed because $\chi^*$ is, in general, *superadditive* — some
 channels carry strictly more classical information when many copies are
 used jointly than copy-by-copy (Hastings 2009).
@@ -539,8 +539,8 @@ $$
 Q(\mathcal{N}) = \lim_{n \to \infty} \tfrac{1}{n}\\, \max_{\rho^{(n)}} I_c(\rho^{(n)}, \mathcal{N}^{\otimes n}),
 $$
 
-where $I_c(\rho, \mathcal{N})$ is the *channel* coherent information — feed half of a purification of $\rho$ through $\mathcal{N}$ and evaluate §12.3's $I_c(A\rangle B)$ on the output — and the maximisation is over input states $\rho^{(n)}$ on $n$ channel uses (not single-letter — that is what the regularisation tracks). Like the classical capacity, the formula requires
-regularisation because coherent information is generically
+where $I_c(\rho, \mathcal{N})$ is the *channel* coherent information — feed half of a purification of $\rho$ through $\mathcal{N}$ and evaluate §12.3's $I_c(A\rangle B)$ on the output — and the maximization is over input states $\rho^{(n)}$ on $n$ channel uses (not single-letter — that is what the regularization tracks). Like the classical capacity, the formula requires
+regularization because coherent information is generically
 superadditive. The quantum capacity is the rate at which the channel
 can be turned into a perfect quantum wire after enough error correction;
 it is also the rate at which entanglement can be sent through.
@@ -556,8 +556,8 @@ $$
 where $I(\rho, \mathcal{N})$ is the quantum mutual information of
 $\rho$'s purification after one side passes through $\mathcal{N}$.
 The Bennett–Shor–Smolin–Thapliyal theorem (1999, 2002) shows this
-formula requires *no* regularisation — entanglement assistance restores
-single-letter additivity. $C_E$ is the closest quantum analogue of
+formula requires *no* regularization — entanglement assistance restores
+single-letter additivity. $C_E$ is the closest quantum analog of
 Shannon's classical channel capacity and is in this sense the simplest
 of the three.
 
@@ -571,7 +571,7 @@ inequalities sometimes strict.
 The ordering $Q \le P \le C \le C_E$ holds generally. Computing any of
 them for a given channel is, even today, hard — closed-form expressions
 exist only for restricted channel families (erasure, dephasing, certain
-Pauli channels, the depolarising channel within partial parameter
+Pauli channels, the depolarizing channel within partial parameter
 ranges).
 
 ## 12.11 LOCC and Resource Theories
@@ -602,7 +602,7 @@ The basic statements:
 - **Mixed-state entanglement is generally not *reversibly*
   interconvertible.** Entanglement of formation and distillable
   entanglement differ in general (the asymptotic preparation cost is the
-  *regularised* entanglement of formation), and bound entangled states
+  *regularized* entanglement of formation), and bound entangled states
   (positive formation entropy, zero distillable entanglement) exist. The full theory has the structure of a resource
   theory with a non-trivial "exchange rate" between dilution and
   distillation.
@@ -637,7 +637,7 @@ of them shows up as a *bound* somewhere later in the book.
   $Q(\mathcal{N})$. The coherent information of §12.3 is the building
   block of the achievability proof. Strong subadditivity (§12.2) is
   the input to most converse bounds — including the famous
-  *quantum singleton bound* and capacity bounds for the depolarising
+  *quantum singleton bound* and capacity bounds for the depolarizing
   and erasure channels.
 - **Compression and state preparation (Chapter 14 and later).** When a
   quantum algorithm needs many copies of a structured state, Schumacher

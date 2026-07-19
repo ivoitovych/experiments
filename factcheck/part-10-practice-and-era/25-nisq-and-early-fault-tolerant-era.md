@@ -57,7 +57,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Typical superconducting median device fidelity figures for 2026; verify against IBM/Google published device characterisation data.
+- **Comment**: Typical superconducting median device fidelity figures for 2026; verify against IBM/Google published device characterization data.
 
 ## §25.2 — Superconducting gate times tens to hundreds of nanoseconds; $T_1$, $T_2$ 100–300 µs
 
@@ -97,7 +97,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Characterisation of photonic-platform approaches; verify that PsiQuantum uses measurement-based (FBQC) and Xanadu uses CV approaches as of 2026.
+- **Comment**: Characterization of photonic-platform approaches; verify that PsiQuantum uses measurement-based (FBQC) and Xanadu uses CV approaches as of 2026.
 
 ## §25.3 — Barren plateau gradient variance scales as $2^{-n}$
 

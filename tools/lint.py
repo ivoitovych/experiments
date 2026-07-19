@@ -337,11 +337,81 @@ def check_readme() -> None:
             fail("README.md", f"dead link to {target_str}")
 
 
+def check_spelling() -> None:
+    """American-English convention (see STYLE.md and
+    reviews/analysis-2026-07-19-spelling-convention.md).
+
+    Two layers: the project dictionary tools/spelling-gb-us.txt (always
+    enforced, word-boundary, case-insensitive), and codespell's builtin
+    en-GB_to_en-US dictionary when codespell is installed (broader general
+    vocabulary; hyphen-splitting word regex so compounds like
+    "nearest-neighbour" are caught). Exact phrases listed in
+    tools/spelling-allowlist.txt are exempt.
+    """
+    import re as _re
+    import shutil as _shutil
+    import subprocess as _subprocess
+
+    dict_path = ROOT / "tools" / "spelling-gb-us.txt"
+    allow_path = ROOT / "tools" / "spelling-allowlist.txt"
+    pairs = []
+    for line in dict_path.read_text().splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        gb, us = line.split()
+        pairs.append((gb, us))
+    allowed = [l.strip() for l in allow_path.read_text().splitlines()
+               if l.strip() and not l.startswith("#")]
+
+    targets = sorted((ROOT / "book").rglob("*.md")) \
+        + sorted((ROOT / "factcheck").rglob("*.md")) \
+        + [ROOT / n for n in
+           ("README.md", "BookDescription.md", "STYLE.md", "INSTRUCTIONS.md")]
+
+    gb_words = "|".join(_re.escape(gb) for gb, _ in pairs)
+    pat = _re.compile(r"\b(" + gb_words + r")\b", _re.IGNORECASE)
+    for path in targets:
+        if not path.exists():
+            continue
+        text = path.read_text()
+        for phrase in allowed:
+            text = text.replace(phrase, "")
+        for n, line in enumerate(text.splitlines(), 1):
+            m = pat.search(line)
+            if m:
+                rel = str(path.relative_to(ROOT))
+                fail(rel, f"line {n}: British spelling \"{m.group(1)}\" — "
+                          f"the manuscript uses American English (STYLE.md); "
+                          f"legitimate British text goes in "
+                          f"tools/spelling-allowlist.txt")
+
+    if _shutil.which("codespell"):
+        cmd = ["codespell", "--builtin", "en-GB_to_en-US",
+               "-r", "[a-zA-Z']+",
+               "--ignore-words", str(allow_path)]
+        cmd += [str(p) for p in targets if p.exists()]
+        out = _subprocess.run(cmd, capture_output=True, text=True)
+        for line in out.stdout.splitlines():
+            if not line.strip():
+                continue
+            # drop findings on lines covered by the phrase allowlist
+            try:
+                fpath, lno, _rest = line.split(":", 2)
+                flagged = open(fpath).read().splitlines()[int(lno) - 1]
+                if any(p in flagged for p in allowed):
+                    continue
+            except (ValueError, OSError, IndexError):
+                pass
+            fail("(codespell)", line.strip())
+
+
 def main() -> int:
     book_files = sorted((ROOT / "book").rglob("*.md"))
     for md in book_files:
         check_book_file(md)
     check_readme()
+    check_spelling()
 
     if errors:
         for e in errors:

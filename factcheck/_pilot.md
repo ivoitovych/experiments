@@ -123,6 +123,6 @@ depends
    vanishes — so the speedup depends on the input being *genuinely* quantum.
    Condition: the exponential speedup holds for fully-quantum input/output (e.g.
    a block-encoded matrix produced and consumed by other quantum subroutines),
-   and is dequantised for classical input loaded via QRAM.
+   and is dequantized for classical input loaded via QRAM.
 
 **Last checked:** 2026-05-30

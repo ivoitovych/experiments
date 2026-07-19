@@ -30,7 +30,7 @@ number, and a numerical ceiling — and are recorded below.
 
 ## Appendix E — Stim / Gidney 2021 authorship
 
-- **Claim** (anchor): "specialised high-performance stabiliser-circuit simulator (Gidney 2021)"
+- **Claim** (anchor): "specialized high-performance stabilizer-circuit simulator (Gidney 2021)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

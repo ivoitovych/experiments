@@ -104,7 +104,7 @@ matrix, the dependency rationale, and troubleshooting.
 - [HISTORY.md](HISTORY.md) — chronological narrative of how the project reached its current state.
 - [CITATION.cff](CITATION.cff) — how to cite this work.
 - [examples/](examples/) — four runnable Python programs (Bell state, statevector simulation, Deutsch–Jozsa, Grover) embedded in Chapters 14, 15, 24, and 26 and kept honest by `make check-examples`, which runs them end-to-end against the in-text listings.
-- [reviews/](reviews/) — the review, verification, and planning reports (comprehensive review, external fact verification, recommendations, programme analyses). These are insert-only audit artifacts, retained permanently as provenance.
+- [reviews/](reviews/) — the review, verification, and planning reports (comprehensive review, external fact verification, recommendations, program analyses). These are insert-only audit artifacts, retained permanently as provenance.
 - [factcheck/](factcheck/) — the claim-level verification mirror: one file per chapter listing its check-worthy claims with verdicts and sources.
 - [archive/](archive/) — frozen working artifacts (early drafts, superseded reviews, the original planned outline), preserved for provenance.
 - [docs/github-markdown-math-bugs.md](docs/github-markdown-math-bugs.md) — canonical memo on GitHub Markdown + MathJax rendering bugs and their workarounds; [docs/render-tests/math-context-matrix.md](docs/render-tests/math-context-matrix.md) is its live test sheet.

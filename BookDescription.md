@@ -11,7 +11,7 @@
 
 > **The delivered manuscript under `book/` is the source of truth.** This
 > document states the book's original scope and vision, which the manuscript
-> fulfils. The book evolved during writing — normal and expected — so a few
+> fulfills. The book evolved during writing — normal and expected — so a few
 > structural details in the descriptions below predate the delivered layout.
 > Part structure, chapter numbering, chapter titles, and every chapter number
 > cited in the *Suggested Reading Paths* remain accurate. The original planned outline, with its
@@ -31,7 +31,7 @@ Points where the descriptions below predate the delivered manuscript:
 - Several chapters grew beyond the scope sketched here — notably Chapter 4's
   added singular-value-decomposition material, and the substantially expanded
   application and perspective chapters (27, 30, 32, 35, 37). See the
-  reconciliation note in `archive/plan-original-toc.md` for the full catalogue.
+  reconciliation note in `archive/plan-original-toc.md` for the full catalog.
 
 <!-- ============================================================ -->
 <!-- END RECONCILIATION NOTE — original description follows.       -->

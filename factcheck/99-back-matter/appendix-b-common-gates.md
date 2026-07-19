@@ -11,7 +11,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: derivation
 - **Source**: → direct matrix multiplication of the stated X and Z matrices; verifiable by computation
 - **Verified**: — · **Verdict**: open
-- **Comment**: The source characterises Y as iXZ. Squaring out the product of the stated matrices should yield the stated Y matrix.
+- **Comment**: The source characterizes Y as iXZ. Squaring out the product of the stated matrices should yield the stated Y matrix.
 
 ---
 
@@ -96,7 +96,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification against Qiskit 2.x documentation
 - **Verified**: — · **Verdict**: open
-- **Comment**: The text explicitly attributes the Rx/Ry/Rz and U3 matrices to Qiskit/IBM Quantum docs. The Rz diagonal convention and U3 parametrisation should be cross-checked against the current Qiskit release.
+- **Comment**: The text explicitly attributes the Rx/Ry/Rz and U3 matrices to Qiskit/IBM Quantum docs. The Rz diagonal convention and U3 parametrization should be cross-checked against the current Qiskit release.
 
 ---
 
@@ -130,7 +130,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## B.5 — Qiskit endian mapping for CNOT
 
-- **Claim** (anchor): "qubit labelled `q_0` in Qiskit corresponds to the *rightmost* tensor factor"
+- **Claim** (anchor): "qubit labeled `q_0` in Qiskit corresponds to the *rightmost* tensor factor"
 - **Method**: convention
 - **Source**: → §4.8 (book's endian reconciliation); Qiskit 2.x LSB-first convention
 - **Verified**: — · **Verdict**: open

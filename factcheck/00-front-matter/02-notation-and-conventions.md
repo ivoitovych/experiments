@@ -212,9 +212,9 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ---
 
-## Notation — unlabelled wires default to |0⟩
+## Notation — unlabeled wires default to |0⟩
 
-- **Claim** (anchor): "Unlabelled wires default to $|0\rangle$ unless the surrounding prose says otherwise"
+- **Claim** (anchor): "Unlabeled wires default to $|0\rangle$ unless the surrounding prose says otherwise"
 - **Method**: convention
 - **Source**: → book-wide convention (consistency reference)
 - **Verified**: — · **Verdict**: open

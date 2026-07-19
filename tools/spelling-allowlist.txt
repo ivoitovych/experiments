@@ -1,0 +1,4 @@
+# Exact phrases allowed to keep British spelling (quoted titles, proper
+# nouns, institution names). One phrase per line; matched case-sensitively.
+# (currently empty — no British-spelled titles or proper nouns are cited)
+compounds like "nearest-neighbour"

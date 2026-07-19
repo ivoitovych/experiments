@@ -49,11 +49,11 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Empirical scale claim about real-world industrial optimisation instances.
+- **Comment**: Empirical scale claim about real-world industrial optimization instances.
 
 ## §29.2 — QAOA introduced in §15.9; provably reaches ground state as p → ∞
 
-- **Claim** (anchor): "At $p \to \infty$, QAOA reduces to a Trotterised adiabatic sweep and provably finds the ground state of $H_C$ in the limit (with parameter schedules close to the adiabatic schedule)"
+- **Claim** (anchor): "At $p \to \infty$, QAOA reduces to a Trotterized adiabatic sweep and provably finds the ground state of $H_C$ in the limit (with parameter schedules close to the adiabatic schedule)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -93,7 +93,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §29.2 — McClean et al. 2018: barren plateaus — gradients vanish exponentially for wide variational ansätze
 
-- **Claim** (anchor): "A general result (McClean et al., 2018) shows that for random parameter initialisations of a wide variational ansatz, gradients vanish exponentially in the number of qubits"
+- **Claim** (anchor): "A general result (McClean et al., 2018) shows that for random parameter initializations of a wide variational ansatz, gradients vanish exponentially in the number of qubits"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -121,7 +121,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Historical date claim about D-Wave's commercial annealer programme.
+- **Comment**: Historical date claim about D-Wave's commercial annealer program.
 
 ## §29.3 — D-Wave topology evolution: Chimera → Pegasus → Zephyr
 
@@ -179,21 +179,21 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: Institutional-investment claim listing specific named banks.
 
-## §29.4 — Classical convex optimisers solve continuous Markowitz for N up to 10^4 in microseconds
+## §29.4 — Classical convex optimizers solve continuous Markowitz for N up to 10^4 in microseconds
 
-- **Claim** (anchor): "In its continuous form this is a quadratic program with a single linear equality and box constraints, solved trivially by classical convex optimisers in microseconds for $N$ up to $10^4$"
+- **Claim** (anchor): "In its continuous form this is a quadratic program with a single linear equality and box constraints, solved trivially by classical convex optimizers in microseconds for $N$ up to $10^4$"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
 - **Comment**: Performance claim for classical QP solvers on continuous Markowitz; the discrete (integer) variant is what maps to QUBO.
 
-## §29.4 — No quantum approach beats classical MIQP solvers for portfolio optimisation
+## §29.4 — No quantum approach beats classical MIQP solvers for portfolio optimization
 
 - **Claim** (anchor): "No published demonstration shows a quantum approach finding better portfolios in less wall-clock time"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: State-of-the-art claim as of writing; the named pilots (Goldman Sachs, BBVA, Mizuho) are characterised as engineering demonstrations only.
+- **Comment**: State-of-the-art claim as of writing; the named pilots (Goldman Sachs, BBVA, Mizuho) are characterized as engineering demonstrations only.
 
 ## §29.4 — Classical Monte Carlo convergence: O(1/sqrt(M)) in number of samples
 
@@ -209,7 +209,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: O(1/ε) queries vs O(1/ε^2) classical samples — proven quadratic speedup for QAE over classical Monte Carlo. The text notes this is real and proven but questions practical realisation.
+- **Comment**: O(1/ε) queries vs O(1/ε^2) classical samples — proven quadratic speedup for QAE over classical Monte Carlo. The text notes this is real and proven but questions practical realization.
 
 ## §29.4 — Stamatopoulos et al. 2019: European call pricing to 10^-3 precision requires ~10^7 T-gates
 
@@ -225,7 +225,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Critical methodological claim about the literature; analogous to the assumption behind dequantised quantum-ML speedups.
+- **Comment**: Critical methodological claim about the literature; analogous to the assumption behind dequantized quantum-ML speedups.
 
 ## §29.4 — QAE advantage crossover: precision ~10^-4 or finer needed for option pricing
 
@@ -245,7 +245,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §29.5 — Volkswagen pilots 2017–2020: D-Wave routing and scheduling demos, no production deployment
 
-- **Claim** (anchor): "Volkswagen ran a series of well-publicised demonstrations between 2017 and 2020: routing taxis in Beijing and Lisbon using D-Wave, optimising paint-shop sequencing in Wolfsburg, traffic-flow simulation in Barcelona"
+- **Claim** (anchor): "Volkswagen ran a series of well-publicized demonstrations between 2017 and 2020: routing taxis in Beijing and Lisbon using D-Wave, optimizing paint-shop sequencing in Wolfsburg, traffic-flow simulation in Barcelona"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -261,13 +261,13 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §29.5 — BMW partnered with Honeywell/Quantinuum and AWS Braket; Daimler with IBM
 
-- **Claim** (anchor): "BMW partnered with Honeywell/Quantinuum and AWS Braket on vehicle-configuration optimisation (which options to bundle), Daimler with IBM on materials-discovery problems"
+- **Claim** (anchor): "BMW partnered with Honeywell/Quantinuum and AWS Braket on vehicle-configuration optimization (which options to bundle), Daimler with IBM on materials-discovery problems"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: Specific named partnerships; the text notes neither produced advantage results in optimisation.
+- **Comment**: Specific named partnerships; the text notes neither produced advantage results in optimization.
 
-## §29.6 — No proven exponential/superpolynomial quantum speedup for NP-hard combinatorial optimisation
+## §29.6 — No proven exponential/superpolynomial quantum speedup for NP-hard combinatorial optimization
 
 - **Claim** (anchor): "No known quantum algorithm has a proven exponential or superpolynomial speedup over the best classical algorithm for an NP-hard problem"
 - **Method**: external
@@ -275,9 +275,9 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: Broad open-problem/state-of-knowledge claim about quantum complexity for NP-hard problems.
 
-## §29.6 — Grover-based optimisation: quadratic speedup over brute-force, but brute-force is not the best classical baseline
+## §29.6 — Grover-based optimization: quadratic speedup over brute-force, but brute-force is not the best classical baseline
 
-- **Claim** (anchor): "Grover-based optimisation offers a quadratic speedup over brute-force search, but brute-force search is rarely the best classical baseline"
+- **Claim** (anchor): "Grover-based optimization offers a quadratic speedup over brute-force search, but brute-force search is rarely the best classical baseline"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

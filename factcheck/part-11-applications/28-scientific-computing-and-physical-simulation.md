@@ -23,7 +23,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 - **Claim** (anchor): "The number of two-electron integrals is"
 - **Method**: derivation
-- **Source**: → §28.1 (second-quantisation derivation; M spin-orbitals yield O(M^4) integrals from four-index tensor h_pqrs)
+- **Source**: → §28.1 (second-quantization derivation; M spin-orbitals yield O(M^4) integrals from four-index tensor h_pqrs)
 - **Verified**: — · **Verdict**: open
 
 ## §28.1 — Jordan–Wigner Pauli weight
@@ -49,9 +49,9 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: empirical crossover claim around M = 20–30 orbitals.
 
-## §28.1 — Tensor hypercontraction and double factorisation
+## §28.1 — Tensor hypercontraction and double factorization
 
-- **Claim** (anchor): "Tensor hypercontraction and double factorisation, classical pre-processing techniques developed since 2018"
+- **Claim** (anchor): "Tensor hypercontraction and double factorization, classical pre-processing techniques developed since 2018"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -59,7 +59,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §28.1 — UCCSD circuit depth
 
-- **Claim** (anchor): "the Trotterised exponential of"
+- **Claim** (anchor): "the Trotterized exponential of"
 - **Method**: derivation
 - **Source**: → §28.1 (UCCSD ansatz has O(M^4) excitations; Trotter implementation gives O(M^4) depth per step)
 - **Verified**: — · **Verdict**: open
@@ -84,7 +84,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 - **Claim** (anchor): "the eigenphase corresponding to the energy. The output is the energy to additive precision"
 - **Method**: derivation
-- **Source**: → §16.5 (QPE via qubitisation/QSVT; O((alpha/epsilon) log(1/delta)) query count derived there)
+- **Source**: → §16.5 (QPE via qubitization/QSVT; O((alpha/epsilon) log(1/delta)) query count derived there)
 - **Verified**: — · **Verdict**: open
 
 ## §28.1 — Chemical accuracy definition
@@ -105,7 +105,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §28.1 — Haber–Bosch energy consumption
 
-- **Claim** (anchor): "industrial analogue (the Haber–Bosch process) consumes roughly"
+- **Claim** (anchor): "industrial analog (the Haber–Bosch process) consumes roughly"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -180,7 +180,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
-- **Comment**: claim that A~100 nuclei reach 10^20 Slater determinants, beyond exact diagonalisation.
+- **Comment**: claim that A~100 nuclei reach 10^20 Slater determinants, beyond exact diagonalization.
 
 ## §28.3 — Ultracold atom lattice simulation scale
 
@@ -217,7 +217,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 - **Claim** (anchor): "gives the optimal"
 - **Method**: derivation
-- **Source**: → §§16.5–16.7 (qubitisation/QSVT-based simulation achieving Theta(t||H|| + log(1/epsilon)) complexity)
+- **Source**: → §§16.5–16.7 (qubitization/QSVT-based simulation achieving Theta(t||H|| + log(1/epsilon)) complexity)
 - **Verified**: — · **Verdict**: open
 
 ## §28.5 — Quantum Metropolis algorithm
@@ -244,7 +244,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: 3+1-dimensional SU(3) lattice QCD estimated at 10^7+ logical qubits and 10^20 T gates.
 
-## §28.7 — Carleman linearisation efficiency condition
+## §28.7 — Carleman linearization efficiency condition
 
 - **Claim** (anchor): "The algorithm is provably efficient only when the dissipativity parameter"
 - **Method**: external
@@ -252,7 +252,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Verified**: — · **Verdict**: open
 - **Comment**: Liu–Kolden–Krovi–Loureiro–Trivisa–Childs 2021 result; efficiency requires R < 1 (strongly dissipative regime).
 
-## §28.7 — Carleman linearisation paper attribution
+## §28.7 — Carleman linearization paper attribution
 
 - **Claim** (anchor): "Liu–Kolden–Krovi–Loureiro–Trivisa–Childs 2021, with subsequent refinements"
 - **Method**: external
@@ -261,7 +261,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §28.7 — Poisson equation condition number
 
-- **Claim** (anchor): "Poisson-equation discretisations on a 3D grid have"
+- **Claim** (anchor): "Poisson-equation discretizations on a 3D grid have"
 - **Method**: derivation
 - **Source**: → §28.7 (standard result: 3D Poisson on N-point grid has kappa = O(N^{2/3}), which grows with N and eliminates exponential speedup without preconditioning)
 - **Verified**: — · **Verdict**: open

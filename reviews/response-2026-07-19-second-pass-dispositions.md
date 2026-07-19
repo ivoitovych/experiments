@@ -1035,3 +1035,36 @@ record; nothing in it is considered dropped.
   left with their heading for the same reason.)
 - BookDescription prose consolidation — folded into the pending
   reconciliation-restructure decision rather than piecemeal-edited now.
+
+## Batch 22 — American-English migration (author-approved, research-backed)
+
+Per reviews/analysis-2026-07-19-spelling-convention.md and the author's
+go-ahead:
+
+- **Migration executed** over book/, factcheck/, examples/, README,
+  BookDescription, STYLE, INSTRUCTIONS: ~1,500 replacements total
+  (codespell en-GB→en-US pass + explicit project map covering the
+  scientific derivatives and coined jargon codespell's dictionary lacks,
+  plus hyphenated compounds it cannot tokenize). Includes the previously
+  escalated -ogue family (analogue→analog, catalogue→catalog) for zero-
+  exception consistency. The four already-American slug-bearing headings
+  and the ch29 filename needed no change, as predicted.
+- **Sweeping factcheck/ with the same map kept anchors in sync**: checker
+  back at exactly 97 after one mirror-only straggler (centrepiece);
+  remaining baseline diffs are pure respellings of the same anchors.
+- **Generated files**: TOC, index (generator's own "No-signalling" term
+  table fixed), PROGRESS regenerated; internal slugs verified free of
+  British forms; build selftest, examples suite, README-coverage and
+  toc-check all green.
+- **Convention documented** in STYLE.md ("Language and spelling") with the
+  research citation and the never-correct-a-quotation rule.
+- **Lint enforcement added** (tools/lint.py): two layers — the project
+  dictionary tools/spelling-gb-us.txt (206 pairs, always on) and
+  codespell's builtin en-GB_to_en-US with a hyphen-splitting regex when
+  installed. Exact-phrase allowlist (tools/spelling-allowlist.txt) exempts
+  legitimate British text — quoted titles, proper nouns — honored by both
+  layers (the rule immediately caught STYLE.md's own quoted example, which
+  became the allowlist's first entry: the false-positive path is tested).
+- Note for the reviewer: chapter text under and beyond the review front
+  (Ch18+) was included, as the author (who is the reviewer) ordered the
+  migration; ledger quotes of pre-migration text remain valid as records.
