@@ -60,7 +60,7 @@ e07fbca1710be120041244df0f2e3f113daf6a01d1448c2329ba07b0a7b4554c  book/part-05-m
 c7bc4db8c959a9a923edf9574931a8ddc226b0b89c9d9a10b76d3d34163bff5f  book/part-05-measurement-and-information/12-quantum-information-theory.md
 aa14ff3393ce84a69d1b78831b2c7f6f33ac22ef97b6f552b3d5bee8ca1af750  book/part-06-algorithms/13-quantum-algorithms-mindset.md
 f4ccd02551a1eb442f1ec94ea9438416bd614d96f0d791abd2d2fd59e715d11d  book/part-06-algorithms/14-foundational-algorithms.md
-04ea5ad6afacabc1e333946989542243b43b59e61222413b88fd95b61d657c5c  book/part-06-algorithms/15-landmark-quantum-algorithms.md
+daa970153357914663c5d1d3e52abdf59803f7ff418f8a73af32d2d4bb166795  book/part-06-algorithms/15-landmark-quantum-algorithms.md
 b3ca1de1ee444b9d48423e4f4c2e7c62b3798fa7b56e7a0f57a3aa04864b5ac3  book/part-06-algorithms/16-modern-algorithmic-frontier.md
 a11e6fed0514bde1e7eb1aacf11ae291dd95ee5e7190b78363816b052fa3fbe2  book/part-06-algorithms/figures/bernstein-vazirani.svg
 d52eb1f34ffb8b0633facb0c78d25291060d119d1222ec154851a285a8421516  book/part-06-algorithms/figures/deutsch-jozsa.svg
@@ -169,7 +169,7 @@ d5e0cec3ec5e3dbb9ada626bf551502d12d81920e68fdac4c4e7a59ed6e08a7b  reviews/cold-r
 95cd5962ed6cf39a1b5f5e2f859bc5c2d03b78d3d435891c3fd6b11a012b6584  reviews/factcheck-2026-07-04-external-verification.md
 7efd03e5b38a37de192454db8bd8d6c6b31373f9fe112096e1b27a251e30932d  reviews/proposals-2026-07-05-remaining-programmes.md
 021f81c249aa7f0e13dd66470714f49c341955324e48399b78ed4b29c1269c22  reviews/recommendations-2026-07-04-deferred-items.md
-82de404ee0d311a85585447051ad107a849329478db42876a7bfb5de9515ce11  reviews/response-2026-07-19-second-pass-dispositions.md
+b0511d5cf9944508651b7b1f8c5c1d864b585c1d7f38fd1327103f50bf187660  reviews/response-2026-07-19-second-pass-dispositions.md
 95adfcedf14090d851fc34190f8b43abb422e0f94462929e7d694e174aeaf9cf  reviews/review-2026-07-03-1843-comprehensive-book-review.md
 5bad35fcd989a0328f0a33f5b30e3f6747acf0daa91572fd14935729e5d7bf45  reviews/review-2026-07-19_01-20-35_CEST.md
 2bd131ed2944aee6d792838358a75ef9efbe42c09f5a5568347bd8aa4d1d840d  reviews/roadmap-2026-07-05-path-to-publication.md

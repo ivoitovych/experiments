@@ -812,3 +812,31 @@ One factcheck anchor requoted; baseline (97) restored.
   with the different-machinery families named.
 
 Four factcheck anchors requoted; baseline (97) restored.
+
+## Batch 16 — Chapter 15 (12 substitutions)
+
+### FIXED — outright defects
+- Shor measurement missing its denominator — the measured integer c now
+  divided by 2^{2n} before the s/r comparison and continued fractions.
+- FIPS 205 (SLH-DSA/SPHINCS+) restored to the 2024 NIST standards list.
+- Unknown-M Grover "successively doubled iteration counts" — replaced with
+  the actual BBHT randomised-range strategy, with verification and M=0
+  handling.
+- "Any deployed asymmetric primitive must be replaced" — scoped to
+  factoring/DLP-based primitives, harvest-now priority noted.
+- HHL classical baselines — dense O(N³)/sparse O(Nsκ) replaced with an
+  honest iterative-solver comparison and access-model caveat; "the
+  exponential speedup is in N" tied to the assumptions.
+- UCCSD "captures static correlation accurately" — corrected (single
+  reference; often poor for static correlation); ADAPT claim scoped.
+- VQE shot formula and "several days" runtime — allocation-dependent cost
+  with §11.7 pointer; wall-clock honestly tied to shot-rate assumption.
+- QAOA maximisation-vs-ground-state sign conflict resolved (extremal/top
+  eigenstate under the stated convention); 0.6924 ratio given its
+  triangle-free condition; adiabatic-limit guarantee given its gap
+  condition and find-vs-exist distinction.
+- "Essentially all dequantised" (twice) — scoped to the headline
+  sample-and-query instances with open access models acknowledged; the
+  QRAM-artefact monocause widened.
+
+Zero factcheck-anchor drift this batch.
