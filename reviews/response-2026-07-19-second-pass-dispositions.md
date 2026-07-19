@@ -670,3 +670,39 @@ Five factcheck anchors requoted; baseline (97) restored.
 
 Nine factcheck anchor requotes (two needing second passes); baseline (97)
 restored.
+
+## Batch 12 — Chapter 11 (13 substitutions)
+
+### FIXED — outright defects
+- General instrument restricted to one Kraus operator per outcome —
+  efficient-instrument scope stated, multi-Kraus general form given, the
+  destructive example correctly labelled measure-and-reprepare with
+  rank-one-only effects noted, Lüders named.
+- Tomography "measurements distributed across 4ⁿ−1 Pauli settings" —
+  settings/parameters conflation fixed (≤3ⁿ local-basis settings with
+  reuse); "single-qubit Pauli tomography" → local Pauli-basis tomography.
+- Hamiltonian estimation "O(M/ε²)" — replaced with the allocation-dependent
+  cost (optimal-allocation formula given; uniform allocation can be far
+  worse).
+- Identical-state discrimination "is a coin flip" — scoped to equal priors,
+  unequal-prior optimal guess with error min(π₀,π₁) added.
+- Classical shadows "independent of qubit number for any number of
+  k-local Paulis" — log M dependence restored.
+- Randomised benchmarking "constant cost" — scoped (no tomographic-dimension
+  growth; sequences/shots/confidence still cost; interleaved caveats).
+- Readout calibration "one-time" — drifts, repeated in practice.
+- Shot-noise floor "of every quantum sampling estimator" — scoped to direct
+  independent-shot sampling with amplitude-estimation and zero-variance
+  escapes named.
+- "Chapter 18 generalises readout error to coherent errors and amplitude
+  damping" — category error fixed (dynamical channels alongside, not a
+  generalisation of, assignment error).
+- "Every information measure has a discrimination-theoretic
+  interpretation" — scoped to many, with plug-in estimation bias noted.
+- Readout "often dominates" → can dominate in shallow circuits, deeper
+  circuits dominated by gates/decoherence.
+- "Apply to every variational workflow" → recur throughout.
+
+One house-escaping violation I introduced (bare \, in new math) was caught
+by lint and fixed in the same batch. Four factcheck anchors requoted;
+baseline (97) restored.
