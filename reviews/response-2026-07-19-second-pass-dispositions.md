@@ -781,3 +781,34 @@ One factcheck anchor requoted; baseline (97) restored.
   sizes.
 
 One factcheck anchor requoted; baseline (97) restored.
+
+## Batch 15 — Chapter 14 (13 substitutions)
+
+### FIXED — outright defects
+- QFT "exponentially better than the classical FFT" — replaced with the
+  incomparable-representations statement (the unreadability caveat promoted
+  to load-bearing).
+- Deutsch–Jozsa listed as an HSP instance — removed with the reason
+  (balanced functions need not be constant on cosets).
+- Repeated-squaring fast-forwarding of arbitrary structured U (including
+  e^{-iHt} "via Trotter") — corrected: rotations multiply angles, Shor
+  precomputes classical constants; generic structured U and Hamiltonian
+  evolution obey no-fast-forwarding (cost ∝ simulated time).
+- Shor's group described as Z_N with cyclic subgroup — corrected to
+  order finding over the integers/large cyclic register with hidden
+  subgroup rZ; "direct ancestor" softened to acknowledged inspiration;
+  the different post-processing of the two cases stated.
+- Amplitude amplification "boost-to-1" — near-one at Θ(1/sinθ) with exact
+  variants requiring tailored phases.
+- HSP Fourier-sampling state normalised (1/√|G|); abelian solution scoped
+  to efficiently represented finite groups; symmetric-group/GI implication
+  stated via the reduction direction.
+- F_t → F_{2^t} (twice), matching the chapter's own dimension-indexing.
+- Simon's O(n) query count now carries the high-probability qualifier with
+  the O(n + log(1/δ)) form.
+
+### FIXED — epistemic scoping
+- "Primitives almost every later algorithm builds on" → a large share,
+  with the different-machinery families named.
+
+Four factcheck anchors requoted; baseline (97) restored.
