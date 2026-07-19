@@ -918,3 +918,32 @@ Three factcheck anchors requoted; baseline (97) restored.
   AWPP "tightest known cap" — all scoped.
 
 Three factcheck anchors requoted; baseline (97) restored.
+
+## Batch 19 — infrastructure queue (IMPROVEMENT-QUEUED items executed)
+
+- **Deterministic example seeds** — all three sampling examples now use
+  `StatevectorSampler(seed=1234)`; `make check-examples` passes with
+  reproducible counts. (Ledger: flaky-check suspicion in the verification
+  baseline.)
+- **TOC drift check** — `scripts/generate_toc.py --check` added plus a
+  `make toc-check` target; verified TOC.md is currently in sync. (Ledger:
+  README/TOC duplication drift risk.)
+- **Interim-format structural validation** — `factcheck_lint.py` now
+  validates both interim dialects (### Claim blocks with Method/Status;
+  anchor bullets with Method/Verified) in the 47 mirror files, exits
+  nonzero on problems, and exempts mirrors that explicitly declare "no
+  checkable claims" (the index). Current mirror: 0 structural problems.
+  (Ledger: dangerously narrow lint coverage.)
+- **Render validation (doubled-escape question)** — `build_book.py
+  --selftest` passes (5 math + 7 link cases, all 48 chapters listed),
+  validating the house escaping against the offline mdBook+KaTeX path.
+  The GitHub-web rendering path is precisely what
+  `docs/github-markdown-math-bugs.md` documents workarounds for; the
+  ledger's per-instance "render defect?" flags are hereby adjudicated as
+  the documented convention, with this selftest as the standing regression
+  guard. A full visual browser pass remains AUTHOR-DECISION (needs eyes).
+- **STYLE/lint dual-source manifest** — QUEUED as AUTHOR-DECISION: moving
+  lint's allowlists into a machine-readable manifest referenced by STYLE
+  changes project structure; recommended, not unilaterally applied.
+- **README block generation** — POLISH-QUEUED (generate the README chapter
+  list or add a drift test mirroring toc-check).

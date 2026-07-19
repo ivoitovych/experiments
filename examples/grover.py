@@ -32,7 +32,7 @@ def main() -> None:
     # For N = 8 with one marked item, the optimal count is
     # floor(pi/4 * sqrt(8)) = 2 iterations.
     qc = grover_3q(iterations=2)
-    counts = StatevectorSampler().run([qc], shots=1000).result()[0].data.c.get_counts()
+    counts = StatevectorSampler(seed=1234).run([qc], shots=1000).result()[0].data.c.get_counts()
     ranked = dict(sorted(counts.items(), key=lambda kv: -kv[1]))
     print("counts (most frequent first):", ranked)
     top = next(iter(ranked))

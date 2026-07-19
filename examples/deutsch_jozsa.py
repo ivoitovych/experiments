@@ -26,7 +26,7 @@ def balanced_oracle(qc: QuantumCircuit, n: int) -> None:
 def main() -> None:
     n = 3
     qc = dj_circuit(n, balanced_oracle)
-    counts = StatevectorSampler().run([qc], shots=1000).result()[0].data.c.get_counts()
+    counts = StatevectorSampler(seed=1234).run([qc], shots=1000).result()[0].data.c.get_counts()
     print("counts:", dict(sorted(counts.items())))
     verdict = "constant" if set(counts) == {"0" * n} else "balanced"
     print("verdict:", verdict)

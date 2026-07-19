@@ -20,7 +20,7 @@ def main() -> None:
     # Sample 1000 shots from the measured circuit:
     measured = qc.copy()
     measured.measure_all()
-    result = StatevectorSampler().run([measured], shots=1000).result()
+    result = StatevectorSampler(seed=1234).run([measured], shots=1000).result()
     counts = result[0].data.meas.get_counts()
     print("counts:", dict(sorted(counts.items())))
 
