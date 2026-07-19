@@ -990,3 +990,48 @@ individually listed in batches 1–18 fall into the categories above
 factcheck programme with dated re-verification; structural/enrichment
 suggestions → AUTHOR-DECISION queue). The ledger remains the master
 record; nothing in it is considered dropped.
+
+## Batch 21 — IMPROVEMENT-QUEUED / POLISH-QUEUED execution (author go-ahead)
+
+### IMPROVEMENT items done
+- **README chapter-list drift test** — `generate_toc.py --check-readme`
+  verifies every manuscript file is linked from README's Table of
+  Contents (currently: full coverage).
+- **Version-matrix drift guard** — `build_book.py --selftest` now fails if
+  README's install instructions stop mentioning the katex versions in
+  SUPPORTED_PAIRS.
+- **PROGRESS checkbox semantics** — generated legend states what a checked
+  box does and does not mean; PROGRESS.md regenerated.
+- **factcheck_lint dashboard** — now tallies interim-mirror claims by
+  status/verdict alongside the card-file verdicts.
+- **Executable Qiskit ordering assertion** — new
+  `examples/qiskit_ordering_check.py` asserts the book↔Qiskit index
+  mapping and the diag(I, X) CNOT form on live Qiskit objects; picked up
+  automatically by `make check-examples` (ledger asks in §4.8/§7.1/§9.1).
+- **§5.9 concrete qubit mixture** — worked example added (3/4 |0⟩ + 1/4
+  |+⟩ ensemble: explicit matrix, purity 13/16, off-diagonal moral);
+  arithmetic machine-verified.
+- **Preface linear-route effort calibration** — "a semester of steady
+  evening reading" added at the reading-paths section.
+
+### POLISH items done
+- **reviews/ retention note** in README (insert-only audit artifacts,
+  retained as provenance).
+- **Spelling consistency sweep (prose)** — British confirmed as the
+  dominant convention; 40+ American-variant prose occurrences converted
+  (randomised/behaviour/realised/characterisations/optimisation/
+  normalised family). Deliberately untouched: paper titles, the QAOA
+  proper name, code identifiers (`optimization_level`), nav links, and
+  the generated index.
+- Two factcheck anchors staled by the sweep requoted; baseline (97)
+  restored.
+
+### Escalated to AUTHOR-DECISION (slug/filename cascade)
+- Heading-level Americanisms: §8.13 "Parameterized Gates", §9.13 "Circuit
+  Optimization", §20.8 "NV Centers", and the Chapter 29 title/filename
+  ("optimization"). Retitling changes slugs, filenames, the generated
+  index/TOC, and factcheck mirror names — a coordinated migration pass,
+  recommended but not applied unilaterally. ("NV center" prose occurrences
+  left with their heading for the same reason.)
+- BookDescription prose consolidation — folded into the pending
+  reconciliation-restructure decision rather than piecemeal-edited now.

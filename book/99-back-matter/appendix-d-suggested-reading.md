@@ -110,7 +110,7 @@ only summarizes.
 - *The theory of quantum information.* John Watrous. Cambridge
   University Press, 2018. More mathematical than Wilde; the
   authoritative source for the diamond norm and semidefinite-program
-  characterizations of channel distinguishability.
+  characterisations of channel distinguishability.
 - *Quantum entanglement.* Ryszard Horodecki, Paweł Horodecki, Michał
   Horodecki, and Karol Horodecki. Reviews of Modern Physics, 2009.
   The standard survey of entanglement measures, separability criteria,
@@ -304,7 +304,7 @@ documentation rather than as stable artifacts.
 - **t|ket> and the Quantinuum stack.** `docs.quantinuum.com/tket`. The
   TKET compiler and `pytket` Python bindings are the strongest
   open-source pieces of compiler infrastructure for circuit
-  optimization and hardware-aware routing across multiple backends.
+  optimisation and hardware-aware routing across multiple backends.
 - **Stim.** Craig Gidney, available at `github.com/quantumlib/Stim`.
   The fastest stabilizer-circuit simulator in wide use, with a
   matched decoder ecosystem (PyMatching, Fusion Blossom). Effectively

@@ -61,7 +61,7 @@ $$
 $$
 
 with $\alpha, \beta \in \mathbb{C}$. The two complex amplitudes
-account for four real degrees of freedom; the normalization
+account for four real degrees of freedom; the normalisation
 constraint removes one; global phase removes another; the *physical*
 state space has two real parameters left. These two parameters are
 the two angles $(\theta, \varphi)$ of the Bloch sphere (§6.8).
@@ -233,7 +233,7 @@ of $\mathbb{C}^2$. The pattern generalises: $n$ qubits admit $2^n + 1$
 mutually unbiased bases (the maximal number $d + 1$ in dimension
 $d = 2^n$, which exists because $2^n$ is a prime power), and these
 structures underlie quantum key distribution protocols (Chapter 27)
-and certain randomized algorithms.
+and certain randomised algorithms.
 
 ## 6.7 Global vs. Relative Phase
 

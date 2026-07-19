@@ -620,7 +620,7 @@ process. By convention the principal ones are:
   energy into the environment.
 - $T_2$, the **dephasing time**: the timescale over which the
   relative phase between $|0\rangle$ and $|1\rangle$ components of a
-  superposition becomes randomized. $T_2$ is bounded above by
+  superposition becomes randomised. $T_2$ is bounded above by
   $2 T_1$ in the standard two-level Markovian model, and is often the
   practically relevant figure for interference-based algorithms
   (though $T_1$, leakage, or control error can dominate instead).
@@ -708,7 +708,7 @@ are squarely in the first. Quantum computing lives in the boundary
 region: macroscopically engineered hardware operated under conditions
 extreme enough (low temperature, high vacuum, deep electromagnetic
 isolation) that the action scale of the relevant degrees of freedom
-is comparable to $\hbar$ and the quantum behavior is preserved long
+is comparable to $\hbar$ and the quantum behaviour is preserved long
 enough to compute with.
 
 Once this picture is internalized, the dichotomy that often gets

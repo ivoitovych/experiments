@@ -84,6 +84,11 @@ def main() -> None:
     lines.append(f"- **Started (past `stub`):** {started} / {total}")
     lines.append(f"- **Completed (`draft` or later):** {completed} / {total}")
     lines.append("")
+    lines.append("Checkbox legend: a checked box means the file has reached")
+    lines.append("`draft` status or later in the lifecycle above — it does not")
+    lines.append("by itself distinguish `prereviewed` from `reviewed`/`final`")
+    lines.append("(the per-entry status label carries that).")
+    lines.append("")
     for phase in sorted(by_phase):
         files = by_phase[phase]
         ph_started = sum(1 for e in files if e["status"] != "stub")

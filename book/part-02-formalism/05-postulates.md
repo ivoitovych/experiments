@@ -49,7 +49,7 @@ Three points to keep in mind as you read:
 with a complex Hilbert space $\mathcal{H}$. A **pure state** of the
 system is a ray in $\mathcal{H}$ — an equivalence class of nonzero
 vectors under multiplication by any nonzero complex scalar. By
-convention we choose a normalized representative: a vector
+convention we choose a normalised representative: a vector
 $|\psi\rangle \in \mathcal{H}$ with $\langle\psi|\psi\rangle = 1$,
 unique up to a global phase $e^{i\theta}$.
 
@@ -58,7 +58,7 @@ For an $n$-qubit register the Hilbert space is $\mathcal{H} =
 $\\{|x\rangle : x \in \\{0,1\\}^n\\}$ in the $x_1$-most-significant
 ordering of §4.2.
 
-The postulate says nothing about *which* normalized vector represents
+The postulate says nothing about *which* normalised vector represents
 the state at a given time — only that the state space is the unit
 sphere of $\mathcal{H}$ modulo global phase. State evolution
 (Postulate 2) and measurement (Postulate 3) are what give the
@@ -94,7 +94,7 @@ Three properties of this postulate are worth naming:
   so closed-system evolution is invertible. Quantum computation in
   the gate model is *information-preserving* by construction.
 - **Norm preservation.** $\\|U|\psi\rangle\\| = \\||\psi\rangle\\|$, so
-  normalization is preserved automatically and Postulate 1 stays
+  normalisation is preserved automatically and Postulate 1 stays
   consistent without extra bookkeeping.
 - **Composition.** If two evolutions $U_1$ and $U_2$ act in sequence,
   the combined evolution is $U_2 U_1$ (with $U_1$ applied first; read
@@ -470,7 +470,7 @@ $$
 $$
 
 with $p_x \ge 0$, $\sum_x p_x = 1$, and the $|\psi_x\rangle$
-normalized (not necessarily orthogonal). This expansion is one
+normalised (not necessarily orthogonal). This expansion is one
 realisation of $\rho$ as an ensemble; there are infinitely many
 different ensembles producing the same density matrix (a subtle
 point developed in Chapter 12).
@@ -491,6 +491,22 @@ The quantity $\mathrm{tr}(\rho^2) \in [1/d, 1]$ (in dimension $d$) is the **puri
 $\rho$, with $\mathrm{tr}(\rho^2) = 1$ for pure states and
 $\mathrm{tr}(\rho^2) = 1/d$ for the maximally mixed state in dimension
 $d$.
+
+A concrete qubit mixture makes the definitions tactile. Prepare
+$|0\rangle$ with probability $3/4$ and $|+\rangle$ with probability
+$1/4$. Then
+
+$$
+\rho \;=\; \tfrac{3}{4}\\, |0\rangle\langle 0| + \tfrac{1}{4}\\, |{+}\rangle\langle{+}|
+\;=\; \begin{pmatrix} 7/8 & 1/8 \\\\ 1/8 & 1/8 \end{pmatrix},
+$$
+
+Hermitian, unit trace, positive semidefinite — and its purity is
+$\mathrm{tr}(\rho^2) = 49/64 + 1/64 + 1/64 + 1/64 = 13/16 < 1$, so the
+state is genuinely mixed (though far from maximally so: $13/16 > 1/2$).
+The off-diagonal entries survive because one ensemble member was a
+computational-basis *superposition* — a mixture is diagonal only when
+its members are.
 
 Density matrices generalise both the measurement postulate and the
 evolution postulate.

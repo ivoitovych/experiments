@@ -124,6 +124,7 @@ def main(argv):
     files = []
     interim = 0
     interim_problems = []
+    interim_status = {}
     for fc in sorted(FC.rglob("*.md")):
         if fc.name in skip:
             continue
@@ -133,6 +134,14 @@ def main(argv):
             for p in check_interim(fc, text):
                 print(f"INTERIM {fc.relative_to(FC)}: {p}")
                 interim_problems.append(p)
+            for line in text.splitlines():
+                s = line.strip()
+                if s.startswith("- **Status:**"):
+                    key = s[len("- **Status:**"):].strip().rstrip(".")[:24] or "(empty)"
+                    interim_status[key] = interim_status.get(key, 0) + 1
+                elif "**Verified**:" in s and "**Verdict**:" in s:
+                    key = "verdict: " + s.split("**Verdict**:")[1].strip().rstrip(".")[:14]
+                    interim_status[key] = interim_status.get(key, 0) + 1
             continue
         files.append((fc, text))
 
@@ -217,6 +226,10 @@ def main(argv):
         for v in ["verified", "unverified", "refuted", "depends"]:
             print(f"  {v:<11} {counts.get(v, 0)}")
         print(f"  {'(stale)':<11} {stale_count}   <- verdict-independent; rerun & re-confirm")
+        if interim_status:
+            print("  interim-mirror claims by status:")
+            for k in sorted(interim_status):
+                print(f"    {k:<24} {interim_status[k]}")
         print()
     print(f"{'PASS' if failures == 0 else 'FAIL'}: {failures} lint problem(s), "
           f"{stale_count} stale, across {total} card(s) in {len(files)} file(s)")

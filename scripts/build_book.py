@@ -191,6 +191,13 @@ def selftest() -> None:
 
     summary = build_summary()
     assert summary.count("](book/") == len(file_entries())
+    readme = (pathlib.Path(__file__).resolve().parent.parent / "README.md").read_text(encoding="utf-8")
+    for (_, (label, install_arg, _)) in sorted(SUPPORTED_PAIRS.items()):
+        if install_arg not in readme:
+            raise SystemExit(
+                f"selftest FAIL: README version matrix does not mention "
+                f"mdbook-katex {install_arg} ({label}) — keep README's "
+                f"install instructions in sync with SUPPORTED_PAIRS")
     print(f"selftest OK ({len(cases)} math + {len(link_cases)} link cases, "
           f"SUMMARY lists all {len(file_entries())} chapters)")
 

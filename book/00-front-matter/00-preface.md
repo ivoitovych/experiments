@@ -273,8 +273,8 @@ A few concrete paths through the material may help.
 *The full linear path*: read every chapter in order. This is the
 longest path and the recommended one for a reader new to the field
 who wants the complete picture. Expect it to take real time —
-quantum computing is not a weekend subject — and read with paper
-and pen.
+as a calibration point, think a semester of steady evening reading,
+not a sprint — and read with paper and pen.
 
 *The algorithms-focused path*: Chapters 1, 4, 5, 6, 7, 8, 9, 10, 11,
 then all of Part VI (Chapters 13 through 16). Chapter 17 on

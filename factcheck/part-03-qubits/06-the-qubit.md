@@ -12,7 +12,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §6.2 — Pure-state physical parameter count yields two real parameters
 
-- **Claim** (anchor): "The two complex amplitudes account for four real degrees of freedom; the normalization constraint removes one; global phase removes another; the physical state space has two real parameters left"
+- **Claim** (anchor): "The two complex amplitudes account for four real degrees of freedom; the normalisation constraint removes one; global phase removes another; the physical state space has two real parameters left"
 - **Method**: derivation
 - **Source**: → §6.2
 - **Verified**: — · **Verdict**: open
