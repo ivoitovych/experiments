@@ -25,7 +25,7 @@ STATUS_RE = re.compile(
 
 # States in increasing order of completeness.
 STATE_ORDER = ["stub", "outlined", "draft", "prereviewed", "reviewed", "final"]
-COMPLETED = {"draft", "reviewed", "final"}
+COMPLETED = set(STATE_ORDER[STATE_ORDER.index("draft"):])
 
 
 def parse(content: str) -> dict | None:

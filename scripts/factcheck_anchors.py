@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""factcheck anchor self-check.
+r"""factcheck anchor self-check.
 
 For every factcheck/*.md file, confirm each claim's quoted anchor still
 appears in the mirrored book/ section. This is the "stale anchor" + "orphan

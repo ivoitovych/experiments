@@ -88,14 +88,14 @@ def main(argv):
 
     skip = {"README.md", "CARD-SPEC.md", "_template.md", "_sources.md"}
     files = []
+    interim = 0
     for fc in sorted(FC.rglob("*.md")):
         if fc.name in skip:
             continue
         text = fc.read_text()
-        if not MIRROR_RE.search(text):
+        if not MIRROR_RE.search(text) or "**Status:**" not in text:
+            interim += 1  # interim-format / not a card file
             continue
-        if "**Status:**" not in text:
-            continue  # interim-format / not a card file
         files.append((fc, text))
 
     failures = 0
@@ -182,6 +182,10 @@ def main(argv):
         print()
     print(f"{'PASS' if failures == 0 else 'FAIL'}: {failures} lint problem(s), "
           f"{stale_count} stale, across {total} card(s) in {len(files)} file(s)")
+    if interim:
+        print(f"NOTE: coverage is PARTIAL — {interim} interim-format factcheck "
+              f"file(s) are not in card spec and were NOT linted "
+              f"(anchor staleness for them is checked by factcheck_anchors.py)")
     return 0 if failures == 0 else 1
 
 
