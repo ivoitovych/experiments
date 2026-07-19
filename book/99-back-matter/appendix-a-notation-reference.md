@@ -94,7 +94,10 @@ Established in [§4.3](../part-02-formalism/04-mathematical-background.md#43-inn
   ([§4.9](../part-02-formalism/04-mathematical-background.md#49-singular-values-and-the-singular-value-decomposition)).
 - $[A, B] = AB - BA$ — **commutator**. Operators commute when
   $[A, B] = 0$ ([§4.5](../part-02-formalism/04-mathematical-background.md#45-hermitian-unitary-normal-and-positive-operators)).
-- $I$ or $I_n$ — **identity operator** (or $n$-qubit identity).
+- $I$ or $I^{\otimes n}$ — **identity operator** (the $n$-qubit identity;
+  equivalently $I_{2^n}$, subscript as matrix dimension — the bare
+  "$I_n$ for $n$ qubits" form is avoided, since linear-algebra texts
+  reserve the subscript for dimension).
 - $A \succeq 0$ — **positive semidefinite**: $A^\dagger = A$ and
   $\langle v|A|v\rangle \ge 0$ for all $v$ ([§4.5](../part-02-formalism/04-mathematical-background.md#45-hermitian-unitary-normal-and-positive-operators)).
 - $A \succeq B$ — shorthand for $A - B \succeq 0$.

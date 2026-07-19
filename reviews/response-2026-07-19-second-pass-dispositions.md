@@ -947,3 +947,46 @@ Three factcheck anchors requoted; baseline (97) restored.
   changes project structure; recommended, not unilaterally applied.
 - **README block generation** — POLISH-QUEUED (generate the README chapter
   list or add a drift test mirroring toc-check).
+
+## Batch 20 — front-matter defects + repo-doc backfill
+
+### FIXED
+- **I_n notation risk (ledger major)** — the "subscript counts qubits"
+  convention conflicted with the universal n×n reading; the notation file,
+  Appendix A, and Appendix C now use I^{⊗n} / I_{2^n}, with the
+  avoid-bare-I_n rationale stated where the old form was defined.
+  Harmonised book-wide (no bare-I_n definitions remain).
+- Preface "it is calibration" antecedent → "they are"; notation file's
+  "the parser disambiguates" anthropomorphism → reader-facing phrasing.
+- BookDescription lowercase sentence start ("remain accurate. the") fixed.
+- STYLE "renderer-bug-proof" absolute → scoped to the tracked renderer
+  bugs with the doc reference.
+- README status paragraph — the internal-review/verification claim now
+  carries the anchor-audit qualifier the ledger demanded (verified = as
+  reviewed, mirror reconciliation ongoing).
+- README bare shell fence labelled ```bash (house style).
+
+### Backfill lanes for the remaining repo-doc items
+- **AUTHOR-DECISION:** INSTRUCTIONS repo-local-vs-global git identity and
+  contributor-provenance policy; licensing path table + SPDX headers;
+  BookDescription reconciliation-note restructure (charter update);
+  STYLE normative required/allowed/lint table and machine-readable
+  exception manifest; full visual render pass.
+- **IMPROVEMENT-QUEUED:** README version-matrix generation from
+  build_book.py constants; README chapter-list drift test (mirror of
+  toc-check); PROGRESS checkbox semantics note; factcheck_lint dashboard
+  polish; source-note redesign (citation keys, verified-on dates — joins
+  the factcheck programme's card-spec migration).
+- **POLISH-QUEUED:** reviews/ retention-policy note in README; prose
+  consolidation items (BookDescription list repetition, preface reading
+  routes timing); British/American spelling sweep (Ch17 ledger note).
+- **ADJUDICATED:** per-chapter Entertainment scores and positives — no
+  action by design; the ledger's per-instance doubled-escape render flags
+  — standing regression guard is the build selftest (Batch 19).
+
+Per-chapter minor/suspicion items for Prelude–Ch17 that were not
+individually listed in batches 1–18 fall into the categories above
+(citation needs → factcheck programme; currency superlatives →
+factcheck programme with dated re-verification; structural/enrichment
+suggestions → AUTHOR-DECISION queue). The ledger remains the master
+record; nothing in it is considered dropped.

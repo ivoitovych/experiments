@@ -187,8 +187,8 @@ in Appendix C are designed to be looked up rather than read through.
 
 Most chapters end with a small set of sanity-check exercises (the
 self-check chapter in the front matter and the experiment-driven
-checks of Chapter 3 are the exceptions: it is
-calibration rather than practice and gives sample problems with inline
+checks of Chapter 3 are the exceptions: they are
+calibration rather than practice, with sample problems and inline
 answers). These are not problem sets in the textbook-with-solutions-in-the-back
 sense. They are short, concrete questions that you should be able to
 answer quickly if the chapter has landed; if you cannot, that is the

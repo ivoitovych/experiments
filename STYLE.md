@@ -68,7 +68,8 @@ are deliberate, not drift):
 - The Prelude sets its math in backtick code spans with Unicode
   (`` `|Φ⁺⟩ = (|00⟩+|11⟩)/√2` ``) rather than `$…$` LaTeX. This is an
   accepted file-local convention: the chapter is narrative history, the
-  code style is renderer-bug-proof, and converting it would churn a
+  code style is robust against the renderer bugs currently tracked by
+this repository (`docs/github-markdown-math-bugs.md`), and converting it would churn a
   heavily verified file for no reader benefit.
 - The Prelude's four `# Episode` headings are additional H1s by design
   (episode structure outranks section structure there). Tooling that

@@ -100,7 +100,8 @@ are in §4.8.
 - Scalars pull through:
   $(\alpha A) \otimes B = A \otimes (\alpha B) = \alpha (A \otimes B)$.
 - Tensoring with identity preserves linear structure:
-  $A \otimes I_n + A' \otimes I_n = (A + A') \otimes I_n$.
+  $A \otimes I + A' \otimes I = (A + A') \otimes I$ (same identity factor
+  throughout).
 - Functional calculus on product operators. If $A$ acts on the first
   factor only, then $f(A \otimes I) = f(A) \otimes I$ for any function $f$
   defined on the spectrum of $A$; in particular $e^{i\theta (A \otimes I)}
