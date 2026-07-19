@@ -58,7 +58,7 @@ a0a2636844cce5d117b41b4629571fd9549aa8fb3e0ede685c245eaa35a801ca  book/part-04-g
 aeb970d7ee0c7b030dddc88cd002f1bd659cb6ef0ef774864ece1ece6421ebc1  book/part-04-gates-and-circuits/figures/toffoli.svg
 e07fbca1710be120041244df0f2e3f113daf6a01d1448c2329ba07b0a7b4554c  book/part-05-measurement-and-information/11-measurement-theory.md
 c7bc4db8c959a9a923edf9574931a8ddc226b0b89c9d9a10b76d3d34163bff5f  book/part-05-measurement-and-information/12-quantum-information-theory.md
-9ad12caeede8951caae18b229a6c0954615dd9e61f3c51c0bc1cd4c688e5f021  book/part-06-algorithms/13-quantum-algorithms-mindset.md
+aa14ff3393ce84a69d1b78831b2c7f6f33ac22ef97b6f552b3d5bee8ca1af750  book/part-06-algorithms/13-quantum-algorithms-mindset.md
 ff0abaa4a675eeb2224679b702f05499de9aa828d25f53b47de36e2c5e1a7366  book/part-06-algorithms/14-foundational-algorithms.md
 04ea5ad6afacabc1e333946989542243b43b59e61222413b88fd95b61d657c5c  book/part-06-algorithms/15-landmark-quantum-algorithms.md
 b3ca1de1ee444b9d48423e4f4c2e7c62b3798fa7b56e7a0f57a3aa04864b5ac3  book/part-06-algorithms/16-modern-algorithmic-frontier.md
@@ -129,7 +129,7 @@ bdc5f3192dc25552744675da21649d94cd8f6b2167511e398b80b3565deb36f9  factcheck/part
 c5391b8b0205b1c04e851d16fbadd03b8843e1878e28ed76ed4884bcfcdd34c2  factcheck/part-04-gates-and-circuits/10-core-quantum-phenomena.md
 1bb08e79e5b41e6a4bb03e0431922831e070fbda44fd09dabca09469057b5e0e  factcheck/part-05-measurement-and-information/11-measurement-theory.md
 380cffce3f6e3e364804a4c0ae5e0f975b558f2f400b4f5a00cf2b984ab6c9c7  factcheck/part-05-measurement-and-information/12-quantum-information-theory.md
-eb703299185a3cabb78d143981653e51aa773b3cbb48d3d7879f60de0ed1025f  factcheck/part-06-algorithms/13-quantum-algorithms-mindset.md
+94c579f6150932e6c32a242b695e11906bad360903e6d85dc398ae3ec725d1da  factcheck/part-06-algorithms/13-quantum-algorithms-mindset.md
 9a47b9e6cc1b3e9cc458b2f8731a934a40488a2b9cecdd3db9cbbef399a2f685  factcheck/part-06-algorithms/14-foundational-algorithms.md
 925fa77bad0a88abf96a6312939ed2d81523ac11d21387bf4127fcb70386c278  factcheck/part-06-algorithms/15-landmark-quantum-algorithms.md
 0af508d1ba1b3404a8f6d074add8b821fd1a435e01e2f5c6c5da050521ce6aea  factcheck/part-06-algorithms/16-modern-algorithmic-frontier.md
@@ -169,7 +169,7 @@ d5e0cec3ec5e3dbb9ada626bf551502d12d81920e68fdac4c4e7a59ed6e08a7b  reviews/cold-r
 95cd5962ed6cf39a1b5f5e2f859bc5c2d03b78d3d435891c3fd6b11a012b6584  reviews/factcheck-2026-07-04-external-verification.md
 7efd03e5b38a37de192454db8bd8d6c6b31373f9fe112096e1b27a251e30932d  reviews/proposals-2026-07-05-remaining-programmes.md
 021f81c249aa7f0e13dd66470714f49c341955324e48399b78ed4b29c1269c22  reviews/recommendations-2026-07-04-deferred-items.md
-9cde8e25c5feb581dd7e89a61bdd65beb7effdcc353e657b82b0f5154133c633  reviews/response-2026-07-19-second-pass-dispositions.md
+4a2c1a37ad4f83a3e9a49b2487ee7c451935ae42981529f3c07ecf0d3ec0803f  reviews/response-2026-07-19-second-pass-dispositions.md
 95adfcedf14090d851fc34190f8b43abb422e0f94462929e7d694e174aeaf9cf  reviews/review-2026-07-03-1843-comprehensive-book-review.md
 5bad35fcd989a0328f0a33f5b30e3f6747acf0daa91572fd14935729e5d7bf45  reviews/review-2026-07-19_01-20-35_CEST.md
 2bd131ed2944aee6d792838358a75ef9efbe42c09f5a5568347bd8aa4d1d840d  reviews/roadmap-2026-07-05-path-to-publication.md

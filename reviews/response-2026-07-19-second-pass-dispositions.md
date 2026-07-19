@@ -751,3 +751,33 @@ baseline (97) restored.
   standard convention rather than an error here.
 
 One factcheck anchor requoted; baseline (97) restored.
+
+## Batch 14 — Chapter 13 (11 substitutions)
+
+### FIXED — outright defects
+- Simon repeatedly forced into the one-bit phase-kickback template — the
+  hidden-structure claim, the amplitude statement, and the closing bridge
+  now carry the n-bit output register and O(n)-repetition structure; the
+  template's coverage of Shor/Grover restated as modified machinery.
+- "Repeated squaring of an efficient circuit" implementing U^{2^k} — now
+  the correct account: classical constants a^{2^k} mod N by classical
+  repeated squaring, per-power modular-multiplication circuits synthesised
+  directly.
+- Shor QPE outputs called "multiples of N/r" — corrected to approximations
+  of s/r with continued-fraction candidate extraction and verification.
+- Grover "exact success-probability tuning by integer stopping" —
+  corrected (integer counts land near the optimum; exact variants modify
+  phases); heading renamed to stopping.
+- "Constant overhead can absorb a √n improvement" — asymptotics fixed
+  (finite-size erosion; constants cannot beat growing gains forever).
+- Controlled-U_f counted as one query — flagged as an explicit modelling
+  convention, with controlled access and adjoint access called out as
+  granted rather than free.
+- "Exponential number of intermediate evaluations compressed" — parallelism
+  revival removed (no separately readable evaluations ever exist).
+- QFT register statement scoped to N = 2^n with gate-library and
+  general-modulus caveats.
+- Per-shot information-rate comparison scoped to matched oracle/output
+  sizes.
+
+One factcheck anchor requoted; baseline (97) restored.
