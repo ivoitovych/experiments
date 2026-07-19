@@ -14,7 +14,7 @@ Postulate 2 (§5.2) says that closed-system evolution is unitary: $|\psi'\rangle
 
 Three consequences are worth saying explicitly. **Reversibility**: every gate has an inverse, namely $U^{\dagger}$, which is also a valid gate. There is no quantum analogue of the classical AND or OR gate, both of which lose bits; the quantum versions must be made reversible by adding output wires (as Toffoli does for AND). **Norm preservation**: $\\|U|\psi\rangle\\| = \\||\psi\rangle\\|$, so states remain unit-norm under any sequence of gates. **Linearity**: $U(\alpha|\psi_1\rangle + \beta|\psi_2\rangle) = \alpha U|\psi_1\rangle + \beta U|\psi_2\rangle$ — a gate acts on every basis component of a superposition at once. This linear action is *not* a computational speedup by itself; useful advantage requires arranging interference (§10.2, §13.1), not merely touching every component.
 
-A useful operator identity: if $H$ is Hermitian ($H = H^{\dagger}$), then $U = e^{-iHt}$ is unitary for any real $t$. So gates can always be exhibited as exponentials of Hermitian generators; the generator $H$ is the *Hamiltonian* one would engineer in hardware to realise the gate over time $t$.
+A useful operator identity: if $H$ is Hermitian ($H = H^{\dagger}$), then $U = e^{-iHt}$ is unitary for any real $t$. So gates can always be exhibited as exponentials of Hermitian generators; the generator $H$ is *a possible ideal Hamiltonian* for realising the gate over time $t$ — actual hardware may instead use pulse sequences, rotating frames, or compilation through other gates entirely (Chapter 21), and the generator is only defined modulo $2\pi/t$ shifts of its eigenvalues.
 
 ## 8.2 Pauli Gates
 
@@ -46,7 +46,7 @@ $$
 
 and back: $H|+\rangle = |0\rangle$, $H|-\rangle = |1\rangle$. So $H^2 = I$, and $H$ is its own inverse. It is the single most important single-qubit gate in algorithms: $H^{\otimes n}|0^n\rangle$ is the uniform superposition over all $2^n$ bit strings, which is where Deutsch–Jozsa, Grover, Shor's order-finding subroutine, and the whole "quantum parallelism" picture begin.
 
-$H$ is also the change-of-basis matrix between the $Z$ eigenbasis and the $X$ eigenbasis. Concretely, $HXH = Z$ and $HZH = X$. Two distinct uses of this identity are worth separating. As an *operator* conjugation it is symmetric — $HXH = Z$ has an $H$ on each side. As a *measurement* procedure it is not: to measure the observable $X$ you apply a single $H$ and then read out in the computational ($Z$) basis, because $H$ rotates the $X$-eigenbasis onto the $Z$-eigenbasis. There is no second $H$ — the measurement consumes the rotated state, so only the one basis-change gate before readout is needed (the two $\pm 1$ outcomes are then read as the $X$-eigenvalues, which is bookkeeping, not a gate). This "$X$ via $H$ then $Z$" pattern is used constantly when compiling Pauli-basis measurements (§11.7).
+$H$ is also the change-of-basis matrix between the $Z$ eigenbasis and the $X$ eigenbasis. Concretely, $HXH = Z$ and $HZH = X$. Two distinct uses of this identity are worth separating. As an *operator* conjugation it is symmetric — $HXH = Z$ has an $H$ on each side. As a *measurement* procedure it is not: to measure the observable $X$ you apply a single $H$ and then read out in the computational ($Z$) basis, because $H$ rotates the $X$-eigenbasis onto the $Z$-eigenbasis. There is no second $H$ because the adjoint is already inside the transformed measurement operators — measuring $Z$ after $H$ implements the effects $H^{\dagger} P_z H$, so the single basis-change gate does the whole job (the computational outcomes $0/1$ are then read as $X$-eigenvalues $+1/-1$ respectively, which is bookkeeping, not a gate). This "$X$ via $H$ then $Z$" pattern is used constantly when compiling Pauli-basis measurements (§11.7).
 
 ![Circuit symbol for the Hadamard gate acting on a single qubit.](figures/hadamard.svg)
 
@@ -60,7 +60,7 @@ $$
 
 In words: $S$ adds a $\pi/2$ phase to the $|1\rangle$ amplitude; $T$ adds a $\pi/4$ phase. The more general phase gate is $P(\varphi) = \mathrm{diag}(1, e^{i\varphi})$; $S = P(\pi/2)$ and $T = P(\pi/4)$.
 
-$S$ and $T$ matter because, together with $H$ and CNOT, $T$ promotes the Clifford group (which is classically simulable, §8.10) to a universal set. The $T$ gate is also the dominant cost in fault-tolerant compilations: in most surface-code schemes, Clifford gates are nearly free but every $T$ gate consumes a magic state. Reducing T-count is a major preoccupation of compilation research (§8.14, Chapter 23).
+$S$ and $T$ matter because, together with $H$ and CNOT, $T$ promotes the Clifford group (which is classically simulable, §8.10) to a universal set. The $T$ gate is also the dominant cost in fault-tolerant compilations: in most surface-code schemes, Clifford gates are substantially cheaper — though not free: they still cost qubits, code cycles, and routing — while a logical $T$ gate typically consumes a distilled magic state (alternative codes and gauge-fixing schemes shift this accounting). Reducing T-count is a major preoccupation of compilation research (§8.14, Chapter 23).
 
 ## 8.5 Rotation Gates
 
@@ -145,7 +145,7 @@ The relevance for hardware: a platform that exposes any one entangling two-qubit
 
 The **Clifford group** on $n$ qubits is the normaliser of the Pauli group: the unitaries that map Pauli operators to Pauli operators under conjugation. Its single-qubit generators are $H$ and $S$; its two-qubit generator is CNOT. So $\\{H, S, \mathrm{CNOT}\\}$ generates all of Clifford.
 
-The Gottesman–Knill theorem says that any circuit built only from Clifford gates, applied to a computational-basis state and followed by computational-basis measurement, can be efficiently simulated classically. Clifford circuits, by themselves, give no quantum advantage. Yet Clifford operations are essential because they form the "free" layer in most fault-tolerant codes (Chapter 19): they map encoded states to encoded states transversally, with minimal overhead.
+The Gottesman–Knill theorem says that any circuit built only from Clifford gates, applied to a computational-basis state and followed by computational-basis measurement, can be efficiently simulated classically. Clifford circuits, by themselves, give no superpolynomial computational advantage in the standard model. Yet Clifford operations are essential because they form the *cheap* layer in most fault-tolerant codes (Chapter 19): relatively easy to implement fault-tolerantly — transversally in some codes, by lattice surgery or code deformation in the surface code — and far cheaper than the non-Clifford gates that complete the set (Eastin–Knill forbids any code from doing everything transversally).
 
 Adding any one non-Clifford gate restores universality. The canonical choice is $T$, giving **Clifford + T** = $\\{H, S, \mathrm{CNOT}, T\\}$. Universality plus efficient classical simulation up to T-gates is the structural reason quantum advantage in fault-tolerant settings is captured by the *T-count* — the number of $T$ gates in a compiled circuit. Magic-state distillation is the technology that supplies the resources to implement each $T$ on encoded qubits.
 
@@ -163,7 +163,7 @@ A separate, sharper result governs the specific case that actually matters in pr
 
 > C. M. Dawson and M. A. Nielsen, "The Solovay–Kitaev algorithm," *Quantum Inf. Comput.* **6**, 81 (2006), arXiv:quant-ph/0505030; N. J. Ross and P. Selinger, "Optimal ancilla-free Clifford+T approximation of z-rotations," *Quantum Inf. Comput.* **16**, 901 (2016), arXiv:1403.2975.
 
-What this means practically: any continuous rotation gate $R_Z(\theta)$ used in an algorithm can, in the fault-tolerant pipeline, be replaced by a discrete sequence of $H$ and $T$ at logarithmic cost in precision. The $\theta$-dependence in the algorithm becomes a per-gate compilation cost, not an inflation of asymptotic complexity.
+What this means practically: any continuous rotation gate $R_Z(\theta)$ used in an algorithm can, in the fault-tolerant pipeline, be replaced by a discrete sequence of $H$ and $T$ at logarithmic cost in precision. The $\theta$-dependence in the algorithm becomes a per-gate compilation cost of order $\log(G/\epsilon_{\mathrm{total}})$ per rotation for a $G$-rotation circuit — a logarithmic multiplicative overhead on the gate count, which leaves polynomial algorithms polynomial even though it is, strictly, an asymptotic factor.
 
 ## 8.12 Native Gate Sets
 
@@ -174,7 +174,7 @@ Real hardware does not implement abstract gates; it implements whatever unitary 
 Some common native sets, as a snapshot of the 2026 hardware landscape (the specific vendor chips named below date quickly; the *structure* of each native set is the durable part):
 
 - **Superconducting (transmons), Google/IBM-style**: arbitrary single-qubit $R_Z(\theta)$ (virtual, free), $R_X(\pi/2)$ ("sqrt-X"), and a two-qubit entangler — typically CZ via tunable couplers (current IBM Heron-class processors and Google's Willow-class processors) or cross-resonance CNOT on older fixed-coupling IBM devices, with iSWAP-family / fSim entanglers on older Google Sycamore-class chips. Recent IBM Heron also exposes parameterised "fractional" gates for variational algorithms.
-- **Trapped ions (IonQ-, Quantinuum-style)**: arbitrary single-qubit rotations and a Mølmer–Sørensen entangling gate $\mathrm{XX}(\theta) = e^{-i\theta X\otimes X/2}$, often all-to-all (no routing needed).
+- **Trapped ions (IonQ-, Quantinuum-style)**: arbitrary single-qubit rotations and a Mølmer–Sørensen entangling gate $\mathrm{XX}(\theta) = e^{-i\theta X\otimes X/2}$, often effectively all-to-all (little SWAP routing, though ion shuttling and scheduling take its place).
 - **Neutral atoms (QuEra-, Pasqal-style)**: global single-qubit rotations and Rydberg-mediated $\mathrm{CZ}$ or multi-qubit blockade gates.
 - **Photonic / measurement-based platforms**: state preparation, beam-splitter/phase shifters, and adaptive measurements, with the gate model emerging from a fusion or cluster-state pattern.
 
@@ -190,9 +190,9 @@ $$
 \partial_\theta \langle O \rangle(\theta) \;=\; \tfrac{1}{2}\bigl[\langle O\rangle(\theta + \tfrac{\pi}{2}) - \langle O\rangle(\theta - \tfrac{\pi}{2})\bigr].
 $$
 
-The gradient is therefore exactly computable from two additional circuit evaluations at shifted parameters, with no finite-difference approximation. Generalisations exist for gates with more eigenvalues.
+The gradient identity is therefore analytically exact, evaluated from two shifted-parameter circuit runs with no finite-difference approximation (each expectation still carries finite-shot estimator noise). Generalisations exist for gates with more eigenvalues.
 
-**Quantum simulation** (Trotter circuits, Chapter 16). Approximating $e^{-iHt}$ for a problem Hamiltonian decomposed as $H = \sum_k H_k$ uses $\mathrm{Trotter}_{\Delta t} = \prod_k e^{-i H_k \Delta t}$ with $\Delta t = t/N$ — each Trotter step is a layer of parameterised exponentials of the $H_k$.
+**Quantum simulation** (Trotter circuits, Chapter 16). Approximating $e^{-iHt}$ for a problem Hamiltonian decomposed as $H = \sum_k H_k$ uses $N$ repetitions of the first-order step: $e^{-iHt} \approx \bigl(\prod_k e^{-i H_k \Delta t}\bigr)^{N}$ with $\Delta t = t/N$ (error controlled by the commutators of the $H_k$; Chapter 16 gives the bounds) — each Trotter step is a layer of parameterised exponentials of the $H_k$.
 
 ## 8.14 Gate Decomposition and Synthesis
 
@@ -202,7 +202,7 @@ The gradient is therefore exactly computable from two additional circuit evaluat
 
 **Two-qubit synthesis.** Any two-qubit unitary can be implemented with at most three CNOTs and a constant number of single-qubit gates. The exact number is determined by the entangling power of $U$, classified by the **KAK decomposition**: $U = (A_1 \otimes A_2)\\,e^{-i(c_x XX + c_y YY + c_z ZZ)}\\,(B_1 \otimes B_2)$ for single-qubit $A_i, B_i$ and real $c_x, c_y, c_z$. The point $(c_x, c_y, c_z)$ (taking $c_x \ge c_y \ge |c_z|$) lives in the *Weyl chamber* and determines the CNOT cost: a generic point needs three CNOTs; any point on the $c_z = 0$ face needs at most two (iSWAP sits here, at $(\pi/4, \pi/4, 0)$); a point locally equivalent to CNOT needs one; a purely local gate needs none. On hardware whose native entangler is iSWAP or fSim rather than CNOT, the relevant cost is counted in that native gate instead.
 
-**Multi-qubit synthesis.** For arbitrary $n$, exact synthesis uses at most $O(4^n)$ CNOTs; finding optimal or near-optimal circuits is the central problem of compilation. Practical compilers (Qiskit Transpiler, t|ket⟩, Quantinuum's TKET, Google's Cirq) combine peephole rewrite rules, template matching, and search-based optimisation. The targets are usually some combination of (a) CNOT or two-qubit gate count, (b) circuit depth, (c) $T$-count in fault-tolerant settings, and (d) compatibility with hardware connectivity.
+**Multi-qubit synthesis.** For arbitrary $n$, exact synthesis uses at most $O(4^n)$ CNOTs; finding optimal or near-optimal circuits is the central problem of compilation. Practical compilers (Qiskit's transpiler, Quantinuum's TKET — historically styled t|ket⟩ — and Google's Cirq) combine peephole rewrite rules, template matching, and search-based optimisation. The targets are usually some combination of (a) CNOT or two-qubit gate count, (b) circuit depth, (c) $T$-count in fault-tolerant settings, and (d) compatibility with hardware connectivity.
 
 Chapter 23 returns to compilation; Chapter 19 to fault-tolerant resource estimation. For now, the takeaway is that a well-defined target unitary is one end of a long pipeline, the other end of which is a stream of pulses sent to physical qubits.
 
@@ -212,7 +212,7 @@ Chapter 23 returns to compilation; Chapter 19 to fault-tolerant resource estimat
 2. Show that $S^2 = Z$ and $T^2 = S$. Conclude $T^4 = Z$ and $T^8 = I$.
 3. Expand $R_Y(\pi)|0\rangle$ and confirm it equals $|1\rangle$ exactly; then check $R_Y(\pi)|1\rangle = -|0\rangle$. Conclude that $R_Y(\pi) = -iY$ acts as a bit-flip up to phases on the basis states, so it is a perfectly good NOT despite not equalling $X$ on the nose. (The phases are harmless *when the input is a computational-basis state* — each branch's phase is then global. On a superposition the sign becomes a relative phase: $R_Y(\pi)|+\rangle = -|-\rangle$ while $X|+\rangle = |+\rangle$, so $R_Y(\pi)$ and $X$ are genuinely different gates — exactly trap 2 of §4.15.)
 4. Apply the identity $\mathrm{CZ} = (I \otimes H)\\,\mathrm{CNOT}\\,(I \otimes H)$ to $|+\rangle|+\rangle$ and check both sides give the same state.
-5. Derive the Toffoli truth table from its matrix, and verify it implements classical AND when the third qubit is initialised to $|0\rangle$.
+5. Write down the Toffoli gate's $8 \times 8$ matrix from its definition (§8.7), derive its truth table from that matrix, and verify it implements classical AND when the third qubit is initialised to $|0\rangle$.
 
 ---
 

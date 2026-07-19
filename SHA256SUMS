@@ -44,7 +44,7 @@ d0b7c97b18fac680f8bf1ffafc3a9048b64372957a70668dce8195ead6385325  book/part-01-o
 827cc925498bca95614c12dda956388db89842892d3f1de404542439948b1cf0  book/part-03-qubits/06-the-qubit.md
 f72419573a6598875b6ac2a7a19a6aeb5129a3c8dc2eba5f7befa80c5ba09f4f  book/part-03-qubits/07-multiple-qubits-and-entanglement.md
 4a67059968996f05bba5eba3afc804a5634fa59f60ff8109ce74cd381395db73  book/part-03-qubits/figures/teleportation.svg
-ba79c63430ef0c794a602aff518bb6416a404c458b63160dc44628666357bd1c  book/part-04-gates-and-circuits/08-quantum-gates.md
+764b9881ad8daad00585e19e5bab865ffab9e3e38358833ce2e8a2cd4d458e26  book/part-04-gates-and-circuits/08-quantum-gates.md
 cae818420a1941f30d1ae5846a9038e0f21d783e4302ff8121d7bcb0a3e12ab7  book/part-04-gates-and-circuits/09-quantum-circuits.md
 ecf604d8ad33a5828082121013316b147d3ced06765ecab05bb22f8f5f700533  book/part-04-gates-and-circuits/10-core-quantum-phenomena.md
 4d07cc59ff1395b636f1d82b8d8e2e14f1e69e895c8fe3a0fb553cdbc9f90dfd  book/part-04-gates-and-circuits/figures/bell-state.svg
@@ -169,7 +169,7 @@ d5e0cec3ec5e3dbb9ada626bf551502d12d81920e68fdac4c4e7a59ed6e08a7b  reviews/cold-r
 95cd5962ed6cf39a1b5f5e2f859bc5c2d03b78d3d435891c3fd6b11a012b6584  reviews/factcheck-2026-07-04-external-verification.md
 7efd03e5b38a37de192454db8bd8d6c6b31373f9fe112096e1b27a251e30932d  reviews/proposals-2026-07-05-remaining-programmes.md
 021f81c249aa7f0e13dd66470714f49c341955324e48399b78ed4b29c1269c22  reviews/recommendations-2026-07-04-deferred-items.md
-25b1c29340e30191a41dcd5216f077f5016de5229da61e79d3cedd399a6b5b6d  reviews/response-2026-07-19-second-pass-dispositions.md
+12fd5e69018b2084555f769ce8d08c43632203e6b38b81762c14dad4613fc250  reviews/response-2026-07-19-second-pass-dispositions.md
 95adfcedf14090d851fc34190f8b43abb422e0f94462929e7d694e174aeaf9cf  reviews/review-2026-07-03-1843-comprehensive-book-review.md
 c6916319dc95eff2195486ba887f6d126c62e0caf2496979cf301560ad15d6b7  reviews/review-2026-07-19_01-20-35_CEST.md
 2bd131ed2944aee6d792838358a75ef9efbe42c09f5a5568347bd8aa4d1d840d  reviews/roadmap-2026-07-05-path-to-publication.md

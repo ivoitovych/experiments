@@ -550,3 +550,38 @@ correctness priority on arrival.
   counterpoint in the text.
 
 One factcheck anchor requoted; baseline (97) restored.
+
+## Batch 9 — Chapter 8 (11 substitutions)
+
+### FIXED — outright defects
+- **Trotter formula missing its Nth power** — the displayed single step is
+  now explicitly (∏ₖ e^{-iHₖΔt})^N with the commutator-error pointer.
+- t|ket⟩ and TKET listed as two separate compilers — deduplicated with the
+  historical styling noted.
+- Toffoli sanity check "from its matrix" with no matrix supplied — now asks
+  the reader to write the 8×8 matrix from the §8.7 definition first.
+- "Clifford gates map encoded states transversally, with minimal overhead"
+  in "most" codes — corrected (surface codes use lattice surgery/code
+  deformation; Eastin–Knill cited against universal transversality).
+- Solovay–Kitaev "not an inflation of asymptotic complexity" — corrected to
+  a logarithmic multiplicative overhead that leaves polynomial algorithms
+  polynomial.
+- "The measurement consumes the rotated state" as the reason for the
+  missing second H — replaced with the correct effect-transformation
+  account (H†PzH), outcome mapping made explicit.
+- Generator "is the Hamiltonian one would engineer in hardware" — now a
+  possible ideal generator, with pulse/frame/compilation reality and
+  mod-2π/t nonuniqueness.
+
+### FIXED — epistemic scoping
+- Cliffords "nearly free" in surface codes → substantially cheaper with
+  costs named, magic-state accounting marked architecture-dependent;
+  "give no quantum advantage" → no superpolynomial advantage in the
+  standard model; ion "no routing needed" → shuttling/scheduling caveat;
+  parameter-shift "exactly computable from two additional evaluations" →
+  analytically exact identity, two shifted runs, finite-shot noise noted.
+
+### ADJUDICATED — no change
+- "Controlled phase gates are central in the QFT (Chapter 14)" — correct in
+  this book's TOC (QFT is §14.5); the ledger's drift suspicion checked and
+  dismissed.
