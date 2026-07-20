@@ -84,7 +84,7 @@ e052d024bfe49286a1266bc443b811552b13c914ae69319ae60b98e225b6e3d9  book/part-11-a
 75d647c70dbbf20d5dc78835c3e70f292e2e3a62bd50918a46762bc5fdc7c833  book/part-11-applications/28-scientific-computing-and-physical-simulation.md
 45e19df689a21894ac964afe9eb9c34491d292d2e37b8dd8f285bd96948409a0  book/part-11-applications/29-optimization-finance-and-industrial.md
 b8bd827bf2d6f5af70204e0fbbb0fd313ef957ac9ca581e60c9909b52d6dcee7  book/part-11-applications/30-quantum-machine-learning.md
-f06997b546859348dee5c4e489ce2604a4683ebf03c8251322f55a520c06a2fb  book/part-11-applications/31-quantum-sensing-metrology-and-tomography.md
+f969292b30b2f3e4e0e42aa1ea0d109bd965d97ec8468a21c71fc63902180891  book/part-11-applications/31-quantum-sensing-metrology-and-tomography.md
 fab0f36728d6bda22988b9ca6b0e3cce17f10c2fbae18d0acf5cdc2805c5c9ef  book/part-12-adjacent-models/32-adjacent-computational-models.md
 5a581387903977ef2e795439d91e9237e6a88f30baa0d40fc6ae6db78365e52a  book/part-12-adjacent-models/33-quantum-communication-and-networking.md
 c241cfb007ffddc52493406d46474d61f0ad86bfccaea687d796abade8559ad1  book/part-12-adjacent-models/figures/repeater-chain.svg
@@ -148,7 +148,7 @@ e2954350e0c1f89d738a95d78dcd166ae82bc557c032c67e8d6ce4797dc1dee9  factcheck/part
 e74a1962918e6ee998338099cc3ce23a1d68ad07f35176b7da75c98c05b1330e  factcheck/part-11-applications/28-scientific-computing-and-physical-simulation.md
 d192f93cebfdb94a9b616562ca85a9e32301952a3026a0f540aa2b9602e4b97d  factcheck/part-11-applications/29-optimization-finance-and-industrial.md
 3ea97ef263e4f03e2a2c5f6254c67dee419731ec5fdabb7b3bb35bfcb97fd5d2  factcheck/part-11-applications/30-quantum-machine-learning.md
-9243c69fd6b754022bcf2e9f173f339ed12f66490284654ed805107edd11be57  factcheck/part-11-applications/31-quantum-sensing-metrology-and-tomography.md
+789f02ecb9a2d68bb59140122321d18ce85dd1861ccecb89cab02b5441f5088e  factcheck/part-11-applications/31-quantum-sensing-metrology-and-tomography.md
 47d27711bb76f3e019a304ae4616a64c4176e7d642561a78f24a58311c51edc6  factcheck/part-12-adjacent-models/32-adjacent-computational-models.md
 500ca08e5bda7ed2d6d44aafc4e0011b99497af46c360161258ea6c2f178bc64  factcheck/part-12-adjacent-models/33-quantum-communication-and-networking.md
 f95a9fcd8958cbe7fa5674933aa94daf6f3859e61167c40f558781ae2ef6bade  factcheck/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md
@@ -171,7 +171,7 @@ d5e0cec3ec5e3dbb9ada626bf551502d12d81920e68fdac4c4e7a59ed6e08a7b  reviews/cold-r
 95cd5962ed6cf39a1b5f5e2f859bc5c2d03b78d3d435891c3fd6b11a012b6584  reviews/factcheck-2026-07-04-external-verification.md
 7efd03e5b38a37de192454db8bd8d6c6b31373f9fe112096e1b27a251e30932d  reviews/proposals-2026-07-05-remaining-programmes.md
 021f81c249aa7f0e13dd66470714f49c341955324e48399b78ed4b29c1269c22  reviews/recommendations-2026-07-04-deferred-items.md
-4bcd74d2a71fc0db7cb4103d9c825b41fa6474b1b8cc34f640f0e6132ec66b0a  reviews/response-2026-07-19-second-pass-dispositions.md
+a93f687cda965505e85d48391e188d38690d5a30639c2ce690409b66202b6792  reviews/response-2026-07-19-second-pass-dispositions.md
 95adfcedf14090d851fc34190f8b43abb422e0f94462929e7d694e174aeaf9cf  reviews/review-2026-07-03-1843-comprehensive-book-review.md
 af0bf67bf1c6da7759a7b5375dedd1be242209e280f94ff307999c18bde95c94  reviews/review-2026-07-19_01-20-35_CEST.md
 2bd131ed2944aee6d792838358a75ef9efbe42c09f5a5568347bd8aa4d1d840d  reviews/roadmap-2026-07-05-path-to-publication.md

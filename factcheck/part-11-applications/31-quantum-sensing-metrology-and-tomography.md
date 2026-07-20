@@ -19,7 +19,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §31.1 — Heisenberg limit scales as 1/N via GHZ state
 
-- **Claim** (anchor): "a quadratic improvement over the SQL, achieved by encoding"
+- **Claim** (anchor): "a quadratic improvement in *variance* over the SQL ($1/N^2$ versus $1/N$; the standard deviation improves by $\sqrt{N}$)"
 - **Method**: derivation
 - **Source**: → §31.1 variance of collective generator on GHZ_N giving F_Q = N²
 - **Verified**: — · **Verdict**: open
@@ -48,7 +48,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §31.2 — Leading optical lattice clocks reach fractional uncertainty at or below 10⁻¹⁸
 
-- **Claim** (anchor): "Current laboratory deployments at NIST, JILA, RIKEN, PTB, and SYRTE report fractional uncertainties at or below"
+- **Claim** (anchor): "Laboratory systems at NIST, JILA, RIKEN, PTB, and SYRTE report systematic fractional uncertainties at or below $10^{-18}$, with leading evaluations in the $10^{-19}$ decade"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -56,7 +56,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §31.2 — Leading optical lattice clocks push into the 10⁻¹⁹ decade, three orders of magnitude beyond caesium
 
-- **Claim** (anchor): "three orders of magnitude beyond the caesium primary standard"
+- **Claim** (anchor): "roughly three orders of magnitude beyond the caesium standard that defines the SI second"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -85,7 +85,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §31.2 — Modern SQUIDs reach ~fT/√Hz flux noise
 
-- **Claim** (anchor): "and modern devices reach"
+- **Claim** (anchor): "modern devices reach flux noise at the $\mu\Phi_0/\sqrt{\mathrm{Hz}}$ scale, which the pickup-coil geometry converts into magnetic-field sensitivities of order $\mathrm{fT}/\sqrt{\mathrm{Hz}}$"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -121,7 +121,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §31.2 — LIGO squeezed vacuum injection: ~3–6 dB, 25–50% event rate increase
 
-- **Claim** (anchor): "increase in detected-event rate without any change to the rest of the instrument"
+- **Claim** (anchor): "the observatories report event-rate gains of tens of percent"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -129,7 +129,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §31.3 — Quantum illumination: 6 dB advantage in error exponent (Lloyd, Tan et al.)
 
-- **Claim** (anchor): "still extracts a $6$ dB advantage in the error exponent compared to the best classical illumination strategy"
+- **Claim** (anchor): "the joint measurement still extracts up to a $6$ dB advantage in the error exponent over the best classical strategy of equal mean photon number"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -152,7 +152,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §31.4 — Compressed-sensing tomography: O(r·d·log²d) measurements for rank-r states
 
-- **Claim** (anchor): "needed to reconstruct"
+- **Claim** (anchor): "the number of measurement *settings* needed is $O(r\\, d \log^2 d)$ where $d = 2^n$ and $r$ is the rank"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -160,7 +160,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §31.4 — Process tomography naive shot budget is 16^n
 
-- **Claim** (anchor): "assembles the result — $16^n$ total shot budget"
+- **Claim** (anchor): "$O(16^n)$ measurement *configurations*, with the shot count for target precision multiplying on top"
 - **Method**: derivation
 - **Source**: → §31.4 combinatorial argument: 4^n input states × 4^n tomography measurements per output
 - **Verified**: — · **Verdict**: open

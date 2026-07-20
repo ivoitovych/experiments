@@ -2379,3 +2379,79 @@ mismatch); baseline (96) held. Lint (which caught one bare norm escape
 and one British spelling in newly added text — both fixed), factcheck
 lint, and the build selftest pass. Full git diff reviewed before this
 commit per the author's request.
+
+## Review-front tracker (updated per batch; insert-only elsewhere)
+
+Ledger `review-2026-07-19_01-20-35_CEST.md` @ 41,867 lines. Manuscript
+files vs fix batches:
+
+| File | Batch | Status |
+|---|---|---|
+| Prelude–Ch17 | 1–22 | done (earlier era) |
+| Ch18, Ch19 | 23, 24 | done |
+| Ch20, Ch21, Ch22 | 25, 26, 27 | done |
+| Ch23–Ch27 | 28–32 | done |
+| Ch28, Ch29, Ch30 | 33, 34, 35 | done |
+| Ch31 | 36 | done |
+| Ch32–Ch37 | — | pending (ledger complete) |
+| Preface, Background, Notation | — | pending (ledger complete) |
+| Appendices A–F, Index | — | pending (ledger complete) |
+| SVG/support/archive passes | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
+
+Working method from batch 36 on: fixes are driven by the ledger's own
+per-chapter "highest-priority correctness repairs" synthesis lists,
+with detail units consulted only where a fix needs exact context.
+
+## Batch 36 — Chapter 31 (17 substitutions)
+
+Driven by the ledger's own highest-priority repair list for this
+chapter (working method per the tracker above).
+
+### FIXED — outright defects
+- QFI resource bookkeeping: the GHZ derivation no longer double-counts
+  N (per-preparation bound 1/F_Q = 1/N² stated explicitly); "quadratic
+  improvement" pinned to variance with the √N standard-deviation note;
+  QFI's figure-of-merit scope and the measurements-already-inside-QFI
+  optimization wording fixed.
+- Allan deviation "(NT)^{-1/2}" dimensional/formula defect — replaced
+  with 1/√N and 1/√τ scaling plus the omitted dependencies; clock
+  uncertainty vs instability vs comparison accuracy disentangled (twice:
+  opening and §31.2); entanglement-enhanced clocks relabeled below-SQL
+  demonstrations, not Heisenberg scaling; NV single-biomolecule claim
+  hedged to demonstrations.
+- SQUID: DC-form architecture specified; the fT/√Hz "flux noise" unit
+  error corrected (μΦ_0/√Hz flux noise; field sensitivity via pickup
+  geometry).
+- LIGO squeezing "25–50% event-rate increase" reconciled with the
+  band-limited reality (tens of percent, naive SNR³ conversion far
+  larger); sanity check 5 rebuilt around exactly that gap (its idealized
+  answer, ~2.8×–7.9×, had contradicted the prose).
+- Quantum-illumination idler "both arms see thermal photons" confusion
+  fixed (returned signal swamped, idler clean); 6 dB scoped to the ideal
+  Chernoff-bound theorem.
+- Compressed-sensing tomography: settings-vs-shots split, missing ε
+  dependence restored, still-exponential-in-qubits stated, estimator
+  named, "the right tool" demoted to one candidate with the
+  low-rank-when-broken caveat.
+- Process tomography: 4^{2n}-complex-parameters/16^n-shots conflation
+  fixed (PTM entries vs configurations vs shots); RB "single fidelity
+  per Clifford at constant shot cost" corrected (Clifford-set average,
+  modest not constant); sanity check 4's invalid 16^n-vs-RB factor
+  question rebuilt with explicit budgets and deliverable comparison.
+- Verification framing: "same tomography toolkit" replaced
+  (measure-vs-convince); Mahadev "cryptographic analog of state
+  tomography" removed (committed measurements; verifier reconstructs
+  nothing).
+- EEG removed from magnetometer beneficiaries (electrical sibling
+  note).
+
+### DEFERRED-FACTCHECK
+- All record/platform figures: clock uncertainties and institutions,
+  Al+ 9.4e-19, Sr/Yb transition frequencies, NV/SERF sensitivities, MEG
+  channel counts, OPM vendors, gravimeter sensitivities, LIGO filter
+  cavity and squeezing levels, megapixel sub-shot-noise imaging, MIT LL
+  microwave illumination, Mahadev protocol details.
+
+Eight factcheck anchors requoted in the same commit; baseline (96)
+held. Lint, factcheck lint, and the build selftest pass; diff reviewed
+before push.
