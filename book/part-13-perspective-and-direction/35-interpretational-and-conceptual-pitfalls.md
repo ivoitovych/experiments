@@ -93,11 +93,12 @@ The formalism rules this out cleanly. As §10.6 establishes, Bob's
 reduced state $\rho_B = \mathrm{tr}_A(\rho_{AB})$ is independent of
 whether Alice measured, of which basis she chose, and of what
 outcome she got — provided Bob does not learn the outcome through
-a separate classical channel. Concretely, for any joint state
-$\rho_{AB}$ and any POVM $\\{M_a\\}$ on Alice's side,
+a separate classical channel. Concretely, for any joint state $\rho_{AB}$ and any measurement
+instrument on Alice's side with Kraus operators $\\{K_a\\}$
+(satisfying $\sum_a K_a^{\dagger} K_a = I$),
 
 $$
-\sum_a \mathrm{tr}_A\bigl((M_a \otimes I)\\, \rho_{AB}\bigr) = \mathrm{tr}_A(\rho_{AB}) = \rho_B,
+\sum_a \mathrm{tr}_A\bigl((K_a \otimes I)\\, \rho_{AB}\\, (K_a^{\dagger} \otimes I)\bigr) = \mathrm{tr}_A(\rho_{AB}) = \rho_B,
 $$
 
 so the marginal Bob sees is the same in every world. The correlations
@@ -186,8 +187,12 @@ relation and are an active research area. Conflating the two
 produces a hybrid slogan that does justice to neither.
 
 The operational consequence for circuit-level reasoning: a Pauli-$Z$
-eigenstate (so $\Delta Z = 0$) has $\Delta X = \Delta Y = 1$
-maximal, because $[Z, X] = 2iY$ and $[Z, Y] = -2iX$ are non-zero.
+eigenstate (so $\Delta Z = 0$) has $\Delta X = \Delta Y = 1$, maximal.
+Note the Robertson bound itself is *trivially* satisfied here — for
+$|0\rangle$ the right-hand side involves $\langle Y\rangle = 0$ — so
+the maximal spreads come from direct Born-rule computation, not from
+the inequality; the inequality's nontrivial content appears for
+states where the commutator's expectation is nonzero.
 This is a property of the *state* — it would be true even if no
 measurement were ever performed. The unmeasured qubit "has" a sharp
 $Z$ value (the eigenvalue) and *does not have* a sharp $X$ value,
@@ -223,28 +228,31 @@ emergence of classical outcomes, not about a metaphysical
 both-at-once-ness.
 
 **The EPR pair.** Einstein, Podolsky, and Rosen (1935) argued that
-quantum mechanics is incomplete by considering the Bell state
-$|\Psi^-\rangle = (|01\rangle - |10\rangle)/\sqrt{2}$ (Bohm's spin
-formulation; §7.7). Perfectly anticorrelated outcomes in every shared
+quantum mechanics is incomplete — originally with position–momentum
+correlations; the spin form used here is Bohm's later reformulation
+(§7.7) — by considering the Bell state
+$|\Psi^-\rangle = (|01\rangle - |10\rangle)/\sqrt{2}$. Perfectly anticorrelated outcomes in every shared
 basis, they argued, must reflect pre-existing values: each particle
 "already had" the value that would be revealed, since otherwise
 "action at a distance" would be needed to coordinate. Bell (1964;
 §7.9) showed that this *local hidden variable* hypothesis is
 quantitatively wrong — the CHSH bound it implies is $|S| \leq 2$,
 but quantum mechanics and experiment give $|S| = 2\sqrt{2}$. So one
-of EPR's premises — locality, realism, or measurement independence
-— has to be abandoned. The textbook reading abandons realism (the
-outcomes do not pre-exist measurement); §35.13 returns to the third
-option.
+of the formal assumptions of Bell's derivation —
+outcome/parameter independence (locality in Bell's sense), pre-existing
+outcome values (the operative form of "realism"), or measurement
+independence — has to be abandoned. The common textbook reading
+gives up pre-existing values; §35.13 returns to the third option.
 
 **Wigner's friend** and the Frauchiger–Renner extension. Wigner
 imagined a friend in a sealed laboratory who performs a measurement,
 and asked how Wigner outside the lab should describe the friend's
 state. The friend, having seen an outcome, applies the collapse
 rule. Wigner, having no access to the outcome, describes the
-combined friend-plus-system in a superposition. *Both descriptions
-are correct* relative to their respective information; the
-inconsistency is only apparent. Frauchiger–Renner (2018, refined by
+combined friend-plus-system in a superposition. On the standard operational reading, *both descriptions are correct*
+relative to their respective information, and the inconsistency is
+only apparent — though how to cash out "correct relative to" is
+itself interpretation-laden. Frauchiger–Renner (2018, refined by
 Bong et al. 2020) sharpens this by constructing a multi-observer
 protocol in which the assumption that all observers' records can be
 consistently combined leads to a contradiction with standard quantum
@@ -355,16 +363,24 @@ mistakes:
 - Copenhagen thinking primes the "collapse as a real physical
   process" misreading of §35.3 — if measurement collapse is a
   separate fundamental rule, the temptation is to ask physical
-  questions about it that have no formal answer.
-- QBism thinking primes the right operational hygiene (states are
-  not in the world; they are in the description) at the cost of
+  questions about it that have no formal answer *within standard
+  quantum mechanics*. (Objective-collapse *theories* — GRW and
+  kin — do posit physical collapse, as empirically distinguishable
+  modifications of quantum mechanics rather than interpretations
+  of it.)
+- QBism thinking primes a useful operational hygiene (states as
+  descriptions rather than furniture of the world — itself a
+  contested reading) at the cost of
   making it harder to talk about the state of an isolated system
   no observer is currently looking at.
 
 The pragmatic working stance is **shut up and calculate**, in the
 non-pejorative sense Mermin proposed: treat the formalism as the
 authoritative object, treat any verbal narration as a mnemonic, and
-notice which mnemonics are working *against* you in a given context.
+notice which mnemonics are working *against* you in a given context —
+while remembering that foundations work has repeatedly paid
+experimental dividends (Bell tests, device-independent protocols),
+so the stance is a working posture, not a verdict on the field.
 A practitioner who can switch metaphors fluidly — many-worlds while
 thinking about decoherence, Copenhagen while writing a tutorial,
 QBism while debugging a measurement protocol — pays no operational
@@ -452,10 +468,10 @@ not no-signaling**. Causality is fine; classical realism is not.
 A subtle misreading hides in the standard description of measurement
 collapse. The state $|\psi\rangle$ projects onto $|m\rangle$ — so,
 the reading goes, the information in the unmeasured amplitudes is
-*lost*. But the no-cloning theorem (§5.13) and the no-deleting
-theorem (§5.14) together imply that quantum information under
-closed-system evolution is *conserved*: it does not vanish, it
-transfers.
+*lost*. But under *closed-system* (unitary) evolution quantum information is
+conserved — unitarity is reversible, so nothing is lost, only
+relocated. (The no-cloning (§5.13) and no-deleting (§5.14) theorems
+are cousins of this reversibility, not its source.)
 
 What actually happens at measurement is that the system becomes
 entangled with the measurement apparatus and, ultimately, with the
@@ -497,11 +513,13 @@ input-loading dominates, anything where the structure does not
 admit a function-evaluation reformulation — the quadratic saving
 either does not apply or is swamped by overhead.
 
-Many problems have *no known* quantum speedup:
+Many problems have *no known useful* quantum speedup:
 
-- General linear programming.
-- Most graph problems at large scale (max-flow, all-pairs shortest
-  paths, dense graph diameter).
+- General linear programming (quantum interior-point proposals
+  exist; the speedups are conditional and modest at best).
+- Many graph problems at large scale (max-flow, all-pairs shortest
+  paths, dense graph diameter), where known quantum improvements
+  are small-polynomial or absent.
 - Online algorithms whose lower bound is information-theoretic
   rather than computational.
 - Problems with $\Omega(N)$ input-reading lower bounds and small
@@ -531,11 +549,12 @@ who has shown the structural property the speedup exploits.
 
 **Decoherence** is the physical process by which a system entangled
 with its environment loses the off-diagonal coherences in the
-reduced density matrix when the environment is traced out. The
-result is a reduced state that is *effectively classical* — a
-classical probability mixture over preferred basis states (the
-"einselected" basis, in Zurek's terminology, picked out by the
-system-environment coupling). Decoherence is fast: for typical
+reduced density matrix when the environment is traced out. The result is a reduced state that is *effectively classical in
+form* — diagonal in a preferred basis (the "einselected" basis, in
+Zurek's terminology, picked out by the system-environment coupling).
+It is an *improper* mixture: born of entanglement and tracing, not
+of ignorance about a pre-existing fact — which is precisely why
+decoherence alone does not settle the measurement problem (below). Decoherence is fast: for typical
 macroscopic systems, off-diagonal terms in position basis suppress
 on timescales of $10^{-20}$ seconds or shorter.
 
@@ -599,8 +618,8 @@ but the loophole is not formally closed (and cannot be, in any
 finite experiment). Most practitioners regard the conspiracy needed
 to exploit it as too contrived to take seriously, but the loophole
 exists and is named here so that "Bell rules out hidden variables"
-can be qualified properly to "Bell rules out hidden variables
-*under measurement independence*".
+can be qualified properly to "Bell rules out *local* hidden
+variables *under measurement independence*".
 
 ## 35.14 Bridge to Chapter 36
 

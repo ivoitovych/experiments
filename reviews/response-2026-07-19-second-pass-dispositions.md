@@ -2396,7 +2396,8 @@ files vs fix batches:
 | Ch32 | 37 | done |
 | Ch33 | 38 | done |
 | Ch34 | 39 | done |
-| Ch35–Ch37 | — | pending (ledger complete) |
+| Ch35 | 40 | done |
+| Ch36, Ch37 | — | pending (ledger complete) |
 | Preface, Background, Notation | — | pending (ledger complete) |
 | Appendices A–F, Index | — | pending (ledger complete) |
 | SVG/support/archive passes | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
@@ -2577,3 +2578,38 @@ Driven by the ledger's highest-priority repair list.
 
 One factcheck anchor requoted; baseline (96) held. Lint, anchors, TOC,
 and build selftest pass; diff reviewed before push.
+
+## Batch 40 — Chapter 35 (13 substitutions)
+
+Driven by the ledger's highest-priority repair list.
+
+### FIXED — outright defects
+- The no-signaling statement generalized from projective collapse to
+  the full quantum-instrument (Kraus) form, with the traced-out
+  identity $\sum_a \mathrm{tr}_A((K_a \otimes I)\rho_{AB}(K_a^{\dagger}
+  \otimes I)) = \rho_B$; the Robertson-relation discussion corrected
+  for the trivial-bound case (right-hand side can vanish in an
+  eigenstate, so the product bound alone proves nothing there — the
+  Pauli-observable argument reworked accordingly); the EPR passage now
+  credits the original 1935 position–momentum argument and labels the
+  spin version as Bohm's reformulation (§7.7); the Bell-theorem
+  conclusion stated as the formal trilemma (locality, measurement
+  independence, outcome definiteness — one must go) instead of a flat
+  "nature is nonlocal"; the Wigner's-friend passage hedged to
+  neutrality among responses; collapse theories (GRW/CSL) separated
+  from interpretations proper — they are rival *theories* with
+  different empirical content; the QBism paragraph softened from
+  endorsement to description; "shut up and calculate" given a note
+  acknowledging foundations work as legitimate physics; the
+  "quantum information is conserved" claim reattributed from the
+  no-cloning/no-deleting pair to unitarity itself (the theorems are
+  consequences, not the source); the no-speedup list's overbroad
+  entries hedged (linear programming and graph problems have partial
+  quantum improvements, not blanket "no speedup"); the decoherence
+  section notes the improper-mixture caveat (reduced states are not
+  ignorance-interpretable ensembles); "Bell rules out hidden
+  variables" qualified to *local* hidden variables (Bohmian mechanics
+  survives as a nonlocal counterexample).
+
+Two factcheck anchors requoted; baseline (96) held. Lint and anchor
+checks pass; diff reviewed before push.

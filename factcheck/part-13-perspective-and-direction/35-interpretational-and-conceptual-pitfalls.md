@@ -69,7 +69,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §35.5 — EPR (1935) argument for incompleteness of QM
 
-- **Claim** (anchor): "Einstein, Podolsky, and Rosen (1935) argued that quantum mechanics is incomplete by considering the Bell state"
+- **Claim** (anchor): "Einstein, Podolsky, and Rosen (1935) argued that quantum mechanics is incomplete — originally with position–momentum correlations; the spin form used here is Bohm's later reformulation (§7.7) — by considering the Bell state"
 - **Method**: external
 - **Source**: Einstein, Podolsky, Rosen, Phys. Rev. 47 (1935)
 - **Verified**: — · **Verdict**: open
@@ -197,7 +197,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §35.10 — No-cloning and no-deleting theorems imply conservation of quantum information
 
-- **Claim** (anchor): "the no-cloning theorem (§5.13) and the no-deleting theorem (§5.14) together imply that quantum information under closed-system evolution is conserved"
+- **Claim** (anchor): "But under *closed-system* (unitary) evolution quantum information is conserved — unitarity is reversible, so nothing is lost, only relocated"
 - **Method**: derivation
 - **Source**: → §5.13, §5.14
 - **Verified**: — · **Verdict**: open
