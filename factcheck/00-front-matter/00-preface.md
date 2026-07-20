@@ -16,7 +16,7 @@ claims are recorded below; all remaining content is out-of-scope front-matter pr
 
 ## Preface — Qiskit little-endian qubit display order
 
-- **Claim** (anchor): "Qiskit's display order, which is little-endian: a Qiskit `0b01` printout corresponds to this book's"
+- **Claim** (anchor): "Qiskit's is the *opposite*: little-endian, with qubit $q_0$ least significant — a choice applied consistently across its integer interpretation, statevector indexing, and the count strings returned by `get_counts()`"
 - **Method**: external
 - **Source**: TBD — needs verification against Qiskit documentation / source
 - **Verified**: — · **Verdict**: open

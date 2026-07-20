@@ -270,30 +270,36 @@ unnumbered Historical Prelude; none of the paths below depends on it.
 
 A few concrete paths through the material may help.
 
-*The full linear path*: read every chapter in order. This is the
-longest path and the recommended one for a reader new to the field
-who wants the complete picture. Expect it to take real time —
+*The full linear path*: read every chapter in order. This is the longest path and the recommended one for a reader new
+to the field who wants the book's complete arc. Expect it to take real time —
 as a calibration point, think a semester of steady evening reading,
 not a sprint — and read with paper and pen.
 
 *The algorithms-focused path*: Chapters 1, 4, 5, 6, 7, 8, 9, 10, 11,
 then all of Part VI (Chapters 13 through 16). Chapter 17 on
-complexity follows naturally. This skips the hardware and
-applications material; if your goal is to understand and reason
-about quantum algorithms, this is the shortest viable path.
+complexity follows naturally. This skips Chapter 12 (quantum
+information theory — dip in if Part VI's entropy or channel
+vocabulary feels unfamiliar), the noise and error-correction
+material of Part VIII, and the hardware and applications material;
+if your goal is to understand and reason about quantum algorithms,
+this is the recommended compact path.
 
 *The hardware-and-systems path*: Chapters 1, 4 (skimming the parts
-not used downstream), 5, 6, 7, 8, then jump to Part VIII (noise and
-error correction) and Part IX (hardware, control, software). Add
-Part X for the NISQ-era practical context. This serves a reader
-whose primary interest is the physical and engineering stack.
+not used downstream), 5, 6, 7, 8, then jump to Part VIII (noise and error correction) and Part IX
+(hardware, control, software). Expect to backfill from Chapters
+9–11 (circuit semantics, core phenomena, measurement) where Part
+VIII leans on them. Add Part X for the NISQ-era practical context.
+This serves a reader whose primary interest is the physical and
+engineering stack.
 
 *The applications and judgment path*: Chapters 1, 2, 3, the
 formalism chapters as needed for vocabulary, then a fast pass
 through Parts VI and VIII for orientation, then Parts XI, XII, and
-XIII. This is the path for a reader who needs to evaluate claims,
-make portfolio decisions, or judge the credibility of vendor
-announcements without necessarily implementing the algorithms.
+XIII. This is the path for a reader who needs to evaluate claims, make
+portfolio decisions, or judge the credibility of vendor
+announcements without necessarily implementing the algorithms — it
+equips you to ask the critical questions, not to substitute for
+technical due diligence.
 
 *The fastest credible orientation*: Chapter 1 for motivation,
 Chapter 4 sections 4.1 through 4.6 for the indispensable linear
@@ -318,10 +324,13 @@ naturally in the rendered text.
 Qubit indices are read left-to-right in ket strings, with the
 *leftmost* qubit treated as the most significant. So $|x_1 x_2
 \ldots x_n\rangle$ maps to the integer $\sum_i x_i \cdot 2^{n-i}$.
-This is the textbook convention. It is the *opposite* of Qiskit's
-display order, which is little-endian — and whether a Qiskit `0b01`
-printout means this book's $|01\rangle$ or $|10\rangle$ depends on how
-tensor factors are matched to Qiskit's qubit labels. Under this
+This is the textbook convention. Qiskit's is the *opposite*:
+little-endian, with qubit $q_0$ least significant — a choice applied
+consistently across its integer interpretation, statevector
+indexing, and the count strings returned by `get_counts()` (check
+the bit-ordering guide of your Qiskit version). So whether a Qiskit
+counts key `"01"` means this book's $|01\rangle$ or $|10\rangle$
+depends on how tensor factors are matched to Qiskit's qubit labels. Under this
 book's recommended mapping (leftmost factor ↔ highest-numbered
 Qiskit qubit, §4.8), the printed strings *coincide*; only under the
 naive mapping that identifies the first factor with Qiskit's `q0` do
@@ -344,17 +353,22 @@ in doubt, write out the action on the four basis states explicitly.
 The QFT convention used here is the one with a *negative* exponent
 in the forward transform — that is, $F_N |x\rangle = \tfrac{1}{\sqrt
 N} \sum_y e^{-2\pi i x y / N} |y\rangle$, the convention established
-and reasoned through in §4.13. Some treatments and some SDKs use the
-opposite sign. Chapter 4 documents the consequences in detail; the
-short version is that any phase-estimation or controlled-phase code
-copied across the convention boundary needs its angles conjugated.
+and reasoned through in §4.13. Some treatments and some SDK library functions use the opposite
+sign or expose an inverse flag; check the documentation of the
+specific function rather than assuming a global per-SDK convention. Chapter 4 documents the consequences in detail; the short version
+is that code copied across the convention boundary needs care:
+conjugating controlled-phase angles is the minimum, and a
+phase-estimation circuit may also need its QFT and inverse-QFT
+blocks swapped and the sign of the recovered phase reinterpreted.
 
 The Bloch sphere is used freely as a visualization aid for
-single-qubit states and gates, but no calculation in the book
-depends on the Bloch picture being literal. It is a useful intuition
-pump for one qubit; it has no honest generalization to multi-qubit
-systems, and the book is explicit about that distinction when it
-comes up.
+single-qubit states and gates — for one qubit it is in fact an
+exact representation (mixed states fill the ball's interior), not
+merely a metaphor — but no calculation in the book depends on the
+picture. Generalized Bloch-vector representations of multi-qubit
+systems exist, but none keeps the sphere's simple, faithful
+geometry, so the book treats the picture as strictly one-qubit and
+is explicit about that boundary when it comes up.
 
 ## A Note on the 2026 Timestamp
 
@@ -402,19 +416,26 @@ report it.
 
 ## License and Attribution
 
-The book is dual-licensed. The text is available for non-commercial
-use under the Creative Commons Attribution-NonCommercial-NoDerivatives
-4.0 International license (CC BY-NC-ND 4.0). Commercial use, derivative
-works, and printed distribution require a separate license; the
-LICENSE file at the repository root has the full terms.
+The book is dual-licensed. For non-commercial use the text is
+available under the Creative Commons
+Attribution-NonCommercial-NoDerivatives 4.0 International license
+(CC BY-NC-ND 4.0): verbatim copies — in any medium, print included —
+may be shared non-commercially with attribution, and distributing
+modified versions is not permitted. Any commercial use, and any use
+the CC terms do not grant, requires a separate written license from
+the author. This paragraph is a summary only; the LICENSE file at
+the repository root controls.
 
-The intent of the dual license is straightforward: the book should be
-free to read, free to study from, and free to recommend to a colleague;
-it should also be possible, eventually, to publish a printed edition
-without the licensing conflict that a permissive license would create.
-If you would like to use the material in a way the non-commercial
-license does not cover — a course pack, a corporate training
-program, a translation, a printed reader — please get in touch.
+The intent of the dual license is straightforward: the book should
+be free to read, free to study from, and free to recommend to a
+colleague — free of charge, that is; the NoDerivatives and
+NonCommercial terms still apply — while keeping the exclusivity a
+future printed edition would need, which a fully permissive license
+would give away. If you would like to use the material in a way the
+non-commercial license does not cover — a *paid* course pack or
+corporate training program, a translation (an adaptation the ND
+term does not allow to be distributed), a commercially printed
+reader — please get in touch.
 
 With those preliminaries out of the way, the next chapter takes a
 hard look at exactly what background the book assumes, with concrete

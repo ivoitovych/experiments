@@ -2399,7 +2399,8 @@ files vs fix batches:
 | Ch35 | 40 | done |
 | Ch36 | 41 | done |
 | Ch37 | 42 | done |
-| Preface, Background, Notation | — | pending (ledger complete) |
+| Preface | 43 | done |
+| Background, Notation | — | pending (ledger complete) |
 | Appendices A–F, Index | — | pending (ledger complete) |
 | SVG/support/archive passes | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
 
@@ -2705,3 +2706,44 @@ Driven by the ledger's highest-priority repair list.
 
 Three factcheck anchors requoted; baseline (96) held. Lint and
 anchor checks pass; diff reviewed before push.
+
+## Batch 43 — Preface (10 substitutions)
+
+Driven by the ledger's highest-priority correctness list, plus the
+clearest of its editorial items where they overlapped correctness.
+
+### FIXED — outright defects
+- License summary repaired against the actual CC BY-NC-ND terms and
+  the root LICENSE: non-commercial *verbatim* sharing (print
+  included) is permitted with attribution, distributing modified
+  versions is not — the previous summary wrongly claimed printed
+  distribution categorically requires a separate license and
+  overstated the derivative prohibition; summary explicitly
+  subordinated to the LICENSE file. Intent paragraph: "free" scoped
+  to price, the "licensing conflict" a permissive license would
+  create rephrased as the exclusivity objective, and the
+  get-in-touch examples corrected to uses the CC terms genuinely do
+  not cover (paid course packs, distributed translations,
+  commercial printing). Qiskit convention paragraph: the `0b01`
+  printout replaced with the actual `get_counts()` count-string
+  API, "display order" unpacked into the distinct conventions
+  (integer interpretation, statevector indexing, count strings),
+  version check pointed at the bit-ordering guide (§4.8 mapping
+  cross-reference verified present in Chapter 4). QFT paragraph:
+  per-SDK sign claim redirected to per-function documentation
+  (inverse flags exist), and the angle-conjugation shortcut widened
+  — crossing conventions can also require QFT/inverse-QFT swap and
+  phase-sign reinterpretation. Bloch paragraph: "no honest
+  generalization" corrected — generalized Bloch-vector
+  representations exist but lose the sphere's simple faithful
+  geometry; the one-qubit picture acknowledged as exact (interior =
+  mixed states), not merely metaphorical. Reading paths: "complete
+  picture" → "the book's complete arc"; algorithms path relabeled
+  recommended-compact (not "shortest viable") with the Chapter 12
+  and Part VIII omissions named; hardware path given a Chapters
+  9–11 backfill expectation; applications path bounded (critical
+  questions, not due diligence).
+
+One pre-existing baseline-stale anchor repaired while editing its
+passage (Qiskit display-order card); baseline updated 96 → 95. Lint
+and anchor checks pass; diff reviewed before push.

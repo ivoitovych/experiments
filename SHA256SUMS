@@ -25,7 +25,7 @@ de8fbac1a95f99ff3ef1b084175ad1bd12b3c9ebbeb0b98e2ee8a3c5c2f179bd  archive/chapte
 4923e7ba3815edee83466a7c16599caf32061618217ab04f61f2f8ff78bab781  archive/plan-original-toc.md
 1dfa3b9d7384322db05212b06b7a0d913f41bf947967bde9f9de8925460af386  archive/reviews-2026-05/review-2026-05-29-0144.md
 54824decf3d6ab2634ae33b623a164100b0846d4df46ae660d473a3efd8f64a6  archive/reviews-2026-05/review-2026-05-30-0356.md
-e3e52e15b3e20cdb849e0eecd6d95152127a28a801b6e1d1bdacdd6c59072171  book/00-front-matter/00-preface.md
+2c2683818e4ca798f4e98332e1fb101f2545183362ff7a797f53c628349138bb  book/00-front-matter/00-preface.md
 ab2c6d39f0187b9e6761d140cddaa312546dfa1a14f165a45d5323e9888fac06  book/00-front-matter/01-background-and-self-check.md
 9e2a4beb1b98e8ba503b8877f85798cfd0f445f01524ec96381ab5acb5425e81  book/00-front-matter/02-notation-and-conventions.md
 40f90c4b2fc8b7825540dd6eb0a83edb5b81443228a4f55af89083249f2f2194  book/99-back-matter/appendix-a-notation-reference.md
@@ -103,7 +103,7 @@ cd9965403e6e4991dd8043a2953411c4d8db6fff61b77e36aa4be0c714339993  docs/upstream-
 d19b7025a206c9c773b12c99646780557c00de7535bbe5222d02fa0cb30d1f47  examples/grover.py
 26218a1705addd9bd1e72b22648bb77ee7611211ce8a39e275c5bc8d7588fcc5  examples/qiskit_ordering_check.py
 a1c4e35dc326f32a66d886a138fa5eaf27fb72e032dbf1eb2361779ad7b9e03c  examples/statevector_simulation.py
-6755492b19a3b2d3109297a3e57aa039492ff230066119a3701cc0b42fb6bca9  factcheck/00-front-matter/00-preface.md
+f1d9d8204471cada5e259a61b24d90485fdf4c9281df0b9f43c2eb7f0837de24  factcheck/00-front-matter/00-preface.md
 77071e3a09520c236325cb05ffcb36627f832606081f4a7469b003e57c787ed3  factcheck/00-front-matter/01-background-and-self-check.md
 f9d5ff06adecef33f66efcdb69de82ed60656ab34f61c4b3ec6da8145fc4b266  factcheck/00-front-matter/02-notation-and-conventions.md
 d152e31e7370ff9001b3c1de3dbd039e4c35ece1eb0f55e63d69a915dc3cc0e3  factcheck/99-back-matter/appendix-a-notation-reference.md
@@ -171,7 +171,7 @@ d5e0cec3ec5e3dbb9ada626bf551502d12d81920e68fdac4c4e7a59ed6e08a7b  reviews/cold-r
 95cd5962ed6cf39a1b5f5e2f859bc5c2d03b78d3d435891c3fd6b11a012b6584  reviews/factcheck-2026-07-04-external-verification.md
 7efd03e5b38a37de192454db8bd8d6c6b31373f9fe112096e1b27a251e30932d  reviews/proposals-2026-07-05-remaining-programmes.md
 021f81c249aa7f0e13dd66470714f49c341955324e48399b78ed4b29c1269c22  reviews/recommendations-2026-07-04-deferred-items.md
-a97fbfc70830ea04b362159accc4350855500d881a29b78679318e1279af57ec  reviews/response-2026-07-19-second-pass-dispositions.md
+3f5c0fb11af487eaebe1f5e6dae6c6006696fa56d739914d700876c278bc05c0  reviews/response-2026-07-19-second-pass-dispositions.md
 95adfcedf14090d851fc34190f8b43abb422e0f94462929e7d694e174aeaf9cf  reviews/review-2026-07-03-1843-comprehensive-book-review.md
 af0bf67bf1c6da7759a7b5375dedd1be242209e280f94ff307999c18bde95c94  reviews/review-2026-07-19_01-20-35_CEST.md
 2bd131ed2944aee6d792838358a75ef9efbe42c09f5a5568347bd8aa4d1d840d  reviews/roadmap-2026-07-05-path-to-publication.md
