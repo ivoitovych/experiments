@@ -1197,3 +1197,102 @@ lint and fixed in-batch.
 Seven factcheck anchors requoted (one corrupted concatenation caught and
 repaired); baseline (97) held. One self-introduced escaping violation
 caught by lint and fixed in-batch.
+
+## Batch 25 — Chapter 20 (29 substitutions)
+
+### FIXED — outright defects
+- Ca-40 described as a hyperfine clock-state qubit (the ledger's strong
+  species error) — Ca-40 has zero nuclear spin and no hyperfine structure;
+  encodings now split by species: hyperfine clock states for nonzero-
+  nuclear-spin species (Yb-171, Ba-137), optical S–D quadrupole or Zeeman
+  qubits for Ca-40, with encoding-dependent coherence limits (clock-qubit
+  seconds-to-minutes vs. the metastable level's ~1 s lifetime and laser
+  phase noise).
+- Rydberg-blockade CZ told as "a coherent excitation pulse prepares the
+  entangled state with one excitation shared between them" — that is a
+  W-state story, not the gate; replaced with the actual phase-accumulation
+  pulse protocol (blockade forbids double excitation, the blocked amplitude
+  accumulates a different phase, pulse parameters set the conditional π).
+- "Analog simulators do not, in general, support error correction — there
+  is no canonical way..." categorical — replaced: no mature general
+  scheme, but energy-gap penalties, protected subspaces, autonomous
+  (engineered-dissipation) correction, and digital-analog hybrids exist;
+  error accumulates with time/size rather than being suppressible at will.
+- Adiabatic theorem compressed to "slow compared to the inverse-square of
+  the minimum spectral gap" — now the textbook sufficient condition with
+  the derivative/matrix-element dependence, version-dependent gap powers,
+  and the closed-system idealization stated.
+- AQC–circuit equivalence applied to commercial annealers — scoped to
+  ideal non-stoquastic closed-system AQC; a stoquastic finite-temperature
+  annealer inherits none of it and is framed as a physical low-energy
+  sampler; minor-embedding qubit consumption and the not-like-for-like
+  T2 comparison added; "no native error correction" softened to no
+  *deployed* scheme (suppression schemes studied).
+- Sanity check 2 arithmetic: 100 μs vs 50 ns is 2000×, not 1000×; the
+  coherence-ratio inference bounded (decoherence exposure only, laser/
+  motional/spontaneous-emission errors decide the rest).
+- Sanity check 5's false premise "deterministic resource-state preparation
+  [is] the photonics community's preferred path" — replaced with the
+  fusion-based reality: probabilistic pieces, heralding, multiplexing.
+- Sanity check 1's false binary ("identify whether decoherence or coherent
+  errors dominate") — replaced with the candidate-source list (control
+  error, leakage, crosstalk, calibration drift).
+- Ch18/Ch20 superconducting-number contradiction — §20.1 harmonized to
+  Chapter 18's ranges: medians vs. best-in-class T1 100–400 μs / T2
+  100–300 μs made explicit; single-qubit 99.9% with best-in-class 99.95%;
+  readout 98–99% simultaneous full-device vs. 99–99.9% well-tuned single
+  qubits (integration-time/threshold dependence stated).
+- §20.12 silicon row's blanket "gate time 10–100 ns" contradicted §20.7 —
+  split into single-qubit (tens of ns–1 μs) and two-qubit exchange
+  (10–100 ns).
+- §20.12 trapped-ion row: "gate time 1–100 μs" split 1q/2q; "30–256
+  deployed" corrected to ~30–60 deployed with 100–256-ion traps in
+  development (deployed-count strong item).
+- Quantum Motion "1024-dot characterization chip" — reframed as a
+  quantum-dot characterization array, explicitly not 1,024 operating
+  qubits.
+
+### FIXED — epistemic scoping
+- Majorana absolutes: "local perturbations cannot move the state" →
+  strongly/exponentially suppressed coupling; braiding "exact up to
+  exponentially small corrections in system size" → separation/gap
+  suppression for smooth local perturbations only, with poisoning,
+  diabatic error, thermal excitation, and measurement explicitly outside
+  the suppression.
+- Analog-simulator output "the late-time state, not a circuit output" →
+  time-resolved observables, correlations, spectra, samples at chosen
+  times.
+- Photons "do not couple at all" → no appreciable direct interaction at
+  these energies.
+- Photonic "have not matched fidelities or qubit counts" → scale
+  comparison scoped with the modes/photons/resource-states unit caveat;
+  §20.12 photonic row "effectively unlimited coherence" → loss-limited;
+  PsiQuantum million-photon target labeled roadmap.
+- "Billions of qubits on a single wafer with the same economics" →
+  labeled aspiration with the unsolved wiring/control/cooling/yield list;
+  "leapfrog the others within a few processor generations" → forecast,
+  contingent on undemonstrated scale.
+- Neutral atoms "most aggressive scaling trajectory of any modality" →
+  one of the fastest-scaling platforms, with the sites/loaded-atoms/
+  gate-capable-qubits distinction; stale "best 2025–2026 reports
+  approaching 99.5%" aligned with Chapter 18's 2023 demonstration and
+  successors; "huge electric dipole moment" → enormous polarizability with
+  vdW/dipole–dipole mechanism; blockade radius marked state/geometry-
+  dependent.
+- Opening "topologically encoded mode" flagged experimentally unconfirmed
+  (§20.9); installed-base superlative hedged; Paul-trap description
+  extended to RF pseudopotential plus static axial confinement; QUBO
+  paragraph gains the minor-embedding chain/precision cost; "The
+  applications target is" grammar fixed.
+
+### DEFERRED-FACTCHECK
+- Vendor/device figures (Ankaa, Garnet, Heron, Condor 1,121; Quantinuum
+  H2/IonQ Forte–Tempo counts; QuEra 256/10,000 roadmap; Atom Computing
+  1,000+ sites "first"; Tunnel Falls 12-qubit status; Majorana 1 device
+  characterization), Evered-successor Rydberg records, D-Wave
+  Advantage2 qubit counts, and every §20.12 row number — all queued for
+  the Appendix-F-driven claim-level audit (the ledger's improvement
+  priority: machine-readable Appendix F generating these tables).
+
+Seven factcheck anchors requoted in the same commit; baseline (97) held.
+Lint, factcheck lint, and the build selftest pass.

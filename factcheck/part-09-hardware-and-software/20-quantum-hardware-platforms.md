@@ -45,7 +45,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §20.1 — Superconducting qubit coherence times (2026)
 
-- **Claim** (anchor): "$T_1$ and $T_2$ around 100 $\mu$s on the best devices (with a long tail of outlier qubits at 300–500 $\mu$s)"
+- **Claim** (anchor): "$T_1$ and $T_2$ around 100 $\mu$s as device-wide medians, with best-in-class devices reporting $T_1 \sim 100$–400 $\mu$s and $T_2 \sim 100$–300 $\mu$s (the ranges Chapter 18 quotes) and individual outlier qubits beyond that"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -173,7 +173,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §20.4 — Trapped-ion coherence times
 
-- **Claim** (anchor): "$T_2$ ranges from seconds to minutes, set by ambient magnetic-field stability and laser noise"
+- **Claim** (anchor): "hyperfine clock qubits reach $T_2$ of seconds to minutes (set by magnetic-field stability, the local oscillator, and dynamical decoupling, not by intrinsic decay)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -261,7 +261,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §20.5 — Rydberg blockade interaction range
 
-- **Claim** (anchor): "two atoms within $\sim$5–10 $\mu$m of each other in Rydberg states interact strongly"
+- **Claim** (anchor): "two atoms within a blockade radius of roughly 5–10 $\mu$m (the exact figure depends on the Rydberg state and the geometry) interact"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -277,7 +277,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §20.5 — Neutral-atom two-qubit gate fidelity (2025–2026)
 
-- **Claim** (anchor): "the best 2025–2026 reports approaching 99.5% on two-qubit operations"
+- **Claim** (anchor): "99.5% on two-qubit operations was demonstrated in 2023, and subsequent reports have pushed beyond it"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -429,7 +429,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §20.11 — D-Wave qubit coherence time
 
-- **Claim** (anchor): "$T_2$ on D-Wave qubits is in the tens-of-nanoseconds range"
+- **Claim** (anchor): "coherence in the tens-of-nanoseconds range (a number not directly comparable to a transmon gate qubit's $T_2$, since an annealer never executes a coherent gate sequence)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -437,7 +437,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §20.11 — Adiabatic–circuit equivalence claim
 
-- **Claim** (anchor): "Adiabatic and circuit quantum computing are *theoretically* equivalent — adiabatic computation can simulate the circuit model with polynomial overhead and vice versa"
+- **Claim** (anchor): "*Ideal* adiabatic quantum computation — with general (non-stoquastic) Hamiltonians, closed-system dynamics, and arbitrary control precision — is polynomially equivalent to the circuit model"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -469,7 +469,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §20.12 — PsiQuantum million-photon resource state target
 
-- **Claim** (anchor): "PsiQuantum targeting million-photon resource states"
+- **Claim** (anchor): "PsiQuantum's roadmap targeting million-photon resource states"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
