@@ -2403,7 +2403,8 @@ files vs fix batches:
 | Background | 44 | done |
 | Notation | 45 | done |
 | Appendix A | 46 | done |
-| Appendices B–F, Index | — | pending (ledger complete) |
+| Appendix B | 47 | done |
+| Appendices C–F, Index | — | pending (ledger complete) |
 | SVG/support/archive passes | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
 
 Working method from batch 36 on: fixes are driven by the ledger's own
@@ -2856,4 +2857,33 @@ own index convention) before rewording.
   zero-support conventions and the not-a-metric warning.
 
 No factcheck anchors staled; baseline (94) held. Lint and anchor
+checks pass; diff reviewed before push.
+
+## Batch 47 — Appendix B (10 substitutions)
+
+Driven by the ledger's highest-priority correctness list.
+
+### FIXED — outright defects
+- CNOT spectrum corrected: eigenvalue $+1$ with multiplicity three
+  and $-1$ with multiplicity one (not two each), with the block
+  accounting shown. The false "only common symmetric
+  basis-permutation gate" SWAP claim replaced by the accurate
+  contrast (CNOT permutes without symmetry; CZ is symmetric with a
+  sign, not a permutation), and SWAP's action written in tensor-ket
+  form. The all-physical-qubits-are-spin claim rewritten as SU(2)
+  double-cover structure carried by every two-level system, with
+  transmon/photonic counterexamples. $P(\varphi)$ Hermiticity
+  stated modulo $2\pi$ periodicity. The invalid $|1, Ub\rangle$
+  action rewritten as $|1\rangle \otimes U|b\rangle$. The
+  diagonal-controlled-gate symmetry claim restricted to
+  $U = \mathrm{diag}(1, e^{i\phi})$ (general diagonal
+  $\mathrm{diag}(a, b)$ with $a \neq 1$ is not symmetric). The
+  Heisenberg conjugation direction given its convention note
+  ($G P G^\dagger$ here; $G^\dagger P G$ equally common; identical
+  for $H$). The CZ endian sentence rewritten in basis-permutation
+  terms (endianness can never introduce signs). Axis-rotation
+  noncommutation qualified to "in general"; the multi-controlled-X
+  exceptional kets written as explicit tensor products.
+
+Two factcheck anchors requoted; baseline (94) held. Lint and anchor
 checks pass; diff reviewed before push.

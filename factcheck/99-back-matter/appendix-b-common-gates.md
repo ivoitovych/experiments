@@ -46,7 +46,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## B.2 — Hadamard conjugates Paulis
 
-- **Claim** (anchor): "Pauli-basis relations: $H X H = Z$, $H Z H = X$, $H Y H = -Y$. So $H$ exchanges $X$ and $Z$ in the Heisenberg picture (tracking how the gate transforms *operators* by conjugation, $P \mapsto G P G^\dagger$, rather than how it moves states)."
+- **Claim** (anchor): "Pauli-basis relations: $H X H = Z$, $H Z H = X$, $H Y H = -Y$. So $H$ exchanges $X$ and $Z$ in the Heisenberg picture (tracking how the gate transforms *operators* by conjugation — written $P \mapsto G P G^\dagger$ here; the opposite convention $P \mapsto G^\dagger P G$ is equally common, and for $H = H^\dagger$ the two coincide — rather than how it moves states)."
 - **Method**: derivation
 - **Source**: → triple matrix product using the stated H and Pauli matrices
 - **Verified**: — · **Verdict**: open
@@ -102,7 +102,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## B.4 — Rotation gates are 4π-periodic, not 2π-periodic
 
-- **Claim** (anchor): "a signature of spin-$1/2$"
+- **Claim** (anchor): "the SU(2) double-cover behavior familiar from spin-$1/2$"
 - **Method**: derivation
 - **Source**: → substituting θ = 0 and θ = 2π into the stated matrix exponential form e^{-iθA/2} confirms Ra(2π) = −I
 - **Verified**: — · **Verdict**: open

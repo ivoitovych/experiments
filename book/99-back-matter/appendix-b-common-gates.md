@@ -72,7 +72,7 @@ Properties:
   $H|0\rangle = |+\rangle = (|0\rangle + |1\rangle)/\sqrt{2}$ and
   $H|1\rangle = |-\rangle = (|0\rangle - |1\rangle)/\sqrt{2}$.
 - Pauli-basis relations: $H X H = Z$, $H Z H = X$, $H Y H = -Y$. So $H$
-  exchanges $X$ and $Z$ in the Heisenberg picture (tracking how the gate transforms *operators* by conjugation, $P \mapsto G P G^\dagger$, rather than how it moves states).
+  exchanges $X$ and $Z$ in the Heisenberg picture (tracking how the gate transforms *operators* by conjugation — written $P \mapsto G P G^\dagger$ here; the opposite convention $P \mapsto G^\dagger P G$ is equally common, and for $H = H^\dagger$ the two coincide — rather than how it moves states).
 - $H = (X + Z)/\sqrt{2}$ as a real linear combination of Paulis.
 
 ## B.3 Phase Gates
@@ -96,8 +96,9 @@ $$
 Properties:
 
 - Every $P(\varphi)$ — and hence each of $S, S^\dagger, T, T^\dagger$ — is
-  unitary, and **not** Hermitian except in the degenerate cases
-  $P(0) = I$ and $P(\pi) = Z$. $P(\varphi)^\dagger = P(-\varphi)$.
+  unitary, and Hermitian only when $\varphi \equiv 0$ or $\pi \pmod{2\pi}$
+  — the cases $P(0) = I$ and $P(\pi) = Z$, up to the periodicity
+  $P(\varphi + 2\pi) = P(\varphi)$. $P(\varphi)^\dagger = P(-\varphi)$.
 - Eigenvalues of $P(\varphi)$ are $1$ and $e^{i\varphi}$, with eigenvectors
   $|0\rangle$ and $|1\rangle$ respectively. Eigenvalues of $S$ are $1, i$;
   eigenvalues of $T$ are $1, e^{i\pi/4}$.
@@ -163,9 +164,13 @@ Properties:
 
 - Each $R_a(\theta)$ is unitary; $R_a(\theta)^\dagger = R_a(-\theta)$.
   $R_a(0) = I$ and $R_a(2\pi) = -I$ (so $R_a$ is $4\pi$-periodic, not
-  $2\pi$-periodic — a signature of spin-$1/2$, the two-level angular momentum that physical qubits realize, §3.1).
+  $2\pi$-periodic — the SU(2) double-cover behavior familiar from
+  spin-$1/2$. Every two-level system carries this SU(2) structure,
+  whether or not the physical qubit is literally an angular momentum —
+  transmon and photonic encodings are not; §3.1).
 - Composition law: $R_a(\theta_1) R_a(\theta_2) = R_a(\theta_1 + \theta_2)$
-  for a single axis. Rotations about different Pauli axes do **not** commute.
+  for a single axis. Rotations about different Pauli axes do **not** commute in general
+  (special angles can conspire to commute).
 - $R_z(\theta)$ is diagonal in the computational basis; $R_x(\theta)$ and
   $R_y(\theta)$ are not.
 - Relation to Pauli gates: $X = i R_x(\pi)$, $Y = i R_y(\pi)$,
@@ -210,7 +215,10 @@ $$
 Properties:
 
 - Hermitian and unitary; involutory, $\mathrm{CNOT}^2 = I$.
-- Eigenvalues $\pm 1$, each with multiplicity two.
+- Eigenvalues $+1$ (multiplicity three) and $-1$ (multiplicity one):
+  the control-$|0\rangle$ identity block contributes two $+1$s, and
+  the $X$ block on the control-$|1\rangle$ subspace contributes one
+  $+1$ and the single $-1$.
 - Action on the computational basis (control = first factor):
   $|00\rangle \mapsto |00\rangle$, $|01\rangle \mapsto |01\rangle$,
   $|10\rangle \mapsto |11\rangle$, $|11\rangle \mapsto |10\rangle$.
@@ -259,14 +267,18 @@ Properties:
   control/target symmetry.
 - Conjugation by Hadamard on the target converts CZ to CNOT:
   $\mathrm{CNOT}_{1 \to 2} = (I \otimes H)\\, \mathrm{CZ}\\, (I \otimes H)$.
-- Because CZ is symmetric under swap of its two qubits, there is no
-  endian-induced sign change between this book's matrix and Qiskit's.
+- An endian change permutes basis vectors — it can never introduce
+  signs. Because CZ is also invariant under swapping its two tensor
+  factors, that permutation leaves its matrix entirely unchanged
+  between this book's convention and Qiskit's.
 
 ## B.7 SWAP
 
-The **SWAP** gate exchanges the states of two qubits, $|a, b\rangle \mapsto
-|b, a\rangle$. It is the only common two-qubit gate that is also
-symmetric and computational-basis-permutation; it can be decomposed into
+The **SWAP** gate exchanges the states of two qubits,
+$|a\rangle|b\rangle \mapsto |b\rangle|a\rangle$. It is both symmetric in
+its two qubits and a genuine permutation of the computational basis
+(CNOT permutes the basis but is not symmetric; CZ is symmetric but
+introduces a sign rather than permuting); it can be decomposed into
 three CNOTs.
 
 $$
@@ -399,8 +411,8 @@ $$
 **Multi-controlled-X** $C^k X$, with $k$ control qubits and one target,
 applies $X$ to the target exactly when *all $k$ controls* are $|1\rangle$.
 The $2^{k+1} \times 2^{k+1}$ matrix is the identity on every computational
-basis vector except $|1^{\otimes k}, 0\rangle$ and $|1^{\otimes k},
-1\rangle$, which are swapped. In block form,
+basis vector except $|1\rangle^{\otimes k} \otimes |0\rangle$ and
+$|1\rangle^{\otimes k} \otimes |1\rangle$, which are swapped. In block form,
 
 $$
 C^k X
@@ -423,17 +435,20 @@ Properties (apply uniformly to the family above):
   subspace) together with the eigenvalues of $U$ (each with multiplicity one,
   from the control-$|1\rangle$ subspace). So $\mathrm{CP}(\varphi)$ has
   eigenvalues $\\{1, 1, 1, e^{i\varphi}\\}$.
-- Action on the computational basis: $|0, b\rangle \mapsto |0, b\rangle$ and
-  $|1, b\rangle \mapsto |1, U b\rangle$ for $b \in \\{0, 1\\}$.
+- Action on the computational basis:
+  $|0\rangle \otimes |b\rangle \mapsto |0\rangle \otimes |b\rangle$ and
+  $|1\rangle \otimes |b\rangle \mapsto |1\rangle \otimes U|b\rangle$ for
+  $b \in \\{0, 1\\}$.
 - Global phase becomes relative phase: $C(e^{i\alpha} U) = (P(\alpha) \otimes I)\\, C(U)$ — the diagonal phase $\mathrm{diag}(1, 1, e^{i\alpha}, e^{i\alpha})$ is $P(\alpha)$ acting on the *control* qubit (the target is unaffected by the phase factor). This is why $C(R_z(\theta))$
   and $\mathrm{CP}(\theta)$ are *not* equal — they differ by the global
   phase of $R_z$ relative to $P$, promoted to a relative phase by the
   control (see §B.3).
 - Reversing the control/target roles produces a different $4 \times 4$
   matrix whenever $U$ is not diagonal — as for CY, where the swapped form
-  flips two off-diagonal entries into a different sub-block — in exact
-  parallel with CNOT (§B.5). For diagonal $U$ (CZ, $\mathrm{CP}$) the gate
-  is symmetric in its two arguments. The Qiskit endian reconciliation is
+  flips two off-diagonal entries into a different sub-block — in exact parallel with CNOT (§B.5). For $U = \mathrm{diag}(1, e^{i\phi})$
+  — the CZ and $\mathrm{CP}$ family — the gate is symmetric in its two
+  arguments; for a general diagonal $U = \mathrm{diag}(a, b)$ with
+  $a \neq 1$ it is not. The Qiskit endian reconciliation is
   the same as for CNOT; see §4.8.
 
 ---
