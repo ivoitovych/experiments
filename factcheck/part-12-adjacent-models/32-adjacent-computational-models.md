@@ -141,7 +141,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §32.5 — CV universality: Gaussian gates plus any non-Gaussian gate (Lloyd and Braunstein, 1999)
 
-- **Claim** (anchor): "The standard universality result (Lloyd and Braunstein, 1999) says that a finite set of Gaussian gates plus any non-Gaussian gate is universal over the continuous-variable Hilbert space"
+- **Claim** (anchor): "The standard universality result (Lloyd and Braunstein, 1999) says that Gaussian operations plus a suitable nonlinear (non-Gaussian) Hamiltonian generate arbitrary polynomial Hamiltonians"
 - **Method**: external
 - **Source**: Lloyd and Braunstein (1999) — TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -173,7 +173,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §32.6 — Aaronson–Arkhipov hardness of approximate boson sampling
 
-- **Claim** (anchor): "Aaronson and Arkhipov showed that sampling from this distribution (even approximately, under reasonable conjectures) is hard for classical computers"
+- **Claim** (anchor): "Aaronson and Arkhipov's theorem routes through polynomial-hierarchy-collapse consequences, and the *approximate*-sampling version additionally assumes average-case permanent hardness and anti-concentration conjectures"
 - **Method**: external
 - **Source**: Aaronson and Arkhipov (2011) — TBD — needs verification
 - **Verified**: — · **Verdict**: open

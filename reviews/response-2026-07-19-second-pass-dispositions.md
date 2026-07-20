@@ -2393,7 +2393,8 @@ files vs fix batches:
 | Ch23–Ch27 | 28–32 | done |
 | Ch28, Ch29, Ch30 | 33, 34, 35 | done |
 | Ch31 | 36 | done |
-| Ch32–Ch37 | — | pending (ledger complete) |
+| Ch32 | 37 | done |
+| Ch33–Ch37 | — | pending (ledger complete) |
 | Preface, Background, Notation | — | pending (ledger complete) |
 | Appendices A–F, Index | — | pending (ledger complete) |
 | SVG/support/archive passes | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
@@ -2455,3 +2456,47 @@ chapter (working method per the tracker above).
 Eight factcheck anchors requoted in the same commit; baseline (96)
 held. Lint, factcheck lint, and the build selftest pass; diff reviewed
 before push.
+
+## Batch 37 — Chapter 32 (16 substitutions)
+
+Driven by the ledger's highest-priority repair list.
+
+### FIXED — outright defects
+- Adiabatic runtime bound labeled one sufficient form (not the
+  theorem), gap-implication made one-directional, gap-identification
+  hardness hedged; 2-local restriction no longer implies nonuniversality
+  (2-local AQC is universal); perturbative-gadget "larger gaps" sign
+  error corrected (reduced effective gaps, ancillas, energy scales).
+- Photonic MBQC "deterministic runtime" overstatement — resource
+  generation probabilistic/expensive, interaction problem relocated not
+  eliminated, feed-forward and losses keep runtime short of
+  deterministic.
+- Anyon "representation group" → braid-group representation with the
+  Abelian/non-Abelian phase/matrix split; topological protection
+  bounded (thermal creation, poisoning, measurement errors; strong not
+  absolute); "passively protected... dramatically reducing overhead" →
+  substantial passive protection, potentially reduced overhead, with
+  non-Clifford operations outside it.
+- Non-Gaussian gate/measurement separation restored; the Lloyd–
+  Braunstein "any non-Gaussian gate" universality folklore corrected to
+  the theorem's polynomial-Hamiltonian form.
+- Permanent "all signs positive" → no alternating signs, complex
+  summands; the #P-hard-implies-sampling-hard leap replaced with the
+  AA conjecture structure; "cannot solve decision problems" →
+  nonuniversal with postprocessing uses, plus the verification open
+  problem.
+- Primality moved out of the BPP poster-child list (AKS/P); BQP
+  intermediate states no longer called distributions over basis states;
+  BPP/Toffoli "strict subsets of BQP" → containment with conjectured
+  strictness.
+- Sanity checks 1 and 2 given the concrete instance/graph they lacked;
+  check 3 recast at the level the chapter actually teaches.
+
+### DEFERRED-FACTCHECK
+- Majorana/Fibonacci status and ν=12/5 evidence, retraction history,
+  company architectures (PsiQuantum/Xanadu), D-Wave products, Jiuzhang/
+  Borealis claims and classical responses, AvDKLR 2004 and RBB theorem
+  scopes, Bartlett et al. citation.
+
+Two factcheck anchors requoted; baseline (96) held. All checks pass;
+diff reviewed before push.
