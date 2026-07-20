@@ -2238,3 +2238,74 @@ are a separate research stream per the author and are not touched).
 
 Eleven factcheck anchors requoted in the same commit; baseline (96)
 held. Lint, factcheck lint, and the build selftest pass.
+
+## Batch 34 — Chapter 29 (30 substitutions)
+
+### FIXED — outright defects
+- Opening "the three application areas" naming four; "no production
+  deployment" scoped to publicly documented.
+- QUBO upper-triangular convention flagged with the symmetric
+  alternative and diagonal-carries-linear-terms note; the discrete
+  Markowitz objective's all-i,j summation reconciled with that
+  convention (halved off-diagonals); penalty-λ feasibility rule made
+  derivable rather than guessed (precision cost noted); slack encoding
+  scoped to integer b with the excess-values caveat.
+- QAOA p→∞ "provably finds the ground state" — can-express framing
+  with gap/schedule conditions and the existence-vs-finding split;
+  p=1 0.6924 given its family assumptions; random baseline corrected to
+  a guarantee statement; "no proof exists" absolutes dated and
+  snapshot-scoped; the unbounded-limit tautology (classical methods
+  "also succeed") replaced; universal simulated-annealing/tabu outcome
+  scoped to published comparisons; RQAOA competitiveness attributed;
+  the fabricated 50-qubit/depth-100/10^-3 2026 scenario labeled
+  illustrative and reconciled with §25.2's error figure.
+- Adiabatic theorem given its heuristic-form caveat and open-system
+  reality (matching §§20.11/25.2); "NP-hard instances generally have
+  exponentially small gaps at first-order transitions" — corrected to
+  constructed-families-can with instance/path dependence and
+  approximate-solution note; chain strength "without a principled
+  setting" — bounds/heuristics/auto-tuning exist; benchmarking
+  "consensus" → recurring finding; King-study constant-factor claim
+  hedged within fitted ranges; "most industrial instances" → many
+  reported; simulated-bifurcation 10^5-variable millisecond record
+  contextualized; CIM "fundamentally classical" → deployed regimes
+  commonly modeled classically, quantumness under study.
+- Finance "most institutional investment" → among the heaviest;
+  Markowitz q mislabeled risk aversion (multiplies return) → return-
+  preference weight with the convention note; "box constraints" absent
+  from the displayed program — long-only stated, boxes defined;
+  "solved trivially in microseconds for N to 10^4" → efficient with
+  realistic times and the Σ⪰0 assumption; binary encoding labeled the
+  equal-weight selection model; cardinality penalty displayed; Gurobi/
+  MOSEK "find the optimum in seconds" bounded; "no published
+  demonstration" dated and match-conditioned; Goldman settlement
+  regrouped as adjacent-problem.
+- QAE encoding corrected: √p(x) preparation, normalized f, √f(x)
+  ancilla amplitude, work-register compute/uncompute, probability (not
+  amplitude) equals expectation; "real and proven" scoped to the
+  oracle-query model; the 10^7-T option-pricing figure given its
+  which-resources caveat and the European-call/path-dependent mismatch
+  resolved; Taylor-expansion arithmetic broadened.
+- "Third bucket" ordinal softened; job-shop variable count corrected
+  (time-indexed O(J·O·T_max) vs binary-encoded log form with
+  re-quadratization cost); one-hot-vs-binary rule converted to a
+  two-sided tradeoff (one-hot's K-clique named; invalid binary codes
+  noted).
+- Sanity check 2's invalid proof rewritten (single-variable repair
+  bound, explicit counterexample, globally sufficient λ from Σ|c_i|);
+  check 3's exact-state claim relaxed to measurement support with
+  phase/convention/degeneracy caveats; check 5's unverified "closer to
+  50" figure replaced with a look-it-up instruction and the real
+  structural determinants.
+
+### DEFERRED-FACTCHECK
+- D-Wave generations/counts/topologies, Advantage2 4,400/roadmap
+  figures, clique capacities, King 2018 details, Toshiba SBM reports,
+  CIM literature, GW/QAOA ratio theorems (0.6924/0.7559 scopes),
+  Bravyi–Kliesch–Koenig–Tang RQAOA result, bank pilot specifics
+  (Goldman/BBVA/Mizuho, VW/BMW/Daimler), Stamatopoulos et al. resource
+  reporting, OpenSSL-era deployment claims — queued for sourced tables
+  with cutoff dates.
+
+Ten factcheck anchors requoted in the same commit; baseline (96) held.
+Lint, factcheck lint, and the build selftest pass.

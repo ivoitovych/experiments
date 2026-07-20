@@ -53,7 +53,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §29.2 — QAOA introduced in §15.9; provably reaches ground state as p → ∞
 
-- **Claim** (anchor): "At $p \to \infty$, QAOA reduces to a Trotterized adiabatic sweep and provably finds the ground state of $H_C$ in the limit (with parameter schedules close to the adiabatic schedule)"
+- **Claim** (anchor): "As $p \to \infty$, QAOA *can* express a Trotterized adiabatic sweep: with appropriately chosen schedules — and given an adiabatic path with a gap — the ground state is reached in the limit"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -77,7 +77,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §29.2 — No proof that finite-p QAOA beats Goemans–Williamson
 
-- **Claim** (anchor): "No proof exists that QAOA at any finite $p$ beats Goemans–Williamson on any natural Max-Cut family"
+- **Claim** (anchor): "As of this snapshot, no proof is known that QAOA at fixed finite $p$ beats Goemans–Williamson on a natural Max-Cut family"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -85,7 +85,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §29.2 — Empirical benchmarks 2018–2025: classical heuristics beat QAOA on large instances
 
-- **Claim** (anchor): "simulated annealing and tabu search find better solutions in less wall-clock time than QAOA on current hardware"
+- **Claim** (anchor): "simulated annealing and tabu search generally found better solutions in less wall-clock time than QAOA on current hardware in the published comparisons"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -109,7 +109,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §29.2 — QAOA at p=3 on 50-qubit device at edge of viability given ~10^-3 two-qubit gate error
 
-- **Claim** (anchor): "On a 50-qubit, depth-100-capable device with realistic error rates ($\\sim 10^{-3}$ two-qubit gate error), QAOA at $p=3$ on Max-Cut on a 50-vertex 3-regular graph is at the edge of what runs without the noise washing out the signal"
+- **Claim** (anchor): "On an *illustrative* device — 50 qubits, two-qubit error near the best current reports at $\sim 10^{-3}$"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -141,7 +141,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §29.3 — Consensus: D-Wave shows no scaling advantage over classical SA on random spin-glass instances
 
-- **Claim** (anchor): "on random spin-glass instances (the natural testbed), D-Wave annealers do not show a scaling advantage over well-implemented classical simulated annealing or its descendants (parallel tempering, isoenergetic cluster moves)"
+- **Claim** (anchor): "D-Wave annealers have *not* shown a scaling advantage over well-implemented classical simulated annealing"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -149,7 +149,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §29.3 — King et al. 2018: D-Wave constant-factor speedup on 3D Ising spin glasses with planted solutions
 
-- **Claim** (anchor): "the 2018 King et al. study and certain frustrated cluster loop problems — D-Wave shows a constant-factor speedup, sometimes large, but not a different scaling exponent"
+- **Claim** (anchor): "D-Wave has reported constant-factor speedups, sometimes large — with no established difference in scaling exponent within the fitted ranges"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -157,7 +157,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §29.3 — Simulated bifurcation (Toshiba, 2019): solves 10^5-variable QUBOs in milliseconds on FPGA/GPU
 
-- **Claim** (anchor): "Simulated bifurcation (Toshiba, 2019; Goto, Tatsumura, Dixon). Classical algorithm derived from the dynamics of a network of nonlinear oscillators undergoing bifurcation. Implemented on FPGA and GPU, it solves QUBOs with $10^5$ variables in milliseconds and is the current speed-record holder on many industrial QUBO benchmarks"
+- **Claim** (anchor): "it has been reported solving $10^5$-variable QUBOs in milliseconds on selected benchmarks — instance class, quality target, and hardware attached"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -181,7 +181,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §29.4 — Classical convex optimizers solve continuous Markowitz for N up to 10^4 in microseconds
 
-- **Claim** (anchor): "In its continuous form this is a quadratic program with a single linear equality and box constraints, solved trivially by classical convex optimizers in microseconds for $N$ up to $10^4$"
+- **Claim** (anchor): "this is a quadratic program (convex given $\Sigma \succeq 0$), solved efficiently by classical convex optimizers: fractions of a second at $N \sim 10^3$–$10^4$"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -189,7 +189,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §29.4 — No quantum approach beats classical MIQP solvers for portfolio optimization
 
-- **Claim** (anchor): "No published demonstration shows a quantum approach finding better portfolios in less wall-clock time"
+- **Claim** (anchor): "As of this snapshot we know of no published demonstration of a quantum approach finding better portfolios in less wall-clock time under matched conditions"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -213,7 +213,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §29.4 — Stamatopoulos et al. 2019: European call pricing to 10^-3 precision requires ~10^7 T-gates
 
-- **Claim** (anchor): "The 2019 Stamatopoulos–Egger–Sun–Zoufal–Iten–Shen–Woerner paper that established the QAE-for-options framework gives circuit-resource estimates: pricing a European call to $10^{-3}$ precision on a basket of underlyings requires of order $10^7$ T-gates"
+- **Claim** (anchor): "The 2019 Stamatopoulos et al. paper that established the QAE-for-options framework gives circuit-resource estimates"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
