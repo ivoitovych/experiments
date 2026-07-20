@@ -77,7 +77,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §36.6 — Useful chemistry regime plausible by 2030, cryptographic by 2035–2040
 
-- **Claim** (anchor): "the useful chemistry regime is plausible by 2030 and the cryptographically relevant regime is plausible by 2035–2040"
+- **Claim** (anchor): "the *useful chemistry* regime requires the scaling assumptions above to hold simultaneously for years, and the *cryptographically relevant* regime requires substantially more of the same; the uncertainty on both is wide"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

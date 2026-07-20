@@ -2397,7 +2397,8 @@ files vs fix batches:
 | Ch33 | 38 | done |
 | Ch34 | 39 | done |
 | Ch35 | 40 | done |
-| Ch36, Ch37 | — | pending (ledger complete) |
+| Ch36 | 41 | done |
+| Ch37 | — | pending (ledger complete) |
 | Preface, Background, Notation | — | pending (ledger complete) |
 | Appendices A–F, Index | — | pending (ledger complete) |
 | SVG/support/archive passes | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
@@ -2612,4 +2613,55 @@ Driven by the ledger's highest-priority repair list.
   survives as a nonlocal counterexample).
 
 Two factcheck anchors requoted; baseline (96) held. Lint and anchor
+checks pass; diff reviewed before push.
+
+## Batch 41 — Chapter 36 (14 substitutions)
+
+Driven by the ledger's highest-priority repair list.
+
+### FIXED — outright defects
+- The $nd\epsilon$ "depth budget" demoted to the Chapter 25 toy-model
+  heuristic it is ($F \approx e^{-nd\epsilon/2}$ under independent
+  equal errors), with the real determinants named and the 1000@1% vs
+  100@0.1% comparison conditioned on comparable depth/gate density;
+  the same repair applied to exercise 4; median-fidelity and
+  compound-metric caveats added (tails/drift; protocol-defined and
+  gameable). The Grover hypothetical corrected: $(\pi/4)\sqrt{N}
+  \approx 26{,}000$ iterations at $N = 2^{30}$ (not "roughly
+  $2^{15}$"), the fabricated millions-of-Toffolis oracle cost removed
+  (no universal per-query count), the SAT comparison restated
+  structurally, and "asymptotic facts" hedged to model-relative
+  scaling statements. The dequantization-survivors passage rescoped:
+  BQP-completeness holds for suitably constructed local-Hamiltonian
+  instances (succinct access is itself a model; BQP≠BPP unproven;
+  tractable instance classes listed); abelian HSP survives for an
+  input-access reason, not BQP-completeness; XEB separated from
+  sampling hardness (spoofing vs sampling), "useless tasks" replaced
+  with no-established-application, and the self-referential "§36.3
+  below" cross-reference redirected to §36.7. HHL checklist entries
+  fixed: output is the amplitude-encoded normalized solution, readout
+  is tomography-like (at least linear in $N$, precision-dependent)
+  rather than a flat $\Theta(N)$, classical output itself costs
+  $\Omega(N)$, and the honest use case (global observables) stated;
+  block-encoding $\alpha$ relabeled construction-dependent
+  normalization (one-norm only for LCU), parameter dependence
+  distinguished from constants, and the near-term practicality test
+  replaced with the fault-tolerant one. Benchmark checklist: a
+  laptop-beaten benchmark is still a benchmark (it fails to show
+  intractability; the classical run proves one implementation, not
+  universal easiness); "Haar-random circuits" corrected to random
+  local circuits approaching designs, with the sparse-magic
+  tractability caveat. Roadmap section: qubit-growth arithmetic fixed
+  ($1000 \times 1.5^4 \approx 5{,}000$; three orders short of $10^7$,
+  not two; chip vs networked module distinguished; four points do not
+  establish an exponential), the $10^4$-physical "possibly enough for
+  chemistry" claim removed ($10^6$-range counts implied), NISQ shot
+  rate separated from fault-tolerant logical-cycle/T-factory
+  throughput, and "anyone giving narrower bounds is selling
+  something" replaced with an evidence-audit standard. IBM utility
+  case: the production-tool inference removed — classical agreement
+  validates accuracy on tested observables only; utility defined per
+  IBM's own framing; judgment referred to exact primary wording.
+
+One factcheck anchor requoted; baseline (96) held. Lint and anchor
 checks pass; diff reviewed before push.
