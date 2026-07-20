@@ -20,7 +20,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.2 — OpenQASM 3 finalization date
 
-- **Claim** (anchor): "OpenQASM 3, finalized in 2021 and now the standard target as of 2026"
+- **Claim** (anchor): "**OpenQASM 3**, whose specification was first published in 2021 and continues to evolve, is a substantial expansion"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -36,7 +36,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.2 — OpenQASM 3 tooling artifacts
 
-- **Claim** (anchor): "It has a published grammar (ANTLR), a reference parser (`qasm3` Python package), and round-trippable mappings from Qiskit, tket, Cirq, and the AWS Braket SDK"
+- **Claim** (anchor): "It has a published grammar with reference tooling (the `openqasm3` Python package), and Qiskit, tket, Cirq, and the AWS Braket SDK all provide importers/exporters — with partial coverage"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -44,7 +44,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.2 — OpenQASM 3 vendor acceptance
 
-- **Claim** (anchor): "OpenQASM 3 is also the format IBM Quantum, IonQ, and several other vendors accept on their submission endpoints"
+- **Claim** (anchor): "Several vendors accept OpenQASM 3 at or near their submission interfaces (support and dialect vary — check the provider's documentation)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -59,7 +59,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.2 — OpenQASM 3 conditional-branch hardware support
 
-- **Claim** (anchor): "assume conditional branches and real-time arithmetic work on IBM dynamic-circuit hardware and Quantinuum H-series, and check the docs everywhere else"
+- **Claim** (anchor): "even on the vendors that advertise dynamic circuits (IBM, Quantinuum), the supported subset of branches and real-time arithmetic varies by backend and service version"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -74,14 +74,14 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.3 — Quil-T pulse-level extension
 
-- **Claim** (anchor): "its **Quil-T** extension, which exposes pulse-level control as first-class syntax. A `DEFCAL` block specifies the waveform, frequency, and duration that implement a given logical gate on a given qubit"
+- **Claim** (anchor): "its **Quil-T** extension, which exposes pulse-level control as first-class syntax. A `DEFCAL` block binds a logical gate on specific qubits to the control instructions that implement it"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
 
 ## §23.3 — OpenQASM 3 defcal origin
 
-- **Claim** (anchor): "OpenQASM 3's `defcal` blocks are conceptually a port of this idea"
+- **Claim** (anchor): "OpenQASM 3's `defcal` blocks serve a similar role"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -132,14 +132,14 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.4 — PennyLane device-agnostic model
 
-- **Claim** (anchor): "PennyLane's distinguishing feature is its *device-agnostic* model: the same `qnode` runs on Xanadu photonic hardware, IBM superconducting backends (via a Qiskit plugin), IonQ trapped-ion backends, AWS Braket, or a local simulator"
+- **Claim** (anchor): "the same `QNode` can run against photonic, superconducting, and trapped-ion backends or a local simulator (via plugins) when its operations, measurements, and differentiation method fall in the target's supported subset"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
 
 ## §23.4 — PennyLane parameter-shift gradients
 
-- **Claim** (anchor): "the framework computes parameter-shift gradients that propagate through PyTorch or JAX"
+- **Claim** (anchor): "the framework computes gradients — parameter-shift where conditions permit, backpropagation or adjoint on simulators — that propagate through PyTorch or JAX"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -153,7 +153,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.4 — tket interoperability
 
-- **Claim** (anchor): "pytket parses circuits from Qiskit, Cirq, OpenQASM, Quil, and others, applies a uniformly excellent set of optimization passes, and emits circuits for almost any backend"
+- **Claim** (anchor): "pytket parses circuits from Qiskit, Cirq, OpenQASM, Quil, and others, applies a strong suite of optimization passes (quality is workload- and target-dependent, as with any compiler), and emits circuits for many backends through its extension packages"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -167,7 +167,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.4 — Q# 2024 rewrite
 
-- **Claim** (anchor): "The 2024 rewrite of Q# (the "Modern QDK") simplified the language considerably; it now compiles to QIR and uses LLVM-based backends"
+- **Claim** (anchor): "The 2024 rewrite of Q# (the "Modern QDK") substantially simplified the toolchain; the compiler — Microsoft's own implementation — emits QIR for the targets that consume it"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -213,7 +213,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.6 — Toffoli decomposition gate count
 
-- **Claim** (anchor): "A Toffoli, for example, decomposes into 6 CNOTs plus single-qubit gates on a superconducting target"
+- **Claim** (anchor): "A Toffoli, for example, costs 6 CNOTs plus single-qubit gates in the standard ancilla-free construction over CNOT + single-qubit gates"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -245,7 +245,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.6 — Gate timing budget on superconducting hardware
 
-- **Claim** (anchor): "on a device with $T_2 \approx 100~\mu s$ and gate times around 50 ns, the depth budget is roughly $2000$ gate slots"
+- **Claim** (anchor): "the serial budget is a few hundred to a couple of thousand gate durations — a crude scale, not a cliff"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -268,7 +268,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.7 — Routing NP-hardness
 
-- **Claim** (anchor): "It is NP-hard in the general case (it reduces to subgraph isomorphism plus a token-swapping problem)"
+- **Claim** (anchor): "It is NP-hard in general (initial placement resembles subgraph embedding; dynamic routing resembles token swapping)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -276,7 +276,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.7 — SABRE algorithm and Qiskit default
 
-- **Claim** (anchor): "SABRE (SWAP-based bidirectional heuristic routing). Iterates forward and backward through the circuit, picking SWAPs that bring the most upcoming two-qubit gates closer to executable. Default in Qiskit since 2020"
+- **Claim** (anchor): "The long-standing basis of Qiskit's default layout/routing passes; exact behavior depends on version and optimization level"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -284,7 +284,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.7 — LightSABRE algorithm role
 
-- **Claim** (anchor): "LightSABRE. A faster variant that gives up some optimality for considerably better scaling; default for large circuits"
+- **Claim** (anchor): "**LightSABRE**. A reengineered variant that substantially improves runtime — and, per its authors, solution quality as well"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -299,7 +299,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.8 — Gate durations on superconducting hardware
 
-- **Claim** (anchor): "A single-qubit gate is often 20–50 ns on a superconducting device; a CNOT is 200–500 ns; a measurement plus reset can be a microsecond or more"
+- **Claim** (anchor): "a native entangler (ECR, CZ, iSWAP — a CNOT is synthesized from these) is 200–500 ns; a measurement is of microsecond scale, with reset a separately timed step after it"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -315,7 +315,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.9 — Qiskit hardware-aware API
 
-- **Claim** (anchor): "Qiskit's transpiler at `optimization_level=3` does this by default; tket exposes it through `DefaultMappingPass(arc, ...)` with the device's coupling map and fidelity weights"
+- **Claim** (anchor): "Qiskit's higher optimization levels use noise-aware layout when target data is available, tket accepts device coupling maps and fidelity weights in its mapping passes"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -323,7 +323,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.10 — Dynamical decoupling Magnus expansion justification
 
-- **Claim** (anchor): "The pattern is structurally identical to NMR refocusing pulses (and has the same theoretical justification: a fast drive averages the slow noise away before it can accumulate — first-order cancellation in the perturbation series control theorists call the Magnus expansion)"
+- **Claim** (anchor): "The pattern is structurally identical to NMR refocusing pulses, and the first-order cancellation (a Magnus-expansion result) holds under the sequence's symmetry assumptions and reasonably ideal pulses"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -331,7 +331,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.10 — Qiskit PadDynamicalDecoupling and tket DD
 
-- **Claim** (anchor): "Both Qiskit (`PadDynamicalDecoupling`) and tket apply DD automatically at high optimization levels"
+- **Claim** (anchor): "Qiskit ships a `PadDynamicalDecoupling` pass and tket has DD support; neither is necessarily applied automatically at any optimization level"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -346,7 +346,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.10 — PEC in Qiskit Runtime
 
-- **Claim** (anchor): "Implemented in Qiskit Runtime's `Estimator` as the `pec` resilience level"
+- **Claim** (anchor): "Exposed through Qiskit Runtime Estimator resilience options (option names and levels change across Runtime versions)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -361,7 +361,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.11 — RSA-2048 resource estimate
 
-- **Claim** (anchor): "factoring a 2048-bit RSA key with surface-code-encoded Shor's algorithm under standard parameter assumptions ($p_{\mathrm{phys}} = 10^{-3}$, target $\epsilon = 10^{-2}$, magic-state-distillation overhead) requires roughly $2 \times 10^7$ physical qubits and several hours of runtime"
+- **Claim** (anchor): "factoring a 2048-bit RSA key with surface-code-encoded Shor's algorithm requires, in the widely cited Gidney–Ekerå-style scenario ($p_{\mathrm{phys}} = 10^{-3}$ and a specific cycle time, factory layout, connectivity, and failure budget — the scalar assumptions alone do not determine the answer), roughly $2 \times 10^7$ physical qubits and hours of runtime"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -369,7 +369,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.11 — Azure Quantum Resource Estimator
 
-- **Claim** (anchor): "Microsoft's Azure Quantum Resource Estimator is the most mature publicly-available tool: a Q# (or Qiskit) circuit goes in; a JSON breakdown of physical qubits, runtime, magic-state-factory layout, and surface-code parameters comes out"
+- **Claim** (anchor): "Microsoft's **Azure Quantum Resource Estimator** is the most widely used public tool: a Q# (or Qiskit) circuit goes in; a breakdown of physical qubits, runtime, magic-state-factory layout, and code parameters comes out"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -407,14 +407,14 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.12 — Tensor-network simulator tools
 
-- **Claim** (anchor): "Standard in `quimb`, `cuQuantum`'s `cuTensorNet`, and `cotengra` (the contraction-path search library)"
+- **Claim** (anchor): "Tooling: `quimb` (tensor-network simulation), `cuQuantum`'s `cuTensorNet` (GPU contraction library), and `cotengra` (contraction-path search) — building blocks more than turnkey simulators"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
 
 ## §23.12 — Google supremacy rebuttal by tensor-network simulation
 
-- **Claim** (anchor): "The 2019 Google "quantum supremacy" experiment was rebutted in part by tensor-network simulations"
+- **Claim** (anchor): "Tensor-network methods later cut the estimated classical cost of the 2019 Google "quantum supremacy" circuits by orders of magnitude — narrowing, though not erasing, the claimed separation"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -430,7 +430,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.12 — Density-matrix simulator memory cost
 
-- **Claim** (anchor): "Memory cost O(4^n) — twice the exponent of state-vector — so the qubit ceiling is roughly half: n = 15 comfortably, n = 20 with effort"
+- **Claim** (anchor): "Memory cost $O(4^n)$ — the state-vector exponent doubled — so the qubit ceiling is roughly half. Concretely, at double precision $n = 15$ is $\sim$16 GB (workstation territory) and $n = 20$ is $\sim$16 TB"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -445,7 +445,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.13 — Qiskit Session billing model
 
-- **Claim** (anchor): "Sessions are billed per reserved minute (whether or not the device is executing); one-shot submissions are billed per job and queued behind everyone else"
+- **Claim** (anchor): "Pricing models vary by provider and plan — some bill reserved or elapsed time, others per task or per shot — so the economics are not universal"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -460,7 +460,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.13 — Parameter-shift gradient formula
 
-- **Claim** (anchor): "the exact derivative is $f'(\theta) = \tfrac{1}{2}\bigl(f(\theta + \tfrac{\pi}{2}) - f(\theta - \tfrac{\pi}{2})\bigr)$. This is not a finite difference — it is exact, on hardware, for any single-qubit rotation generator of order two"
+- **Claim** (anchor): "This is not a finite difference — the identity is exact for gates of the standard rotation form $e^{-i\theta P/2}$ with $P^2 = I$"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -475,7 +475,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.14 — Qiskit endianness
 
-- **Claim** (anchor): "Qiskit is little-endian; the book convention is big-endian; this difference alone has eaten more debug time than any other single issue in the field"
+- **Claim** (anchor): "Endianness is the perennial suspect: Qiskit orders qubits little-endian, this book big-endian; in the author's experience no single issue has eaten more debug time"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -483,7 +483,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.14 — Tomography shot cost
 
-- **Claim** (anchor): "Tomography costs scale as $O(4^n)$ in shots, so this is practical for $n \leq 6$ or so"
+- **Claim** (anchor): "State tomography needs on the order of $4^n$ parameters' worth of measurement settings — process tomography $\sim 16^n$ — with shot counts on top set by the target precision"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -491,21 +491,21 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §23.15 — PennyLane ML framework integrations
 
-- **Claim** (anchor): "**PennyLane**'s `qml.qnode` integrates as a layer in PyTorch, JAX, and TensorFlow"
+- **Claim** (anchor): "**PennyLane**'s QNodes integrate with PyTorch, JAX, and TensorFlow interfaces"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
 
 ## §23.15 — TensorFlow Quantum architecture
 
-- **Claim** (anchor): "TensorFlow Quantum wraps Cirq circuits as TF layers, with the parameter-shift gradient implemented as a TensorFlow op"
+- **Claim** (anchor): "**TensorFlow Quantum** wraps Cirq circuits as TF layers with differentiator support (parameter-shift among the options)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
 
 ## §23.15 — Qiskit Machine Learning estimator types
 
-- **Claim** (anchor): "Qiskit Machine Learning** offers `EstimatorQNN` (expectation-value outputs) and `SamplerQNN` (probability-distribution outputs) as scikit-learn-compatible estimators and PyTorch modules"
+- **Claim** (anchor): "**Qiskit Machine Learning** offers `EstimatorQNN` (expectation-value outputs) and `SamplerQNN` (probability-distribution outputs); a `TorchConnector` wraps a QNN as a PyTorch module, and separate classifier/regressor classes provide the scikit-learn-style API"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

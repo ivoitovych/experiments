@@ -1549,3 +1549,145 @@ Lint, factcheck lint, and the build selftest pass.
 
 Twelve factcheck anchors requoted in the same commit; baseline (97)
 held. Lint, factcheck lint, and the build selftest pass.
+
+## Batch 28 — Chapter 23 (65 substitutions)
+
+New drop processed (ledger extended through Ch27; Ch28 in progress and
+untouched per the review-front rule).
+
+### FIXED — outright defects
+- QIR grouped with OpenQASM/Quil as a gate-level textual language — twice
+  reclassified as an LLVM-based compiler IR (opening tower and §23.1);
+  the scheduler no longer "emits the timed envelopes" (a separate,
+  often vendor-private pulse lowering does); "every working SDK" and the
+  layers/vendors-only difference claim scoped.
+- The invented "Quantinuum H-series pulse format" removed (§23.1 example
+  now Quil-T); §23.5's "Quantinuum allows pulse-level overrides for
+  specialist users" replaced with gate-level-only cloud access and the
+  research-lab/cloud distinction.
+- "Typical workflow emits OpenQASM 3 to ship to the backend"
+  contradicting the QPY/ISA note two paragraphs earlier — submission
+  formats now enumerated (OpenQASM text, QPY, Braket IR, vendor formats);
+  "chapters that follow" → sections.
+- OpenQASM "de facto IR / finalized 2021 / standard target as of 2026 /
+  ANTLR grammar / `qasm3` reference parser / round-trippable mappings /
+  IBM+IonQ endpoint acceptance / any-major-SDK serialization" — all
+  scoped: most widely used interchange language, evolving spec,
+  `openqasm3` tooling, partial importer/exporter coverage with named
+  loss classes, vendor-varying submission support, common-subset
+  round-tripping; §23.4's "every framework can serialize to and from
+  OpenQASM 3" false universal fixed to match.
+- Dynamic-control advice "assume branches work on IBM and Quantinuum" —
+  replaced with query-capabilities-everywhere.
+- Quil "flat list" simplification and Quil-T DEFCAL syntax (frames/
+  waveforms via DEFFRAME/DEFWAVEFORM) corrected; OpenQASM defcal
+  "conceptually a port" lineage claim softened to "serves a similar
+  role".
+- §23.5 "Above the assembly layer" position inversion — pulse
+  programming placed below the gate abstraction, with modality scoping
+  and override-not-bypass framing; RB/GST miscast as pulse-sweep
+  experiments → Rabi/DRAG/error-amplification tune-ups; the defcal
+  example no longer teaches an impossible IBM workflow (language
+  capability vs backend access made explicit); per-batch recalibration
+  universal softened.
+- Toffoli "decomposes into 6 CNOTs" fixed count — standard ancilla-free
+  construction with the variant/ancilla/connectivity caveats; ion native
+  set corrected to arbitrary-angle XX/ZZ-type entanglers.
+- Depth-budget "2000 gate slots then noise-dominated" — arithmetic
+  paired with the chapter's own two-qubit durations, cliff replaced by
+  continuous accrual with gate error dominating first.
+- Routing: index off-by-one (q_0…q_{n-1}, n ≤ m); "heuristics within a
+  few percent of optimal" removed (optimum usually unknowable; SAT/ILP
+  certify small instances); SABRE default claim version-scoped;
+  LightSABRE "gives up optimality" likely inversion corrected to
+  runtime-and-quality improvements folded into defaults.
+- Neutral-atom rearrangement "achieves effective all-to-all" — replaced
+  with reconfigurable-not-free (motion, heating/loss, radius, blockade);
+  photonic connectivity extended to fusion/feedforward architecture;
+  sanity check 3 rewritten off the same false premise (and its "SWAPs
+  free" framing).
+- Scheduling output "no longer a circuit... a timetable" and "a sequence
+  of pulses (or defcal-expanded OpenQASM)" — instruction program with
+  timing metadata and dt alignment; calibration binding and pulse
+  lowering split into later vendor-private steps.
+- "CNOT is 200–500 ns; measurement plus reset" — native-entangler
+  naming, measurement and reset separated.
+- Crosstalk idle slots called "dynamical decoupling time" — corrected
+  (DD is deliberate refocusing pulses, §21.11).
+- ALAP "minimizes idle exposure" rationale — corrected to
+  pushing idle before the first gate (benign in |0⟩), no makespan
+  change; ASAP re-motivated; production policies noted.
+- §23.9: vendor calibration exposure universal (twice — the "all of
+  which the vendor exposes" list and the closing "all major vendors")
+  scoped with what is commonly vs rarely exposed, API-version drift, and
+  compile-vs-execution staleness; "can easily double success" tied to
+  its independent-error model; decomposition choice co-optimized with
+  placement/routing.
+- §23.10: depolarizing product "captures most of the variance" — demoted
+  to first-order ranking heuristic with the convention-dependent
+  conversion; DD "fast drive averages noise away" + "applied
+  automatically at high optimization levels" — Magnus assumptions
+  stated, automatic application unclaimed, insertion cost noted; PEC
+  missing exponential sampling cost added and resilience-level API
+  hedged; mitigation "out of the user's hands" — reporting duty and the
+  semantics-preserving vs estimating distinction added.
+- §23.11: "almost always the surface code... floquet or color-code
+  variants for compass-coded estimates" — code menu corrected, compass
+  phrase removed; space-time arrow chain split into distinct knobs;
+  "Quantinuum's Resource Estimator (and older qsharp.estimator)"
+  misattribution removed (qsharp is Microsoft's package); PyZX/pytket
+  labeled logical counting, not estimators; RSA-2048 datapoint tied to
+  the Gidney–Ekerå-style scenario with the assumptions-insufficient
+  caveat and the more-than-one-order spread.
+- §23.12: tensor-network "no easier than state vector" bounded; tool
+  taxonomy fixed (libraries vs simulators); 2019 supremacy "rebutted" →
+  cost-reduction with the experiment standing; density-matrix "n = 20
+  with effort" → 16 TB at double precision (8 TB single) explicitly
+  supercomputer-scale; "classical-shadows-based simulators" category
+  error — reframed as measurement/estimation technique requiring a real
+  simulator to generate data classically (selection sentence updated).
+- §23.13: "hosting the optimizer next to the hardware" and "dominant
+  model" scoped; Session "reserved slot" → priority-with-timeouts;
+  pseudocode marked API-version-fluid with client-side classical_update;
+  PennyLane QNode and TFQ misdescribed as hosted asynchronous runtimes —
+  corrected; parameter-shift "any generator of order two" → e^{-iθP/2},
+  P²=I with shot-noise caveat; Sessions "billed per reserved minute...
+  faster and cheaper above a few jobs" — pricing variability and the
+  latency-only robust claim substituted.
+- §23.14: "three families" vs five units — "several families";
+  unobservable/destroys/do-not-exist absolutes softened;
+  `Statevector(circuit)` → `Statevector.from_instruction` + Aer save
+  states; tomography O(4^n)-shots conflation → settings vs shots, state
+  vs process (4^n vs 16^n); cross-platform diff made feasible
+  (compare compiled artifacts first) with localization bounded and the
+  debug-time superlative attributed as author experience; unit-test
+  superlative softened.
+- §23.15: QML "largest sustained user" → among the heaviest; PennyLane
+  compose/persist overclaims → TorchLayer wrapper and parameters-only
+  state_dict; TFQ "tighter than PennyLane" dropped; Qiskit ML QNNs
+  correctly split into QNN/TorchConnector/sklearn-style classes with
+  the speculative design-history clause removed; the classical-looking
+  training loop now carries the hidden-cost warning; sanity check 2
+  rebuilt on a non-trivial circuit with ISA/duration caveats.
+
+### ADJUDICATED
+- The ledger's British-spelling notes for this chapter ("flavoured",
+  "parameterised", "serialised") were made against the pre-migration
+  snapshot; the chapter is already American post-Batch-22. No action.
+- §8.10 (Gottesman–Knill) and §9.13 (optimization techniques) internal
+  references verified correct as written.
+
+### DEFERRED-FACTCHECK
+- All SDK/product/version claims: Qiskit 2.x release date and C API,
+  TFQ 0.7.5/0.7.6 dates and maintenance status, PennyLane plugin roster,
+  Braket vendor roster (AQT/OQC dates), Q# Modern QDK details, Ankaa/
+  Aspen status, Quil-T spec details, OpenQASM spec/grammar tooling,
+  transpile default-level change (Qiskit 1.3), SABRE/LightSABRE
+  papers and Qiskit integration, stim/PyMatching versions, mitiq/Runtime
+  mitigation options, Azure Resource Estimator I/O, distributed
+  state-vector n≈50 frontier, Morvan et al. details — queued for the
+  dated compatibility-matrix audit the ledger's improvement priority
+  requests.
+
+Thirty-two factcheck anchors requoted in the same commit; baseline (97)
+held. Lint, factcheck lint, and the build selftest pass.
