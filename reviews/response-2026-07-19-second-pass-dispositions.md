@@ -1403,3 +1403,149 @@ Lint, factcheck lint, and the build selftest pass.
 
 Eight factcheck anchors requoted in the same commit; baseline (97) held.
 Lint, factcheck lint, and the build selftest pass.
+
+## Batch 27 — Chapter 22 (55 substitutions)
+
+### FIXED — outright defects
+- Reading-guide roadmap off-by-one (XEB is §22.10, operational metrics
+  start §22.11) — both ranges corrected.
+- Physical-qubit count "well-defined per device... the number of
+  addressable channels in the control system" — both halves false across
+  modalities (dynamic loading, modes/time bins; multiplexing, global
+  beams, broadcast addressing); rewritten with the fabricated-vs-populated
+  distinction and the 1000/850 example de-universalized.
+- Surface-code logical arithmetic: "roughly 2d² for the data plus ancilla
+  overhead" double-counted — corrected to the rotated code's 2d²−1
+  including ancillas, with the d=5 patch count (49 qubits → ~20 isolated
+  patches) and the routing/factory/workspace deductions replacing the
+  unsupported "10–20 logical qubits".
+- Heavy-hex SWAP estimate "√127 × 3 ≈ 33 CNOTs" not graph-derived —
+  replaced with L−1 SWAPs at 3 CNOTs along real coupling-map paths (low
+  tens for far corners), diameter as Θ(√n), and the comparison baseline
+  (one native entangler) made explicit.
+- "Topology and usable-pair fraction coincide only when the coupling
+  graph is sparse" — sparsity is not the condition; every-nominal-edge-
+  above-threshold is.
+- Direct fidelity estimation "gives the full process matrix" — DFE
+  estimates fidelity to a known target without reconstruction; process
+  tomography reconstructs (SPAM-sensitively).
+- 0.999^1000 called "total circuit fidelity" — labeled the deliberately
+  naive independent-stochastic-error estimate it is.
+- Cross-vendor RB "comparable only to one part in a few thousand;
+  differences smaller are noise" — no universal threshold; systematic
+  protocol mismatch is not random noise; the demand-list (CIs, cohort,
+  protocol, simultaneity) substituted.
+- Hahn echo "only noise above 1/t contributes" — false sharp cutoff;
+  replaced with the filter-function picture (suppression, not exclusion;
+  Chapter 18 cross-reference); "refocuses any quasi-static dephasing"
+  bounded.
+- CPMG as "the closest proxy for intrinsic dephasing" — reframed as a
+  controlled-memory lifetime under stated pulse count/spacing; longest-
+  of-family hedged for pulse-error reversals.
+- Ion hyperfine T1 "effectively unbounded" — bounded by background-gas
+  collisions and trap loss; optical ~1 s made species/transition-
+  dependent.
+- "Default an unspecified T2 to echo" — advice inverted the chapter's own
+  discipline; now: treat as underspecified and ask for the protocol.
+- Circuit time "sum of (or DAG-scheduled maximum over) gate times" —
+  corrected to scheduled critical-path duration.
+- N_ops as "the honest single-number summary... number of two-qubit gates
+  that can fit" — renamed a coherence-to-gate-time ratio; explicitly not
+  a success count (gate infidelity/leakage bite first); depth cost
+  corrected to sum of scheduled layer durations; the reversed vendor-
+  flattery accusation fixed (fast per-gate time + silent parallelism).
+- Readout "symmetric (worst-case) error" terminology — assignment
+  fidelity vs worst-case assignment error, with the fidelity/error
+  direction warning.
+- Mitigation "post-multiplies by M⁻¹" — orientation corrected
+  (p_meas = M p_true, column vectors, apply M⁻¹ from the left) with the
+  negative-probability caveat; "correlations small on most devices" made
+  an assumption to check.
+- SPAM as "the single number to grab" setting an observability floor —
+  conflation named; RB estimates gate error below raw SPAM.
+- QV "saturates around d = 10–15" contradicting the chapter's own
+  2^19–2^25 records — replaced with the exponential-cost framing and the
+  §22.13 milestone pointer; §22.13's "IBM's QV history" heading (listing
+  Quantinuum records) renamed the QV milestone record and its
+  "metric saturating" close replaced; "triples their two-qubit fidelity"
+  → cuts error threefold; "some 10-qubit circuit works" → statistical
+  success on a specified ensemble; hardware-agnostic claim reconciled
+  with "slightly varying forms"; "lower bound" scoped to the ensemble.
+- CLOPS "wall-clock per (circuit, shot) pair" with compilation folded in
+  — replaced with executed-layers-over-elapsed-time and the protocol-
+  version timing boundary; CLOPS-as-feedback-latency-proxy severed
+  (throughput ≠ single-shot reaction time).
+- AQ sparse-device sublinearity presented as measured — labeled an
+  expectation (AQ chiefly reported by IonQ on its own stack); the 1/e
+  threshold hedged to the current specification with the benchmark-score
+  caveat; AQ≥N "probably runs to spec" bidirectional prediction —
+  demoted to triage evidence with both directions explicitly non-
+  predictive.
+- XEB "crucially factorizes as a product of per-gate fidelities" —
+  conditioned on the stochastic/independent/scrambled error model as a
+  consistency check; "above the classical-simulation crossover" —
+  attributed and made a moving boundary; "stops being computable beyond
+  50–70" contradiction with the 105-qubit campaign — resolved via
+  partial-verification methods (selected amplitudes, patch/elided
+  circuits, extrapolation) and the ask-what-was-verified instruction;
+  "per-gate fidelity sanity check" — whole-circuit ensemble statistic.
+- Measurement budget "latency to coherence ratio" — inverted and
+  reframed as a crude scale with the disturbance/idle/decay caveats; ion
+  latency parenthetical corrected (fluorescence; shelving/recooling
+  separately timed).
+- Feedforward metrics "the single most important set" + "vendors who do
+  not publish latency are de facto signaling no real-time feedforward" —
+  priority scoped, absence-inference replaced with verify-directly (both
+  here and §22.14 fourth step).
+- "Periodic dip right before the next calibration" — sawtooth demoted to
+  a hypothesis to check against time-binned data.
+- "Every vendor metric is the peak... typically 5%–30% worse" — the
+  universalization and the dimensionless invented range replaced with
+  the conditional-metric model and sustained-distribution ask.
+- QED-C "device reports the largest size at which the fidelity threshold
+  is met" — per-benchmark heterogeneity restored; "increasingly cited"
+  hedged.
+- Q-score "approximation ratio (typically β ≥ 0.2)" — normalized-score
+  threshold with the β/QAOA-angle collision flagged.
+- Mirror benchmarks "U†U" order/claim — run-then-compiled-inverse with
+  randomizing Pauli layers; coherent-error revelation hedged
+  (cancellation possible; randomized variants exist).
+- §22.14: "median F2q below the heavy-output threshold of your circuit
+  depth" (no such derivable threshold) → crude survival estimate
+  F_2q^N2q; the T2echo/t2q go/no-go rule → scheduled-critical-path
+  comparison with gate-error-first warning; "per-gate metrics always
+  tell the real story" → diagnose/integrate/decide hierarchy.
+- Sanity check 4 dimensional defect (CLOPS given shots/circuits, no
+  layers) — rewritten in terms of L layers with the timing-boundary and
+  missing-information questions.
+- Sanity check 5 "surface-code cycle = one measurement + one feedforward
+  correction" — reframed as a toy sequential loop with the two-direction
+  misrepresentation (missing gates/reset; Pauli-frame tracking and
+  soft deadline).
+
+### FIXED — epistemic scoping
+- IBM entry feedforward normalized to the §22.11 endpoint; Quantinuum
+  entry "still climbing" dropped, logical-operations claim pointed at
+  Appendix F, Helios successor split into an announced-generation note;
+  IonQ "production-grade" → vendor designation; IQM row rewritten as
+  product families with deployed-vs-announced split.
+
+### ADJUDICATED
+- The ledger's repeated "LaTeX defect: doubled backslashes" findings
+  (\\, \\{ \\} etc.) — intentional house escaping for the GitHub
+  renderer (documented in docs/github-markdown-math-bugs.md, enforced by
+  lint and the build selftest); not changed. One newly introduced bare
+  \, was caught by lint and corrected to the house form.
+
+### DEFERRED-FACTCHECK
+- Every dated record and vendor figure: single/two-qubit fidelity ranges
+  (§22.3), 2025-cohort coherence values, CLOPS 1500–5000/200,000 and the
+  Heron/Eagle attribution, QV milestone dates/devices, Morvan et al.
+  parameters and Willow XEB campaign details, AQ 25/36 and the QED-C/AQ
+  spec mapping, BACQ status, §22.13 per-vendor rows (Heron r2, Willow,
+  H2/Helios, Forte, IQM, Aquila), reset/measurement/feedforward latency
+  ranges — queued for the Appendix-F-driven machine-readable audit the
+  ledger's improvement priority requests.
+
+Twelve factcheck anchors requoted in the same commit; baseline (97)
+held. Lint, factcheck lint, and the build selftest pass.

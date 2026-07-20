@@ -5,7 +5,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §22.1 — Surface-code logical qubit physical overhead
 
-- **Claim** (anchor): "A single surface-code logical qubit at code distance $d$ uses roughly $2d^2$ physical qubits for the data plus ancilla overhead"
+- **Claim** (anchor): "A single rotated-surface-code logical qubit at code distance $d$ uses $2d^2 - 1$ physical qubits *including* the syndrome ancillas"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -41,14 +41,14 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §22.2 — Planar lattice diameter scaling
 
-- **Claim** (anchor): "On a planar lattice of $n$ qubits the diameter scales as $\sqrt{n}$"
+- **Claim** (anchor): "On a roughly square planar lattice of $n$ qubits the diameter scales as $\Theta(\sqrt{n})$"
 - **Method**: derivation
 - **Source**: → §22.2 (graph-theory result for planar grids)
 - **Verified**: — · **Verdict**: open
 
 ## §22.2 — Heavy-hex 127-qubit SWAP overhead
 
-- **Claim** (anchor): "routing a CNOT between the two most-distant qubits on a heavy-hex 127-qubit device costs roughly"
+- **Claim** (anchor): "on a heavy-hex 127-qubit device far-corner path lengths run in the low tens — so a worst-pair CNOT can cost a few dozen CNOTs of routing overhead"
 - **Method**: derivation
 - **Source**: → §22.2 (diameter estimate applied to heavy-hex 127-qubit layout)
 - **Verified**: — · **Verdict**: open
@@ -83,7 +83,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §22.3 — Circuit fidelity collapse after 1000 gates at 0.999
 
-- **Claim** (anchor): "even a $0.999$ fidelity per gate means total circuit fidelity collapses to $0.999^{1000} \approx 0.37$ after a thousand-gate circuit"
+- **Claim** (anchor): "even a $0.999$ fidelity per gate means a crude independent-stochastic-error estimate of whole-circuit survival collapses to $0.999^{1000} \approx 0.37$ after a thousand-gate circuit"
 - **Method**: derivation
 - **Source**: → §22.3 (product of independent per-gate error probabilities)
 - **Verified**: — · **Verdict**: open
@@ -118,7 +118,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §22.5 — Superconducting two-qubit gate times
 
-- **Claim** (anchor): "Two-qubit gates take $\sim 30$–$300\\,\mathrm{ns}$ on superconducting devices (depending on whether the native gate is CR, iSWAP, CZ, or fluxonium-based) and $\sim 30\\,\mu\mathrm{s}$–$1\\,\mathrm{ms}$ on ion traps"
+- **Claim** (anchor): "Two-qubit gates take $\sim 30$–$300\\,\mathrm{ns}$ on superconducting devices (depending on the native gate — CR, iSWAP, CZ — and the qubit modality; fluxonium-based implementations have their own gate schemes) and $\sim 30\\,\mu\mathrm{s}$–$1\\,\mathrm{ms}$ on ion traps"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -197,7 +197,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §22.9 — AQ pass threshold definition
 
-- **Claim** (anchor): "The convention is the QED-C suite at the \"high\" fidelity threshold (probability of correct answer above $1/e \approx 0.37$)"
+- **Claim** (anchor): "The convention is a QED-C-derived suite with a stated success threshold (commonly quoted as result fidelity above $1/e \approx 0.37$"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -218,7 +218,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §22.10 — XEB fidelity factorization property
 
-- **Claim** (anchor): "$F_{\mathrm{XEB}}$ factorizes across the circuit as a product of per-gate fidelities (in the limit of large random circuits)"
+- **Claim** (anchor): "$F_{\mathrm{XEB}}$ approximately factorizes as a product of per-gate fidelities"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -232,7 +232,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §22.10 — XEB classical simulation limit
 
-- **Claim** (anchor): "it requires *exponential* classical work to compute $p_{\mathrm{ideal}}$, so it stops being computable beyond $n \sim 50$–$70$ qubits"
+- **Claim** (anchor): "it requires *exponential* classical work to compute $p_{\mathrm{ideal}}$, so full direct verification runs out somewhere around $n \sim 50$–$70$ qubits with current methods"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -246,7 +246,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §22.11 — Ion-trap mid-circuit measurement latency
 
-- **Claim** (anchor): "On ion-trap devices it is $50$–$500\\,\mu\mathrm{s}$ (fluorescence collection plus shelving-state initialization)"
+- **Claim** (anchor): "On ion-trap devices it is $50$–$500\\,\mu\mathrm{s}$ (state-dependent fluorescence collection; any shelving/state-mapping and recooling steps add separately timed overhead)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -275,7 +275,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §22.12 — Operational vs published fidelity degradation
 
-- **Claim** (anchor): "The *operational* number — what a user code will see, averaged across a long-running job — is typically $5\%$–$30\%$ worse"
+- **Claim** (anchor): "a long-running job can see materially worse (or occasionally better) numbers than any single published snapshot"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -296,7 +296,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §22.13 — Q-score definition by Atos
 
-- **Claim** (anchor): "Q-score (Atos) is a measure of the largest MaxCut problem instance a device can solve at a fixed approximation ratio (typically"
+- **Claim** (anchor): "Q-score (Atos) is a measure of the largest MaxCut problem instance a device can solve above a fixed performance threshold on the specification's normalized score (commonly"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -338,7 +338,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §22.13 — IQM Crystal/Star vendor numbers
 
-- **Claim** (anchor): "IQM Crystal / Star** — superconducting devices targeting modular architectures, 20–150 qubit variants with $F_{2q} \approx 0.995$"
+- **Claim** (anchor): "IQM Crystal / Star** — superconducting product families spanning roughly 20–150 qubits across variants and roadmap items, with vendor-quoted two-qubit fidelities around $0.995$"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
