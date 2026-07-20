@@ -2136,3 +2136,105 @@ here than ordinary textbook imprecision.
 No factcheck anchors staled (the chapter's mirror has five anchors,
 none in edited spans); baseline (96) held. Lint, factcheck lint, and
 the build selftest pass.
+
+## Batch 33 — Chapter 28 (63 substitutions)
+
+New drop processed (ledger extended through the full manuscript plus
+support/archive passes in progress; archive/chapter0-drafts documents
+are a separate research stream per the author and are not touched).
+
+### FIXED — outright defects
+- Opening: Hilbert-dimension-as-hardness bounded (symmetry/entanglement/
+  sign-free tractability caveat); "only simulation has a clean
+  exponential case" uniqueness claim corrected (Shor acknowledged; the
+  demonstrably-inadequate claim demoted to per-problem).
+- Born–Oppenheimer "nuclei as classical point charges" — separation of
+  motion, clamped nuclei, nonadiabatic caveats; two-electron index
+  conventions flagged; parity mapping's "symmetric to JW under
+  particle–hole conjugation" replaced with the basis-transform fact and
+  the tapering benefit; BK "competitive around M = 20–30" crossover
+  de-universalized.
+- One-norm made a key (not the) cost driver with the QPE/VQE roles
+  split; factorization history predating 2018 restored; UCCSD "depth
+  O(M^4) per step" → gate-count-vs-depth; ADAPT single-operator and
+  "5–10×" claims bounded; VQE shot range 10^9–10^12 tied to scenario
+  analyses.
+- QPE "gold standard" → leading approach with alternatives; the query
+  formula hedged; the "*exponential* improvement in precision"
+  mislabel corrected to quadratic (O(1/ε) vs O(1/ε²)); "every credible
+  2026 roadmap" → many leading roadmaps.
+- FeMoco: "genuinely beyond the reach of classical methods" bounded;
+  54–76 orbitals disambiguated as spatial (~108–152 spin-orbital
+  qubits); bold numerals dropped; physical conversion tied to
+  architectural assumptions; "estimates are honest... have stabilized"
+  → explicit assumptions, comparative stability without guarantees;
+  DMRG "uncontrolled extrapolation" → estimable model errors; "QPE
+  would settle the disagreement" scoped to the chosen finite
+  Hamiltonian; 2035/2050 binary dropped.
+- §28.2: materials "lattice models rather than molecules" scope fixed;
+  Hubbard cuprate consensus and methods-disagree simplification
+  corrected (benchmark collaborations); Heisenberg strong-coupling
+  J ≈ 4t²/U stated and qubit-cost caveats added; t-J hopping term given
+  its missing h.c.; DFT density-vs-3N phrasing, band gaps moved from
+  strengths to known weaknesses, exact-in-principle vs approximate
+  functionals split, B3LYP/HSE roles noted; DMFT "solve exactly" and
+  "controlled approximation in finite dimensions" corrected;
+  Green's-function gloss fixed; impurity-solver "fits comfortably in
+  20–100 qubits... tolerates moderate noise" bounded.
+- §28.3: 10^20-determinant figure scoped; "one of the few candidate
+  paths to complete calculations" bounded; fermionic-Hubbard species
+  (Li/K) added; analog-measurement claim corrected (quantum-gas
+  microscopes); spin-liquid definition nuanced; "DMRG works only" →
+  restricted, with PEPS/VMC/ED contributing.
+- §28.4: "the realistic 2026 path" → a leading path; DMET Schmidt
+  bath-orbital vs Hilbert-dimension conflation fixed; "controlled
+  approximation" → exact-in-limits, practically successful; the
+  10–40-spin-orbital fragment's "20–80 qubits" doubling error →
+  10–40 qubits; retarded Green's function given +i0^+ and expectation
+  state; CASSCF misdescription fixed (orbital optimization; CASCI is
+  the frozen version) and the 50–100-orbital "sweet spot" converted to
+  spatial-orbital/qubit-count reality (fault-tolerant, not NISQ);
+  "what makes the resource estimates believable" → tractable qubit
+  counts with the embedding/measurement/iteration budget still owed.
+- §28.5: Trotter "one layer per term / depth O(rL)" → gate count vs
+  layer coloring; observable-robustness "chief result" → notable
+  observation, not a theorem, with cross-check duty; post-Trotter
+  complexity corrected to Θ(αt + log(1/ε)/loglog(1/ε)) matching §16,
+  "exponentially better" scoped to precision-parameter dependence,
+  ancilla-cheapness and universal-win claims bounded; "stochastic
+  unfolding" → unraveling; Lindbladian "apply QSVT" overreach →
+  dedicated constructions; NISQ/FT ranking marked unsettled; thermal
+  "apply uniformly... competitive when classical fails" corrected
+  (inherited hardness; scarce resource comparisons).
+- §28.6: Wick-rotation positivity wording fixed; early-universe/
+  finite-density conflation fixed; "sidesteps the sign problem"
+  given its replacement bill; Schwinger "directly implementable" and
+  "regimes where classical Monte Carlo cannot operate" bounded
+  (tensor networks reach small 1D real-time instances); SU(3)
+  10^7-qubit/10^20-T figures labeled assumption-laden placeholders.
+- §28.7: PDE pattern universality bounded; HHL "polylog measurements"
+  corrected to O(1/ε) amplitude estimation; Maxwell recast
+  conditioned; Carleman R defined informally; Gross–Pitaevskii
+  phrasing fixed (classical mean-field limit vs quantum many-body
+  target).
+- §28.8: DFT "5–10%" pseudo-accuracy replaced; "classical-quantum" QMC
+  label fixed; area-law-implies-cheap-contraction bounded; advantage
+  bullets de-absolutized (intrinsic → naturally suited; mathematically
+  clear → structural sampling obstruction; 10–20-year credibility →
+  scenario); $1M-cluster straw man removed; drug-discovery domain
+  corrected (force fields/docking/MD) and mid-2030s forecast
+  descheduled; closing "demonstrably inadequate" → strain hardest with
+  a moving baseline.
+- Sanity checks 1 and 3 given explicit orbital and accuracy
+  conventions.
+
+### DEFERRED-FACTCHECK
+- Reiher/Berry/Lee/von Burg/Beverland FeMoco figures, Haber–Bosch ~1%
+  statistic, nitrogenase stoichiometry, Martinez 2016 and successor LGT
+  experiments, DMET/DMFT demonstration papers, ultracold-atom species
+  and site counts, Carleman/Liu et al. details, Temme quantum
+  Metropolis, basis-set names — queued for the four-column evidence
+  grammar the ledger's improvement priority requests.
+
+Eleven factcheck anchors requoted in the same commit; baseline (96)
+held. Lint, factcheck lint, and the build selftest pass.

@@ -13,7 +13,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §28.1 — Born–Oppenheimer justification
 
-- **Claim** (anchor): "they are thousands of times heavier than electrons and move on a much slower timescale"
+- **Claim** (anchor): "the nuclei, thousands of times heavier than electrons, move on a much slower timescale"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -43,7 +43,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §28.1 — Bravyi–Kitaev crossover point
 
-- **Claim** (anchor): "the constant factors make it competitive with Jordan–Wigner already around"
+- **Claim** (anchor): "where the crossover against Jordan–Wigner falls depends on the Hamiltonian, hardware connectivity, and compiler"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -51,7 +51,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §28.1 — Tensor hypercontraction and double factorization
 
-- **Claim** (anchor): "Tensor hypercontraction and double factorization, classical pre-processing techniques developed since 2018"
+- **Claim** (anchor): "classical pre-processing techniques whose quantum-resource use matured after 2018, building on density-fitting and Cholesky ideas that long predate it"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -66,7 +66,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §28.1 — ADAPT-VQE circuit compression
 
-- **Claim** (anchor): "Achieves UCCSD-comparable accuracy with"
+- **Claim** (anchor): "Reported circuit reductions of severalfold relative to UCCSD are instance- and pool-dependent"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -74,7 +74,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §28.1 — VQE measurement cost
 
-- **Claim** (anchor): "shots for chemical accuracy on a 50-orbital active space"
+- **Claim** (anchor): "published scenario analyses put chemical accuracy on $\sim$50-orbital active spaces at $10^9$–$10^{12}$ shots"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -113,7 +113,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §28.1 — FeMoco active space size
 
-- **Claim** (anchor): "roughly 54 electrons in an active space of"
+- **Claim** (anchor): "roughly $54$ electrons in active spaces of $54$–$76$ *spatial* orbitals in the common benchmarks"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -145,7 +145,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §28.2 — Hubbard model cuprate connection
 
-- **Claim** (anchor): "widely believed to capture the essential physics of high-temperature cuprate superconductors"
+- **Claim** (anchor): "a leading candidate model for high-temperature cuprate superconductivity — how much of the essential physics it captures is itself debated"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -161,7 +161,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §28.2 — Quantum impurity solver qubit range
 
-- **Claim** (anchor): "The impurity site plus a finite truncation of the bath fits comfortably in"
+- **Claim** (anchor): "The impurity plus a finite bath truncation fits in tens of qubits *by count*"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -215,7 +215,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §28.5 — Post-Trotter optimal scaling
 
-- **Claim** (anchor): "gives the optimal"
+- **Claim** (anchor): "achieves the optimal $\Theta(\alpha t + \log(1/\epsilon)/\log\log(1/\epsilon))$ query scaling in the block-encoding model"
 - **Method**: derivation
 - **Source**: → §§16.5–16.7 (qubitization/QSVT-based simulation achieving Theta(t||H|| + log(1/epsilon)) complexity)
 - **Verified**: — · **Verdict**: open
@@ -238,7 +238,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §28.6 — SU(3) lattice QCD resource estimate
 
-- **Claim** (anchor): "Resource estimates for full"
+- **Claim** (anchor): "Early resource sketches for full $3+1$-dimensional $SU(3)$ lattice QCD on useful volumes run to enormous figures"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -246,7 +246,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §28.7 — Carleman linearization efficiency condition
 
-- **Claim** (anchor): "The algorithm is provably efficient only when the dissipativity parameter"
+- **Claim** (anchor): "The algorithm is provably efficient only in strongly dissipative regimes — when the papers' dissipativity parameter $R$, roughly the strength of the nonlinearity relative to the dissipation, is below $1$"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
