@@ -37,7 +37,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.1 — Pre-NISQ "few-qubit demos" era roughly 1998–2015
 
-- **Claim** (anchor): "the pre-NISQ "few-qubit demos" era (roughly 1998–2015, when the largest implementations were single-digit qubits)"
+- **Claim** (anchor): "the pre-NISQ "few-qubit demos" era (roughly 1998–2015, when most gate-model demonstrations ran on a handful of qubits — annealers and some special-purpose systems were larger, and counting conventions differ)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -77,7 +77,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.2 — Trapped-ion two-qubit fidelity 99.7–99.9%; gate times microseconds to milliseconds
 
-- **Claim** (anchor): "two-qubit fidelity around 99.7–99.9%. Gate times of microseconds to milliseconds (slower than superconducting by 3–4 orders of magnitude)."
+- **Claim** (anchor): "two-qubit fidelity around 99.7–99.9%. Gate times of microseconds to milliseconds — roughly one to four orders of magnitude slower than superconducting, depending on which gates are compared"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -101,7 +101,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.3 — Barren plateau gradient variance scales as $2^{-n}$
 
-- **Claim** (anchor): "the variance of the gradient of $\langle H \rangle$ with respect to ansatz parameters scales as $\mathrm{Var}(\partial_\theta) \sim 2^{-n}$"
+- **Claim** (anchor): "the gradient variance scales as $\mathrm{Var}(\partial_\theta) \sim 2^{-n}$"
 - **Method**: external
 - **Source**: TBD — needs verification (McClean et al. 2018, "Barren plateaus in quantum neural network training landscapes," Nature Communications, is the canonical reference)
 - **Verified**: — · **Verdict**: open
@@ -109,7 +109,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.3 — VQE hardware demonstrations up to ~50 spin-orbitals (2026)
 
-- **Claim** (anchor): "small-molecule chemistry up to roughly 50 spin-orbitals (per-electron basis functions — Chapter 28) with active-space reduction (restricting the problem to the chemically active orbitals)"
+- **Claim** (anchor): "small-molecule chemistry up to roughly 50 spin-orbitals (one-particle basis states, roughly one qubit each under the common encodings — Chapter 28) with active-space reduction"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -125,7 +125,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.3 — 2024–2025 VQE demonstrations on hundreds of qubits reproduced classically on a laptop
 
-- **Claim** (anchor): "The 2024–2025 literature includes several VQE demonstrations on hundreds of qubits, paired with classical-shadow or tensor-network reproductions of the same answer in less wall-clock time on a laptop."
+- **Claim** (anchor): "The 2024–2025 literature includes large many-qubit variational demonstrations paired, in several cases, with classical reproductions of the same observables by tensor-network and related methods"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -157,7 +157,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.4 — Jiuzhang: USTC, December 2020, 76 detected photons, claimed $\sim 10^{14}$ advantage
 
-- **Claim** (anchor): "A photonic Gaussian Boson Sampling experiment with 76 detected photons claimed an advantage of $\sim 10^{14}$ over classical."
+- **Claim** (anchor): "A photonic Gaussian Boson Sampling experiment with up to 76 detected photons claimed an advantage of $\sim 10^{14}$ over classical"
 - **Method**: external
 - **Source**: Zhong et al. (USTC), "Quantum computational advantage using photons," *Science* 370, 1460–1463 (2020) — TBD — needs DOI verification
 - **Verified**: — · **Verdict**: open
@@ -197,7 +197,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.5 — Algorithmic Qubits (AQ): IonQ metric; circuit suite includes QFT, Grover, VQE on H₂O
 
-- **Claim** (anchor): "IonQ's metric: the largest circuit width $n$ for which a suite of algorithmically meaningful circuits (QFT, Grover, VQE on $\mathrm{H}_2$O, etc.) succeed."
+- **Claim** (anchor): "the largest problem size $n$ at which a suite of algorithmically structured circuits (QED-C-derived — §22.9) passes its success threshold"
 - **Method**: external
 - **Source**: TBD — needs verification (IonQ technical documentation or published paper defining AQ)
 - **Verified**: — · **Verdict**: open
@@ -205,7 +205,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.5 — Physical qubit count grew ~1.5× per year, 2018–2026
 
-- **Claim** (anchor): "physical-qubit counts grew $\sim 1.5\times$ per year"
+- **Claim** (anchor): "physical-qubit counts have grown by tens of percent per year"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -213,7 +213,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.5 — Two-qubit fidelity improved from 99.0% to 99.5% superconducting, 99.9% trapped-ion, over 2018–2026
 
-- **Claim** (anchor): "two-qubit fidelity improved from 99.0% to 99.5% on superconducting and 99.9% on trapped-ion median devices over the eight-year window"
+- **Claim** (anchor): "two-qubit error rates have fallen severalfold on the leading platforms over 2018–2026"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -221,7 +221,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.5 — QV roughly doubled per year on IBM systems, then plateaued
 
-- **Claim** (anchor): "quantum volume roughly doubled per year on IBM systems, then plateaued as connectivity and crosstalk became the binding constraint"
+- **Claim** (anchor): "QV climbed steeply where it is still reported and stopped being reported elsewhere"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -229,7 +229,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.5 — Extrapolation to ~2030: ~$10^4$ physical qubits, two-qubit error ~$10^{-3}$
 
-- **Claim** (anchor): "Extrapolating these trends out to $\sim 2030$ suggests roughly $10^4$ physical qubits per system with two-qubit error around $10^{-3}$"
+- **Claim** (anchor): "*if* counts reach the $10^4$ scale with two-qubit error at the $10^{-3}$ level on one usable system around the turn of the decade, that is the regime where small distance-$d$ codes outperform their physical constituents"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -261,7 +261,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.6 — Quantinuum 2024–2025 below-threshold demonstrations on trapped-ion systems
 
-- **Claim** (anchor): "Quantinuum's 2024–2025 experiments on trapped-ion systems demonstrated similar distance-scaling on a different code family."
+- **Claim** (anchor): "Quantinuum's 2024–2025 trapped-ion experiments reported error-suppression scaling on a different code family"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -269,7 +269,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.6 — Distance-9 to distance-11 demonstrations in progress as of 2026
 
-- **Claim** (anchor): "distance-9 to distance-11 demonstrations in progress"
+- **Claim** (anchor): "larger-distance demonstrations are anticipated; announced plans are not demonstrations"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -277,7 +277,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.6 — Surface-code physical qubit overhead: $\sim 2d^2$ per logical qubit
 
-- **Claim** (anchor): "a surface-code logical qubit consumes $\sim 2 d^2$ physical qubit"
+- **Claim** (anchor): "a rotated surface-code logical qubit consumes $2 d^2 - 1$ physical qubits *including* its syndrome ancillas"
 - **Method**: derivation
 - **Source**: → §19 (Chapter 19, surface-code construction and qubit counting)
 - **Verified**: — · **Verdict**: open
@@ -285,7 +285,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.6 — Distance $d=7$ costs ~100 physical qubits per logical; $d=21$ costs ~1,000
 
-- **Claim** (anchor): "With $d=7$ and realistic ancilla overhead, that is around $100$ physical qubits per logical, growing to $\sim 1{,}000$ at $d=21$"
+- **Claim** (anchor): "At $d = 7$ that is about 100 physical qubits per logical patch; at $d = 21$, about 900"
 - **Method**: derivation
 - **Source**: → §19 (using $\sim 2d^2$ formula: $2\times7^2=98$; $2\times21^2=882$)
 - **Verified**: — · **Verdict**: open
@@ -293,7 +293,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.6 — Distance $d \approx 21$ needed for cryptographically relevant Shor instances
 
-- **Claim** (anchor): "growing to $\sim 1{,}000$ at $d=21$ — the distance needed for cryptographically relevant Shor instances (Chapter 27)"
+- **Claim** (anchor): "Cryptographically relevant Shor instances need a distance set by the full error budget and architecture, not one universal number"
 - **Method**: external
 - **Source**: TBD — needs verification (resource-estimation papers for Shor on RSA-2048, e.g., Gidney & Ekerå or similar)
 - **Verified**: — · **Verdict**: open
@@ -309,7 +309,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.6 — Resource estimate for Shor/chemistry: $10^9$ to $10^{12}$ $T$ gates
 
-- **Claim** (anchor): "Resource estimates for industrially relevant Shor or chemistry workloads suggest $10^9$ to $10^{12}$ $T$ gates"
+- **Claim** (anchor): "Resource estimates for demanding fault-tolerant workloads run from roughly $10^9$ $T$ gates upward — varying by orders of magnitude with the algorithm, precision, and construction"
 - **Method**: external
 - **Source**: TBD — needs verification (e.g., Gidney & Ekerå for Shor; Babbush et al. for chemistry — confirm exact citations)
 - **Verified**: — · **Verdict**: open
@@ -317,7 +317,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.6 — Projection: 10–100 logical qubits by ~2030 for "early-FT useful chemistry"
 
-- **Claim** (anchor): "By $\sim 2030$: $10$–$100$ logical qubits at modest distance, sufficient for small chemistry and algorithmic demonstrations beyond what NISQ can reach."
+- **Claim** (anchor): "One scenario for $\sim 2030$: tens of logical qubits at modest distance — enough for algorithmic demonstrations beyond NISQ reach"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -325,7 +325,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.6 — Projection: $10^3$–$10^4$ logical qubits by ~2035–2040 for RSA-2048 Shor
 
-- **Claim** (anchor): "By $\sim 2035$–$2040$: $10^3$–$10^4$ logical qubits at distances supporting algorithms with $\sim 10^9$ logical operations — the threshold for cryptographically relevant Shor on 2048-bit RSA"
+- **Claim** (anchor): "One scenario for $\sim 2035$–$2040$: thousands of logical qubits sustaining $\sim 10^9$ or more logical operations"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

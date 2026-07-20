@@ -1852,3 +1852,102 @@ Twenty-five factcheck anchors requoted in the same commit — 24 staled by
 this batch plus one pre-existing baseline stale repaired in passing, so
 the anchor baseline improves from 97 to 96. Lint, factcheck lint, and
 the build selftest pass.
+
+## Batch 30 — Chapter 25 (45 substitutions)
+
+### FIXED — outright defects
+- "The codes exist on paper" — QEC has theory plus small hardware
+  demonstrations; corrected. Reading-guide §25.3 title mismatch aligned.
+- The NISQ definition's noisy bullet duplicated the no-QEC bullet and
+  claimed fidelity "multiplied across depth" universally — deduplicated
+  and the compounding scoped to the stochastic model; the no-QEC
+  bullet's "every gate adds error linearly / depth bounded by 1/error"
+  bounded (coherent quadratic accumulation, width/idle/observable
+  modifiers); "millions of qubits" tied to surface-code forecasts.
+- Pre-2015 history "largest implementations were single-digit qubits" —
+  false; corrected with annealer/special-purpose caveat.
+- The ndε depth model packed n two-qubit gates into a layer (double the
+  possible n/2) and equated global fidelity e^{-1} with random output —
+  model corrected to ndε/2 (budget d~4, not 2), labeled a toy, and the
+  global-fidelity-vs-useful-signal distinction added; "best-in-class
+  ε = 5×10^-3" (contradicting Chapter 22's better records) reframed as a
+  representative working value; sanity check 1 updated to match.
+- Ion "3–4 orders slower" — one to four orders, gate-pair dependent.
+- Neutral-atom rearrangement "flattens routing cost" — trades SWAPs for
+  motion/loss/geometry (and §25.2's "dodge this cost" for ions/atoms →
+  different currencies); nearest-neighbor routing "O(n) SWAPs per
+  non-local gate" — corrected to O(√n) on 2D (O(n) is the 1D chain).
+- "The fidelity numbers above are median parameters" contradicting the
+  neutral-atom "reaching 99.5%" record — reframed as a flagged mix;
+  QV/CLOPS "fold degradations in" split (QV partially; CLOPS is
+  throughput).
+- Per-shot "millisecond-to-second" range — extended down to tens of
+  microseconds for batched superconducting execution.
+- Barren plateaus "almost everywhere" — scoped to near-random ansätze
+  with global costs, with the workarounds' caveats (HEA plateaus, UCC
+  depth, classical-solution initialization undercutting the quantum
+  case).
+- Parameter-shift step cost Θ(pS) — corrected to ~2pGS (two shifts,
+  measurement groups), totals and wall-clock revised (day to weeks);
+  sanity check 3 given explicit assumptions (answer now 1.2×10^9 shots,
+  ~14 days). §8.13 cross-reference verified valid (it states the rule).
+- QEC "detects and reverses errors" — encode/syndrome/decode; "four
+  techniques that matter most" → four prominent plus the rest of the
+  toolbox; ZNE exponential-form "more robust" claim and "handful of
+  variants" cost understatement fixed; PEC overhead formula e^{cdεn} →
+  quasi-probability-norm framing with characterization/drift cost, and
+  the "tens of two-qubit gates" universal cutoff removed; virtual
+  distillation mechanism corrected to purified-quantity estimation with
+  parallel-vs-sequential qubit cost, collective-circuit noise, and
+  coherent-error limits; "too high for ZNE" ordering dropped; per-shot
+  "few cents" pricing generalized.
+- "50 spin-orbitals (per-electron basis functions)" — one-particle
+  basis states ≈ one qubit each; laptop-reproduction claim reframed as
+  sourced matched-task comparisons for Appendix F; classical shadows no
+  longer cast as a reproduction simulator.
+- Sycamore follow-ups "hours and then minutes on commodity hardware" —
+  replaced with orders-of-magnitude reduction plus the matched-task
+  caveat; Jiuzhang "76 detected photons" → up to 76; "whose benchmarks
+  one trusts" → matched task/metric/resources; IBM utility paragraph's
+  book-invented definition of "utility" — separated from the authors'
+  own claim (gloss labeled as gloss); "largest computation ever run"
+  given a stated-metric qualifier.
+- Supremacy/advantage terminology — replaced with the literature's
+  quantum-computational-advantage vs practical-advantage framing,
+  best-*known*-classical qualifier, and "marketing angle" dropped.
+- §25.5: QV "largest n" score confusion fixed; "best published
+  2^19–2^20... metric has saturated" — contradiction with Chapter 22's
+  2^25 record resolved (record cited, saturation replaced with
+  verification-cost/metric-fit reasons); AQ suite list hedged to
+  QED-C-derived; logical metrics split into per-round/per-gate/
+  per-algorithm; the fitted trend lines (1.5×/year, fidelity arcs, QV
+  doubling-then-plateau) and the 2030 extrapolation — replaced with
+  labeled rough shapes, the no-curated-dataset admission, and a
+  milestone-not-date framing.
+- §25.6: "similar distance scaling" comparability bounded; "below
+  threshold established for several platforms" and "distance-9 to -11
+  in progress" — reported-with-definitions-pending plus
+  announcements-are-not-demonstrations; "2d² plus ancillas" double count
+  corrected to 2d²−1 including ancillas (with d=7→~100, d=21→~900,
+  d≈29→~1,700), and the d=21-suffices-for-Shor claim — which
+  contradicted sanity check 2's d=29 — removed in favor of the
+  budget-and-architecture framing; T-count "10^9–10^12 for industrially
+  relevant Shor or chemistry" → from ~10^9 upward, orders-of-magnitude
+  variation; the 2030/2035–40 projections relabeled as single scenarios
+  with wide error bars; the 2010/2020-vintage forecast retrospective
+  hedged as selective without a dataset; "essentially zero" industrial
+  cases → no widely accepted public demonstration; "multi-year
+  exercise" hedged; sanity checks 2 and 5 aligned to the 2d²−1
+  convention (check 5's "ignoring ancilla overhead" contradiction
+  removed).
+
+### DEFERRED-FACTCHECK
+- All platform parameter cards (counts, fidelities, coherence, Oxford
+  Ionics status), Preskill 2018 quotation scope, Sycamore/IBM-2.5-day/
+  Jiuzhang/IBM-utility experiment details and classical follow-ups,
+  Google/Quantinuum below-threshold experiment specifics, magic-state
+  distillation demonstrations, QED-C/AQ suite composition — queued for
+  the Appendix-F-driven audit.
+
+Nineteen factcheck anchors requoted in the same commit; baseline (96)
+held. Lint, factcheck lint, and the build selftest pass.
