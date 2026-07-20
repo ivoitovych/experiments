@@ -2394,7 +2394,8 @@ files vs fix batches:
 | Ch28, Ch29, Ch30 | 33, 34, 35 | done |
 | Ch31 | 36 | done |
 | Ch32 | 37 | done |
-| Ch33–Ch37 | — | pending (ledger complete) |
+| Ch33 | 38 | done |
+| Ch34–Ch37 | — | pending (ledger complete) |
 | Preface, Background, Notation | — | pending (ledger complete) |
 | Appendices A–F, Index | — | pending (ledger complete) |
 | SVG/support/archive passes | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
@@ -2500,3 +2501,46 @@ Driven by the ledger's highest-priority repair list.
 
 Two factcheck anchors requoted; baseline (96) held. All checks pass;
 diff reviewed before push.
+
+## Batch 38 — Chapter 33 (15 substitutions)
+
+Driven by the ledger's highest-priority repair list.
+
+### FIXED — outright defects
+- Computation/communication false dichotomy (sensing acknowledged);
+  satellite "cannot keep a quantum memory in orbit" motivation replaced
+  with the real constraints; BB84 attack story modernized
+  (intercept-resend as entry point, general-attack proofs carry
+  security); E91 "maximal violation" → sufficient violation with the
+  near-maximal self-testing limit; decoy-state "affects all intensities
+  equally" wording corrected to per-intensity yield/error bounding, and
+  "every deployed BB84 system" scoped to weak-coherent systems.
+- Repeater generations: BDCZ credited with the nested-repeater concept
+  (classification organized later); second-generation signaling
+  description fixed (adjacent-link two-way, not swap-only); third-
+  generation encodings disaggregated (parity/tree vs bosonic cat/GKP);
+  "memoryless" disambiguated (simultaneous-success swapping vs
+  all-photonic architectures) and DLCZ "all subsequent designs"
+  bounded.
+- Twin-field/MDI relay security rationale corrected (adversarial
+  announcements, heralding-only midpoint — not "tampering affects both
+  arms identically"); "only QKD protocol that beats PLOB" hedged;
+  "300 km threshold where BB84 collapses" → few-hundred-km fade, no
+  fixed threshold; satellite downlink wavelength de-universalized
+  (Micius ~800 nm) and Micius's trusted-relay role stated; the
+  four-layer stack reattributed to the Delft lineage rather than the
+  2018 Science paper alone; trusted-node "decrypt and re-encrypt"
+  corrected to key-material relay (matching §27.10); the
+  entanglement-instead-of-latency RPC analogy fixed (corrections still
+  pay classical latency).
+
+### DEFERRED-FACTCHECK
+- TF-QKD distance records (511/605/658/830/1000+ km) and groups,
+  Micius dates/stations/rates, satellite mission roster (SpeQtre,
+  QEYSSat, EAGLE-1, QUBE-II), commercial vendor list and rates,
+  network testbeds (Beijing–Shanghai, EuroQCI, Tokyo, US), Delft/NV
+  repeater milestones, simulator status, Muralidharan classification
+  details.
+
+No factcheck anchors staled; baseline (96) held. All checks pass; diff
+reviewed before push.
