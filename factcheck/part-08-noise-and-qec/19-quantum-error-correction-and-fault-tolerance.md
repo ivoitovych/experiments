@@ -67,7 +67,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §19.7 — CSS generalization: [[n, 2k−n, d]] from self-dual-containing classical code
 
-- **Claim** (anchor): "any classical $[n, k, d]$ code that contains its dual gives a quantum CSS code with parameters $[[n, 2k - n, d]]$"
+- **Claim** (anchor): "any classical $[n, k, d]$ code that contains its dual gives a quantum CSS code with parameters $[[n, 2k - n, d_Q]]$"
 - **Method**: derivation
 - **Source**: → §19.11 (CSS construction)
 - **Verified**: — · **Verdict**: open
@@ -87,7 +87,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §19.8 — Gottesman–Knill theorem: stabilizer circuits classically simulable in O(n²)
 
-- **Claim** (anchor): "stabilizer states (states in $C(S)$ for some $S$) plus Clifford gates plus computational-basis measurement can all be tracked in $O(n^2)$ time per operation by updating the generators of $S$ — they are classically simulable."
+- **Claim** (anchor): "stabilizer states (states in $C(S)$ for some $S$) plus Clifford gates plus computational-basis measurement can all be tracked in polynomial time by updating the generators of $S$ ($O(n^2)$ per operation is a safe bound for standard tableau updates) — they are classically simulable."
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -97,7 +97,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §19.8 — Surface code parameters [[d²+(d−1)², 1, d]]
 
-- **Claim** (anchor): "the surface code (§19.12) has $[[d^2 + (d-1)^2, 1, d]]$ for odd $d$"
+- **Claim** (anchor): "a standard unrotated planar surface-code patch (§19.12) has $[[d^2 + (d-1)^2, 1, d]]$ for odd $d$"
 - **Method**: derivation
 - **Source**: → §19.12 (surface code geometry)
 - **Verified**: — · **Verdict**: open
@@ -157,7 +157,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §19.12 — Surface code threshold approximately 1% under depolarizing noise
 
-- **Claim** (anchor): "designed to be implementable with nearest-neighbor interactions and to tolerate physical error rates around 1% — one to two orders of magnitude above what any other code family has achieved at comparable distance"
+- **Claim** (anchor): "designed to be implementable with nearest-neighbor interactions and to tolerate physical error rates around 1% under standard circuit-level depolarizing models with matched decoders — an unusually forgiving threshold, though thresholds are model- and decoder-dependent"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -267,7 +267,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §19.17 — Google result: first below-threshold demonstration with consistent scaling
 
-- **Claim** (anchor): "the first below-threshold demonstration with consistent scaling"
+- **Claim** (anchor): "extending the below-threshold scaling already reported at $d = 3/5$ in 2023"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -377,7 +377,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §19.21 — 15-to-1 distillation output error ~35p³ + O(p⁴)
 
-- **Claim** (anchor): "The output is one $|T\rangle$ state with logical error $\sim 35 p^3 + O(p^4)$."
+- **Claim** (anchor): "The output is one $|T\rangle$ state with logical error $\sim 35 p^3 + O(p^4)$ under independent, twirled input errors"
 - **Method**: derivation
 - **Source**: → §19.21 (stated as the result of the Steane-code error-detection post-selection in the protocol)
 - **Verified**: — · **Verdict**: open
@@ -397,7 +397,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §19.21 — T gate costs 50×–200× the cost of a logical Clifford gate
 
-- **Claim** (anchor): "**50× to 200× the cost of a logical Clifford gate**"
+- **Claim** (anchor): "of order **tens to hundreds of times the cost of a logical Clifford operation**"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

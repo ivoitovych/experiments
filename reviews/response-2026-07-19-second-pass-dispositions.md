@@ -1125,3 +1125,75 @@ go-ahead:
 Three factcheck anchors requoted (two needing tail alignment); baseline
 (97, respelled) restored. One self-introduced escaping violation caught by
 lint and fixed in-batch.
+
+## Batch 24 — Chapter 19 (29 substitutions)
+
+### FIXED — outright defects
+- 15-to-1 distillation attributed to "a Steane-code error-detection
+  circuit" — corrected to the punctured 15-qubit Reed–Muller/triorthogonal
+  code, with input-error assumptions and acceptance probability noted (the
+  ledger's "severe trust break" item).
+- Nonunitary (I+iZ)/2 presented as an error example — replaced with
+  e^{iεZ}.
+- HG=0 treated as sufficient for the codeword criterion — full-rank
+  conditions added.
+- "Transversal gates are exactly the Clifford operations that map
+  stabilizers to stabilizers" — replaced with the correct decoder-success
+  statement (degeneracy included) and transversality as a code-dependent
+  geometric property, neither all-of nor only-Clifford.
+- Recovery "the Pauli error commuting with a syndrome equivalence class"
+  — replaced with correction-times-error-is-a-stabilizer.
+- Logical operators N(S)\S without phase quotienting — mod-phases fixed
+  in both the definition and the distance.
+- Early bit-flip-code distance claim harmonized with §19.8's correct
+  full-quantum-distance-one statement.
+- CSS classical distance copied to quantum distance — d_Q ≥ classical,
+  not automatic equality (both in §19.7 and the parameters line).
+- Surface-code "~2d² including ancillas" undercount — corrected to ~2d²
+  data/~4d² total unrotated, d² data/2d²−1 total rotated.
+- "Every star and plaquette is four-body" implication and the vague
+  rotated-lattice description — bounded by the counting correction.
+- qLDPC "are CSS codes" — corrected to stabilizer codes with sparse
+  checks (celebrated constructions CSS); topological geometric locality
+  separated from abstract-graph sparsity.
+- Constant-rate qLDPC misread as O(1) cost per protected logical —
+  corrected to the amortized bulk-encoding statement with the Ω(d)
+  single-qubit floor.
+- Surface threshold "one to two orders above any other code family" —
+  leaderboard removed; model/decoder dependence and bias/erasure leaders
+  stated.
+- Google 2024 "first below-threshold demonstration" — priority corrected
+  (2023 d=3/5 result extended); three-point exponential trend hedged.
+- Willow memory experiment as "end-to-end demonstration of fault
+  tolerance" — corrected to below-threshold quantum-memory milestone with
+  the missing ingredients named.
+- Stim/PyMatching "fault-tolerant compilers" — reclassified as simulator
+  and decoder.
+- Lattice-surgery CNOT missing the ancilla patch and second joint parity
+  measurement — full three-outcome protocol stated; O(d)-round seam
+  measurement added to the merge; rough/smooth labeling flagged as
+  book-convention with the Horsman-opposite note (internal consistency
+  verified, so a convention note rather than a risky swap).
+- Sanity check 4's proof sketch — degeneracy hole closed (stabilizer
+  difference is harmless, logical difference contradicts distance).
+- "Three decoders dominate" followed by five — reframed as baselines plus
+  families.
+- T-gate "50×–200× a logical Clifford" — scenario-dependent order of
+  magnitude, not a universal ratio.
+
+### FIXED — epistemic scoping
+- Opening: polylog overhead tied to the threshold condition; "arbitrary
+  rotation of one amplitude" fixed; reading-guide section numbering,
+  "organize all known codes", and the topological-section category
+  corrected; classical "only error is a bit flip" scoped to the digital
+  abstraction; Gottesman–Knill runtime as a bound; "first scalable code"
+  marked roadmap hypothesis with vendor scope corrected.
+
+### DEFERRED-FACTCHECK
+- Willow numbers (105 qubits, Λ≈2.14, lifetime 2.4×), RSA-2048 resource
+  figures, magic-state cultivation 2024 attribution, Panteleev–Kalachev/
+  Leverrier–Zémor construction details, union-find complexity citation.
+
+Seven factcheck anchors requoted (one corrupted concatenation caught and
+repaired); baseline (97) held. One self-introduced escaping violation
+caught by lint and fixed in-batch.

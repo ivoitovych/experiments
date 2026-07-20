@@ -68,7 +68,7 @@ d52eb1f34ffb8b0633facb0c78d25291060d119d1222ec154851a285a8421516  book/part-06-a
 8b5f238d091c0bb560ff8a710d56a9a0d7825a3fd694d159f0fc20b994a3708c  book/part-06-algorithms/figures/qft-3qubit.svg
 5b490c480abf8c5e8ffef408b91a418724085f3fc931e0a488ea227777efab64  book/part-07-complexity/17-complexity-theory.md
 f5c33dd3be52d10b89d1c039465ab522ff8aa9ab0f02f501cd3cb9c953bc5a45  book/part-08-noise-and-qec/18-noise-decoherence-and-errors.md
-20bbadb2329e4f76f8750b3751a97cd97761125767a898c496b3acf971076d1b  book/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md
+d3cad94bb74a5c4ef3036944099c8f6634ccc506928fea5d0f6759b0c0ad9953  book/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md
 cb81c8a6d86a904f5ac5c8621e32349c51eae86f9f5e5841a01aeccf50bed1b0  book/part-08-noise-and-qec/figures/bit-flip-code.svg
 34f7673dd5a21dedd938ccad3d797db40b0beef92684ad15d25814edd2127c8b  book/part-08-noise-and-qec/figures/filter-functions.svg
 33383e4e51a73b2018e29e8ad7f494f46cc9a0ce42ccb9e104265d16c2fc3815  book/part-08-noise-and-qec/figures/lattice-surgery.svg
@@ -136,7 +136,7 @@ bdc5f3192dc25552744675da21649d94cd8f6b2167511e398b80b3565deb36f9  factcheck/part
 7006578e25664d85ea4517c2dfae2028c27aa9b084409b9f8cfbd4b182755beb  factcheck/part-06-algorithms/16-modern-algorithmic-frontier.md
 e360256c02ff98870aed7ea6e500ced0032a47d1809d6e19619a4fd9518580b4  factcheck/part-07-complexity/17-complexity-theory.md
 a949b475a7fefdf5f3bfe66367fc191bd5a79fc46221d0263e33fcb1e0af8422  factcheck/part-08-noise-and-qec/18-noise-decoherence-and-errors.md
-ced12865007cc3abc36c6b14015d65e3382f9db87be9a191be794ab311b881e1  factcheck/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md
+8cddffbc564fcf527ca9845299e58105e953e5b65bc5626bec59d071f647927a  factcheck/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md
 65a4ba9b390d914c45732502bea5bb32f099104f2ed79bea735a858024fbfdf4  factcheck/part-09-hardware-and-software/20-quantum-hardware-platforms.md
 cef4983733f7da771045397930782b4eada726faa7156dd0c34ff25d1c032f58  factcheck/part-09-hardware-and-software/21-quantum-control-and-electronics.md
 29fbc66faa5d18fe9f7f0aa34b0286294f134958d0522acac6b64f3fb89db12c  factcheck/part-09-hardware-and-software/22-hardware-engineering-metrics.md
@@ -171,7 +171,7 @@ d5e0cec3ec5e3dbb9ada626bf551502d12d81920e68fdac4c4e7a59ed6e08a7b  reviews/cold-r
 95cd5962ed6cf39a1b5f5e2f859bc5c2d03b78d3d435891c3fd6b11a012b6584  reviews/factcheck-2026-07-04-external-verification.md
 7efd03e5b38a37de192454db8bd8d6c6b31373f9fe112096e1b27a251e30932d  reviews/proposals-2026-07-05-remaining-programmes.md
 021f81c249aa7f0e13dd66470714f49c341955324e48399b78ed4b29c1269c22  reviews/recommendations-2026-07-04-deferred-items.md
-7f1a93853375b956cbef208276c171aa642f167d5aae166da569182d72c14ff8  reviews/response-2026-07-19-second-pass-dispositions.md
+65034539dbdeee24de75f47e5740730f0bee7cb584ce85eb8ab7b1fc3ebf2c9b  reviews/response-2026-07-19-second-pass-dispositions.md
 95adfcedf14090d851fc34190f8b43abb422e0f94462929e7d694e174aeaf9cf  reviews/review-2026-07-03-1843-comprehensive-book-review.md
 c40e68aadbc8bc1e5c8cce901091098f37c36adf60577d82b6c21fc07934689c  reviews/review-2026-07-19_01-20-35_CEST.md
 2bd131ed2944aee6d792838358a75ef9efbe42c09f5a5568347bd8aa4d1d840d  reviews/roadmap-2026-07-05-path-to-publication.md
