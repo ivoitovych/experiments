@@ -2400,7 +2400,8 @@ files vs fix batches:
 | Ch36 | 41 | done |
 | Ch37 | 42 | done |
 | Preface | 43 | done |
-| Background, Notation | — | pending (ledger complete) |
+| Background | 44 | done |
+| Notation | — | pending (ledger complete) |
 | Appendices A–F, Index | — | pending (ledger complete) |
 | SVG/support/archive passes | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
 
@@ -2747,3 +2748,41 @@ clearest of its editorial items where they overlapped correctness.
 One pre-existing baseline-stale anchor repaired while editing its
 passage (Qiskit display-order card); baseline updated 96 → 95. Lint
 and anchor checks pass; diff reviewed before push.
+
+## Batch 44 — Background and self-check (10 substitutions)
+
+Driven by the ledger's highest-priority correctness and consistency
+lists.
+
+### FIXED — outright defects
+- SC.4 heading reconciled with its own body text (information theory
+  explicitly unassumed → "(Basic Information Theory Optional)"; TOC
+  regenerated). Shannon entropy given its log base ($\log_2$, bits)
+  and the distributional-not-single-event intuition. SC.4.2: the
+  "99 percent accurate" phrase — contradicting the problem's own
+  sensitivity/specificity distinction — replaced with the correct
+  statement (99% of positives in this population are false
+  positives), and Bayes de-universalized from "every probabilistic
+  quantum subroutine" to many inference/postselection analyses.
+  SC.4.3: the bare "$N \sim 10^4$" answer made confidence-explicit
+  (1 SD → 2,500; 95% normal worst case → ~9,600, the source of the
+  round figure; Hoeffding 95% → ~18,400). SC.5: promise problems
+  and oracle complexity separated into two defined concepts with
+  the hidden-oracle-cost caveat, and prior familiarity dropped as a
+  requirement; the NP-misconception paragraph rewritten (prevailing
+  belief, per-algorithm accuracy for Shor/Grover/HHL, the open
+  question named as $\mathrm{NP} \subseteq \mathrm{BQP}$); SC.5.2's
+  answer changed from "False" to "Unknown — and widely believed
+  false" with the incomparability expectation marked unproven;
+  Sipser/Arora–Barak references pinned to edition/content with the
+  density caveat. SC.6: the matrix-exponential identity scoped to
+  constant $A$ and repositioned as a comfort level rather than a
+  prerequisite. SC.7: the "transfer almost without modification"
+  DSP claim split into what transfers (aliasing, time-frequency
+  trade) and what does not (windowing; no measurement access to the
+  transformed amplitude vector).
+
+One new anchor requoted (SC.5.2) and one pre-existing
+baseline-stale anchor repaired (GNFS regime card); baseline updated
+95 → 94. Lint, anchors, and TOC checks pass; diff reviewed before
+push.

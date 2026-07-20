@@ -271,7 +271,7 @@ $e^{\pm i\theta}$ are read off the diagonal.
 
 ---
 
-## SC.4 Required: Probability and Basic Information Theory
+## SC.4 Required: Probability (Basic Information Theory Optional)
 
 Quantum measurement is fundamentally probabilistic, and a working
 mental model of probability is non-negotiable. You should be at ease
@@ -301,9 +301,11 @@ with:
   density formulas memorized but should recognize each on sight.
 
 Basic information theory — Shannon entropy
-$H(p) = -\sum_i p_i \log p_i$ and the intuition that entropy measures
-uncertainty in bits — is useful and recurs in the book (channel
-capacity, Holevo bound, quantum source coding), but is not assumed.
+$H(p) = -\sum_i p_i \log_2 p_i$ (base-2 logarithm, so the unit is
+bits) and the intuition that entropy quantifies the uncertainty of
+a *distribution*, not the surprise of a single event — is useful
+and recurs in the book (channel capacity, Holevo bound, quantum
+source coding), but is not assumed.
 The book reintroduces it where needed.
 
 **Sample problem SC.4.1.** A biased coin shows heads with probability
@@ -321,11 +323,13 @@ positive. What is the probability they actually have the disease?
 
 *Answer.* By Bayes,
 $P(D \mid +) = \dfrac{0.99 \cdot 10^{-4}}{0.99 \cdot 10^{-4} + 0.01 \cdot (1 - 10^{-4})} \approx 0.0098$,
-or roughly $1$ percent. The famous base-rate problem: a $99$ percent
-accurate test on a rare condition is almost always wrong when it says
-positive. If this is unfamiliar, work through it slowly — the same
-inversion drives the analysis of every probabilistic quantum
-subroutine.
+or roughly $1$ percent. The famous base-rate problem: even with $99$ percent sensitivity
+and specificity — which do not combine into a single
+prevalence-independent "accuracy" — about $99$ percent of the
+positive results in this population are false positives. If this
+is unfamiliar, work through it slowly — the same inversion appears
+in many inference and postselection analyses of probabilistic
+quantum subroutines.
 
 **Sample problem SC.4.3.** You repeatedly sample a discrete
 distribution $p$ on $\\{0, 1\\}^n$ defined implicitly by a quantum
@@ -337,8 +341,12 @@ confidence?
 
 *Answer.* $\hat p_x$ is the sample mean of $N$ Bernoulli$(p_x)$
 trials, so its standard deviation is $\sqrt{p_x (1 - p_x) / N} \le
-1/(2\sqrt N)$. For $\pm 0.01$ accuracy you need roughly
-$N \sim 10^4$ shots. The $1/\sqrt{N}$ shot-noise scaling is why
+1/(2\sqrt N)$. "High confidence" has to be made precise before $N$
+is fixed: one standard deviation below $0.01$ needs $N \ge
+2{,}500$; a worst-case $95$ percent normal-approximation interval
+($1.96$ standard deviations) needs $N \approx 9{,}600$ — the source
+of the round "$N \sim 10^4$" figure; a distribution-free Hoeffding
+bound at $95$ percent needs $N \approx 18{,}400$. The $1/\sqrt{N}$ shot-noise scaling is why
 quantum-advantage algorithms that produce samples (rather than
 single answers with high probability) need careful statistical
 treatment.
@@ -373,16 +381,25 @@ results.
 - **The class BQP** (bounded-error quantum polynomial time) — this
   one the book defines from scratch in Chapter 17; recognition of the
   surrounding classical landscape is what helps.
-- **Promise problems and oracle (black-box) complexity.** Many
-  quantum speedups are stated in oracle models; familiarity with the
-  concept ("the algorithm is charged for each query to a function it
-  treats as a black box") avoids a recurring source of confusion.
+- **Promise problems and oracle (black-box) complexity** — two
+  distinct ideas, both introduced from scratch where the book
+  needs them. A *promise problem* restricts attention to inputs
+  satisfying a guarantee, with no requirement on the rest; *oracle
+  complexity* charges the algorithm per query to a function
+  treated as a black box — a cost model that can hide the expense
+  of implementing the function. Many quantum speedups are stated
+  in oracle models, so keeping the two concepts separate avoids a
+  recurring source of confusion.
 
-A common misconception worth flagging now: a quantum computer is
-**not** known or expected to solve NP-complete problems in polynomial
-time. The famous quantum speedups (Shor, Grover, HHL) attack
-different problems — factoring, unstructured search, certain linear
-systems — and the relationship between BQP and NP is itself open.
+A common misconception worth flagging now: no known quantum
+algorithm solves NP-complete problems in polynomial time, and the
+prevailing belief is that none exists. The famous quantum speedups
+attack different problems — Shor: factoring and discrete
+logarithms; Grover: a quadratic *query* improvement for
+unstructured search; HHL: estimating properties of solutions of
+certain linear systems under restrictive promises, not full
+solution output — and whether $\mathbf{NP} \subseteq \mathbf{BQP}$
+is itself open.
 
 **Sample problem SC.5.1.** Sort the following functions in order of
 asymptotic growth: $n^{100}$, $2^n$, $n \log n$, $\log n$, $n!$,
@@ -401,16 +418,19 @@ sieve.)
 **Sample problem SC.5.2.** True or false: if a problem is in NP, then
 a quantum computer can solve it in polynomial time.
 
-*Answer.* False (or at least: not known to be true, and widely
-believed false). $\mathbf{NP} \subseteq \mathbf{BQP}$ is open; no
-proof or disproof is known, but the consensus is that BQP and NP are
-incomparable.
+*Answer.* Unknown — and widely believed false; the true/false
+framing is itself the trap. $\mathbf{NP} \subseteq \mathbf{BQP}$ is
+open; no proof or disproof is known. Many complexity theorists
+expect BQP and NP to be incomparable — neither containing the
+other — but that expectation, too, is unproven.
 
-If complexity theory is entirely new, Sipser's *Introduction to the
-Theory of Computation* (Chapters 7–9) is the standard introduction.
-For a quantum-focused refresher of just the classical classes, the
-first chapter of Arora and Barak's *Computational Complexity* is more
-than enough.
+If complexity theory is entirely new, Sipser's *Introduction to
+the Theory of Computation* (3rd edition; the time-complexity and
+intractability chapters, numbered 7–9 there) is a standard
+introduction. For a refresher of just the classical classes on the
+way into quantum complexity, the first chapter of Arora and
+Barak's *Computational Complexity* covers the landscape — though
+it is denser going than Sipser for a complete newcomer.
 
 ---
 
@@ -428,10 +448,13 @@ assume any of them.
   implementations get specific. None of this is on the critical path
   for the algorithmic chapters.
 - **Differential equations and basic calculus.** Partial derivatives,
-  the chain rule, and the function $e^x$ at the level of comfort
-  with $\dfrac{d}{dt} e^{At} = A\\, e^{At}$ are useful background for
-  the matrix exponential (§4.7) and for time evolution under a
-  Hamiltonian (Chapter 5, Chapter 16). You should be able to compute
+  the chain rule, and the function $e^x$ are useful background for
+  the matrix exponential (§4.7, where matrix functions are
+  introduced) and for time evolution under a Hamiltonian
+  (Chapter 5, Chapter 16). The identity
+  $\dfrac{d}{dt} e^{At} = A\\, e^{At}$ — valid for *constant* $A$;
+  time-dependent generators are subtler — marks the comfort level
+  to aim for, not a prerequisite. You should be able to compute
   $\dfrac{\partial}{\partial \theta}(\cos\theta + i\sin\theta)$
   without a reference. You do **not** need to have solved a PDE.
 - **Group representation theory.** Background that makes the Pauli
@@ -482,9 +505,11 @@ sizable fraction of the book will feel familiar. The quantum Fourier
 transform (§4.13 and Chapter 14) is, structurally, an ordinary
 discrete Fourier transform applied to an amplitude vector; phase
 estimation (§14.6) is, structurally, frequency estimation of a
-single complex exponential. The intuitions transfer almost without
-modification: aliasing, windowing, the relationship between time
-resolution and frequency resolution.
+single complex exponential. Some intuitions transfer well: aliasing, and the trade between
+time resolution and frequency resolution. Others do not — windowing
+is not part of standard phase-estimation machinery (specialized
+variants aside), and the transformed amplitude vector is never
+directly readable by measurement.
 
 DSP is **not** a prerequisite. The book builds the Fourier machinery
 it needs in §4.13 and Chapter 14 from the linear-algebra foundations

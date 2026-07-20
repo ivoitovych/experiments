@@ -24,7 +24,7 @@ The original planned outline lives at
   - [SC.1 Required: Programming Proficiency](book/00-front-matter/01-background-and-self-check.md#sc1-required-programming-proficiency)
   - [SC.2 Required: Mathematical Maturity](book/00-front-matter/01-background-and-self-check.md#sc2-required-mathematical-maturity)
   - [SC.3 Required: Linear Algebra](book/00-front-matter/01-background-and-self-check.md#sc3-required-linear-algebra)
-  - [SC.4 Required: Probability and Basic Information Theory](book/00-front-matter/01-background-and-self-check.md#sc4-required-probability-and-basic-information-theory)
+  - [SC.4 Required: Probability (Basic Information Theory Optional)](book/00-front-matter/01-background-and-self-check.md#sc4-required-probability-basic-information-theory-optional)
   - [SC.5 Required: Complexity Basics](book/00-front-matter/01-background-and-self-check.md#sc5-required-complexity-basics)
   - [SC.6 Recommended but Not Required](book/00-front-matter/01-background-and-self-check.md#sc6-recommended-but-not-required)
   - [SC.7 Why DSP Helps](book/00-front-matter/01-background-and-self-check.md#sc7-why-dsp-helps)

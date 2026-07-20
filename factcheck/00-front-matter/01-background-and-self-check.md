@@ -16,7 +16,7 @@ algorithm's complexity regime, and the stated consensus on BQP vs NP.
 
 ## §1.5 — Sub-exponential regime of GNFS identified as best known classical factoring algorithm
 
-- **Claim** (anchor): "it is sub-exponential but super-polynomial, which is exactly the regime of the best known classical factoring algorithm (the general number field sieve)"
+- **Claim** (anchor): "it is sub-exponential but super-polynomial — the same broad regime as the best known classical factoring algorithms"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -24,7 +24,7 @@ algorithm's complexity regime, and the stated consensus on BQP vs NP.
 
 ## §1.5 — BQP vs NP relationship stated open and consensus incomparable
 
-- **Claim** (anchor): "the consensus is that BQP and NP are incomparable"
+- **Claim** (anchor): "Many complexity theorists expect BQP and NP to be incomparable — neither containing the other — but that expectation, too, is unproven"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
