@@ -2309,3 +2309,73 @@ held. Lint, factcheck lint, and the build selftest pass.
 
 Ten factcheck anchors requoted in the same commit; baseline (96) held.
 Lint, factcheck lint, and the build selftest pass.
+
+## Batch 35 — Chapter 30 (34 substitutions)
+
+### FIXED — outright defects
+- Category-2 "input is quantum" — reframed as quantum provenance with
+  usually-classical records, and "no classical short-cut" bounded (twice:
+  taxonomy and §30.3 opening — stabilizer/low-entanglement/surrogate
+  exceptions named; provenance does not prove classical hardness).
+- The four-cell taxonomy "lazy... QQ cell largely empty" dismissal —
+  three categories now overlay the grid; QQ populated (autoencoders,
+  coherent classification, channel learning, same-device workflows).
+- §30.2 textbook examples given their suppressed assumptions
+  (read-out limits, KP data structure, qPCA copy/rank/resolution, LS-SVM
+  formulation); the malformed QRAM map corrected to the standard query
+  with caller-supplied amplitudes and O(N) build cost; "unstable under
+  noise" and the ~2020 "consensus" hedged; Tang access model completed
+  (sample-and-query with preprocessing) and "artifact" reworded;
+  follow-up program scoped to classical-data regimes with the
+  heuristic-with-counterexamples framing; the surviving-Category-1
+  contradiction resolved (quantum-state inputs migrate to Category 2)
+  and burden-of-proof language made a labeled skeptic's heuristic.
+- Tomography Ω(4^n) "every Pauli must be estimated" false explanation
+  → parameter-counting rationale with metric/model dependence; classical
+  shadows O(log M) oversimplification → full shadow-norm/ε²/δ scaling
+  with the arbitrary-observable caveat and one-copy-per-sample note;
+  Heisenberg 1/t vs "classical 1/√t" → metrology resource comparison
+  (SQL), not quantum-vs-classical computation; learned-decoder advantage
+  conditioned (analytic decoders incorporate bias; drift/latency risks)
+  with the not-a-quantum-speedup note; property learning scoped to
+  measurement models and weaker questions; the "consistent pattern /
+  weak classical baselines / measurable wins" synthesis decomposed into
+  heterogeneous wins with mostly-classical learners.
+- §30.4 BQP/BPP-to-neural-network representation inference corrected
+  (efficient-computation separation ≠ neural-representation claim;
+  polynomial-size proviso); "demonstrably expressive" dropped;
+  barren-plateau theorem scoped to 2-design-like circuits with the
+  mean+variance concentration statement; the QCNN "only by encoding the
+  answer" dismissal — replaced with locality/pooling-based guarantees;
+  "generic models do not train" → no demonstration of scalable
+  trainability (small sizes train fine); nonunital fixed-point error
+  fixed (maximally mixed only for unital noise); no-advantage claim
+  dated, language-modeling implication removed, kernel-dequantization
+  category leak fixed, "adversarial replication" → independent.
+- §30.5 kernel "fixed depth so noise obstructions do not apply" —
+  plateau-free yes, noise-immune no (estimation error, PSD repair);
+  Hilbert-dimension-as-advantage corrected (RBF is infinite-
+  dimensional; hardness of evaluation is the source); Liu–Arunachalam–
+  Temme separation relabeled computational with the check-the-theorem
+  instruction (sanity check 4 aligned).
+- §30.6 QCNN pooling description hedged to variants; "provably avoid"
+  → stated-architecture guarantees; §30.7 SPSA mislabeled gradient-free
+  → stochastic gradient approximation; the 23-day calculation given its
+  serial/single-observable assumptions; §30.8 "constant-time
+  superposition" corrected (polylog; distinct oracles); the false
+  Shor-oracle explanation replaced (short classical input, computed
+  modular exponentiation, no data-access asymmetry) and HHL's distinct
+  reason separated; §30.9 "tools device teams use today" split by
+  maturity; "most of what one needs" → much.
+
+### DEFERRED-FACTCHECK
+- Tang/KP/LMR/RML paper details, Huang–Kueng–Preskill constants,
+  Huang–Tong–Fang–Su and Haah–Kothari–Tang statements, Cong–Choi–Lukin
+  QCNN architecture details, Liu–Arunachalam–Temme theorem metric,
+  Stokes et al. natural gradient, Cerezo reviews — queued.
+
+Twelve factcheck anchors requoted (one twice after an em-dash
+mismatch); baseline (96) held. Lint (which caught one bare norm escape
+and one British spelling in newly added text — both fixed), factcheck
+lint, and the build selftest pass. Full git diff reviewed before this
+commit per the author's request.

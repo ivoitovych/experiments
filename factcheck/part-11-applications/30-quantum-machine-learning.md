@@ -5,7 +5,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §30.2 — Kerenidis–Prakash 2016 quantum recommendation systems
 
-- **Claim** (anchor): "quantum recommendation systems (Kerenidis–Prakash 2016: produce a recommendation by sampling from a low-rank reconstruction of a preference matrix, using a quantum subroutine to access the matrix)"
+- **Claim** (anchor): "quantum recommendation systems (Kerenidis–Prakash 2016: sample a recommendation from a low-rank reconstruction of a preference matrix, using a quantum data structure to access it)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -13,7 +13,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §30.2 — Lloyd–Mohseni–Rebentrost 2014 quantum PCA
 
-- **Claim** (anchor): "quantum principal-component analysis (Lloyd–Mohseni–Rebentrost 2014: produce a quantum state encoding the top eigenvectors of a density matrix in polylogarithmic time)"
+- **Claim** (anchor): "quantum principal-component analysis (Lloyd–Mohseni–Rebentrost 2014: produce a quantum state encoding top eigenvectors in polylogarithmic time, under copy-access, rank, and eigenvalue-resolution assumptions)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -21,7 +21,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §30.2 — Rebentrost–Mohseni–Lloyd 2014 quantum SVM
 
-- **Claim** (anchor): "quantum support-vector machines (Rebentrost–Mohseni–Lloyd 2014: solve the SVM dual via HHL on the kernel matrix)"
+- **Claim** (anchor): "quantum support-vector machines (Rebentrost–Mohseni–Lloyd 2014: a least-squares SVM formulation solved via HHL, under kernel-matrix access and conditioning assumptions)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -29,7 +29,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §30.2 — No physical QRAM built; bucket-brigade architectures unstable
 
-- **Claim** (anchor): "No physical QRAM has been built. Several proposed architectures (bucket-brigade and variants) are unstable under noise; the question of whether QRAM is achievable at scale is genuinely open"
+- **Claim** (anchor): "No large-scale QRAM has been built. Proposed architectures (bucket-brigade and variants) face demanding fault-tolerance requirements under noise"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -37,7 +37,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §30.2 — Tang 2018 dequantization of recommendation systems
 
-- **Claim** (anchor): "Ewin Tang's 2018 work on the recommendation-systems problem showed that the Kerenidis–Prakash quantum algorithm could be dequantized: a classical algorithm, given an analogous classical access model (the ability to sample rows and entries of the matrix with probabilities proportional to squared magnitudes), runs in time polylogarithmic in"
+- **Claim** (anchor): "Ewin Tang's 2018 work on the **recommendation-systems problem** showed that the Kerenidis–Prakash quantum algorithm could be *dequantized*"
 - **Method**: external
 - **Source**: Tang, STOC 2019 (work circulated 2018)
 - **Verified**: — · **Verdict**: open
@@ -45,7 +45,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §30.2 — Scope of Tang-style dequantization by 2021
 
-- **Claim** (anchor): "By 2021, the Tang-style dequantization had been extended to quantum PCA, quantum SVMs, quantum linear regression in the low-rank regime, the Lloyd–Mohseni–Rebentrost density-matrix algorithms, and most other named Category-1 results"
+- **Claim** (anchor): "the Tang-style dequantization had been extended to quantum PCA, quantum SVMs, quantum linear regression in the low-rank regime, and other named Category-1 results *in their classical-data regimes*"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -53,7 +53,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §30.3 — Classical shadows: Huang–Kueng–Preskill 2020, O(log M) sample complexity
 
-- **Claim** (anchor): "The classical shadows framework of Huang–Kueng–Preskill (2020) shows that O(log M) shadow samples — each consisting of a randomized Clifford rotation followed by a computational-basis measurement — suffice to predict M arbitrary linear properties of the state to fixed accuracy"
+- **Claim** (anchor): "shows that a number of shadow samples scaling as $O(\max_i \\|O_i\\|_{\mathrm{shadow}}^2 \log(M/\delta) / \varepsilon^2)$ — logarithmic in the number of target observables $M$"
 - **Method**: external
 - **Source**: Huang, Kueng, Preskill (2020) — TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -69,7 +69,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §30.4 — Barren plateaus: McClean et al. 2018, exponentially vanishing gradient variance
 
-- **Claim** (anchor): "McClean–Boixo–Smelyanskiy–Babbush–Neven (2018) showed that for sufficiently expressive (Haar-random) parameterized circuits on n qubits, the gradient of the loss function with respect to any parameter has variance that decays exponentially in n"
+- **Claim** (anchor): "showed that for parameterized circuits random enough to approximate 2-designs, the gradient of a global cost with respect to any parameter has (near-)zero mean and variance decaying exponentially in $n$"
 - **Method**: external
 - **Source**: McClean, Boixo, Smelyanskiy, Babbush, Neven (2018) — TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -77,7 +77,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §30.4 — Barren plateaus extended to noise-induced concentration and structured architectures
 
-- **Claim** (anchor): "to circuits with noise-induced concentration (the noise itself flattens the landscape exponentially in depth), and to quantum convolutional and other"
+- **Claim** (anchor): "noise induces its own concentration (model-dependent, often exponential in depth)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -85,7 +85,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §30.5 — Liu–Arunachalam–Temme 2021 quantum kernel separation via discrete logarithms
 
-- **Claim** (anchor): "Liu–Arunachalam–Temme (2021): there is a learning problem — built around discrete logarithms in a carefully constructed group — for which a quantum kernel SVM achieves polynomial sample complexity and any classical learner under the same access model requires super-polynomial samples, assuming the classical hardness of discrete logarithm"
+- **Claim** (anchor): "there is a *learning problem* — built around discrete logarithms in a carefully constructed group — for which a quantum kernel method learns efficiently while every efficient classical learner fails"
 - **Method**: external
 - **Source**: Liu, Arunachalam, Temme (2021) — TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -101,7 +101,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §30.6 — QCNN provably avoids barren plateaus and detects topological order
 
-- **Claim** (anchor): "The structure is restrictive enough to provably avoid barren plateaus at moderate depths and has been shown to detect topological-phase order in 1D and 2D condensed-matter models"
+- **Claim** (anchor): "The structure is restrictive enough to carry trainability guarantees — absence-of-plateau results under stated architectures and cost functions and has been shown to detect topological-phase order"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -149,7 +149,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §30.8 — Shor's algorithm and discrete-log survive dequantization
 
-- **Claim** (anchor): "survive because their access model is to an oracle for f(x) = a^x bmod N, not to a classical dataset; there is no analogous classical sampling access"
+- **Claim** (anchor): "their input is a short classical description (the integer $N$, a group element), not a large dataset — the modular exponentiation is *computed*, not looked up"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
