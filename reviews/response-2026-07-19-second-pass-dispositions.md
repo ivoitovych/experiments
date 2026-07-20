@@ -2027,3 +2027,112 @@ held. Lint, factcheck lint, and the build selftest pass.
 
 Six factcheck anchors requoted in the same commit; baseline (96) held.
 Lint, factcheck lint, and the build selftest pass.
+
+## Batch 32 — Chapter 27 (53 substitutions)
+
+Security-guidance chapter: absolutes and volatile standards claims fixed
+with priority, per the ledger's warning that they are more consequential
+here than ordinary textbook imprecision.
+
+### FIXED — outright defects
+- "Shor breaks every widely deployed public-key primitive" (opening and
+  §27.1) — scoped to conventional pre-PQC factoring/DLP cryptography
+  with deployed-PQC exceptions; Grover "constant factor" → quadratic
+  query speedup / parameter pressure; NIST "standardized 2016–2024" and
+  "process ran from 2016 to 2024" → initial standards 2024,
+  standardization continuing; "production code" → shipping in
+  hybrid/optional modes; QKD "physical laws, not computational hardness"
+  → quantum mechanics plus device/protocol assumptions and an
+  authenticated channel (twice); DLP taxonomy split (finite-field, EC,
+  pairing).
+- ECC "roughly half the qubits and gate count of RSA-2048" — mismatched
+  classical levels flagged (ECC-256 vs RSA-3072), universal ratio
+  removed, logical-vs-physical clarified; Gidney 2025 "under the same
+  assumptions" — flagged as needing primary audit ("same assumptions it
+  is not"); "current resource bounds" → scenarios; ECDLP proportional
+  scaling removed; sanity check 2 rebuilt accordingly.
+- AES Category-1 internal inconsistency — Category 1 as an AES-128
+  quantum-attack benchmark reconciled with the ~2^83-Toffoli concrete
+  cost, "thin 64-bit margin" language corrected; "every modern library"
+  and "configuration change" hedged; superposition-query mode attacks
+  de-generalized (construction-specific, Q1/Q2 models named, exotic
+  settings acknowledged); "stop worrying about the symmetric layer" —
+  replaced with hygiene-preserving guidance (and §27.11's "do not
+  panic" likewise).
+- SHA-256 collision "security somewhere between" — incompatible cost
+  metrics named as such; hash-based signatures leaning on second
+  preimage "which is the easier of the two" — factual inversion fixed
+  (2^n vs 2^{n/2}; less degraded by quantum collision algorithms was
+  the intended sense); "ultra-paranoid" → higher-assurance with
+  category requirements.
+- "Four families survived two decades and entered NIST" — fates
+  differentiated; Kyber/Dilithium tagged with ML-KEM/ML-DSA names;
+  hash-signature "slow to sign and verify" balanced; SIDH/SIKE break
+  attribution corrected (Castryck–Decru plus independent/follow-up
+  lines), candidate stage fixed, "wounded" replaced; Falcon/FN-DSA and
+  HQC/FIPS 207 rows stripped of schedule predictions (check NIST);
+  additional-signature roster pointed at NIST's page; FIPS name
+  expansions corrected; hybrid "deployment norm... other still
+  protects" conditioned on robust combiners, both-must-verify, and
+  downgrade resistance (both occurrences).
+- HNDL: live-traffic false dichotomy fixed; "every byte... archived
+  forever" surveillance assertion → capability-and-assumption framing;
+  universal present-deadline → Mosca's-inequality risk basis with
+  long-lived/short-lived split; election-rolls example dropped;
+  "community broadly... most credible estimates" → survey-clustered
+  with disagreement and incentives; signature ephemerality
+  simplification — archived-binary forgery, roots of trust, and
+  timestamp chains restored, KEM-led-not-signatures-can-wait framing.
+- QKD: QBER "reflects only channel noise" → bounds-not-certifies;
+  privacy-amplification length → entropy accounting; intercept-resend
+  "50% information per bit" → full knowledge on half the sifted bits,
+  with the proofs-carry-the-general-case note; worked example's
+  "channel basis" clarified; E91 "saturate Tsirelson's bound" → 
+  sufficient violation (real devices never saturate), "the test detects
+  her" bounded by DI formalization, DI conditions stated; B92 exclusion
+  logic made explicit with the USD-in-spirit note; decoy-state "same
+  security as ideal single-photon at half the rate" and "every
+  commercial system" — both corrected; proof lineage no longer
+  transferred to E91/B92 by parenthesis; finite-key "several percentage
+  points lower" → parameter-dependent with detections-not-pulses note.
+- QKD security: "cannot be undone except QM being wrong" → proof-model
+  and assumption caveats; "every commercial QKD system has been broken"
+  → multiple implementations with demonstrated attacks, "broken"
+  disambiguated, countermeasures noted; "might as well skip QKD" false
+  conclusion → everlasting-confidentiality trust profile and
+  threat-model decision.
+- §27.10: rate/distance table → representative, Appendix-F-bound
+  figures; trusted nodes "decrypt and re-encrypt... all keys in
+  cleartext" → key-material relay mechanics with the regression scoped;
+  satellite trust nuance and the constellation cost analogy fixed;
+  twin-field "circumvents PLOB" → beats the point-to-point scaling, no
+  bound violated; "~300 km ceiling" removed; repeater distillation
+  universal and "probably another decade" fixed; QDS quantum-memory
+  universal and quantum-money "every concrete candidate" softened.
+- §27.11: "every channel... all cloud-storage encryption at rest" —
+  inventory-prioritized channels, with at-rest correctly separated into
+  the key-wrapping architecture; performance "entirely affordable" →
+  benchmark-on-your-stack; QKD "under 100 km" arbitrary threshold and
+  the mandate claim replaced with requirement-driven geometry; archive
+  advice "re-encrypt with PQC KEM" category error → KMS
+  rewrap/rotate under crypto-agility with the already-harvested hard
+  limit stated; "PQC is the universal solution" → broadly deployable.
+- Sanity checks 1 (shorthand), 2 (rebuilt), 4 (bound-vs-implementation
+  caveat), 5 (assumption + evidence-not-proof) repaired.
+
+### DEFERRED-FACTCHECK
+- All standards dates and rosters (NIST rounds, FIPS 203/204/205 dates,
+  IR 8545, FIPS 206/207 stages), deployment claims (OpenSSL 3.5,
+  Cloudflare/Google/Apple/AWS hybrids, PQ3, PQXDH, OpenSSH 9.9),
+  PQC parameter sizes/timings (ML-KEM-768, ML-DSA-65, SLH-DSA-128s
+  7,856 B, Falcon-512, mceliece6960119), Grassl/Jaques AES estimates,
+  Chailloux exponents, Roetteler/Häner ECDLP estimates, Gidney–Ekerå
+  and the reported 2025 refinement, QKD records and network claims
+  (Micius, twin-field 500/830/1000 km, Beijing–Shanghai, EuroQCI),
+  Lydersen 2010, decoy-state history — queued for the normative
+  migration table and dated appendix the ledger's improvement priority
+  requests.
+
+No factcheck anchors staled (the chapter's mirror has five anchors,
+none in edited spans); baseline (96) held. Lint, factcheck lint, and
+the build selftest pass.

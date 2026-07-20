@@ -80,7 +80,7 @@ a933956fc9f1364a346319d4c008230b8d7c88282d00e3caead33c7fd2683145  book/part-09-h
 93bb4675159795938cc5532d653ccacb5bfef5f7e8cf9eb875728a5cfcf79b72  book/part-09-hardware-and-software/24-classical-simulation-of-quantum-systems.md
 c1c6cd82b07f2e027ada2e632134d26bc0dcf43bfa2dd6d0634ef586cbf1aed7  book/part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md
 a72e7b7e228553c58e6f49f54807c3f4ae94cf0069d3ae5d3f6077fc879bbf34  book/part-10-practice-and-era/26-practical-access-and-hands-on-work.md
-3bd6a9e91ec23eeaad7d83612216986f4d25bbdd420b65a37d877225a54699d2  book/part-11-applications/27-cryptography-and-security.md
+e052d024bfe49286a1266bc443b811552b13c914ae69319ae60b98e225b6e3d9  book/part-11-applications/27-cryptography-and-security.md
 b443719f066cac4c706bfa3edbed02b18d31fa84444006fb06b0ba4f535c935c  book/part-11-applications/28-scientific-computing-and-physical-simulation.md
 e95fc8ecfc0d9bc0c8fa10fb8f3698bf20c3831b96e32ac2e529935f520d5ae2  book/part-11-applications/29-optimization-finance-and-industrial.md
 a835c70cf6ef88c081b88a6be030036d301a3cc99e05c668aa7705424d75f128  book/part-11-applications/30-quantum-machine-learning.md
@@ -171,7 +171,7 @@ d5e0cec3ec5e3dbb9ada626bf551502d12d81920e68fdac4c4e7a59ed6e08a7b  reviews/cold-r
 95cd5962ed6cf39a1b5f5e2f859bc5c2d03b78d3d435891c3fd6b11a012b6584  reviews/factcheck-2026-07-04-external-verification.md
 7efd03e5b38a37de192454db8bd8d6c6b31373f9fe112096e1b27a251e30932d  reviews/proposals-2026-07-05-remaining-programmes.md
 021f81c249aa7f0e13dd66470714f49c341955324e48399b78ed4b29c1269c22  reviews/recommendations-2026-07-04-deferred-items.md
-e34ae08a5628ba285aa4f25fb5b0629d11cc8e9f1a8116b37060a1f52ec6fa6b  reviews/response-2026-07-19-second-pass-dispositions.md
+9e489302625724708584d8149b6a0e44b910e36d3470dc0e24d7d8f3e4d1041d  reviews/response-2026-07-19-second-pass-dispositions.md
 95adfcedf14090d851fc34190f8b43abb422e0f94462929e7d694e174aeaf9cf  reviews/review-2026-07-03-1843-comprehensive-book-review.md
 790eed5493772fe55227db4c7aa88042482ab55d597a5c8041ac5a3b03d759e8  reviews/review-2026-07-19_01-20-35_CEST.md
 2bd131ed2944aee6d792838358a75ef9efbe42c09f5a5568347bd8aa4d1d840d  reviews/roadmap-2026-07-05-path-to-publication.md
