@@ -2402,7 +2402,8 @@ files vs fix batches:
 | Preface | 43 | done |
 | Background | 44 | done |
 | Notation | 45 | done |
-| Appendices A–F, Index | — | pending (ledger complete) |
+| Appendix A | 46 | done |
+| Appendices B–F, Index | — | pending (ledger complete) |
 | SVG/support/archive passes | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
 
 Working method from batch 36 on: fixes are driven by the ledger's own
@@ -2821,4 +2822,38 @@ lists.
   also be needed; per-function, not per-SDK).
 
 One factcheck anchor requoted; baseline (94) held. Lint and anchor
+checks pass; diff reviewed before push.
+
+## Batch 46 — Appendix A (14 substitutions)
+
+Driven by the ledger's highest-priority correctness list; the
+`QFTGate` sign claim was re-verified executably in this repo's
+pinned environment (Qiskit 2.4.1: positive-exponent DFT in Qiskit's
+own index convention) before rewording.
+
+### FIXED — outright defects
+- Outer product corrected to rank at most one. SVD given explicit
+  dimensions ($U$ $m{\times}m$, $V$ $n{\times}n$, $\Sigma$
+  rectangular-diagonal $m{\times}n$); condition number scoped to
+  invertible square matrices with the singular/$\infty$ and
+  pseudo-inverse (smallest-nonzero) conventions stated. Partial
+  trace scoped to the retained-vs-traced subsystems with the
+  density-operator caveat. The insert-a-SWAP-layer prescription
+  replaced with software reconciliation (wire order at
+  construction, output-array permutation, reindexing) — a physical
+  SWAP layer costs gates and noise. Rank-one Born rule reworded
+  (orthonormal basis, $P_i = |b_i\rangle\langle b_i|$; bases are
+  not "nondegenerate"). Wire-state language fixed: entangled wires
+  carry no per-wire state; the register owns the state. SWAP action
+  written in established ket notation ($|a\rangle|b\rangle$, no
+  comma-kets). `QFTGate` claim version-pinned and verified, with
+  the bit-ordering reconciliation condition and an executable-check
+  pointer replacing "current". Independence written with explicit
+  marginals and the orthogonality-glyph note; expectation/variance
+  written as $\mathbb{E}[g(X)]$/$\mathrm{Var}[g(X)]$ with the
+  complex-variance form — all now matching the repaired §N.6.
+  Shannon-entropy range conditioned on finite support; KL given its
+  zero-support conventions and the not-a-metric warning.
+
+No factcheck anchors staled; baseline (94) held. Lint and anchor
 checks pass; diff reviewed before push.

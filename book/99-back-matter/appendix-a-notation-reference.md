@@ -32,8 +32,9 @@ macros `\ket`, `\bra`, `\braket` are not used.
 - $\langle\phi|\psi\rangle$ — **inner product**, the scalar
   $\sum_i \overline{\phi_i}\\, \psi_i$. Conjugate-linear in the first
   argument; linear in the second ([§4.3](../part-02-formalism/04-mathematical-background.md#43-inner-products-norms-and-orthonormal-bases)).
-- $|\psi\rangle\langle\phi|$ — **outer product**, the rank-one matrix
-  with entries $\psi_i\\, \overline{\phi_j}$. Adjoint:
+- $|\psi\rangle\langle\phi|$ — **outer product**, a matrix of rank
+  at most one (exactly one when both vectors are nonzero), with
+  entries $\psi_i\\, \overline{\phi_j}$. Adjoint:
   $(|\psi\rangle\langle\phi|)^\dagger = |\phi\rangle\langle\psi|$.
 - $|\psi\rangle\langle\psi|$ — **rank-one projector** when
   $|\psi\rangle$ is normalized; equivalently the pure-state density
@@ -161,10 +162,15 @@ $$
 A = U\\, \Sigma\\, V^\dagger,
 $$
 
-with $U, V$ unitary and $\Sigma$ diagonal with entries
-$\sigma_1 \ge \sigma_2 \ge \cdots \ge 0$ — the **singular values** of $A$
+with $U \in \mathbb{C}^{m \times m}$ and $V \in \mathbb{C}^{n \times n}$
+unitary and $\Sigma$ an $m \times n$ rectangular-diagonal matrix
+with entries $\sigma_1 \ge \sigma_2 \ge \cdots \ge 0$ — the
+**singular values** of $A$
 ([§4.9](../part-02-formalism/04-mathematical-background.md#49-singular-values-and-the-singular-value-decomposition)).
-The condition number is $\kappa(A) = \sigma_{\max}/\sigma_{\min}$.
+The 2-norm condition number of an invertible square $A$ is
+$\kappa(A) = \sigma_{\max}/\sigma_{\min}$; for singular $A$ it is
+$\infty$ (pseudo-inverse conditioning divides by the smallest
+*nonzero* singular value instead).
 
 ## A.3 Tensor Product Notation
 
@@ -193,10 +199,13 @@ $$
 - $A^{\otimes n} = A \otimes A \otimes \cdots \otimes A$ ($n$ times) —
   $n$-fold tensor power. $H^{\otimes n}$ on $|0\rangle^{\otimes n}$
   produces the uniform superposition over $\\{0,1\\}^n$.
-- $\mathrm{tr}_W$ — **partial trace** over subsystem $W$. On a product
-  operator, $\mathrm{tr}_W(A \otimes B) = A\\, \mathrm{tr}(B)$; extended
-  linearly to general bipartite operators. Produces the **reduced
-  density matrix** of the remaining subsystem (Chapter 5).
+- $\mathrm{tr}_W$ — **partial trace** over subsystem $W$. On a
+  product operator with $A$ on the retained subsystem and $B$ on
+  $W$, $\mathrm{tr}_W(A \otimes B) = A\\, \mathrm{tr}(B)$; extended
+  linearly to general bipartite operators. Applied to a *density*
+  operator it produces the **reduced density matrix** of the
+  remaining subsystem (Chapter 5); on arbitrary operators it is
+  simply a linear map.
 
 Useful identities:
 
@@ -211,7 +220,10 @@ Useful identities:
 indices. To match this book's tensor-product order with a Qiskit
 statevector index without inserting any permutation, map the
 *leftmost* tensor factor to Qiskit's *highest-numbered* qubit label.
-Otherwise insert an explicit SWAP layer. The four distinct Qiskit
+Otherwise reconcile in software — reverse the wire order at circuit
+construction, permute the classical output array, or reindex —
+rather than paying for a physical SWAP layer, which adds gates and
+noise. The four distinct Qiskit
 ordering conventions (circuit-diagram order, integer-interpretation
 order, printed-string order, statevector-index order) and the rule of
 thumb for reconciling them are detailed in
@@ -239,9 +251,9 @@ Chapters 11–12.
 - $P_\lambda|\psi\rangle / \sqrt{\langle\psi|P_\lambda|\psi\rangle}$ —
   **post-measurement state** conditioned on outcome $\lambda$ having
   occurred (defined only when $p(\lambda) > 0$).
-- $p_i = |\langle b_i|\psi\rangle|^2$ — **rank-one Born rule** for
-  projective measurement in a nondegenerate orthonormal basis
-  $\\{|b_i\rangle\\}$. The post-measurement state is $|b_i\rangle$ up
+- $p_i = |\langle b_i|\psi\rangle|^2$ — **Born rule for a rank-one
+  projective measurement** in an orthonormal basis
+  $\\{|b_i\rangle\\}$, the case $P_i = |b_i\rangle\langle b_i|$. The post-measurement state is $|b_i\rangle$ up
   to global phase.
 - $\langle O\rangle_\psi = \langle\psi|O|\psi\rangle$ — **expectation
   value** of $O$ in the pure state $|\psi\rangle$.
@@ -275,9 +287,11 @@ throughout Parts III–VI of the book. This entry catalogs the symbols
 used in prose and inline math; the rendered diagrams themselves live
 as SVGs alongside the chapters that use them.
 
-- $|\psi\rangle$ on a **wire** — a qubit register carrying the state
-  $|\psi\rangle$ left-to-right in time. Time flows left to right in
-  every diagram in this book.
+- $|\psi\rangle$ on a **wire** — a label for the state of the
+  qubits that wire represents, read left-to-right in time. When
+  those qubits are entangled with other wires, the state belongs
+  to the whole register and no individual wire carries a state of
+  its own. Time flows left to right in every diagram in this book.
 - Single-qubit gates — boxed letters: $X$, $Y$, $Z$, $H$, $S$, $T$,
   $R_x(\theta)$, $R_y(\theta)$, $R_z(\theta)$, $P(\theta)$.
 - $R_n(\theta) = e^{-i\theta n \cdot \sigma / 2}$ — **single-qubit
@@ -298,7 +312,7 @@ as SVGs alongside the chapters that use them.
 - $\mathrm{C}U$ — **controlled-$U$**, gate $U$ applied to the target
   when control is $|1\rangle$. Generalizes to multi-controlled $\mathrm{C}^k U$.
 - $\mathrm{SWAP}$ — swap of two qubits;
-  $\mathrm{SWAP}|a, b\rangle = |b, a\rangle$.
+  $\mathrm{SWAP}\\, |a\rangle|b\rangle = |b\rangle|a\rangle$.
 - $\times$ on two wires connected by a vertical line — **SWAP** in
   diagrams.
 - Meter symbol on a wire — **measurement** in the computational basis.
@@ -315,8 +329,13 @@ F_N|j\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \omega^{-jk}\\, |k\rangle,
 \qquad \omega = e^{2\pi i / N}.
 $$
 
-Qiskit's current `QFTGate` implements the opposite, positive-exponent
-sign and therefore corresponds to the *inverse* of this book's $F_N$.
+Qiskit's `QFTGate` implements the opposite, positive-exponent sign
+(verified executably against Qiskit 2.4 in Qiskit's own qubit-index
+convention), and therefore — once the bit-ordering conventions of
+§4.8 are also reconciled — corresponds to the *inverse* of this
+book's $F_N$. API details are version-sensitive; recheck against
+your installed version with a small basis-state amplitude test in
+the style of `examples/qiskit_ordering_check.py`.
 
 - $U^\dagger$ as a circuit block — the **inverse** of a gate $U$.
   Drawn as $U$ with a dagger superscript or with the box labeled
@@ -334,18 +353,26 @@ extensions are flagged at their introductions.
 - $p(x)$ from a joint — **marginal**: $p(x) = \sum_y p(x, y)$.
 - $p(y \mid x) = p(x, y) / p(x)$ — **conditional**, defined when
   $p(x) > 0$.
-- $X \perp Y$ — **independence**: $p(x, y) = p(x)\\, p(y)$ for all
-  $x, y$.
-- $\mathbb{E}[g] = \sum_i p(x_i)\\, g(x_i)$ — **expectation** of a
-  real-valued function $g$.
-- $\mathrm{Var}[g] = \mathbb{E}[g^2] - \mathbb{E}[g]^2$ — **variance**.
+- $X \perp Y$ — **independence**:
+  $p_{X,Y}(x, y) = p_X(x)\\, p_Y(y)$ for all $x, y$. (Same glyph as
+  quantum-state orthogonality; argument types disambiguate.)
+- $\mathbb{E}[g(X)] = \sum_i p(x_i)\\, g(x_i)$ — **expectation** of
+  a real-valued function $g$ of $X$.
+- $\mathrm{Var}[g(X)] = \mathbb{E}[g(X)^2] - \mathbb{E}[g(X)]^2$ —
+  **variance** (real-valued $g$; complex quantities use
+  $\mathbb{E}|g(X) - \mathbb{E}[g(X)]|^2$).
 - $H(p) = -\sum_i p(x_i) \log_2 p(x_i)$ — **Shannon entropy**, in
-  bits. Convention: $0 \log 0 = 0$. Range: $0 \le H(p) \le \log_2 n$.
+  bits. Convention: $0 \log 0 = 0$. Range: $0 \le H(p) \le \log_2 n$
+  for a distribution supported on at most $n$ outcomes (countably
+  infinite distributions need not be bounded).
 - $H(X, Y)$ — **joint entropy** of $(X, Y)$.
 - $H(X \mid Y) = H(X, Y) - H(Y)$ — **conditional entropy**.
 - $I(X; Y) = H(X) + H(Y) - H(X, Y)$ — **mutual information**.
 - $D_{\mathrm{KL}}(p \\| q) = \sum_x p(x) \log_2 \dfrac{p(x)}{q(x)}$ —
   **Kullback–Leibler divergence** (relative entropy), in bits.
+  Conventions: terms with $p(x) = 0$ contribute $0$; if $p(x) > 0$
+  while $q(x) = 0$, the divergence is $+\infty$. Nonnegative but
+  not a metric — asymmetric, no triangle inequality.
 - $S(\rho) = -\mathrm{tr}(\rho \log_2 \rho)$ — **von Neumann entropy**
   of a density matrix $\rho$, in bits. For a pure state $S = 0$.
   (Chapter 5; previewed in
