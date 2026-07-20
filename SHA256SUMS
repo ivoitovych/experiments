@@ -10,7 +10,7 @@ a8f1cc1d394f12163161f717347dcc33aed9275b498954fe8cab490268541fa6  INSTRUCTIONS.m
 9e8703231ae6e616527c7a9d1372f31f40768fb4b11f6b4b810d6c049308f66c  PROGRESS.md
 9c9cb02b114b2545d997ef4cbc7adc2c77724f5aa6915d130c17ff59c0c95778  README.md
 c8b98d88d9c576ea316f3453353358ef12b3d2df40c24fe116c5dc24dcc6c7e7  STYLE.md
-b4c6758b5aed02b80f6da6821cd6960531467183c9848713b1cd643d5f37e1a9  TOC.md
+bb1e970d95ff1d9fc6f66055ff9ac632426cd0e0b346cc08b2ab93b291851b1f  TOC.md
 f3646215bc619dcde25147d77bcf08c3e02ebc23f831a161f79bea274c91c26b  archive/README.md
 a49698c041ff871b703ac6633e3c60284514ab6df4d0639d8c07a86ae452a383  archive/chapter0-drafts/chapter0_attempt1.md
 cafd71fe97b73dd4a91faa05b2060f5b9cf6531ef23f1ecc2fcdc0e262f9746e  archive/chapter0-drafts/chapter0_attempt2.md
@@ -88,7 +88,7 @@ f969292b30b2f3e4e0e42aa1ea0d109bd965d97ec8468a21c71fc63902180891  book/part-11-a
 9641b5b43e8c1f305415f7b83602cbbd497611032cddc59a29f7ccd584611cc2  book/part-12-adjacent-models/32-adjacent-computational-models.md
 c5cb4f8ba2a010ace43be6f5bafdd94bb84a10ad3f529db9fb15800da9e80cfe  book/part-12-adjacent-models/33-quantum-communication-and-networking.md
 c241cfb007ffddc52493406d46474d61f0ad86bfccaea687d796abade8559ad1  book/part-12-adjacent-models/figures/repeater-chain.svg
-08796e2e44557f128b02aa8a3860bb9b457c1649d571831c1d0f46a134a34133  book/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md
+293b56933b289e00fda9fbff55ed44c988164a50aa8d0a183c5264641ffd1911  book/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md
 09dc765dacf4f7575db42858ce7174affe60f3a0c25f90b02feabaaef125985f  book/part-13-perspective-and-direction/35-interpretational-and-conceptual-pitfalls.md
 0e0ca570033c00b1bfe950afeff9412cd405f01687fb360359e58942f4599d4f  book/part-13-perspective-and-direction/36-how-to-judge-claims.md
 37ca78263cf25958e95885a9a2ac22445669b6c43a02c976c87a9c24cc69c530  book/part-13-perspective-and-direction/37-endgame.md
@@ -151,7 +151,7 @@ d192f93cebfdb94a9b616562ca85a9e32301952a3026a0f540aa2b9602e4b97d  factcheck/part
 789f02ecb9a2d68bb59140122321d18ce85dd1861ccecb89cab02b5441f5088e  factcheck/part-11-applications/31-quantum-sensing-metrology-and-tomography.md
 e6e4775b25365301af4c38efde0e472da7da8afa158a955a4b407636d1482b5e  factcheck/part-12-adjacent-models/32-adjacent-computational-models.md
 500ca08e5bda7ed2d6d44aafc4e0011b99497af46c360161258ea6c2f178bc64  factcheck/part-12-adjacent-models/33-quantum-communication-and-networking.md
-f95a9fcd8958cbe7fa5674933aa94daf6f3859e61167c40f558781ae2ef6bade  factcheck/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md
+95af09031ef3ecba3aa30115cbc962f841dce28ef0ab4104d565c1be6de0368e  factcheck/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md
 264c8aca31147ddf9b5b06c34b19a34f3097c52022eb57dd988ffb463d3e9f69  factcheck/part-13-perspective-and-direction/35-interpretational-and-conceptual-pitfalls.md
 dee8a56cc0388b9ec24a8b6e36fb6856746b6e7c8dea1a3a981fec7db3ddce64  factcheck/part-13-perspective-and-direction/36-how-to-judge-claims.md
 6e8f32192d8ce157b17cb5c2d77d7655bfefd416648fbf1bdf8bdc25c4ae105a  factcheck/part-13-perspective-and-direction/37-endgame.md
@@ -171,7 +171,7 @@ d5e0cec3ec5e3dbb9ada626bf551502d12d81920e68fdac4c4e7a59ed6e08a7b  reviews/cold-r
 95cd5962ed6cf39a1b5f5e2f859bc5c2d03b78d3d435891c3fd6b11a012b6584  reviews/factcheck-2026-07-04-external-verification.md
 7efd03e5b38a37de192454db8bd8d6c6b31373f9fe112096e1b27a251e30932d  reviews/proposals-2026-07-05-remaining-programmes.md
 021f81c249aa7f0e13dd66470714f49c341955324e48399b78ed4b29c1269c22  reviews/recommendations-2026-07-04-deferred-items.md
-232593c2e8afb6a3402ac43b90e8af88a91c265244d5c36fc08755289ca098bf  reviews/response-2026-07-19-second-pass-dispositions.md
+8b597eaa57e2ba8a7a9fe649dceea51d0a0ff2d1b70c8eacffe2e580acfc3c14  reviews/response-2026-07-19-second-pass-dispositions.md
 95adfcedf14090d851fc34190f8b43abb422e0f94462929e7d694e174aeaf9cf  reviews/review-2026-07-03-1843-comprehensive-book-review.md
 af0bf67bf1c6da7759a7b5375dedd1be242209e280f94ff307999c18bde95c94  reviews/review-2026-07-19_01-20-35_CEST.md
 2bd131ed2944aee6d792838358a75ef9efbe42c09f5a5568347bd8aa4d1d840d  reviews/roadmap-2026-07-05-path-to-publication.md

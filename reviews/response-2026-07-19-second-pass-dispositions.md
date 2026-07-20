@@ -2395,7 +2395,8 @@ files vs fix batches:
 | Ch31 | 36 | done |
 | Ch32 | 37 | done |
 | Ch33 | 38 | done |
-| Ch34–Ch37 | — | pending (ledger complete) |
+| Ch34 | 39 | done |
+| Ch35–Ch37 | — | pending (ledger complete) |
 | Preface, Background, Notation | — | pending (ledger complete) |
 | Appendices A–F, Index | — | pending (ledger complete) |
 | SVG/support/archive passes | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
@@ -2544,3 +2545,35 @@ Driven by the ledger's highest-priority repair list.
 
 No factcheck anchors staled; baseline (96) held. All checks pass; diff
 reviewed before push.
+
+## Batch 39 — Chapter 34 (18 substitutions)
+
+Driven by the ledger's highest-priority repair list.
+
+### FIXED — outright defects
+- Postulate linearity scoped to evolution (measurement as its own
+  postulate); the quantum-computer-pays-O(1) implication bounded
+  (per-native-gate cost; arbitrary unitaries still cost exponentially
+  many gates); the bandpass-filter analogy corrected to all-pass phase
+  shaping (unitarity attenuates nothing) and Trotterization moved from
+  filter discretization to operator splitting; amplitude-vectors-as-
+  probability-distributions fixed in both the register model and the
+  qubit-misconception item; ancilla-discard semantics corrected
+  (entangled vs disentangled discard); the native-gate-set ISA extended
+  to measurement/reset/real-time control; backprop's advantage
+  reattributed from "classical reversibility" to caching/memoization
+  with the no-cloning contrast; depth demoted to a layer-count proxy
+  for wall-clock (scheduled critical path governs); multiplicative-
+  fidelity claim tied to the independent-error picture; §34.7 renamed
+  to "Software-Stack and Tooling Analogies" (its content) with the TOC
+  regenerated; §34.8's "transfer almost without modification" replaced
+  and per-item break conditions added (DAG/crosstalk, multi-objective
+  budgeting, certified randomness and drift, physical-vs-numerical
+  error); the coherent-overrotation arithmetic fixed (aligned (2ε)²,
+  cancellation, incoherent 2ε²); the logical-qubit example corrected
+  (10^-2 at-threshold, 100@10^-4 giving one-or-two d=5 patches via
+  2d²−1) and the dimensionally odd product-metric rephrased as a joint
+  budget.
+
+One factcheck anchor requoted; baseline (96) held. Lint, anchors, TOC,
+and build selftest pass; diff reviewed before push.

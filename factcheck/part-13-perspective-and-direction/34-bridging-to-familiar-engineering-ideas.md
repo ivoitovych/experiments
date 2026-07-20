@@ -29,7 +29,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §34.2 — Trotterization as finite-difference approximation
 
-- **Claim** (anchor): "Trotterization (Chapter 16) is the same finite-difference approximation that DSP engineers use when discretizing a continuous filter"
+- **Claim** (anchor): "Trotterization (Chapter 16) is closer to operator splitting in numerical integration than to filter discretization"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

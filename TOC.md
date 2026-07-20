@@ -593,7 +593,7 @@ The original planned outline lives at
   - [34.4 Hardware-Software Co-Design](book/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md#344-hardware-software-co-design)
   - [34.5 Numerical Simulation Parallels](book/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md#345-numerical-simulation-parallels)
   - [34.6 Error Propagation, Stability, and Precision](book/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md#346-error-propagation-stability-and-precision)
-  - [34.7 Physics-Based Modeling Intuition](book/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md#347-physics-based-modeling-intuition)
+  - [34.7 Software-Stack and Tooling Analogies](book/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md#347-software-stack-and-tooling-analogies)
   - [34.8 Where Classical Intuition Helps](book/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md#348-where-classical-intuition-helps)
   - [34.9 Where Classical Intuition Misleads](book/part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md#349-where-classical-intuition-misleads)
 - **[Chapter 35. Interpretational and Conceptual Pitfalls](book/part-13-perspective-and-direction/35-interpretational-and-conceptual-pitfalls.md)**
