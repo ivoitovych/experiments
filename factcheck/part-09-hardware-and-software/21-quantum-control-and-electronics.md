@@ -5,7 +5,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §21.1 — Transmon anharmonicity value
 
-- **Claim** (anchor): "the next transition of the transmon ($|1\rangle \to |2\rangle$, detuned by the anharmonicity $\alpha \approx -200\\,\mathrm{MHz}$)"
+- **Claim** (anchor): "the next transition of the transmon ($|1\rangle \to |2\rangle$, detuned by the anharmonicity $\alpha/2\pi \approx -200\\,\mathrm{MHz}$)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -101,7 +101,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §21.4 — Real-time feedback latency range
 
-- **Claim** (anchor): "The latency from measurement to conditional gate is then a small constant ($100$–$500\\,\mathrm{ns}$) instead of a software round-trip"
+- **Claim** (anchor): "The latency from measurement to conditional gate is then bounded and short — a few hundred nanoseconds on the fastest systems, with strongly vendor- and protocol-dependent values — instead of a software round-trip"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -109,7 +109,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §21.5 — DAC dynamic range calculation
 
-- **Claim** (anchor): "A DAC (digital-to-analog converter) at $2\\,\mathrm{GS/s}$ with $14$-bit resolution has a Nyquist bandwidth of $1\\,\mathrm{GHz}$ and a usable dynamic range of about $84\\,\mathrm{dB}$"
+- **Claim** (anchor): "A DAC (digital-to-analog converter) at $2\\,\mathrm{GS/s}$ with $14$-bit resolution has a first Nyquist zone of $1\\,\mathrm{GHz}$ (usable analog bandwidth is smaller, set by the reconstruction filter and rolloff) and an *ideal* quantization SNR of about $86\\,\mathrm{dB}$"
 - **Method**: derivation
 - **Source**: → §21.5 (ENOB/SFDR formula: ~6 dB/bit × 14 bits)
 - **Verified**: — · **Verdict**: open
@@ -189,7 +189,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §21.7 — Physical lines per superconducting qubit
 
-- **Claim** (anchor): "A typical superconducting qubit needs three to five physical lines: a drive line, a flux line (if tunable), a readout input, a readout output (often shared via a feedline among many qubits), and sometimes a separate fast-flux line for two-qubit gates"
+- **Claim** (anchor): "A typical superconducting qubit needs its own drive line, a flux line if the qubit (or its coupler) is tunable, and sometimes a separate fast-flux line for two-qubit gates; readout input and output feedlines are shared among groups of qubits by frequency multiplexing"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -213,7 +213,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §21.8 — Active reset residual excitation suppression
 
-- **Claim** (anchor): "Iterating the loop $k$ times suppresses residual excitation as $p_e^k$ (assuming independent measurement errors)"
+- **Claim** (anchor): "measure $k$ times and accept the qubit only when every outcome reads $0$ — under independent errors the probability of a false zero then falls roughly as the per-round false-zero probability to the $k$th power"
 - **Method**: derivation
 - **Source**: → §21.8 (geometric suppression from iterated Bernoulli trials)
 - **Verified**: — · **Verdict**: open
@@ -269,7 +269,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §21.11 — DRAG out-of-phase quadrature formula
 
-- **Claim** (anchor): "the in-phase quadrature is a Gaussian and the out-of-phase quadrature is its derivative scaled by $-1/\\alpha$ (the inverse anharmonicity)"
+- **Claim** (anchor): "the in-phase quadrature is a Gaussian and the out-of-phase quadrature is its derivative scaled by a coefficient proportional to $-1/\alpha$ (the inverse anharmonicity; the exact prefactor depends on the envelope normalization and convention)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -285,7 +285,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §21.11 — Krotov algorithm monotonic improvement property
 
-- **Claim** (anchor): "Krotov: a monotonic-improvement variant — think of GRAPE's gradient step with the step size chosen so that fidelity provably never decreases — implemented via an integral-equation update"
+- **Claim** (anchor): "Krotov: a sequential-update method derived from an optimal-control functional — structurally different from GRAPE's concurrent gradient step: the control is updated forward in time against an auxiliary backward-propagated state, and under the appropriate functional and discretization conditions the objective is guaranteed to improve monotonically"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -301,7 +301,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §21.12 — Named FPGA programming abstractions
 
-- **Claim** (anchor): "Quantum Machines QUA is a Python-embedded DSL whose programs compile to an OPX bitstream; Zurich Instruments LabOne Q plays an analogous role"
+- **Claim** (anchor): "Quantum Machines QUA is a Python-embedded DSL whose programs compile to controller programs — sequencer instructions the OPX executes, not a fresh FPGA bitstream per experiment; Zurich Instruments LabOne Q is a Python software framework playing an analogous orchestration role"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

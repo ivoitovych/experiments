@@ -1296,3 +1296,110 @@ caught by lint and fixed in-batch.
 
 Seven factcheck anchors requoted in the same commit; baseline (97) held.
 Lint, factcheck lint, and the build selftest pass.
+
+## Batch 26 — Chapter 21 (31 substitutions)
+
+### FIXED — outright defects
+- Opening's "every X/CNOT is a nanosecond analog waveform through coax"
+  modality overgeneralization — scoped to the superconducting running
+  example, with ion/atom (laser/RF tones, modulators, optics) and
+  photonic (sources, interferometers, detectors) control named.
+- "Every single-qubit gate is a Rabi oscillation" — workhorse case, with
+  virtual-Z, adiabatic, geometric, and composite-pulse exceptions named;
+  the rotating-frame Hamiltonian's two-level/RWA/near-resonance
+  assumptions stated.
+- Angular-frequency anharmonicity labeled "α ≈ −200 MHz" — corrected to
+  α/2π (Chapter 20's convention), in the chapter and the factcheck card.
+- "The same abstractions now live in OpenQASM 3 defcal" after the Qiskit
+  Pulse removal — no drop-in cross-vendor replacement; defcal is a
+  grammar, vendor support varies.
+- Qiskit Runtime grouped with OPX/SHFQC as an exposed pulse-programming
+  model — reclassified as a cloud/classical execution service lowering
+  circuit-level input internally; "compiles to firmware" → sequencer
+  instructions; feedback latency "small constant (100–500 ns)" →
+  bounded-and-short with vendor/protocol dependence.
+- 14-bit DAC "usable dynamic range of about 84 dB" — corrected to ideal
+  quantization SNR ≈ 86 dB (6.02N + 1.76) with ENOB/jitter/spur
+  reductions explicit; Nyquist bandwidth → first Nyquist zone with
+  reconstruction-filter caveat.
+- Virtual-Z/frame changes said to absorb idle ZZ — entangling for a
+  spectator in superposition; absorbable only when the spectator state is
+  known; echo/coupler cancellation required otherwise; fixed-coupler ZZ
+  "hard floor" → suppressible-but-not-free contribution.
+- "Every milliwatt of heat coming down a coaxial line matters" at a
+  tens-of-microwatts mixing chamber — heat is intercepted at warmer
+  stages; a stray milliwatt at base would overwhelm the entire budget.
+- Attenuation example summing 20+10+20 = 50 dB against the prose's
+  60–70 dB total — upper-stage attenuation and cable loss added to the
+  itemization.
+- "Three to five physical lines per qubit" counting shared readout
+  feedlines per-qubit — corrected to dedicated drive/flux(/fast-flux)
+  lines plus frequency-multiplexed shared feedlines (~1–3 dedicated
+  lines per qubit).
+- Active reset "left in |0⟩ in a known time independent of T1" — residual
+  floor (misclassification, decay in the loop, thermal repopulation)
+  stated.
+- The p_e^k reset law (the ledger's strong mathematical defect) —
+  unconditional measure-and-correct repetition converges to a steady-state
+  floor near the per-round error; the multiplicative law belongs to
+  heralded verification (accept only on k consistent zeros) with
+  retry-on-failure cost; pseudocode comment updated to the heralded
+  reading; sanity check 4 rewritten to the heralded posterior question
+  plus the floor question (its old answer followed the false model).
+- OpenQASM constructs "silently demote to a slow software loop" —
+  replaced with fail-with-capability-error or explicit host partition,
+  with the warning that toolchains are not always loud about which.
+- Krotov "GRAPE with a step size chosen so fidelity never decreases" —
+  corrected to the sequential forward-update/backward-propagated-state
+  structure with conditions on the monotonicity guarantee and the
+  parallelism tradeoff.
+- DD pushing idle coherence "toward T1" — corrected to the relaxation-
+  limited ceiling T2 ≤ 2T1.
+- QUA compiling to "an OPX bitstream" — sequencer-instruction controller
+  programs, not per-experiment FPGA gateware; LabOne Q labeled a Python
+  software framework; "Qiskit Pulse to IBM Quantum lowering" present
+  tense reconciled with the §21.3 removal (internal lowering, API removed
+  2025); FPGA-trace debugging scoped to engineers with hardware access.
+- Package "routes launchers to coaxial connectors at the cold plate" —
+  package mounts/anchors at the mixing-chamber stage; cabling rises
+  stage by stage.
+- "Standard physics trilemma: pick any two" — labeled an engineering
+  heuristic, not a theorem; co-design can improve all three.
+- Sanity check 1 underdetermination — asks for the Ω/|α| small parameter
+  and order of magnitude, noting the three-level √2 matrix element needed
+  for a quantitative answer.
+- Sanity check 3 — ζ-convention factor (2 or 4) surfaced; virtual-Z
+  absorption conditioned on known spectator state; entangling remainder
+  assigned to echo/active cancellation.
+
+### FIXED — epistemic scoping
+- "gate-ware" → gateware; "user only sees the bitstream" contradiction →
+  typical users never see the FPGA configuration; below-DSL work scoped
+  to control engineers via supported frameworks.
+- "Every microwave engineer's checklist" → standard checklist with
+  superconducting-specific additions; "copper-powder + reflective LPFs on
+  every flux line" → representative topology balancing noise vs.
+  bandwidth; IR photon effects split into pair-breaking (T1) and
+  resonator photon-shot-noise (T2) mechanisms.
+- Scalar crosstalk c_ij → frequency-dependent transfer function
+  summarized by a near-carrier coefficient; "every nearby drive line" →
+  significantly affected lines.
+- "Custom gates: pulse-level programming is the only way" → most direct
+  way, with parameterized native gates/calibration overrides/optimal-
+  control services as alternatives; Cirq "no public pulse API" scoped.
+- §21.9 QEC control loop harmonized with the corrected Chapter 19 model
+  (streaming decoder, decisions at logical feedforward boundaries,
+  classically tracked Pauli frames).
+- DRAG derivative coefficient "scaled by −1/α" → proportional to −1/α
+  with envelope/convention-dependent prefactor.
+
+### DEFERRED-FACTCHECK
+- Product/API claims (Qiskit 1.3/2.0 dates, IBM cloud pulse withdrawal
+  scope, Cirq/Cocos status, OPX/SHFQC/Quil-T/LabOne Q capabilities and
+  terminology), electronics figures (GS/s, bits, gain, latency ranges),
+  cryostat stage temperatures/cooling powers, calibration cadences, and
+  §21.14 gate/readout numbers — all queued for the versioned capability
+  table the ledger's improvement priority requests.
+
+Eight factcheck anchors requoted in the same commit; baseline (97) held.
+Lint, factcheck lint, and the build selftest pass.
