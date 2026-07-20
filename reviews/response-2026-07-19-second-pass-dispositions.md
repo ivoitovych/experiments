@@ -2401,7 +2401,7 @@ files vs fix batches:
 | Ch37 | 42 | done |
 | Preface | 43 | done |
 | Background | 44 | done |
-| Notation | — | pending (ledger complete) |
+| Notation | 45 | done |
 | Appendices A–F, Index | — | pending (ledger complete) |
 | SVG/support/archive passes | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
 
@@ -2786,3 +2786,39 @@ One new anchor requoted (SC.5.2) and one pre-existing
 baseline-stale anchor repaired (GNFS regime card); baseline updated
 95 → 94. Lint, anchors, and TOC checks pass; diff reviewed before
 push.
+
+## Batch 45 — Notation and conventions (17 substitutions + Appendix A touch-up)
+
+Driven by the ledger's highest-priority correctness and consistency
+lists.
+
+### FIXED — outright defects
+- Asymptotics: big-O given $c > 0$ and $|g(n)|$; big-Omega
+  quantified over $n \ge n_0$ with the nonnegativity convention
+  stated; Theta reworded ($g$ tight for $f$); soft-O defined as
+  $O(g(n)\log^k n)$ in the scale variable with a
+  suppressed-variables directive. Indexing default reconciled with
+  §N.2 (code zero-based, formulas frequently one-based; medium sets
+  the default) — removing the false "rare one-indexed sum" claim.
+  Gate-catalog sentence now names $T$ (which was displayed) and
+  notes matrices are exact representatives with physical gates
+  defined up to global phase. Norm count corrected five → six (five
+  norms-or-moduli plus the operator absolute value). Polar
+  decomposition given the partial-isometry nuance for
+  singular/rectangular $A$. Outer product corrected to rank at most
+  one. Part numbering unified to Roman (Parts II–VI, III–VI; same
+  fix applied to the mirrored sentence in Appendix A). Partial
+  trace scoped ($A$ on retained $V$, $B$ on $W$; density-operator
+  caveat). Independence written with explicit marginals
+  ($p_X p_Y$, all $x, y$) and the orthogonality-glyph collision
+  noted. Expectation/variance written as $\mathbb{E}[g(X)]$ with
+  $p_i = p(x_i)$, variance restricted to real $g$ with the complex
+  form given. "Nondegenerate orthonormal basis" replaced by
+  rank-one projective measurement with the $P_i =
+  |b_i\rangle\langle b_i|$ connection. QFT conversion advice
+  aligned with the preface repair (angle conjugation is the
+  minimum; QFT/inverse-QFT swap and phase-sign reinterpretation may
+  also be needed; per-function, not per-SDK).
+
+One factcheck anchor requoted; baseline (94) held. Lint and anchor
+checks pass; diff reviewed before push.

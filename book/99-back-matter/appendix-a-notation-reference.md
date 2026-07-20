@@ -271,7 +271,7 @@ columns of $U$ (active-versus-passive distinction in
 ## A.5 Circuit Symbols
 
 Circuit drawing conventions are introduced in Chapter 6 and used
-throughout Parts 3–6 of the book. This entry catalogs the symbols
+throughout Parts III–VI of the book. This entry catalogs the symbols
 used in prose and inline math; the rendered diagrams themselves live
 as SVGs alongside the chapters that use them.
 

@@ -16,7 +16,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## Notation — natural numbers include zero
 
-- **Claim** (anchor): "natural numbers, including zero. The book is zero-indexed by default"
+- **Claim** (anchor): "natural numbers, including zero. Code and bit-string labels are zero-indexed by default; mathematical sums and formulas frequently run $i = 1, \dots, n$"
 - **Method**: convention
 - **Source**: → book-wide convention (consistency reference)
 - **Verified**: — · **Verdict**: open

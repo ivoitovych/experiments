@@ -27,8 +27,8 @@ de8fbac1a95f99ff3ef1b084175ad1bd12b3c9ebbeb0b98e2ee8a3c5c2f179bd  archive/chapte
 54824decf3d6ab2634ae33b623a164100b0846d4df46ae660d473a3efd8f64a6  archive/reviews-2026-05/review-2026-05-30-0356.md
 2c2683818e4ca798f4e98332e1fb101f2545183362ff7a797f53c628349138bb  book/00-front-matter/00-preface.md
 53799cedc2c0d7bdfa6d5c9eb0fa7d4b6ba0d4548f1043eaede3e4f65f101427  book/00-front-matter/01-background-and-self-check.md
-9e2a4beb1b98e8ba503b8877f85798cfd0f445f01524ec96381ab5acb5425e81  book/00-front-matter/02-notation-and-conventions.md
-40f90c4b2fc8b7825540dd6eb0a83edb5b81443228a4f55af89083249f2f2194  book/99-back-matter/appendix-a-notation-reference.md
+32be5953f19f799516c816f3a5b3e682e5b47acd27c40c9b18eb25e43b35b393  book/00-front-matter/02-notation-and-conventions.md
+1143955cd6b483d1a230f5ca8ce80f39bfa1611481fc3ce189569e5086cee373  book/99-back-matter/appendix-a-notation-reference.md
 0c594c94e77c8bddd215223e8abf43d882cd3290a86347cfc4eaad8a1d159857  book/99-back-matter/appendix-b-common-gates.md
 f16710e5c10e2a791a6eeecbd77c182913c5f6b4c0efa2af2634f2d80b9b98e4  book/99-back-matter/appendix-c-identities-and-decompositions.md
 176cf133d5d8c5aeb62d4b47da8ea003c2b8db5da0d1036a5d9a84dfbc96906c  book/99-back-matter/appendix-d-suggested-reading.md
@@ -105,7 +105,7 @@ d19b7025a206c9c773b12c99646780557c00de7535bbe5222d02fa0cb30d1f47  examples/grove
 a1c4e35dc326f32a66d886a138fa5eaf27fb72e032dbf1eb2361779ad7b9e03c  examples/statevector_simulation.py
 f1d9d8204471cada5e259a61b24d90485fdf4c9281df0b9f43c2eb7f0837de24  factcheck/00-front-matter/00-preface.md
 565ccd6dd13cab20a659321b3104ca313710a04a409b7df275308552b8c4f44c  factcheck/00-front-matter/01-background-and-self-check.md
-f9d5ff06adecef33f66efcdb69de82ed60656ab34f61c4b3ec6da8145fc4b266  factcheck/00-front-matter/02-notation-and-conventions.md
+ad96695c66b780a32595eff47f8d496b66bf3b1671f3a9d1096545232d268a4a  factcheck/00-front-matter/02-notation-and-conventions.md
 d152e31e7370ff9001b3c1de3dbd039e4c35ece1eb0f55e63d69a915dc3cc0e3  factcheck/99-back-matter/appendix-a-notation-reference.md
 673e69f86470382188f6ef169cdb06be04e9748d7cabdd690fc2b553463873b5  factcheck/99-back-matter/appendix-b-common-gates.md
 fb00a736e6fa78beb5906057a7726ee136d7573ae853857cbbc6a8b20b170e1b  factcheck/99-back-matter/appendix-c-identities-and-decompositions.md
@@ -171,7 +171,7 @@ d5e0cec3ec5e3dbb9ada626bf551502d12d81920e68fdac4c4e7a59ed6e08a7b  reviews/cold-r
 95cd5962ed6cf39a1b5f5e2f859bc5c2d03b78d3d435891c3fd6b11a012b6584  reviews/factcheck-2026-07-04-external-verification.md
 7efd03e5b38a37de192454db8bd8d6c6b31373f9fe112096e1b27a251e30932d  reviews/proposals-2026-07-05-remaining-programmes.md
 021f81c249aa7f0e13dd66470714f49c341955324e48399b78ed4b29c1269c22  reviews/recommendations-2026-07-04-deferred-items.md
-9c13e0e5849ac30753f07daf45f9803e618342091eef1645aeb48faa5e3a3aba  reviews/response-2026-07-19-second-pass-dispositions.md
+c6c7f10613c46cd4300a23407e67ca81f9d94e0df132207ab864edd0d09d0ad5  reviews/response-2026-07-19-second-pass-dispositions.md
 95adfcedf14090d851fc34190f8b43abb422e0f94462929e7d694e174aeaf9cf  reviews/review-2026-07-03-1843-comprehensive-book-review.md
 af0bf67bf1c6da7759a7b5375dedd1be242209e280f94ff307999c18bde95c94  reviews/review-2026-07-19_01-20-35_CEST.md
 2bd131ed2944aee6d792838358a75ef9efbe42c09f5a5568347bd8aa4d1d840d  reviews/roadmap-2026-07-05-path-to-publication.md

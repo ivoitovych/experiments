@@ -47,8 +47,10 @@ they enter.
 **Number sets.**
 
 - $\mathbb{N} = \\{0, 1, 2, \dots\\}$ — natural numbers, including
-  zero. The book is zero-indexed by default; the rare one-indexed
-  sum is called out at the place it appears.
+  zero. Code and bit-string labels are zero-indexed by default;
+  mathematical sums and formulas frequently run $i = 1, \dots, n$ —
+  the medium sets the default (§N.2), and mixed passages flag the
+  convention in use.
 - $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$ — integers,
   rationals, reals, complex numbers.
 - $\mathbb{Z}_N = \\{0, 1, \dots, N-1\\}$ — integers modulo $N$.
@@ -76,13 +78,19 @@ disambiguates the two).
 **Asymptotic complexity.** The standard Knuth conventions, used both
 classically and quantumly:
 
-- $f(n) = O(g(n))$ — there exist constants $c, n_0$ with
-  $|f(n)| \le c\\, g(n)$ for all $n \ge n_0$. An upper bound.
-- $f(n) = \Omega(g(n))$ — there exist $c, n_0$ with
-  $f(n) \ge c\\, g(n)$ eventually. A lower bound.
-- $f(n) = \Theta(g(n))$ — both: $f$ is tight up to constants.
-- $\tilde{O}(g(n))$ — soft-O, hiding polylogarithmic factors:
-  $\tilde{O}(g) = O(g \cdot \mathrm{polylog}(g))$.
+- $f(n) = O(g(n))$ — there exist constants $c > 0$ and $n_0$ with
+  $|f(n)| \le c\\, |g(n)|$ for all $n \ge n_0$. An upper bound (not
+  necessarily a tight or worst-case one).
+- $f(n) = \Omega(g(n))$ — there exist $c > 0$ and $n_0$ with
+  $f(n) \ge c\\, g(n)$ for all $n \ge n_0$, taking $f, g$ eventually
+  nonnegative (always the case for the resource counts measured
+  here). A lower bound.
+- $f(n) = \Theta(g(n))$ — both bounds hold: $g$ is an
+  asymptotically tight bound for $f$, up to constant factors.
+- $\tilde{O}(g(n))$ — soft-O, hiding polylogarithmic factors in
+  the scale variable: $\tilde{O}(g(n)) = O(g(n) \cdot \log^k n)$
+  for some constant $k$. Each use should make clear whose
+  logarithms (input size, precision $1/\epsilon$) are suppressed.
 - $f(n) = o(g(n))$ and $f(n) = \omega(g(n))$ — strict little-o /
   little-omega forms, used only when the difference between
   big-O and little-o matters (rare).
@@ -148,9 +156,11 @@ explicitly when both conventions appear in the same passage.
   $\langle v | A | v\rangle \ge 0$ for all $v$. The shorthand
   $A \succeq B$ means $A - B \succeq 0$.
 
-**Standard gates in the computational basis.** The single-qubit Pauli
-matrices, the Hadamard, and the $S$ gate, written in the
-$\\{|0\rangle, |1\rangle\\}$ basis:
+**Standard gates in the computational basis.** The single-qubit
+Pauli matrices, the Hadamard, and the $S$ and $T$ gates, written
+in the $\\{|0\rangle, |1\rangle\\}$ basis (the matrices are exact
+representatives; physical gates are often specified only up to
+global phase):
 
 $$
 X = \begin{pmatrix} 0 & 1 \\\\ 1 & 0 \end{pmatrix}, \qquad
@@ -170,7 +180,8 @@ The full gate catalog with two-qubit gates, rotation families, and
 their decompositions lives in
 [Appendix B](../99-back-matter/appendix-b-common-gates.md).
 
-**Norms and bars.** Five distinct symbols share two glyphs; mis-counting
+**Norms and bars.** Six distinct symbols — five norms-or-moduli
+plus one operator absolute value — share two glyph families; mis-counting
 the bars is the most common type-signature bug in quantum-mechanical
 notation. The default norm without subscript is the 2-norm on vectors
 and the operator (spectral) norm on operators:
@@ -190,8 +201,11 @@ and the operator (spectral) norm on operators:
   Hilbert–Schmidt inner product
   $\langle A, B\rangle_{\mathrm{HS}} = \mathrm{tr}(A^\dagger B)$.
 - $|A| = \sqrt{A^\dagger A}$ — **operator absolute value**, used in
-  the polar decomposition $A = U_p\\, |A|$. Single bars but operator
-  argument and operator value — *not a norm and not a scalar*.
+  the polar decomposition $A = U_p\\, |A|$ (for invertible square
+  $A$ the factor $U_p$ is a unique unitary; for singular or
+  rectangular $A$ it is in general a partial isometry, unitary
+  only after extension). Single bars but operator argument and
+  operator value — *not a norm and not a scalar*.
 
 Norm bars are written `\\|` in source. Inside Markdown table cells
 the bar conflicts with the column separator (Bug 5 in the renderer
@@ -220,8 +234,9 @@ $$
 \langle a\phi_1 + b\phi_2 \mid \psi\rangle = \overline{a}\\, \langle\phi_1|\psi\rangle + \overline{b}\\, \langle\phi_2|\psi\rangle.
 $$
 
-- $|\psi\rangle\langle\phi|$ — **outer product**: a rank-one operator
-  with entries $\psi_i\\, \overline{\phi_j}$. Adjoint:
+- $|\psi\rangle\langle\phi|$ — **outer product**: an operator of
+  rank at most one (rank exactly one when both vectors are
+  nonzero), with entries $\psi_i\\, \overline{\phi_j}$. Adjoint:
   $(|\psi\rangle\langle\phi|)^\dagger = |\phi\rangle\langle\psi|$.
 - $\langle\phi | A | \psi\rangle$ — **matrix element** of $A$ between
   $|\phi\rangle$ and $|\psi\rangle$. A complex scalar.
@@ -258,7 +273,7 @@ $$
 
 Inserting this identity into a matrix element expands it in the
 chosen basis. This is the single most useful algebraic trick in the
-bra-ket calculus and is used routinely throughout Parts 2–6.
+bra-ket calculus and is used routinely throughout Parts II–VI.
 
 The vertical bar inside a ket `|\psi\rangle` is syntactically distinct
 from the modulus bar in $|z|$ and from the operator absolute value
@@ -320,14 +335,17 @@ ordering conventions are detailed in
 - $\langle u_1 \otimes v_1, u_2 \otimes v_2\rangle = \langle u_1, u_2\rangle\\, \langle v_1, v_2\rangle$,
   so $\\|u \otimes v\\| = \\|u\\|\\, \\|v\\|$.
 - $\mathrm{tr}_W(A \otimes B) = A\\, \mathrm{tr}(B)$ — **partial
-  trace** over subsystem $W$, extended linearly to general bipartite
-  operators. Produces the reduced density matrix of the remaining
-  subsystem (Chapter 5).
+  trace** over subsystem $W$, with $A$ acting on the retained
+  subsystem $V$ and $B$ on $W$; extended linearly to general
+  operators on $V \otimes W$. Applied to a bipartite *density*
+  operator it produces the reduced density matrix of the remaining
+  subsystem (Chapter 5); applied to an arbitrary operator it is
+  simply a linear map.
 
 ## N.5 Circuit Notation
 
 Circuit drawing conventions are introduced in Chapter 6 and used
-throughout Parts 3–6. The diagram conventions are uniform across
+throughout Parts III–VI. The diagram conventions are uniform across
 the book:
 
 - **Time runs left to right.** A qubit's history is read from its
@@ -373,10 +391,13 @@ explicit symbolic names:
   The book uses the negative-exponent convention,
   $F_N |j\rangle = N^{-1/2} \sum_k \omega^{-jk} |k\rangle$ with
   $\omega = e^{2\pi i / N}$, the "QFT-sign-minus" convention
-  established in §4.13. Sign conventions vary across sources and
-  SDKs, so a transform copied across the convention boundary needs
-  its phase angles conjugated; the consequences for phase-estimation
-  readout are spelled out at
+  established in §4.13. Sign conventions vary across sources and SDK library functions, so
+  a transform copied across the convention boundary needs care:
+  conjugating the phase angles is the minimum, and a
+  phase-estimation circuit may additionally need its QFT and
+  inverse-QFT blocks swapped and the recovered phase's sign
+  reinterpreted; the consequences for phase-estimation readout are
+  spelled out at
   [§4.13](../part-02-formalism/04-mathematical-background.md#413-fourier-transform-basics).
 - $U^\dagger$ as a circuit block — the inverse of a unitary gate
   $U$, drawn as $U$ with a dagger superscript or as a box labeled
@@ -397,9 +418,15 @@ and quantum extensions are introduced at their points of first use.
 - $p(x, y)$ — joint distribution.
 - $p(y \mid x) = p(x, y) / p(x)$ — conditional, defined when
   $p(x) > 0$.
-- $X \perp Y$ — independence: $p(x, y) = p(x)\\, p(y)$.
-- $\mathbb{E}[g] = \sum_i p_i\\, g(x_i)$ — expectation.
-- $\mathrm{Var}[g] = \mathbb{E}[g^2] - \mathbb{E}[g]^2$ — variance.
+- $X \perp Y$ — independence of random variables:
+  $p_{X,Y}(x, y) = p_X(x)\\, p_Y(y)$ for *all* $x, y$. (The same
+  glyph marks orthogonality of quantum states elsewhere in the
+  book; the argument types disambiguate.)
+- $\mathbb{E}[g(X)] = \sum_i p_i\\, g(x_i)$ — expectation of
+  $g(X)$, with $p_i = p(x_i)$.
+- $\mathrm{Var}[g(X)] = \mathbb{E}[g(X)^2] - \mathbb{E}[g(X)]^2$ —
+  variance, for real-valued $g$; complex-valued quantities use
+  $\mathbb{E}\bigl|g(X) - \mathbb{E}[g(X)]\bigr|^2$.
 - $H(p) = -\sum_i p_i \log_2 p_i$ — **Shannon entropy** in bits.
   Convention: $0 \log 0 = 0$.
 
@@ -415,9 +442,10 @@ observable $O$ with spectral decomposition $O = \sum_\lambda \lambda\\, P_\lambd
   state $|\psi\rangle$.
 - $P_\lambda |\psi\rangle / \sqrt{p(\lambda)}$ — post-measurement
   state, defined when $p(\lambda) > 0$.
-- $p_i = |\langle b_i | \psi\rangle|^2$ — rank-one Born rule for
-  projective measurement in a nondegenerate orthonormal basis
-  $\\{|b_i\rangle\\}$.
+- $p_i = |\langle b_i | \psi\rangle|^2$ — Born rule for a rank-one
+  projective measurement in an orthonormal basis
+  $\\{|b_i\rangle\\}$: the special case
+  $P_i = |b_i\rangle\langle b_i|$ of the rule above.
 - $\rho$ — density matrix: positive semidefinite with
   $\mathrm{tr}(\rho) = 1$.
 - $\langle O\rangle_\rho = \mathrm{tr}(\rho\\, O)$ — expectation
