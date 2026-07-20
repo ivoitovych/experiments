@@ -1691,3 +1691,164 @@ untouched per the review-front rule).
 
 Thirty-two factcheck anchors requoted in the same commit; baseline (97)
 held. Lint, factcheck lint, and the build selftest pass.
+
+## Batch 29 — Chapter 24 (78 substitutions)
+
+### FIXED — outright defects
+- Classical simulation called "the lower bound against which advantage
+  is measured" (twice) — corrected to classical baseline / upper bound
+  on classical cost, with the that-is-why-the-frontier-moves point.
+- Simulator as "ground-truth oracle" for XEB/RB/tomography validation —
+  inverted: comparisons test the noise model; XEB ideal probabilities
+  come from noiseless simulation; either side may be at fault.
+- Path-sum bullet "stores nothing global... exponential in depth rather
+  than width" — partition statevectors stored, cost governed by
+  cut-crossing gates; density-matrix/trajectory bullet cast as a cheaper
+  noisy escape — corrected (dimension squares; noise is a modeling need,
+  not an escape).
+- Polynomial compression alone said to resolve BQP-vs-BPP — efficient
+  update/sampling/precision conditions added.
+- Generic two-qubit gate "doubles the constant" — 4×4 quadruple
+  transform; depth/gate-count conflation fixed (Θ(g·2^n)); 33-qubit
+  traffic corrected to read+write.
+- Diagonal gates "touch only amplitudes whose control qubits are set" —
+  full phase sweep in general, controlled-phase special case, fusion
+  noted; permutation "no arithmetic at all" → no floating-point
+  arithmetic, data movement remains.
+- General compilers said to reorder gates for simulator cache locality —
+  simulator preprocessors vs hardware transpilers separated (objectives
+  can oppose); "all rely on AVX-512/NEON/GPU" per-tool universal fixed.
+- The record paragraph's likely-conflated attributions (JUQCS-A "on the
+  Sunway TaihuLight and the K computer", Frontier/Fugaku pairings) and
+  the unverifiable "50-qubit JUPITER run in late 2025" — replaced with
+  the hedged, representation-aware version (compressed 2-byte encoding
+  vs dense complex128; Appendix F to carry the dated list); "that wall
+  does not move with hardware" literal falsehood fixed (doubling memory
+  buys one qubit).
+- Density-matrix thresholds "n≈20 on HPC, n=25 at the very edge" —
+  replaced with the real table (n=20 is 16 TiB top-cluster, n=25 is
+  16 PiB beyond current machines); §24.13's "right choice when n ≤ 20"
+  and the decision tree's "n ≤ 20 — small but exact" fixed to n≈14–16
+  locally; §24.13 exactness scoped to the supplied channel model with
+  non-Markovian/leakage caveats.
+- ρ → UρU† labeled "Heisenberg conjugation" — Schrödinger picture;
+  Heisenberg transforms observables.
+- Trajectory algorithm oversimplification — effective non-Hermitian
+  drift + state-dependent jump probabilities (Kraus sampling for
+  discrete noise); variance "1/N" → standard error ∝ 1/√N with
+  observable-dependent constant; break-even "N ≈ 2^n so n > 25
+  trajectories are the only option" — no universal rule, and tensor/
+  stabilizer/Pauli methods share the field.
+- Tableau mechanism: Hadamard "swaps an X row with a Z row" — corrected
+  to swapping X/Z bit-columns for that qubit across rows; measurement
+  outcome wording fixed (stabilizer membership, row operations).
+- Stim "routinely 10^6 qubits and 10^8 gates/s on a laptop" — scoped to
+  favorable workloads with orders-of-magnitude variation and the
+  bit-packed sampling/detector machinery credited; "dominant tool...
+  produces the threshold curves" → most widely used; curves come from
+  circuit/noise/decoder studies.
+- "Exponential cost in the number of T gates" universal — exponential in
+  magic in the worst case; cancellation/structure can cheapen; "single T
+  exits the stabilizer subgroup" wording fixed (group vs state set).
+- Stabilizer-rank exponents flagged as asymptotic task-specific bounds
+  with error dependence; "k ≲ 50 workstation / k ≲ 100 cluster"
+  unsupported thresholds replaced by published-demonstration
+  calibration; quasiprobability "weights ±1" and blanket qubit
+  nonnegativity fixed (signed weights; contextuality caveat);
+  "dual... pay (provably) exponentially" → related resource-theoretic
+  approaches, upper bounds without matching lower bounds; the
+  high-T-count-necessary-for-advantage fallacy corrected (caps advantage
+  against these methods; proves nothing about all algorithms).
+- Tensor-network "T = ∏A^(i)" pseudo-product notation dropped;
+  "sparse factorization" → compressed; contract-and-truncate scoped to
+  MPS/TEBD; "production tool for twenty years" and "back-end of choice
+  for advantage-busting" scoped; volume-law "saturates χ = 2^{n/2}" →
+  worst case across balanced cuts; "most circuits on near-term hardware
+  stay small-χ" — removed (benchmarks deliberately entangle).
+- MPS matrices "χ×χ" → varying χ_{i-1}×χ_i with scalar product;
+  nonadjacent-gate "quadratic overhead" decomposed (O(distance) SWAPs +
+  χ inflation); "§16" Trotter reference → §16.2; "χ = 50–200 for
+  chemical accuracy" — chemical-accuracy convention removed for spin
+  chains; Calabrese–Cardy universality bounded; "hard wall" softened to
+  rapid exponential wall.
+- DMRG: "converges geometrically for gapped 1D Hamiltonians" false
+  theorem → algorithmic observation with stall caveats; "the method" and
+  10^{-10} routine precision scoped; two-site sweep sequence corrected;
+  Hamiltonian scope extended (MPO, long-range, chemistry); cylinder
+  "χ ~ 2^w" → model-dependent exponential rate; "not enough to
+  extrapolate to genuine 2D" → controlled extrapolation possible for
+  some models/observables; "DMRG is the classical baseline" → one of the
+  strongest, competitors named; 50-qubit/50-site Hubbard counting fixed
+  (~100 spin-orbitals); "variational locking" jargon replaced.
+- PEPS: boundary tensor indices (edges 3, corners 2); "exactly the area
+  law" → area-law capacity with the approximability-theorem caveat;
+  "routinely two to three orders slower" removed; "dominates... method
+  of choice" territorial claims → leading contender sharing fields, with
+  contested-territory framing; NQS "unstructured"/"originated"/"matched
+  and exceeded PEPS" all scoped (architecture bias, popularized,
+  budget-sensitive comparisons without certified error bars).
+- Path-sum locality "only 2^k of the z entries differ" — corrected to
+  matrix-element support (layers branch on every gated qubit); block
+  cost "2^{n/B} × 4^{#cuts}" — operator-Schmidt-rank compounding with
+  slicing/reuse; Sycamore "10,000 years to 15 hours" comparisons flagged
+  as cross-hardware/task-accounting (both occurrences), "near-optimal" →
+  highly effective; "limited entanglement spread" moral corrected to
+  contraction geometry/treewidth.
+- GPU section: H100 SKU-specific specs generalized; "most heavily
+  optimized... all approach peak" scoped; "all-to-all communication of
+  half the data" → pairwise partner exchanges/layout transposes;
+  distributed record namings hedged to Appendix F; 30-qubit-on-16-GiB
+  headroom fixed; "1000× routine" replaced with bandwidth-ratio
+  reasoning; "cuQuantum-DM" product name → density-matrix library
+  component; "no model-side changes" → modest integration effort.
+- Noisy-circuits-easier: Aharonov–Ben-Or/Knill/BMS attributions (flagged
+  as likely mismatched to the claimed statements) replaced with hedged
+  threshold-era framing and factcheck deferral; "every circuit's output
+  nearly classical" scoped to uncorrected circuits; "the only way" →
+  load-bearing precondition.
+- §24.14: "Zuchongzhi 3.0... 67–105 qubit device" likely-conflated
+  specifics → series framing with Appendix F pointer (twice); Gordon
+  Bell run labeled tensor-network (not statevector) with resource-parity
+  caveat and the lightweight-core note; Alibaba "Tai Zhang" naming
+  dropped; "as it always is" noise wording bounded; spoofing scope
+  corrected (scores vs distributions); "consensus... ultimately
+  vulnerable" and "verifiable structure leaves no room" → expectation
+  with counterpoints (factoring's classical algorithms, QMA-hardness).
+- §24.15 decision tree: first-match framing → triage with output/error
+  as the root question; Clifford branch (distribution enumeration
+  caveat, CHP historical); near-Clifford threshold de-universalized,
+  methods-not-tools flagged; workstation branch runtime claim bounded;
+  GPU branch capacity corrected (80 GiB holds n=32) and speedup claim
+  removed; density-matrix branch made safe (n≈14–16); trajectory branch
+  variance-driven; PEPS branch pluralized; path branch retooled
+  (cotengra/cuTensorNet/quimb; treewidth not depth); the "no simulator →
+  advantage" branch rebuilt with the structure checklist and the
+  simulator-failure-is-not-device-success principle; closing "bounded by
+  a physical quantity" → governed, with gradual boundaries; bridge's
+  "n ≈ 50 at low depth" scalar removed.
+- Sanity checks: 2 (runtime → scaling classification with
+  underdetermination note), 4 (comparison-equivalence checklist),
+  5 (histograms-vs-unitaries distinction with stronger checks).
+
+### ADJUDICATED
+- `Statevector(qc)` (flagged as likely invalid API) — verified working:
+  `examples/statevector_simulation.py` runs in the pinned environment
+  and is part of `make check-examples`. No change.
+- §8.10 (Gottesman–Knill) reference verified correct.
+- House math escaping (doubled backslashes) — intentional, as before.
+
+### DEFERRED-FACTCHECK
+- All supercomputer/record attributions (Sunway, Frontier, Fugaku,
+  JUQCS, JUPITER, Gordon Bell 2021 details, core counts), Sycamore/
+  Zuchongzhi/Jiuzhang experiment parameters, Pan–Chen–Zhang and
+  follow-up runtimes, spoofing-line authorship, Bravyi–Gosset/Bravyi et
+  al. exponents and benchmark details, Pashayan et al. framework
+  details, Hastings/Calabrese–Cardy scopes, Carleo–Troyer NQS benchmark
+  comparisons, GPU SKU specs, tool/product names (cuDensityMat,
+  Intel-QS status) — queued for the sourced-benchmark audit the ledger's
+  improvement priority requests.
+
+Twenty-five factcheck anchors requoted in the same commit — 24 staled by
+this batch plus one pre-existing baseline stale repaired in passing, so
+the anchor baseline improves from 97 to 96. Lint, factcheck lint, and
+the build selftest pass.

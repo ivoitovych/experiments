@@ -13,7 +13,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §24.1 — Classical simulation estimate reduced by six orders of magnitude
 
-- **Claim** (anchor): "Subsequent work (§24.14) dropped it by six orders of magnitude"
+- **Claim** (anchor): "Subsequent work (§24.14) cut the believed classical cost by orders of magnitude"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -28,21 +28,21 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §24.2 — Memory cost at n=50 is 16 PiB
 
-- **Claim** (anchor): "At n = 50, M = 16 PiB — the practical ceiling for full statevector simulation, reachable only by the largest national supercomputers"
+- **Claim** (anchor): "At $n = 50$, $M = 16$ PiB — beyond the aggregate memory of most national supercomputers; reported $\sim$50-qubit "full-state" results rely on reduced precision, compressed encodings, or selected amplitudes"
 - **Method**: derivation
 - **Source**: → §24.2 formula M(n) = 16 · 2^n bytes; 16 · 2^50 = 16 PiB
 - **Verified**: — · **Verdict**: open
 
 ## §24.2 — Per-gate cost is Θ(2^n) memory references
 
-- **Claim** (anchor): "Memory bandwidth, not raw FLOPs, is the binding constraint"
+- **Claim** (anchor): "Memory bandwidth, not raw FLOPs, is usually the binding constraint for unfused kernels"
 - **Method**: derivation
 - **Source**: → §24.2–§24.3 gate-as-stride algorithm; each gate touches all 2^n amplitudes
 - **Verified**: — · **Verdict**: open
 
 ## §24.3 — Practical statevector ceiling: n=33–35 workstation, n=45–50 supercomputer
 
-- **Claim** (anchor): "The practical ceiling is on the order of n = 33–35 for a workstation and n = 45–50 for a top-end supercomputer"
+- **Claim** (anchor): "The practical ceiling is on the order of $n = 33$–$35$ for a high-memory workstation or server and the mid-40s for the largest supercomputers"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -56,21 +56,21 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §24.3 — Sunway TaihuLight and Frontier-class machines: 45–49-qubit simulations
 
-- **Claim** (anchor): "The Sunway TaihuLight and Frontier-class machines have reported 45–49-qubit full statevector simulations using terabytes of distributed memory"
+- **Claim** (anchor): "the widely cited $\sim$48-qubit Jülich (JUQCS) runs used adaptive 2-byte amplitude encoding (about 0.5 PiB of distributed memory) rather than dense complex128"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
 
 ## §24.3 — Named high-performance simulators: Qiskit Aer, qsim, cuStateVec, Intel-QS
 
-- **Claim** (anchor): "High-performance simulators — Qiskit Aer, Cirq's `qsim`, NVIDIA's `cuStateVec`, Intel-QS — all rely on careful loop tiling, AVX-512 / NEON / GPU SIMD lanes, and asynchronous memory prefetch to approach memory-bandwidth peak"
+- **Claim** (anchor): "High-performance simulators — Qiskit Aer, Cirq's `qsim`, NVIDIA's `cuStateVec`, Intel-QS — variously use loop tiling, SIMD lanes (AVX on x86, NEON on ARM) or GPU threads, gate fusion, and prefetching"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
 
 ## §24.4 — Density-matrix storage costs 16·4^n bytes
 
-- **Claim** (anchor): "every qubit doubled in cost. The threshold values halve"
+- **Claim** (anchor): "each added qubit *quadruples* the memory, so the feasible width roughly halves relative to a statevector"
 - **Method**: derivation
 - **Source**: → §24.4; density matrix is 2^n × 2^n complex matrix, 16 bytes per entry gives 16·4^n bytes
 - **Verified**: — · **Verdict**: open
@@ -119,7 +119,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §24.5 — Stim runs 10^6-qubit, 10^8-gate-per-second Clifford circuits on a laptop
 
-- **Claim** (anchor): "Stim (Craig Gidney's simulator) routinely runs Clifford circuits with 10^6 qubits and 10^8 gates per second on a laptop"
+- **Claim** (anchor): "**Stim** (Craig Gidney's simulator) has handled Clifford circuits at the scale of $10^6$ qubits, with throughput on the order of $10^8$ gate operations per second on a laptop for favorable workloads"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -161,14 +161,14 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §24.7 — Tensor-network storage O(nχ²) vs 2^n for full state
 
-- **Claim** (anchor): "the contraction is performed lazily on demand. Storage drops from $2^n$ to $O(n \chi^2)$ when $\chi$ stays small"
+- **Claim** (anchor): "the contraction performed lazily on demand. Storage drops from $2^n$ to $O(n \chi^2)$ when $\chi$ stays small"
 - **Method**: derivation
 - **Source**: → §24.7 MPS/PEPS structure; each of n site tensors has O(χ²·2) entries
 - **Verified**: — · **Verdict**: open
 
 ## §24.7 — Tensor-network software ecosystem: ITensor, TeNPy, Quimb, cuTensorNet
 
-- **Claim** (anchor): "Both come with a substantial software ecosystem — ITensor, TeNPy, Quimb, NVIDIA's `cuTensorNet` — and have been the production tool of condensed-matter theory for the last twenty years"
+- **Claim** (anchor): "Both come with a substantial software ecosystem — ITensor, TeNPy, Quimb, NVIDIA's `cuTensorNet` — and have been production tools of condensed-matter theory for decades"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -189,14 +189,14 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §24.8 — Typical bond dimension χ=50–200 for chemical-accuracy ground states in 1D
 
-- **Claim** (anchor): "typically $\chi = 50$ to $200$ — suffices for chemical-accuracy ground-state simulation"
+- **Claim** (anchor): "so a fixed $\chi$ — often tens to a few hundred — suffices for highly accurate ground-state simulation"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
 
 ## §24.8 — Quench dynamics: linear entanglement growth S(t)∼t (Calabrese–Cardy)
 
-- **Claim** (anchor): "**Quench dynamics** out of a gapped state, however, exhibit **linear entanglement growth** $S(t) \sim t$ (Calabrese–Cardy)"
+- **Claim** (anchor): "**Quench dynamics** out of a gapped state commonly exhibit **linear entanglement growth** $S(t) \sim t$ (Calabrese–Cardy analyzed the CFT quench settings; integrable, localized, and constrained systems can behave differently)"
 - **Method**: external
 - **Source**: TBD — needs verification (Calabrese & Cardy, Journal of Statistical Mechanics, 2005)
 - **Verified**: — · **Verdict**: open
@@ -210,7 +210,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §24.9 — DMRG energies converged to relative precision 10^−10 at χ≤1000
 
-- **Claim** (anchor): "converged to relative precision $10^{-10}$ at bond dimensions $\chi \le 1000$, which translates to spin chains of hundreds of sites on a workstation"
+- **Claim** (anchor): "energies converge to relative precision $\sim 10^{-10}$ at bond dimensions $\chi \le 1000$ for chains of hundreds of sites on a workstation"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -238,35 +238,35 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §24.10 — Neural-network quantum states originated by Carleo and Troyer in 2017
 
-- **Claim** (anchor): "Originated by Carleo and Troyer in 2017, neural-network quantum states (NQS) have matched and in some cases exceeded PEPS accuracy on 2D Heisenberg and fermionic systems"
+- **Claim** (anchor): "Popularized by Carleo and Troyer in 2017, neural-network quantum states (NQS) have matched — and on some reported benchmarks exceeded — tensor-network accuracy on 2D Heisenberg and fermionic systems"
 - **Method**: external
 - **Source**: TBD — needs verification (Carleo & Troyer, Science 355, 602–606, 2017)
 - **Verified**: — · **Verdict**: open
 
 ## §24.11 — Pan, Chen, and Zhang 2022: Sycamore benchmark cost reduced to a few days on GPU cluster
 
-- **Claim** (anchor): "Pan, Chen, and Zhang 2022 and follow-up work used this view, together with massive GPU parallelism, to drop the estimated cost of simulating the Sycamore 2019 sampling benchmark from 10 000 years to a few days on a GPU cluster"
+- **Claim** (anchor): "to drop the believed cost of simulating the Sycamore 2019 sampling benchmark from 10,000 years to hours-to-days on a GPU cluster"
 - **Method**: external
 - **Source**: TBD — needs verification (Pan, Chen & Zhang 2022)
 - **Verified**: — · **Verdict**: open
 
 ## §24.12 — H100 GPU: 80 GiB HBM3 with 3 TB/s bandwidth
 
-- **Claim** (anchor): "A single H100 GPU has 80 GiB of HBM3 with 3 TB/s bandwidth"
+- **Claim** (anchor): "A data-center GPU of the H100 class carries tens of GiB of HBM at TB/s-scale bandwidth (exact figures vary by SKU)"
 - **Method**: external
 - **Source**: TBD — needs verification (NVIDIA H100 datasheet)
 - **Verified**: — · **Verdict**: open
 
 ## §24.12 — cuStateVec, qsim, Qulacs approach memory-bandwidth peak at 30+ qubits
 
-- **Claim** (anchor): "**Qulacs** are the most heavily-optimized single-GPU statevector simulators; all approach memory-bandwidth peak and run circuits at 30+ qubits significantly faster than CPU equivalents"
+- **Claim** (anchor): "**Qulacs** are among the most heavily optimized statevector simulators (qsim and Qulacs also run on CPUs); on bandwidth-bound kernels they approach memory-bandwidth peak"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
 
 ## §24.12 — 30-qubit statevector fits in 16 GiB; three-orders-of-magnitude GPU speedup
 
-- **Claim** (anchor): "A 30-qubit statevector fits in 16 GiB; a single 1000-gate circuit runs in seconds. Three-orders-of-magnitude speedup over CPU is routine"
+- **Claim** (anchor): "the popular "thousandfold" figures compare against unoptimized CPU baselines, while against a well-used modern CPU node a bandwidth-bound kernel gains roughly the bandwidth ratio"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -280,28 +280,28 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §24.13 — Trajectory break-even with density-matrix at N≈2^n; trajectories only option for n>25
 
-- **Claim** (anchor): "The break-even with full density-matrix simulation is roughly $N \approx 2^n$, so for $n > 25$ trajectories are essentially the only option"
+- **Claim** (anchor): "Where the break-even against a dense density matrix falls depends on gate costs, Kraus ranks, observables, and parallelism — there is no universal $N \approx 2^n$ rule"
 - **Method**: derivation
 - **Source**: → §24.4 and §24.13; N trajectories at cost 2^n each vs single density-matrix at cost 4^n
 - **Verified**: — · **Verdict**: open
 
 ## §24.13 — Aharonov–Ben-Or 1996 and Knill 2005: constant-rate depolarizing noise makes circuits classically simulable
 
-- **Claim** (anchor): "The Aharonov–Ben-Or 1996 and Knill 2005 style arguments show that constant-rate depolarizing noise above a (low) threshold reduces every circuit's output to nearly classical, and the simulation becomes polynomial-time"
+- **Claim** (anchor): "above sufficient constant-rate depolarizing noise, the output of an *uncorrected* circuit converges toward easily sampled distributions"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
 
 ## §24.13 — Bremner–Montanaro–Shepherd 2016: noisy IQP/random-circuit sampling classically simulable above threshold
 
-- **Claim** (anchor): "Bremner–Montanaro–Shepherd 2016 quantified this for IQP and random-circuit sampling: noisy versions of advantage-claim sampling tasks are classically simulable if the noise exceeds a circuit-depth-dependent threshold"
+- **Claim** (anchor): "for noisy IQP and random-circuit sampling there are quantitative simulability thresholds depending on depth and noise placement"
 - **Method**: external
 - **Source**: TBD — needs verification (Bremner, Montanaro & Shepherd 2016)
 - **Verified**: — · **Verdict**: open
 
 ## §24.13 — Stim produces surface-code threshold curves for Chapter 19
 
-- **Claim** (anchor): "Stim is the dominant tool here and is what produces the surface-code threshold curves quoted in Chapter 19"
+- **Claim** (anchor): "**Stim** is the most widely used tool here; the surface-code threshold curves quoted in Chapter 19 come from circuit/noise/decoder studies"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -322,21 +322,21 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §24.14 — Zuchongzhi 3.0: 67–105 qubit random-circuit sampling (2024, USTC)
 
-- **Claim** (anchor): "The 2024 USTC Zuchongzhi 3.0 experiment, also random-circuit sampling on a 67–105 qubit superconducting device, refreshed the gap"
+- **Claim** (anchor): "Subsequent USTC **Zuchongzhi**-series experiments — random-circuit sampling on successively larger superconducting devices — refreshed the gap"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
 
 ## §24.14 — Pan, Chen, and Zhang 2022: Sycamore tensor-network simulation in ~15 hours
 
-- **Claim** (anchor): "Pan, Chen, and Zhang 2022 rephrased the Sycamore benchmark as a tensor-network contraction, found a near-optimal contraction order, executed it on a few thousand GPUs, and reported a simulation in roughly 15 hours — six orders of magnitude faster than the original 10 000-year estimate"
+- **Claim** (anchor): "rephrased the Sycamore benchmark as a tensor-network contraction, found a highly effective contraction order, executed it on a few thousand GPUs, and reported a simulation in roughly 15 hours"
 - **Method**: external
 - **Source**: TBD — needs verification (Pan, Chen & Zhang 2022)
 - **Verified**: — · **Verdict**: open
 
 ## §24.14 — Pan and Zhang 2023: extended technique to 60-qubit Zuchongzhi benchmark
 
-- **Claim** (anchor): "Pan and Zhang 2023 extended the technique to the 60-qubit Zuchongzhi benchmark"
+- **Claim** (anchor): "Follow-up work extended the technique to Zuchongzhi-class benchmarks"
 - **Method**: external
 - **Source**: TBD — needs verification (Pan & Zhang 2023)
 - **Verified**: — · **Verdict**: open

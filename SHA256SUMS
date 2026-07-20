@@ -77,7 +77,7 @@ f6efd09f72128662cf63851f39a3f9c8a5bf4a6263e9398b61663696e851170b  book/part-08-n
 75ff1dff98373d10637434a674198a38489926cb9ff2d4138520537c7c45194d  book/part-09-hardware-and-software/21-quantum-control-and-electronics.md
 1b7af9f3d547f2a04eb046486d89daaa7a1cdf8d9fd4f70c4ab796de40542a09  book/part-09-hardware-and-software/22-hardware-engineering-metrics.md
 a933956fc9f1364a346319d4c008230b8d7c88282d00e3caead33c7fd2683145  book/part-09-hardware-and-software/23-quantum-programming-compilation-and-tooling.md
-b1032a8b2f79304ff2c68f88ba7ef95556a6f405431ba412d0ea592c1ee38d25  book/part-09-hardware-and-software/24-classical-simulation-of-quantum-systems.md
+93bb4675159795938cc5532d653ccacb5bfef5f7e8cf9eb875728a5cfcf79b72  book/part-09-hardware-and-software/24-classical-simulation-of-quantum-systems.md
 e05a96bafe1aa16453ad492787cad50f80fcfbc3d40367eb4465b411b714020d  book/part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md
 76778f845f2ecb3ad532a076fd14cecb4fcda3bd1104882ece334d1e50263579  book/part-10-practice-and-era/26-practical-access-and-hands-on-work.md
 3bd6a9e91ec23eeaad7d83612216986f4d25bbdd420b65a37d877225a54699d2  book/part-11-applications/27-cryptography-and-security.md
@@ -141,7 +141,7 @@ edf0c9d1edeed4e50ee059bc3512eedef9706dfad8fb4fa7b781f070f410f20f  factcheck/part
 b9a6d2c281757642381748fd51189bdfb27c414ba0fb73053d05d35462cc1e6a  factcheck/part-09-hardware-and-software/21-quantum-control-and-electronics.md
 8a085c51235a38f1c87ea30a2434db261e0ed959602375f52cb115a785230480  factcheck/part-09-hardware-and-software/22-hardware-engineering-metrics.md
 25373fe1e9193305bb4b8d395e8a2ba68aac6c6c39a60e193c432187a627822a  factcheck/part-09-hardware-and-software/23-quantum-programming-compilation-and-tooling.md
-161de353218bf8a5dd8d42a33c5494c53ed0c85bc82b3457f63363b52df15fd3  factcheck/part-09-hardware-and-software/24-classical-simulation-of-quantum-systems.md
+bd880620f83a3a6373a0976edf30443b6e41dcfc0183961788abc4af5c580a9f  factcheck/part-09-hardware-and-software/24-classical-simulation-of-quantum-systems.md
 6e49580881cb472350c9b2ff67d99f3988cc9120295c3225cbb88bedee3d43c1  factcheck/part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md
 82d0b8e84a9c0d113ffbd9318dc7d9234ea1d211c5dd61444daec11289511f9a  factcheck/part-10-practice-and-era/26-practical-access-and-hands-on-work.md
 779026173501aa8594defb9b3060e4f294c0856ed43f4a2ca1a3ff2815c6d3d1  factcheck/part-11-applications/27-cryptography-and-security.md
@@ -171,7 +171,7 @@ d5e0cec3ec5e3dbb9ada626bf551502d12d81920e68fdac4c4e7a59ed6e08a7b  reviews/cold-r
 95cd5962ed6cf39a1b5f5e2f859bc5c2d03b78d3d435891c3fd6b11a012b6584  reviews/factcheck-2026-07-04-external-verification.md
 7efd03e5b38a37de192454db8bd8d6c6b31373f9fe112096e1b27a251e30932d  reviews/proposals-2026-07-05-remaining-programmes.md
 021f81c249aa7f0e13dd66470714f49c341955324e48399b78ed4b29c1269c22  reviews/recommendations-2026-07-04-deferred-items.md
-bb5e68f8eca15e33078ee15660ac6b5e02dd0b5759c074f0c8e9026d06cb08ce  reviews/response-2026-07-19-second-pass-dispositions.md
+00e0877263e4206796c559d57f09053a2d63509f945a1e8395ce672907adf66a  reviews/response-2026-07-19-second-pass-dispositions.md
 95adfcedf14090d851fc34190f8b43abb422e0f94462929e7d694e174aeaf9cf  reviews/review-2026-07-03-1843-comprehensive-book-review.md
 790eed5493772fe55227db4c7aa88042482ab55d597a5c8041ac5a3b03d759e8  reviews/review-2026-07-19_01-20-35_CEST.md
 2bd131ed2944aee6d792838358a75ef9efbe42c09f5a5568347bd8aa4d1d840d  reviews/roadmap-2026-07-05-path-to-publication.md
