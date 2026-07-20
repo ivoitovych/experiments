@@ -1145,3 +1145,103 @@ GitHub Pages / EPUB questions reopen.
 repository root into `archive/` (see `archive/README.md`), and the single-file
 `review/` directory was merged into `reviews/`. Mentions above refer to their
 original root-level locations; git history preserves the full lineage.*
+
+## Phase 15 — The cold-reader survivability programme (2026-07-09)
+
+The author began the start-to-end read that Phase 14 had queued — and
+within three files reported a "paranoid feeling that we are doing it
+wrong": the Historical Prelude opened on a section about the book rather
+than about anything, Chapter 4 used Dirac notation dozens of times
+before defining it, and the Hilbert-space definition leaned on Cauchy
+sequences the audience contract had promised to avoid. The deep analysis
+that followed (`reviews/analysis-2026-07-09-reader-experience-systemic.md`)
+confirmed all three as textually real, measured the defect class across
+the book (concentrated on the entry path, not systemic), and — more
+uncomfortably — root-caused why fourteen phases of review had missed it:
+curse of knowledge, correctness-only instruments, and reviewer/author
+priors shared by the same underlying models. An external reviewer thread
+(`reviews/external-review-2026-07-09-cold-reader.md`) independently
+converged on the same diagnosis and proposed the instrument that became
+**F1: the cold-reader survivability triage** — five 0–3 dimensions
+scored per file by a reader deprived of the book's context.
+
+Two methodological artifacts came out of the programme beyond the fixes
+themselves. First, a **four-model triage experiment**
+(`reviews/experiment-2026-07-09-triage-model-comparison.md`) ran the
+same task across four Claude models against a ground-truth key:
+Sonnet won on recall with zero false positives, Haiku disqualified
+itself with a critical false negative, and the production run was
+re-planned around those results — including mid-run, when token-economy
+constraints arrived and the orchestration switched to chunked batches
+with per-chunk usage metering. Second, an **anti-hallucination gate**:
+every triage finding had to carry a verbatim quote, machine-checked
+against the file, before it counted.
+
+The full triage (`reviews/cold-read-2026-07-09-triage.md`) scored all
+48 files — 32 Yellow, 15 Green, 0 Red — with 136 verified findings.
+The fix programme ran in two passes: 84 mechanical sure fixes applied by
+hand in eleven batches, then a deep investigation of the 52 doubtful
+findings that produced 5 upgraded fixes, 45 documented adjudications
+(the how-to-read box convention survived as a deliberate
+selective-reader contract; the triage rubric flags it by construction),
+and 2 author decisions (the Chapter 3 and Chapter 5 openings). The
+lasting editorial standard from the author's checkpoint feedback:
+**introduce-then-use beats gloss-after-use** — a forward pointer next to
+an undefined term is a patch; defining the term first is the fix.
+
+## Phase 16 — The second comprehensive pass, the fix pipeline, and the language migration (2026-07-19)
+
+Mid-July the author opened a second full review of a different
+character: `reviews/review-2026-07-19_01-20-35_CEST.md`, an
+"excessive-granularity" ledger reviewing every project file at
+sub-subsection level across ten dimensions — correctness, pedagogy,
+consistency, maintainability, even per-unit entertainment scores — and
+growing by nightly drops (through Chapter 22 and ~18,000 lines as of
+this entry, with the front still advancing). Where Phase 14 audited
+correctness and Phase 15 audited survivability, this pass audits
+**epistemic precision**: its dominant finding class is the universal
+quantifier that outruns its truth ("any", "every", "only", "exactly"),
+alongside genuine technical defects in nearly every chapter.
+
+The fix side runs as a standing pipeline with three agreed rules.
+**Truth is not negotiable; only depth is** — every false sentence gets
+fixed; discretion applies only to how much of the truth is served,
+by scoping, labeling idealizations, or narrowing universals — never by
+keeping a falsehood for readability. **Stay behind the review front** —
+fixes touch only files whose second pass the ledger marks complete, so
+the reviewer never chases moving text. **Nothing is dropped** — every
+ledger item lands in exactly one disposition lane (fixed /
+deferred-factcheck / adjudicated / author-decision /
+improvement-queued / polish-queued), logged insert-only in
+`reviews/response-2026-07-19-second-pass-dispositions.md`, with staled
+factcheck anchors requoted in the same commit as the text they mirror.
+Twenty-three batches and roughly 500 corrections in, the anchor
+checker still reads exactly its pre-existing baseline.
+
+Three side arcs belong to this phase's record. The **infrastructure
+batches** fixed tooling that was lying green (the progress generator's
+completed-state bug, the factcheck lint's unqualified 3-card PASS) and
+added standing guards: TOC and README drift checks, interim-mirror
+structural validation, deterministic example seeds, an executable
+book-vs-Qiskit ordering assertion, and a version-matrix guard in the
+build selftest. The **language migration** replaced the manuscript's
+mixed-but-mostly-British spelling with American English after the author
+challenged the internal-majority rationale and demanded field research:
+the evidence (`reviews/analysis-2026-07-19-spelling-convention.md`) —
+APS's American-English mandate, the American spelling of the field's
+own term-coining titles (stabilizer, randomized benchmarking, color
+code, qubitization), and the textbook canon — settled it; ~1,500
+replacements executed via codespell's en-GB→en-US dictionary plus a
+project map for the scientific derivatives and hyphenated compounds no
+general dictionary carries, with the convention documented in STYLE.md
+and enforced by a two-layer lint with an exact-phrase allowlist so
+quoted titles and proper nouns are never "corrected". And the
+**attribution incident**: a fresh execution container defaulted the git
+identity to the AI tool's for twenty-three commits; per the author's
+instruction a timestamped backup branch
+(`quantum-computing-book-backup-20260719-195025-CEST`) preserved the
+original history before a minimal-range rewrite restored the correct
+identity on every affected commit — content byte-identical, zero AI
+attribution anywhere on the branch, and a standing session-start rule:
+verify `git config user.email` before the first commit in any fresh
+environment.

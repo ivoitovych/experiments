@@ -66,6 +66,32 @@ They set the conventions, the tone, and the sanity-check format that
 the rest of the book follows; the cost of getting them right pays for
 itself across every chapter that builds on them.
 
+### The ledger-review fix pipeline (adopted 2026-07-19)
+
+For long-running, incrementally-dropped review ledgers (the Phase 16
+pattern), fixes run as a standing pipeline rather than a single
+remediation pass:
+
+1. **Correctness wave first, behind the front.** On each ledger drop,
+   fix the newly completed files' defects and overclaims immediately —
+   wrong sentences are the perishable, highest-stakes items — touching
+   only files whose pass the ledger marks complete.
+2. **Everything below defect grade is laned, not dropped.** Suspicions
+   that dissolve on investigation are adjudicated with reasons;
+   improvement ideas and polish are queued
+   (improvement-queued / polish-queued) and executed in dedicated
+   passes; currency items route to the factcheck programme;
+   voice-changing suggestions go to the author.
+3. **Batch discipline.** Per-file batches; structural lint after every
+   batch; factcheck-anchor requotes in the same commit; dispositions
+   appended insert-only to the companion response file; the reviewer's
+   ledger is never edited by the fixer.
+4. **Verify before fixing.** A ledger finding is a claim like any
+   other: check it against the text and, for technical assertions,
+   against the primary formulation before rewriting (several ledger
+   findings have been adjudicated as reflecting an alternative standard
+   convention rather than an error).
+
 ## Toolchain
 
 | Tool | Make target | Purpose |
@@ -75,6 +101,11 @@ itself across every chapter that builds on them.
 | `scripts/generate_progress.py` | `make progress` | Regenerates `PROGRESS.md` from the status blocks in every manuscript file. Re-run after editing any status. |
 | `tools/lint.py` | `make lint` | Enforces structural and notational invariants. Catches source-detectable rendering bugs (see *Known renderer gotchas* below). |
 | `tools/screenshots.py` | `make screenshots CHAPTER=...` | Drives headless Chromium against the GitHub-rendered page to capture per-section PNGs for human visual review. See *Screenshot workflow* below. |
+| `scripts/generate_toc.py --check` | `make toc-check` | Fails if `TOC.md` has drifted from the manuscript headings. `--check-readme` additionally verifies every manuscript file is linked from README's Table of Contents. |
+| `scripts/factcheck_lint.py` | — | Lints card-spec factcheck files; structurally validates both interim mirror dialects (Method/Status or Method/Verified fields) across the whole mirror; `--dashboard` tallies verdicts and interim claim statuses. Its summary states coverage honestly. |
+| `scripts/factcheck_anchors.py` | — | Verifies every factcheck anchor still matches the mirrored manuscript text. Anchor requotes must land in the same commit as the text change that staled them. |
+| `examples/qiskit_ordering_check.py` | `make check-examples` | Executable assertions that the book's qubit-ordering conventions match live Qiskit behavior (index mapping, diag(I, X) CNOT form). All examples run with fixed seeds for reproducible output. |
+| spelling lint (in `tools/lint.py`) | `make lint` | American-English enforcement: project dictionary + optional codespell layer + exact-phrase allowlist. See the 2026-07-19 decision-log entry and STYLE.md §Language. |
 | `tools/render-gist.py` | `make render-gist FILE=...` | Creates a secret Gist from any local Markdown file, captures per-section screenshots, *and* writes a `report.txt` containing the rendered article's text content. The text report is the single-paste signal for whether each cell rendered as math or as literal LaTeX. The gist is **kept by default** so the user can also open it in a browser and verify directly. Add `DELETE=1` to clean up. |
 
 General principle: source-detectable problems are caught by lint;
@@ -268,6 +299,50 @@ lockstep.
 ## Decision log
 
 Append-only. New entries go at the top.
+
+### 2026-07-19: American English, the fix-pipeline rules, and the identity guard
+
+The mid-July review era (HISTORY.md Phases 15–16) produced five standing
+decisions. (1) **The manuscript is American English**, adopted on field
+research (`reviews/analysis-2026-07-19-spelling-convention.md`) rather
+than internal precedent, and enforced by a two-layer spelling lint
+(project dictionary `tools/spelling-gb-us.txt` always; codespell's
+`en-GB_to_en-US` builtin with a hyphen-splitting word regex when
+installed) with an exact-phrase allowlist
+(`tools/spelling-allowlist.txt`) so quoted titles and proper nouns are
+never "corrected". Historical documents — `HISTORY.md` narrative,
+`reviews/`, `archive/` — retain their original spelling as records and
+are outside the lint's scope. (2) **Truth is not negotiable; only depth
+is**: a review finding of the form "this sentence is false" is always
+fixed; editorial discretion applies only to scoping, idealization
+labels, and how much of the truth a passage serves — never to keeping a
+falsehood for readability or entertainment. (3) **Fixes stay behind the
+review front**: while a ledger-style review is in progress, fix batches
+touch only files whose pass is marked complete, and every batch lands
+its disposition entries, its factcheck-anchor requotes, and its fixes in
+the same commit. (4) **Every review item gets a disposition lane** —
+fixed / deferred-factcheck / adjudicated / author-decision /
+improvement-queued / polish-queued — logged insert-only in a companion
+dispositions file; nothing in a review is silently dropped. (5)
+**Session-start identity check**: fresh execution environments must
+verify `git config user.name`/`user.email` before the first commit
+(the 2026-07-19 attribution incident and its filter-branch repair are
+recorded in HISTORY.md Phase 16; the pre-rewrite history is preserved on
+a timestamped backup branch).
+
+### 2026-07-09: cold-reader triage and introduce-then-use
+
+The reader-experience programme (HISTORY.md Phase 15) fixed two
+standing rules. (1) **F1 cold-reader triage** is a reusable instrument:
+five 0–3 dimensions (first-screen composition, opening reader-debt,
+first-use dependency violations, table/prose overload,
+hard-definition-before-operational-meaning) scored per file by a reader
+stripped of the book's context, with every finding carrying a verbatim
+quote that is machine-verified against the file before it counts. (2)
+**Introduce-then-use beats gloss-after-use**: when a term of art
+appears before its definition, the fix is to introduce it first (or
+restructure), not to hang a forward-pointer gloss on the violation;
+glosses are the fallback for genuinely deferred material only.
 
 ### 2026-07-05: prereviewed rung, lint-enforced conventions, generated TOC, repo hygiene
 
