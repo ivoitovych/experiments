@@ -61,7 +61,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §26.2 — Direct vendor access models
 
-- **Claim** (anchor): "Direct vendor access — Quantinuum's H-series, IonQ Cloud, IQM Resonance, QuEra Aquila; each offers reserved-time and pay-per-shot models"
+- **Claim** (anchor): "commercial models vary by vendor (reservations, subscriptions, per-shot or per-task billing), and some devices — QuEra's Aquila, historically — are reached through aggregators like Braket rather than directly"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -69,7 +69,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §26.2 — Reserved time pricing range
 
-- **Claim** (anchor): "Reserved time (typically priced in tens to hundreds of dollars per minute on the higher-fidelity vendors)"
+- **Claim** (anchor): "Pricing is provider-, contract-, and device-specific, and often not public; serious experimentation typically runs on paid on-demand access, sessions, reservations, or partnership allocations"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -101,7 +101,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §26.3 — Q# resource estimator characterization
 
-- **Claim** (anchor): "the compiler is sophisticated and the resource estimator is the gold standard for fault-tolerant pre-flighting"
+- **Claim** (anchor): "the Azure Quantum Resource Estimator is the most widely used public tool for fault-tolerant resource forecasting"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -157,7 +157,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §26.6 — Zenodo deposit as reproducibility standard
 
-- **Claim** (anchor): "most reputable venues now expect either a Zenodo deposit of the experimental data and code, or a published companion repository"
+- **Claim** (anchor): "many venues now encourage or require a data/code deposit (a Zenodo record or a companion repository), with policies varying by field and venue"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -165,7 +165,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §26.7 — arXiv quant-ph as primary venue
 
-- **Claim** (anchor): "Almost everything appears on arXiv"
+- **Claim** (anchor): "Most academic quantum-computing research appears on arXiv, usually before journal publication"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -173,7 +173,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §26.7 — Quantum advantage claims and classical pushback timeline
 
-- **Claim** (anchor): "The 2019–2025 cycle of advantage claims and classical pushbacks (Sycamore, Jiuzhang, random-circuit sampling) is a useful template: if a result claims a clean exponential separation, expect a classical algorithmic response within twelve to twenty-four months"
+- **Claim** (anchor): "The 2019–2025 cycle of advantage claims and classical pushbacks (Sycamore, Jiuzhang, random-circuit sampling) is a useful template: if a result claims a clean separation, search for classical algorithmic responses before citing it"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

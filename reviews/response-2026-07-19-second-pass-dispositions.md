@@ -1951,3 +1951,79 @@ the build selftest pass.
 
 Nineteen factcheck anchors requoted in the same commit; baseline (96)
 held. Lint, factcheck lint, and the build selftest pass.
+
+## Batch 31 — Chapter 26 (31 substitutions)
+
+### FIXED — outright defects
+- "If you only read one section" naming two sections — corrected, with
+  the pain-ranking attributed as author experience; "previous chapters
+  have built theory" → conceptual and engineering foundation; "won't
+  waste device time" → minimizes avoidable waste.
+- 16/512 "GB" → GiB; "large-memory server around 35–40" — 35 (n = 40 is
+  16 TiB, distributed-cluster territory); tensor-network condition
+  extended beyond bounded entropy; depolarizing model labeled the simple
+  case with richer models referenced.
+- Cloud access "almost exclusively" — scoped to public/commercial with
+  the on-prem/lab exceptions; direct-vendor "each offers reserved-time
+  and pay-per-shot" false universal — vendor-varying models with the
+  Aquila-via-Braket correction; queue time "the dominant cost" and the
+  "tens to hundreds of dollars per minute" pricing — hedged to
+  provider/contract-specific, often non-public, with the workload-
+  dependent dominance; VQE evening estimate given its dependencies.
+- Cirq "cleaner Python" subjectivity attributed and Google-access
+  reality added; PennyLane "pedagogically-best" attributed as author
+  view; Q# "only major SDK with a real type system" false exclusivity —
+  language-vs-library distinction substituted, "compiler is
+  sophisticated / estimator is the gold standard" → most widely used
+  public tool; the PennyLane→Qiskit→tket path reconciled with the
+  stay-with-one-SDK advice (staged, milestone by milestone).
+- §26.4 device shorthand "Quantinuum if shallow and small; IBM if
+  longer" — unjustified and probably inverted (ion fidelity supports
+  deeper circuits); replaced with the defined fewest-moving-parts
+  criteria; "rarely the metric" frequency softened.
+- Shot-budget advice "from the precision you need, not the precision
+  you can afford" — corrected to need-then-check-affordability with the
+  rescope-or-label-exploratory rule; "precision ~5·10^-3" labeled a
+  standard error with the confidence-interval distinction.
+- Estimator "rounded numbers" / "more accurately" false claims — actual
+  output semantics (estimates plus metadata, no raw bits) and the
+  audit-driven choice, with hand-aggregation parity noted.
+- Screenshot recommendation → structured backend-properties artifact;
+  three-way baseline "localizes bugs" → narrows hypotheses (shared-bug
+  caveat); hardware RNG "that's physics" → sampling variation plus
+  technical noise, stable distributions, no certified-randomness
+  implication; the ibm_brisbane calibration example labeled an
+  illustrative format, not a real archived run; "most reputable venues
+  now expect" → many venues encourage or require, policy variation
+  noted.
+- arXiv "almost everything... journal version rarely meaningfully
+  different" — scoped (categories beyond quant-ph, industrial/standards
+  exceptions) and the journal-dismissal inverted into a
+  compare-the-version-of-record instruction; "most papers are not worth
+  a full read" → not relevant to your question; the 12–24-month
+  classical-response prediction → check-not-calendar discipline;
+  "path to madness" author-tracking advice → curation mix with
+  prestige-bias warning; "trust the community to surface" → keep a
+  periodic scan against the community's own biases.
+- §26.8 "already produced real value" — decomposed (crypto
+  threat-and-response, scientific insight, tooling — not computational
+  advantage).
+- Sanity check 3 rebuilt as a no-purchase published-pricing exercise
+  with stated assumptions; check 4 given the fake-backend fallback and
+  the compiled-against-snapshot semantics; check 5's presupposed
+  pushback paper → search-with-negative-result-allowed.
+
+### ADJUDICATED
+- `Statevector(qc)` and the Bell example — verified working
+  (examples/first_bell_program.py runs under the pinned environment and
+  produces the printed output). No change.
+
+### DEFERRED-FACTCHECK
+- Provider rosters/tiers/plans (IBM free tier, Braket roster, Azure
+  gateway list, Google access model), device counts and fidelity cards
+  in §26.4, Qiskit 1.0–1.4 deprecation specifics, venue deposit
+  policies — queued for the dated access-appendix the ledger's
+  improvement priority requests.
+
+Six factcheck anchors requoted in the same commit; baseline (96) held.
+Lint, factcheck lint, and the build selftest pass.
