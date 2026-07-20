@@ -61,7 +61,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §37.3 — Extrapolation to ~2030: ~10^4 physical qubits at two-qubit error ~10^-3
 
-- **Claim** (anchor): "Continuing those rates to"
+- **Claim** (anchor): "Continuing the count trend from $\sim 10^3$ in 2026 gives $\sim 5{,}000$ per chip by 2030"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -69,7 +69,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §37.3 — Extrapolation to ~2035–2040: ~10^5–10^6 physical qubits, first ~10^9 logical-operation algorithms
 
-- **Claim** (anchor): "the same extrapolation suggests"
+- **Claim** (anchor): "Carried to $2035$–$2040$, the same growth law gives $\sim 4 \times 10^4$ to $\sim 3 \times 10^5$ physical qubits"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -77,7 +77,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §37.3 — Small-molecule quantum chemistry useful at ~100 logical qubits
 
-- **Claim** (anchor): "The active-space and post-Hartree"
+- **Claim** (anchor): "Resource studies put interesting instances at $\sim 100$ logical *data* qubits, but not at modest depth"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

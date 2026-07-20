@@ -2398,7 +2398,7 @@ files vs fix batches:
 | Ch34 | 39 | done |
 | Ch35 | 40 | done |
 | Ch36 | 41 | done |
-| Ch37 | — | pending (ledger complete) |
+| Ch37 | 42 | done |
 | Preface, Background, Notation | — | pending (ledger complete) |
 | Appendices A–F, Index | — | pending (ledger complete) |
 | SVG/support/archive passes | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
@@ -2665,3 +2665,43 @@ Driven by the ledger's highest-priority repair list.
 
 One factcheck anchor requoted; baseline (96) held. Lint and anchor
 checks pass; diff reviewed before push.
+
+## Batch 42 — Chapter 37 (10 substitutions)
+
+Driven by the ledger's highest-priority repair list.
+
+### FIXED — outright defects
+- "Gates per coherence time" demoted from "the platform-fair figure
+  of merit" to one useful ratio, with the omitted axes named (gate
+  fidelity, parallelism, connectivity, SPAM, leakage, duty cycle,
+  correlated noise; control-limited vs coherence-limited gates). The
+  "three things are roughly knowable" framing corrected (it listed
+  two) and softened to assumption-laden extrapolation. The growth
+  arithmetic repaired to match Chapter 36's fix: $1000 \times 1.5^4
+  \approx 5{,}000$ per chip by 2030 (system-level $10^4$ only via
+  networking), $\sim 4\times10^4$–$3\times10^5$ by 2035–2040 (the
+  $10^5$–$10^6$ range requires acceleration), and the
+  physical-count-to-$10^9$-logical-operations inference removed
+  (distance, cycle time, factories, decoder throughput all
+  unresolved by count alone). The application-ordering premise
+  restated as overall resource demand with inter-study variation.
+  The small-molecule bullet corrected: hardness is active
+  spaces/correlation, not size; $\sim 100$ logical *data* qubits but
+  emphatically not modest depth (large non-Clifford counts);
+  front-runner downgraded to plausible. Shor resources reconciled
+  with Chapters 27/36 (Gidney–Ekerå-style: $10^3$–$10^4$ logical,
+  distance mid-20s, $10^9$–$10^{10}$ Toffoli-equivalent, $\sim 10^7$
+  physical). The migration deadline decoupled from the break date
+  via HNDL (§27.6). The "provable speedups" bullet stratified:
+  Grover provable in the query model; Shor best-known-classical only
+  (no proven lower bound); phase estimation access-model-dependent;
+  HHL assumption-laden; constructed simulation instances BQP-hard
+  with tractable physical cases. The Shor-vs-$10M-cluster cost
+  comparison replaced with an explicit scenario comparison against
+  GNFS. Sanity check 3 repaired: $2d^2 - 1$ patch formula (matching
+  §25.6), idealized-patch labeling with routing/factory/yield
+  caveats, fidelity-alone insufficiency made part of the exercise,
+  and the answer redirected to published estimates.
+
+Three factcheck anchors requoted; baseline (96) held. Lint and
+anchor checks pass; diff reviewed before push.
