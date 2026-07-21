@@ -67,7 +67,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §18.3 — 1/f noise Gaussian decay shape
 
-- **Claim** (anchor): "the decay shape under free evolution is *Gaussian* ($e^{-(t/T_2^*)^2}$) rather than exponential"
+- **Claim** (anchor): "the decay shape under free evolution is approximately *Gaussian* ($e^{-(t/T_2^*)^2}$, up to slowly varying logarithmic corrections from the divergent low-frequency weight) rather than exponential"
 - **Method**: derivation
 - **Source**: → §18.3 filter-function formalism and §18.3 1/f noise discussion
 - **Verified**: — · **Verdict**: open
@@ -98,7 +98,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §18.4 — Ion trap gate fidelity set by control noise, not coherence
 
-- **Claim** (anchor): "The fact that ion traps achieve $10^{-4}$ to $10^{-5}$ per-gate fidelity in practice means the floor is *not* coherence-limited; the floor is set by control noise instead"
+- **Claim** (anchor): "The fact that ion traps achieve per-gate *error rates* of $10^{-4}$ to $10^{-5}$ in practice means the floor is *not* coherence-limited; the floor is set by control noise instead"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

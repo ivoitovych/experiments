@@ -5,7 +5,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §25.1 — Preskill coined "NISQ" in 2018 keynote and Quantum article
 
-- **Claim** (anchor): "coined by John Preskill in his 2018 keynote and the accompanying *Quantum* article, "Quantum Computing in the NISQ era and beyond.""
+- **Claim** (anchor): "coined by John Preskill in his December 2017 Q2B keynote, published in 2018 as the *Quantum* article "Quantum Computing in the NISQ era and beyond.""
 - **Method**: external
 - **Source**: Preskill, "Quantum Computing in the NISQ Era and Beyond," *Quantum* 2, 79 (2018) — TBD — needs verification (DOI/arXiv)
 - **Verified**: — · **Verdict**: open

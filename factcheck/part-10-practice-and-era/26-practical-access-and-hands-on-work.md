@@ -85,7 +85,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §26.3 — PennyLane multi-framework integration
 
-- **Claim** (anchor): "PennyLane. Differentiation-first, multi-backend, integrates with NumPy/JAX/PyTorch/TensorFlow"
+- **Claim** (anchor): "PennyLane. Differentiation-first, multi-backend, integrates with NumPy/JAX/PyTorch (TensorFlow support was deprecated in v0.43 and dropped in v0.44, late 2025 — use JAX or PyTorch for new work)"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

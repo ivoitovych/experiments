@@ -10,7 +10,7 @@ Parts 5–9 built up the algorithm, error-correction, and hardware machinery rou
 
 ## 25.1 Definition of NISQ
 
-The term **NISQ** was coined by John Preskill in his 2018 keynote and the accompanying *Quantum* article, "Quantum Computing in the NISQ era and beyond." The definition has three parts, all of which still apply in 2026:
+The term **NISQ** was coined by John Preskill in his December 2017 Q2B keynote, published in 2018 as the *Quantum* article "Quantum Computing in the NISQ era and beyond." The definition has three parts, all of which still apply in 2026:
 
 - **Noisy.** Gate operations have non-trivial error rates — typically $10^{-3}$ to $10^{-2}$ per two-qubit gate — and whatever circuit fidelity results is what the physical gates deliver, compounding with depth (multiplying like independent survival probabilities only in the crude stochastic model; coherent and correlated errors compose differently).
 - **Intermediate-scale.** Qubit counts are in the range that classical brute-force statevector simulation eventually fails (tens to hundreds of qubits) but that is much smaller than the millions of physical qubits that common surface-code architecture forecasts assign to a fully fault-tolerant machine (other codes and architectures shift that number). Preskill's original sketch was 50–100 qubits; the 2026 ceiling is closer to a few thousand for some platforms.

@@ -2419,7 +2419,8 @@ files vs fix batches:
 | factcheck/ design decisions + check-citation infrastructure + reference distribution | 61 | done — author confirmed the no-ID human-readable model; reviewer's ID/schema recommendation formally declined |
 | References sections moved into the book chapters (author-confirmed model) | 62 | done — unnumbered final `## References`, count-exempt per STYLE.md |
 | Appendix F July-2026 refresh | 60 | done — web-verified; in-place fixes for pre-snapshot facts, dated F.8 update block for post-May facts |
-| factcheck mirrors Ch13–18 | — | reviewer in progress |
+| Manuscript defects from mirror audits Ch13–27 (2026-07-21d drop + prior tail) | 63 | done |
+| factcheck mirrors Ch28+ | — | reviewer in progress |
 | SVG/archive passes, remaining support files | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
 
 Working method from batch 36 on: fixes are driven by the ledger's own
@@ -3479,3 +3480,57 @@ chapters themselves*, as a final unnumbered `## References` section.
 
 Lint (incl. card-citation check), anchors (baseline 94), and the
 identity suite all pass; diff reviewed before push.
+
+## Batch 63 — Manuscript defects from the Ch13–27 mirror audits (10 substitutions)
+
+The 2026-07-21d drop (+4,011 lines) plus the previous drop's tail
+deliver mirror-audit verdicts for Chapters 13–27 (fifteen files;
+Ch28 is the reviewer's front). As with batch 57, most named flags
+re-quote pre-fix card text; every flag was adjudicated against the
+current manuscript, with one web verification (PennyLane).
+
+### FIXED — outright defects
+- Ch18: the fidelity/error inversion ("$10^{-4}$–$10^{-5}$ per-gate
+  *fidelity*" → per-gate *error rates*); the $1/f$ Ramsey decay
+  hedged (approximately Gaussian, logarithmic corrections). Ch16:
+  the T-count/Toffoli conflation repaired (the headline may be
+  either metric; a Toffoli decomposes into several $T$s). Ch17:
+  "demolished" → refuted-at-the-oracle-level; "strongest unrebutted"
+  → least-contested with the ongoing-work caveat; Gottesman–Irani
+  scoped to the promise-gap local-Hamiltonian problem (not "exact"
+  ground energy). Ch19: the storage-overhead $p_L$ figure aligned
+  with §19.18's per-operation budget ($10^{-10}$–$10^{-12}$ once
+  $10^{10}$ logical operations are priced in). Ch25: NISQ coined at
+  the December 2017 Q2B keynote, published 2018. Ch26: PennyLane's
+  TensorFlow integration corrected to deprecated-v0.43 /
+  dropped-v0.44 (web-verified against PennyLane's deprecations page
+  and v0.43 release notes). Ch27: the "slated ... as FIPS 207"
+  assertion replaced with the number-not-yet-assigned wording,
+  matching the batch 59/62 References fix.
+
+### ADJUDICATED — flagged but already correct in current text
+Ch19's concatenation recurrence (multiplies by $C^{2^\ell-1}$;
+the mirror's dividing form is the stale pre-fix text), 15-to-1
+correctly tied to the punctured Reed–Muller code with an explicit
+"not the Steane code", Willow's $\Lambda \approx 2.14$ / 4–5×
+d3→d7 with "first *reported*" scoping; Ch16's LCU attribution
+(Childs–Wiebe 2012 introduced, BCCKS 2015 developed) and corrected
+$\Theta(t + \log(1/\epsilon)/\log\log(1/\epsilon))$ query formula;
+Ch17's Schuch–Verstraete 2009 dating, Kempe–Regev/KKR 3- and
+2-local attributions, oracle-discipline phrasing; Ch22's Forte
+Enterprise at 36 qubits/#AQ 36, QV record through $2^{25}$
+(2025), no Q-PERFECT or Willow-67×24 claims present; Ch23's
+layered IR description, u3/U dialect gotcha, partial OpenQASM
+coverage, defcal-caveat; Ch24's Pashayan–Wallman–Bartlett
+authorship, SKU-hedged H100 figures, delegated Zuchongzhi labels,
+scoped Pan–Chen–Zhang comparison; Ch25's hedged trend prose,
+QV-definition and record, "first claims" Google-2023 scoping;
+Ch26's memory arithmetic and GPU few-extra-qubits wording;
+Jiuzhang 3.0's 2023 dating retained (matches the PRL record).
+Card-level asks (heading-vs-anchor audits, status vocabulary,
+truncated anchors, TBD sourcing) remain with the mirror-overhaul
+queue.
+
+Six factcheck anchors requoted; baseline (94) held. Lint (incl.
+card citations), anchors, and identity suite pass; diff reviewed
+before push.

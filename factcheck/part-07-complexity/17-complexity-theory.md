@@ -200,7 +200,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §17.5 — Raz–Tal (2019): BQP ⊄ PH relative to oracle
 
-- **Claim** (anchor): "**Raz–Tal (2019)** demolished this. They exhibited an oracle relative to which $\mathrm{BQP}^O \not\subseteq \mathrm{PH}^O$"
+- **Claim** (anchor): "**Raz–Tal (2019)** refuted this intuition at the oracle level. They exhibited an oracle relative to which $\mathrm{BQP}^O \not\subseteq \mathrm{PH}^O$"
 - **Method**: external
 - **Source**: Raz & Tal (2019), "Oracle separation of BQP and PH", *STOC 2019* — TBD — needs verification (DOI)
 - **Verified**: — · **Verdict**: open
@@ -437,7 +437,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §17.11 — Exact ground-state energy QMA_EXP-hard for translation-invariant 1D (Gottesman–Irani)
 
-- **Claim** (anchor): "on translation-invariant 1D systems, *exact* ground-state energy is $\mathrm{QMA}_{\mathrm{EXP}}$-hard (Gottesman–Irani)"
+- **Claim** (anchor): "on translation-invariant 1D chains the local-Hamiltonian problem — still a promise problem with its precision gap, not exact ground-energy computation — becomes $\mathrm{QMA}_{\mathrm{EXP}}$-complete (Gottesman–Irani)"
 - **Method**: external
 - **Source**: Gottesman & Irani (2013), "The quantum and classical complexity of translationally invariant tiling and Hamiltonian problems" — TBD — needs verification (DOI)
 - **Verified**: — · **Verdict**: open
