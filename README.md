@@ -52,7 +52,8 @@ orientation — live in the
 with fuller versions in [BookDescription.md](BookDescription.md). In brief:
 
 - **Full journey** — Preface → Background and Self-Check → Notation →
-  Parts I–XIII → Appendices, in order.
+  [Historical Prelude](book/part-00-historical-prelude/00-historical-prelude.md)
+  *(optional)* → Parts I–XIII → Appendices, in order.
 - **Algorithms-first** — foundations (Chapters 1, 4–11), then the
   algorithms of Parts VI–VII.
 - **Hardware / systems** — foundations, then Parts VIII–X.
