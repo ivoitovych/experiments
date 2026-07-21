@@ -2410,6 +2410,8 @@ files vs fix batches:
 | Appendix F | 51 | done |
 | Index | 52 | done |
 | docs/fact-check-ledger.md, docs/github-markdown-math-bugs.md | 53 | done (file-level verdicts landed in the 2026-07-21 drop) |
+| Reopened manuscript items (2026-07-21b drop: Robertson, SK, QND) | 54 | done |
+| docs/render-tests matrix, upstream-feedback drafts, examples/deutsch_jozsa.py | — | verdicts landed 2026-07-21b; queued next |
 | SVG/archive passes, remaining support files | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
 
 Working method from batch 36 on: fixes are driven by the ledger's own
@@ -3092,6 +3094,46 @@ to the improvement/infrastructure queue.
   was checked then, not current confirmations. The single open item
   was verified to be already carried into the `factcheck/` mirror
   (§15.8 card), closing the migration ask for open claims.
+
+No factcheck anchors staled; baseline (94) held. Lint and anchor
+checks pass; diff reviewed before push.
+
+## Batch 54 — Reopened manuscript items from the disposition meta-review (2 substitutions + 2 adjudications)
+
+The 2026-07-21b drop's review of `docs/review-2026-05-28-disposition.md`
+reopened three manuscript-level concerns. Each was re-examined against
+the *current* text, with an executable check where applicable.
+
+### FIXED — outright defects
+- **Robertson vacuous-on-Z-eigenstates (reviewer is right; our
+  earlier text — including batch 40's Ch35 wording — was wrong).**
+  Verified numerically in the pinned environment: on $|0\rangle$,
+  $\Delta X = \Delta Y = 1$ and the $X$–$Y$ Robertson bound reads
+  $\Delta X\,\Delta Y \ge |\langle Z\rangle| = 1$ — nonvacuous and
+  exactly saturated; only the pairs involving $Z$ reduce to the
+  trivial $0 \ge 0$. Both sites repaired with the pair-by-pair
+  statement: §10.4's parenthetical and Ch35's operational-
+  consequence note.
+
+### ADJUDICATED — no change needed in current text
+- **Solovay–Kitaev scope:** the narrow fault-tolerant-Clifford+T
+  framing the meta-review flagged does not survive in the current
+  manuscript — §8.11 states the theorem for any universal
+  inverse-closed gate set and arbitrary SU(2) target, separates the
+  Ross–Selinger Clifford+T result explicitly, and §17's gate-set
+  robustness statement is likewise generic. Repaired in an earlier
+  batch; nothing to reopen.
+- **Weak-measurement/QND relabeling:** audited every current use.
+  "Non-demolition" appears only in its readout sense (prelude
+  criterion 5, §9.8 mid-circuit measurement); "weak measurement"
+  appears only in its information/disturbance-trade sense (§3.x,
+  §10.4). The two concepts are used correctly and never
+  interchanged in the current text.
+
+The meta-review's structural asks for the disposition chronology
+itself (stable finding IDs, orthogonal verdict/evidence fields,
+superseded-paragraph marks) go to the infrastructure queue; the
+document is preserved as history.
 
 No factcheck anchors staled; baseline (94) held. Lint and anchor
 checks pass; diff reviewed before push.

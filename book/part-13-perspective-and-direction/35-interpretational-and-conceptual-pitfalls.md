@@ -188,11 +188,12 @@ produces a hybrid slogan that does justice to neither.
 
 The operational consequence for circuit-level reasoning: a Pauli-$Z$
 eigenstate (so $\Delta Z = 0$) has $\Delta X = \Delta Y = 1$, maximal.
-Note the Robertson bound itself is *trivially* satisfied here — for
-$|0\rangle$ the right-hand side involves $\langle Y\rangle = 0$ — so
-the maximal spreads come from direct Born-rule computation, not from
-the inequality; the inequality's nontrivial content appears for
-states where the commutator's expectation is nonzero.
+Note how the Robertson bound behaves here, pair by pair: for the
+pairs involving $Z$ it is trivially satisfied ($\Delta Z = 0$ and
+the right-hand side vanishes too — $|\langle Y\rangle| = 0$ for the
+$Z$–$X$ pair on $|0\rangle$), while for the $X$–$Y$ pair it is
+sharp, not trivial: $\Delta X\\, \Delta Y \ge |\langle Z\rangle| = 1$,
+exactly saturated by the maximal spreads $\Delta X = \Delta Y = 1$.
 This is a property of the *state* — it would be true even if no
 measurement were ever performed. The unmeasured qubit "has" a sharp
 $Z$ value (the eigenvalue) and *does not have* a sharp $X$ value,
