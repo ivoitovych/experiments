@@ -2419,6 +2419,7 @@ files vs fix batches:
 | factcheck/ design decisions + check-citation infrastructure + reference distribution | 61 | done — author confirmed the no-ID human-readable model; reviewer's ID/schema recommendation formally declined |
 | References sections moved into the book chapters (author-confirmed model) | 62 | done — unnumbered final `## References`, count-exempt per STYLE.md |
 | References model finalized: dual lists (book + mirror) with bidirectional lint sync | 64 | done |
+| README reader-first restructure + examples/ MIT licensing (author-approved) | 65 | done |
 | Appendix F July-2026 refresh | 60 | done — web-verified; in-place fixes for pre-snapshot facts, dated F.8 update block for post-May facts |
 | Manuscript defects from mirror audits Ch13–27 (2026-07-21d drop + prior tail) | 63 | done |
 | factcheck mirrors Ch28+ | — | reviewer in progress |
@@ -3566,3 +3567,44 @@ accepted cost; completeness wins for lookup material.
 
 Lint (incl. references sync and card citations), anchors (baseline
 94), and the identity suite all pass; diff reviewed before push.
+
+## Batch 65 — README reader-first restructure and examples/ MIT license
+
+Implements the author-approved package from the external README
+critique (assessed 2026-07-21: structural claims verified correct;
+the license-unification suggestion was rejected in favor of the
+dual structure with a permissive examples/ carve-out). Also
+confirmed by repo sweep: no chatgpt/openai links exist in any
+authored artifact — the suspect links were rendering artifacts of
+the externally pasted draft only (the two grep hits are the
+reviewer's ledger and one frozen archive review, both audit
+artifacts we do not edit).
+
+### DONE
+- README rebuilt in two zones. Reader zone: title/subtitle/author →
+  "What this book is" → a linked **Start reading** block (Preface /
+  Historical Prelude / Table of Contents) → one-line status with
+  links to the full guarantees → "Who this is for" → a compact
+  "Choose a reading path" that defers to the Preface's canonical
+  Suggested Reading Paths and integrates the Prelude ("whichever
+  path you choose, you may optionally begin with…") → the full
+  Table of Contents. Repo zone below: reading-on-GitHub note,
+  offline-build instructions (mdbook material moved intact),
+  runnable examples, project documents, license. The
+  `--check-readme` coverage check still passes (every manuscript
+  file linked).
+- The README's four bespoke reading paths replaced with three
+  one-liners plus deferral to the Preface — eliminating a fourth
+  divergent copy of path content (same decontamination rationale as
+  the references model).
+- `examples/LICENSE` created: MIT, copyright Iaroslav Voitovych,
+  scoped explicitly to the examples/ directory. Root LICENSE gains
+  a §4 exception clause pointing to it (subsequent section
+  renumbered); README license section compressed to the approved
+  two-sentence form naming all three regimes (manuscript CC
+  BY-NC-ND + commercial, examples MIT, tooling all-rights-
+  reserved); the Preface's license summary gains the matching
+  one-line exception so no document contradicts another.
+
+Lint (incl. references sync and card citations), anchors (baseline
+94), and README coverage all pass; diff reviewed before push.

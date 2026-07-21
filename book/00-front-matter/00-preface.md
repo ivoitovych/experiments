@@ -423,8 +423,10 @@ Attribution-NonCommercial-NoDerivatives 4.0 International license
 may be shared non-commercially with attribution, and distributing
 modified versions is not permitted. Any commercial use, and any use
 the CC terms do not grant, requires a separate written license from
-the author. This paragraph is a summary only; the LICENSE file at
-the repository root controls.
+the author. The runnable companion programs in `examples/` are the
+one exception: they are separately MIT-licensed so you can adapt
+them freely in your own code. This paragraph is a summary only; the
+LICENSE files (repository root, and `examples/LICENSE`) control.
 
 The intent of the dual license is straightforward: the book should
 be free to read, free to study from, and free to recommend to a

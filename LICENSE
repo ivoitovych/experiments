@@ -72,7 +72,14 @@ Suggested attribution format:
 
 ---
 
-## 4. Reservation of Rights
+## 4. Exception: `examples/` directory
+
+The runnable example programs in the `examples/` directory are licensed
+separately under the MIT License (see `examples/LICENSE`), so readers may
+freely adapt them in their own software. This exception applies to that
+directory only.
+
+## 5. Reservation of Rights
 
 All rights not expressly granted under the non-commercial license above are
 reserved by the author. The author retains full copyright in this work and

@@ -6,7 +6,7 @@ by **Iaroslav Voitovych**
 
 ---
 
-## What this is
+## What this book is
 
 A rigorous, engineering-oriented, anti-hype guide to quantum computing for
 people who already write software and reason mathematically. It bridges
@@ -14,24 +14,24 @@ classical computing intuition, linear algebra, circuits, algorithms,
 complexity, noise and error correction, hardware, tooling, and the modern
 algorithmic frontier — without pop-science metaphors, physics-first detours,
 or SDK-tutorial shallowness. See [BookDescription.md](BookDescription.md) for
-the full charter and [TOC.md](TOC.md) for every section heading.
+the full charter.
 
-## Status
+## Start reading
 
-**Full manuscript drafted and internally reviewed.** All 37 chapters plus
-front matter and appendices are written and readable, and every file is at
-`prereviewed` status: a complete internal review cycle — comprehensive
-section-by-section review, remediation, and external verification of
-flagged factual claims — has been applied (see [reviews/](reviews/));
-note that the fact-check mirror is still being reconciled with the
-evolving text (the anchor audit tracks the drift), so "verified"
-applies to the claims as reviewed, not to every current sentence. The
-manuscript has not yet had an independent expert review (`reviewed`) or a
-closed claim-level fact-check (`final`); treat specific perishable numbers
-with the care the in-text Moving-target warnings ask for. See
-[PROGRESS.md](PROGRESS.md) for per-chapter status and
-[PROCESS.md](PROCESS.md) (*Status-promotion criteria*) for what each status
-guarantees.
+- **New to the book?** Start with the
+  [Preface](book/00-front-matter/00-preface.md).
+- **Prefer to begin with the story of how quantum mechanics became quantum
+  computing?** Start with the Historical Prelude:
+  [From Quanta to Qubits](book/part-00-historical-prelude/00-historical-prelude.md).
+- **Looking for a particular topic?** Jump to the
+  [Table of Contents](#table-of-contents) below, or see
+  [TOC.md](TOC.md) for every section heading.
+
+**Status:** complete `prereviewed` manuscript — all 37 chapters, front
+matter, and appendices written and internally reviewed; independent expert
+review and final claim-level verification are pending
+([PROGRESS.md](PROGRESS.md) has per-chapter status;
+[PROCESS.md](PROCESS.md) defines what each status guarantees).
 
 ## Who this is for
 
@@ -43,86 +43,23 @@ be comfortable reasoning with vectors, matrices, operators, probability, and
 complexity. The full assumed-background list is in
 [BookDescription.md](BookDescription.md).
 
-## Start here
+## Choose a reading path
 
-Pick an entry path by goal (fuller versions in
-[BookDescription.md](BookDescription.md)):
+The canonical reading paths — full linear, algorithms-focused,
+hardware-and-systems, applications-and-judgment, and a fastest credible
+orientation — live in the
+[Preface](book/00-front-matter/00-preface.md#suggested-reading-paths),
+with fuller versions in [BookDescription.md](BookDescription.md). In brief:
 
-- **Full journey** — read linearly: Parts I–III (foundations, qubits,
-  entanglement) → IV–VI (circuits, algorithms) → VII (complexity) → VIII–IX
-  (noise, hardware, software) → X–XIII (practice, applications, epistemics).
-- **Algorithms-first** — Chapters 1–5, then 8–17, with Chapter 16 (modern
-  frontier) and Chapter 36 (judging claims).
-- **Hardware / control / software** — Chapters 1–5, then 18–23, then 25 (NISQ
-  era) and 34 (engineering analogies).
-- **Skeptical / frontier reader** — Chapters 12, 16, 17, 19, 24, then 35–37
-  for interpretation, claim evaluation, and direction.
+- **Full journey** — Preface → Background and Self-Check → Notation →
+  Parts I–XIII → Appendices, in order.
+- **Algorithms-first** — foundations (Chapters 1, 4–11), then the
+  algorithms of Parts VI–VII.
+- **Hardware / systems** — foundations, then Parts VIII–X.
 
-## Reading the book on GitHub
-
-Each chapter is a separate Markdown file under [`book/`](book/). Click any
-chapter title in the table of contents below to read it. Math is written in
-LaTeX and renders natively in the GitHub web viewer. The code listings in
-Chapters 14, 15, 24, and 26 are backed by runnable programs in
-[`examples/`](examples/), verified end-to-end by `make check-examples`.
-
-For a continuous, offline copy you can build a single HTML book with
-[mdBook](https://rust-lang.github.io/mdBook/): install the toolchain once and
-run `make book`, which renders the manuscript — math included, via build-time
-KaTeX — into `book-build/`. `mdbook-katex` is a preprocessor coupled to
-mdBook's preprocessor protocol, so the two must come from **matching lines**;
-install a matched pair from one of these lines:
-
-| mdbook | mdbook-katex | notes |
-|---|---|---|
-| 0.4.x | 0.9.x | stable; the combination tested in this repo (0.4.48 + 0.9.4) |
-| 0.5.x | 0.10.x | newer protocol; the matching line per the crate manifests, but `mdbook-katex 0.10` is currently pre-release and not re-verified here |
-
-```bash
-# stable pair (recommended):
-cargo install mdbook --version '>=0.4,<0.5' --locked --force
-cargo install mdbook-katex --version 0.9.4 --locked --force
-
-# or the mdbook 0.5.x line (pre-release katex):
-cargo install mdbook --locked --force
-cargo install mdbook-katex --version 0.10.0-alpha --locked --force
-```
-
-Mixing lines (e.g. mdbook 0.5.x with mdbook-katex 0.9.x) is what produces the
-`invalid type: null …` TOML error during the katex preprocessor. `make book`
-detects a mismatched pair and prints the exact command to fix it. See
-[PROCESS.md](PROCESS.md) (*Building the rendered book*) for the full version
-matrix, the dependency rationale, and troubleshooting.
-
-## Project documents
-
-- [BookDescription.md](BookDescription.md) — the charter: scope, audience, philosophy, reading paths.
-- [TOC.md](TOC.md) — full table of contents with every section heading.
-- [PROGRESS.md](PROGRESS.md) — per-chapter status and the phase-by-phase writing plan.
-- [STYLE.md](STYLE.md) — math, notation, and file conventions used throughout the manuscript.
-- [PROCESS.md](PROCESS.md) — working method, toolchain, and decision log.
-- [HISTORY.md](HISTORY.md) — chronological narrative of how the project reached its current state.
-- [CITATION.cff](CITATION.cff) — how to cite this work.
-- [examples/](examples/) — four runnable Python programs (Bell state, statevector simulation, Deutsch–Jozsa, Grover) embedded in Chapters 14, 15, 24, and 26 and kept honest by `make check-examples`, which runs them end-to-end against the in-text listings.
-- [reviews/](reviews/) — the review, verification, and planning reports (comprehensive review, external fact verification, recommendations, program analyses). These are insert-only audit artifacts, retained permanently as provenance.
-- [factcheck/](factcheck/) — the claim-level verification mirror: one file per chapter listing its check-worthy claims with verdicts and sources.
-- [archive/](archive/) — frozen working artifacts (early drafts, superseded reviews, the original planned outline), preserved for provenance.
-- [docs/github-markdown-math-bugs.md](docs/github-markdown-math-bugs.md) — canonical memo on GitHub Markdown + MathJax rendering bugs and their workarounds; [docs/render-tests/math-context-matrix.md](docs/render-tests/math-context-matrix.md) is its live test sheet.
-
-## License
-
-The **manuscript** — everything under [`book/`](book/) and the prose
-documents — is dual-licensed: free for non-commercial use under
-**CC BY-NC-ND 4.0**, with commercial use requiring a separate license.
-
-The **code and tooling** (`scripts/`, `tools/`, the `Makefile`) are not part
-of the licensed manuscript. They are provided to reproduce the build and
-review pipeline; all rights reserved unless a separate license is stated for
-them.
-
-See [LICENSE](LICENSE) for full terms.
-
----
+Whichever path you choose, you may optionally begin with the
+[Historical Prelude](book/part-00-historical-prelude/00-historical-prelude.md);
+no path depends on it.
 
 ## Table of Contents
 
@@ -221,3 +158,73 @@ See [LICENSE](LICENSE) for full terms.
 - [Appendix E. Glossary](book/99-back-matter/appendix-e-glossary.md)
 - [Appendix F. 2026 Hardware Snapshot](book/99-back-matter/appendix-f-hardware-snapshot-2026.md)
 - [Index](book/99-back-matter/index.md)
+
+---
+
+## Reading the book on GitHub
+
+Each chapter is a separate Markdown file under [`book/`](book/). Click any
+chapter title in the table of contents above to read it. Math is written in
+LaTeX and renders natively in the GitHub web viewer.
+
+## Building an offline HTML edition
+
+For a continuous, offline copy you can build a single HTML book with
+[mdBook](https://rust-lang.github.io/mdBook/): install the toolchain once and
+run `make book`, which renders the manuscript — math included, via build-time
+KaTeX — into `book-build/`. `mdbook-katex` is a preprocessor coupled to
+mdBook's preprocessor protocol, so the two must come from **matching lines**;
+install a matched pair from one of these lines:
+
+| mdbook | mdbook-katex | notes |
+|---|---|---|
+| 0.4.x | 0.9.x | stable; the combination tested in this repo (0.4.48 + 0.9.4) |
+| 0.5.x | 0.10.x | newer protocol; the matching line per the crate manifests, but `mdbook-katex 0.10` is currently pre-release and not re-verified here |
+
+```bash
+# stable pair (recommended):
+cargo install mdbook --version '>=0.4,<0.5' --locked --force
+cargo install mdbook-katex --version 0.9.4 --locked --force
+
+# or the mdbook 0.5.x line (pre-release katex):
+cargo install mdbook --locked --force
+cargo install mdbook-katex --version 0.10.0-alpha --locked --force
+```
+
+Mixing lines (e.g. mdbook 0.5.x with mdbook-katex 0.9.x) is what produces the
+`invalid type: null …` TOML error during the katex preprocessor. `make book`
+detects a mismatched pair and prints the exact command to fix it. See
+[PROCESS.md](PROCESS.md) (*Building the rendered book*) for the full version
+matrix, the dependency rationale, and troubleshooting.
+
+## Runnable examples
+
+The code listings in Chapters 14, 15, 24, and 26 are backed by runnable
+Python programs in [`examples/`](examples/) (Bell state, statevector
+simulation, Deutsch–Jozsa, Grover), verified end-to-end by
+`make check-examples` and licensed permissively so you can reuse them in
+your own code (see [License](#license)).
+
+## Project documents
+
+- [BookDescription.md](BookDescription.md) — the charter: scope, audience, philosophy, reading paths.
+- [TOC.md](TOC.md) — full table of contents with every section heading.
+- [PROGRESS.md](PROGRESS.md) — per-chapter status and the phase-by-phase writing plan.
+- [STYLE.md](STYLE.md) — math, notation, and file conventions used throughout the manuscript.
+- [PROCESS.md](PROCESS.md) — working method, toolchain, and decision log.
+- [HISTORY.md](HISTORY.md) — chronological narrative of how the project reached its current state.
+- [CITATION.cff](CITATION.cff) — how to cite this work.
+- [reviews/](reviews/) — the review, verification, and planning reports (comprehensive review, external fact verification, recommendations, program analyses). These are insert-only audit artifacts, retained permanently as provenance.
+- [factcheck/](factcheck/) — the claim-level verification mirror: one file per chapter listing its check-worthy claims with verdicts and sources.
+- [archive/](archive/) — frozen working artifacts (early drafts, superseded reviews, the original planned outline), preserved for provenance.
+- [docs/github-markdown-math-bugs.md](docs/github-markdown-math-bugs.md) — canonical memo on GitHub Markdown + MathJax rendering bugs and their workarounds; [docs/render-tests/math-context-matrix.md](docs/render-tests/math-context-matrix.md) is its test sheet.
+
+## License
+
+The manuscript (everything under [`book/`](book/) and the prose documents) is
+free for non-commercial use under **CC BY-NC-ND 4.0**, with commercial use
+requiring a separate license — see [LICENSE](LICENSE) for the full terms. The
+runnable examples in [`examples/`](examples/) are separately licensed under
+the **MIT License** ([examples/LICENSE](examples/LICENSE)) so you can adapt
+them freely in your own programs; the remaining build and review tooling
+(`scripts/`, `tools/`, the `Makefile`) stays all-rights-reserved.
