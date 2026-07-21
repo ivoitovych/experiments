@@ -77,7 +77,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §35.5 — Bell (1964) CHSH bound and quantum violation
 
-- **Claim** (anchor): "Bell (1964; §7.9) showed that this local hidden variable hypothesis is quantitatively wrong — the CHSH bound it implies is"
+- **Claim** (anchor): "Bell (1964; §7.9) showed that this *local hidden variable* hypothesis is quantitatively wrong; in the operationally standard CHSH form (Clauser–Horne–Shimony–Holt, 1969) the local bound reads $|S| \leq 2$"
 - **Method**: external
 - **Source**: Bell, Physics 1 (1964)
 - **Verified**: — · **Verdict**: open
@@ -85,7 +85,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §35.5 — Frauchiger–Renner (2018) and Bong et al. (2020) multi-observer protocol
 
-- **Claim** (anchor): "Frauchiger–Renner (2018, refined by Bong et al. 2020) sharpens this by constructing a multi-observer protocol in which the assumption that all observers' records can be consistently combined leads to a contradiction with standard quantum theory"
+- **Claim** (anchor): "Frauchiger–Renner (2018) sharpens this by constructing a multi-observer protocol — and the related but distinct Local-Friendliness no-go theorem of Bong et al. (2020) derives its own experimentally testable constraints from weaker assumptions"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -237,7 +237,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §35.12 — Decoherence timescale for macroscopic systems
 
-- **Claim** (anchor): "off-diagonal terms in position basis suppress on timescales of"
+- **Claim** (anchor): "in textbook estimates for a macroscopic superposition (a dust-grain-scale object at separated positions), position-basis off-diagonal terms suppress on timescales of order $10^{-20}$ seconds"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

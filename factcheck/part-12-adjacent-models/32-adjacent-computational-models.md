@@ -93,7 +93,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §32.4 — Majorana experimental status: signatures reported and retracted since 2012
 
-- **Claim** (anchor): "signatures consistent with Majoranas have been reported and retracted multiple times since 2012"
+- **Claim** (anchor): "signatures consistent with Majoranas have been reported repeatedly since 2012, with one prominent claim formally retracted (2021) and others disputed or reinterpreted"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -309,7 +309,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §32.10 — Equivalence: circuit model ≡ CV computation with Gaussian gates plus non-Gaussian gate (Lloyd and Braunstein, 1999)
 
-- **Claim** (anchor): "continuous-variable computation with a finite Gaussian gate set plus any non-Gaussian gate (Lloyd and Braunstein, 1999): universal, polynomially equivalent under reasonable encodings"
+- **Claim** (anchor): "continuous-variable computation with a finite Gaussian gate set plus a *suitable* non-Gaussian gate (Lloyd and Braunstein, 1999; the theorem's conditions on the added nonlinearity apply — §32.5): universal, polynomially equivalent under reasonable encodings"
 - **Method**: external
 - **Source**: Lloyd and Braunstein (1999) — TBD — needs verification
 - **Verified**: — · **Verdict**: open

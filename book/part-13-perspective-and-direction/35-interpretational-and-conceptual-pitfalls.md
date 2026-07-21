@@ -235,10 +235,11 @@ correlations; the spin form used here is Bohm's later reformulation
 $|\Psi^-\rangle = (|01\rangle - |10\rangle)/\sqrt{2}$. Perfectly anticorrelated outcomes in every shared
 basis, they argued, must reflect pre-existing values: each particle
 "already had" the value that would be revealed, since otherwise
-"action at a distance" would be needed to coordinate. Bell (1964;
-§7.9) showed that this *local hidden variable* hypothesis is
-quantitatively wrong — the CHSH bound it implies is $|S| \leq 2$,
-but quantum mechanics and experiment give $|S| = 2\sqrt{2}$. So one
+"action at a distance" would be needed to coordinate. Bell (1964; §7.9) showed that this *local hidden variable*
+hypothesis is quantitatively wrong; in the operationally standard
+CHSH form (Clauser–Horne–Shimony–Holt, 1969) the local bound reads
+$|S| \leq 2$, while quantum mechanics and experiment reach
+$|S| = 2\sqrt{2}$. So one
 of the formal assumptions of Bell's derivation —
 outcome/parameter independence (locality in Bell's sense), pre-existing
 outcome values (the operative form of "realism"), or measurement
@@ -253,9 +254,11 @@ rule. Wigner, having no access to the outcome, describes the
 combined friend-plus-system in a superposition. On the standard operational reading, *both descriptions are correct*
 relative to their respective information, and the inconsistency is
 only apparent — though how to cash out "correct relative to" is
-itself interpretation-laden. Frauchiger–Renner (2018, refined by
-Bong et al. 2020) sharpens this by constructing a multi-observer
-protocol in which the assumption that all observers' records can be
+itself interpretation-laden. Frauchiger–Renner (2018) sharpens this by constructing a
+multi-observer protocol — and the related but distinct
+Local-Friendliness no-go theorem of Bong et al. (2020) derives
+its own experimentally testable constraints from weaker
+assumptions — a protocol in which the assumption that all observers' records can be
 consistently combined leads to a contradiction with standard quantum
 theory. The takeaway is *not* that quantum mechanics is inconsistent;
 it is that one of three plausible meta-assumptions about observers
@@ -555,9 +558,12 @@ form* — diagonal in a preferred basis (the "einselected" basis, in
 Zurek's terminology, picked out by the system-environment coupling).
 It is an *improper* mixture: born of entanglement and tracing, not
 of ignorance about a pre-existing fact — which is precisely why
-decoherence alone does not settle the measurement problem (below). Decoherence is fast: for typical
-macroscopic systems, off-diagonal terms in position basis suppress
-on timescales of $10^{-20}$ seconds or shorter.
+decoherence alone does not settle the measurement problem (below). Decoherence is fast: in textbook estimates for a macroscopic
+superposition (a dust-grain-scale object at separated positions),
+position-basis off-diagonal terms suppress on timescales of order
+$10^{-20}$ seconds — an illustrative figure that varies by many
+orders with the object, separation, and environment, not a
+universal constant.
 
 This is *what makes the classical world classical*. Cats are not
 observed in $|\text{alive}\rangle + |\text{dead}\rangle$

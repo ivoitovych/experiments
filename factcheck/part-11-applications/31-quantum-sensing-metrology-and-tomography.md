@@ -63,7 +63,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §31.2 — Al⁺ quantum logic clock at NIST: systematic uncertainty 9.4×10⁻¹⁹
 
-- **Claim** (anchor): "the Al^+ system at NIST has reported systematic uncertainties at"
+- **Claim** (anchor): "the Al$^+$ system at NIST reported systematic uncertainty $9.4 \times 10^{-19}$ in 2019 and improved it to $5.5 \times 10^{-19}$ in a July 2025 evaluation"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

@@ -218,6 +218,7 @@ your own code (see [License](#license)).
 - [reviews/](reviews/) — the review, verification, and planning reports (comprehensive review, external fact verification, recommendations, program analyses). These are insert-only audit artifacts, retained permanently as provenance.
 - [factcheck/](factcheck/) — the claim-level verification mirror: one file per chapter listing its check-worthy claims with verdicts and sources.
 - [archive/](archive/) — frozen working artifacts (early drafts, superseded reviews, the original planned outline), preserved for provenance.
+- [docs/unified-book-process-framework.md](docs/unified-book-process-framework.md) — externally drafted requirements catalog for producing a high-quality scientific/technical book (framework v1.0, 2026-07-20); parked as planning input for a future process alignment pass.
 - [docs/github-markdown-math-bugs.md](docs/github-markdown-math-bugs.md) — canonical memo on GitHub Markdown + MathJax rendering bugs and their workarounds; [docs/render-tests/math-context-matrix.md](docs/render-tests/math-context-matrix.md) is its test sheet.
 
 ## License

@@ -2423,7 +2423,9 @@ files vs fix batches:
 | Full infrastructure open-sourced under MIT; book stays dual-licensed (author decision) | 66 | done |
 | Appendix F July-2026 refresh | 60 | done — web-verified; in-place fixes for pre-snapshot facts, dated F.8 update block for post-May facts |
 | Manuscript defects from mirror audits Ch13–27 (2026-07-21d drop + prior tail) | 63 | done |
-| factcheck mirrors Ch28+ | — | reviewer in progress |
+| Manuscript defects from mirror audits Ch28–36 (2026-07-21e drop) | 67 | done |
+| docs/unified-book-process-framework.md parked as planning input | 67 | done |
+| factcheck mirror Ch37 | — | reviewer in progress |
 | SVG/archive passes, remaining support files | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
 
 Working method from batch 36 on: fixes are driven by the ledger's own
@@ -3650,3 +3652,57 @@ covers) while blocking legitimate reuse.
 
 Lint, anchors (baseline 94), and references-sync all pass; diff
 reviewed before push.
+
+## Batch 67 — Manuscript defects from the Ch28–36 mirror audits (8 substitutions) + artifact intake
+
+The 2026-07-21e drop (+1,958 lines) completes mirror-file verdicts
+for Chapters 28–36; the reviewer's front is the Ch37 mirror. As in
+batches 57/63, every named flag was adjudicated against the current
+manuscript; two facts were web-verified before editing.
+
+### FIXED — outright defects
+- Ch35: the Bell-1964/CHSH-1969 conflation repaired (Bell's
+  inequality refutes local models; the $|S| \le 2$ form is CHSH,
+  now attributed); Bong et al. 2020 restated as the related but
+  distinct Local-Friendliness no-go rather than a refinement of
+  Frauchiger–Renner; the $10^{-20}$-second decoherence figure
+  scoped as an illustrative dust-grain estimate, not a universal
+  macroscopic constant. Ch32: the summary table's "any non-Gaussian
+  gate" aligned with the body's *suitable*-nonlinearity statement;
+  the Majorana history corrected to one prominent formal retraction
+  (2021) plus disputes, not "retracted multiple times." Ch33: the
+  TF-QKD distance ladder now separates installed field fiber
+  (~500 km scale) from laboratory ultra-low-loss spooled fiber
+  (605–1000+ km records) and asks quoted distances to name the
+  medium; the satellite roster carries per-mission statuses as
+  verified by the reviewer (SpeQtre and QUBE-II launched, QEYSSat
+  in development, EAGLE-1 toward ~2027) with a volatility caveat.
+  Ch31: the NIST Al$^+$ clock record updated — 9.4×10⁻¹⁹ (2019)
+  improved to 5.5×10⁻¹⁹ (Marshall et al., PRL 135, July 2025;
+  web-verified against the paper and NIST coverage).
+
+### ADJUDICATED — flagged but already correct in current text
+Ch28's FeMoco spatial-vs-spin-orbital accounting (54–76 spatial →
+108–152 spin-orbitals/qubits), Reiher-2017 at ~10^14 T with the
+refinement chain to ~10^10, and one-qubit-per-spin-orbital DMET
+sizing; Ch29's Advantage2 (4,400+, Zephyr degree-20, roadmap note),
+2000Q-not-2X at 2,048 qubits, O(N²) clique embedding on both
+topologies, and the embedded-clique size reality; Ch31's μGal
+conversion (already ≈10⁻⁹ g) and self-testing isometry caveats;
+Ch32's 2-local-AQC universality note and variance-explicit ballistic
+spreading; Ch34's per-gate O(2^n) statevector / O(4^n)
+density-matrix split; Ch36's Claus-Peter Schnorr attribution and
+hedged median-fidelity/RSA-estimate framing. Card-level asks
+(truncated anchors, TBD sourcing, scenario tables, claim matrices)
+remain with the mirror-overhaul queue.
+
+### ARTIFACT INTAKE
+- `docs/unified-book-process-framework.md` — externally drafted
+  book-production requirements catalog (v1.0, 2026-07-20) added per
+  the author, listed in README project documents, parked as
+  planning input for a future process-alignment pass. Not covered
+  by the MIT infrastructure list pending an author licensing call.
+
+Eight factcheck anchors requoted; baseline (94) held. Lint,
+anchors, references-sync, and card citations pass; diff reviewed
+before push.

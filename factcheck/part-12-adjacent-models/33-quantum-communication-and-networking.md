@@ -19,14 +19,14 @@ Seeded from ledger Pass 4 (2026-05-28).
 
 ## §33.4 — Twin-field QKD > 1000 km
 
-- **Claim** (anchor): "more than $1000\,\mathrm{km}$ of installed and ultra-low-loss fiber"
+- **Claim** (anchor): "(in the record demonstrations) more than $1000\,\mathrm{km}$, by groups in Shanghai, Hefei, Toshiba Cambridge, and the Beijing–Tianjin testbed"
 - **Method**: external
 - **Source**: Liu et al., "Experimental Twin-Field QKD Over 1000 km Fiber Distance", *Phys. Rev. Lett.* (2023), arXiv:2303.15795 (1,002 km record)
 - **Verified**: 2026-05 · **Verdict**: confirmed
 
 ## §33.4 — TF-QKD demonstration distances
 
-- **Claim** (anchor): "$511\,\mathrm{km}$, $605\,\mathrm{km}$, $658\,\mathrm{km}$, $830\,\mathrm{km}$"
+- **Claim** (anchor): "Twin-field QKD has been demonstrated at the $\sim 500\,\mathrm{km}$ scale over *installed field* fiber, and — over laboratory ultra-low-loss spooled fiber, a different medium with lower loss per kilometer — out to $605$, $658$, $830$"
 - **Method**: external
 - **Source**: series of TF-QKD experiments by USTC and Toshiba-Cambridge groups, 2019–2023
 - **Verified**: 2026-05 · **Verdict**: confirmed
