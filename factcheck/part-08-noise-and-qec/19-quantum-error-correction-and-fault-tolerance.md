@@ -492,3 +492,11 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
 - **Comment**: Survey-level empirical claim; representative papers from IBM, Quantinuum, and academic groups should be identified and confirmed.
+
+## References (external)
+
+Sources cited by this file's cards, kept here so the file stays
+self-contained (project policy: no central registry).
+
+- **Acharya et al. 2024 (Willow)** — "Quantum error correction below the surface code threshold", *Nature* (2024), DOI 10.1038/s41586-024-08449-y.
+- **Bravyi et al. 2024 ("gross" code)** — bivariate-bicycle [[144,12,12]] qLDPC code, *Nature* (2024).

@@ -2416,7 +2416,7 @@ files vs fix batches:
 | Manuscript defects surfaced by mirror audit (2026-07-21c drop, Ch2–Ch12 + App E) | 57 | done |
 | examples/ batch 2 (bell, grover, ordering, statevector) | 58 | done |
 | Definite mirror-data defects (README, _pilot, _sources, App C mirror, prelude stub) | 59 | done |
-| factcheck/ mirror overhaul (reviewer-specified schema/IDs/expiry/coverage) | — | DEFERRED-FACTCHECK programme; reviewer has now written the requirements — AUTHOR-DECISION on scope |
+| factcheck/ design decisions + check-citation infrastructure + reference distribution | 61 | done — author confirmed the no-ID human-readable model; reviewer's ID/schema recommendation formally declined |
 | Appendix F July-2026 refresh | 60 | done — web-verified; in-place fixes for pre-snapshot facts, dated F.8 update block for post-May facts |
 | factcheck mirrors Ch13–18 | — | reviewer in progress |
 | SVG/archive passes, remaining support files | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
@@ -3405,3 +3405,50 @@ June 2026 Nature-validation reports, IonQ's #AQ 64 announcement and
 product pages, Pasqal's 2025 roadmap release. One anchor requoted;
 baseline (94) held. Lint, anchors, and TOC pass; diff reviewed
 before push.
+
+## Batch 61 — Factcheck model confirmed, executable evidence wired, references distributed
+
+Resolves the three brainstorm items with the author (2026-07-21):
+
+### 1. Card model — the simplification survived; now confirmed as design
+`CARD-SPEC.md` is the design the author described: seven plain
+labeled fields, no IDs/tiers/enums, verdict separate from
+linter-computed freshness, mirror files ordered exactly as the book.
+The incomplete part is that the mass-extracted per-chapter cards
+still use the older compact `- **Claim** (anchor):` line format —
+both formats are anchor-checked, and compact cards migrate to the
+spec when touched. The reviewer's stable-ID/schema-version/metadata
+recommendations are hereby **formally declined by author decision**
+(identity = file order + book-matching headings + verbatim anchors +
+Git); recorded in `factcheck/README.md` so future review passes see
+the disposition instead of re-recommending.
+
+### 2. Executable checks as citable evidence
+New `scripts/verify_identities.py`: 25 named numeric checks covering
+the elementary identity claims of Appendices B/C (Pauli algebra and
+eigensystems, Hadamard conjugations, phase-family relations, P-vs-Rz
+phase, SU(2) double cover, rotation-Pauli relations, CNOT/CZ/SWAP
+identities and spectra, controlled-global-phase, Levi-Civita, Euler
+forms, tensor mixed product, partial trace, Bell marginals) — all
+passing. Cards cite a check as
+`scripts/verify_identities.py::<name>`; new
+`scripts/check_card_citations.py` runs the suite and fails on any
+citation of a missing or failing check, and `tools/lint.py` invokes
+it (skipping gracefully when no venv is present). 19 previously-open
+derivable cards closed with verified citations (15 in the App B
+mirror, 4 in App C).
+
+### 3. References decentralized
+`_sources.md` converted to a deprecation stub; its entries
+distributed into `## References (external)` sections at the bottom
+of the seven mirror files whose cards cite them (landmark
+algorithms, cryptography, networking, QEC, modern frontier, QML,
+Appendix F mirror). Policy recorded: self-containment over
+deduplication; a registry model may return later. Interpretation
+note: sections were added to the factcheck *mirror* files, not the
+reader-facing book chapters — flagged to the author in case
+bottom-of-chapter reference lists in the book itself were intended
+(that variant needs a TOC/status-count design tweak first).
+
+Lint (incl. the new citation check), anchors (baseline 94), and the
+identity suite all pass; diff reviewed before push.

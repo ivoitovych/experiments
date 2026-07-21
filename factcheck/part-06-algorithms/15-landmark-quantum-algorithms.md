@@ -38,3 +38,14 @@ Seeded from ledger Pass 2 and Pass 6 (2026-05-28).
 - **Method**: external
 - **Source**: Tang (STOC 2019) and follow-ups; barren-plateau literature (McClean et al. 2018, Cerezo et al. 2021); Huang et al. shadow-tomography lines
 - **Verified**: 2026-05 · **Verdict**: confirmed
+
+## References (external)
+
+Sources cited by this file's cards, kept here so the file stays
+self-contained (project policy: no central registry).
+
+- **Gidney–Ekerå 2019** — "How to factor 2048 bit RSA integers in 8 hours…", *Quantum* 5, 433 (2021), arXiv:1905.09749 — https://arxiv.org/abs/1905.09749
+- **Gidney 2025** — "How to factor 2048 bit RSA integers with less than a million noisy qubits", arXiv:2505.15917 — https://arxiv.org/abs/2505.15917
+- **Cao–Romero–…–Aspuru-Guzik 2019** — "Quantum Chemistry in the Age of Quantum Computing", *Chem. Rev.* 119, 10856 (2019).
+- **Tang, STOC 2019** — "A quantum-inspired classical algorithm for recommendation systems", arXiv:1807.04271 — https://arxiv.org/abs/1807.04271
+- **McClean et al. 2018; Cerezo et al. 2021** — barren-plateau literature (*Nat. Commun.* 9, 4812; *Nat. Rev. Phys.* 3, 625).

@@ -38,3 +38,11 @@ Seeded from ledger Pass 4 (2026-05-28).
 - **Source**: national space-agency / mission pages; The Quantum Insider
 - **Verified**: 2026-05 · **Verdict**: confirmed (general statement)
 - **Comment**: **open** — individual mission launch dates remain in flux; re-verify each revision.
+
+## References (external)
+
+Sources cited by this file's cards, kept here so the file stays
+self-contained (project policy: no central registry).
+
+- **Liu et al. 2023 (TF-QKD, 1002 km)** — *Phys. Rev. Lett.* 130, 210801 (2023), arXiv:2303.15795.
+- **Yin et al. 2017** — satellite-based entanglement distribution (Micius), *Science* 356, 1140 (2017).

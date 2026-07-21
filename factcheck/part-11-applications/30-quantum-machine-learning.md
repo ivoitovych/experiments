@@ -154,3 +154,11 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
 - **Comment**: Conceptual claim about why Shor and discrete-log algorithms are immune to the dequantization argument; the access model is to an oracle rather than a classical dataset. Standard complexity-theoretic reasoning worth confirming the framing is accurate.
+
+## References (external)
+
+Sources cited by this file's cards, kept here so the file stays
+self-contained (project policy: no central registry).
+
+- **Tang, STOC 2019** — arXiv:1807.04271 (dequantization; low-rank regime).
+- **McClean et al. 2018** — *Nat. Commun.* 9, 4812 (barren plateaus); **Cerezo et al. 2021** — *Nat. Rev. Phys.* 3, 625 (variational algorithms review).

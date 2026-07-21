@@ -140,7 +140,27 @@ consequences for how you write find-in-text locators:
 
 Seeded 2026-05 from the historical Pass 1–7 entries in
 [`docs/fact-check-ledger.md`](../docs/fact-check-ledger.md). The ledger is
-retained as a dated changelog; new work goes here. Coverage: 47 of the 48
-manuscript files have mirror files (all except the Historical Prelude, which
-has an explicit extraction-pending stub). Verification depth varies widely by
-file — many cards remain open; the per-file status lines are authoritative.
+retained as a dated changelog; new work goes here. Coverage: 48 of the 48
+manuscript files have mirror files (the Historical Prelude's is an explicit
+extraction-pending stub). Verification depth varies widely by file — many
+cards remain open; the per-file status lines are authoritative.
+
+## Design decisions (author-confirmed, 2026-07)
+
+- **No stable IDs, no schema machinery.** A card's identity is its mirror
+  file (same order as the book), its section heading (exactly as in the
+  book), and its verbatim anchor — plus Git history. The reviewer-suggested
+  ID/tier/enum apparatus is deliberately rejected: cards stay plain,
+  human-readable text. [`CARD-SPEC.md`](CARD-SPEC.md) (seven labeled
+  fields, verdict separate from linter-computed freshness) is the target
+  format; the compact `- **Claim** (anchor):` cards are the legacy
+  extraction format and migrate to the spec when touched.
+- **Executable checks are citable evidence.** A card may cite
+  `scripts/verify_identities.py::<check_name>` as its method. Lint runs
+  the suite and fails if any cited check is missing or failing
+  (`scripts/check_card_citations.py`) — a card can never keep claiming a
+  green check that has rotted.
+- **No central source registry.** External references live in a
+  `## References (external)` section at the bottom of the mirror file
+  whose cards cite them (self-containment over deduplication).
+  `_sources.md` is a deprecation stub.

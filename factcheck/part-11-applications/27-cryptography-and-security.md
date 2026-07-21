@@ -52,3 +52,13 @@ Seeded from ledger Pass 3 and Pass 6 (2026-05-28).
 - **Source**: same as §15.3 (arXiv:1905.09749; arXiv:2505.15917)
 - **Verified**: 2026-05 · **Verdict**: **updated** — replaces the prior "~$10^7$ physical qubits / 10 hours" which disagreed with the updated §15.3
 - **Comment**: cross-section consistency — keep aligned with `factcheck/part-06-algorithms/15-landmark-quantum-algorithms.md`.
+
+## References (external)
+
+Sources cited by this file's cards, kept here so the file stays
+self-contained (project policy: no central registry).
+
+- **Gidney–Ekerå 2019** — arXiv:1905.09749; **Gidney 2025** — arXiv:2505.15917 (changed architectural assumptions; audit before anchoring policy).
+- **NIST FIPS 203 / 204 / 205** — finalized 2024-08-13 (ML-KEM / ML-DSA / SLH-DSA).
+- **NIST FIPS 206 (FN-DSA/Falcon)** — IPD submitted Aug 2025; final expected late 2026 / early 2027.
+- **NIST IR 8545** — HQC selected as 4th-round KEM (2025-03-11); future FIPS number not yet assigned — do not cite "FIPS 207" until NIST does.

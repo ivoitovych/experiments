@@ -406,12 +406,31 @@ def check_spelling() -> None:
             fail("(codespell)", line.strip())
 
 
+def check_card_citations() -> None:
+    """Cards citing verify_identities.py checks must match live results.
+
+    Needs the project venv (numpy); silently skipped when absent so lint
+    stays runnable in minimal environments.
+    """
+    import subprocess as _subprocess
+    venv_py = ROOT / ".venv" / "bin" / "python"
+    if not venv_py.exists():
+        return
+    out = _subprocess.run(
+        [str(venv_py), str(ROOT / "scripts" / "check_card_citations.py")],
+        capture_output=True, text=True)
+    if out.returncode != 0:
+        for line in (out.stdout + out.stderr).strip().splitlines():
+            fail("(card-citations)", line)
+
+
 def main() -> int:
     book_files = sorted((ROOT / "book").rglob("*.md"))
     for md in book_files:
         check_book_file(md)
     check_readme()
     check_spelling()
+    check_card_citations()
 
     if errors:
         for e in errors:

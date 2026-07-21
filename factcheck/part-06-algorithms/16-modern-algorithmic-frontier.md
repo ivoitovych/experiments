@@ -212,3 +212,10 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 - **Source**: → §16.7 (polynomial degree scales as $\alpha t + \log(1/\epsilon)$; rule follows directly from the linear dependence on $\alpha$)
 - **Verified**: — · **Verdict**: open
 - **Comment**: This is presented as a "rule of thumb" that follows from the QSVT degree formula; it is internally derivable but should be cross-checked against the formula stated in §16.7.
+
+## References (external)
+
+Sources cited by this file's cards, kept here so the file stays
+self-contained (project policy: no central registry).
+
+- **Tang, STOC 2019** — arXiv:1807.04271, and the Chia–Gilyén–Li–Lin–Tang–Wang 2020 framework paper for the dequantization family.

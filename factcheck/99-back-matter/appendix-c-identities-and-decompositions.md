@@ -30,33 +30,33 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 ## C.4 — Hadamard conjugation of Paulis
 
 - **Claim** (anchor): "Hadamard conjugation of Paulis"
-- **Method**: derivation
+- **Method**: check (`scripts/verify_identities.py::hadamard_conjugation`)
 - **Source**: → follows from H^2 = I, H = (X+Z)/√2, and the Pauli algebra of §C.1
-- **Verified**: — · **Verdict**: open
+- **Verified**: 2026-07 · **Verdict**: confirmed — numeric check passes (run `scripts/verify_identities.py`; lint re-verifies the citation)
 - **Comment**: HXH = Z, HZH = X, HYH = -Y; the book cites these as derivable from §C.1.
 
 ## C.4 — Three-CNOT SWAP identity
 
 - **Claim** (anchor): "Three-CNOT SWAP identity"
-- **Method**: derivation
+- **Method**: check (`scripts/verify_identities.py::swap_three_cnots`)
 - **Source**: → verifiable by direct matrix multiplication; standard textbook circuit identity
-- **Verified**: — · **Verdict**: open
+- **Verified**: 2026-07 · **Verdict**: confirmed — numeric check passes (run `scripts/verify_identities.py`; lint re-verifies the citation)
 - **Comment**: SWAP = CNOT_{1→2} CNOT_{2→1} CNOT_{1→2} = CNOT_{2→1} CNOT_{1→2} CNOT_{2→1}.
 
 ## C.4 — Hadamard sandwich swaps control and target of CNOT
 
 - **Claim** (anchor): "Hadamard sandwich swaps the role of control and target"
-- **Method**: derivation
+- **Method**: check (`scripts/verify_identities.py::hh_swaps_cnot`)
 - **Source**: → verifiable by direct matrix computation; standard basis-change identity
-- **Verified**: — · **Verdict**: open
+- **Verified**: 2026-07 · **Verdict**: confirmed — numeric check passes (run `scripts/verify_identities.py`; lint re-verifies the citation)
 - **Comment**: (H⊗H) CNOT_{1→2} (H⊗H) = CNOT_{2→1}.
 
 ## C.4 — CZ–CNOT conversion via Hadamard on target
 
 - **Claim** (anchor): "CZ–CNOT conversion"
-- **Method**: derivation
+- **Method**: check (`scripts/verify_identities.py::cz_h_cnot`)
 - **Source**: → verifiable by matrix computation; standard identity
-- **Verified**: — · **Verdict**: open
+- **Verified**: 2026-07 · **Verdict**: confirmed — numeric check passes (run `scripts/verify_identities.py`; lint re-verifies the citation)
 - **Comment**: CNOT_{1→2} = (I⊗H) CZ (I⊗H) and conversely.
 
 ## C.4 — Pauli conjugation by CNOT (propagation rules)
