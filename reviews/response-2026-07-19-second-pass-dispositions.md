@@ -2412,7 +2412,7 @@ files vs fix batches:
 | docs/fact-check-ledger.md, docs/github-markdown-math-bugs.md | 53 | done (file-level verdicts landed in the 2026-07-21 drop) |
 | Reopened manuscript items (2026-07-21b drop: Robertson, SK, QND) | 54 | done |
 | docs/render-tests matrix, upstream-feedback drafts | 55 | done |
-| examples/deutsch_jozsa.py | — | verdict landed 2026-07-21b; queued next |
+| examples/deutsch_jozsa.py | 56 | done |
 | SVG/archive passes, remaining support files | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
 
 Working method from batch 36 on: fixes are driven by the ledger's own
@@ -3187,3 +3187,30 @@ results were fabricated: the single outcome recorded into the sheet
 
 No factcheck anchors staled; baseline (94) held. Lint and anchor
 checks pass; diff reviewed before push.
+
+## Batch 56 — examples/deutsch_jozsa.py (rewrite, verified live)
+
+All of the verdict's improvements applied and the result executed
+under the pinned environment (Qiskit 2.4.1); the full example suite
+still passes.
+
+### FIXED
+- Docstring now separates the query-model claim from physical gate
+  count (one oracle *call*; the parity oracle costs n CNOTs) and
+  from shots (1,000 shots = 1,000 circuit executions of the ideally
+  deterministic outcome), states the expected outputs, and labels
+  the ideal noiseless setting. `n` validated as a positive integer.
+  The oracle callback given a `Callable` type alias and an explicit
+  contract note (reversible bit oracle on inputs 0..n-1 with
+  ancilla n; off-contract callbacks silently invalidate the
+  promise-based verdict). The brittle auto-register access
+  (`.data.c`) replaced with an explicitly named classical register
+  accessed by name. Constant-zero and constant-one oracles added,
+  all three promise cases run, and per-case assertions turn the
+  script into a regression check (observed: balanced → only 111,
+  constants → only 000). The classifier factored out and labeled
+  ideal-only, with the hardware-threshold caveat. Qubit-index
+  comment states these are Qiskit indices.
+
+Lint and anchor checks pass; baseline (94) held; diff reviewed
+before push.
