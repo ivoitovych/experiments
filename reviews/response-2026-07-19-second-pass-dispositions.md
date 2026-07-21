@@ -2411,7 +2411,8 @@ files vs fix batches:
 | Index | 52 | done |
 | docs/fact-check-ledger.md, docs/github-markdown-math-bugs.md | 53 | done (file-level verdicts landed in the 2026-07-21 drop) |
 | Reopened manuscript items (2026-07-21b drop: Robertson, SK, QND) | 54 | done |
-| docs/render-tests matrix, upstream-feedback drafts, examples/deutsch_jozsa.py | — | verdicts landed 2026-07-21b; queued next |
+| docs/render-tests matrix, upstream-feedback drafts | 55 | done |
+| examples/deutsch_jozsa.py | — | verdict landed 2026-07-21b; queued next |
 | SVG/archive passes, remaining support files | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
 
 Working method from batch 36 on: fixes are driven by the ledger's own
@@ -3134,6 +3135,55 @@ The meta-review's structural asks for the disposition chronology
 itself (stable finding IDs, orthogonal verdict/evidence fields,
 superseded-paragraph marks) go to the infrastructure queue; the
 document is preserved as history.
+
+No factcheck anchors staled; baseline (94) held. Lint and anchor
+checks pass; diff reviewed before push.
+
+## Batch 55 — render-tests matrix and upstream-feedback drafts (21 fixes)
+
+Sure fixes from the 2026-07-21b verdicts. The larger programme —
+converting the matrix into a dated result record with
+expected/observed/evidence fields per cell, DOM-level verification,
+workaround-variant cells, and mechanical synchronization with the
+memo and linter — goes to the infrastructure queue. No render
+results were fabricated: the single outcome recorded into the sheet
+(M1 breaks) is the one the companion memo already documents.
+
+### FIXED — docs/render-tests/math-context-matrix.md
+- Purpose header: renderer attribution made a tested hypothesis,
+  cell-label naming normalized to the actual `A1`/`B2` scheme, and
+  the sheet identified as the stimulus set (outcomes live in the
+  memo until the dated result matrix exists). Stale dimensions
+  overview extended with Sections J–N. Section M's interpretation
+  rules rewritten around the observed M1 failure (the old rules
+  could not isolate separators once M1 fails; M4–M8 establish
+  breadth, not causes; display controls for M4–M8 flagged as
+  needed). Section N: the missing top-level `>` control recorded as
+  a known gap with the generalization narrowed to `+`/`-`/`*` and
+  lint's `>` coverage labeled policy overapproximation. Reporting
+  protocol: the example broken-cell list marked illustrative-only
+  (it predates M/N and omits memo-reported failures), "exact bug
+  surface without speculation" bounded, and the false "hardest
+  cases clean ⇒ safe everywhere" inference removed.
+
+### FIXED — docs/upstream-feedback (comment + howto)
+- Comment draft: internal-draft banner added (re-verify everything
+  on posting day; posting is separately authorized); "current
+  renderer" claims dated; the inline bug broadened from
+  `pmatrix`-specific to the `\begin{...}` environment shape with M1
+  as minimal reproducer; H6's observed behavior separated from the
+  uninstantiated column-separator hypothesis; Section L "pending"
+  replaced with the confirmed L/N diagnosis (including the
+  top-level-`>` gap); ask 3 updated to confirmed status; the ≈340
+  line count corrected to ≈490. Howto: safety preamble added
+  (explicit authorization per mutation, browser-first posting,
+  account check, non-idempotency warning, same-day re-verification);
+  "live test sheet" aligned with the fixture framing; B7–B10 claim
+  dated; new-comment summary updated to the broadened bug and
+  confirmed diagnosis; unsupported reaction-weighting claim
+  softened; new-Discussion title/body updated to the environment
+  shape with M1 and a category re-verification step; the "query
+  mutation" error corrected to a read-only GraphQL query.
 
 No factcheck anchors staled; baseline (94) held. Lint and anchor
 checks pass; diff reviewed before push.

@@ -1,11 +1,17 @@
 # GitHub Markdown + MathJax — Render Surface Test Sheet
 
-Purpose: map the **actual** surface of where GitHub's Markdown +
-MathJax renders math correctly vs incorrectly, instead of relying on
-guessed rules. Each cell below is a single test labelled
-`[container]-[math-form]`. After viewing this file on GitHub, the
-user can screenshot each section and we can mark each cell as
-**OK** (rendered as math) or **BROKEN** (rendered as literal LaTeX
+Purpose: map the **actual** surface of where GitHub's Markdown math
+pipeline (attributed to MathJax per GitHub's documentation — a
+tested hypothesis, not independently established) renders math
+correctly vs incorrectly, instead of relying on guessed rules. Each
+cell below is a single test labelled by container letter plus
+math-form number (`A1`, `B2`, …). This sheet is the *stimulus set*:
+observed outcomes are currently recorded in the companion memo
+`docs/github-markdown-math-bugs.md`, not inline here — converting
+this file into a dated result matrix (expected/observed/date/
+surface/evidence per cell) is queued work. After viewing this file
+on GitHub, screenshot each section and mark each cell as **OK**
+(rendered as math) or **BROKEN** (rendered as literal LaTeX
 source).
 
 All math sources below use the GitHub-friendly escaping we have
@@ -25,6 +31,11 @@ The matrix below covers:
   `\\{...\\}`, 6 inline norm bar `\\|...\\|`, 7 display simple
   single-line, 8 display simple multi-line, 9 display `pmatrix`
   multi-line, 10 display `aligned` multi-line.
+
+Later-added sections extend the matrix beyond this overview:
+J (blockquote nested in bullet), K (bullet nested in blockquote),
+L (leading-marker continuation lines inside a blockquote),
+M (inline-environment isolation), N (top-level marker controls).
 
 ---
 
@@ -401,16 +412,25 @@ $$
 A = \begin{pmatrix} 1 & 2 \\\\ 3 & 4 \end{pmatrix}.
 $$
 
-Interpretation rules:
+Recorded outcome (companion memo): **M1 breaks** — the 1×1
+`pmatrix` with no `&` and no `\\\\` fails, so the `\begin{...}`
+environment shape itself is the best-supported trigger.
 
-- If M1 renders and M2 breaks ⇒ the `&` is the trigger.
-- If M1 renders and M3 breaks ⇒ the `\\\\` is the trigger.
-- If M2 breaks and M3 breaks ⇒ both are triggers, and the rule is
-  "inline math cannot contain either `&` or `\\\\`."
-- If M4–M8 behave identically to M2/M3 ⇒ the bug is general to
-  `\begin{...}` environments in inline math, not specific to
-  `pmatrix`.
-- If only M2/M3 break and M4–M8 work ⇒ the bug is `pmatrix`-specific.
+Interpretation rules, rewritten around that observed M1 failure:
+
+- With M1 failing, M2 and M3 add `&`/`\\\\` *on top of* an
+  already-failing baseline, so they cannot isolate the separators as
+  independent triggers; that would need a non-environment inline
+  construct carrying each separator.
+- M4–M8 all contain both separators, so their failures establish
+  breadth (not `pmatrix`-specific), not separate causes.
+- M9 rendering shows the environment is supported in display math —
+  implicating the inline path. Display controls for M4–M8 would be
+  needed before concluding each of those environments is itself
+  supported.
+- Only if a future run finds M1 rendering does the original
+  factorial logic apply: M2-only breakage would implicate `&`,
+  M3-only `\\\\`, and both breaking would implicate both separators.
 
 ---
 
@@ -458,18 +478,30 @@ Interpretation rules:
   ⇒ Bug 4 is blockquote-specific: the parser misclassifies the
   `+`-led line as a list item only when it appears under a `>`
   blockquote, where list markers naturally nest.
-- If N2 breaks at top level too ⇒ Bug 4 is general: any `+`-led
-  continuation line inside multi-line `$$ ... $$` breaks math
-  mode, blockquote or not. The lint rule would need to flag the
-  pattern in any block-math context.
+- If N2 breaks at top level too ⇒ Bug 4 is general *for the tested
+  pattern*: a `+`-led continuation line inside multi-line
+  `$$ ... $$` breaks math mode, blockquote or not. The lint rule
+  flags the pattern in any block-math context as a deliberate
+  overapproximation of the tested cases.
+
+Known gap: Section L includes a `>`-led continuation (L5) but N has
+no top-level counterpart — a top-level line beginning with `>`
+opens a real blockquote, which confounds the control. Until such a
+case is designed, the top-level (non-blockquote) generalization is
+established for `+`, `-`, `*` only; `>` is flagged conservatively
+as lint policy, not as proven top-level bug breadth.
 
 ---
 
 ## How to report findings
 
 For each cell that renders **broken** (literal `$`, missing math
-glyphs, escaped backslashes visible), note the label. The cleanest
-output is just a list of broken labels:
+glyphs, escaped backslashes visible), note the label — plus the run
+date, commit, GitHub surface (blob/README/gist), and browser, and
+distinguish *not run* from *passed*. The cleanest core output is a
+list of broken labels; the block below is an **illustrative format
+example, not a recorded run** (it predates Sections M/N and omits
+cells the companion memo reports broken):
 
 ```
 B2, B7, B8, B9, B10
@@ -479,8 +511,9 @@ J2, J5, J6
 K2
 ```
 
-That single list of broken labels gives us the exact bug surface,
-without speculation. From there we can:
+A dated list of broken labels records the observed failure set for
+that run's surface — the causal parser story still needs controls
+and DOM-level evidence. From there we can:
 
 - decide which container × math-form combinations need workarounds in
   the manuscript;
@@ -489,5 +522,8 @@ without speculation. From there we can:
   `community/community#122438`) using the matrix as the repro.
 
 The K cells (bullet inside blockquote) and J cells (blockquote
-inside bullet) are likely the **hardest** for the parser; if those
-are clean, our manuscript pattern is safe everywhere.
+inside bullet) are the most deeply nested cases — but parser
+behavior is not ordered by apparent nesting complexity (a plain
+table cell or a marker pattern can fail for unrelated grammar
+reasons), so clean J/K cells license no "safe everywhere"
+conclusion. Only the full matrix does.
