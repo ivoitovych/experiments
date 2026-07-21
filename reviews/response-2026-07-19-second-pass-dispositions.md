@@ -2405,7 +2405,8 @@ files vs fix batches:
 | Appendix A | 46 | done |
 | Appendix B | 47 | done |
 | Appendix C | 48 | done |
-| Appendices D–F, Index | — | pending (ledger complete) |
+| Appendix D | 49 | done |
+| Appendices E–F, Index | — | pending (ledger complete) |
 | SVG/support/archive passes | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
 
 Working method from batch 36 on: fixes are driven by the ledger's own
@@ -2920,3 +2921,32 @@ Driven by the ledger's highest-priority correctness list.
 
 Three factcheck anchors requoted; baseline (94) held. Lint and
 anchor checks pass; diff reviewed before push.
+
+## Batch 49 — Appendix D (7 substitutions)
+
+Driven by the ledger's highest-priority correctness list. The full
+bibliographic upgrade (DOIs, arXiv IDs, editions, last-verified
+dates for every entry) remains queued under the DEFERRED-FACTCHECK
+programme.
+
+### FIXED — outright defects
+- Kitaev–Shen–Vyalyi corrected from "the original source" for phase
+  estimation and QMA to an influential early monograph treatment
+  (both results introduced in Kitaev's earlier papers). Gottesman
+  1998 disentangled from Eastin–Knill: the no-go is a separate 2009
+  theorem, now dated and attributed. Bravyi–Gosset reannotated to
+  its actual contribution (classical simulation of Clifford + few
+  non-Clifford circuits), no longer presented as a magic-state-
+  distillation reference. The invented "Open-source pulse-level
+  control" bibliography title replaced with the actual Alexander et
+  al. citation (*Qiskit Pulse: programming quantum computers through
+  the cloud with pulses*, Quantum Science and Technology, 2020);
+  the `defcal` note reworded so language-level construct is not
+  presented as a living hardware interface (backend acceptance is
+  provider-specific). The false claim that Mermin's 2007 text ships
+  with notebook collections removed (IBM materials do; Mermin needs
+  third-party companions). Stim's "fastest ... mandatory" and
+  TKET's "strongest" softened to evidence-compatible phrasing.
+
+No factcheck anchors staled; baseline (94) held. Lint and anchor
+checks pass; diff reviewed before push.

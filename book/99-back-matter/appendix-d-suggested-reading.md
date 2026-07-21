@@ -44,9 +44,10 @@ parallel reference while reading it.
   and Shor.
 - *Classical and Quantum Computation.* Alexei Yu. Kitaev, Alexander H.
   Shen, and Mikhail N. Vyalyi. American Mathematical Society, 2002.
-  Older, more mathematical, and the original source for several
-  results — most notably phase estimation and QMA — that are now
-  textbook material.
+  Older, more mathematical, and an influential early monograph
+  treatment of results — notably phase estimation and QMA, both
+  introduced by Kitaev in earlier papers — that are now textbook
+  material.
 - *Lecture Notes on Quantum Computation.* John Preskill. Caltech
   Ph229 lecture notes. Freely available online. The most widely cited
   set of notes in the field; the chapters on quantum information,
@@ -150,12 +151,18 @@ literature has consolidated to a handful of papers that everyone cites.
   vary in depth but the introductory and surface-code chapters are
   strong.
 - *A theory of fault-tolerant quantum computation.* Daniel Gottesman.
-  Physical Review A, 1998. The transversal-gate analysis underlying
-  the Eastin-Knill no-go and most fault-tolerant constructions.
+  Physical Review A, 1998. Foundational transversal-gate and
+  fault-tolerance analysis for stabilizer codes. (The Eastin–Knill
+  no-go theorem itself is a separate, later result — Eastin and
+  Knill, 2009 — that sharpens why transversal gate sets cannot be
+  universal.)
 - *Improved classical simulation of quantum circuits dominated by Clifford gates.* Sergey
-  Bravyi and David Gosset. Physical Review Letters, 2016. Useful
-  perspective on magic-state distillation and what classical
-  simulation can and cannot do near the Clifford boundary.
+  Bravyi and David Gosset. Physical Review Letters, 2016. A
+  classical-simulation result — Clifford circuits plus a few
+  non-Clifford gates, with cost growing with the non-Clifford
+  count — that maps what classical simulation can and cannot do
+  near the Clifford boundary; read it for simulability, not as a
+  magic-state-distillation reference.
 - *Asymptotically good quantum and locally testable classical LDPC codes.* Pavel
   Panteleev and Gleb Kalachev. STOC, 2022. Representative of the
   recent qLDPC line; worth at least skimming for context on why the
@@ -194,12 +201,15 @@ recently re-stated.
   Frank Arute et al. Nature, 2019. Read for the engineering rather
   than the headline: the supplementary material is a tour of the
   control stack.
-- *Open-source pulse-level control: Qiskit Pulse and OpenPulse.*
-  Thomas Alexander et al. The OpenPulse specification papers describe
-  what pulse-level programming looks like on a real system. (Note:
-  the Qiskit Pulse API itself was removed in Qiskit 2.0 (2025) —
-  §21.3, §23.5 — so read these as design documentation; the living
-  pulse interface is OpenQASM 3 `defcal`.)
+- *Qiskit Pulse: programming quantum computers through the cloud
+  with pulses.* Thomas Alexander et al. Quantum Science and
+  Technology, 2020. Together with the OpenPulse specification, it
+  describes what pulse-level programming looks like on a real
+  system. (Note: the Qiskit Pulse API was removed in the Qiskit
+  2.0 release line (2025) — §21.3, §23.5 — so read these as design
+  documentation. OpenQASM 3 `defcal` is the language-level
+  successor construct; whether a given provider actually accepts
+  user calibrations is a separate, backend-by-backend question.)
 
 ## D.6 Complexity Theory
 
@@ -301,15 +311,14 @@ documentation rather than as stable artifacts.
   programming language looks like. The Microsoft Quantum
   documentation site is the current entry point; the original
   *Q# language specification* on GitHub is still readable.
-- **t|ket> and the Quantinuum stack.** `docs.quantinuum.com/tket`. The
-  TKET compiler and `pytket` Python bindings are the strongest
-  open-source pieces of compiler infrastructure for circuit
+- **t|ket> and the Quantinuum stack.** `docs.quantinuum.com/tket`. The TKET compiler and `pytket` Python bindings are among the most
+  capable open-source compiler infrastructure for circuit
   optimization and hardware-aware routing across multiple backends.
 - **Stim.** Craig Gidney, available at `github.com/quantumlib/Stim`.
-  The fastest stabilizer-circuit simulator in wide use, with a
-  matched decoder ecosystem (PyMatching, Fusion Blossom). Effectively
-  the standard tool for surface-code numerics; mandatory if you
-  want to reproduce the throughput numbers in Chapter 19.
+  A very fast stabilizer-circuit simulator in wide use, with a
+  matched decoder ecosystem (PyMatching, Fusion Blossom). The de
+  facto common tool for surface-code numerics; you will need it (or
+  an equivalent) to reproduce the throughput numbers in Chapter 19.
 - **OpenQASM.** The OpenQASM 3 specification, hosted on GitHub. The
   intermediate representation that most of the above SDKs can emit
   and consume; worth a single read end-to-end so that you recognize
@@ -325,9 +334,11 @@ documentation rather than as stable artifacts.
   (QCE)** — the engineering-and-applications venue, with tooling and
   benchmarking workshops; **APS March Meeting** — where hardware
   platform progress is reported in raw experimental form.
-- **Companion notebooks.** Mermin's *Quantum Computer Science* and
-  the IBM *Learn Quantum Computation using Qiskit* online materials
-  both ship with substantial notebook collections. Working through
+- **Companion notebooks.** The IBM *Learn Quantum Computation using
+  Qiskit* online materials ship with substantial notebook
+  collections; Mermin's 2007 text does not come with notebooks —
+  pair it with third-party materials if you want executable
+  companions. Working through
   one of them in parallel with Parts III–VI of this book is the most
   efficient way to convert the formalism into reflexes.
 
