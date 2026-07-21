@@ -88,7 +88,8 @@ The original planned outline lives at
   - [F.5 Photonic, Spin, and Topological Approaches](book/99-back-matter/appendix-f-hardware-snapshot-2026.md#f5-photonic-spin-and-topological-approaches)
   - [F.6 Cross-Cutting Metrics at a Glance](book/99-back-matter/appendix-f-hardware-snapshot-2026.md#f6-cross-cutting-metrics-at-a-glance)
   - [F.7 Error-Correction and Logical-Qubit Milestones](book/99-back-matter/appendix-f-hardware-snapshot-2026.md#f7-error-correction-and-logical-qubit-milestones)
-  - [F.8 How This Snapshot Will Age](book/99-back-matter/appendix-f-hardware-snapshot-2026.md#f8-how-this-snapshot-will-age)
+  - [F.8 Verified Updates as of July 2026](book/99-back-matter/appendix-f-hardware-snapshot-2026.md#f8-verified-updates-as-of-july-2026)
+  - [F.9 How This Snapshot Will Age](book/99-back-matter/appendix-f-hardware-snapshot-2026.md#f9-how-this-snapshot-will-age)
 - **[Index](book/99-back-matter/index.md)**
   - [A](book/99-back-matter/index.md#a)
   - [B](book/99-back-matter/index.md#b)

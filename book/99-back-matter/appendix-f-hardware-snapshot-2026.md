@@ -1,6 +1,6 @@
 # Appendix F. 2026 Hardware Snapshot
 
-> **Status:** prereviewed · **Phase:** 4 · **Sections drafted:** 8 / 8
+> **Status:** prereviewed · **Phase:** 4 · **Sections drafted:** 9 / 9
 
 [← Previous: Appendix E. Glossary](appendix-e-glossary.md) · [Table of Contents](../../README.md) · [Next: Index →](index.md)
 
@@ -65,10 +65,12 @@ The fidelity and connectivity leader at modest qubit counts.
   around 99.9% (best-pair >99.91%), and very high
   state-preparation-and-measurement fidelity.
 - **IonQ** markets "algorithmic qubits" — a proprietary
-  benchmark-derived figure, not a physical- or logical-qubit count
-  (Forte at #AQ 29, with Forte Enterprise #AQ 35 and Tempo #AQ 64
-  announced as of this snapshot) — using trapped ytterbium and, per
-  the announced roadmap, barium ions.
+  benchmark-derived figure, not a physical- or logical-qubit count.
+  Its 100-qubit Tempo system *achieved* #AQ 64 in September 2025
+  (per IonQ's announcement — ahead of its own schedule), and Forte
+  Enterprise is specified at #AQ 36 on IonQ's current product page;
+  the systems use trapped ytterbium and, per the announced roadmap,
+  barium ions.
 
 Ions report the highest published two-qubit gate fidelities among
 gate-model platforms (no standardized cross-platform benchmark
@@ -165,8 +167,11 @@ pre-fault-tolerant at useful scale.
   a surface-code logical qubit whose error rate *decreased* with increasing
   code distance — the defining signature of a working error-correction regime.
 - **Logical operations (trapped-ion and neutral-atom).** Microsoft
-  and Quantinuum demonstrated 4 logical qubits on H2 (April 2024),
-  reporting logical error rates well below the physical rate — a
+  and Quantinuum demonstrated 4 logical qubits on H2 (April 2024)
+  and 12 entangled logical qubits by September 2024 (reported
+  entangled-circuit error rate ${\sim}22\times$ better than the
+  physical baseline), reporting logical error rates well below the
+  physical rate — a
   comparison whose meaning depends on the metric and the
   error-detection/postselection protocol; the technical report,
   not the press release, carries the precise claim. The
@@ -190,7 +195,39 @@ deep, fault-tolerant logical algorithms at application scale. See
 for the theory and [Chapter 25](../part-10-practice-and-era/25-nisq-and-early-fault-tolerant-era.md)
 for what this means for near-term practice.
 
-## F.8 How This Snapshot Will Age
+## F.8 Verified Updates as of July 2026
+
+The snapshot above is deliberately frozen at May 2026. The items
+below were verified against primary or primary-adjacent sources in
+July 2026 during review; they update, but do not rewrite, the
+sections above.
+
+- **IBM** deployed Heron r3 (first system `ibm_pittsburgh`), with
+  higher coherence and lower error than r2, and published a
+  fault-tolerance roadmap: Nighthawk targeted at end-2026, and the
+  Starling fault-tolerant machine (~200 logical qubits, $10^8$
+  gates) built up through 2028–2029 milestones.
+- **Microsoft** announced Majorana 2 (Build, June 2026): a
+  lead-based superconductor replacing aluminum, claimed
+  quantum-state lifetimes of ${\sim}20$ seconds, and a roadmap
+  pulled in to 2029. The F.5 caveat stands unchanged: prominent
+  critics responded that the new data does not resolve their
+  objections to the underlying topological-qubit claim — treat it
+  with the same claim-layering as Majorana 1.
+- **Microsoft and Quantinuum** published peer-reviewed validation
+  in *Nature* (June 2026) of logical-over-physical error-rate
+  improvements ranging from $11\times$ to $800\times$ on trapped-ion
+  hardware — the press-release-era numbers of F.7 now have an
+  independently reviewed anchor. Quantinuum's announced Helios
+  generation targets at least 10 high-reliability logical qubits.
+- **Pasqal** shipped its Orion Gamma generation (>140 physical
+  qubits) to HPC centers by end-2025; the ${\sim}1{,}000$-qubit
+  machine from the earlier roadmap (F.4) was *not* publicly
+  confirmed delivered by its target date, and the current roadmap
+  restates scaling as 10,000 physical / 200 logical qubits by 2030
+  (Vela 2027, Centaurus 2028, Lyra 2029).
+
+## F.9 How This Snapshot Will Age
 
 The fastest-moving figures are qubit counts and logical-qubit demonstrations;
 expect both to be stale within a year. Two-qubit fidelities and coherence

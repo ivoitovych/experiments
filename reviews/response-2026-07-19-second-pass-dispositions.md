@@ -2417,7 +2417,7 @@ files vs fix batches:
 | examples/ batch 2 (bell, grover, ordering, statevector) | 58 | done |
 | Definite mirror-data defects (README, _pilot, _sources, App C mirror, prelude stub) | 59 | done |
 | factcheck/ mirror overhaul (reviewer-specified schema/IDs/expiry/coverage) | — | DEFERRED-FACTCHECK programme; reviewer has now written the requirements — AUTHOR-DECISION on scope |
-| Appendix F July-2026 refresh (Heron r3, Starling 2029, Majorana 2, IonQ AQ, post-4-logical results) | — | AUTHOR-DECISION: snapshot is dated May 2026 by design; refreshing needs a policy call |
+| Appendix F July-2026 refresh | 60 | done — web-verified; in-place fixes for pre-snapshot facts, dated F.8 update block for post-May facts |
 | factcheck mirrors Ch13–18 | — | reviewer in progress |
 | SVG/archive passes, remaining support files | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
 
@@ -3355,3 +3355,53 @@ re-surfacing them. The schema/ID/expiry overhaul remains queued.
   nothing-to-check (the audit's missing-48th-file finding).
 
 Lint and anchor checks pass; baseline (94) held.
+
+## Batch 60 — Appendix F refresh, web-verified (4 substitutions + TOC)
+
+Per the author's directive, the doubtful hardware items got a deep
+investigation: each reviewer-flagged fact was checked against
+primary or primary-adjacent web sources in July 2026 before any
+edit. The design question (dated snapshot vs refresh) resolved
+itself once the facts were dated: two flagged items *predate* the
+May snapshot and were simply wrong/missing in it (in-place fixes);
+the rest are genuinely post-May and live in a new dated F.8
+"Verified Updates as of July 2026" block that updates without
+rewriting the frozen snapshot. F.8→F.9 renumbering, status count,
+and TOC regenerated.
+
+### FIXED in place (pre-snapshot facts)
+- IonQ: Tempo *achieved* #AQ 64 in September 2025 (IonQ
+  announcement; the snapshot had it merely "announced"), and Forte
+  Enterprise is specified at #AQ 36 on IonQ's current product page
+  (was "#AQ 35 announced"). Chapter 1 no longer carries its own
+  volatile "#AQ 29" copy — it defers to Appendix F for dated
+  numbers, per the mirror audit's anti-drift recommendation; its
+  anchor requoted.
+- F.7: the missed September 2024 Microsoft×Quantinuum result added
+  — 12 entangled logical qubits at ~22x entangled-circuit error
+  improvement (the snapshot stopped at the April 2024 4-logical
+  demo).
+
+### ADDED as dated July-2026 updates (new F.8)
+- IBM Heron r3 deployed (ibm_pittsburgh) and the Nighthawk
+  end-2026 / Starling 2028–2029 (~200 logical, 10^8 gates)
+  fault-tolerance roadmap.
+- Microsoft Majorana 2 (Build, June 2026): lead-based
+  superconductor, claimed ~20 s lifetimes, roadmap pulled to 2029 —
+  with the F.5 claim-layering caveat explicitly carried forward
+  (critics state the new data does not resolve their objections).
+- Microsoft×Quantinuum peer-reviewed *Nature* validation (June
+  2026) of 11x–800x logical-over-physical improvements; Helios
+  targeting ≥10 logical qubits.
+- Pasqal: Orion Gamma (>140 qubits) shipped to HPC centers by
+  end-2025; the ~1,000-qubit machine not publicly confirmed by its
+  target date; current roadmap 10,000 physical / 200 logical by
+  2030 (Vela/Centaurus/Lyra) — closing the expired-target flag
+  with verified status rather than speculation.
+
+Sources consulted: IBM Quantum blog/roadmap coverage, Microsoft
+Build 2026 coverage and Microsoft/Quantinuum announcements, the
+June 2026 Nature-validation reports, IonQ's #AQ 64 announcement and
+product pages, Pasqal's 2025 roadmap release. One anchor requoted;
+baseline (94) held. Lint, anchors, and TOC pass; diff reviewed
+before push.
