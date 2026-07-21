@@ -66,7 +66,7 @@ $$
 \mathrm{tr}(E_m\\, \rho) = \mathrm{tr}\bigl(P_m\\, U (\rho \otimes |0\rangle\langle 0|_A) U^\dagger\bigr).
 $$
 
-The right-hand side is a projective measurement on the dilated system — couple to a fresh ancilla, apply a unitary, then measure projectively. The left-hand side recovers the POVM outcome probability exactly. The ancilla dimension needed is at most equal to the number of POVM outcomes; for the trine POVM on a qubit, a single ancilla qubit suffices.
+The right-hand side is a projective measurement on the dilated system — couple to a fresh ancilla, apply a unitary, then measure projectively. The left-hand side recovers the POVM outcome probability exactly. What must be large enough is the *joint* (system $\otimes$ ancilla) dimension: for a rank-one POVM it needs at least one dimension per outcome. For the three-outcome trine on a qubit, one ancilla qubit gives joint dimension $4 \ge 3$ — a single ancilla qubit suffices.
 
 Naimark says three things at once. **Realisability.** Any POVM you can write down corresponds to a physically realizable measurement protocol: attach an ancilla, entangle, measure the ancilla (or the joint system) projectively. **Algorithm design.** Whenever an algorithm "uses a POVM", one is free to think of it as a unitary plus a standard readout on an extended register — the same primitive every quantum SDK already exposes. **Conceptual unification.** The POVM formalism is not exotic physics; it is the projective formalism viewed through the partial trace (§5.12). The same way a mixed state arises by tracing out part of a pure state, a POVM arises by ignoring part of a projective measurement on a larger system.
 

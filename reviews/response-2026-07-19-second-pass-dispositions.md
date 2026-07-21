@@ -2413,6 +2413,11 @@ files vs fix batches:
 | Reopened manuscript items (2026-07-21b drop: Robertson, SK, QND) | 54 | done |
 | docs/render-tests matrix, upstream-feedback drafts | 55 | done |
 | examples/deutsch_jozsa.py | 56 | done |
+| Manuscript defects surfaced by mirror audit (2026-07-21c drop, Ch2–Ch12 + App E) | 57 | done |
+| examples/ batch 2 (bell, grover, ordering, statevector) | — | verdicts landed 2026-07-21c; queued next |
+| factcheck/ mirror overhaul (reviewer-specified schema/IDs/expiry/coverage) | — | DEFERRED-FACTCHECK programme; reviewer has now written the requirements — AUTHOR-DECISION on scope |
+| Appendix F July-2026 refresh (Heron r3, Starling 2029, Majorana 2, IonQ AQ, post-4-logical results) | — | AUTHOR-DECISION: snapshot is dated May 2026 by design; refreshing needs a policy call |
+| factcheck mirrors Ch13–18 | — | reviewer in progress |
 | SVG/archive passes, remaining support files | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
 
 Working method from batch 36 on: fixes are driven by the ledger's own
@@ -3214,3 +3219,72 @@ still passes.
 
 Lint and anchor checks pass; baseline (94) held; diff reviewed
 before push.
+
+## Batch 57 — Manuscript defects surfaced by the mirror audit (14 substitutions)
+
+The 2026-07-21c drop (+6,215 lines) audits the `factcheck/` mirror
+through Chapter 12. Many of its flags re-quote pre-fix manuscript
+wording from stale cards; every flagged item was therefore
+adjudicated against the *current* text before acting.
+
+### FIXED — outright defects
+- Ch2: the dense state-vector simulation boundary corrected from
+  "$n = 50$ to $60$" to $n \approx 45$–$50$ with the petabyte
+  arithmetic shown ($2^{50}$ single-precision amplitudes ≈ 10 PB;
+  $n = 60$ is three orders beyond any machine). Ch5: no-deleting
+  restated as a ban on *destruction*, with the swap-out reset
+  explicitly allowed (information relocates, never vanishes). Ch7:
+  the DQC1 sentence rewritten (believed-hard, little entanglement
+  by standard bipartite measures, advantage conjectural); LOCC
+  monotonicity qualified to on-average. Ch9: logical-ancilla size
+  made code/distance-dependent (tens at small distance) instead of
+  a flat "hundreds"; the $\Omega(n)$ preparation bound given its
+  target-state quantifier (some states — GHZ among them; product
+  states are depth 1); the Solovay–Kitaev synthesis factor
+  restated per continuous rotation with the gate-count/depth layers
+  separated. Ch10: the positivity reversal fixed — it is the
+  *transpose* that is positive-but-not-CP, and the *partial*
+  transpose that goes negative on entangled states (PPT, §7.11);
+  tomography's measurement requirement generalized to
+  informationally complete sets (single-POVM option included); QKD
+  enablement tied to the full proof apparatus; teleportation's
+  two-bit count separated from no-signaling (no-signaling forces
+  *some* classical communication; four Pauli corrections force
+  *two* bits). Ch11: the Naimark dilation note corrected to joint
+  (not ancilla) dimension with the trine arithmetic. Ch12: the
+  mutual-information "fingerprint" claim corrected to a
+  can-be-stronger statement with the not-a-test caveat. Appendix E:
+  the gate-fidelity entry's flat "$10^{-3}$–$10^{-4}$ state of the
+  art" split into best-demonstrated vs median with dependence
+  caveats.
+
+### ADJUDICATED — flagged but already correct in current text
+Fidelity/error mislabels (Ch2), the hedged $10^{-15}$ classical
+figure, the nonnegative-amplitude restricted-model hedge, Ch3's
+Bell-loophole chronology and β-BBO rate, Ch4's SVD ($A^\dagger A$),
+Ch6's phase qualifications and sphere/ball split, Ch9's garbage
+scoping, Ch11's normalized Pauli orthonormality and gate-count/depth
+split for global Cliffords, Ch12's regularized HSW statement and
+state-merging resource ledger, Appendix E's statevector ceiling, and
+the notation "opposite of Qiskit" nuance (current text already
+explains the coinciding string-to-integer maps): all repaired in
+earlier batches; the mirror cards quote pre-fix text and will be
+refreshed by the mirror overhaul.
+
+### QUEUED
+- The factcheck mirror overhaul: the reviewer's audit effectively
+  specifies the requirements (stable IDs, schema versions,
+  atomic cards, evidence expiry vs anchor freshness, structured
+  sources, coverage generation, closing derivable cards with
+  executable suites). Logged as DEFERRED-FACTCHECK with
+  AUTHOR-DECISION on scope/priority.
+- Appendix F July-2026 refresh (reviewer-verified: Heron r3,
+  Starling 2029 with 2028 intermediate, Majorana 2, IonQ #AQ
+  changes, post-four-logical results, Pasqal deadlines passed):
+  AUTHOR-DECISION — the appendix is a dated May-2026 snapshot by
+  design; refreshing it (or adding a dated addendum) is a policy
+  call.
+- examples/ batch 2 fixes: next batch.
+
+Twelve factcheck anchors requoted; baseline (94) held. Lint and
+anchor checks pass; diff reviewed before push.

@@ -795,9 +795,14 @@ $|\psi\rangle$ and $|\phi\rangle$, take inner products, and obtain
 the contradiction $\langle\psi|\phi\rangle^2 = \langle\psi|\phi\rangle$.
 
 Together, no-cloning and no-deleting say something stronger than
-either alone: information in unknown quantum states cannot be
-duplicated *or* erased by closed-system unitary operations. Unknown quantum states resist both copying and blank-overwriting,
-while classical *distinguishable* states can be copied freely. Note
+either alone: information in unknown quantum states can be neither
+duplicated nor *destroyed* by closed-system unitary operations. Note
+what no-deleting does and does not forbid: a register can always be
+*reset* by swapping its contents into an ancilla — but then the
+information has relocated, not vanished; the theorem says no unitary
+turns the extra copy blank while leaving the environment independent
+of the state. Classical *distinguishable* states, by contrast, can
+be copied freely. Note
 the honest classical comparison: erasure is cheap at the software
 level (`rm -f`), but in a closed microscopic description classical
 erasure is not literal destruction either — it moves information

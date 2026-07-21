@@ -62,7 +62,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §12.3 — Quantum mutual information exceeds classical ceiling for Bell state
 
-- **Claim** (anchor): "This factor-of-two gap is the quantitative fingerprint of entanglement at the mutual-information level: entangled states carry correlations of a strictly stronger kind than any joint classical distribution can"
+- **Claim** (anchor): "This factor-of-two gap shows that entangled correlations *can* be strictly stronger than anything a joint classical distribution produces"
 - **Method**: derivation
 - **Source**: → §12.3 (calculation shown inline: $S(\rho_A)=S(\rho_B)=1$, $S(\rho_{AB})=0$, so $I(A:B)=2$)
 - **Verified**: — · **Verdict**: open

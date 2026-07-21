@@ -77,7 +77,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §2.5 — Brute-force state-vector simulation limit around n = 50–60 qubits
 
-- **Claim** (anchor): "Around n = 50 to n = 60 is the (precision- and memory-dependent) boundary where the brute-force state-vector simulation stops fitting on the largest classical supercomputers"
+- **Claim** (anchor): "Around $n \approx 45$ to $50$ is the (precision-dependent) boundary where brute-force state-vector simulation stops fitting even on the largest classical supercomputers"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

@@ -77,7 +77,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §9.3 — Fault-tolerant logical ancilla physical-qubit cost
 
-- **Claim** (anchor): "each logical ancilla is itself an encoded block of hundreds of physical qubits"
+- **Claim** (anchor): "each logical ancilla is itself an encoded block whose size is set by the code and distance — tens of physical qubits at small distance, hundreds or more at practically relevant distances"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -187,7 +187,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §9.10 — Depth lower bound on nearest-neighbor architecture: Ω(n)
 
-- **Claim** (anchor): "Preparing an $n$-qubit state from"
+- **Claim** (anchor): "Preparing *some* $n$-qubit states from $|0^n\rangle$ — GHZ among them, and any state with correlations spanning the full register — requires depth $\Omega(n)$ on nearest-neighbor architectures"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -207,7 +207,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §9.10 — Fault-tolerant depth scaling with Solovay–Kitaev
 
-- **Claim** (anchor): "depth scaling as $O(\\mathrm{poly}(n) \\cdot \\log^{c}(1/\\epsilon))$ for a small constant $c$ — the second factor reflecting Solovay–Kitaev synthesis"
+- **Claim** (anchor): "pay a synthesis factor of $O(\log^{c}(1/\epsilon))$ discrete gates *per continuous rotation* (§8.11), inflating gate count everywhere and depth wherever those rotations sit on the critical path"
 - **Method**: external
 - **Source**: → §8.11; TBD — needs verification for the specific exponent c
 - **Verified**: — · **Verdict**: open

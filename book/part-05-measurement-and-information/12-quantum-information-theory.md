@@ -181,10 +181,7 @@ $$
 Classically, the mutual information of two bits is at most
 $\min(H(X), H(Y)) \le 1$. Quantumly, $I(A:B)$ can reach $2 \log_2 d$ on a
 maximally entangled state of two $d$-dimensional systems — *twice* the
-classical ceiling. This factor-of-two gap is the quantitative
-fingerprint of entanglement at the mutual-information level: entangled
-states carry correlations of a strictly stronger kind than any joint
-classical distribution can.
+classical ceiling. This factor-of-two gap shows that entangled correlations *can* be strictly stronger than anything a joint classical distribution produces — though mutual information alone is not an entanglement test: many entangled states have small $I(A:B)$, and purely classical correlation already reaches $\log_2 d$.
 
 The quantum mutual information satisfies a **data-processing
 inequality**: for any quantum channel $\mathcal{N}_{B \to B'}$ acting

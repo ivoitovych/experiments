@@ -14,7 +14,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §10.1 — State tomography requires multiple bases
 
-- **Claim** (anchor): "Repeated preparation and measurement in several bases — the workflow of state tomography (Chapter 11) — is required to reconstruct them."
+- **Claim** (anchor): "Repeated preparation and measurement across an *informationally complete* set of measurements — several bases in the standard workflow, or a single informationally complete POVM (Chapter 11) — is required to reconstruct them."
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -153,7 +153,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §10.6 — Teleportation requires two classical bits because of no-signaling
 
-- **Claim** (anchor): "Teleportation (§7.12) needs the two classical bits Alice sends precisely because of no-signaling: the quantum correlations alone do not carry the message."
+- **Claim** (anchor): "Teleportation (§7.12) needs classical communication precisely because of no-signaling — the quantum correlations alone do not carry the message — and needs specifically *two* bits because Alice must tell Bob which of the four Pauli corrections to apply."
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open
@@ -271,7 +271,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §10.12 — Partial transpose is positive but not completely positive
 
-- **Claim** (anchor): "Mere positivity is not enough — the partial transpose is positive but not completely positive, and is not a physical channel."
+- **Claim** (anchor): "the *transpose* map is positive but not completely positive, which is exactly why the *partial* transpose (transpose applied to one subsystem) can produce negative eigenvalues on entangled states (the PPT criterion, §7.11) and why neither is a physical channel."
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

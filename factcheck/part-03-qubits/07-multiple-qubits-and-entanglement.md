@@ -66,7 +66,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §7.4 — DQC1 shows advantage with vanishing entanglement
 
-- **Claim** (anchor): "certain mixed-state models (such as one-clean-qubit / DQC1) show an advantage with only vanishing entanglement"
+- **Claim** (anchor): "certain mixed-state models (such as one-clean-qubit / DQC1) are believed hard to simulate classically while generating little entanglement by standard bipartite measures"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

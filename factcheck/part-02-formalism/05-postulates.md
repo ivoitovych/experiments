@@ -309,7 +309,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §5.14 — Quantum information is conserved under unitary evolution
 
-- **Claim** (anchor): "information in unknown quantum states cannot be duplicated or erased by closed-system unitary operations"
+- **Claim** (anchor): "information in unknown quantum states can be neither duplicated nor *destroyed* by closed-system unitary operations"
 - **Method**: derivation
 - **Source**: → §5.13, §5.14 (joint consequence of no-cloning and no-deleting)
 - **Verified**: — · **Verdict**: open

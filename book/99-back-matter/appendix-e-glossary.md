@@ -334,8 +334,11 @@ Detailed treatment lives in Part 9 (Chapters 20–22).
   $T_\varphi$ with $1/T_2 = 1/(2 T_1) + 1/T_\varphi$. See Chapter 18.
 - **Gate fidelity.** Average fidelity between the ideal and
   implemented unitary, typically measured by randomized
-  benchmarking. Per-gate error rates of $10^{-3}$ to $10^{-4}$ are
-  the state of the art as of 2026. See Chapter 22.
+  benchmarking. As of 2026, best demonstrated *two-qubit* error rates sit around
+  $10^{-3}$ (selected best-pair and single-qubit results reach
+  $10^{-4}$), while median device-wide figures are typically several
+  times worse — platform-, benchmark-, and date-dependent. See
+  Chapter 22.
 - **Native gate set.** The small set of gates a given hardware
   platform actually implements at the pulse level. Every higher-level
   gate is compiled into this set. See Chapter 20 and Chapter 23.

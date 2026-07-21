@@ -9,7 +9,7 @@ number, and a numerical ceiling — and are recorded below.
 
 ## Appendix E — Gate fidelity / per-gate error rates as of 2026
 
-- **Claim** (anchor): "Per-gate error rates of $10^{-3}$ to $10^{-4}$ are the state of the art as of 2026"
+- **Claim** (anchor): "As of 2026, best demonstrated *two-qubit* error rates sit around $10^{-3}$ (selected best-pair and single-qubit results reach $10^{-4}$), while median device-wide figures are typically several times worse"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

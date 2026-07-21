@@ -62,7 +62,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## §11.3 — Naimark dilation: ancilla dimension bound
 
-- **Claim** (anchor): "The ancilla dimension needed is at most equal to the number of POVM outcomes; for the trine POVM on a qubit, a single ancilla qubit suffices."
+- **Claim** (anchor): "What must be large enough is the *joint* (system $\otimes$ ancilla) dimension: for a rank-one POVM it needs at least one dimension per outcome. For the three-outcome trine on a qubit, one ancilla qubit gives joint dimension $4 \ge 3$ — a single ancilla qubit suffices."
 - **Method**: derivation
 - **Source**: → §11.3 (standard construction; trine has 3 outcomes, ancilla dimension ≥ 3, one qubit gives dimension 4 which is sufficient)
 - **Verified**: — · **Verdict**: open
