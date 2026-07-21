@@ -2409,7 +2409,8 @@ files vs fix batches:
 | Appendix E | 50 | done |
 | Appendix F | 51 | done |
 | Index | 52 | done |
-| SVG/support/archive passes | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
+| docs/fact-check-ledger.md, docs/github-markdown-math-bugs.md | 53 | done (file-level verdicts landed in the 2026-07-21 drop) |
+| SVG/archive passes, remaining support files | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
 
 Working method from batch 36 on: fixes are driven by the ledger's own
 per-chapter "highest-priority correctness repairs" synthesis lists,
@@ -3055,6 +3056,42 @@ improvement/infrastructure queue.
   Reassessed and deliberately left unchanged: Superposition →
   §10.1 and Measurement → Chapter 11, which are the most thorough
   treatments under the index's stated criterion.
+
+No factcheck anchors staled; baseline (94) held. Lint and anchor
+checks pass; diff reviewed before push.
+
+## Batch 53 — docs support files (9 fixes)
+
+The 2026-07-21 ledger drop (+4,283 lines) delivered completed
+file-level verdicts for two support documents; this batch applies
+their sure fixes. The larger asks — automated test-sheet
+synchronization, evidence-artifact capture (screenshots, browser
+metadata), `\lVert`/`\rVert` workaround investigation, and any
+re-audit of the frozen ledger's individual May-2026 verdicts — go
+to the improvement/infrastructure queue.
+
+### FIXED — docs/github-markdown-math-bugs.md
+- The internal contradiction repaired: "inline math is fine in any
+  container" now reads "inline math *without* `\begin{...}`
+  environments", reconciling Bug 3's workaround with Bug 2.
+  Epistemic overreach bounded: the "live" test sheet described as a
+  manually re-run fixture with surface/attribution caveats
+  (blob/README; MathJax per GitHub documentation, not inferred from
+  symptoms); "five distinct bugs" scoped to observed behavior on
+  tested surfaces with the interaction caveat; all five "Root
+  cause" labels changed to "Best-supported explanation (black-box)";
+  Bug 2 and Bug 4 titles bounded to tested containers/contexts.
+  Lint-rule derivations untouched.
+
+### FIXED — docs/fact-check-ledger.md
+- Lifecycle contradiction resolved: the file is now explicitly
+  frozen as a dated historical changelog; the footer's "each next
+  pass appends here" instruction replaced with the freeze note; the
+  Appendix-F-companion sentence made historical (the role belongs
+  to `factcheck/`); May-2026 verdicts framed as a record of what
+  was checked then, not current confirmations. The single open item
+  was verified to be already carried into the `factcheck/` mirror
+  (§15.8 card), closing the migration ask for open claims.
 
 No factcheck anchors staled; baseline (94) held. Lint and anchor
 checks pass; diff reviewed before push.

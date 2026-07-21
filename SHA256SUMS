@@ -92,8 +92,8 @@ c241cfb007ffddc52493406d46474d61f0ad86bfccaea687d796abade8559ad1  book/part-12-a
 21aa9044aa53804dc82654e1822bf3363e0135d8cca74c4805b1f21ab0f28c3b  book/part-13-perspective-and-direction/35-interpretational-and-conceptual-pitfalls.md
 82745f122472af0330c8576d70783d9e604b774a46d13317a27144336b80948a  book/part-13-perspective-and-direction/36-how-to-judge-claims.md
 185d91d725259e5748e5e6c078ce8392787f5f356e11e882842bf559ddd90d33  book/part-13-perspective-and-direction/37-endgame.md
-648b2ac3d581159951cc549aa0d3c121dc28c6aa1fc378aa5535fbe72f286994  docs/fact-check-ledger.md
-ecbda3ed93f24f3f652c83456276f5f2d2b6a6b6a4f5244dd9064704e084edcc  docs/github-markdown-math-bugs.md
+7a46ab258b5dab16f7f2222cb52cafae5d3187b244d283f2684371efde216326  docs/fact-check-ledger.md
+8f58a62b461f3aa6cee56f5d3fa2e7bb0fe41eb9acf350622fa75ad3aac21091  docs/github-markdown-math-bugs.md
 23888b7f190f4ba1170ce42ca04af32988083f253a195a2263d8c6f1cecf02f9  docs/render-tests/math-context-matrix.md
 f49c14045c192c30a6bad8a9532e2773685ccec18c28d4637dfc2d24351d352a  docs/review-2026-05-28-disposition.md
 cd9965403e6e4991dd8043a2953411c4d8db6fff61b77e36aa4be0c714339993  docs/upstream-feedback/community-122438-comment.md
@@ -171,7 +171,7 @@ d5e0cec3ec5e3dbb9ada626bf551502d12d81920e68fdac4c4e7a59ed6e08a7b  reviews/cold-r
 95cd5962ed6cf39a1b5f5e2f859bc5c2d03b78d3d435891c3fd6b11a012b6584  reviews/factcheck-2026-07-04-external-verification.md
 7efd03e5b38a37de192454db8bd8d6c6b31373f9fe112096e1b27a251e30932d  reviews/proposals-2026-07-05-remaining-programmes.md
 021f81c249aa7f0e13dd66470714f49c341955324e48399b78ed4b29c1269c22  reviews/recommendations-2026-07-04-deferred-items.md
-70914d538e4f751339fece7a88ded3e914527ea2d1893b3ff81f8d83ee6bae88  reviews/response-2026-07-19-second-pass-dispositions.md
+c788a8b2dc1b77a646607967efd502a74a67f12bfcab797ac614c07947767bc7  reviews/response-2026-07-19-second-pass-dispositions.md
 95adfcedf14090d851fc34190f8b43abb422e0f94462929e7d694e174aeaf9cf  reviews/review-2026-07-03-1843-comprehensive-book-review.md
 ce9dad615364bcae54e52207c0d6bd2f064ab415d301de786dc9757aba39640d  reviews/review-2026-07-19_01-20-35_CEST.md
 2bd131ed2944aee6d792838358a75ef9efbe42c09f5a5568347bd8aa4d1d840d  reviews/roadmap-2026-07-05-path-to-publication.md

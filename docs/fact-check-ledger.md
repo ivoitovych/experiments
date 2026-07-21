@@ -8,20 +8,23 @@
 > URL), and doubles as a reusable cache of already-researched sources. See
 > [`factcheck/README.md`](../factcheck/README.md) for the conventions.
 >
-> This ledger is **retained as a dated changelog** — it holds the historical
+> This ledger is **frozen as a dated historical changelog** — it holds the
 > Pass 1–7 audit trail (May 2026), which is valuable and is not being
-> migrated wholesale. **New verification work should be recorded in
-> `factcheck/` where possible**, not appended here. A future pass may decide
-> how (or whether) to fold this history into the mirror.
+> migrated wholesale. Its verdicts reflect the sources and evidence
+> standards of those May 2026 passes; read them as a record of what was
+> checked then, not as current confirmations. **New verification work is
+> recorded in `factcheck/`**, not appended here; the one still-open item
+> below has been carried into the mirror (§15.8 card). This file should
+> change only to correct the record of what it already says.
 
 A traceable record of the dated, source-backed verification of perishable
 2025–2026 claims in the manuscript. Each entry lists the claim, the location
 in the manuscript, the source consulted, the verification date, and the
 verdict (confirmed / updated / contested / open).
 
-The ledger is the long-running companion to Appendix F's "perishable
-snapshot" framing: replace the snapshot wholesale on each revision, and
-update the corresponding rows here.
+During the May 2026 passes, the ledger served as the companion to
+Appendix F's "perishable snapshot" framing. That role now belongs to
+the `factcheck/` mirror; the rows below are history.
 
 ## Pass 1 — 2026-05-28 (Appendix F hardware snapshot)
 
@@ -117,4 +120,6 @@ For each row above, the procedure was:
 - A specific 2024–2026 paper for the VQE shot-budget estimate in §15.8 (the
   current order-of-magnitude framing is defensible but uncited).
 
-Each next pass appends a new dated section above this one.
+Historical note: during May 2026, each pass appended a new dated
+section above this one. The ledger is now frozen (see the notice at
+the top); new verification work goes to `factcheck/`.
