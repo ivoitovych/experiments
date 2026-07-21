@@ -37,7 +37,9 @@ section files via short keys.
   SLH-DSA). Press: "First 3 Finalized Post-Quantum Encryption Standards".
 - **NIST FIPS 206** — FN-DSA (Falcon); IPD submitted Aug 2025; final expected
   late 2026 / early 2027.
-- **NIST FIPS 207 + IR 8545** — HQC 4th-round KEM selection (2025-03-11).
+- **NIST IR 8545** — HQC selected as the 4th-round KEM (2025-03-11). The
+  future FIPS number for the HQC standard is not yet assigned in NIST's
+  official releases; do not cite "FIPS 207" until NIST does.
 
 ## Vendor / primary sources
 

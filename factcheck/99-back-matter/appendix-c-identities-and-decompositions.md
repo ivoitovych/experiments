@@ -87,7 +87,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 - **Claim** (anchor): "The non-local part carries three real parameters. Counting consistently: take the four local factors in $\mathrm{SU}(2)$ ($3$ parameters each, $12$ total) plus one global phase — $3 + 12 + 1 = 16$, the dimension of $\mathrm{U}(4)$"
 - **Method**: derivation
-- **Source**: → §8.14; parameter count follows from dim U(4) = 16 and dim(U(2)^4) = 12 plus 3 non-local + 1 global phase
+- **Source**: → §8.14; parameter count follows from dim U(4) = 16 = 3 (non-local) + 12 (four SU(2) locals, dim SU(2) = 3 each) + 1 (global phase)
 - **Verified**: — · **Verdict**: open
 - **Comment**: Arithmetic of the KAK decomposition parameter count.
 

@@ -2415,6 +2415,7 @@ files vs fix batches:
 | examples/deutsch_jozsa.py | 56 | done |
 | Manuscript defects surfaced by mirror audit (2026-07-21c drop, Ch2–Ch12 + App E) | 57 | done |
 | examples/ batch 2 (bell, grover, ordering, statevector) | 58 | done |
+| Definite mirror-data defects (README, _pilot, _sources, App C mirror, prelude stub) | 59 | done |
 | factcheck/ mirror overhaul (reviewer-specified schema/IDs/expiry/coverage) | — | DEFERRED-FACTCHECK programme; reviewer has now written the requirements — AUTHOR-DECISION on scope |
 | Appendix F July-2026 refresh (Heron r3, Starling 2029, Majorana 2, IonQ AQ, post-4-logical results) | — | AUTHOR-DECISION: snapshot is dated May 2026 by design; refreshing needs a policy call |
 | factcheck mirrors Ch13–18 | — | reviewer in progress |
@@ -3319,3 +3320,38 @@ and the full suite executed under the pinned Qiskit 2.4.1.
   version printed.
 
 Lint and anchors pass; baseline (94) held; suite verified.
+
+## Batch 59 — Definite mirror-data defects (6 fixes + 1 new stub)
+
+Per the author's decontamination directive: fixes the mirror-audit
+findings that are beyond doubt, so future review passes stop
+re-surfacing them. The schema/ID/expiry overhaul remains queued.
+
+### FIXED
+- `factcheck/README.md`: the dead `examples/grover_count.py`
+  reference replaced with the real `examples/grover.py` (which now
+  asserts the exact 121/128 success probability); the stale
+  "coverage is partial — only sections touched by those passes"
+  status replaced with the true 47-of-48 state and a pointer to
+  per-file status lines.
+- `factcheck/_pilot.md`: the Grover card's lower bound restated
+  correctly (Ω(√N) BBBV bound, matched by O(√N), hence Θ(√N);
+  bounded-error worst-case model named) instead of "cannot be done
+  with fewer than Θ(√N)"; the HHL card's dequantization condition
+  scoped to the low-rank regime (Tang-style algorithms pay
+  rank-polynomial factors; sparse high-rank well-conditioned
+  systems have no known general dequantization — their binding
+  caveats are state preparation and readout).
+- `factcheck/_sources.md`: the unsupported "FIPS 207" designation
+  removed — NIST IR 8545 records the HQC selection; the standard
+  number is not yet assigned, and the record now says not to cite
+  one until NIST does.
+- `factcheck/99-back-matter/appendix-c-...md`: the dimension-count
+  typo fixed (dim U(4) = 16 = 3 + 12 four-SU(2) + 1 global phase;
+  the old line equated dim(U(2)^4) with 12).
+- New: `factcheck/part-00-historical-prelude/00-historical-prelude.md`
+  — an explicit extraction-pending stub, so all 48 manuscript files
+  now have mirrors and absence of cards reads as work-not-done, not
+  nothing-to-check (the audit's missing-48th-file finding).
+
+Lint and anchor checks pass; baseline (94) held.

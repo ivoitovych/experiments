@@ -12,9 +12,10 @@ Mirrors `book/part-06-algorithms/15-landmark-quantum-algorithms.md`.
 ### Grover's √N is query-optimal for unstructured search
 
 **Claim:**
-Unstructured search for a marked item among `N` cannot be done with fewer than
-`Θ(√N)` quantum oracle queries, so Grover's `O(√N)` is optimal in the black-box
-(query) model — no quantum algorithm beats it.
+Unstructured search for a marked item among `N` requires `Ω(√N)` quantum
+oracle queries in the bounded-error, worst-case black-box model (BBBV lower
+bound); Grover's `O(√N)` matches it, so the query complexity is `Θ(√N)` and
+no quantum algorithm beats Grover by more than a constant factor there.
 
 **Exact text:** (verbatim from the manuscript)
 
@@ -120,9 +121,13 @@ depends
    quantum-inspired classical algorithm for recommendation systems," STOC 2019,
    arXiv:1807.04271, and follow-ups) shows that once a classical algorithm is
    granted the analogous sample-and-query access, the exponential separation
-   vanishes — so the speedup depends on the input being *genuinely* quantum.
+   vanishes *for the low-rank problems in that family* — so in that regime the
+   speedup depends on the input being genuinely quantum.
    Condition: the exponential speedup holds for fully-quantum input/output (e.g.
-   a block-encoded matrix produced and consumed by other quantum subroutines),
-   and is dequantized for classical input loaded via QRAM.
+   a block-encoded matrix produced and consumed by other quantum subroutines).
+   Classical QRAM-loaded input is dequantized in the low-rank regime (Tang-style
+   algorithms pay polynomial factors in rank); for sparse, high-rank,
+   well-conditioned systems no general dequantization is known — there the
+   binding caveats are state preparation and the readout/output model.
 
 **Last checked:** 2026-05-30

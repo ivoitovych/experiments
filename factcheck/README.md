@@ -71,7 +71,8 @@ flags. The methods are:
 - `derivation` — follows from standard mathematics. The Method field recalls
   the derivation in one line, so a reviewer can reproduce it without the
   chapter.
-- `check` — verified by a runnable artifact (e.g. `examples/grover_count.py`).
+- `check` — verified by a runnable artifact (e.g. `examples/grover.py`,
+  which asserts the exact 121/128 two-iteration success probability).
   Name the artifact in the Source field.
 - `convention` — a stated notation/sign/ordering choice. The check is
   book-wide consistency.
@@ -139,5 +140,7 @@ consequences for how you write find-in-text locators:
 
 Seeded 2026-05 from the historical Pass 1–7 entries in
 [`docs/fact-check-ledger.md`](../docs/fact-check-ledger.md). The ledger is
-retained as a dated changelog; new work goes here. Coverage is partial — only
-sections touched by those passes have files so far.
+retained as a dated changelog; new work goes here. Coverage: 47 of the 48
+manuscript files have mirror files (all except the Historical Prelude, which
+has an explicit extraction-pending stub). Verification depth varies widely by
+file — many cards remain open; the per-file status lines are authoritative.
