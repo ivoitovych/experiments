@@ -41,7 +41,10 @@ Seeded from ledger Pass 4 (2026-05-28).
 
 ## References (external)
 
-This file's cards cite the sources listed in the chapter's final
-[References section](../../book/part-12-adjacent-models/33-quantum-communication-and-networking.md#references). Author policy (2026-07):
-references live with the text they support — at the bottom of the
-book file itself — and are not duplicated here.
+The same reference set as the chapter's final References section —
+duplicated deliberately so both files are self-contained;
+`tools/lint.py` enforces that the two lists carry identical
+citation keys (the leading `**...**` token of each entry).
+
+- **Liu et al. 2023 (TF-QKD, 1002 km)** — *Phys. Rev. Lett.* 130, 210801 (2023), arXiv:2303.15795.
+- **Yin et al. 2017** — satellite-based entanglement distribution (Micius), *Science* 356, 1140 (2017).

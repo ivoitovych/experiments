@@ -495,7 +495,10 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## References (external)
 
-This file's cards cite the sources listed in the chapter's final
-[References section](../../book/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md#references). Author policy (2026-07):
-references live with the text they support — at the bottom of the
-book file itself — and are not duplicated here.
+The same reference set as the chapter's final References section —
+duplicated deliberately so both files are self-contained;
+`tools/lint.py` enforces that the two lists carry identical
+citation keys (the leading `**...**` token of each entry).
+
+- **Acharya et al. 2024 (Willow)** — "Quantum error correction below the surface code threshold", *Nature* (2024), DOI 10.1038/s41586-024-08449-y.
+- **Bravyi et al. 2024 ("gross" code)** — bivariate-bicycle [[144,12,12]] qLDPC code, *Nature* (2024).

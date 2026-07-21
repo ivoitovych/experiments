@@ -430,6 +430,49 @@ def check_card_citations() -> None:
             fail("(card-citations)", line)
 
 
+REF_KEY_RE = re.compile(r"^- \*\*(.+?)\*\*", re.MULTILINE)
+
+
+def _ref_keys(text: str, heading: str) -> set[str] | None:
+    """Citation keys in the named references section, or None if absent."""
+    m = re.search(rf"\n## {re.escape(heading)}\n(.*?)(?=\n## |\n---\n|\Z)",
+                  text, re.DOTALL)
+    if not m:
+        return None
+    return set(REF_KEY_RE.findall(m.group(1)))
+
+
+def check_references_sync() -> None:
+    """Book `## References` and mirror `## References (external)` must
+    carry identical citation-key sets (author decision, 2026-07): both
+    files are deliberately self-contained duplicates, and this check is
+    what makes the duplication safe."""
+    for md in sorted((ROOT / "book").rglob("*.md")):
+        rel = md.relative_to(ROOT / "book").as_posix()
+        mirror = ROOT / "factcheck" / rel
+        book_keys = _ref_keys(md.read_text(encoding="utf-8"), "References")
+        mirror_keys = None
+        if mirror.exists():
+            mirror_keys = _ref_keys(mirror.read_text(encoding="utf-8"),
+                                    "References (external)")
+        if book_keys is None and mirror_keys is None:
+            continue
+        if book_keys is None:
+            fail(f"factcheck/{rel}", "has a References (external) section but the "
+                 "book chapter has no References section")
+            continue
+        if mirror_keys is None:
+            fail(f"book/{rel}", "has a References section but its factcheck "
+                 "mirror has no References (external) section")
+            continue
+        for key in sorted(book_keys - mirror_keys):
+            fail(f"factcheck/{rel}", f"missing reference key present in the "
+                 f"book chapter: **{key}**")
+        for key in sorted(mirror_keys - book_keys):
+            fail(f"book/{rel}", f"missing reference key present in the "
+                 f"factcheck mirror: **{key}**")
+
+
 def main() -> int:
     book_files = sorted((ROOT / "book").rglob("*.md"))
     for md in book_files:
@@ -437,6 +480,7 @@ def main() -> int:
     check_readme()
     check_spelling()
     check_card_citations()
+    check_references_sync()
 
     if errors:
         for e in errors:

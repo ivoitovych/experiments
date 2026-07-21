@@ -41,7 +41,13 @@ Seeded from ledger Pass 2 and Pass 6 (2026-05-28).
 
 ## References (external)
 
-This file's cards cite the sources listed in the chapter's final
-[References section](../../book/part-06-algorithms/15-landmark-quantum-algorithms.md#references). Author policy (2026-07):
-references live with the text they support — at the bottom of the
-book file itself — and are not duplicated here.
+The same reference set as the chapter's final References section —
+duplicated deliberately so both files are self-contained;
+`tools/lint.py` enforces that the two lists carry identical
+citation keys (the leading `**...**` token of each entry).
+
+- **Gidney–Ekerå 2019** — "How to factor 2048 bit RSA integers in 8 hours…", *Quantum* 5, 433 (2021), arXiv:1905.09749 — https://arxiv.org/abs/1905.09749
+- **Gidney 2025** — "How to factor 2048 bit RSA integers with less than a million noisy qubits", arXiv:2505.15917 — https://arxiv.org/abs/2505.15917
+- **Cao–Romero–…–Aspuru-Guzik 2019** — "Quantum Chemistry in the Age of Quantum Computing", *Chem. Rev.* 119, 10856 (2019).
+- **Tang, STOC 2019** — "A quantum-inspired classical algorithm for recommendation systems", arXiv:1807.04271 — https://arxiv.org/abs/1807.04271
+- **McClean et al. 2018; Cerezo et al. 2021** — barren-plateau literature (*Nat. Commun.* 9, 4812; *Nat. Rev. Phys.* 3, 625).

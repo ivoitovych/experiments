@@ -63,8 +63,12 @@ comprehensive review found seven coexisting styles):
   sources for its dated and attributed claims. It is bibliographic
   apparatus: never counted by the status-block rule (in either counting
   mode), placed after the last numbered section and before the footer
-  navigation. The chapter's factcheck mirror points here instead of
-  duplicating the list; there is no central source registry.
+  navigation. The chapter's factcheck mirror carries the *same*
+  reference set in its `## References (external)` section — a
+  deliberate duplication so both files are self-contained —
+  and `tools/lint.py` enforces that the two lists have identical
+  citation keys (the leading `**...**` token of each entry) in both
+  directions. There is no central source registry.
 - **Part references**: canonical part names are Roman (Part I–XIII), as
   in README/TOC/Preface; Arabic shorthand ("Part 8") is accepted in
   running chapter prose. Do not mix the two styles within one file.

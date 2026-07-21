@@ -2418,6 +2418,7 @@ files vs fix batches:
 | Definite mirror-data defects (README, _pilot, _sources, App C mirror, prelude stub) | 59 | done |
 | factcheck/ design decisions + check-citation infrastructure + reference distribution | 61 | done — author confirmed the no-ID human-readable model; reviewer's ID/schema recommendation formally declined |
 | References sections moved into the book chapters (author-confirmed model) | 62 | done — unnumbered final `## References`, count-exempt per STYLE.md |
+| References model finalized: dual lists (book + mirror) with bidirectional lint sync | 64 | done |
 | Appendix F July-2026 refresh | 60 | done — web-verified; in-place fixes for pre-snapshot facts, dated F.8 update block for post-May facts |
 | Manuscript defects from mirror audits Ch13–27 (2026-07-21d drop + prior tail) | 63 | done |
 | factcheck mirrors Ch28+ | — | reviewer in progress |
@@ -3534,3 +3535,34 @@ queue.
 Six factcheck anchors requoted; baseline (94) held. Lint (incl.
 card citations), anchors, and identity suite pass; diff reviewed
 before push.
+
+## Batch 64 — References model finalized: dual lists with lint-enforced sync
+
+Refines batch 62 per the author's clarified intent: the book chapter
+carries a human-readable/usable `## References` section AND the
+factcheck mirror carries the *same* reference set in its
+`## References (external)` section — deliberate duplication so both
+files are self-contained (the book including for a future paper
+edition; the mirror for verifiers) — with `tools/lint.py` enforcing
+that the two lists stay identical. Dense reference sections are an
+accepted cost; completeness wins for lookup material.
+
+### DONE
+- The seven mirror pointer-sections (batch 62) replaced with full
+  duplicate reference lists (22 entries) plus a note naming the
+  sync contract.
+- New `check_references_sync()` in `tools/lint.py`: matches entries
+  by citation key (the leading `**...**` token of each `- ` entry,
+  so cosmetic wording may differ while the reference *set* may
+  not), and fails on: a key present in the book but missing from
+  the mirror, a key present in the mirror but missing from the
+  book, a book References section with no mirror counterpart, or a
+  mirror References (external) section with no book counterpart.
+  Both failure directions negative-tested (a phantom book entry and
+  a deleted mirror section each produce exactly one lint failure);
+  the synced state passes.
+- STYLE.md and factcheck/README.md updated from the pointer model
+  to the dual-list model, with the rationale recorded.
+
+Lint (incl. references sync and card citations), anchors (baseline
+94), and the identity suite all pass; diff reviewed before push.

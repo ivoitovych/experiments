@@ -162,6 +162,12 @@ cards remain open; the per-file status lines are authoritative.
   green check that has rotted.
 - **No central source registry.** External references live in a final
   unnumbered `## References` section at the bottom of the *book chapter*
-  whose claims they support (exempt from the section count — STYLE.md);
-  each mirror file's `## References (external)` section is a pointer to
-  it. `_sources.md` is a deprecation stub.
+  whose claims they support (exempt from the section count — STYLE.md),
+  and the mirror file carries the *same* set in its
+  `## References (external)` section: a deliberate duplication so the
+  book stays human-usable (including in print) and the mirror stays
+  self-contained for verifiers. `tools/lint.py` enforces bidirectional
+  citation-key equality between the two lists, which is what makes the
+  duplication safe. Dense reference sections are acceptable —
+  completeness beats brevity for lookup material. `_sources.md` is a
+  deprecation stub.
