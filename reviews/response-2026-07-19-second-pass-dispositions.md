@@ -2406,7 +2406,8 @@ files vs fix batches:
 | Appendix B | 47 | done |
 | Appendix C | 48 | done |
 | Appendix D | 49 | done |
-| Appendices E–F, Index | — | pending (ledger complete) |
+| Appendix E | 50 | done |
+| Appendix F, Index | — | pending (ledger complete) |
 | SVG/support/archive passes | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
 
 Working method from batch 36 on: fixes are driven by the ledger's own
@@ -2950,3 +2951,44 @@ programme.
 
 No factcheck anchors staled; baseline (94) held. Lint and anchor
 checks pass; diff reviewed before push.
+
+## Batch 50 — Appendix E glossary (15 substitutions)
+
+Driven by the ledger's highest-priority correctness list. The
+volatility items (hardware snapshot numbers, SDK version pins across
+glossary entries) remain queued with the DEFERRED-FACTCHECK
+programme.
+
+### FIXED — outright defects
+- Qubit redefined as the two-level *system* (usually an effective
+  subspace), with the pure state as the Bloch-sphere point and mixed
+  states filling the ball. Ray corrected to scalar-multiple
+  equivalence with normalization leaving the phase freedom. Basis
+  defined as a linearly independent spanning set with orthonormality
+  as the book's stated default. Circuit-as-unitary-product
+  equivalence restricted to measurement-free circuits, with the
+  diagram-vs-operator order convention spelled out. Probability
+  generalized to $\mathrm{tr}(\rho E)$ and the classical-axioms
+  point corrected (the distinctive part is how probabilities arise,
+  not their algebra). Condition number scoped to invertible $A$ with
+  singular/pseudo-inverse conventions and HHL dependence qualified.
+  SVD given explicit factor dimensions and the $\min(m,n)$ count.
+  Block encoding written with the ancilla-register identity
+  $(\langle 0^a| \otimes I) U (|0^a\rangle \otimes I) = A/\alpha$
+  and the approximation-error allowance. Phase-estimation cost
+  disambiguated ($O(n)$ controlled-power oracle calls vs $O(2^n)$
+  base-$U$ applications, plus confidence repetitions). Code distance
+  defined via logical operators outside the stabilizer. Fault
+  tolerance restated as the gadget discipline with
+  distance-dependent tolerated-fault counts. Syndrome corrected
+  (check outcomes / round-to-round changes; equivalence class, not
+  unique localization). Time complexity split into depth vs size.
+  Postselection physicality fixed (routine at reasonable
+  probabilities; the free exponentially-rare resource is what is
+  unphysical). The "tightly entangled" metaphor in space complexity
+  replaced.
+
+No factcheck anchors staled; baseline (94) held — the two
+pre-existing Appendix E baseline stales sit in entries this batch
+did not touch. Lint and anchor checks pass; diff reviewed before
+push.

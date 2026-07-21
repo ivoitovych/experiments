@@ -36,17 +36,20 @@ lives in the referenced section.
   state, used to implement a non-unitary effect coherently (e.g.,
   measurement, garbage collection) and then either discarded,
   uncomputed, or measured. See Chapter 9.
-- **Basis.** An orthonormal set $\\{|b_i\rangle\\}$ that spans the
-  Hilbert space. The **computational basis** $\\{|x\rangle : x \in \\{0,1\\}^n\\}$
+- **Basis.** A linearly independent spanning set; in this book
+  "basis" defaults to an *orthonormal* basis $\\{|b_i\rangle\\}$
+  unless stated otherwise. The **computational basis** $\\{|x\rangle : x \in \\{0,1\\}^n\\}$
   is the default reference frame throughout the book. See §4.3 and §4.10.
 - **Born rule.** Probability of outcome $\lambda$ in a projective
   measurement on a normalized pure state is
   $p(\lambda) = \langle\psi|P_\lambda|\psi\rangle$; for a density
   matrix it is $\mathrm{tr}(\rho\\, P_\lambda)$. See §5.4.
-- **Circuit.** A composition of gates and measurements acting on a
-  fixed register; the diagrammatic and the algebraic
-  $U = U_L \cdots U_2 U_1$ representations are interchangeable, modulo
-  the left-to-right time convention of §A.5. See Chapter 9.
+- **Circuit.** A composition of gates and measurements (and, in
+  dynamic circuits, resets and classical control) acting on a fixed
+  register. For a *measurement-free* circuit the diagrammatic and
+  the algebraic $U = U_L \cdots U_2 U_1$ representations are
+  interchangeable — diagrams read left to right, operator products
+  apply right to left (§A.5). See Chapter 9.
 - **Collapse.** The state update rule that replaces $|\psi\rangle$
   with the renormalized post-measurement state
   $P_\lambda |\psi\rangle / \sqrt{p(\lambda)}$ after outcome $\lambda$.
@@ -84,10 +87,13 @@ lives in the referenced section.
 - **Observable.** A Hermitian operator whose eigenvalues are the
   possible outcomes of a measurement. The spectral decomposition
   supplies the projectors used in the Born rule. See §5.6.
-- **Probability.** The squared modulus $|c_x|^2$ of an amplitude
-  under the Born rule. Distinct from a classical probability in that
-  it arises from a squared-norm of a complex vector, which is what
-  makes interference possible. See §4.1 and §5.7.
+- **Probability.** In the simplest case, the squared modulus
+  $|c_x|^2$ of an amplitude under the Born rule; in general
+  $\mathrm{tr}(\rho E)$ for a POVM element $E$. Once a measurement
+  is fixed, quantum probabilities obey the ordinary classical
+  axioms — what is distinctive is how they *arise*: from squared
+  norms of complex amplitudes that can interfere before
+  measurement. See §4.1 and §5.7.
 - **Projector.** An operator $P$ with $P^\dagger = P$ and $P^2 = P$.
   In this book "projector" in a measurement context always means an
   *orthogonal* projector. See §4.5.
@@ -95,12 +101,17 @@ lives in the referenced section.
   linear map on density matrices; the most general physically
   realizable state evolution, including noise and measurement.
   See Chapter 12 and Chapter 18.
-- **Qubit.** A two-level quantum system; abstractly, a unit vector in
-  $\mathbb{C}^2$ modulo global phase, or equivalently a point on the
-  Bloch sphere. See Chapter 6.
-- **Ray.** An equivalence class of nonzero vectors that differ by a
-  global phase $e^{i\theta}$. A pure quantum state is properly a ray,
-  not a vector; the choice of representative is conventional. See
+- **Qubit.** A two-level quantum system — in practice usually an
+  effective two-level subspace of a larger physical system. The
+  qubit is the *system*; a pure qubit *state* is a unit vector in
+  $\mathbb{C}^2$ modulo global phase, i.e. a point on the Bloch
+  sphere's surface (mixed states fill the ball's interior). See
+  Chapter 6.
+- **Ray.** An equivalence class of nonzero vectors under
+  multiplication by any nonzero complex scalar; choosing normalized
+  representatives leaves exactly the global-phase freedom
+  $e^{i\theta}$. A pure quantum state is properly a ray, not a
+  vector; the choice of representative is conventional. See
   §5.8.
 - **Register.** A named group of qubits treated as a single
   multi-qubit subsystem (e.g., "the input register", "the ancilla
@@ -134,9 +145,13 @@ points back to the Chapter 4 section where it is established.
   $[A, B] = 0$; simultaneously diagonalizable normal operators
   commute. See §4.5.
 - **Condition number.** $\kappa(A) = \sigma_{\max}(A) / \sigma_{\min}(A)$,
-  the ratio of largest to smallest singular value. Controls
-  numerical stability of inversion and the runtime of HHL-type
-  algorithms. See §4.9.
+  the ratio of largest to smallest singular value, for invertible
+  $A$ (infinite for singular $A$; pseudo-inverse variants divide by
+  the smallest *nonzero* singular value). Controls the sensitivity
+  of the stated problem — solving or inversion in a given norm —
+  and enters polynomially in the runtime of HHL-type algorithms,
+  with details depending on variant, output, and access model. See
+  §4.9.
 - **Density matrix.** Positive semidefinite operator $\rho$ with
   $\mathrm{tr}(\rho) = 1$. Represents pure ($\rho^2 = \rho$) and
   mixed ($\rho^2 \ne \rho$) states uniformly. See §5.10.
@@ -197,9 +212,10 @@ points back to the Chapter 4 section where it is established.
   The single most-used identity in the book. See §4.7.
 - **SVD.** Singular value decomposition: for any
   $A \in \mathbb{C}^{m \times n}$, $A = U \Sigma V^\dagger$ with
-  $U, V$ unitary and $\Sigma$ diagonal with nonnegative entries
-  ordered $\sigma_1 \ge \sigma_2 \ge \cdots \ge 0$ — the
-  **singular values** of $A$. See §4.9.
+  $U \in \mathrm{U}(m)$, $V \in \mathrm{U}(n)$ unitary and $\Sigma$
+  an $m \times n$ rectangular-diagonal matrix carrying the
+  $\min(m, n)$ nonnegative **singular values** of $A$, ordered
+  $\sigma_1 \ge \sigma_2 \ge \cdots \ge 0$. See §4.9.
 - **Tensor product.** The bilinear operation $V \otimes W$ on vector
   spaces (and analogously on vectors and operators) used to combine
   subsystems. See §4.8.
@@ -226,8 +242,10 @@ detailed treatment lives in Chapters 14–16.
   sampling. See Chapter 14.
 - **Block encoding.** A way of embedding a (possibly non-unitary)
   operator $A$ as a sub-block of a larger unitary $U$, so that
-  $\langle 0| U |0\rangle = A / \alpha$ for some subnormalization
-  $\alpha \ge \\|A\\|$. The standard interface to QSVT. See
+  $(\langle 0^a| \otimes I)\\, U\\, (|0^a\rangle \otimes I) = A / \alpha$
+  for an $a$-qubit ancilla register and some subnormalization
+  $\alpha \ge \\|A\\|$; working definitions allow an approximation
+  error $\epsilon$ as well. The standard interface to QSVT. See
   Chapter 16.
 - **Grover search.** Finds a marked item in an unstructured search
   space of size $N$ in $O(\sqrt{N})$ oracle queries, against the
@@ -247,8 +265,10 @@ detailed treatment lives in Chapters 14–16.
   Chapter 14.
 - **Phase estimation.** Estimates the eigenphase $\varphi$ of an
   eigenvector of a unitary $U$ (i.e., $U|\psi\rangle = e^{2\pi i \varphi}|\psi\rangle$)
-  to $n$ bits using $O(2^n)$ controlled-$U$ calls. The workhorse
-  primitive of Shor, HHL, and chemistry. See Chapter 14.
+  to $n$ bits using $O(n)$ controlled-$U^{2^k}$ oracle calls — which
+  amount to $O(2^n)$ applications of the base $U$ when each power
+  must be built by repetition; extra bits and repetitions buy high
+  confidence. The workhorse primitive of Shor, HHL, and chemistry. See Chapter 14.
 - **QAOA.** Quantum Approximate Optimization Algorithm. A
   variational hybrid algorithm for combinatorial optimization built
   from alternating problem and mixer Hamiltonians. See Chapter 15.
@@ -355,10 +375,14 @@ Detailed treatment lives in Part 9 (Chapters 20–22).
 Vocabulary for fault-tolerant quantum computing. Treatment in
 Chapter 19; physical noise sources are covered in Chapter 18.
 
-- **Code distance.** The minimum weight of an undetectable logical
-  error; for a code with parameters $[[n, k, d]]$ the distance $d$
-  controls how many physical errors can be corrected
-  ($\lfloor (d-1)/2 \rfloor$). See Chapter 19.
+- **Code distance.** For a stabilizer code, the minimum weight of a
+  Pauli operator that commutes with every check yet acts
+  nontrivially on the encoded information — a *logical* operator
+  outside the stabilizer (low-weight stabilizer elements are
+  undetectable but harmless). For an $[[n, k, d]]$ code ($n$
+  physical qubits, $k$ logical, distance $d$), any
+  $\lfloor (d-1)/2 \rfloor$ arbitrary single-qubit errors can be
+  corrected. See Chapter 19.
 - **Decoder.** The classical algorithm that takes a stream of
   syndrome measurements and infers a correction (or, for surface
   codes, a Pauli frame update). Common families: minimum-weight
@@ -376,9 +400,12 @@ Chapter 19; physical noise sources are covered in Chapter 18.
   qubits, magic-state distillation, routing). The accounting
   framework that turns a desired logical success probability into
   per-component noise targets. See Chapter 19.
-- **Fault tolerance.** A circuit design in which a single physical
-  fault produces at most one error per code block, so errors do not
-  proliferate uncontrollably through a long computation. See
+- **Fault tolerance.** A circuit-design discipline that keeps
+  faults from proliferating: in the standard gadget formulation, a
+  single fault causes at most one error per code block — and more
+  generally, the number of faults a gadget tolerates is tied to
+  the code distance — so error correction keeps pace throughout a
+  long computation. See
   Chapter 19.
 - **Lattice surgery.** A surface-code technique that performs
   logical multi-qubit operations by merging and splitting code
@@ -404,9 +431,12 @@ Chapter 19; physical noise sources are covered in Chapter 18.
   lattice with weight-four plaquette and vertex checks. The leading
   candidate for near-term fault-tolerant quantum computing thanks
   to its planar layout and high threshold. See Chapter 19.
-- **Syndrome.** The classical bit string produced by measuring the
-  stabilizers of a code; a nontrivial syndrome localizes an error
-  without collapsing the encoded information. See Chapter 19.
+- **Syndrome.** The collection of check outcomes produced by
+  measuring a code's stabilizer generators (in practice, decoders
+  consume syndrome *changes* across repeated rounds). A nontrivial
+  syndrome identifies an equivalence class of possible errors —
+  degeneracy means it does not uniquely localize one — without
+  collapsing the encoded information. See Chapter 19.
 - **Threshold theorem.** If physical error rates are below a
   hardware-dependent threshold $p_{\mathrm{th}}$ (and the noise is
   sufficiently local), then arbitrarily long quantum computations
@@ -440,10 +470,13 @@ computation. Full treatment is in Chapter 17.
 - **PH.** The polynomial hierarchy
   $\mathrm{P} \subseteq \mathrm{NP} \subseteq \Sigma_2^{\mathrm{P}} \subseteq \cdots$.
   Generalizes NP by allowing alternating quantifiers. See Chapter 17.
-- **Post-selection.** Conditioning on a measurement outcome of
-  vanishingly small probability. The class $\mathrm{PostBQP}$
-  equals $\mathrm{PP}$ (Aaronson 2005), which is why post-selection
-  is a productive theoretical device but not a physical one. See
+- **Post-selection.** Conditioning on a measurement outcome,
+  possibly one of vanishingly small probability. The class
+  $\mathrm{PostBQP}$ equals $\mathrm{PP}$ (Aaronson 2005).
+  Postselecting on reasonably likely outcomes is routine
+  laboratory practice; what is *not* physical is treating
+  exponentially rare outcomes as a cost-free computational
+  resource. See
   Chapter 17.
 - **QMA.** Quantum Merlin–Arthur. The quantum analog of NP: yes
   instances admit a polynomial-size quantum witness that a quantum
@@ -458,11 +491,13 @@ computation. Full treatment is in Chapter 17.
   and Chapter 17.
 - **Space complexity.** The number of qubits (and ancillas)
   required by a quantum algorithm as a function of input size. The
-  quantum analog of classical space; tightly entangled with
+  quantum analog of classical space; closely connected with
   reversibility and uncomputation. See Chapter 17.
-- **Time complexity.** Asymptotic gate count of a uniform family
-  of quantum circuits solving a problem, as a function of input
-  size. See Chapter 17.
+- **Time complexity.** For quantum circuits, the sequential running
+  time — circuit *depth* — of a uniform family solving a problem,
+  as a function of input size; the total gate count is the circuit
+  *size*, a related but distinct measure. Quote both when
+  comparing against classical time. See Chapter 17.
 
 ## E.7 Software and Tooling Terms
 
