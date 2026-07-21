@@ -144,6 +144,14 @@ Chapter 31 turns to the closely related but cleaner subject of **quantum sensing
 4. The Liu–Arunachalam–Temme (2021) separation for quantum kernel methods is based on a problem encoded around discrete logarithms. Explain why the discrete-log hardness assumption is doing the work, whether the separation is computational or sample-theoretic (check the theorem's statement), and why the construction supplies no guarantee for a natural dataset like image classification — which is different from proving no advantage exists there.
 5. A vendor claims a "quantum exponential speedup" for fraud detection on a tabular bank-transaction dataset, citing a quantum kernel SVM. Identify at least three questions you would ask to assess the claim — at least one of which should be about data-access model and at least one of which should be about whether the comparison is to a *dequantized* classical baseline rather than a naive one.
 
+## References
+
+External sources for this chapter's dated and attributed claims. The
+[factcheck mirror](../../factcheck/part-11-applications/30-quantum-machine-learning.md) records which claims cite which source.
+
+- **Tang, STOC 2019** — arXiv:1807.04271 (dequantization; low-rank regime).
+- **McClean et al. 2018** — *Nat. Commun.* 9, 4812 (barren plateaus); **Cerezo et al. 2021** — *Nat. Rev. Phys.* 3, 625 (variational algorithms review).
+
 ---
 
 [← Previous: Chapter 29](29-optimization-finance-and-industrial.md) · [Table of Contents](../../README.md) · [Next: Chapter 31 →](31-quantum-sensing-metrology-and-tomography.md)

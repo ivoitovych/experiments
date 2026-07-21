@@ -225,6 +225,13 @@ Chapter 17 steps up to the complexity-theoretic vantage point: which problems ar
 4. Compare the asymptotic gate count of second-order Trotter and qubitization-based simulation for $H = \sum_{j=1}^{L} H_j$ over time $t$ to precision $\epsilon$. Identify the regime where each wins.
 5. Read the abstract of one Tang-style dequantization paper (2018–2020 vintage) and identify (a) the quantum algorithm being dequantized, (b) the classical input-access model assumed by the dequantization, and (c) whether the quantum algorithm's original presentation made that access model explicit.
 
+## References
+
+External sources for this chapter's dated and attributed claims. The
+[factcheck mirror](../../factcheck/part-06-algorithms/16-modern-algorithmic-frontier.md) records which claims cite which source.
+
+- **Tang, STOC 2019** — arXiv:1807.04271, and the Chia–Gilyén–Li–Lin–Tang–Wang 2020 framework paper for the dequantization family.
+
 ---
 
 [← Previous: Chapter 15](15-landmark-quantum-algorithms.md) · [Table of Contents](../../README.md) · [Next: Chapter 17 →](../part-07-complexity/17-complexity-theory.md)

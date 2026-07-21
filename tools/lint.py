@@ -215,7 +215,13 @@ def check_status_count(rel, md: pathlib.Path, content: str) -> None:
         return  # absence of the counter is covered by the status-block check
     k, total = int(m.group(1)), int(m.group(2))
     numbered = len(NUMBERED_H2_RE.findall(content))
-    actual = numbered if numbered else len(ANY_H2_RE.findall(content))
+    # A final unnumbered `## References` section is never countable
+    # (author decision, 2026-07): it is bibliographic apparatus, not a
+    # drafted content section. The numbered path skips it implicitly;
+    # the all-H2 fallback must skip it explicitly.
+    h2s = [h for h in re.findall(r"^## (.+)$", content, re.MULTILINE)
+           if h.strip() != "References"]
+    actual = numbered if numbered else len(h2s)
     if total != actual or k != actual:
         fail(rel, f"status block says 'Sections drafted: {k} / {total}' but the file "
                   f"has {actual} countable section(s) (numbered `## N.x`, or all H2s "

@@ -160,6 +160,17 @@ This chapter covered the landmark algorithms of the first three decades of the f
 4. For QAOA at $p=1$ on the two-vertex Max-Cut (trivially optimizable), compute the optimal $(\gamma, \beta)$ analytically.
 5. Look up a current resource estimate for factoring RSA-2048 (Gidney–Ekerå or a 2024–2025 refinement) and identify which line item dominates — magic-state distillation, lattice surgery, or arithmetic. Use the baseline figures already tabulated in §15.3 as your starting point.
 
+## References
+
+External sources for this chapter's dated and attributed claims. The
+[factcheck mirror](../../factcheck/part-06-algorithms/15-landmark-quantum-algorithms.md) records which claims cite which source.
+
+- **Gidney–Ekerå 2019** — "How to factor 2048 bit RSA integers in 8 hours…", *Quantum* 5, 433 (2021), arXiv:1905.09749 — https://arxiv.org/abs/1905.09749
+- **Gidney 2025** — "How to factor 2048 bit RSA integers with less than a million noisy qubits", arXiv:2505.15917 — https://arxiv.org/abs/2505.15917
+- **Cao–Romero–…–Aspuru-Guzik 2019** — "Quantum Chemistry in the Age of Quantum Computing", *Chem. Rev.* 119, 10856 (2019).
+- **Tang, STOC 2019** — "A quantum-inspired classical algorithm for recommendation systems", arXiv:1807.04271 — https://arxiv.org/abs/1807.04271
+- **McClean et al. 2018; Cerezo et al. 2021** — barren-plateau literature (*Nat. Commun.* 9, 4812; *Nat. Rev. Phys.* 3, 625).
+
 ---
 
 [← Previous: Chapter 14](14-foundational-algorithms.md) · [Table of Contents](../../README.md) · [Next: Chapter 16 →](16-modern-algorithmic-frontier.md)

@@ -151,6 +151,14 @@ Chapter 34 turns from quantum specifics back outward, bridging the material of t
 4. Superdense coding sends two classical bits using one qubit transmission and one ebit, against the Holevo bound of one classical bit per qubit without entanglement. Where does the *second* bit's information physically reside between Alice's encoding and Bob's measurement? (It is not in either qubit individually — verify this by computing the single-qubit reduced density matrices.)
 5. A satellite-to-ground QKD link at $500\\,\mathrm{km}$ altitude has approximate transmittance $\eta_{\mathrm{sat}} \sim 10^{-2}$, while $500\\,\mathrm{km}$ of fiber has $\eta_{\mathrm{fiber}} = 10^{-10}$. Express the satellite advantage in dB and explain why this single number is the architectural justification for hundred-million-dollar-class QKD satellite missions over still-larger ground repeater networks.
 
+## References
+
+External sources for this chapter's dated and attributed claims. The
+[factcheck mirror](../../factcheck/part-12-adjacent-models/33-quantum-communication-and-networking.md) records which claims cite which source.
+
+- **Liu et al. 2023 (TF-QKD, 1002 km)** — *Phys. Rev. Lett.* 130, 210801 (2023), arXiv:2303.15795.
+- **Yin et al. 2017** — satellite-based entanglement distribution (Micius), *Science* 356, 1140 (2017).
+
 ---
 
 [← Previous: Chapter 32](32-adjacent-computational-models.md) · [Table of Contents](../../README.md) · [Next: Chapter 34 →](../part-13-perspective-and-direction/34-bridging-to-familiar-engineering-ideas.md)

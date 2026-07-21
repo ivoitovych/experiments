@@ -157,8 +157,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## References (external)
 
-Sources cited by this file's cards, kept here so the file stays
-self-contained (project policy: no central registry).
-
-- **Tang, STOC 2019** — arXiv:1807.04271 (dequantization; low-rank regime).
-- **McClean et al. 2018** — *Nat. Commun.* 9, 4812 (barren plateaus); **Cerezo et al. 2021** — *Nat. Rev. Phys.* 3, 625 (variational algorithms review).
+This file's cards cite the sources listed in the chapter's final
+[References section](../../book/part-11-applications/30-quantum-machine-learning.md#references). Author policy (2026-07):
+references live with the text they support — at the bottom of the
+book file itself — and are not duplicated here.

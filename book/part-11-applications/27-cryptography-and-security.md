@@ -194,6 +194,16 @@ The next chapter moves from the cryptographic application to the **scientific-co
 4. A BB84 deployment over 200 km of standard single-mode fiber at 0.2 dB/km has a one-way photon transmission of $\eta = 10^{-4}$. Use the PLOB bound (rate $\lesssim \eta / \ln 2$ bits per channel use) to estimate the maximum key rate the bound permits at a 1 GHz pulse rate — and say why an implementation sustains far less (the bound is a pure-loss capacity per mode; detector efficiency, sifting, reconciliation, and finite-key costs all subtract).
 5. NIST FIPS 203 standardizes ML-KEM (formerly Kyber). What hardness assumption underlies it, what is the structural reason that problem is believed to resist quantum attacks, and why is "no known attack" evidence rather than proof (one-sentence answers, no derivations)?
 
+## References
+
+External sources for this chapter's dated and attributed claims. The
+[factcheck mirror](../../factcheck/part-11-applications/27-cryptography-and-security.md) records which claims cite which source.
+
+- **Gidney–Ekerå 2019** — arXiv:1905.09749; **Gidney 2025** — arXiv:2505.15917 (changed architectural assumptions; audit before anchoring policy).
+- **NIST FIPS 203 / 204 / 205** — finalized 2024-08-13 (ML-KEM / ML-DSA / SLH-DSA).
+- **NIST FIPS 206 (FN-DSA/Falcon)** — IPD submitted Aug 2025; final expected late 2026 / early 2027.
+- **NIST IR 8545** — HQC selected as 4th-round KEM (2025-03-11); future FIPS number not yet assigned — do not cite "FIPS 207" until NIST does.
+
 ---
 
 [← Previous: Chapter 26](../part-10-practice-and-era/26-practical-access-and-hands-on-work.md) · [Table of Contents](../../README.md) · [Next: Chapter 28 →](28-scientific-computing-and-physical-simulation.md)

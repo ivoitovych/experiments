@@ -160,7 +160,8 @@ cards remain open; the per-file status lines are authoritative.
   the suite and fails if any cited check is missing or failing
   (`scripts/check_card_citations.py`) — a card can never keep claiming a
   green check that has rotted.
-- **No central source registry.** External references live in a
-  `## References (external)` section at the bottom of the mirror file
-  whose cards cite them (self-containment over deduplication).
-  `_sources.md` is a deprecation stub.
+- **No central source registry.** External references live in a final
+  unnumbered `## References` section at the bottom of the *book chapter*
+  whose claims they support (exempt from the section count — STYLE.md);
+  each mirror file's `## References (external)` section is a pointer to
+  it. `_sources.md` is a deprecation stub.

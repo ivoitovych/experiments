@@ -215,7 +215,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## References (external)
 
-Sources cited by this file's cards, kept here so the file stays
-self-contained (project policy: no central registry).
-
-- **Tang, STOC 2019** — arXiv:1807.04271, and the Chia–Gilyén–Li–Lin–Tang–Wang 2020 framework paper for the dequantization family.
+This file's cards cite the sources listed in the chapter's final
+[References section](../../book/part-06-algorithms/16-modern-algorithmic-frontier.md#references). Author policy (2026-07):
+references live with the text they support — at the bottom of the
+book file itself — and are not duplicated here.

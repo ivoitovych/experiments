@@ -339,6 +339,14 @@ The 2024–2025 era has produced the first credible below-threshold *quantum-mem
 
 Chapter 20 takes the resource estimates of this chapter as inputs and asks which physical platforms — superconducting transmons, trapped ions, neutral atoms, photonics, topological — are best positioned to deliver the $10^6$-to-$10^7$-qubit, sub-threshold devices that the Shor-RSA, quantum-chemistry, and quantum-simulation workloads of the late 2020s demand. Every hardware comparison from this point on assumes the QEC overhead picture developed here.
 
+## References
+
+External sources for this chapter's dated and attributed claims. The
+[factcheck mirror](../../factcheck/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md) records which claims cite which source.
+
+- **Acharya et al. 2024 (Willow)** — "Quantum error correction below the surface code threshold", *Nature* (2024), DOI 10.1038/s41586-024-08449-y.
+- **Bravyi et al. 2024 ("gross" code)** — bivariate-bicycle [[144,12,12]] qLDPC code, *Nature* (2024).
+
 ---
 
 [← Previous: Chapter 18](18-noise-decoherence-and-errors.md) · [Table of Contents](../../README.md) · [Next: Chapter 20 →](../part-09-hardware-and-software/20-quantum-hardware-platforms.md)

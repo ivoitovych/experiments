@@ -243,6 +243,18 @@ The platform physics and metric *definitions* in
 [Chapters 20–22](../part-09-hardware-and-software/20-quantum-hardware-platforms.md)
 do not expire; only the values here do.
 
+## References
+
+External sources for this chapter's dated and attributed claims. The
+[factcheck mirror](../../factcheck/99-back-matter/appendix-f-hardware-snapshot-2026.md) records which claims cite which source.
+
+- **Acharya et al. 2024 (Willow)** — *Nature* (2024), DOI 10.1038/s41586-024-08449-y.
+- **Bluvstein et al. 2023** — 48 logical qubits / transversal gates, *Nature* (2023), DOI 10.1038/s41586-023-06927-3.
+- **Bravyi et al. 2024 ("gross" code)** — [[144,12,12]] qLDPC, *Nature* (2024).
+- **Madsen et al. 2022 (Borealis)** — Gaussian boson sampling advantage, *Nature* (2022).
+- **QuEra Aquila** — arXiv:2306.11727.
+- **Vendor primary pages** — IBM Quantum newsroom/roadmap; Quantinuum H-Series publications; IonQ product pages (#AQ metric); QuEra/Pasqal/Atom Computing/Infleqtion press; PsiQuantum/Intel/Xanadu press. Dated claims in this file name their source inline.
+
 ---
 
 [← Previous: Appendix E. Glossary](appendix-e-glossary.md) · [Table of Contents](../../README.md) · [Next: Index →](index.md)

@@ -90,6 +90,7 @@ The original planned outline lives at
   - [F.7 Error-Correction and Logical-Qubit Milestones](book/99-back-matter/appendix-f-hardware-snapshot-2026.md#f7-error-correction-and-logical-qubit-milestones)
   - [F.8 Verified Updates as of July 2026](book/99-back-matter/appendix-f-hardware-snapshot-2026.md#f8-verified-updates-as-of-july-2026)
   - [F.9 How This Snapshot Will Age](book/99-back-matter/appendix-f-hardware-snapshot-2026.md#f9-how-this-snapshot-will-age)
+  - [References](book/99-back-matter/appendix-f-hardware-snapshot-2026.md#references)
 - **[Index](book/99-back-matter/index.md)**
   - [A](book/99-back-matter/index.md#a)
   - [B](book/99-back-matter/index.md#b)
@@ -340,6 +341,7 @@ The original planned outline lives at
   - [15.9 Quantum Approximate Optimization Algorithm](book/part-06-algorithms/15-landmark-quantum-algorithms.md#159-quantum-approximate-optimization-algorithm)
   - [15.10 Quantum Machine Learning Overview](book/part-06-algorithms/15-landmark-quantum-algorithms.md#1510-quantum-machine-learning-overview)
   - [15.11 Bridge to Chapter 16](book/part-06-algorithms/15-landmark-quantum-algorithms.md#1511-bridge-to-chapter-16)
+  - [References](book/part-06-algorithms/15-landmark-quantum-algorithms.md#references)
 - **[Chapter 16. Modern Algorithmic Frontier](book/part-06-algorithms/16-modern-algorithmic-frontier.md)**
   - [16.1 Hamiltonian Simulation](book/part-06-algorithms/16-modern-algorithmic-frontier.md#161-hamiltonian-simulation)
   - [16.2 Trotter–Suzuki Decompositions](book/part-06-algorithms/16-modern-algorithmic-frontier.md#162-trottersuzuki-decompositions)
@@ -350,6 +352,7 @@ The original planned outline lives at
   - [16.7 Quantum Singular Value Transformation](book/part-06-algorithms/16-modern-algorithmic-frontier.md#167-quantum-singular-value-transformation)
   - [16.8 Modern View of Quantum Speedups](book/part-06-algorithms/16-modern-algorithmic-frontier.md#168-modern-view-of-quantum-speedups)
   - [16.9 Bridge to Chapter 17](book/part-06-algorithms/16-modern-algorithmic-frontier.md#169-bridge-to-chapter-17)
+  - [References](book/part-06-algorithms/16-modern-algorithmic-frontier.md#references)
 
 ## Part VII — Complexity Theory
 
@@ -415,6 +418,7 @@ The original planned outline lives at
   - [19.21 Magic State Distillation](book/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md#1921-magic-state-distillation)
   - [19.22 Lattice Surgery](book/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md#1922-lattice-surgery)
   - [19.23 Logical Gate Implementation](book/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md#1923-logical-gate-implementation)
+  - [References](book/part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md#references)
 
 ## Part IX — Hardware, Control, and Software
 
@@ -529,6 +533,7 @@ The original planned outline lives at
   - [27.9 QKD Security: What It Promises, What It Does Not](book/part-11-applications/27-cryptography-and-security.md#279-qkd-security-what-it-promises-what-it-does-not)
   - [27.10 Limits, Repeaters, and the Practical Picture](book/part-11-applications/27-cryptography-and-security.md#2710-limits-repeaters-and-the-practical-picture)
   - [27.11 Practical Recommendations and Bridge to Chapter 28](book/part-11-applications/27-cryptography-and-security.md#2711-practical-recommendations-and-bridge-to-chapter-28)
+  - [References](book/part-11-applications/27-cryptography-and-security.md#references)
 - **[Chapter 28. Scientific Computing and Physical Simulation](book/part-11-applications/28-scientific-computing-and-physical-simulation.md)**
   - [28.1 Quantum Chemistry](book/part-11-applications/28-scientific-computing-and-physical-simulation.md#281-quantum-chemistry)
   - [28.2 Materials Science](book/part-11-applications/28-scientific-computing-and-physical-simulation.md#282-materials-science)
@@ -556,6 +561,7 @@ The original planned outline lives at
   - [30.7 Hybrid Quantum-Classical Training](book/part-11-applications/30-quantum-machine-learning.md#307-hybrid-quantum-classical-training)
   - [30.8 The Dequantization Lesson](book/part-11-applications/30-quantum-machine-learning.md#308-the-dequantization-lesson)
   - [30.9 Honest Verdict, Pedagogical Value, and Bridge to Chapter 31](book/part-11-applications/30-quantum-machine-learning.md#309-honest-verdict-pedagogical-value-and-bridge-to-chapter-31)
+  - [References](book/part-11-applications/30-quantum-machine-learning.md#references)
 - **[Chapter 31. Quantum Sensing, Metrology, and Tomography](book/part-11-applications/31-quantum-sensing-metrology-and-tomography.md)**
   - [31.1 Quantum Metrology Fundamentals](book/part-11-applications/31-quantum-sensing-metrology-and-tomography.md#311-quantum-metrology-fundamentals)
   - [31.2 Deployed Sensing Platforms](book/part-11-applications/31-quantum-sensing-metrology-and-tomography.md#312-deployed-sensing-platforms)
@@ -584,6 +590,7 @@ The original planned outline lives at
   - [33.4 Satellite QKD and Twin-Field Protocols](book/part-12-adjacent-models/33-quantum-communication-and-networking.md#334-satellite-qkd-and-twin-field-protocols)
   - [33.5 Quantum Networks: Stacks, Topology, and the Q-Internet](book/part-12-adjacent-models/33-quantum-communication-and-networking.md#335-quantum-networks-stacks-topology-and-the-q-internet)
   - [33.6 Applications Beyond QKD and Bridge to Chapter 34](book/part-12-adjacent-models/33-quantum-communication-and-networking.md#336-applications-beyond-qkd-and-bridge-to-chapter-34)
+  - [References](book/part-12-adjacent-models/33-quantum-communication-and-networking.md#references)
 
 ## Part XIII — Engineering Perspective, Epistemics, and Direction
 

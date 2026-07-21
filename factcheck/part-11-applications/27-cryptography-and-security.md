@@ -55,10 +55,7 @@ Seeded from ledger Pass 3 and Pass 6 (2026-05-28).
 
 ## References (external)
 
-Sources cited by this file's cards, kept here so the file stays
-self-contained (project policy: no central registry).
-
-- **Gidney–Ekerå 2019** — arXiv:1905.09749; **Gidney 2025** — arXiv:2505.15917 (changed architectural assumptions; audit before anchoring policy).
-- **NIST FIPS 203 / 204 / 205** — finalized 2024-08-13 (ML-KEM / ML-DSA / SLH-DSA).
-- **NIST FIPS 206 (FN-DSA/Falcon)** — IPD submitted Aug 2025; final expected late 2026 / early 2027.
-- **NIST IR 8545** — HQC selected as 4th-round KEM (2025-03-11); future FIPS number not yet assigned — do not cite "FIPS 207" until NIST does.
+This file's cards cite the sources listed in the chapter's final
+[References section](../../book/part-11-applications/27-cryptography-and-security.md#references). Author policy (2026-07):
+references live with the text they support — at the bottom of the
+book file itself — and are not duplicated here.

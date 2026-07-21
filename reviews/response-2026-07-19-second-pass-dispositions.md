@@ -2417,6 +2417,7 @@ files vs fix batches:
 | examples/ batch 2 (bell, grover, ordering, statevector) | 58 | done |
 | Definite mirror-data defects (README, _pilot, _sources, App C mirror, prelude stub) | 59 | done |
 | factcheck/ design decisions + check-citation infrastructure + reference distribution | 61 | done — author confirmed the no-ID human-readable model; reviewer's ID/schema recommendation formally declined |
+| References sections moved into the book chapters (author-confirmed model) | 62 | done — unnumbered final `## References`, count-exempt per STYLE.md |
 | Appendix F July-2026 refresh | 60 | done — web-verified; in-place fixes for pre-snapshot facts, dated F.8 update block for post-May facts |
 | factcheck mirrors Ch13–18 | — | reviewer in progress |
 | SVG/archive passes, remaining support files | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
@@ -3451,4 +3452,30 @@ bottom-of-chapter reference lists in the book itself were intended
 (that variant needs a TOC/status-count design tweak first).
 
 Lint (incl. the new citation check), anchors (baseline 94), and the
+identity suite all pass; diff reviewed before push.
+
+## Batch 62 — References into the book chapters (author-confirmed)
+
+Completes the author's intended model from batch 61's flagged
+interpretation question: reference lists belong in the *book
+chapters themselves*, as a final unnumbered `## References` section.
+
+### DONE
+- Design rule implemented and documented: `tools/lint.py` now
+  explicitly exempts a `## References` H2 from the status-block
+  section count in both counting modes (numbered chapters were
+  already implicitly exempt; the all-H2 front-matter fallback now
+  skips it too), and STYLE.md records the rule (unnumbered, after
+  the last numbered section, before the footer navigation; the
+  factcheck mirror points here; no central registry).
+- The seven per-file reference lists created in batch 61 moved from
+  the factcheck mirrors into their book chapters (15, 16, 19, 27,
+  30, 33, Appendix F) — 22 entries total — each with a one-line
+  pointer to the chapter's factcheck mirror. The mirror sections
+  are now pointers back to the chapter's References section, so the
+  content lives in exactly one place: with the text it supports.
+- TOC regenerated (537 entries; References sections listed for
+  navigation). Status counts unchanged everywhere, as designed.
+
+Lint (incl. card-citation check), anchors (baseline 94), and the
 identity suite all pass; diff reviewed before push.

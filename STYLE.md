@@ -58,6 +58,13 @@ comprehensive review found seven coexisting styles):
   chapter's *numbered* `## N.x` sections — including a numbered bridge,
   excluding unnumbered extras (timeline, source notes, per-letter index
   groups). Front-matter files without numbered sections count all H2s.
+- **References sections** (author decision, 2026-07): a chapter may end
+  with a final *unnumbered* `## References` section listing the external
+  sources for its dated and attributed claims. It is bibliographic
+  apparatus: never counted by the status-block rule (in either counting
+  mode), placed after the last numbered section and before the footer
+  navigation. The chapter's factcheck mirror points here instead of
+  duplicating the list; there is no central source registry.
 - **Part references**: canonical part names are Roman (Part I–XIII), as
   in README/TOC/Preface; Arabic shorthand ("Part 8") is accepted in
   running chapter prose. Do not mix the two styles within one file.
