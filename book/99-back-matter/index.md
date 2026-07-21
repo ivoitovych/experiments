@@ -42,7 +42,7 @@ edit `TERMS` in the generator and regenerate. The
 
 ## D
 
-- **Decoherence** — [§10.9](../part-04-gates-and-circuits/10-core-quantum-phenomena.md#109-decoherence)
+- **Decoherence** — [§10.9](../part-04-gates-and-circuits/10-core-quantum-phenomena.md#109-decoherence), [Chapter 18](../part-08-noise-and-qec/18-noise-decoherence-and-errors.md)
 - **Density matrix** — [§5.10](../part-02-formalism/05-postulates.md#510-density-matrices)
 - **Dequantization** — [§17.12](../part-07-complexity/17-complexity-theory.md#1712-dequantization), [§30.8](../part-11-applications/30-quantum-machine-learning.md#308-the-dequantization-lesson)
 - **Deutsch–Jozsa algorithm** — [§14.2](../part-06-algorithms/14-foundational-algorithms.md#142-deutschjozsa-algorithm)
@@ -58,7 +58,9 @@ edit `TERMS` in the generator and regenerate. The
 ## F
 
 - **Fault tolerance** — [Chapter 19](../part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md)
-- **Fidelity** — [§12.7](../part-05-measurement-and-information/12-quantum-information-theory.md#127-fidelity)
+- **Fidelity (gate)** — [§22.3](../part-09-hardware-and-software/22-hardware-engineering-metrics.md#223-gate-fidelity), [§18.16](../part-08-noise-and-qec/18-noise-decoherence-and-errors.md#1816-fidelities-error-rates-and-building-an-error-budget)
+- **Fidelity (readout)** — [§22.6](../part-09-hardware-and-software/22-hardware-engineering-metrics.md#226-readout-fidelity)
+- **Fidelity (state)** — [§12.7](../part-05-measurement-and-information/12-quantum-information-theory.md#127-fidelity)
 
 ## G
 
@@ -95,7 +97,7 @@ edit `TERMS` in the generator and regenerate. The
 - **Measurement** — [Chapter 11](../part-05-measurement-and-information/11-measurement-theory.md)
 - **Measurement-based quantum computation** — [§32.3](../part-12-adjacent-models/32-adjacent-computational-models.md#323-measurement-based-quantum-computation)
 - **Mid-circuit measurement** — [§9.8](../part-04-gates-and-circuits/09-quantum-circuits.md#98-mid-circuit-measurement), [§22.11](../part-09-hardware-and-software/22-hardware-engineering-metrics.md#2211-mid-circuit-measurement-reset-and-feedforward-latency)
-- **Mixed states** — [§10.10](../part-04-gates-and-circuits/10-core-quantum-phenomena.md#1010-mixed-states-in-practice)
+- **Mixed states** — [§5.9](../part-02-formalism/05-postulates.md#59-pure-vs-mixed-states), [§10.10](../part-04-gates-and-circuits/10-core-quantum-phenomena.md#1010-mixed-states-in-practice)
 
 ## N
 
@@ -116,7 +118,7 @@ edit `TERMS` in the generator and regenerate. The
 
 - **QAOA** — [§15.9](../part-06-algorithms/15-landmark-quantum-algorithms.md#159-quantum-approximate-optimization-algorithm)
 - **Quantum annealing** — [§20.11](../part-09-hardware-and-software/20-quantum-hardware-platforms.md#2011-quantum-annealers-vs-gate-based-machines), [§32.2](../part-12-adjacent-models/32-adjacent-computational-models.md#322-quantum-annealing)
-- **Quantum channel (CPTP map)** — [§10.13](../part-04-gates-and-circuits/10-core-quantum-phenomena.md#1013-operator-sum-representation-kraus)
+- **Quantum channel (CPTP map)** — [§10.13](../part-04-gates-and-circuits/10-core-quantum-phenomena.md#1013-operator-sum-representation-kraus), [Chapter 18](../part-08-noise-and-qec/18-noise-decoherence-and-errors.md)
 - **Quantum Fourier transform** — [§14.5](../part-06-algorithms/14-foundational-algorithms.md#145-quantum-fourier-transform)
 - **Quantum key distribution** — [§27.7](../part-11-applications/27-cryptography-and-security.md#277-quantum-key-distribution-bb84), [§33.2](../part-12-adjacent-models/33-quantum-communication-and-networking.md#332-quantum-key-distribution)
 - **Quantum repeaters** — [§33.3](../part-12-adjacent-models/33-quantum-communication-and-networking.md#333-distance-limits-and-quantum-repeaters)
@@ -136,18 +138,18 @@ edit `TERMS` in the generator and regenerate. The
 
 ## S
 
-- **Schmidt decomposition** — [§4.9](../part-02-formalism/04-mathematical-background.md#49-singular-values-and-the-singular-value-decomposition)
+- **Schmidt decomposition** — [§7.10](../part-03-qubits/07-multiple-qubits-and-entanglement.md#710-schmidt-decomposition)
 - **Shor's algorithm** — [§15.2](../part-06-algorithms/15-landmark-quantum-algorithms.md#152-shors-algorithm)
 - **Simon's algorithm** — [§14.4](../part-06-algorithms/14-foundational-algorithms.md#144-simons-algorithm)
 - **Solovay–Kitaev theorem** — [§8.11](../part-04-gates-and-circuits/08-quantum-gates.md#811-solovaykitaev-theorem)
-- **Stabilizer formalism** — [Chapter 19](../part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md)
+- **Stabilizer formalism** — [§19.8](../part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md#198-stabilizer-formalism)
 - **Superposition** — [§10.1](../part-04-gates-and-circuits/10-core-quantum-phenomena.md#101-superposition-revisited)
 - **Surface code** — [§19.12](../part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md#1912-surface-codes)
 - **SWAP gate** — [§8.6](../part-04-gates-and-circuits/08-quantum-gates.md#86-two-qubit-gates)
 
 ## T
 
-- **Tensor product** — [Chapter 4](../part-02-formalism/04-mathematical-background.md)
+- **Tensor product** — [§4.8](../part-02-formalism/04-mathematical-background.md#48-tensor-products)
 - **Threshold theorem** — [§19.19](../part-08-noise-and-qec/19-quantum-error-correction-and-fault-tolerance.md#1919-threshold-theorem)
 - **Toffoli gate** — [§8.8](../part-04-gates-and-circuits/08-quantum-gates.md#88-toffoli-and-fredkin-gates)
 - **Trace distance** — [§12.6](../part-05-measurement-and-information/12-quantum-information-theory.md#126-trace-distance)

@@ -2408,7 +2408,7 @@ files vs fix batches:
 | Appendix D | 49 | done |
 | Appendix E | 50 | done |
 | Appendix F | 51 | done |
-| Index | — | pending (ledger complete) |
+| Index | 52 | done |
 | SVG/support/archive passes | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
 
 Working method from batch 36 on: fixes are driven by the ledger's own
@@ -3028,6 +3028,33 @@ queued with the DEFERRED-FACTCHECK programme.
   ion / neutral atom" restyled. The "gross" code named as the
   bivariate-bicycle $[[144, 12, 12]]$ code with the nickname
   explained, and IBM's path labeled a vendor roadmap.
+
+No factcheck anchors staled; baseline (94) held. Lint and anchor
+checks pass; diff reviewed before push.
+
+## Batch 52 — Index (7 generator fixes, regenerated)
+
+Driven by the ledger's highest-priority correctness list. Fixes were
+made in `scripts/generate_index.py` (the file is generated) and the
+index regenerated. The coverage programme (aliases/acronyms,
+reconciliation against every glossary headword, additional
+fundamental terms) and the process items (status-line placement
+convention for generated files, renderer anchor tests) go to the
+improvement/infrastructure queue.
+
+### FIXED — outright defects
+- Tensor product repointed from the bare Chapter 4 link to §4.8.
+  Schmidt decomposition repointed from §4.9 (which is the SVD
+  section) to its actual section, §7.10 — a genuine mislink.
+  Stabilizer formalism repointed from Chapter 19 to §19.8. Fidelity
+  split into three sense-distinct entries: state (§12.7), gate
+  (§22.3 with the §18.16 error-budget treatment), readout (§22.6).
+  Decoherence and quantum channels given Chapter 18 as a second
+  target alongside §10.9/§10.13 (conceptual section + noise-chapter
+  development). Mixed states given §5.9 alongside §10.10.
+  Reassessed and deliberately left unchanged: Superposition →
+  §10.1 and Measurement → Chapter 11, which are the most thorough
+  treatments under the index's stated criterion.
 
 No factcheck anchors staled; baseline (94) held. Lint and anchor
 checks pass; diff reviewed before push.
