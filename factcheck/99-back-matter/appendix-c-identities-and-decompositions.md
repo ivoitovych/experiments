@@ -85,7 +85,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## C.5 — KAK parameter counts: 3 non-local + 12 local real parameters for U(4)
 
-- **Claim** (anchor): "The non-local part lives in a three-real-parameter subgroup; the local unitaries account for the remaining twelve real parameters"
+- **Claim** (anchor): "The non-local part carries three real parameters. Counting consistently: take the four local factors in $\mathrm{SU}(2)$ ($3$ parameters each, $12$ total) plus one global phase — $3 + 12 + 1 = 16$, the dimension of $\mathrm{U}(4)$"
 - **Method**: derivation
 - **Source**: → §8.14; parameter count follows from dim U(4) = 16 and dim(U(2)^4) = 12 plus 3 non-local + 1 global phase
 - **Verified**: — · **Verdict**: open
@@ -109,7 +109,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## C.5 — Two-CNOT, one-CNOT, and zero-CNOT sufficiency conditions
 
-- **Claim** (anchor): "Two-CNOT decomposition is enough iff the KAK coefficient vector (c_x, c_y, c_z) has c_z = 0 after relabeling axes"
+- **Claim** (anchor): "Two-CNOT decomposition is enough iff the KAK coefficient vector has $c_z = 0$ in the canonical Weyl-chamber coordinates $c_x \ge c_y \ge |c_z|$ of §8.14"
 - **Method**: derivation
 - **Source**: → §8.14; follows from the KAK form and entanglement classification
 - **Verified**: — · **Verdict**: open
@@ -117,7 +117,7 @@ Extraction pass 2026-05 — claims identified and anchored; verification still O
 
 ## C.5 — Toffoli gate decomposes into 6 CNOTs
 
-- **Claim** (anchor): "Six CNOTs is optimal for Toffoli without ancilla and without measurement"
+- **Claim** (anchor): "Six CNOTs is optimal for an exact ancilla-free, measurement-free Toffoli under the standard gate model"
 - **Method**: external
 - **Source**: TBD — needs verification
 - **Verified**: — · **Verdict**: open

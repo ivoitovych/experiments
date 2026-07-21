@@ -35,16 +35,22 @@ themselves are in §B.1.
 - Self-anticommutator: $\\{X, X\\} = 2X^2 = 2I$, and likewise for $Y$ and $Z$.
 - Trace: $\mathrm{tr}(I) = 2$, $\mathrm{tr}(X) = \mathrm{tr}(Y) =
   \mathrm{tr}(Z) = 0$.
-- Compact form. For $A, B \in \\{X, Y, Z\\}$ with $A \ne B$ and
-  $\varepsilon_{ABC}$ the cyclic sign with $\varepsilon_{XYZ} = +1$:
+- Compact form. Writing $\sigma_1 = X$, $\sigma_2 = Y$,
+  $\sigma_3 = Z$ and $\epsilon_{jkl}$ for the Levi-Civita symbol
+  ($\epsilon_{123} = +1$, antisymmetric in all indices):
 
 $$
-A B = i\\, \varepsilon_{ABC}\\, C, \qquad
-\\{A, B\\} = 0, \qquad
-[A, B] = 2 i\\, \varepsilon_{ABC}\\, C.
+\sigma_j \sigma_k = \delta_{jk}\\, I + i \sum_l \epsilon_{jkl}\\, \sigma_l,
+\qquad
+[\sigma_j, \sigma_k] = 2 i \sum_l \epsilon_{jkl}\\, \sigma_l.
 $$
 
-The sixteen single-qubit Pauli products, enumerated with the left factor first (kept as bullets rather than a Markdown grid for the rendering reason noted in Appendix E):
+This single indexed identity covers the equal case ($\sigma_j^2 = I$)
+and the distinct case (anticommuting, product $\pm i$ times the third
+Pauli) at once. The sixteen single-qubit Pauli products, enumerated
+with the left factor first (kept as bullets rather than a Markdown
+grid for the rendering reason noted in §N.2 of *Notation and
+Conventions* and `docs/github-markdown-math-bugs.md`):
 
 - $I \cdot X = X$, $I \cdot Y = Y$, $I \cdot Z = Z$, $I \cdot I = I$.
 - $X \cdot I = X$, $X \cdot X = I$, $X \cdot Y = iZ$, $X \cdot Z = -iY$.
@@ -102,9 +108,12 @@ are in §4.8.
 - Tensoring with identity preserves linear structure:
   $A \otimes I + A' \otimes I = (A + A') \otimes I$ (same identity factor
   throughout).
-- Functional calculus on product operators. If $A$ acts on the first
-  factor only, then $f(A \otimes I) = f(A) \otimes I$ for any function $f$
-  defined on the spectrum of $A$; in particular $e^{i\theta (A \otimes I)}
+- Functional calculus on product operators. For normal (e.g.
+  Hermitian or unitary) $A$ and any function $f$ defined on its
+  spectrum — in the finite-dimensional functional-calculus sense of
+  applying $f$ to eigenvalues in the spectral decomposition —
+  $f(A \otimes I) = f(A) \otimes I$, because $A \otimes I$ has the
+  same eigenvalues with projectors $P_i \otimes I$; in particular $e^{i\theta (A \otimes I)}
   = e^{i\theta A} \otimes I$, which is why single-qubit rotations stay
   single-qubit when embedded in a larger register.
 - Partial trace on a product operator:
@@ -276,8 +285,9 @@ single-axis-swap variants (Z–X–Z, X–Y–X) work analogously.
 - Specializing the angles recovers every single-qubit gate in §B.1–B.4: for
   example $H = e^{i\pi/2}\\, R_y(\pi/2)\\, R_z(\pi)$ (the Z–Y–Z form with
   $\beta = 0$), and $X = e^{i\pi/2}\\, R_x(\pi)$.
-- The $U_3(\theta, \phi, \lambda)$ Qiskit form (§B.4) packages the same
-  three free Euler angles plus an overall phase into a single matrix.
+- The $U_3(\theta, \phi, \lambda)$ Qiskit form (§B.4) carries the
+  same three free Euler angles and fixes one specific phase
+  representative — it has no fourth overall-phase parameter.
 
 **KAK decomposition of a two-qubit unitary.** Every two-qubit unitary
 $U \in \mathrm{U}(4)$ factors as
@@ -292,22 +302,25 @@ outer factors are local. The decomposition and the full parameter
 extraction are developed in §8.14 (with the broader compilation context in
 Chapter 23).
 
-- The non-local part lives in a three-real-parameter subgroup; the local
-  unitaries account for the remaining twelve real parameters of
-  $\mathrm{U}(4)$ (modulo a global phase).
+- The non-local part carries three real parameters. Counting
+  consistently: take the four local factors in $\mathrm{SU}(2)$
+  ($3$ parameters each, $12$ total) plus one global phase —
+  $3 + 12 + 1 = 16$, the dimension of $\mathrm{U}(4)$.
 - $\mathrm{SWAP}$ has $(c_x, c_y, c_z) = (\pi/4, \pi/4, \pi/4)$;
   $\mathrm{CNOT}$ has $(c_x, c_y, c_z) = (\pi/4, 0, 0)$ up to local
   unitaries.
 
 **CNOT count for a two-qubit unitary.** A generic
 $U \in \mathrm{U}(4)$ can be implemented with at most **three CNOTs** plus
-single-qubit gates; gates with extra structure (such as $\mathrm{SWAP}$,
-which uses three, or any local unitary $A_1 \otimes A_2$, which uses
-zero) saturate strictly less. The result goes through the KAK form above
+single-qubit gates; gates with extra structure may need fewer — a
+local unitary $A_1 \otimes A_2$ needs zero, a generic
+controlled-phase two — though not always: $\mathrm{SWAP}$ still
+requires all three. The result goes through the KAK form above
 and is given in §8.14.
 
 - Two-CNOT decomposition is enough iff the KAK coefficient vector
-  $(c_x, c_y, c_z)$ has $c_z = 0$ after relabeling axes.
+  has $c_z = 0$ in the canonical Weyl-chamber coordinates
+  $c_x \ge c_y \ge |c_z|$ of §8.14.
 - One-CNOT decomposition is enough iff $(c_x, c_y, c_z) = (\pi/4, 0, 0)$ — i.e. $U$ is locally equivalent to CNOT itself. (Having $c_y = c_z = 0$ alone is *not* sufficient: a partial controlled-phase has that form yet needs two CNOTs; see §8.14.)
 - Zero CNOTs is enough iff $U = A_1 \otimes A_2$.
 
@@ -318,17 +331,21 @@ $$
 \mathrm{CCX} = (I \otimes I \otimes H)\\, \tilde V\\, (I \otimes I \otimes H),
 $$
 
-where $\tilde V$ is the standard $T / T^\dagger$ ladder of two-CNOT-each
-controlled-$\sqrt X$ stages — six CNOTs plus seven $T$ or $T^\dagger$ gates
-plus two Hadamards in the standard textbook layout. The construction and
+where $\tilde V$ is the standard phase-polynomial ladder: six CNOTs
+interleaved with seven $T$ or $T^\dagger$ gates (the two Hadamards
+are the ones shown) in the standard textbook layout; the circuit
+itself is drawn in §8.8. The construction and
 the gate count are taken up in §8.8 alongside the general
 controlled-unitary construction (§8.7).
 
-- Six CNOTs is optimal for Toffoli without ancilla and without
-  measurement; with one ancilla and measurement the count drops further
+- Six CNOTs is optimal for an exact ancilla-free, measurement-free
+  Toffoli under the standard gate model; ancilla-assisted
+  measurement-and-feedforward protocols can reduce the $T$-cost
   (Chapter 23).
-- The same skeleton, with $T$ replaced by a continuous phase, decomposes
-  every doubly-controlled phase gate.
+- A doubly-controlled *phase* gate admits an analogous
+  ladder-style decomposition with the discrete $T$ phases replaced
+  by continuous ones, though the exact gate counts and layout
+  differ from the Toffoli circuit (§8.8).
 
 ## C.6 Basis-Change Identities
 

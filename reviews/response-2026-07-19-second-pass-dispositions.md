@@ -2404,7 +2404,8 @@ files vs fix batches:
 | Notation | 45 | done |
 | Appendix A | 46 | done |
 | Appendix B | 47 | done |
-| Appendices C–F, Index | — | pending (ledger complete) |
+| Appendix C | 48 | done |
+| Appendices D–F, Index | — | pending (ledger complete) |
 | SVG/support/archive passes | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
 
 Working method from batch 36 on: fixes are driven by the ledger's own
@@ -2887,3 +2888,35 @@ Driven by the ledger's highest-priority correctness list.
 
 Two factcheck anchors requoted; baseline (94) held. Lint and anchor
 checks pass; diff reviewed before push.
+
+## Batch 48 — Appendix C (11 substitutions)
+
+Driven by the ledger's highest-priority correctness list.
+
+### FIXED — outright defects
+- The idiosyncratic $\varepsilon_{ABC}$ Pauli-product form replaced
+  by the standard indexed identity
+  $\sigma_j \sigma_k = \delta_{jk} I + i \sum_l \epsilon_{jkl}
+  \sigma_l$ (with the commutator form), covering equal and distinct
+  cases at once. The wrong renderer cross-reference to Appendix E
+  (the glossary) redirected to §N.2 and the renderer-bug memo. The
+  functional-calculus bullet scoped to normal operators with the
+  finite-dimensional spectral-decomposition definition and the
+  projector argument. The U3 wording corrected: three Euler angles
+  and a fixed phase representative, no fourth overall-phase
+  parameter. KAK parameter counting made consistent (SU(2) locals:
+  $3 + 12 + 1 = 16$). The self-contradictory "saturate strictly
+  less" sentence (SWAP uses all three) rewritten as "may need fewer
+  — though not always". The two-CNOT condition pinned to the
+  canonical Weyl-chamber coordinates of §8.14 instead of "after
+  relabeling axes". The Toffoli sketch corrected from the hybrid
+  "two-CNOT-each controlled-$\sqrt X$ stages" description to the
+  standard phase-polynomial ladder with a pointer to the drawn
+  circuit; the optimality claim scoped (exact, ancilla-free,
+  measurement-free, standard gate model) with the ancilla-assisted
+  reduction restated as $T$-cost via measurement-and-feedforward;
+  the doubly-controlled-phase generalization qualified (analogous
+  ladder, different counts/layout).
+
+Three factcheck anchors requoted; baseline (94) held. Lint and
+anchor checks pass; diff reviewed before push.
