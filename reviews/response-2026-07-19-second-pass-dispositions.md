@@ -2414,7 +2414,7 @@ files vs fix batches:
 | docs/render-tests matrix, upstream-feedback drafts | 55 | done |
 | examples/deutsch_jozsa.py | 56 | done |
 | Manuscript defects surfaced by mirror audit (2026-07-21c drop, Ch2–Ch12 + App E) | 57 | done |
-| examples/ batch 2 (bell, grover, ordering, statevector) | — | verdicts landed 2026-07-21c; queued next |
+| examples/ batch 2 (bell, grover, ordering, statevector) | 58 | done |
 | factcheck/ mirror overhaul (reviewer-specified schema/IDs/expiry/coverage) | — | DEFERRED-FACTCHECK programme; reviewer has now written the requirements — AUTHOR-DECISION on scope |
 | Appendix F July-2026 refresh (Heron r3, Starling 2029, Majorana 2, IonQ AQ, post-4-logical results) | — | AUTHOR-DECISION: snapshot is dated May 2026 by design; refreshing needs a policy call |
 | factcheck mirrors Ch13–18 | — | reviewer in progress |
@@ -3288,3 +3288,34 @@ refreshed by the mirror overhaul.
 
 Twelve factcheck anchors requoted; baseline (94) held. Lint and
 anchor checks pass; diff reviewed before push.
+
+## Batch 58 — examples batch 2 (all four scripts, verified live)
+
+Per the author's directive (apply everything not in doubt so future
+reviews are not re-contaminated), all verdict improvements applied
+and the full suite executed under the pinned Qiskit 2.4.1.
+
+### FIXED
+- `first_bell_program.py`: expected outputs stated in the docstring;
+  the crucial caveat added that perfectly correlated Z-basis
+  outcomes alone do not certify entanglement (classical shared coin
+  reproduces them; other bases are needed, §7.8–§7.9); named output
+  register replacing `measure_all` auto-naming; statevector and
+  counts assertions; version/setup note.
+- `statevector_simulation.py`: expected-ket math and exponential-
+  memory context (n=30 ≈ 16 GB, doubling per qubit); little-endian
+  label caveat; sorted stable output with clean string keys;
+  exact-amplitude assertions.
+- `grover.py`: iteration-count arithmetic explained with the exact
+  ideal success probability 121/128 exposed and asserted (observed
+  93.7% at 1,000 shots); overshoot warning for a third iteration;
+  per-run query accounting vs shots; input validation; named
+  register; no hard-coded shot denominator.
+- `qiskit_ordering_check.py`: scope label (statevector/operator
+  conventions only — drawing and count-string order not exercised);
+  input validation in `book_index`; full-vector equality instead of
+  single-amplitude check; explicit row/column orientation comment;
+  failures raised via a helper that survives `python -O`; Qiskit
+  version printed.
+
+Lint and anchors pass; baseline (94) held; suite verified.
