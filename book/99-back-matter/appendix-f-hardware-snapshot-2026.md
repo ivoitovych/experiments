@@ -64,11 +64,15 @@ The fidelity and connectivity leader at modest qubit counts.
   with all-to-all connectivity via ion shuttling, median two-qubit fidelity
   around 99.9% (best-pair >99.91%), and very high
   state-preparation-and-measurement fidelity.
-- **IonQ** markets "algorithmic qubits" (Forte at #AQ 29 today, with
-  Forte Enterprise #AQ 35 and Tempo #AQ 64 announced), using trapped
-  ytterbium and (next-generation) barium ions.
+- **IonQ** markets "algorithmic qubits" — a proprietary
+  benchmark-derived figure, not a physical- or logical-qubit count
+  (Forte at #AQ 29, with Forte Enterprise #AQ 35 and Tempo #AQ 64
+  announced as of this snapshot) — using trapped ytterbium and, per
+  the announced roadmap, barium ions.
 
-Ions offer the best per-gate fidelity and native all-to-all connectivity,
+Ions report the highest published two-qubit gate fidelities among
+gate-model platforms (no standardized cross-platform benchmark
+exists) and native all-to-all connectivity,
 which reduces SWAP overhead dramatically. The cost is slow gates (microseconds
 to milliseconds) and harder scaling: growth relies on shuttling within QCCD
 architectures and, prospectively, photonic interconnects between traps.
@@ -77,19 +81,35 @@ architectures and, prospectively, photonic interconnects between traps.
 
 The fastest-moving platform on array size and reconfigurability.
 
-- **QuEra** runs Aquila, a 256-atom Rydberg system, primarily in analog mode;
-  the 2023 Harvard/MIT/QuEra collaboration demonstrated 48 logical qubits with
-  transversal operations, a landmark for the platform.
-- **Atom Computing** demonstrated arrays exceeding 1,000 atomic sites (2023).
-- **Pasqal**, **Infleqtion**, and others operate hundreds-to-thousands-of-atom
-  systems with both analog and digital modes. Pasqal's 2025 roadmap targets
-  roughly 1,000 physical qubits by the end of 2025 and a 250-qubit
-  advantage demonstration in 2026.
+- **QuEra** runs Aquila, a 256-atom Rydberg system, primarily in
+  analog mode. The 2023 Harvard/MIT/QuEra collaboration (Bluvstein
+  et al., *Nature*) demonstrated 48 *encoded* logical qubits with
+  transversal operations and error detection in a laboratory
+  experiment — a landmark, though not 48 general-purpose
+  fault-tolerant logical qubits — and follow-up work reported
+  through 2025 extends the line to larger encoded-qubit counts
+  (QuEra's own summaries cite up to 96) and first
+  magic-state-distillation demonstrations.
+- **Atom Computing** demonstrated arrays exceeding 1,000 atomic
+  sites (a 1,180-site array, 2023) — array *sites*, which is not
+  the same as that many simultaneously controlled, high-fidelity
+  qubits.
+- **Pasqal**, **Infleqtion**, and others operate systems in the
+  hundreds-to-thousands-of-atom range; analog and digital
+  capabilities vary product by product rather than holding across
+  every vendor. Pasqal's earlier roadmap targeted roughly 1,000
+  physical qubits by the end of 2025 and a 250-qubit "advantage"
+  demonstration (vendor-defined) in 2026; the 2025 target date has
+  now passed, so check the roadmap's achieved/missed/revised status
+  against current company statements rather than reading it
+  prospectively.
 
 Neutral atoms combine large, optically reconfigurable arrays with connectivity
-that can be rearranged by moving atoms with optical tweezers. Two-qubit
-(Rydberg) gate fidelities around 99.5% and improving, plus maturing mid-circuit
-measurement, make this the platform to watch for near-term logical-qubit work.
+that can be rearranged by moving atoms with optical tweezers. Reported two-qubit (Rydberg) gate fidelities are around 99.5% —
+with selected vendor reports higher, and moving quickly — and
+mid-circuit measurement is maturing (capability varies by product);
+together these have made the platform a focus of near-term
+logical-qubit work.
 
 ## F.5 Photonic, Spin, and Topological Approaches
 
@@ -103,16 +123,30 @@ measurement, make this the platform to watch for near-term logical-qubit work.
   and Quantum Motion exploit CMOS-compatible fabrication. Counts are small but
   two-qubit fidelities above 99% in Si/SiGe and the promise of leveraging the
   semiconductor industry keep this a long-horizon contender.
-- **Topological.** Microsoft announced "Majorana 1" (early 2025), claiming a
-  topological-qubit "topoconductor." The underlying Majorana-zero-mode evidence
-  has been contested in the literature, so this should be treated as a research
-  claim under active scrutiny rather than an established computing platform —
-  a textbook case for the claim-evaluation methodology of Chapter 36.
+- **Topological.** Microsoft announced "Majorana 1" (February
+  2025), marketing a topological-qubit "topoconductor." Keep the
+  layers of the claim separate: the accompanying *Nature* paper
+  reports materials and parity-readout results and does not by
+  itself establish a scalable topological qubit; the company's QPU
+  framing goes beyond the paper; and the underlying
+  Majorana-zero-mode evidence has been contested in the
+  literature. Treat the whole as a research claim under active
+  scrutiny rather than an established computing platform — a
+  textbook case for the claim-evaluation methodology of
+  Chapter 36.
 
 ## F.6 Cross-Cutting Metrics at a Glance
 
-Representative, order-of-magnitude figures as of early 2026. Read alongside
-the caveats in F.1; these are not benchmark results.
+Representative, order-of-magnitude figures as of early 2026. Read
+alongside the caveats in F.1; these are not benchmark results.
+Definitions matter: "qubit scale" counts publicly available
+gate-model systems (announced and lab systems run higher;
+neutral-atom figures count array sites; photonic mode counts and
+proprietary metrics such as #AQ are excluded as incomparable);
+"gate time" mixes operation types, and some two-qubit, shuttling,
+and measurement operations run an order of magnitude or more
+slower than the quoted ranges; fidelities are selected reported
+values, protocol- and date-dependent.
 
 | Platform        | Qubit scale (2026) | 2-qubit fidelity | Gate time | Connectivity        | Operating temp. |
 |-----------------|--------------------|------------------|-----------|---------------------|-----------------|
@@ -130,15 +164,24 @@ pre-fault-tolerant at useful scale.
 - **Below threshold (superconducting).** Google's Willow result (2024) showed
   a surface-code logical qubit whose error rate *decreased* with increasing
   code distance — the defining signature of a working error-correction regime.
-- **Logical operations (trapped ion / neutral atom).** Microsoft and
-  Quantinuum demonstrated 4 logical qubits on H2 with logical error rates
-  below the physical rate (2024). The Harvard/QuEra 48-logical-qubit
-  experiment (Bluvstein et al., *Nature*, December 2023) showed
-  transversal logical operations on a neutral-atom platform.
-- **Overhead reduction.** Quantum-LDPC codes (e.g. bivariate-bicycle "gross"
-  codes) promise far lower physical-to-logical overhead than the surface code,
-  and feature prominently in IBM's stated path toward a fault-tolerant machine
-  later this decade.
+- **Logical operations (trapped-ion and neutral-atom).** Microsoft
+  and Quantinuum demonstrated 4 logical qubits on H2 (April 2024),
+  reporting logical error rates well below the physical rate — a
+  comparison whose meaning depends on the metric and the
+  error-detection/postselection protocol; the technical report,
+  not the press release, carries the precise claim. The
+  Harvard/QuEra 48-logical-qubit experiment (Bluvstein et al.,
+  *Nature*, December 2023) showed transversal logical operations
+  on a neutral-atom platform, with 2025 follow-ups extending
+  encoded-qubit counts and demonstrating first magic-state
+  distillation.
+- **Overhead reduction.** Quantum-LDPC codes — e.g. the
+  bivariate-bicycle $[[144, 12, 12]]$ "gross" code, nicknamed for
+  its 144 (a gross) physical qubits — promise far lower
+  physical-to-logical overhead than the surface code, and feature
+  prominently in IBM's stated path (a vendor roadmap, not a
+  peer-reviewed result) toward a fault-tolerant machine later this
+  decade.
 
 The honest summary: below-threshold behavior has been shown in specific
 systems, logical-qubit *demonstrations* are small, and no platform yet runs

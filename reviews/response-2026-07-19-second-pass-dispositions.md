@@ -2407,7 +2407,8 @@ files vs fix batches:
 | Appendix C | 48 | done |
 | Appendix D | 49 | done |
 | Appendix E | 50 | done |
-| Appendix F, Index | — | pending (ledger complete) |
+| Appendix F | 51 | done |
+| Index | — | pending (ledger complete) |
 | SVG/support/archive passes | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
 
 Working method from batch 36 on: fixes are driven by the ledger's own
@@ -2992,3 +2993,41 @@ No factcheck anchors staled; baseline (94) held — the two
 pre-existing Appendix E baseline stales sit in entries this batch
 did not touch. Lint and anchor checks pass; diff reviewed before
 push.
+
+## Batch 51 — Appendix F hardware snapshot (10 substitutions)
+
+Driven by the ledger's highest-priority correctness list, using only
+facts the ledger's own targeted primary-source verification
+supports. The full per-number source/date/protocol apparatus stays
+queued with the DEFERRED-FACTCHECK programme.
+
+### FIXED — outright defects
+- IonQ's #AQ labeled a proprietary benchmark-derived figure, not a
+  physical/logical count, with product statuses dated to the
+  snapshot. "Best per-gate fidelity" replaced with highest
+  *published* fidelities plus the no-standardized-benchmark caveat.
+  The QuEra 48-logical milestone scoped (encoded qubits,
+  transversal operations and error detection in a lab experiment,
+  not general fault-tolerant logical qubits) and un-staled with the
+  ledger-verified 2025 follow-ups (up to 96 encoded qubits,
+  magic-state distillation) — the same update applied to the F.7
+  milestone bullet. Atom Computing's 1,000+ figure identified as
+  array sites (1,180-site array) distinct from controlled qubits.
+  The Pasqal/Infleqtion sentence de-collectivized (capabilities
+  vary by product) and the expired 2025 roadmap target flagged
+  past-due rather than prospective, with the vendor-defined
+  "advantage" label. The neutral-atom fidelity and
+  platform-to-watch sentence rewritten as reported/selected values
+  with product-dependent mid-circuit measurement. The Majorana
+  entry now separates the Nature paper's materials/parity-readout
+  content from the company's QPU framing and the contested
+  underlying evidence. The F.6 table gained a definitions note
+  (scale/gate-time/fidelity caveats; #AQ and mode counts excluded
+  as incomparable). The Quantinuum 4-logical claim given its
+  metric/postselection caveat and primary-source pointer; "trapped
+  ion / neutral atom" restyled. The "gross" code named as the
+  bivariate-bicycle $[[144, 12, 12]]$ code with the nickname
+  explained, and IBM's path labeled a vendor roadmap.
+
+No factcheck anchors staled; baseline (94) held. Lint and anchor
+checks pass; diff reviewed before push.
