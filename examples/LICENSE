@@ -2,9 +2,10 @@ MIT License
 
 Copyright (c) 2026 Iaroslav Voitovych
 
-Applies to the contents of this `examples/` directory only. The book
-manuscript and the rest of the repository are licensed separately —
-see the LICENSE file at the repository root.
+Local copy, for this `examples/` directory, of the repository's MIT
+grant for reusable project infrastructure — see `LICENSE-MIT` at the
+repository root for the full scope. The book manuscript is licensed
+separately (root `LICENSE`).
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

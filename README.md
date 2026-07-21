@@ -221,10 +221,13 @@ your own code (see [License](#license)).
 
 ## License
 
-The manuscript (everything under [`book/`](book/) and the prose documents) is
-free for non-commercial use under **CC BY-NC-ND 4.0**, with commercial use
-requiring a separate license — see [LICENSE](LICENSE) for the full terms. The
-runnable examples in [`examples/`](examples/) are separately licensed under
-the **MIT License** ([examples/LICENSE](examples/LICENSE)) so you can adapt
-them freely in your own programs; the remaining build and review tooling
-(`scripts/`, `tools/`, the `Makefile`) stays all-rights-reserved.
+The book — the manuscript under [`book/`](book/), its derived contents, and
+its editorial and audit record — is licensed under **CC BY-NC-ND 4.0**, with
+commercial use requiring a separate license; see [LICENSE](LICENSE) for the
+full terms.
+
+The runnable examples and the reusable project infrastructure — build
+scripts, review and verification tools, the renderer-bug knowledge base,
+process and style documentation, and the `Makefile` — are licensed under the
+**MIT License** ([LICENSE-MIT](LICENSE-MIT)). You are welcome to adapt them
+for your own books and projects.

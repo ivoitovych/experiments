@@ -2420,6 +2420,7 @@ files vs fix batches:
 | References sections moved into the book chapters (author-confirmed model) | 62 | done — unnumbered final `## References`, count-exempt per STYLE.md |
 | References model finalized: dual lists (book + mirror) with bidirectional lint sync | 64 | done |
 | README reader-first restructure + examples/ MIT licensing (author-approved) | 65 | done |
+| Full infrastructure open-sourced under MIT; book stays dual-licensed (author decision) | 66 | done |
 | Appendix F July-2026 refresh | 60 | done — web-verified; in-place fixes for pre-snapshot facts, dated F.8 update block for post-May facts |
 | Manuscript defects from mirror audits Ch13–27 (2026-07-21d drop + prior tail) | 63 | done |
 | factcheck mirrors Ch28+ | — | reviewer in progress |
@@ -3608,3 +3609,44 @@ artifacts we do not edit).
 
 Lint (incl. references sync and card citations), anchors (baseline
 94), and README coverage all pass; diff reviewed before push.
+
+## Batch 66 — Infrastructure open-sourced under MIT (author decision)
+
+Implements the author's decision (2026-07-21): everything except the
+book itself is free open source; the book stays dual-licensed
+(CC BY-NC-ND 4.0 + separate commercial licensing) to preserve a
+future publication path. The externally suggested rationale was
+assessed and agreed with: all-rights-reserved on tooling protects
+only expression (not methods or workflow, which copyright never
+covers) while blocking legitimate reuse.
+
+### The boundary (drawn more precisely than the external advice)
+- **MIT (LICENSE-MIT, new root file):** `examples/`, `scripts/`,
+  `tools/`, `Makefile` + build configuration, the renderer-bug
+  knowledge base (`docs/github-markdown-math-bugs.md`,
+  `docs/render-tests/`, `docs/upstream-feedback/`), and the
+  reusable methodology (`PROCESS.md`, `STYLE.md`).
+- **Book (dual license, unchanged terms):** `book/`, the
+  manuscript-derived `TOC.md` and `BookDescription.md`, and the
+  editorial/audit record (`PROGRESS.md`, `HISTORY.md`, `reviews/`,
+  `factcheck/`, `archive/`, and the frozen book-audit files under
+  `docs/`). The audit artifacts quote the manuscript verbatim
+  throughout, so they cannot ride the MIT side without opening the
+  book's own text — this is the one place the external advice's
+  categorization needed tightening.
+
+### DONE
+- `LICENSE-MIT` created with an explicit scope preamble and the MIT
+  text; root `LICENSE` §4 broadened from the examples-only
+  exception to the full infrastructure carve-out, with the
+  dual-licensed work enumerated; README license section rewritten
+  to the clean two-category form ("adapt them for your own books
+  and projects"), dropping the all-rights-reserved sentence;
+  `examples/LICENSE` re-headed as a local copy of the root grant;
+  the Preface's license summary updated to match. The book-side
+  "all rights not expressly granted are reserved" formula stays,
+  per the advice's own final caveat — it is the normal commercial
+  reservation for the book, not a tooling defense.
+
+Lint, anchors (baseline 94), and references-sync all pass; diff
+reviewed before push.
