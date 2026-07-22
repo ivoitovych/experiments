@@ -2425,7 +2425,8 @@ files vs fix batches:
 | Manuscript defects from mirror audits Ch13–27 (2026-07-21d drop + prior tail) | 63 | done |
 | Manuscript defects from mirror audits Ch28–36 (2026-07-21e drop) | 67 | done |
 | docs/unified-book-process-framework.md parked as planning input | 67 | done |
-| factcheck mirror Ch37 | — | reviewer in progress |
+| Book-body second pass Ch30-37 (2026-07-21f drop) | 68 | done |
+| Book-body second pass earlier chapters | — | reviewer in progress |
 | SVG/archive passes, remaining support files | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
 
 Working method from batch 36 on: fixes are driven by the ledger's own
@@ -3706,3 +3707,58 @@ remain with the mirror-overhaul queue.
 Eight factcheck anchors requoted; baseline (94) held. Lint,
 anchors, references-sync, and card citations pass; diff reviewed
 before push.
+
+## Batch 68 — Book-body second pass Ch30-37 (6 substitutions)
+
+The 2026-07-21f drop (+2,062 lines) completes the Ch37 factcheck
+mirror verdict, then opens a *fresh book-body second pass* over the
+prose of Chapters 30-37 (a new stream distinct from the mirror
+audits). The drop's tail also reviews
+`archive/chapter0-drafts/historical_chapter__new_attempt_1.md` — the
+protected historical-rewrite research stream, which per standing
+author instruction is NOT edited and whose findings are NOT acted on
+here. Every flag was adjudicated against the current manuscript;
+most re-flag items repaired in earlier batches. Six genuinely new
+definite defects fixed:
+
+### FIXED — outright defects
+- Ch32 (line 123): the claim that $T$ and controlled-phase gates
+  "take basis states off the diagonal" is false — those gates are
+  *diagonal*. Rewritten to distinguish superposition-creating gates
+  (Hadamard) from diagonal phase gates ($T$, controlled-phase) that
+  imprint the relative phases interference exploits.
+- Ch32 (exercise 1): the finite six-spin chain was said to have a
+  "quantum phase transition" — a thermodynamic-limit notion. Corrected
+  to an *avoided crossing* / minimum gap, with the longitudinal-bias
+  rounding noted.
+- Ch34 (§ ECC bridge): "both are decoded by maximum-likelihood" is
+  false for both Reed-Solomon (algebraic bounded-distance /
+  Berlekamp-Massey) and surface codes (matching / union-find).
+  Rewritten to name the actual decoders as cheap approximations to
+  ML.
+- Ch35 (§35.2): "the marginal Bob sees is the same in every world"
+  — Everett-loaded and imprecise in an interpretations chapter.
+  Changed to the *nonselective* (outcome-averaged) marginal being
+  invariant, now consistent with the conditional-state caveat later
+  in the same section.
+- Ch35 (§35.8): the heading "Unconditional speedups outside the
+  oracle model are rare" was contradicted by its own content, which
+  offers conjecture-dependent sampling tasks as the evidence.
+  Reframed: genuinely unconditional non-oracle speedups are
+  essentially unknown; the sampling evidence is itself conditional.
+- Ch35 (exercise 5): the axis "oracle vs. unconditional" conflated
+  two independent axes; split into oracle vs. non-oracle and
+  conditional vs. unconditional, matching the §35.8 repair.
+
+### ADJUDICATED — flagged but already correct / not acted on
+Ch32 quantum-walk variance (already variance-explicit, batch fixes),
+Majorana retraction history (batch 67), CV non-Gaussian "suitable"
+qualifier (batch 67); Ch34 O(2^n) statevector cost (already correct
+vs the mirror's O(4^n)); Ch36 Claus-Peter Schnorr attribution and
+hedged RSA/median-fidelity framing (batches 41/63). Sourcing-level
+asks (per-chapter References buildout, dated benchmark tables) flow
+through the References-sync machinery as verification proceeds.
+The historical_chapter rewrite-attempt review is excluded per author.
+
+Baseline (94) held; no anchors staled. Lint, anchors,
+references-sync, and card citations pass; diff reviewed before push.

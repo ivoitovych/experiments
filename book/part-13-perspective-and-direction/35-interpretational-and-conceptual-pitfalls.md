@@ -101,7 +101,7 @@ $$
 \sum_a \mathrm{tr}_A\bigl((K_a \otimes I)\\, \rho_{AB}\\, (K_a^{\dagger} \otimes I)\bigr) = \mathrm{tr}_A(\rho_{AB}) = \rho_B,
 $$
 
-so the marginal Bob sees is the same in every world. The correlations
+so the nonselective marginal Bob can access — his outcome-averaged reduced state — is the same for every local instrument Alice applies. The correlations
 Bell-test experiments reveal are visible *only after the two parties
 pool their classical records*. The classical channel needed to compare
 records is subluminal, and so is the entire information flow.
@@ -409,11 +409,13 @@ efficiently as a circuit, is separate. Many oracle separations have
 *no known instantiation* with a concrete function family for which
 the classical lower bound holds.
 
-**Unconditional speedups outside the oracle model** are rare. The
-strongest current evidence for quantum advantage in problems
-*without* an oracle is a small number of sampling tasks
-(random-circuit sampling, boson sampling, IQP sampling) where
-classical hardness rests on widely believed complexity conjectures.
+**Genuinely unconditional speedups outside the oracle model** are
+essentially unknown. The strongest current evidence for quantum
+advantage in problems *without* an oracle is a small number of
+sampling tasks (random-circuit sampling, boson sampling, IQP
+sampling) — but their classical hardness rests on widely believed
+complexity *conjectures*, so this evidence is itself conditional,
+not unconditional.
 These are not "computational" advantage in the algorithm-solves-a-
 useful-problem sense; they are demonstrations that some output
 distribution is hard to reproduce classically.
@@ -661,8 +663,9 @@ form the field's anti-hype toolkit.
    intuition each one *helps* a practitioner with and one
    intuition each one is liable to *corrupt*.
 5. Take a published "quantum advantage" claim of your choice and
-   classify it along the §35.8 axes: oracle vs. unconditional,
-   with or without QRAM, asymptotic vs. concrete crossover. Note
+   classify it along the §35.8 axes — oracle vs. non-oracle, and
+   (separately) conditional vs. unconditional — plus with or
+   without QRAM and asymptotic vs. concrete crossover. Note
    which axes the published abstract specifies and which it leaves
    implicit.
 
