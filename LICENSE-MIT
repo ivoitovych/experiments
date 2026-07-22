@@ -16,7 +16,7 @@ You are welcome to adapt any of it for your own books and projects.
 
 The book itself — the manuscript under `book/`, its derived contents
 (`TOC.md`, `BookDescription.md`), and the book's editorial and audit
-record (`PROGRESS.md`, `HISTORY.md`, `reviews/`, `factcheck/`,
+record (`PROGRESS.md`, `HISTORY.md`, `IDEAS.md`, `reviews/`, `factcheck/`,
 `archive/`, `docs/fact-check-ledger.md`,
 `docs/review-2026-05-28-disposition.md`) — is NOT covered here; it is
 dual-licensed per the `LICENSE` file at the repository root.

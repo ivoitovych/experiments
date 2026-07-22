@@ -211,6 +211,7 @@ your own code (see [License](#license)).
 - [BookDescription.md](BookDescription.md) — the charter: scope, audience, philosophy, reading paths.
 - [TOC.md](TOC.md) — full table of contents with every section heading.
 - [PROGRESS.md](PROGRESS.md) — per-chapter status and the phase-by-phase writing plan.
+- [IDEAS.md](IDEAS.md) — living backlog of parked, non-blocking ideas (deferred verification work, enrichment suggestions, author decisions) surfaced by review.
 - [STYLE.md](STYLE.md) — math, notation, and file conventions used throughout the manuscript.
 - [PROCESS.md](PROCESS.md) — working method, toolchain, and decision log.
 - [HISTORY.md](HISTORY.md) — chronological narrative of how the project reached its current state.
