@@ -72,23 +72,27 @@ Suggested attribution format:
 
 ---
 
-## 4. Exception: reusable project infrastructure (MIT)
+## 4. Scope: what this dual license covers, and the MIT exception
 
-The repository's reusable project infrastructure — the runnable examples
-(`examples/`), the build and verification tooling (`scripts/`, `tools/`,
-`Makefile` and its build configuration), the renderer-bug knowledge base
-(`docs/github-markdown-math-bugs.md`, `docs/render-tests/`,
-`docs/upstream-feedback/`), and the reusable process and style
-methodology (`PROCESS.md`, `STYLE.md`) — is licensed separately under
-the MIT License: see `LICENSE-MIT` for the exact scope and terms
+Two licenses, one simple rule: **the book is dual-licensed; everything
+else in the repository is MIT.**
+
+This dual license (CC BY-NC-ND + commercial, above) covers the
+**publishable book body and every file that reproduces its text**:
+
+- `book/` — the manuscript itself (the publishable work);
+- `TOC.md`, `BookDescription.md` — contents derived from it;
+- `factcheck/`, `reviews/`, `archive/`, and the frozen book-audit files
+  `docs/fact-check-ledger.md` and `docs/review-2026-05-28-disposition.md`
+  — records that quote or draft the manuscript verbatim, and so carry
+  the same protected text.
+
+**Everything else is auxiliary and licensed under the MIT License** — all
+code, build and verification tooling, figure generators, methodology and
+process documents, project-status and planning docs, metadata, and
+configuration. See `LICENSE-MIT` for the authoritative scope and terms
 (`examples/LICENSE` carries a local copy of the grant). Adapt any of it
 freely, including for your own books and projects.
-
-This dual-licensed work — the book — comprises the manuscript under
-`book/`, its derived contents (`TOC.md`, `BookDescription.md`), and the
-book's editorial and audit record (`PROGRESS.md`, `HISTORY.md`,
-`IDEAS.md`, `reviews/`, `factcheck/`, `archive/`, and the frozen
-book-audit files under `docs/`).
 
 ## 5. Reservation of Rights
 

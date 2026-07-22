@@ -1,25 +1,26 @@
-# MIT License — reusable project infrastructure
+# MIT License — auxiliary project material
 
-This license covers the repository's reusable project infrastructure:
-
-- `examples/` — the runnable companion programs (also carries its own
-  local copy of this grant in `examples/LICENSE`)
-- `scripts/` — build, TOC/index generation, and verification utilities
-- `tools/` — the lint and checking toolchain
-- `Makefile` and the build configuration it drives
-- `docs/github-markdown-math-bugs.md`, `docs/render-tests/`, and
-  `docs/upstream-feedback/` — the renderer-bug knowledge base
-- `PROCESS.md` and `STYLE.md` — the reusable process and style
-  methodology
+This license covers **everything in the repository EXCEPT the book** —
+that is, all auxiliary material: the runnable examples (`examples/`,
+which also carries a local copy of this grant in `examples/LICENSE`),
+the build and verification tooling (`scripts/`, `tools/`, `Makefile` and
+its build configuration), the figure generators (`figures-src/`), the
+renderer-bug knowledge base (`docs/github-markdown-math-bugs.md`,
+`docs/render-tests/`, `docs/upstream-feedback/`), the process and style
+methodology (`PROCESS.md`, `STYLE.md`), the project-status and planning
+documents (`PROGRESS.md`, `HISTORY.md`, `IDEAS.md`, `README.md`,
+`INSTRUCTIONS.md`), the citation metadata (`CITATION.cff`), and the
+repository configuration and checksums. New auxiliary files are covered
+automatically by this "everything except the book" rule.
 
 You are welcome to adapt any of it for your own books and projects.
 
-The book itself — the manuscript under `book/`, its derived contents
-(`TOC.md`, `BookDescription.md`), and the book's editorial and audit
-record (`PROGRESS.md`, `HISTORY.md`, `IDEAS.md`, `reviews/`, `factcheck/`,
+The **book** is NOT covered here; it is dual-licensed per the root
+`LICENSE` file. The book comprises the publishable manuscript under
+`book/`, its derived contents (`TOC.md`, `BookDescription.md`), and the
+records that reproduce its text verbatim (`factcheck/`, `reviews/`,
 `archive/`, `docs/fact-check-ledger.md`,
-`docs/review-2026-05-28-disposition.md`) — is NOT covered here; it is
-dual-licensed per the `LICENSE` file at the repository root.
+`docs/review-2026-05-28-disposition.md`).
 
 ---
 

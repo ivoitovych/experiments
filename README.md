@@ -224,13 +224,15 @@ your own code (see [License](#license)).
 
 ## License
 
-The book — the manuscript under [`book/`](book/), its derived contents, and
-its editorial and audit record — is licensed under **CC BY-NC-ND 4.0**, with
-commercial use requiring a separate license; see [LICENSE](LICENSE) for the
-full terms.
+Two licenses, one rule: **the book is dual-licensed; everything else is MIT.**
 
-The runnable examples and the reusable project infrastructure — build
-scripts, review and verification tools, the renderer-bug knowledge base,
-process and style documentation, and the `Makefile` — are licensed under the
-**MIT License** ([LICENSE-MIT](LICENSE-MIT)). You are welcome to adapt them
-for your own books and projects.
+The **book** — the publishable manuscript under [`book/`](book/), its derived
+contents (`TOC.md`, `BookDescription.md`), and the records that reproduce its
+text (`factcheck/`, `reviews/`, `archive/`) — is licensed under
+**CC BY-NC-ND 4.0**, with commercial use requiring a separate license; see
+[LICENSE](LICENSE) for the full terms.
+
+**Everything else is auxiliary and MIT-licensed** ([LICENSE-MIT](LICENSE-MIT))
+— all code, build and verification tooling, figure generators, methodology,
+project-status and planning docs, metadata, and configuration. You are
+welcome to adapt any of it for your own books and projects.
