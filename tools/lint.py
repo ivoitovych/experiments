@@ -415,12 +415,25 @@ def check_spelling() -> None:
 def check_card_citations() -> None:
     """Cards citing verify_identities.py checks must match live results.
 
-    Needs the project venv (numpy); silently skipped when absent so lint
-    stays runnable in minimal environments.
+    Needs the project venv (numpy). If the venv is absent it is NOT
+    silently skipped: a bypass is only harmless when no card actually
+    cites a check, so lint stays green then but FAILS loudly if there are
+    citations it could not verify — a green run must never imply
+    verification that did not run.
     """
     import subprocess as _subprocess
     venv_py = ROOT / ".venv" / "bin" / "python"
+    cited = sum(
+        len(re.findall(r"verify_identities\.py::", p.read_text(encoding="utf-8")))
+        for p in (ROOT / "factcheck").rglob("*.md")
+    )
     if not venv_py.exists():
+        if cited:
+            fail("(card-citations)",
+                 f"{cited} card citation(s) present but the project venv "
+                 f"(.venv) is absent — cannot verify. Refusing to report "
+                 f"green over unverified citations; run `make` setup or the "
+                 f"venv first.")
         return
     out = _subprocess.run(
         [str(venv_py), str(ROOT / "scripts" / "check_card_citations.py")],

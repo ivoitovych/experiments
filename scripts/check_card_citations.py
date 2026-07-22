@@ -35,6 +35,14 @@ def main() -> int:
             if parts[0] == "PASS":
                 passing.add(parts[1])
 
+    if not known:
+        print("FAIL: the identity suite produced no PASS/FAIL results "
+              "(is numpy available? run with the project venv). Refusing to "
+              "report green — card citations were not actually verified.")
+        if proc.stderr.strip():
+            print(proc.stderr.strip()[:500])
+        return 1
+
     problems = []
     cited = 0
     for path in sorted((ROOT / "factcheck").rglob("*.md")):

@@ -43,6 +43,13 @@ def norm(s: str) -> str:
 def main() -> int:
     failures = 0
     files = sorted(FC.rglob("*.md"))
+    book_files = sorted(BOOK.rglob("*.md"))
+    if not book_files or len(files) < len(book_files):
+        print(f"FAIL: factcheck inventory looks wrong — {len(files)} factcheck "
+              f"file(s) for {len(book_files)} manuscript file(s). Refusing to "
+              f"report green over an empty/partial inventory (run from the "
+              f"repository root).")
+        return 1
     for fc in files:
         rel = fc.relative_to(FC)
         if rel.name in ("README.md", "_sources.md", "CARD-SPEC.md",

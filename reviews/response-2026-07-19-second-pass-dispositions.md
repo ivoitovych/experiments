@@ -3798,3 +3798,31 @@ backlog.
 
 Lint, anchors (baseline 94), references-sync, card citations, and the
 identity suite all pass.
+
+## Batch 70 — P0 trust-blockers: false-green / fail-open tooling (5 guards)
+
+First P0 lane from the final synthesis's "assurance mismatch" theme:
+checks that report success without actually verifying anything. Each
+guard was proven to *fire* on the failure it targets (not merely to
+leave the green path intact).
+
+### FIXED — checks that no longer report green over nothing
+- `scripts/verify_identities.py`: strict tolerance (batch 69; `rtol=0`).
+- `scripts/factcheck_anchors.py`: fails if the factcheck inventory is
+  empty or smaller than the manuscript inventory (was: "PASS: 0
+  problems across 0 files"). Floor derived from the live book file
+  count, so it self-adjusts.
+- `scripts/check_examples.py`: fails if no example scripts are found
+  (was: "OK - 0 examples ran").
+- `scripts/check_card_citations.py`: fails if the identity suite
+  produced no PASS/FAIL results — i.e. it crashed / numpy missing (was:
+  "OK — 0 citations against 0/0 passing checks"). **Proven:** run under
+  system python (no numpy) now FAILs loudly.
+- `tools/lint.py` card-citation hook: no longer *silently* skips when
+  `.venv` is absent. It stays green only when zero cards cite a check;
+  if citations exist but the venv cannot verify them, lint FAILS. 
+  **Proven:** hiding `.venv` with 20 citations present produces a lint
+  failure; restoring it returns green.
+
+All normal runs unaffected: lint green, baseline (94) held, identity
+suite 25/25, citations 19/19.

@@ -19,6 +19,11 @@ EXAMPLES = ROOT / "examples"
 
 def main() -> None:
     scripts = sorted(EXAMPLES.glob("*.py"))
+    if not scripts:
+        print(f"FAIL: no example scripts found under {EXAMPLES}. Refusing to "
+              f"report green over an empty inventory (run from the repository "
+              f"root).")
+        sys.exit(1)
     failures: list[str] = []
     for script in scripts:
         print(f"=== {script.relative_to(ROOT)} ===")
