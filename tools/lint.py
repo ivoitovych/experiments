@@ -398,16 +398,22 @@ def check_spelling() -> None:
                "--ignore-words", str(allow_path)]
         cmd += [str(p) for p in targets if p.exists()]
         out = _subprocess.run(cmd, capture_output=True, text=True)
+        # Word-precise allowlist: the constituent words of each allowlisted
+        # phrase are exempt. Suppress only the *specific* flagged word, never
+        # every finding on a line that happens to contain an allowlist phrase
+        # (that line-wide drop would hide unrelated typos sitting beside an
+        # allowed word).
+        allowed_words = {w.lower() for phrase in allowed
+                         for w in _re.findall(r"[A-Za-z']+", phrase)}
         for line in out.stdout.splitlines():
             if not line.strip():
                 continue
-            # drop findings on lines covered by the phrase allowlist
             try:
-                fpath, lno, _rest = line.split(":", 2)
-                flagged = open(fpath).read().splitlines()[int(lno) - 1]
-                if any(p in flagged for p in allowed):
+                _fpath, _lno, rest = line.split(":", 2)
+                flagged_word = rest.split("==>")[0].strip().lower()
+                if flagged_word in allowed_words:
                     continue
-            except (ValueError, OSError, IndexError):
+            except ValueError:
                 pass
             fail("(codespell)", line.strip())
 

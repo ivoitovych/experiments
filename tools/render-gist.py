@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
 """Render a local Markdown file via a throwaway GitHub Gist and capture
-screenshots of every section, then delete the gist.
+screenshots of every section. The gist is *kept by default* so you can
+open it in a browser and verify the rendering; pass --delete-gist (or
+set DELETE=1) to remove it afterwards.
+
+Privacy note: the gist is created "secret", which means it does not show
+on your public profile — but it is still reachable by anyone who has the
+URL and is rendered publicly by gist.github.com. Do not leave gists of
+sensitive drafts lying around; delete them when done.
 
 The motivating use case: investigate GitHub Markdown + MathJax rendering
 quirks without polluting the working branch with commit-after-commit of
@@ -43,6 +50,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import pathlib
 import re
 import shutil
@@ -279,7 +287,8 @@ def main(argv: list[str] | None = None) -> int:
         )
         raise
 
-    if args.delete_gist:
+    delete = args.delete_gist or os.environ.get("DELETE") == "1"
+    if delete:
         print(f"deleting gist {gid}")
         delete_gist(gid)
         print(f"\ndone. open {ART / f'gist-{gid[:8]}'}/ to review.")

@@ -150,8 +150,9 @@ on **all** of: GitHub web view, mdBook + MathJax, and Pandoc.
 - Enforced by lint: `tools/lint.py` checks the project dictionary
   `tools/spelling-gb-us.txt` (always) and, when `codespell` is
   installed, its builtin `en-GB_to_en-US` dictionary with a
-  hyphen-splitting word regex (so compounds like "nearest-neighbour"
-  are caught).
+  hyphen-splitting word regex, so a British spelling inside a
+  hyphenated compound (for example the `-our` half of a
+  nearest-neighbor term) is caught rather than hidden by the hyphen.
 - **Legitimate British text is exempt via allowlist**: quoted paper
   titles, proper nouns, and institution names that are British-spelled
   in the original go in `tools/spelling-allowlist.txt` as exact

@@ -3826,3 +3826,36 @@ leave the green path intact).
 
 All normal runs unaffected: lint green, baseline (94) held, identity
 suite 25/25, citations 19/19.
+
+## Batch 71 — P0 trust-blockers: destructive / retention / suppression hazards (4)
+
+Second P0 lane — the concrete tooling hazards the final synthesis
+enumerated. Each fix verified to change the dangerous behavior, not just
+to keep the happy path green.
+
+### FIXED
+- `tools/render-gist.py`: the printed instruction "rerun with ... DELETE=1
+  to clean up" was a lie — no code read that env var, so a user following
+  it left a URL-accessible gist behind. DELETE=1 is now honored. Also
+  fixed the contradictory docstring header ("then delete the gist" vs
+  "kept by default") and added a privacy note that a "secret" gist is
+  still reachable by anyone with the URL.
+- `scripts/generate_index.py`: it wrote the index *before* checking for
+  unresolved references, so a broken ref produced a silently truncated
+  index on disk *and then* exited 1 — a failed run left damaged output.
+  Now validates first and refuses to write if anything is unresolved.
+  **Proven:** injecting a bad ref leaves `index.md` byte-identical.
+- `tools/lint.py` codespell suppression: an allowlisted phrase anywhere
+  on a line dropped *every* codespell finding on that line, hiding
+  unrelated typos. Now suppresses only the specific flagged word if it is
+  a constituent of an allowlisted phrase. **Proven:** a real typo beside
+  an allowlisted word is still reported.
+- `tools/spelling-allowlist.txt` + `STYLE.md`: the allowlist's own comment
+  said "currently empty", but a stray leaked line
+  (`compounds like "nearest-neighbour"`) silently exempted "neighbour"
+  (and "compounds", "like") corpus-wide. Removed it; rephrased the STYLE.md
+  meta-example that had needed it so no exemption is required at all.
+  **Proven:** allowlist now genuinely empty; British "neighbour" is caught
+  everywhere again; lint green.
+
+Baseline (94) held; lint, examples, identity suite, citations all pass.

@@ -215,6 +215,17 @@ def main() -> None:
         letter = sort_key(term)[0]
         grouped.setdefault(letter, []).append(f"- **{term}** — {', '.join(links)}")
 
+    # Validate BEFORE writing: an unresolved reference means a term would be
+    # silently dropped, so refuse to write rather than overwrite the index
+    # with a partial one (a failed run must not leave damaged output on disk).
+    if unresolved:
+        print(f"UNRESOLVED ({len(unresolved)}) — refusing to write a partial "
+              f"index; {INDEX_PATH.relative_to(ROOT)} left unchanged:",
+              file=sys.stderr)
+        for u in unresolved:
+            print(f"  {u}", file=sys.stderr)
+        sys.exit(1)
+
     parts = [HEADER]
     for letter in sorted(grouped):
         parts.append(f"\n## {letter}\n")
@@ -224,11 +235,6 @@ def main() -> None:
 
     n_terms = sum(len(v) for v in grouped.values())
     print(f"wrote {INDEX_PATH.relative_to(ROOT)} ({n_terms} terms, {len(grouped)} groups)")
-    if unresolved:
-        print(f"UNRESOLVED ({len(unresolved)}):", file=sys.stderr)
-        for u in unresolved:
-            print(f"  {u}", file=sys.stderr)
-        sys.exit(1)
 
 
 if __name__ == "__main__":
