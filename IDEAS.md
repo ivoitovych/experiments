@@ -16,6 +16,34 @@ for detail.
 Status key: **OPEN** (waiting) · **PARTIAL** (some done) · **NEEDS-AUTHOR**
 (decision required before work can start).
 
+> **Review status (2026-07-22): the exhaustive second pass is complete.**
+> 179 eligible tracked files reviewed; final verdict: content quality 4.6/5,
+> infrastructure concept 4.7/5, reader entertainment 4.4/5. The one systemic
+> theme is *assurance mismatch* — tooling/status/snapshots occasionally imply
+> more completeness, currency, or reproducibility than the evidence proves.
+> The reviewer's remediation order below supersedes ad-hoc prioritization.
+
+## Priority order (reviewer's final synthesis)
+
+- **P0 — trust blockers.** Repair false-green / fail-open tooling (checks
+  that pass on empty inventories, missing deps, or timeouts); validate exact
+  nonempty inventories; fix external-upload (Gist) retention semantics;
+  enforce claim date/source/scope rules; resolve the licensing file-class
+  matrix; and land any remaining concrete math/factual defects.
+  *(Done so far: strict-tolerance identity checks — batch 69.)*
+- **P1 — drift & reproducibility.** Canonical structured sources for
+  references/status/navigation/figures with bidirectional drift checks;
+  retire/regenerate stale scaffold; pin/test environments; deterministic,
+  accessibility-complete diagrams; full link/asset/render/card coverage
+  reports. (Overlaps §A, §B, §D below.)
+- **P2 — reader experience.** Progressive disclosure, worked paths,
+  retrieval checks, consolidated caveats, comparison-as-decision narratives,
+  accessibility across prose/math/tables/figures. (Overlaps §E below.)
+- **P3 — maintainability.** Normalize review-record path/schema, classify
+  archives and durable decisions, release manifests/checksums with
+  provenance, ownership/refresh cadence for moving-target content.
+
+
 ---
 
 ## A. Fact-check verification programme (`DEFERRED-FACTCHECK`)

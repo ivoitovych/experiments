@@ -2426,7 +2426,7 @@ files vs fix batches:
 | Manuscript defects from mirror audits Ch28–36 (2026-07-21e drop) | 67 | done |
 | docs/unified-book-process-framework.md parked as planning input | 67 | done |
 | Book-body second pass Ch30-37 (2026-07-21f drop) | 68 | done |
-| Book-body second pass earlier chapters | — | reviewer in progress |
+| Review CONCLUDED 2026-07-22 (final synthesis + verdict) | 69 | done — P0-P3 remediation order folded into IDEAS.md |
 | SVG/archive passes, remaining support files | — | reviewer in progress; archive/chapter0-drafts excluded per author (separate research stream) |
 
 Working method from batch 36 on: fixes are driven by the ledger's own
@@ -3762,3 +3762,39 @@ The historical_chapter rewrite-attempt review is excluded per author.
 
 Baseline (94) held; no anchors staled. Lint, anchors,
 references-sync, and card citations pass; diff reviewed before push.
+
+## Batch 69 — Review concluded; final-synthesis intake (1 tooling fix)
+
+The 2026-07-22 drop (+3,982 lines) is the **final** drop: it closes the
+exhaustive second pass with file-level verdicts for the remaining
+repo/archive/docs files, a work-package-by-work-package review of the
+newly-added `docs/unified-book-process-framework.md`, and a project-wide
+synthesis + final verdict (179 eligible files; content 4.6/5,
+infrastructure concept 4.7/5, reproducibility 3.2/5). No new
+manuscript-body correctness defects beyond batch 68 (the book-body
+Ch30-37 pass); the protected `archive/chapter0-drafts/**` and
+`historical_chapter__*` files were reviewed by the reviewer but are NOT
+edited here, per standing author instruction.
+
+### FIXED — concrete tooling hazard named in the final verdict
+- `scripts/verify_identities.py`: the "relative-tolerance leakage in
+  identity checks" the synthesis flagged is real — `np.allclose(a, b,
+  atol=1e-12)` kept the default `rtol=1e-5`, so O(1) matrix entries were
+  effectively checked to ~1e-5, not 1e-12. Set `rtol=0` for a strict
+  absolute-tolerance check; all 25 identity checks still pass (they were
+  genuinely exact, not riding the slack), and the 19 card citations
+  re-verify.
+
+### RECORDED — not acted on
+The final synthesis's systemic theme is *assurance mismatch* (green
+tooling / status prose / snapshots implying more than proven). Its
+P0-P3 remediation order is folded into `IDEAS.md` as the authoritative
+prioritization; the individual items map onto the existing
+DEFERRED-FACTCHECK / mirror-overhaul / AUTHOR-DECISION / infrastructure
+/ enrichment categories already tracked there. The framework-doc review
+is informational (a docs artifact, not manuscript). The review being
+concluded, this dispositions log and IDEAS.md are now the forward
+backlog.
+
+Lint, anchors (baseline 94), references-sync, card citations, and the
+identity suite all pass.

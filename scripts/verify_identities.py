@@ -57,7 +57,10 @@ def rand_c(n: int) -> np.ndarray:
 
 
 def eq(a, b, tol=1e-12) -> bool:
-    return bool(np.allclose(a, b, atol=tol))
+    # rtol=0: a strict absolute-tolerance check. np.allclose's default
+    # rtol=1e-5 would let O(1) entries drift by ~1e-5 and mask a real
+    # mismatch — these are exact identities, so hold them to atol alone.
+    return bool(np.allclose(a, b, rtol=0.0, atol=tol))
 
 
 # ---------------------------------------------------------------- checks
