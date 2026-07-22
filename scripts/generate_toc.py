@@ -73,6 +73,11 @@ def main() -> None:
     rendered = "\n".join(lines) + "\n"
     if "--check-readme" in sys.argv:
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        book_files = sorted(BOOK.rglob("*.md"))
+        if not book_files:
+            print("FAIL: no manuscript files found — refusing to report "
+                  "green README coverage over an empty inventory.")
+            sys.exit(1)
         missing = []
         for part_dir in sorted(p for p in BOOK.iterdir() if p.is_dir()):
             for md in sorted(part_dir.glob("*.md")):

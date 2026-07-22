@@ -3859,3 +3859,28 @@ to keep the happy path green.
   everywhere again; lint green.
 
 Baseline (94) held; lint, examples, identity suite, citations all pass.
+
+## Batch 72 — P0 trust-blockers: stale scaffold + remaining inventory guards (4)
+
+Closes the automatable P0 tooling lane.
+
+### FIXED
+- `scripts/scaffold.py`: marked unmistakably as a historical bootstrap
+  tool whose embedded README/STYLE/structure are stale originals. It was
+  already safe (`write_if_missing` never overwrites), but could silently
+  regenerate a primitive README if the real one were ever deleted; it now
+  shouts a WARNING to stderr if it ever regenerates README.md/STYLE.md
+  from the stale template. Retiring/archiving it is queued as an author
+  decision.
+- `scripts/factcheck_lint.py`: empty/partial-inventory guard (using the
+  *full* scanned factcheck count, not the small card-spec subset — a first
+  attempt guarded the wrong variable and was corrected).
+- `scripts/generate_toc.py --check-readme`: fails instead of reporting
+  green coverage if no manuscript files are found.
+- `factcheck/part-00-historical-prelude/00-historical-prelude.md`: aligned
+  the stub's "no cards" wording with a phrase `factcheck_lint` already
+  recognizes, so that standalone diagnostic (not in CI) returns clean
+  instead of flagging the deliberately card-less stub.
+
+`factcheck_lint` (not previously in CI) now returns 0; lint, baseline
+(94), examples, identity suite, and citations all pass.

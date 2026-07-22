@@ -231,6 +231,15 @@ def main(argv):
             for k in sorted(interim_status):
                 print(f"    {k:<24} {interim_status[k]}")
         print()
+    # Guard the *full* scanned factcheck inventory (card-spec + interim),
+    # not the card-spec subset `files` (which is small until migration).
+    book_n = len(sorted(BOOK.rglob("*.md")))
+    fc_n = len(sorted(FC.rglob("*.md")))
+    if not book_n or fc_n < book_n:
+        print(f"FAIL: factcheck inventory looks wrong — {fc_n} factcheck "
+              f"file(s) for {book_n} manuscript file(s). Refusing to report "
+              f"green over an empty/partial inventory.")
+        return 1
     print(f"{'PASS' if failures == 0 else 'FAIL'}: {failures} lint problem(s), "
           f"{stale_count} stale, across {total} card(s) in {len(files)} file(s)")
     if interim:

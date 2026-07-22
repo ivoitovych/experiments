@@ -17,4 +17,4 @@ were reviewed and corrected in the second-pass fix batches (see
 extracting them into per-claim cards with primary citations remains
 queued under the mirror-overhaul program.
 
-No cards yet — do not cite this file as verification.
+No factcheck entries are recorded yet — do not cite this file as verification.

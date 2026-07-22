@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
 """
-Scaffold the book directory tree from the TOC.
+Scaffold the book directory tree from the TOC. **Historical bootstrap tool.**
 
-Idempotent: existing files are left untouched. Safe to re-run after edits.
-Generates: README.md (master TOC), STYLE.md (conventions), and one stub .md
-per chapter, front-matter section, and appendix, with prev/next navigation.
+This created the initial tree once. It is idempotent — `write_if_missing`
+never overwrites an existing file — so re-running it only fills in files
+that are genuinely absent. That safety is also its hazard: the README.md,
+STYLE.md, and section structure embedded below are the *original stubs* and
+are now badly stale relative to the live, hand-maintained files. If a real
+authority (e.g. README.md) were ever deleted and this were re-run, it would
+silently regenerate a primitive stub. The live files — not this template —
+are authoritative. Retiring/archiving this tool is an open decision
+(see IDEAS.md).
 """
 
 from __future__ import annotations
@@ -1156,15 +1162,23 @@ def main() -> None:
         else:
             skipped.append(str(path.relative_to(ROOT)))
 
+    # README.md and STYLE.md are hand-maintained authorities; the embedded
+    # render_* templates are stale originals. Only ever create them if truly
+    # absent, and shout if we do so, so a stale stub is never mistaken for
+    # the real file.
     readme_path = ROOT / "README.md"
     if write_if_missing(readme_path, render_readme()):
         created.append("README.md")
+        print("WARNING: regenerated README.md from the STALE embedded "
+              "template — replace it with the real one.", file=sys.stderr)
     else:
         skipped.append("README.md")
 
     style_path = ROOT / "STYLE.md"
     if write_if_missing(style_path, render_style()):
         created.append("STYLE.md")
+        print("WARNING: regenerated STYLE.md from the STALE embedded "
+              "template — replace it with the real one.", file=sys.stderr)
     else:
         skipped.append("STYLE.md")
 
