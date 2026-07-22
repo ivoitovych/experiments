@@ -25,12 +25,16 @@ Status key: **OPEN** (waiting) · **PARTIAL** (some done) · **NEEDS-AUTHOR**
 
 ## Priority order (reviewer's final synthesis)
 
-- **P0 — trust blockers.** Repair false-green / fail-open tooling (checks
-  that pass on empty inventories, missing deps, or timeouts); validate exact
-  nonempty inventories; fix external-upload (Gist) retention semantics;
-  enforce claim date/source/scope rules; resolve the licensing file-class
-  matrix; and land any remaining concrete math/factual defects.
-  *(Done so far: strict-tolerance identity checks — batch 69.)*
+- **P0 — trust blockers.** *Tooling sub-lane DONE (batches 69-72):*
+  strict-tolerance identity checks; empty-inventory guards across
+  factcheck_anchors / check_examples / check_card_citations / factcheck_lint
+  / generate_toc; lint no longer silently skips card-citation checks without
+  the venv; Gist DELETE=1 made real + privacy note; generate_index validates
+  before writing (no partial-destructive output); word-precise (not
+  line-wide) codespell suppression + empty allowlist; scaffold marked
+  historical. *Still open:* enforce claim date/source/scope rules (= the
+  DEFERRED-FACTCHECK programme, §A) and **resolve the licensing file-class
+  matrix (author decision, §C).**
 - **P1 — drift & reproducibility.** Canonical structured sources for
   references/status/navigation/figures with bidirectional drift checks;
   retire/regenerate stale scaffold; pin/test environments; deterministic,
@@ -89,6 +93,15 @@ into dated, sourced records. All flagged inline in the dispositions doc.
 - **NEEDS-AUTHOR — full visual/browser render pass.** The SVG figures and
   GitHub-rendered math want human eyes end-to-end; lint covers only the
   known bug classes.
+- **NEEDS-AUTHOR — explicit licensing file-class matrix.** The reviewer's P0
+  asks for an unambiguous file-class -> license table across manuscript,
+  code, figures, docs, examples, metadata, and generated outputs. The three
+  license files already imply it; making it one explicit matrix (and
+  deciding the edge classes: SVG figures, generated book-build, CITATION.cff)
+  is your call.
+- **NEEDS-AUTHOR — retire/archive `scripts/scaffold.py`.** Now a historical
+  bootstrap with stale embedded README/STYLE; keep-with-warning (current),
+  move to `archive/`, or delete?
 
 ## D. Reusable infrastructure ideas (`infrastructure queue`)
 
