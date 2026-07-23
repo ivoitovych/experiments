@@ -1,26 +1,26 @@
 # MIT License — auxiliary project material
 
 This license covers **everything in the repository EXCEPT the book** —
-that is, all auxiliary material: the runnable examples (`examples/`,
-which also carries a local copy of this grant in `examples/LICENSE`),
-the build and verification tooling (`scripts/`, `tools/`, `Makefile` and
-its build configuration), the figure generators (`figures-src/`), the
-renderer-bug knowledge base (`docs/github-markdown-math-bugs.md`,
-`docs/render-tests/`, `docs/upstream-feedback/`), the process and style
-methodology (`PROCESS.md`, `STYLE.md`), the project-status and planning
-documents (`PROGRESS.md`, `HISTORY.md`, `IDEAS.md`, `README.md`,
-`INSTRUCTIONS.md`), the citation metadata (`CITATION.cff`), and the
-repository configuration and checksums. New auxiliary files are covered
-automatically by this "everything except the book" rule.
+that is, all auxiliary material: the fact-check records (`factcheck/`),
+the review and planning artifacts (`reviews/`, `archive/`, and the audit
+files under `docs/`), the runnable examples (`examples/`, which also
+carries a local copy of this grant in `examples/LICENSE`), the build and
+verification tooling (`scripts/`, `tools/`, `Makefile` and its build
+configuration), the figure generators (`figures-src/`), the renderer-bug
+knowledge base (`docs/github-markdown-math-bugs.md`, `docs/render-tests/`,
+`docs/upstream-feedback/`), the process and style methodology
+(`PROCESS.md`, `STYLE.md`), the project-status and planning documents
+(`PROGRESS.md`, `HISTORY.md`, `IDEAS.md`, `README.md`, `INSTRUCTIONS.md`),
+the citation metadata (`CITATION.cff`), and the repository configuration
+and checksums. New auxiliary files are covered automatically by this
+"everything except the book" rule.
 
 You are welcome to adapt any of it for your own books and projects.
 
 The **book** is NOT covered here; it is dual-licensed per the root
-`LICENSE` file. The book comprises the publishable manuscript under
-`book/`, its derived contents (`TOC.md`, `BookDescription.md`), and the
-records that reproduce its text verbatim (`factcheck/`, `reviews/`,
-`archive/`, `docs/fact-check-ledger.md`,
-`docs/review-2026-05-28-disposition.md`).
+`LICENSE` file, and comprises only the publishable manuscript under
+`book/` together with its own table of contents and charter (`TOC.md`,
+`BookDescription.md`).
 
 ---
 

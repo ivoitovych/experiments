@@ -423,12 +423,12 @@ Attribution-NonCommercial-NoDerivatives 4.0 International license
 may be shared non-commercially with attribution, and distributing
 modified versions is not permitted. Any commercial use, and any use
 the CC terms do not grant, requires a separate written license from
-the author. The repository's code and reusable infrastructure —
-the runnable companion programs, build and verification tooling,
-and process documentation — are the exception: they are separately
-MIT-licensed so you can adapt them freely in your own projects.
-This paragraph is a summary only; the LICENSE and LICENSE-MIT
-files at the repository root control.
+the author. Only the book itself is dual-licensed this way;
+everything else in the repository — the code, tooling, figures,
+fact-check records, and working artifacts — is separately
+MIT-licensed, free to adapt in your own projects. This paragraph
+is a summary only; the LICENSE and LICENSE-MIT files at the
+repository root control.
 
 The intent of the dual license is straightforward: the book should
 be free to read, free to study from, and free to recommend to a

@@ -78,19 +78,21 @@ Two licenses, one simple rule: **the book is dual-licensed; everything
 else in the repository is MIT.**
 
 This dual license (CC BY-NC-ND + commercial, above) covers the
-**publishable book body and every file that reproduces its text**:
+**publishable book itself** and nothing more:
 
-- `book/` — the manuscript itself (the publishable work);
-- `TOC.md`, `BookDescription.md` — contents derived from it;
-- `factcheck/`, `reviews/`, `archive/`, and the frozen book-audit files
-  `docs/fact-check-ledger.md` and `docs/review-2026-05-28-disposition.md`
-  — records that quote or draft the manuscript verbatim, and so carry
-  the same protected text.
+- `book/` — the manuscript (the publishable work);
+- `TOC.md`, `BookDescription.md` — the book's own table of contents and
+  charter.
 
-**Everything else is auxiliary and licensed under the MIT License** — all
-code, build and verification tooling, figure generators, methodology and
-process documents, project-status and planning docs, metadata, and
-configuration. See `LICENSE-MIT` for the authoritative scope and terms
+**Everything else in the repository is auxiliary and licensed under the
+MIT License** — including the fact-check records (`factcheck/`), the
+review and planning artifacts (`reviews/`, `archive/`, and the audit
+files under `docs/`), all code, build and verification tooling, figure
+generators, methodology and process documents, project-status and
+planning docs, metadata, and configuration. The book's value is the
+author's curation, verification, and editorial judgment, not the
+underlying facts or the working records of the process — those are freely
+reusable. See `LICENSE-MIT` for the authoritative scope and terms
 (`examples/LICENSE` carries a local copy of the grant). Adapt any of it
 freely, including for your own books and projects.
 

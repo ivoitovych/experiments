@@ -226,13 +226,14 @@ your own code (see [License](#license)).
 
 Two licenses, one rule: **the book is dual-licensed; everything else is MIT.**
 
-The **book** — the publishable manuscript under [`book/`](book/), its derived
-contents (`TOC.md`, `BookDescription.md`), and the records that reproduce its
-text (`factcheck/`, `reviews/`, `archive/`) — is licensed under
-**CC BY-NC-ND 4.0**, with commercial use requiring a separate license; see
-[LICENSE](LICENSE) for the full terms.
+The **book** — the publishable manuscript under [`book/`](book/) plus its own
+table of contents and charter (`TOC.md`, `BookDescription.md`) — is licensed
+under **CC BY-NC-ND 4.0**, with commercial use requiring a separate license;
+see [LICENSE](LICENSE) for the full terms.
 
 **Everything else is auxiliary and MIT-licensed** ([LICENSE-MIT](LICENSE-MIT))
-— all code, build and verification tooling, figure generators, methodology,
-project-status and planning docs, metadata, and configuration. You are
-welcome to adapt any of it for your own books and projects.
+— the fact-check records, review and planning artifacts, all code, build and
+verification tooling, figure generators, methodology, project docs, metadata,
+and configuration. The book's value is the author's curation and editorial
+judgment, not the underlying facts or the working records — those are yours to
+reuse.

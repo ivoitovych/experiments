@@ -33,8 +33,8 @@ Status key: **OPEN** (waiting) · **PARTIAL** (some done) · **NEEDS-AUTHOR**
   before writing (no partial-destructive output); word-precise (not
   line-wide) codespell suppression + empty allowlist; scaffold marked
   historical. *Still open:* enforce claim date/source/scope rules (= the
-  DEFERRED-FACTCHECK programme, §A) and **resolve the licensing file-class
-  matrix (author decision, §C).**
+  DEFERRED-FACTCHECK programme, §A). *Licensing resolved (2026-07-22):*
+  book/ (+ TOC, BookDescription) dual; everything else MIT.
 - **P1 — drift & reproducibility.** Canonical structured sources for
   references/status/navigation/figures with bidirectional drift checks;
   retire/regenerate stale scaffold; pin/test environments; deterministic,
@@ -93,12 +93,6 @@ into dated, sourced records. All flagged inline in the dispositions doc.
 - **NEEDS-AUTHOR — full visual/browser render pass.** The SVG figures and
   GitHub-rendered math want human eyes end-to-end; lint covers only the
   known bug classes.
-- **NEEDS-AUTHOR — explicit licensing file-class matrix.** The reviewer's P0
-  asks for an unambiguous file-class -> license table across manuscript,
-  code, figures, docs, examples, metadata, and generated outputs. The three
-  license files already imply it; making it one explicit matrix (and
-  deciding the edge classes: SVG figures, generated book-build, CITATION.cff)
-  is your call.
 - **NEEDS-AUTHOR — retire/archive `scripts/scaffold.py`.** Now a historical
   bootstrap with stale embedded README/STYLE; keep-with-warning (current),
   move to `archive/`, or delete?
