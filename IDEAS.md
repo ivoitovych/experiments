@@ -93,9 +93,6 @@ into dated, sourced records. All flagged inline in the dispositions doc.
 - **NEEDS-AUTHOR — full visual/browser render pass.** The SVG figures and
   GitHub-rendered math want human eyes end-to-end; lint covers only the
   known bug classes.
-- **NEEDS-AUTHOR — retire/archive `scripts/scaffold.py`.** Now a historical
-  bootstrap with stale embedded README/STYLE; keep-with-warning (current),
-  move to `archive/`, or delete?
 
 ## D. Reusable infrastructure ideas (`infrastructure queue`)
 

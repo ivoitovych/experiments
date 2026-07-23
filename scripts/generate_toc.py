@@ -46,6 +46,41 @@ def slugify(text: str) -> str:
     return s.replace(" ", "-")
 
 
+def read_h1(md) -> str:
+    """The file's H1 title (the `# ...` line), falling back to its name."""
+    for line in md.read_text(encoding="utf-8").splitlines():
+        if line.startswith("# "):
+            return line[2:].strip()
+    return md.name
+
+
+def book_parts():
+    """The book's top-level directories in **canonical reading order**
+    (the insertion order of PART_TITLES: front matter, prelude, Parts I-XIII,
+    back matter) — NOT ASCII order, which would misplace `99-back-matter`
+    before the parts. This is the single source of truth for book structure,
+    derived from the real `book/` tree, shared by TOC and mdBook generation.
+
+    Guards that the on-disk directories exactly match PART_TITLES, so a new
+    or renamed part cannot be silently dropped, duplicated, or misordered.
+    """
+    on_disk = {p.name for p in BOOK.iterdir() if p.is_dir()}
+    known = set(PART_TITLES)
+    if on_disk != known:
+        raise SystemExit(
+            "book/ directories do not match PART_TITLES in generate_toc.py — "
+            f"on disk but unlabelled: {sorted(on_disk - known)}; "
+            f"labelled but absent: {sorted(known - on_disk)}. "
+            "Update PART_TITLES (which also fixes the reading order).")
+    return [(name, PART_TITLES[name], BOOK / name) for name in PART_TITLES]
+
+
+def walk_book():
+    """Yield (dirname, part_label, [(md_path, h1_title), ...]) in reading order."""
+    for name, label, d in book_parts():
+        yield name, label, [(md, read_h1(md)) for md in sorted(d.glob("*.md"))]
+
+
 def main() -> None:
     lines: list[str] = [
         "# Table of Contents",
@@ -56,16 +91,13 @@ def main() -> None:
         "[archive/plan-original-toc.md](archive/plan-original-toc.md).*",
         "",
     ]
-    for part_dir in sorted(p for p in BOOK.iterdir() if p.is_dir()):
-        title = PART_TITLES.get(part_dir.name, part_dir.name)
+    for _name, title, files in walk_book():
         lines.append(f"## {title}")
         lines.append("")
-        for md in sorted(part_dir.glob("*.md")):
+        for md, h1 in files:
             rel = md.relative_to(ROOT).as_posix()
-            content = md.read_text(encoding="utf-8").splitlines()
-            h1 = next((l[2:].strip() for l in content if l.startswith("# ")), md.name)
             lines.append(f"- **[{h1}]({rel})**")
-            for l in content:
+            for l in md.read_text(encoding="utf-8").splitlines():
                 if l.startswith("## "):
                     heading = l[3:].strip()
                     lines.append(f"  - [{heading}]({rel}#{slugify(heading)})")
@@ -79,8 +111,8 @@ def main() -> None:
                   "green README coverage over an empty inventory.")
             sys.exit(1)
         missing = []
-        for part_dir in sorted(p for p in BOOK.iterdir() if p.is_dir()):
-            for md in sorted(part_dir.glob("*.md")):
+        for _name, _title, files in walk_book():
+            for md, _h1 in files:
                 rel = md.relative_to(ROOT).as_posix()
                 if f"({rel})" not in readme:
                     missing.append(rel)

@@ -31,7 +31,16 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
-from scaffold import ENTRIES, file_entries  # noqa: E402
+# Book structure is derived from the real book/ tree (the single source of
+# truth), via generate_toc's canonical-reading-order walk — not from any
+# hand-maintained or bootstrap list.
+from generate_toc import walk_book  # noqa: E402
+
+
+def book_rel_paths() -> list[str]:
+    """Every manuscript file as a `book/...` path, in reading order."""
+    return [md.relative_to(ROOT).as_posix()
+            for _name, _label, files in walk_book() for md, _h1 in files]
 
 BUILD = ROOT / "book-build"
 SRC = BUILD / "src"
@@ -126,16 +135,15 @@ def build_summary() -> str:
     # there makes the home page (and every chapter's "Table of Contents" nav,
     # which is redirected to home) match the online landing page.
     lines = ["# Summary", "", "- [Quantum Computing for Experienced Developers](intro.md)"]
-    for e in ENTRIES:
-        kind = e.get("kind")
-        if kind == "part-divider":
-            lines.append(f"\n# {e['part_label']}\n")
-        elif kind == "chapter":
-            label = e.get("chapter_label", "")
-            prefix = f"{label}. " if label else ""
-            lines.append(f"- [{prefix}{e['title']}](book/{e['dir']}/{e['file']})")
-        elif kind in ("front", "back"):
-            lines.append(f"- [{e['title']}](book/{e['dir']}/{e['file']})")
+    for name, label, files in walk_book():
+        # Front matter flows from the intro as mdBook prefix chapters (no
+        # section header); every later group gets its part header. Link text
+        # is each file's own H1 title.
+        if name != "00-front-matter":
+            lines.append(f"\n# {label}\n")
+        for md, h1 in files:
+            rel = md.relative_to(ROOT).as_posix()
+            lines.append(f"- [{h1}]({rel})")
     lines.append("\n# Project documents\n")
     for doc, title in PROJECT_DOCS:
         lines.append(f"- [{title}]({doc})")
@@ -190,7 +198,7 @@ def selftest() -> None:
         assert got == want, f"\n  in:   {src!r}\n  want: {want!r}\n  got:  {got!r}"
 
     summary = build_summary()
-    assert summary.count("](book/") == len(file_entries())
+    assert summary.count("](book/") == len(book_rel_paths())
     readme = (pathlib.Path(__file__).resolve().parent.parent / "README.md").read_text(encoding="utf-8")
     for (_, (label, install_arg, _)) in sorted(SUPPORTED_PAIRS.items()):
         if install_arg not in readme:
@@ -199,7 +207,7 @@ def selftest() -> None:
                 f"mdbook-katex {install_arg} ({label}) — keep README's "
                 f"install instructions in sync with SUPPORTED_PAIRS")
     print(f"selftest OK ({len(cases)} math + {len(link_cases)} link cases, "
-          f"SUMMARY lists all {len(file_entries())} chapters)")
+          f"SUMMARY lists all {len(book_rel_paths())} chapters)")
 
 
 def _process_md(src_file: pathlib.Path, src_relpath: str, inbook: set[str]) -> str:
@@ -210,7 +218,7 @@ def _process_md(src_file: pathlib.Path, src_relpath: str, inbook: set[str]) -> s
 def assemble() -> None:
     if BUILD.exists():
         shutil.rmtree(BUILD)
-    inbook = {f"book/{e['dir']}/{e['file']}" for e in file_entries()} | set(EXTRA_DOCS)
+    inbook = set(book_rel_paths()) | set(EXTRA_DOCS)
     SRC.mkdir(parents=True, exist_ok=True)
     for path in sorted((ROOT / "book").rglob("*")):
         dest = SRC / path.relative_to(ROOT)
@@ -238,7 +246,7 @@ def assemble() -> None:
             shutil.copy2(src_asset, SRC / asset)
     (SRC / "SUMMARY.md").write_text(build_summary(), encoding="utf-8")
     (BUILD / "book.toml").write_text(BOOK_TOML, encoding="utf-8")
-    print(f"assembled build tree at {BUILD.relative_to(ROOT)} ({len(file_entries())} chapters)")
+    print(f"assembled build tree at {BUILD.relative_to(ROOT)} ({len(book_rel_paths())} chapters)")
 
 
 def tool_version(tool: str) -> tuple[int, ...] | None:

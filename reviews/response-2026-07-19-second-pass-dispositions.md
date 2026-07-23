@@ -3884,3 +3884,35 @@ Closes the automatable P0 tooling lane.
 
 `factcheck_lint` (not previously in CI) now returns 0; lint, baseline
 (94), examples, identity suite, and citations all pass.
+
+## Batch 73 — book/ is the single source of book structure (+ TOC order bug fix)
+
+Author principle: the real `book/` tree is authoritative for what the book
+contains; no historical script should be. Acting on it exposed a genuine
+bug and removed a stale duplicated authority.
+
+### FIXED — reading-order bug in the generated TOC
+- `generate_toc.py` ordered parts by ASCII `sorted(iterdir())`, which placed
+  `99-back-matter` **second** (before the Historical Prelude and all Parts).
+  The committed `TOC.md` carried that wrong order. Now the walk follows the
+  canonical reading order (the insertion order of `PART_TITLES`): front
+  matter -> prelude -> Parts I-XIII -> back matter. TOC.md regenerated;
+  Back Matter is now last.
+
+### FIXED — single source of truth for book structure
+- New `walk_book()` / `book_parts()` in `generate_toc.py` derive the ordered
+  structure from the real `book/` tree, with a guard that the on-disk part
+  directories exactly match `PART_TITLES` (a new/renamed part can no longer
+  be silently dropped or misordered — **proven** to fire on mismatch).
+- `build_book.py` no longer imports `ENTRIES`/`file_entries` from the
+  bootstrap script; it builds the mdBook SUMMARY from `walk_book()`. Its
+  selftest still passes (48 chapters, correct order). Both generators now
+  read one source: `book/`.
+
+### DONE — scaffold archived (author decision)
+- `scripts/scaffold.py` -> `archive/scaffold.py`. It was the one-time tree
+  bootstrap; nothing imports it now. Docstring and `archive/README.md`
+  updated to mark it frozen/provenance-only, explicitly not an authority.
+
+Lint, anchor baseline (94), TOC `--check`, README coverage, build_book
+selftest, and card citations all pass.

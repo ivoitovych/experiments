@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 """
-Scaffold the book directory tree from the TOC. **Historical bootstrap tool.**
+Scaffold the book directory tree from the TOC. **Archived historical
+bootstrap tool — not wired to anything.**
+
+This created the initial tree once. It is preserved here for provenance
+only; it is no longer on any live path (`build_book.py` now derives the
+book structure from the real `book/` tree via `generate_toc.walk_book`,
+the single source of truth). It will not run as-is from `archive/`
+(its `phases` import expects `scripts/` on the path), and its embedded
+README/STYLE/structure are the stale originals. Do not resurrect it as
+an authority; the delivered `book/` is authoritative.
 
 This created the initial tree once. It is idempotent — `write_if_missing`
 never overwrites an existing file — so re-running it only fills in files

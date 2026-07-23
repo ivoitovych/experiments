@@ -12,6 +12,11 @@ reports).
 - `plan-original-toc.md` — the original planned section outline (formerly TOC.md,
   with its reconciliation note). TOC.md is now generated from the delivered
   manuscript's headings by `scripts/generate_toc.py` (`make toc`).
+- `scaffold.py` — the one-time bootstrap that generated the initial directory
+  tree (moved from `scripts/` 2026-07-22). No longer wired to anything:
+  `build_book.py` derives the book structure from the real `book/` tree via
+  `generate_toc.walk_book`, the single source of truth. Kept for provenance;
+  its embedded README/STYLE/structure are stale originals.
 
 Archived 2026-07-04 (moved from the repository root; git history preserves the
 original paths).
