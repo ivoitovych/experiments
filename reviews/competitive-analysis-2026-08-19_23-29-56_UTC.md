@@ -510,3 +510,145 @@ depth in Part IX are all **declared** in the Preface and are correct calls
 for this audience.
 
 ---
+
+## 7. Proposed addenda
+
+The author's brief for this analysis included a specific idea: the book
+skips some material **on purpose**, because it targets experienced
+developers — but if competing books teach that material, a reader who has
+forgotten it has nowhere to go. Back-matter addenda solve this without
+diluting the main line: they are opt-in, they let a reader **self-assess**
+rather than be lectured, and they keep Chapters 1–37 aimed at the reader the
+Preface describes.
+
+Two families are proposed. **7.1** closes the "assumed but forgotten"
+prerequisite gap. **7.2** closes genuine coverage gaps from §6.
+
+### 7.1 Refresher addenda — material assumed, not taught
+
+Design rules for all of these: **short**, **drill-shaped**, **answers
+printed** (unlike the chapter checks, because the purpose here is
+calibration, not practice), and each item **keyed to the chapter that will
+need it**, so a reader who fails an item knows exactly what to reread. The
+existing front-matter *Recommended / Assumed Background and Self-Check*
+already uses this format with inline answers — these addenda are its
+back-matter continuation, not a new device.
+
+| ID | Proposed addendum | Closes | Competitors that teach it | Size |
+|---|---|---|---|---|
+| **App G** | *Linear Algebra Refresher and Drill* — vectors, inner products, eigen-decomposition, SVD, tensor products; 20 worked drills with answers, keyed to Ch. 4 | Assumed background | Hidary Pt III (3 chapters), Sutor ch. 3–5, N&C ch. 2, Y&M | ~3,500 w |
+| **App H** | *Classical Complexity Refresher* — P/NP/coNP/BPP, reductions, why "NP-hard" is not "impossible"; keyed to Ch. 17 | Assumed background | N&C ch. 3 *Introduction to computer science*, R&P appendix | ~2,500 w |
+| **App I** | *Probability and Statistics for Shot-Based Experiments* — estimators, shot-noise scaling, confidence intervals, how many shots is enough, hypothesis testing on quantum data | Assumed background **and a real gap in every competitor** | **None cover this well** | ~3,000 w |
+| **App J** | *Reversible Classical Computing and Quantum Arithmetic* — Toffoli/Fredkin recap, ripple-carry and QFT (Draper) adders, comparators, modular exponentiation, and **turning a classical predicate into an oracle** | **G2** | *Programming Quantum Computers*, N&C §3, Hidary code | ~4,000 w |
+| **App K** | *Complex Numbers, Fourier, and Signal Intuition* — the DSP bridge §SC.7 promises, made concrete | Assumed background | Sutor ch. 3–4, Glassner | ~2,000 w |
+
+Notes on the set:
+
+- **App I is not a refresher — it is a differentiator.** Estimator variance
+  and shot budgeting is the single most common place where a competent
+  classical engineer gets a quantum result wrong, and no competitor in the
+  set treats it properly. Recommend building it even if the rest of §7.1 is
+  deferred.
+- **App J is the highest-value item in the whole proposal.** It closes G2,
+  it is the material the target reader most concretely wants, and it is a
+  natural home for two or three of the missing runnable examples (G1).
+- App G/H/K are catch-up material: cheap to write, low risk, and they let
+  the Preface keep its hard prerequisites while giving a bounced reader a
+  ramp instead of a wall.
+
+### 7.2 Content addenda — closing real coverage gaps
+
+| ID | Proposal | Closes | Placement | Size |
+|---|---|---|---|---|
+| **§19.15a** | *Bosonic and hardware-efficient codes* — dissipative cat qubits, GKP, subsystem/Bacon–Shor; why biased noise changes the overhead arithmetic; what the 2024–2026 demonstrations did and did not show | **G3** | In Ch. 19, **not** an appendix — it belongs beside qLDPC | ~1,200 w |
+| **§23.x** | *ZX-calculus and diagrammatic rewriting* — what it is, what PyZX/TKET do with it, and its limits | **G4** | In Ch. 23 | ~800 w |
+| **App L** | *Energy, Power, and Cost* — dilution-refrigerator power budget, energy per gate and per logical operation, honest comparison with classical datacentre workloads, and how to read an energy claim | **G6** | Appendix, dated like App F | ~2,500 w |
+| **§18.18 expansion** | Split error mitigation into its own numbered sections (ZNE / PEC / twirling / DD), or add one explicit paragraph stating that the de-emphasis is a judgment about NISQ, not an oversight | **G5** | In Ch. 18 | ~1,000 w or 1 ¶ |
+| **§31.x or §33.x** | *Quantum random number generation and certified randomness* | **G9** | Ch. 31 or 33 | ~600 w |
+| **§23.13a** | *QPU-as-accelerator in an HPC centre* — job scheduling, Slurm/MPI integration, where the QPU sits in a national-lab stack | **G10** | Ch. 23 | ~800 w |
+| **Ch. 6 checks** | Five sanity checks for *The Qubit* | **G7** | Ch. 6 | ~300 w |
+
+### 7.3 A self-assessment instrument (the author's "assess their qualification" idea)
+
+The strongest version of the author's suggestion is **not** more remedial
+prose. It is a **graduated self-assessment** that tells a reader where they
+actually stand:
+
+- **Front matter (exists):** *Recommended / Assumed Background and
+  Self-Check* — "can you start this book?"
+- **Proposed back matter — *Appendix M: Where You Stand*:** a
+  ~30-item instrument, grouped by Part, each item tagged with the
+  chapter it tests and, on failure, the refresher addendum (App G–K) that
+  repairs it. Answers printed.
+
+This turns the addenda from a pile of catch-up material into a **routed
+diagnostic**: fail item 7 → read App G §3 → reread Ch. 4.8. It is
+cheap, it is unusual (no competitor ships one), and it directly serves the
+"experienced but rusty" reader the addenda exist for.
+
+### 7.4 What *not* to add
+
+- **Do not print answers to the chapter-end sanity checks.** The Preface
+  argues the case, and it is a defensible pedagogical position. Hints —
+  section pointers only — would be a reasonable middle path if reader
+  feedback demands one.
+- **Do not add a physics-first derivation of quantum mechanics.** Declared
+  out of scope; adding it would move the book toward N&C's ground, where it
+  cannot win.
+- **Do not add vendor SDK tutorials.** They date within a year and the book
+  has a hardware snapshot precisely because it takes dating seriously.
+
+---
+
+## 8. Recommended action list
+
+Ranked by (competitive impact) ÷ (effort).
+
+| # | Action | Closes | Effort | Impact |
+|---|---|---|---|---|
+| 1 | Companion code repository, one notebook per Part | G1 | Medium | **High** — removes the top shelf-comparison objection |
+| 2 | **App J** *Reversible Computing and Quantum Arithmetic* | G2 | Medium | **High** |
+| 3 | Five sanity checks for Chapter 6 | G7 | Trivial | Medium |
+| 4 | §19.15a bosonic / cat / GKP codes | G3 | Small | **High** — a factual completeness gap in a flagship chapter |
+| 5 | **App I** *Statistics for Shot-Based Experiments* | prereq + differentiator | Medium | **High** |
+| 6 | §23.x ZX-calculus | G4 | Small | Medium |
+| 7 | **App M** *Where You Stand* self-assessment | author's brief | Medium | Medium-High — no competitor has one |
+| 8 | **App L** *Energy, Power, and Cost* | G6 | Medium | Medium |
+| 9 | App G / H / K refreshers | prereq | Medium | Medium |
+| 10 | §18.18 split or stated rationale | G5 | Small | Medium |
+| 11 | QRNG; HPC-centre integration; ETSI/ISO; qudit scope note | G9–G12 | Small | Low |
+
+**Marketing positioning that follows from §5.** The defensible one-sentence
+claim is: *the only book that takes an experienced engineer from the
+postulates to QSVT, lattice surgery, cryogenic control electronics, and
+tensor-network simulation — and then teaches them how to tell a real
+quantum claim from a press release.* Every clause of that sentence is
+backed by a ○ column in §4.
+
+---
+
+## 9. What must be re-verified before this document is used externally
+
+The egress restriction recorded in §0 means the competitor columns are
+**best-effort**. Before any of this becomes a proposal, a back-cover
+comparison, or a public claim:
+
+1. Pull the **publisher's own table of contents** for Hidary 2E, Glassner,
+   *Programming Quantum Computers*, Rieffel–Polak, Yanofsky–Mannucci,
+   Kaiser–Granade, and Wong, and re-grade their matrix rows.
+2. Confirm the **Nielsen–Chuang chapters 10–12 and appendix titles**
+   (marked **[K]** in §2.4).
+3. Check for **2026 releases** not surfaced here — the search tool returned
+   nothing new in the developer segment past Glassner (Jul 2025), but that
+   is weak evidence, not proof.
+4. Confirm **Ezratty's current edition** page count and part structure (the
+   September 2025 edition was reported at 1,524 pages **[S]**).
+5. Re-run the in-tree greps that support G2, G3, G4, G6, G7, G9, G10 — they
+   are reproducible one-liners and should be re-checked against the
+   manuscript at the time of any claim.
+
+---
+
+*Analysis prepared 2026-08-19. Competitor grading is provisional per §0 and
+§9; findings about `book/` are verified against the manuscript at commit
+`5cbb01d`.*
