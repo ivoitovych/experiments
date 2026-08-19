@@ -472,7 +472,7 @@ incidental "energetic". Ezratty devotes explicit treatment to *quantum
 computing energetics*. For a book with a **control-electronics and
 cryogenics chapter** and an **engineering** framing, the dilution-refrigerator
 power budget, energy per logical operation, and the honest comparison against
-a classical datacentre are conspicuously missing — and they are exactly the
+a classical data center are conspicuously missing — and they are exactly the
 questions an infrastructure or HPC engineer asks first.
 
 **G7 — Chapter 6 has no end-of-chapter checks.** See Finding A1 (§3.2). The
@@ -491,10 +491,10 @@ for course adoption.
   "certified randomness"; no treatment of quantum random number generation —
   a *deployed, commercially shipping* quantum technology — despite chapters
   on sensing (31) and communication (33).
-- **G10 — HPC-centre integration.** Zero hits for "hybrid HPC" or "HPC
+- **G10 — HPC-center integration.** Zero hits for "hybrid HPC" or "HPC
   integration"; §23.13 covers vendor hybrid runtimes (Primitives, Braket
   Hybrid Jobs, Azure Sessions) but not QPU-as-accelerator inside a
-  Slurm/MPI supercomputing centre — a live topic for the HPC readers the
+  Slurm/MPI supercomputing center — a live topic for the HPC readers the
   book explicitly targets.
 - **G11 — Standards beyond NIST.** NIST appears 106 times; ETSI and ISO/IEC
   zero. Minor, but a security reader will notice.
@@ -562,10 +562,10 @@ Notes on the set:
 |---|---|---|---|---|
 | **§19.15a** | *Bosonic and hardware-efficient codes* — dissipative cat qubits, GKP, subsystem/Bacon–Shor; why biased noise changes the overhead arithmetic; what the 2024–2026 demonstrations did and did not show | **G3** | In Ch. 19, **not** an appendix — it belongs beside qLDPC | ~1,200 w |
 | **§23.x** | *ZX-calculus and diagrammatic rewriting* — what it is, what PyZX/TKET do with it, and its limits | **G4** | In Ch. 23 | ~800 w |
-| **App L** | *Energy, Power, and Cost* — dilution-refrigerator power budget, energy per gate and per logical operation, honest comparison with classical datacentre workloads, and how to read an energy claim | **G6** | Appendix, dated like App F | ~2,500 w |
+| **App L** | *Energy, Power, and Cost* — dilution-refrigerator power budget, energy per gate and per logical operation, honest comparison with classical data center workloads, and how to read an energy claim | **G6** | Appendix, dated like App F | ~2,500 w |
 | **§18.18 expansion** | Split error mitigation into its own numbered sections (ZNE / PEC / twirling / DD), or add one explicit paragraph stating that the de-emphasis is a judgment about NISQ, not an oversight | **G5** | In Ch. 18 | ~1,000 w or 1 ¶ |
 | **§31.x or §33.x** | *Quantum random number generation and certified randomness* | **G9** | Ch. 31 or 33 | ~600 w |
-| **§23.13a** | *QPU-as-accelerator in an HPC centre* — job scheduling, Slurm/MPI integration, where the QPU sits in a national-lab stack | **G10** | Ch. 23 | ~800 w |
+| **§23.13a** | *QPU-as-accelerator in an HPC center* — job scheduling, Slurm/MPI integration, where the QPU sits in a national-lab stack | **G10** | Ch. 23 | ~800 w |
 | **Ch. 6 checks** | Five sanity checks for *The Qubit* | **G7** | Ch. 6 | ~300 w |
 
 ### 7.3 A self-assessment instrument (the author's "assess their qualification" idea)
@@ -616,7 +616,7 @@ Ranked by (competitive impact) ÷ (effort).
 | 8 | **App L** *Energy, Power, and Cost* | G6 | Medium | Medium |
 | 9 | App G / H / K refreshers | prereq | Medium | Medium |
 | 10 | §18.18 split or stated rationale | G5 | Small | Medium |
-| 11 | QRNG; HPC-centre integration; ETSI/ISO; qudit scope note | G9–G12 | Small | Low |
+| 11 | QRNG; HPC-center integration; ETSI/ISO; qudit scope note | G9–G12 | Small | Low |
 
 **Marketing positioning that follows from §5.** The defensible one-sentence
 claim is: *the only book that takes an experienced engineer from the
