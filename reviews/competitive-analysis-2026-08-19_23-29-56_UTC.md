@@ -269,3 +269,74 @@ actual derivation).
 > instead.
 
 ---
+
+## 4. Coverage matrix
+
+**Legend.** ● full chapter-level treatment · ◐ partial / section-level ·
+○ absent or passing mention only.
+
+**Confidence.** Rows for *this book* are **verified in-tree**. Competitor
+cells are graded from the confirmed tables of contents in §2.4 where
+available, and otherwise from prior knowledge of the titles — i.e. **[K]**,
+occasionally **[U]**. Per-column confidence:
+
+| Column | Confidence | Basis |
+|---|---|---|
+| N&C, Rieffel–Polak, Mermin, Yanofsky | **High** | Long-stable, widely taught, structure confirmed in part by search |
+| Watrous, Sutor 2E, Ezratty | **High** | Unit/chapter lists confirmed this session **[S]** |
+| Hidary, Programming Quantum Computers, Wong | **Medium** | Part structure confirmed **[S]**; chapter detail **[K]** |
+| Glassner, Kaiser–Granade | **Low–Medium** | Scope confirmed, chapter detail **[U]** — re-verify before use |
+
+Abbreviations: **N&C** Nielsen–Chuang · **R&P** Rieffel–Polak · **Y&M**
+Yanofsky–Mannucci · **PQC** *Programming Quantum Computers* · **K&G**
+Kaiser–Granade · **Ezr** Ezratty.
+
+### 4.A Theory, formalism, and algorithms
+
+| Topic | **This book** | N&C | R&P | Mermin | Y&M | Hidary | Sutor2E | Glassner | PQC | Wong | Watrous | Ezr | K&G |
+|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| Math prerequisites in-book (LA, SVD, Fourier, probability) | ● Ch4 | ● | ● | ◐ | ● | ● PtIII | ● | ● | ◐ | ● | ● | ◐ | ◐ |
+| Postulates, density matrices, partial trace | ● Ch5,10 | ● | ● | ◐ | ● | ◐ | ◐ | ◐ | ○ | ◐ | ● | ◐ | ◐ |
+| Qubit, Bloch sphere, global vs relative phase | ● Ch6 | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● | ◐ | ● |
+| Entanglement, Bell inequalities, Schmidt, measures | ● Ch7 | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● | ◐ | ● |
+| Gates, universality, Solovay–Kitaev, Clifford+T | ● Ch8 | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● | ◐ | ● |
+| Circuits: ancillas, **uncomputation**, mid-circuit meas., feedforward | ● Ch9 | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ◐ | ● | ◐ | ◐ |
+| Measurement theory: POVM, Naimark, tomography, **classical shadows** | ● Ch11 | ◐ | ◐ | ○ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ◐ | ◐ |
+| Quantum information theory: von Neumann, Holevo, capacities, LOCC | ● Ch12 | ● | ◐ | ○ | ◐ | ○ | ○ | ○ | ○ | ○ | ◐ | ◐ | ○ |
+| Foundational algorithms: DJ, BV, Simon, QFT, QPE, AA/AE, HSP | ● Ch14 | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● | ◐ | ● |
+| Landmark: Grover, Shor, HHL, walks, VQE, QAOA | ● Ch15 | ◐ | ◐ | ◐ | ◐ | ● | ● | ◐ | ● | ● | ◐ | ● | ◐ |
+| **Frontier: LCU, block encodings, qubitization, QSP, QSVT** | ● Ch16 | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ◐ | ○ |
+| Complexity: BQP/QMA, oracle separations, **dequantization**, simulability | ● Ch17 | ● | ◐ | ○ | ◐ | ◐ | ◐ | ○ | ○ | ◐ | ◐ | ◐ | ○ |
+
+### 4.B Engineering, practice, applications, judgment
+
+| Topic | **This book** | N&C | R&P | Mermin | Y&M | Hidary | Sutor2E | Glassner | PQC | Wong | Watrous | Ezr | K&G |
+|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| Noise characterization: T1/T2, RB, GST, **error budgets** | ● Ch18 | ◐ | ◐ | ○ | ○ | ◐ | ○ | ○ | ◐ | ○ | ○ | ● | ◐ |
+| Error mitigation: ZNE, PEC, twirling, dyn. decoupling | ◐ §18.18 | ○ | ○ | ○ | ○ | ◐ | ◐ | ○ | ○ | ○ | ○ | ● | ◐ |
+| QEC: stabilizers, CSS, surface, color, **qLDPC** | ● Ch19 | ● | ● | ● | ◐ | ◐ | ◐ | ○ | ○ | ◐ | ● | ● | ◐ |
+| Fault tolerance: thresholds, magic states, **lattice surgery** | ● Ch19 | ● | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ○ | ● | ● | ○ |
+| Hardware platforms (SC, ion, neutral atom, photonic, spin, topological) | ● Ch20 | ◐ | ○ | ○ | ◐ | ◐ | ◐ | ○ | ◐ | ◐ | ○ | ● | ○ |
+| **Control electronics, pulse-level, cryo, FPGA/HDL** | ● Ch21 | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● | ○ |
+| Hardware metrics & benchmarks (QV, CLOPS, XEB, drift) | ● Ch22 | ○ | ○ | ○ | ○ | ◐ | ◐ | ○ | ○ | ○ | ○ | ● | ○ |
+| Programming, compilation, transpilation, **resource estimation** | ● Ch23 | ○ | ○ | ○ | ◐ | ● | ◐ | ◐ | ◐ | ○ | ○ | ● | ● |
+| **Classical simulation incl. tensor networks, MPS/DMRG, GPU** | ● Ch24 | ○ | ○ | ○ | ○ | ◐ | ◐ | ○ | ○ | ○ | ○ | ● | ◐ |
+| NISQ era, advantage experiments, benchmarking over time | ● Ch25 | ○ | ○ | ○ | ○ | ◐ | ● | ◐ | ◐ | ○ | ○ | ● | ◐ |
+| Practical access, cloud, experiment design, reproducibility | ● Ch26 | ○ | ○ | ○ | ○ | ◐ | ◐ | ◐ | ● | ○ | ◐ | ◐ | ● |
+| Cryptography, PQC, NIST timeline, HNDL, QKD | ● Ch27 | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ○ | ◐ | ◐ | ○ | ● | ◐ |
+| Chemistry, materials, many-body, HEP, PDE | ● Ch28 | ◐ | ○ | ○ | ○ | ◐ | ○ | ○ | ◐ | ○ | ○ | ● | ◐ |
+| Optimization, finance, industrial, QUBO, annealing | ● Ch29 | ○ | ○ | ○ | ○ | ◐ | ◐ | ○ | ◐ | ○ | ○ | ● | ◐ |
+| QML incl. **dequantization honesty** | ● Ch30 | ○ | ○ | ○ | ○ | ◐ | ● | ○ | ◐ | ○ | ○ | ● | ◐ |
+| Sensing, metrology, tomography in practice | ● Ch31 | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● | ○ |
+| Adjacent models: AQC, MBQC, TQC, CV, boson sampling | ● Ch32 | ◐ | ◐ | ○ | ○ | ◐ | ○ | ○ | ○ | ◐ | ○ | ● | ○ |
+| Communication & networking, repeaters, satellite QKD, stacks | ● Ch33 | ◐ | ◐ | ◐ | ◐ | ○ | ○ | ○ | ○ | ◐ | ○ | ● | ○ |
+| **Engineering analogies bridge (DSP, control, state-space)** | ● Ch34 | ○ | ○ | ○ | ○ | ○ | ○ | ◐ | ◐ | ○ | ○ | ○ | ○ |
+| **Interpretational pitfalls / anti-metaphor discipline** | ● Ch35 | ○ | ○ | ◐ | ◐ | ○ | ◐ | ◐ | ◐ | ○ | ○ | ◐ | ○ |
+| **How to judge claims / hype detection** | ● Ch36 | ○ | ○ | ○ | ○ | ○ | ◐ | ○ | ◐ | ○ | ○ | ◐ | ○ |
+| History of the field | ● Prelude | ◐ | ◐ | ○ | ◐ | ○ | ◐ | ◐ | ○ | ◐ | ○ | ● | ○ |
+| Careers / roles for a developer | ◐ §37.5–37.7 | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ◐ | ○ | ◐ | ○ |
+| **Dated, re-verifiable hardware snapshot** | ● App F | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● | ○ |
+| Runnable code / repository | ○ 5 scripts | ○ | ○ | ○ | ◐ | ● | ● | ● | ● | ◐ | ● | ○ | ● |
+| Exercise volume | ◐ 5/chapter | ● | ● | ● | ● | ◐ | ● | ◐ | ◐ | ● | ◐ | ○ | ◐ |
+
+---
