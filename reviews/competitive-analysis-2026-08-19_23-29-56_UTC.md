@@ -201,3 +201,71 @@ measurement, then writing real quantum programs. Chapter-level TOC not
 retrievable under this session's egress restrictions.
 
 ---
+
+## 3. Apparatus comparison — exercises, code, and reference matter
+
+This section is grounded in direct inspection of the manuscript, and it
+**corrects a first-pass impression**: a naive grep for "exercise" suggested
+the book had none. It does. They are called **"Sanity checks before moving
+on"**, and they are substantial (typically five items, several requiring an
+actual derivation).
+
+### 3.1 What the manuscript actually has
+
+| Apparatus | State in `book/` |
+|---|---|
+| End-of-chapter checks | **35 of 42 chapter-level files** carry a *Sanity check(s)* block |
+| Typical size | 5 items, derivation-grade (e.g. Ch. 17 asks the reader to state the BPP ⊆ BQP ⊆ PSPACE chain, name the unconditional step, and identify the step needing Adleman–DeMarrais–Huang) |
+| Answers | Deliberately **not printed**; the Preface argues the act of answering matters more |
+| Worked examples | Integrated into prose, not collected |
+| Fenced code in prose | 12 blocks total |
+| Runnable scripts | 5, in `examples/` (`first_bell_program.py`, `deutsch_jozsa.py`, `grover.py`, `statevector_simulation.py`, `qiskit_ordering_check.py`) |
+| Front-matter diagnostic | *Recommended / Assumed Background and Self-Check* — 7 sections with sample problems **and inline answers** |
+| Reference matter | Notation ref · gate matrices · identities/decompositions · suggested reading · glossary · dated hardware snapshot · index |
+
+### 3.2 Chapters with no end-of-chapter check
+
+| Chapter | Explained by the Preface? | Verdict |
+|---|---|---|
+| Historical Prelude | Not addressed; carries *Anti-hype checkpoint* boxes instead | Acceptable — it is a narrative |
+| Ch. 3 *Physical Intuition* | **Yes** — declared an exception (experiment-driven checks, inline answers) | Fine |
+| **Ch. 6 *The Qubit*** | **No** | **Genuine gap** — see below |
+| Ch. 37 *Endgame* | Not addressed | Fine — it is a closer |
+| Front matter (3 files) | Yes — the self-check chapter is calibration | Fine |
+
+> **Finding A1 (concrete, verified, cheap to fix).** Chapter 6, *The Qubit*,
+> is the only substantive chapter with neither an end-of-chapter check nor a
+> stated exemption — and it covers exactly the material every competitor
+> drills hardest (Bloch sphere, global vs. relative phase, basis change,
+> single-qubit measurement). The Preface's claim that "most chapters end
+> with a small set of sanity-check exercises" is true but is at its weakest
+> precisely where a reader is most likely to test themselves first.
+> Add five checks to Ch. 6.
+
+### 3.3 How that compares with the competitor set
+
+| Book | Exercises | Answers/solutions | Code | Notes |
+|---|---|---|---|---|
+| **This book** | 5-item checks in 35/42 chapters | none printed | 12 blocks + 5 scripts | Derivation-grade checks; no problem sets |
+| Sutor 2E (C2) | Extensive; **100+ added in 2E** | in-book | Python/Qiskit, GitHub repo **[S]** | Strongest exercise apparatus in Tier 1 |
+| Rieffel & Polak (C6) | Full textbook problem sets **[K]** | partial | minimal | Academic-textbook model |
+| Mermin (C7) | Yes, precise and hard **[K]** | some | none | Very compact |
+| Wong (C8) | Yes, course-tested **[K/S]** | instructor solutions | minimal | Free PDF |
+| Nielsen & Chuang (P1) | Exercises **and** Problems, ~hundreds **[K]** | none | none | The bar for a graduate text |
+| Watrous (C9) | Lesson-embedded **[S]** | — | Qiskit in-browser | Video + text + runnable |
+| Hidary (C1) | Light **[K]** | — | **Substantial code, GitHub** **[S]** | Code is the differentiator |
+| Programming Quantum Computers (C4) | Hands-on tasks **[K]** | — | **QCEngine browser sandbox** **[K]** | Code-first by design |
+| Glassner (C3) | Progressive build-up **[S]** | — | "write real quantum programs" **[S]** | Visual-first |
+
+> **Finding A2 (structural, strategic).** On *exercise volume* the book is
+> mid-pack, not leading: Sutor 2E and Nielsen–Chuang both offer an order of
+> magnitude more practice. On *exercise quality for the target reader* the
+> book is competitive — its checks demand derivation and judgment rather
+> than symbol-pushing. On *runnable code* the book is at the **bottom of
+> Tier 1** by a wide margin: 5 scripts against Hidary's and Sutor's
+> maintained GitHub repositories and C4's browser sandbox. This is a
+> deliberate choice ("not only a programming tutorial"), but it is the
+> single most likely reason a developer picks a competitor off the shelf
+> instead.
+
+---
