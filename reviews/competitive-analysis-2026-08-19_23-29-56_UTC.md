@@ -340,3 +340,173 @@ Kaiser–Granade · **Ezr** Ezratty.
 | Exercise volume | ◐ 5/chapter | ● | ● | ● | ● | ◐ | ● | ◐ | ◐ | ● | ◐ | ○ | ◐ |
 
 ---
+
+## 5. Where this book leads the field
+
+Each claim below is stated with the evidence that supports it and the
+competitor it is measured against.
+
+**S1 — Unmatched span in a single volume.** No Tier-1 competitor covers the
+full arc *formalism → information theory → frontier algorithms → complexity →
+noise → QEC → hardware → control electronics → compilation → classical
+simulation → five application domains → adjacent models → networking →
+epistemics*. The only book that covers comparable ground is **Ezratty's
+*Understanding Quantum Technologies*** — and that is a ~1,500-page annually
+re-issued survey, not a teachable, linearly readable text. Against the
+teachable competitors (N&C, Rieffel–Polak, Sutor, Hidary, Watrous), rows
+18–22 and 28–33 of the matrix are largely blank.
+
+**S2 — The modern algorithmic frontier is a genuine monopoly.** Chapter 16
+(LCU, block encodings, qubitization, QSP, QSVT) shows ○ in **every**
+competitor column except a partial in Ezratty. QSVT is the organizing
+framework of post-2019 quantum algorithms; Nielsen–Chuang predates it by a
+decade, Rieffel–Polak and Mermin by more, and the developer-facing books
+(Hidary, Sutor, Glassner, Johnston) do not attempt it. **This is the single
+strongest "why this book and not that one" argument the manuscript has.**
+
+**S3 — Control electronics and the classical control plane.** Chapter 21
+(pulse shaping, RF chains, cryogenic electronics, DAC/ADC, signal integrity,
+FPGA/HDL, real-time feedback, packaging) shows ○ across the entire Tier-1
+set. A targeted search for book-level treatment of FPGA/cryo-CMOS control
+returned **only journal and arXiv papers** — Nature, PRX Quantum, APL
+Quantum, arXiv — no competing textbook chapter **[S]**. For the FPGA,
+embedded, and hardware/software co-design readers named in
+`BookDescription.md`, Chapter 21 has no substitute on the shelf.
+
+**S4 — Classical simulation treated as a first-class engineering subject.**
+Chapter 24 (statevector, density matrix, stabilizer, near-Clifford, tensor
+networks, MPS/TEBD, DMRG, PEPS, Schrödinger–Feynman, GPU/distributed) is a
+chapter-length treatment where competitors offer at most a section. This
+matters commercially: simulation is what most readers will *actually run*
+for the next several years.
+
+**S5 — Epistemic apparatus.** Chapters 35–36 (interpretational pitfalls;
+how to judge claims), the anti-hype framing throughout, the dated Appendix F
+snapshot with an explicit *How This Snapshot Will Age* section, and the
+`factcheck/` claim-card mirror together form an apparatus with **no
+analogue** in the competitor set. Sutor's *Questions about the Future* and
+Johnston's *Guide to the Literature* are the nearest approaches and are much
+smaller. In a field where the buyer's stated pain is "I cannot tell what is
+real," this is a marketing asset, not just an editorial virtue.
+
+**S6 — The engineering-analogy bridge.** Chapter 34 (state-space thinking,
+DSP/spectral analogies, control and measurement analogies, co-design,
+numerical-simulation parallels, error propagation, *and* an explicit "where
+classical intuition misleads") is ○ across the board. It is the chapter that
+most directly delivers on the title.
+
+**S7 — Honesty as a feature, executed consistently.** §30.8 *The
+Dequantization Lesson*, §17.12 *Dequantization*, §29.6 *Realistic Assessment
+of Near-Term Value*, §36.3 *"Quantum-Inspired" vs. Actual Quantum
+Computing*. Sutor 2E added a QML chapter; this book adds a QML chapter **and
+tells the reader which parts of it do not survive contact with a classical
+baseline**.
+
+**S8 — Reference matter density.** Six appendices including an executable
+identities set (`scripts/verify_identities.py`), a glossary, a notation
+reference, and a dated hardware snapshot. Only N&C's appendix set is
+comparable in ambition, and it is mathematically narrower.
+
+---
+
+## 6. Deficiencies, gaps, and incompleteness
+
+Ordered by severity. Each is verified in-tree unless marked otherwise.
+
+### 6.1 Severity: high
+
+**G1 — Runnable code is the book's weakest competitive dimension.**
+12 fenced blocks and 5 scripts across ~246,000 words. Hidary, Sutor, Glassner,
+Johnston, Kaiser–Granade and Watrous all ship maintained repositories or
+in-browser sandboxes. A developer browsing a shelf compares *what can I run
+tonight*, and on that axis the book loses to every Tier-1 competitor. The
+Preface's disclaimer ("not only a programming tutorial") justifies the
+*ratio*, not the *absolute floor*.
+*Recommended remedy:* a companion repository, one notebook per Part, cited
+from each chapter — with no new prose in the book itself. Keeps the
+positioning; removes the objection.
+
+**G2 — No treatment of quantum arithmetic and oracle construction.**
+Verified: "adder" appears 4 times (none constructing one); "arithmetic
+circuit" once; "modular exponentiation" 6 times, always as a cited cost,
+never as a construction. §17.x states that an algorithm needs "an efficient
+implementation of the oracle (within poly(n) gates)" — and the book never
+shows one. For the stated audience this is the sharpest omission: it is the
+exact point where an experienced developer asks *"so how do I actually build
+`f`?"* and the book hands them a citation. Competitors that do build it:
+*Programming Quantum Computers* (reversible arithmetic as a core primitive),
+Nielsen–Chuang (§3 and the reversible-computation material), Hidary (code).
+*Recommended remedy:* Addendum I (§7.2).
+
+**G3 — Bosonic error correction is one clause, and cat qubits are absent.**
+Verified: no occurrence of "cat qubit", "cat code", "Bacon–Shor", "Alice &
+Bob", "Ocelot", or "Nord Quantique" anywhere in `book/`. Chapter 19 §19.12
+points the reader to "bosonic codes (Chapter 32)", and Chapter 32 §32.5
+delivers a **single trailing clause** naming the GKP code. Meanwhile Chapter
+19 gives full sections to surface, color, and qLDPC codes, and Appendix F
+audits hardware platforms. Given that dissipative-cat and GKP encodings are
+one of the three headline hardware bets of the 2024–2026 period, a
+19-section QEC chapter that omits them is incomplete on its own terms.
+*Recommended remedy:* new §19.15a *Bosonic and hardware-efficient codes*
+(cat, GKP, subsystem/Bacon–Shor), ~1,200 words, plus an Appendix F row.
+
+### 6.2 Severity: medium
+
+**G4 — ZX-calculus is absent from the compilation chapter.** Verified: the
+only "ZX" matches in `book/` are the Pauli identity $ZX = iY$. Chapter 23
+covers transpilation, routing, scheduling, hardware- and noise-aware
+compilation, and names Qiskit, TKET, and Cirq — the last two of which use
+ZX-based rewriting in production (PyZX, TKET's passes). A compilation chapter
+that never names the rewriting formalism its own cited tools are built on has
+a hole.
+
+**G5 — Error mitigation is one 987-word section.** §18.18 covers the whole
+of ZNE / PEC / twirling / dynamical decoupling. This is the technique family
+a reader will most likely *use* in 2026, and Ezratty gives it chapter-scale
+treatment. Defensible as a deliberate de-emphasis of NISQ, but it should be
+a stated choice rather than an apparent thinness.
+
+**G6 — Energy, power, and cost of quantum computation: absent.** Verified:
+zero occurrences of "energy consumption" or "power consumption"; one
+incidental "energetic". Ezratty devotes explicit treatment to *quantum
+computing energetics*. For a book with a **control-electronics and
+cryogenics chapter** and an **engineering** framing, the dilution-refrigerator
+power budget, energy per logical operation, and the honest comparison against
+a classical datacentre are conspicuously missing — and they are exactly the
+questions an infrastructure or HPC engineer asks first.
+
+**G7 — Chapter 6 has no end-of-chapter checks.** See Finding A1 (§3.2). The
+only substantive chapter with neither checks nor a stated exemption, on the
+most-drilled topic in the field.
+
+**G8 — Exercise volume is mid-pack.** ~5 items × 35 chapters ≈ 175 checks,
+against Sutor 2E's "100+ *added* in the second edition" on top of an existing
+set, and Nielsen–Chuang's separate *Exercises* and *Problems* streams.
+Quality is competitive; volume is not. Relevant if the book is ever proposed
+for course adoption.
+
+### 6.3 Severity: low (completeness, not competitiveness)
+
+- **G9 — QRNG and certified randomness.** One incidental mention of
+  "certified randomness"; no treatment of quantum random number generation —
+  a *deployed, commercially shipping* quantum technology — despite chapters
+  on sensing (31) and communication (33).
+- **G10 — HPC-centre integration.** Zero hits for "hybrid HPC" or "HPC
+  integration"; §23.13 covers vendor hybrid runtimes (Primitives, Braket
+  Hybrid Jobs, Azure Sessions) but not QPU-as-accelerator inside a
+  Slurm/MPI supercomputing centre — a live topic for the HPC readers the
+  book explicitly targets.
+- **G11 — Standards beyond NIST.** NIST appears 106 times; ETSI and ISO/IEC
+  zero. Minor, but a security reader will notice.
+- **G12 — Qudits.** Two passing mentions. Fine for scope; worth one
+  explicit "why this book stays with qubits" sentence.
+
+### 6.4 Explicitly *not* deficiencies
+
+For the record, so these are not re-litigated in a later review: absence of
+popular-science framing, absence of a physics-first derivation of quantum
+mechanics, absence of vendor tutorials, and absence of experimental-physics
+depth in Part IX are all **declared** in the Preface and are correct calls
+for this audience.
+
+---
