@@ -108,6 +108,12 @@ matrix can be read against them:
 
 ## 2. The competitor set
 
+> **SUPERSEDED 2026-08-20 by §10.** The author supplied a fuller and better
+> competitor list; §10.1 replaces this set. The tiering below was assembled
+> without knowledge of the closest peers (Hundt, Mykhailova,
+> Gonciulea–Stefanski, Herbert, Hiu Yung Wong) and understates the
+> competition. Retained unedited as the audit trail.
+
 Assembled from search results in this session plus prior knowledge, then
 triaged by how directly each title competes for *this book's* reader: an
 experienced developer who wants working understanding, will tolerate
@@ -356,7 +362,11 @@ re-issued survey, not a teachable, linearly readable text. Against the
 teachable competitors (N&C, Rieffel–Polak, Sutor, Hidary, Watrous), rows
 18–22 and 28–33 of the matrix are largely blank.
 
-**S2 — The modern algorithmic frontier is a genuine monopoly.** Chapter 16
+**S2 — The modern algorithmic frontier is a genuine monopoly.**
+*(**CORRECTED 2026-08-20 — see §10.4.** Herbert, *Quantum Computing:
+Foundations and Practice*, OUP, print Jan 2026, covers HHL **and** the
+quantum singular value transformation. This is no longer a monopoly.)*
+ Chapter 16
 (LCU, block encodings, qubitization, QSP, QSVT) shows ○ in **every**
 competitor column except a partial in Ezratty. QSVT is the organizing
 framework of post-2019 quantum algorithms; Nielsen–Chuang predates it by a
@@ -364,7 +374,13 @@ decade, Rieffel–Polak and Mermin by more, and the developer-facing books
 (Hidary, Sutor, Glassner, Johnston) do not attempt it. **This is the single
 strongest "why this book and not that one" argument the manuscript has.**
 
-**S3 — Control electronics and the classical control plane.** Chapter 21
+**S3 — Control electronics and the classical control plane.**
+*(**CORRECTED 2026-08-20 — see §10.4.** Hiu Yung Wong, *Quantum Computing
+Architecture and Hardware for Engineers*, Springer 2025, devotes its Part IV
+to microwave electronics, superconducting chip design, and decoherence
+measurement. The claim below that a search found "no competing textbook
+chapter" was a false negative caused by an incomplete competitor set.)*
+ Chapter 21
 (pulse shaping, RF chains, cryogenic electronics, DAC/ADC, signal integrity,
 FPGA/HDL, real-time feedback, packaging) shows ○ across the entire Tier-1
 set. A targeted search for book-level treatment of FPGA/cryo-CMOS control
@@ -416,6 +432,9 @@ Ordered by severity. Each is verified in-tree unless marked otherwise.
 ### 6.1 Severity: high
 
 **G1 — Runnable code is the book's weakest competitive dimension.**
+*(**ESCALATED 2026-08-20 — see §10.5.** Severity raised from high to
+critical: Hundt 2E ships working code for 50+ algorithms.)*
+
 12 fenced blocks and 5 scripts across ~246,000 words. Hidary, Sutor, Glassner,
 Johnston, Kaiser–Granade and Watrous all ship maintained repositories or
 in-browser sandboxes. A developer browsing a shelf compares *what can I run
@@ -427,6 +446,9 @@ from each chapter — with no new prose in the book itself. Keeps the
 positioning; removes the objection.
 
 **G2 — No treatment of quantum arithmetic and oracle construction.**
+*(**ESCALATED AND BROADENED 2026-08-20 — see §10.5.** Now "the input
+problem"; three 2025 peers devote whole chapters to it.)*
+
 Verified: "adder" appears 4 times (none constructing one); "arithmetic
 circuit" once; "modular exponentiation" 6 times, always as a cited cost,
 never as a construction. §17.x states that an algorithm needs "an efficient
@@ -652,3 +674,348 @@ comparison, or a public claim:
 *Analysis prepared 2026-08-19. Competitor grading is provisional per §0 and
 §9; findings about `book/` are verified against the manuscript at commit
 `5cbb01d`.*
+
+---
+
+# 10. Revision 2 — 2026-08-20 — corrected peer set
+
+The author supplied a fuller competitor list on 2026-08-20. It contains
+several titles the first pass missed entirely, including three 2025 books and
+one January-2026 book that sit closer to this manuscript than anything in the
+original §2. **Two of the eight superiority claims in §5 are now wrong, and
+two of the gap findings in §6 get more serious.** This section states the
+corrections; §§0–9 are retained unedited above, with pointers, as the audit
+trail.
+
+The author's own nomination of the tightest peer set — **Hundt, Mykhailova,
+Gonciulea/Stefanski, Hidary, Johnston et al., Wong (Thomas), Herbert,
+Nielsen & Chuang** — is adopted below, with one addition argued for in §10.6.
+
+## 10.1 Corrected competitor set
+
+Grouped as the author grouped them; **bold** marks a title absent from the
+first pass.
+
+**A. QC for programmers / experienced developers — the primary battleground**
+
+| Title | Author(s) | Year | New? |
+|---|---|---|---|
+| *Quantum Computing for Programmers* (2nd ed.) | **Robert Hundt** | 2025, CUP | **NEW — closest peer** |
+| *Quantum Programming in Depth* | **Mariia Mykhailova** | 2025, Manning | **NEW** |
+| *Building Quantum Software with Python* | **Gonciulea & Stefanski** | 2025, Manning | **NEW** |
+| *Programming Quantum Computers* | Johnston, Harrigan, Gimeno‑Segovia | 2019, O'Reilly | — |
+| *Quantum Computing: An Applied Approach* (2nd ed.) | Hidary | 2021, Springer | — |
+| *Dancing with Qubits* (2nd ed.) | Sutor | 2024, Packt | — |
+| *Learn Quantum Computing with Python and Q#* | Kaiser & Granade | 2021, Manning | — |
+| *Practical Quantum Computing for Developers* | **Vladimir Silva** | 2018, Apress | **NEW** |
+| *QC and QML for Engineers and Developers* | **Van Griensven Thé, Fraser, Rosas‑Bustos** | 2025, Springer | **NEW** |
+
+**B. Serious intro textbooks (math-first)**
+
+Wong (Thomas) · Rieffel & Polak · Kaye–Laflamme–Mosca · Bernhardt ·
+Yanofsky & Mannucci · **Herbert, *Quantum Computing: Foundations and
+Practice* (OUP, online Dec 2025 / print Jan 2026) — NEW, and consequential.**
+
+**C. Canonical / graduate references**
+
+Nielsen & Chuang · Watrous *The Theory of Quantum Information* · Preskill
+Ph/CS 219 · **de Wolf *Quantum Computing: Lecture Notes*** · **Kitaev–Shen–Vyalyi
+*Classical and Quantum Computation*** · Wilde · Aaronson.
+*(The first pass cited Watrous's 2025 IBM course *Understanding Quantum
+Information and Computation*, which is a different and more elementary work
+than *The Theory of Quantum Information*. Both belong in the set; they
+compete with different Parts.)*
+
+**D. Hardware / systems / engineering parallels**
+
+**Hiu Yung Wong, *Quantum Computing Architecture and Hardware for Engineers:
+Step by Step* (Springer 2025) — NEW, and it breaks a superiority claim** ·
+*Building Quantum Computers: A Practical Introduction* (CUP) ·
+**Buyya & Gill (eds.), *Quantum Computing: Principles and Paradigms*
+(Elsevier/Morgan Kaufmann, Jul 2025) — NEW.**
+
+**E. Tooling / SDK-first parallels**
+
+Qiskit Textbook · **Norlén, *Quantum Computing in Practice with Qiskit*** ·
+**Weaver, *Hands-On Quantum Computing with Python*** · **Wojcieszyn,
+*Introduction to Quantum Computing with Q# and QDK*** · **Khan, *Quantum
+Computing Experimentation with Amazon Braket*.** All new to the analysis;
+all shallower than this manuscript on theory, all far ahead of it on
+runnable code.
+
+**F. Thematic cousins (anti-hype, complexity, claim-judgment)**
+
+Aaronson · **Lipton & Regan, *Quantum Algorithms via Linear Algebra*** ·
+Preskill's NISQ framing. *This is the group that contests §5's S5/S7. None
+of them is a book-length anti-hype engineering text, so S5 and S7 survive —
+but they should be argued against Preskill's NISQ essay specifically, which
+is the field's canonical honest framing.*
+
+## 10.2 Newly confirmed tables of contents
+
+All **[S]** — confirmed by search in this session.
+
+**Hundt, *Quantum Computing for Programmers*, 2nd ed. (CUP, 2025)**
+The Mathematical Minimum · Quantum Computing Fundamentals · Simple
+Algorithms · **Scalable Fast Simulation** · Beyond Classical · Complex
+Algorithms · Quantum Error Correction · **Quantum Languages, Compilers, and
+Tools** · Appendix: Sparse Implementation.
+*New in 2E:* **Quantum Machine Learning**, **State Preparation**,
+**Similarity Tests**. Ships *"detailed derivations and working code for
+simulating over 50 fundamental quantum algorithms and techniques."*
+
+**Mykhailova, *Quantum Programming in Depth* (Manning, 2025)**
+1 Quantum computing: the hype and the promise · Pt1: 2 **Preparing quantum
+states**, 3 Implementing quantum operations · Pt2: 4 Analyzing quantum
+states, 5 Analyzing quantum operations · Pt3: 6 **Evaluating classical
+functions on a quantum computer**, 7 Grover's search algorithm, 8 **Solving
+the N-queens puzzle using Grover's algorithm**, 9 Evaluating the performance
+of quantum algorithms · App A environment setup. Q# and Qiskit.
+
+**Gonciulea & Stefanski, *Building Quantum Software with Python* (Manning, 2025)**
+Pt1: 1 Advantages and challenges of programming quantum computers · 2 A first
+look at quantum computations: the knapsack problem · 3 Single-qubit states
+and gates · 4 Quantum state and circuits: beyond one qubit · Pt2: 5
+**Selecting outcomes with quantum oracles** · 6 Quantum search and
+probability estimation · 7 The quantum Fourier transform · 8 Using the
+quantum Fourier transform · 9 Quantum phase estimation · Pt3: 10 **Encoding
+functions in quantum states** · 11 Search-based quantum optimization · 12
+Conclusions and outlook · App A **Math refresher** · B More about quantum
+states and gates · C Outcome pairing strategies.
+
+**Hiu Yung Wong, *Quantum Computing Architecture and Hardware for Engineers:
+Step by Step* (Springer, 2025)**
+- Pt I *Overview and essential QM*: 1 Quantum computer hardware and
+  architecture — an overview · 2 Linear algebra: vectors, states, measurement ·
+  3 Linear algebra: operators, matrices, quantum gates · 4 Schrödinger
+  equation and quantum gates · 5 Bloch sphere, quantum gates, Pauli matrices ·
+  6 Density matrix and the Bloch sphere
+- Pt II *Silicon spin qubit*: 7 Preliminary physics · 8 Larmor precession /
+  phase-shift gate · 9 Rabi oscillation · 10 Rabi oscillation in the rotating
+  frame · 11 Implementation, initialization, readout · 12 One- and two-qubit
+  gates
+- Pt III *Superconducting qubit*: 13 Lagrangian mechanics → (circuit
+  quantization, transmon; chapter list beyond 13 not retrieved)
+- Pt IV: **roles of microwave electronics in quantum computers; design
+  parameters and methodologies of superconducting integrated quantum chips;
+  errors and decoherence-time measurement.** Organized around DiVincenzo's
+  five criteria.
+
+**Herbert, *Quantum Computing: Foundations and Practice* (OUP; online 8 Dec
+2025, print 12 Jan 2026)**
+In-depth quantum physics · postulates and Bell inequalities → the quantum
+circuit model · classic algorithms (Grover, Shor) → **HHL** → **the quantum
+singular value transformation** · quantum error correction up to the
+**threshold theorem**. Author: Affiliated Lecturer, Cambridge CST; Head of
+Quantum Algorithms, Quantinuum.
+
+**Buyya & Gill (eds.), *Quantum Computing: Principles and Paradigms*
+(Elsevier/Morgan Kaufmann, Jul 2025)** — hardware, software, algorithms, and
+applications; contributed chapters from IBM, Google, Intel, Rigetti and
+academic groups. Chapter list not retrieved.
+
+**Van Griensven Thé, Fraser & Rosas-Bustos, *QC and QML for Engineers and
+Developers* (Springer, 2 Oct 2025)** — foundations → Shor/Grover → ML
+methods, framed on engineering problems (optimization, cryptography,
+simulation); hands-on with **Qiskit, Cirq, and PennyLane**. Chapter list not
+retrieved.
+
+## 10.3 Extended matrix — the tightest peer set
+
+Only rows where the tightest peers differ meaningfully are shown; for
+everything else §4 stands. **Hundt** = Hundt 2E · **Myk** = Mykhailova ·
+**G&S** = Gonciulea–Stefanski · **Herb** = Herbert · **HYW** = Hiu Yung Wong.
+
+| Topic | **This book** | Hundt | Myk | G&S | Herb | HYW | N&C |
+|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| Math prerequisites in-book | ● Ch4 | ● | ◐ | ● App A | ● | ● Ch2–3 | ● |
+| Postulates, density matrices | ● Ch5,10 | ◐ | ◐ | ◐ | ● | ● Ch4–6 | ● |
+| **Oracle construction from a classical predicate** | ○ | ◐ | ● **Ch6, Ch8** | ● **Ch5** | ◐ | ○ | ◐ |
+| **State preparation / data encoding** | ○ | ● **new ch.** | ● **Ch2** | ● **Ch10** | ◐ | ○ | ○ |
+| **Quantum arithmetic (adders, mod-exp)** | ○ | ◐ | ◐ | ◐ | ○ | ○ | ◐ |
+| **Swap / Hadamard test (overlap estimation)** | ○ | ● **"Similarity Tests"** | ◐ | ◐ | ◐ | ○ | ◐ |
+| QFT / QPE | ● Ch14 | ● | ◐ | ● **Ch7–9** | ● | ○ | ● |
+| Grover, amplitude amplification | ● Ch14–15 | ● | ● **Ch7–8** | ● Ch6 | ● | ○ | ● |
+| **HHL** | ● §15.5 | ◐ | ○ | ○ | ● | ○ | ○ |
+| **QSVT / qubitization / block encodings** | ● Ch16 | ○ | ○ | ○ | **●** | ○ | ○ |
+| Complexity theory, dequantization | ● Ch17 | ○ | ◐ §9 | ○ | ◐ | ○ | ● |
+| QEC & fault tolerance | ● Ch19 | ● | ○ | ○ | ● | ◐ | ● |
+| Hardware platforms | ● Ch20 | ○ | ○ | ○ | ○ | ● **spin + SC, deep** | ◐ |
+| **Control electronics / microwave / readout** | ● Ch21 | ○ | ○ | ○ | ○ | **● Pt IV** | ○ |
+| Hardware metrics & benchmarks | ● Ch22 | ○ | ◐ **Ch9** | ○ | ○ | ◐ | ○ |
+| Compilation & tooling | ● Ch23 | ● **"Languages, Compilers, Tools"** | ◐ | ◐ | ○ | ○ | ○ |
+| Classical simulation / tensor networks | ● Ch24 | ● **"Scalable Fast Simulation"** | ○ | ○ | ○ | ○ | ○ |
+| Applications (chem/finance/sensing) | ● Ch27–31 | ○ | ○ | ◐ Ch11 | ○ | ○ | ◐ |
+| Adjacent models, networking | ● Ch32–33 | ○ | ○ | ○ | ○ | ○ | ◐ |
+| Epistemics / judging claims | ● Ch35–36 | ○ | ◐ **Ch1** | ◐ Ch1 | ○ | ○ | ○ |
+| **Runnable code** | ○ 5 scripts | **● 50+ algorithms** | ● Q#/Qiskit | ● Python | ○ | ◐ | ○ |
+
+## 10.4 Corrections to §5 (superiority claims)
+
+**S2 — WRONG as stated. Downgrade from "monopoly" to "one of two."**
+Herbert (OUP, Jan 2026) covers HHL *and* QSVT in a book positioned as a
+serious intro textbook, written by Quantinuum's Head of Quantum Algorithms.
+The revised, defensible claim:
+
+> Two books currently take a non-specialist reader as far as QSVT: Herbert's
+> and this one. This book is the only one that then places QSVT next to
+> **dequantization** (§17.12, §30.8), **resource estimation** (§23.11), and
+> the hardware that would have to run it (Chs. 20–22). The differentiator is
+> no longer *that* the frontier is covered but *what it is connected to*.
+
+Action: obtain Herbert's full TOC and re-grade. If Herbert also covers
+qubitization and LCU at section depth, Chapter 16's marketing value drops
+further and the emphasis must move to S4/S5/S6.
+
+**S3 — WRONG as stated. Downgrade from "no substitute on the shelf" to
+"different reader, different altitude."**
+Hiu Yung Wong's Part IV covers microwave electronics, superconducting chip
+design methodology, and decoherence-time measurement; the book is organized
+around DiVincenzo's criteria and is explicitly *for engineers*. My §5
+evidence — "a targeted search returned only journal and arXiv papers, no
+competing textbook chapter" — was a **false negative produced by an
+incomplete competitor set**, and it is exactly the failure mode this
+repository's `PROCESS.md` warns about. The revised claim:
+
+> Hiu Yung Wong builds the device from the physics up (Schrödinger → Larmor →
+> Rabi → Lagrangian circuit quantization → microwave electronics) for an
+> EE/device audience. Chapter 21 here works the other direction: the
+> **classical control plane as a software engineer meets it** — pulse-level
+> programming as a programming interface, DAC/ADC and signal integrity,
+> FPGA/HDL in the control stack, real-time feedback and mid-circuit control
+> loops, calibration and drift as an operational concern. The two are
+> complements, not substitutes, and the honest positioning says so.
+
+Action **required before any external claim**: confirm whether Wong's Part IV
+covers FPGA/HDL control stacks and real-time feedback, or stops at analog
+microwave design. If it covers them, Chapter 21's distinctiveness rests on
+altitude alone and the marketing sentence in §8 must be rewritten.
+
+**S1 — weakened but intact.** Buyya & Gill (eds.) spans hardware, software,
+algorithms and applications, but it is a multi-author edited volume; it does
+not offer one voice, one notation, or a readable path. Ezratty remains the
+breadth rival. S1 should be restated as *"the broadest single-author,
+linearly readable treatment"* rather than *"the broadest, period."*
+
+**S4, S5, S6, S7, S8 — stand.** Note however that Hundt's *Scalable Fast
+Simulation* chapter is a genuine peer to Chapter 24 on the implementation
+axis (it builds the simulators), while Chapter 24 leads on the method survey
+(stabilizer, near-Clifford, MPS/TEBD, DMRG, PEPS, Schrödinger–Feynman). S4's
+claim should be narrowed to *"the broadest survey of simulation methods"*,
+not *"the only chapter-length treatment."*
+
+## 10.5 Corrections to §6 (gaps)
+
+**G1 — escalate to CRITICAL.** Hundt ships working code for **50+
+algorithms** in a Cambridge University Press book aimed at exactly this
+book's reader, and the tooling group (Qiskit Textbook, Norlén, Weaver,
+Wojcieszyn, Khan) plus Mykhailova and Gonciulea–Stefanski make code the
+default expectation of the segment. Five scripts is not a defensible floor
+for a book whose title says *for Experienced Developers*. The companion
+repository proposed in §8 moves from *recommended* to *necessary*.
+
+**G2 — escalate to CRITICAL and broaden to "the input problem".** Verified
+in-tree today, in addition to the §6.1 findings:
+
+| Subtopic | Occurrences in `book/` |
+|---|---|
+| **swap test** | **0** |
+| Hadamard test | 1 (Ch. 28, in passing) |
+| amplitude encoding | 2 (Chs. 17, 24 — neither constructive) |
+| basis encoding | 1 (Appendix C) |
+| angle encoding | 0 |
+| QROM | 0 |
+| Grover–Rudolph | 1 (Ch. 29) |
+| adder / arithmetic circuit | 4 / 1, none constructive |
+
+Against that, the three closest 2025 peers each devote **whole chapters** to
+this material: Hundt (*State Preparation*, *Similarity Tests*), Mykhailova
+(*Preparing quantum states*; *Evaluating classical functions on a quantum
+computer*; *Solving N-queens using Grover's*), Gonciulea–Stefanski
+(*Selecting outcomes with quantum oracles*; *Encoding functions in quantum
+states*).
+
+This is now the **single clearest content deficiency in the manuscript**.
+A book that teaches QSVT but not how to load data or build an oracle has
+inverted the difficulty curve its own reader faces: the frontier material is
+world-class and the on-ramp is missing. The absence of the **swap test** is
+the sharpest single instance — Chapter 30 discusses quantum kernels, and
+Chapter 12 defines fidelity, without ever showing the standard circuit that
+estimates an overlap.
+
+*Revised remedy — supersedes App J in §7.2:* a single addendum, **Appendix J:
+*The Input Problem — Encoding, Oracles, and Arithmetic***, covering
+(a) basis/angle/amplitude encoding with cost comparisons; (b) turning a
+classical predicate into a phase oracle, worked end to end; (c) reversible
+arithmetic — ripple-carry and Draper adders, comparators, modular
+exponentiation; (d) state preparation (Grover–Rudolph, QROM) and its
+notorious cost; (e) swap and Hadamard tests for overlap and expectation
+estimation. ~6,000 words with runnable code. **This is the highest-value
+single piece of work identified by the entire analysis.**
+
+**G4 (ZX-calculus) — corroborated.** Hundt's *Quantum Languages, Compilers,
+and Tools* chapter makes a compilation chapter without the field's rewriting
+formalism harder to defend.
+
+**G3, G5–G12 — unchanged.**
+
+## 10.6 One addition to the author's peer set
+
+The author's nominated set is **Hundt, Mykhailova, Gonciulea/Stefanski,
+Hidary, Johnston, Wong (Thomas), Herbert, Nielsen & Chuang**. Recommend
+adding **Hiu Yung Wong** as a ninth — not because it competes for the same
+reader, but because it is the only book that contests Part IX, and Part IX
+is one of this manuscript's four load-bearing differentiators. A comparison
+matrix that omits it will overstate the book's position exactly where the
+first pass already did.
+
+## 10.7 Revised action list
+
+Changes from §8 only:
+
+| Rank | Action | Change |
+|---|---|---|
+| **1** | **Appendix J — *The Input Problem*** (encoding, oracles, arithmetic, state prep, swap/Hadamard tests) | Was #2; now #1, broadened, **critical** |
+| **2** | **Companion code repository** | Was #1; now *necessary*, not optional |
+| 3 | §19.15a bosonic / cat / GKP codes | unchanged |
+| 4 | Ch. 6 sanity checks | unchanged |
+| 5 | App I *Statistics for Shot-Based Experiments* | unchanged — still no peer covers it |
+| 6 | §23.x ZX-calculus | corroborated by Hundt |
+| 7 | **Reposition Ch. 16 and Ch. 21 in all marketing copy** | **NEW** — the old claims are false |
+
+**Revised positioning sentence** (the §8 version is no longer defensible):
+
+> *The broadest single-author, linearly readable path from the postulates to
+> QSVT, lattice surgery, cryogenic control, and tensor-network simulation —
+> and the only one that also teaches an engineer how to tell a real quantum
+> claim from a press release.*
+
+## 10.8 Research constraint — unchanged
+
+The author changed the environment's network rules on 2026-08-20 and asked
+for a re-check. Re-probed: `WebFetch` still returns `EGRESS_BLOCKED` for
+manning.com, cambridge.org, springer.com, oup.com, arxiv.org, oreilly.com and
+wikipedia.org, and `curl` still fails the CONNECT tunnel with 403 for all of
+them. The proxy process restarted (its port changed) but the policy this
+container enforces did not. **A network-policy change on a running Claude
+Code on the web session does not take effect in the already-provisioned
+container; a new session is required.** All §10 tables of contents therefore
+come from search-result snippets, not from publisher pages.
+
+Still outstanding, and worth one fresh session with the new rules:
+
+1. **Herbert** — full TOC. Determines how much of S2 survives.
+2. **Hiu Yung Wong** — Part III and Part IV chapter lists. Determines how
+   much of S3 survives.
+3. **Hundt 2E** — section-level TOC of *Scalable Fast Simulation*,
+   *State Preparation*, *Similarity Tests*, and *Quantum Languages,
+   Compilers, and Tools*.
+4. **Buyya & Gill** and **Van Griensven Thé et al.** — chapter lists.
+5. **Hidary 2E**, **Johnston et al.**, **Kaiser–Granade**, **Silva**,
+   **de Wolf**, **Kitaev–Shen–Vyalyi**, **Lipton–Regan** — chapter lists.
+
+---
+
+*Revision 2 prepared 2026-08-20. Corrections in §10.4 supersede the
+corresponding claims in §5; escalations in §10.5 supersede the severities in
+§6.1. Findings about `book/` remain verified against the manuscript.*
