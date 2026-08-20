@@ -696,7 +696,7 @@ Nielsen & Chuang** — is adopted below, with one addition argued for in §10.6.
 Grouped as the author grouped them; **bold** marks a title absent from the
 first pass.
 
-**A. QC for programrs / experienced developers — the primary battleground**
+**A. QC for programmers / experienced developers — the primary battleground**
 
 | Title | Author(s) | Year | New? |
 |---|---|---|---|
