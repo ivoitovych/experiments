@@ -906,6 +906,51 @@ static void sc_close_reuse(void)
 	kprobe_report("sockB");
 }
 
+/*
+ * Can another socket's traffic clear a Busy socket? Socket A collects
+ * three failed sends while powered off; after power on, socket B sends
+ * repeatedly. Completion picks the first pending entry on the controller
+ * regardless of socket, so B's transmissions may complete A's entries.
+ */
+static void sc_busy_drain(void)
+{
+	struct sock_state a, b;
+	char label[32];
+	uint8_t h;
+	int i;
+
+	if (bring_up(&a) < 0)
+		return;
+	for (i = 1; i <= 3; i++)
+		mesh_send(&a, i, NULL);
+	read_features(&a, "sockA_after_3_failures");
+	set_powered(&a, 1);
+	say("RESULT sockA_send_after_power_on status=%s",
+						st(mesh_send(&a, 4, NULL)));
+	mgmt_open(&b, "sockB");
+	for (i = 1; i <= 4; i++) {
+		mesh_send(&b, 10 + i, &h);
+		pump(&b, 3000);
+		snprintf(label, sizeof(label), "sockA_after_sockB_send_%d", i);
+		read_features(&a, label);
+	}
+	say("RESULT sockA_send_after_drain status=%s",
+						st(mesh_send(&a, 20, NULL)));
+	pump(&a, 3000);
+	read_features(&a, "sockA_end");
+	completes_report(&b, "end");
+	/* Which requests' advertising data reached the controller */
+	pthread_mutex_lock(&lock);
+	for (i = 1; i <= 20; i++)
+		if (i <= 4 || (i >= 11 && i <= 14) || i == 20)
+			say("RESULT end hci tag=%d adv_data_writes=%u", i,
+								tag_data[i]);
+	say("RESULT end hci adv_enable=%u adv_disable=%u", adv_enables,
+								adv_disables);
+	pthread_mutex_unlock(&lock);
+	kprobe_report("end");
+}
+
 /* kmemleak: fail one send, close socket, remove controller, scan. */
 static void sc_kmemleak(const char *how)
 {
@@ -964,6 +1009,8 @@ static void *worker(void *arg)
 		sc_enomem_busy();
 	else if (!strcmp(scenario, "close-reuse"))
 		sc_close_reuse();
+	else if (!strcmp(scenario, "busy-drain"))
+		sc_busy_drain();
 	else if (!strncmp(scenario, "kmemleak-", 9))
 		sc_kmemleak(scenario + 9);
 	else
@@ -979,7 +1026,7 @@ int main(int argc, char *argv[])
 
 	if (argc < 3) {
 		fprintf(stderr, "usage: %s <baseline|offline|offline-busy|"
-			"enomem|enomem-busy|close-reuse|kmemleak-enetdown|"
+			"enomem|enomem-busy|close-reuse|busy-drain|kmemleak-enetdown|"
 			"kmemleak-enomem|kmemleak-enodev> <legacy|ext>\n",
 			argv[0]);
 		return 1;
