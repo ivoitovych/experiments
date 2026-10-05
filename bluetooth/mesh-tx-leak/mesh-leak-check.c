@@ -29,6 +29,7 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <sys/socket.h>
+#include <sys/ioctl.h>
 #include <sys/syscall.h>
 #include <sys/stat.h>
 #include <sys/mount.h>
@@ -606,6 +607,23 @@ static int wait_index(struct sock_state *s)
 	return 0;
 }
 
+/* Whether the controller is actually up (HCI_UP), as opposed to MGMT's view. */
+static bool hci_up(void)
+{
+	struct hci_dev_info di;
+	int sk = socket(AF_BLUETOOTH, SOCK_RAW | SOCK_CLOEXEC, BTPROTO_HCI);
+	bool up;
+
+	if (sk < 0)
+		return false;
+	memset(&di, 0, sizeof(di));
+	di.dev_id = hci_index;
+	up = !ioctl(sk, HCIGETDEVINFO, &di) && (di.flags & (1 << HCI_UP));
+	close(sk);
+	say("controller hci%u HCI_UP=%d", hci_index, up);
+	return up;
+}
+
 static int bring_up(struct sock_state *s)
 {
 	if (mgmt_open(s, "sockA") < 0) {
@@ -615,8 +633,15 @@ static int bring_up(struct sock_state *s)
 	g_idle_add(create_emu, NULL);
 	if (wait_index(s) < 0)
 		return -1;
-	/* Cancel the auto power-off and start from a known state */
+	/*
+	 * A newly registered controller stays up (HCI_RUNNING) during the
+	 * auto power-off window even though MGMT reports it powered off, so
+	 * Set Powered 0 alone does not bring it down. Power it on and off.
+	 */
+	set_powered(s, 1);
 	set_powered(s, 0);
+	if (hci_up())
+		fail("controller still up after Set Powered 0");
 	if (enable_mesh(s))
 		return -1;
 	return 0;
