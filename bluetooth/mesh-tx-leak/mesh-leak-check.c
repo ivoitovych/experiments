@@ -676,6 +676,7 @@ static void remove_controller(void)
 /* Set from the optional third argument (comma list: stackoff,shrink). */
 static bool kmemleak_stack_off;
 static bool kmemleak_shrink;
+static bool kmemleak_noscan;	/* leave scanning to a later process */
 
 /*
  * Shrink every slab cache. This flushes the per-CPU sheaves and frees
@@ -990,7 +991,10 @@ static void sc_kmemleak(const char *how)
 		remove_controller();
 	sleep(1);
 	kprobe_report("after_teardown");
-	kmemleak_report(how);
+	if (kmemleak_noscan)
+		say("kmemleak: not scanning (noscan), exiting");
+	else
+		kmemleak_report(how);
 }
 
 static const char *scenario;
@@ -1034,6 +1038,7 @@ int main(int argc, char *argv[])
 	scenario = argv[1];
 	kmemleak_stack_off = argc > 3 && strstr(argv[3], "stackoff");
 	kmemleak_shrink = argc > 3 && strstr(argv[3], "shrink");
+	kmemleak_noscan = argc > 3 && strstr(argv[3], "noscan");
 	emu_type = !strcmp(argv[2], "ext") ? HCIEMU_TYPE_BREDRLE50 :
 							HCIEMU_TYPE_BREDRLE;
 

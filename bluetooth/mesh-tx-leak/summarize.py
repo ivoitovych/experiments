@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """Compare RESULT lines and tester summaries between kernel builds.
 
+Rows are paired by what they measure (scenario step, handle, tag, scan
+round), not by line position, so an extra line in one log does not shift
+the rest.
+
 Usage: summarize.py <logs-dir> <build-a> <build-b>
 Prints a Markdown report to stdout.
 """
@@ -13,18 +17,53 @@ SPLAT = re.compile(r"BUG: KASAN|WARNING:|possible circular locking|"
 ANSI = re.compile(r"\x1b\[[0-9;]*m")
 
 
+# Values that identify a row rather than being the measured result.
+KEY_FIELDS = {"handle", "tag", "round", "stack_scan", "slab_shrink", "scan"}
+
+
+def row_key(line, seen):
+    """Key used to pair the same observation across two logs."""
+    if line.startswith("dmesg: "):
+        base = "dmesg: " + re.sub(r"-?\d+$", "", line[7:])
+    elif line.startswith("Mesh Send tag"):
+        base = line.split(" -> ")[0]
+    else:
+        base = re.sub(r"(\w+)=(\S*)",
+                      lambda m: m.group(0) if m.group(1) in KEY_FIELDS
+                      else m.group(1) + "=", line)
+    seen[base] = seen.get(base, 0) + 1
+    return f"{base}#{seen[base]}"
+
+
 def results(path):
     out = []
+    seen = {}
     with open(path, errors="replace") as f:
         for line in f:
             line = ANSI.sub("", line.rstrip())
             if line.startswith("RESULT "):
-                out.append(line[7:])
+                line = line[7:]
             elif "Send Mesh Failed" in line:
-                out.append("dmesg: " + line.split("] ", 1)[-1])
+                line = "dmesg: " + line.split("] ", 1)[-1]
             elif "Mesh Send tag" in line:
-                out.append(line.split(": ", 1)[-1])
+                line = line.split(": ", 1)[-1]
+            else:
+                continue
+            out.append((row_key(line, seen), line))
     return out
+
+
+def merge_keys(a, b):
+    """Union of row keys, keeping the order of both logs."""
+    keys = [k for k, _ in a]
+    pos = -1
+    for k, _ in b:
+        if k in keys:
+            pos = keys.index(k)
+        else:
+            pos += 1
+            keys.insert(pos, k)
+    return keys
 
 
 def splats(path):
@@ -78,13 +117,15 @@ def main():
             for c in notpass:
                 print(f"- not passing: {c}: {a}={ca.get(c)} {b}={cb.get(c)}")
         else:
-            ra = results(pa) if os.path.exists(pa) else ["(missing)"]
-            rb = results(pb) if os.path.exists(pb) else ["(missing)"]
+            ra = results(pa) if os.path.exists(pa) else []
+            rb = results(pb) if os.path.exists(pb) else []
+            da, db = dict(ra), dict(rb)
             print(f"## {title}\n")
+            if not ra or not rb:
+                print(f"(missing in {a if not ra else b})\n")
             print(f"| {a} | {b} |\n|---|---|")
-            for i in range(max(len(ra), len(rb))):
-                x = ra[i] if i < len(ra) else ""
-                y = rb[i] if i < len(rb) else ""
+            for k in merge_keys(ra, rb):
+                x, y = da.get(k, ""), db.get(k, "")
                 mark = "" if x == y else " **≠**"
                 print(f"| `{x}` | `{y}`{mark} |")
         for k, p in ((a, pa), (b, pb)):
