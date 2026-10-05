@@ -26,9 +26,11 @@ list() {
 		echo "1 mgmt-tester-1cpu tools/mgmt-tester -q"
 		echo "1 mesh-tester-1cpu tools/mesh-tester -q"
 	else
+		# plain: scan only; shrink: shrink slab caches before each scan
 		for sc in enetdown enomem enodev; do
 			for adv in legacy ext; do
-				echo "1 kmemleak-$sc-$adv-1cpu $REPRO kmemleak-$sc $adv"
+				echo "1 kmemleak-$sc-$adv-plain $REPRO kmemleak-$sc $adv plain"
+				echo "1 kmemleak-$sc-$adv-shrink $REPRO kmemleak-$sc $adv shrink"
 			done
 		done
 	fi

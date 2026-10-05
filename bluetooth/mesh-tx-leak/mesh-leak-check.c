@@ -514,6 +514,9 @@ static void kprobes_setup(void)
 						"handle=+40(%%di):u8\n");
 	dprintf(fd, "r:meshleak/mgmt_mesh_add mgmt_mesh_add "
 						"handle=+40($retval):u8\n");
+	/* Teardown: controller memory released, MGMT socket destroyed */
+	dprintf(fd, "p:meshleak/hci_release_dev hci_release_dev\n");
+	dprintf(fd, "p:meshleak/hci_sock_destruct hci_sock_destruct\n");
 	close(fd);
 
 	write_file(TR "trace", "");
@@ -527,6 +530,7 @@ static void kprobe_report(const char *label)
 	FILE *f = fopen(TR "trace", "r");
 	char line[512];
 	unsigned int sync[256] = { 0 }, rem[256] = { 0 }, add[256] = { 0 };
+	unsigned int release_dev = 0, sock_destruct = 0;
 	int i;
 
 	if (!f) {
@@ -537,7 +541,13 @@ static void kprobe_report(const char *label)
 		char *h = strstr(line, "handle=");
 		unsigned int v;
 
-		if (line[0] == '#' || !h || sscanf(h, "handle=%u", &v) != 1)
+		if (line[0] == '#')
+			continue;
+		if (strstr(line, "hci_release_dev:"))
+			release_dev++;
+		if (strstr(line, "hci_sock_destruct:"))
+			sock_destruct++;
+		if (!h || sscanf(h, "handle=%u", &v) != 1)
 			continue;
 		v &= 0xff;
 		if (strstr(line, "mesh_send_sync:"))
@@ -555,6 +565,8 @@ static void kprobe_report(const char *label)
 		say("RESULT %s kprobe handle=%d added=%u mesh_send_sync=%u "
 				"removed=%u", label, i, add[i], sync[i], rem[i]);
 	}
+	say("RESULT %s kprobe hci_release_dev=%u hci_sock_destruct=%u", label,
+						release_dev, sock_destruct);
 }
 
 static void hci_report(const char *label, int ntags)
@@ -661,18 +673,48 @@ static void remove_controller(void)
 	}
 }
 
-static void kmemleak_report(const char *label)
+/* Set from the optional third argument (comma list: stackoff,shrink). */
+static bool kmemleak_stack_off;
+static bool kmemleak_shrink;
+
+/*
+ * Shrink every slab cache. This flushes the per-CPU sheaves and frees
+ * cached empty sheaves, whose object arrays can still hold stale pointers
+ * to objects that have since been allocated; kmemleak scans those arrays
+ * and would count such a stale pointer as a reference.
+ */
+static void shrink_slabs(void)
+{
+	GDir *d = g_dir_open("/sys/kernel/slab", 0, NULL);
+	const char *name;
+	int n = 0;
+
+	if (!d) {
+		fail("cannot open /sys/kernel/slab");
+		return;
+	}
+	while ((name = g_dir_read_name(d))) {
+		char path[256];
+		int fd;
+
+		snprintf(path, sizeof(path), "/sys/kernel/slab/%s/shrink", name);
+		fd = open(path, O_WRONLY);
+		if (fd < 0)
+			continue;
+		if (write(fd, "1", 1) == 1)
+			n++;
+		close(fd);
+	}
+	g_dir_close(d);
+	say("kmemleak: shrank %d slab caches", n);
+}
+
+static void kmemleak_read(const char *label, int round, bool print)
 {
 	FILE *f;
 	char line[512];
 	int objs = 0, mesh = 0, sk = 0;
 	bool in_obj = false, obj_mesh = false, obj_sk = false;
-
-	say("kmemleak: waiting for object aging, then scanning");
-	sleep(6);
-	write_file("/sys/kernel/debug/kmemleak", "scan");
-	sleep(1);
-	write_file("/sys/kernel/debug/kmemleak", "scan");
 
 	f = fopen("/sys/kernel/debug/kmemleak", "r");
 	if (!f) {
@@ -680,7 +722,8 @@ static void kmemleak_report(const char *label)
 		return;
 	}
 	while (fgets(line, sizeof(line), f)) {
-		printf("KMEMLEAK %s", line);
+		if (print)
+			printf("KMEMLEAK %s", line);
 		if (!strncmp(line, "unreferenced object", 19)) {
 			if (in_obj) {
 				mesh += obj_mesh;
@@ -702,8 +745,33 @@ static void kmemleak_report(const char *label)
 	}
 	fclose(f);
 	fflush(stdout);
-	say("RESULT %s kmemleak unreferenced=%d from_mgmt_mesh_add=%d "
-			"from_hci_sock_create=%d", label, objs, mesh, sk);
+	say("RESULT %s kmemleak round=%d stack_scan=%s slab_shrink=%s "
+		"unreferenced=%d from_mgmt_mesh_add=%d from_hci_sock_create=%d",
+		label, round, kmemleak_stack_off ? "off" : "on",
+		kmemleak_shrink ? "yes" : "no", objs, mesh, sk);
+}
+
+/*
+ * Objects younger than 5 s are never reported, and a stale copy of a
+ * pointer (for example in a task stack) hides an object from a scan, so
+ * scan several times and report after each round.
+ */
+static void kmemleak_report(const char *label)
+{
+	int round;
+
+	if (kmemleak_stack_off)
+		write_file("/sys/kernel/debug/kmemleak", "stack=off");
+
+	for (round = 1; round <= 5; round++) {
+		say("kmemleak: round %d: waiting for object aging, scanning",
+									round);
+		sleep(6);
+		if (kmemleak_shrink)
+			shrink_slabs();
+		write_file("/sys/kernel/debug/kmemleak", "scan");
+		kmemleak_read(label, round, round == 5);
+	}
 }
 
 /* ---- scenarios ---- */
@@ -876,6 +944,7 @@ static void sc_kmemleak(const char *how)
 	if (emu)
 		remove_controller();
 	sleep(1);
+	kprobe_report("after_teardown");
 	kmemleak_report(how);
 }
 
@@ -916,6 +985,8 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 	scenario = argv[1];
+	kmemleak_stack_off = argc > 3 && strstr(argv[3], "stackoff");
+	kmemleak_shrink = argc > 3 && strstr(argv[3], "shrink");
 	emu_type = !strcmp(argv[2], "ext") ? HCIEMU_TYPE_BREDRLE50 :
 							HCIEMU_TYPE_BREDRLE;
 

@@ -10,6 +10,6 @@ cd "$BZ" || exit 1
 timeout 3600 ./tools/test-runner -k "$IMG" -o -m -o 1024M \
 	-o -smp -o "$CPUS" -- "$@" > "$LOG" 2>&1
 rc=$?
-grep -qE "BUG: KASAN|WARNING:|possible circular locking|lockdep|BUG:|Oops" \
+grep -qE "BUG: KASAN|WARNING:|possible circular locking|possible recursive locking|inconsistent lock state|BUG:|Oops" \
 	"$LOG" && echo "SPLAT in $LOG"
 echo "rc=$rc $LOG"
