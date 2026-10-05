@@ -9,7 +9,7 @@ set -u
 LOGS=${1:?logs dir}
 
 expected() {
-	case $1 in
+	case ${1#reps-} in
 	control) echo 036d4119079a ;;
 	patched) echo 59f710c1a4bd ;;
 	diag-control|diag-control-first-pass|probe-diag-control) echo 3792c210325e ;;
