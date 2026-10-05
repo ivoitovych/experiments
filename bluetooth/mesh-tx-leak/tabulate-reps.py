@@ -7,7 +7,8 @@ request) and one allocated by hci_sock_create() (its socket), and the
 earliest round in which the request was reported.
 
 busy-drain: per advertising type, in how many runs socket A was Busy after
-power-on, A's failed handle 1 was reported complete without being started,
+power-on, Mesh Packet Complete was sent for A's failed handle 1 although it
+was never started,
 A's failed handles 2 and 3 were started (mesh_send_sync) and their data
 reached the controller, B's first packet was started twice, and A could
 send again.
@@ -77,13 +78,16 @@ def busy_drain(path):
         r"RESULT end hci tag=(\d+) adv_data_writes=(\d+)", text)}
     first_b = re.search(r"sockB: Mesh Send tag 11 -> Success handle (\d+)", text)
     hb = int(first_b.group(1)) if first_b else None
+    done = re.search(r"RESULT end sockB packet_complete_handles=([\d,]+)", text)
+    completed = {int(h) for h in done.group(1).split(",")} if done else set()
     return {
         "A Busy after power-on":
             "sockA_send_after_power_on status=Busy" in text,
-        "A cleared after B's 1st send":
+        "A has no outstanding handles after B's 1st send":
             "sockA_after_sockB_send_1 outstanding=0" in text,
-        "failed handle 1 completed, never started":
-            kp.get(1, (0, 0, 0))[1:] == (0, 1) and tags.get(1) == 0,
+        "Mesh Packet Complete for failed handle 1, never started":
+            1 in completed and kp.get(1, (0, 0, 0))[1] == 0
+            and tags.get(1) == 0,
         "failed handles 2, 3 started (mesh_send_sync)":
             all(kp.get(h, (0, 0, 0))[1] >= 1 for h in (2, 3)),
         "failed handles 2, 3 data reached controller":

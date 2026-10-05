@@ -62,25 +62,36 @@ them. It records:
   `hci_sock_destruct`;
 * kmemleak scans, five rounds 6 s apart (diag builds).
 
-`summarize.py` puts two builds side by side. `audit-logs.sh` checks every
-log for a completed run, the expected kernel commit, and kernel reports.
+`summarize.py` puts two builds side by side
+([results/summary-main.md](results/summary-main.md),
+[results/summary-kmemleak.md](results/summary-kmemleak.md)).
+`tabulate-reps.py` counts the repeated runs
+([results/summary-reps.md](results/summary-reps.md)). `audit-logs.sh`
+checks every log ([results/audit.txt](results/audit.txt)):
+
+* the run completed;
+* the kernel banner shows the expected commit;
+* there are no kernel reports;
+* reproducer runs reached their end line;
+* tester summaries are complete and agree with the exit status.
 
 ### Runs
 
-139 VM runs, all in `results/logs/`:
+159 VM runs, all in `results/logs/`:
 
-* Each scenario ran **once** per build, advertising type and CPU count:
-  two builds × 2 advertising types × 7 scenarios at 1 CPU, plus 2
-  scenarios at 4 CPUs.
-* mgmt-tester and mesh-tester ran once on each of `control` and
-  `patched`.
-* The kmemleak cases ran once per advertising type in the diag matrix,
-  with plain and with shrink scans. They were then repeated (legacy
-  advertising) 5× on `diag-control` and 2× on `diag-patched` for each of
-  three scan methods.
-* `results/audit.txt` passes for all 139 runs: each guest command
-  completed, each kernel banner matches its build, and there are no
-  KASAN, lockdep, WARNING, BUG or Oops reports.
+| Runs | What | Where |
+|---|---|---|
+| 36 | Functional scenarios, **once** each per build (`control`, `patched`), advertising type and CPU count: 7 scenarios at 1 CPU, 2 at 4 CPUs | `control/`, `patched/` |
+| 4 | mgmt-tester and mesh-tester, once on each build | `control/`, `patched/` |
+| 2 | `-ENOMEM` re-run with failslab call traces, once on each build | `*/enomem-trace-*` |
+| 24 | kmemleak cases in the diag matrix: 3 errnos × 2 advertising types × plain and shrink scans, on each diag build | `diag-control/`, `diag-patched/` |
+| 6 | First kmemleak pass (two scans, no shrinking), which raised the scan-method question | `diag-control-first-pass/` |
+| 4 | Runs isolating the cause (stack scanning off, slab shrinking) | `probe-diag-control/` |
+| 63 | kmemleak repetitions, legacy advertising: 3 errnos × 3 scan methods, 5× on `diag-control`, 2× on `diag-patched` | `reps-diag-*/` |
+| 20 | busy-drain repetitions: 5× per advertising type on each build | `reps-control/`, `reps-patched/` |
+
+* The audit passes for all 159 runs, with no KASAN, lockdep, WARNING,
+  BUG or Oops reports.
 * The only non-zero exits are the two mesh-tester runs; mesh-tester
   exits 1 when any of its cases fail (see S12).
 
@@ -92,14 +103,14 @@ log for a completed run, the expected kernel commit, and kernel reports.
 | S2 | Reachable without fault injection: a powered-off Mesh Send reaches `hci_cmd_sync_queue()`, which returns `-ENETDOWN` after the request has been given a handle | **Confirmed.** `Send Mesh Failed -100`; the `mgmt_mesh_add` kprobe shows handle 1 assigned | `*/offline-*` |
 | S3 | `-ENOMEM` via failslab | **Confirmed.** `Send Mesh Failed -12`, injected in `hci_cmd_sync_submit()` | `*/enomem-*` |
 | S4 | Unpatched: the failed handle stays listed in Read Mesh Features | **Confirmed** for both errnos, both advertising types | `after_failure outstanding=1 handles=1` |
-| S5 | Unpatched: when the next transmission ends, Mesh Packet Complete is reported for the failed handle, and the next request's packet is started on the controller twice | **Confirmed.** One accepted send yields completions `1,2`, and `mesh_send_sync` runs twice for handle 2. On the controller: 2 advertising enables (legacy), or 2 writes of the request's data plus 2 enables (extended). The patched kernel shows one of each | `summary-main.md` |
+| S5 | Unpatched: when the next transmission ends, Mesh Packet Complete is reported for the failed handle, and the next request's packet is started on the controller twice | **Confirmed.** One accepted send yields completions `1,2`, and `mesh_send_sync` runs twice for handle 2. On the controller: 2 advertising enables (legacy), or 2 writes of the request's data plus 2 enables (extended). The patched kernel shows one of each | [summary-main.md](results/summary-main.md) |
 | S6 | Three consecutive failures leave three handles outstanding; further Mesh Sends from that socket get Busy | **Confirmed**, including after the adapter is powered on again. See O3 for what clears it | `*/offline-busy-*`, `*/enomem-busy-*` |
-| S7 | Patched: no failed handle listed or completed; each accepted send started and completed once; repeated failures leave no outstanding handles | **Confirmed** in every patched run. After three failures the next accepted send succeeds: the 4th send in `enomem-busy`; in `offline-busy` the 5th, because the 4th is still sent while powered off and fails with `-ENETDOWN` | `summary-main.md` |
+| S7 | Patched: no failed handle listed or completed; each accepted send started and completed once; repeated failures leave no outstanding handles | **Confirmed** in every patched run. After three failures the next accepted send succeeds: the 4th send in `enomem-busy`; in `offline-busy` the 5th, because the 4th is still sent while powered off and fails with `-ENETDOWN` | [summary-main.md](results/summary-main.md) |
 | S8 | The powered-off reproducer gives the same control-vs-patched result on a 4-CPU guest | **Confirmed**, and also for `-ENOMEM` at 4 CPUs | `*-4cpu.log` |
-| S9 | With kmemleak, after the socket is closed and the controller removed, leaked `mgmt_mesh_add()` allocations are reported on the unpatched build only, for `-ENETDOWN`, `-ENOMEM` and `-ENODEV` | **Confirmed, depending on when kmemleak scans.** Plain scans after the test program has exited report the request in 5/5 runs for each errno; the patched build reports nothing. Plain scans from inside the still-running program miss `-ENETDOWN` and `-ENODEV` (0/5) | table below |
+| S9 | With kmemleak, after the socket is closed and the controller removed, leaked `mgmt_mesh_add()` allocations are reported on the unpatched build only, for `-ENETDOWN`, `-ENOMEM` and `-ENODEV` | **Confirmed, depending on when kmemleak scans.** Plain scans after the test program has exited report the request in 5/5 runs for each errno; the patched build reports nothing. Plain scans from inside the still-running program miss `-ENETDOWN` and `-ENODEV` (0/5) | [summary-reps.md](results/summary-reps.md), table below |
 | S10 | The `-ENODEV` case used a test-only delay in `mesh_send()`, in diagnostic builds of both kernels | **Consistent.** With the delay, `Send Mesh Failed -19` in every run | `*/kmemleak-enodev-*`, `reps-*/enodev-*` |
-| S11 | No KASAN, lockdep or WARNING reports | **Confirmed** on all four builds, all 139 runs | `results/audit.txt` |
-| S12 | Unmodified mgmt-tester and mesh-tester give identical per-case results with and without the patch | **Confirmed.** mgmt-tester: 503/503 on both. mesh-tester: 8/10 on both; "Mesh - Send cancel - 1" and "Mesh - Send cancel - 2" time out on both kernels | `summary-main.md` |
+| S11 | No KASAN, lockdep or WARNING reports | **Confirmed** on all four builds, all 159 runs | [audit.txt](results/audit.txt) |
+| S12 | Unmodified mgmt-tester and mesh-tester give identical per-case results with and without the patch | **Confirmed.** mgmt-tester: 503/503 on both. mesh-tester: 8/10 on both; "Mesh - Send cancel - 1" and "Mesh - Send cancel - 2" time out on both kernels. All 503 and 10 cases are compared | [summary-main.md](results/summary-main.md) |
 
 ### kmemleak scan method (S9)
 
@@ -139,10 +150,9 @@ controller, then scans kmemleak five times, 6 s apart.
 ## Additional observations (unpatched kernel)
 
 **O1. The failed request keeps its socket alive.** `mgmt_mesh_add()`
-takes a reference on the MGMT socket (`sock_hold`). Pending requests are
-cleaned up only in the socket's destructor (`hci_sock_destruct()` →
-`mgmt_cleanup()`), which cannot run while that reference is held. So
-closing the socket does not free the failed request:
+takes a reference on the MGMT socket (`sock_hold`) for the request. The
+reference taken for the failed request is never dropped, so closing the
+socket neither destroys it nor frees the failed request:
 
 * `hci_sock_destruct` never fires for the MGMT socket on the unpatched
   builds, and fires on the patched ones;
@@ -157,32 +167,42 @@ neither happens: S9 is measured after both.
 **O2. The stale entry disturbs other sockets (`close-reuse-*`).** Socket A
 fails a Mesh Send while powered off and is closed. Socket B powers the
 controller on and sends. B then receives Mesh Packet Complete for A's
-handle, and B's own packet is started twice. Completion and scheduling
-take the first pending entry on the controller, from any socket.
+handle, and B's own packet is started twice. In the code, completion
+and scheduling take the first pending entry on the controller
+(`mgmt_mesh_next(hdev, NULL)`), whichever socket it belongs to.
 
 **O3. Another socket's traffic clears Busy, and starts the failed
-requests (`busy-drain-*`).** Socket A reaches Busy after three
-powered-off failures (handles 1–3) and stays Busy after power-on. Then
-socket B sends once, and B's transmission works through all three of A's
+requests (`busy-drain-*`).** In the tested sequence, socket A has three
+powered-off failures (handles 1–3) and stays Busy after power-on. Socket
+B then sends once, and B's transmission works through all three of A's
 entries:
 
-* handle 1 is reported complete, without ever having been started;
+* Mesh Packet Complete is reported for handle 1, which was never started;
 * handles 2 and 3 are **started**: `mesh_send_sync` runs for each, and
   their advertising data reaches the emulated controller, although Mesh
   Send had answered Failed for both;
 * B's packet is then started a second time.
 
-After that, A has no outstanding handles and can send again. With one
-failure only the "completion" happens. With two or more, the requests
-queued behind the first are transmitted. The patched kernel starts none
-of A's failed requests. Results are the same for legacy and extended
-advertising.
+After that, A has no outstanding handles and can send again.
 
-**O4. One failure is undone by the next transmission on the controller,
-from any socket.** That is why the S5 symptoms appear once. A socket that
-reaches Busy (S6) stays Busy until another socket transmits (O3). A
-failure followed by socket close and controller removal stays leaked
-(S9, O1).
+On the unpatched kernel this happened in 5/5 runs for each advertising
+type (plus the first run of each). On the patched kernel, none of A's
+failed requests was completed or started in any run. See
+[summary-reps.md](results/summary-reps.md).
+
+With a single failure, only the "completion" was observed (S5, O2). Only
+the three-failure case was run. From the code, a failed request is
+started whenever another failed request is pending ahead of it.
+
+**O4. How the tested sequences ended.**
+
+* One failed request was cleared by the next transmission on the
+  controller, from the same socket (S5) or another (O2). That is why the
+  S5 symptoms appear once.
+* A socket at Busy stayed Busy after power-on (S6), and was cleared by
+  another socket's transmission (O3). No other way out was tested.
+* A failure followed by socket close and controller removal stayed
+  leaked (S9, O1).
 
 **O5. "Powered off" must mean actually down.** Right after registration,
 a controller stays up (`HCI_RUNNING`) during its auto power-off window,
@@ -208,13 +228,16 @@ This directory contains all of them.
 * The runs used TCG, not KVM, so they are slower and real races get less
   exercise. All scenarios are sequential, except `-ENODEV`, which the
   delay makes deterministic.
-* Each functional scenario ran once per configuration. The results are
-  identical across advertising types and CPU counts, but they are not
-  repeated runs; only the kmemleak cases were repeated.
+* Each functional scenario ran once per configuration, except
+  busy-drain (repeated 5×). The results are identical across advertising
+  types and CPU counts, but they are not repeated runs.
 * The failslab filter also matches allocations made by `printk` inside
   the injected call path. With `verbose` set, the guest console's buffer
   allocation can be failed too. This only affects console output; the
   Bluetooth result is identical with `verbose=1` and `verbose=2`.
+* The tester case parser used for the first summaries skipped long case
+  names (475 of 503 mgmt-tester cases compared). It was fixed in
+  `4af3736`; all 503 cases are now compared, with the same result.
 * Script versions:
   * Until `c41ce63`, `run-vm.sh` and `build-kernel.sh` did not propagate
     failures. `audit-logs.sh` was added then and covers all runs,

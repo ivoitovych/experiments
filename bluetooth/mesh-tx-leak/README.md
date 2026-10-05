@@ -19,10 +19,11 @@ covers what is here and how to run it again.
 | `run-vm.sh` | Runs one command in a fresh test-runner VM and saves its console log |
 | `run-matrix.sh` | All scenarios for one kernel build (`main` or `diag`) |
 | `run-kmemleak-reps.sh`, `kmemleak-after-exit.sh` | Repeated kmemleak runs with three scan methods |
+| `run-busy-drain-reps.sh` | Repeated busy-drain runs |
 | `audit-logs.sh` | Checks every log: run completed, expected kernel commit, no kernel reports |
 | `summarize.py` | Side-by-side comparison of two builds |
-| `tabulate-reps.py` | Detection table for the repeated kmemleak runs |
-| `results/logs/<build>/` | Raw console logs (kernel log + reproducer or tester output); `reps-<build>/` holds the repeated kmemleak runs |
+| `tabulate-reps.py` | Tables for the repeated runs |
+| `results/logs/<build>/` | Raw console logs (kernel log + reproducer or tester output); `reps-<build>/` holds the repeated runs |
 | `results/summary-*.md`, `results/audit.txt` | Generated from the logs |
 
 The four builds are `control` (base), `patched` (base + patch),
@@ -35,8 +36,8 @@ knob + patch, kmemleak).
   end, not when the kernel behaved "correctly". What happened is in its
   `RESULT` lines; compare builds with `summarize.py`.
 * Each scenario ran once per build, advertising type and CPU count. The
-  kmemleak cases were also repeated (`results/logs/reps-*`,
-  `results/summary-kmemleak-reps.md`).
+  kmemleak cases and busy-drain were also repeated (`results/logs/reps-*`,
+  `results/summary-reps.md`).
 * The runs used QEMU without KVM (TCG).
 
 ## Reproducing
@@ -119,6 +120,8 @@ cd $KIT
 ./run-matrix.sh diag diag-patched 2
 ./run-kmemleak-reps.sh diag-control 5
 ./run-kmemleak-reps.sh diag-patched 2
+./run-busy-drain-reps.sh control 5
+./run-busy-drain-reps.sh patched 5
 ```
 
 New logs go to `logs/<build>/` (not tracked). Then:
@@ -127,7 +130,7 @@ New logs go to `logs/<build>/` (not tracked). Then:
 ./audit-logs.sh logs
 ./summarize.py logs control patched
 ./summarize.py logs diag-control diag-patched
-./tabulate-reps.py logs diag-control diag-patched
+./tabulate-reps.py logs control patched diag-control diag-patched
 ```
 
 `run-matrix.sh main` exits non-zero because mesh-tester exits 1 when any
