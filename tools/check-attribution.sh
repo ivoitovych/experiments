@@ -3,6 +3,7 @@
 # Usage: tools/check-attribution.sh [<rev-range>]   (default: all commits on HEAD)
 # Installed as .git/hooks/pre-push (symlink) it reads "<local ref> <local sha> <remote ref> <remote sha>"
 # lines from stdin and checks every commit not yet on the remote.
+# Install: ln -sf ../../tools/check-attribution.sh .git/hooks/pre-push
 IDENT='Iaroslav Voitovych <yaroslav.voytovych@gmail.com>'
 ZERO=0000000000000000000000000000000000000000
 fail=0
