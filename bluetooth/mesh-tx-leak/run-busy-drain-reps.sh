@@ -1,11 +1,8 @@
 #!/bin/sh
-# Repeat the kmemleak scenarios to measure how often each scan method
-# reports the leak.
-# Usage: run-kmemleak-reps.sh <build-name> <reps> [jobs]
-# Methods: inproc-plain  - scans from the still-running reproducer
-#          inproc-shrink - same, slab caches shrunk before each scan
-#          after-exit    - plain scans from a shell after it has exited
+# Repeat the busy-drain scenario (both advertising types).
+# Usage: run-busy-drain-reps.sh <build-name> <reps> [jobs]
 # Environment: WORK, BLUEZ as for run-matrix.sh
+# Exits non-zero if any run does.
 set -u
 NAME=$1; REPS=$2; JOBS=${3:-3}
 WORK=${WORK:-/home/user/work}
@@ -18,10 +15,8 @@ mkdir -p "$LOGS"
 
 list() {
 	for rep in $(seq 1 "$REPS"); do
-		for sc in enetdown enomem enodev; do
-			echo "$sc-inproc-plain-r$rep $REPRO kmemleak-$sc legacy plain"
-			echo "$sc-inproc-shrink-r$rep $REPRO kmemleak-$sc legacy shrink"
-			echo "$sc-after-exit-r$rep $HERE/kmemleak-after-exit.sh $REPRO $sc legacy"
+		for adv in legacy ext; do
+			echo "busy-drain-$adv-r$rep $REPRO busy-drain $adv"
 		done
 	done
 }

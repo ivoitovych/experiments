@@ -1,4 +1,4 @@
-## diag-control
+## diag-control: kmemleak
 
 | Case | Scan | Runs | Request reported | Socket reported | First round |
 |---|---|---|---|---|---|
@@ -12,7 +12,7 @@
 | `-ENOMEM` | plain, from the running reproducer | 5 | 5/5 | 5/5 | 2 |
 | `-ENOMEM` | slab caches shrunk, from the running reproducer | 5 | 5/5 | 5/5 | 2 |
 
-## diag-patched
+## diag-patched: kmemleak
 
 | Case | Scan | Runs | Request reported | Socket reported | First round |
 |---|---|---|---|---|---|

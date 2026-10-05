@@ -86,8 +86,9 @@ def tester_cases(path):
             if line.startswith("Total:"):
                 total = line
                 break
-            m = re.match(r"(.+?)\s{2,}(Passed|Failed|Timed out|Not Run)\s",
-                         line)
+            # Long case names leave a single space before the status.
+            m = re.match(r"(.+?) +(Passed|Failed|Timed out|Not Run) +"
+                         r"[0-9.]+ seconds$", line)
             if m:
                 cases[m.group(1).strip()] = m.group(2)
     return cases, total
@@ -111,7 +112,13 @@ def main():
                     if ca.get(c) != cb.get(c)]
             notpass = sorted(c for c in set(ca) | set(cb)
                              if ca.get(c) != "Passed" or cb.get(c) != "Passed")
-            print(f"- per-case differences: {len(diff)}")
+            for k, c, t in ((a, ca, ta), (b, cb, tb)):
+                n = int(re.match(r"Total: (\d+)", t).group(1)) if t else None
+                if n is None or n != len(c):
+                    print(f"- INCOMPLETE: {k} summary parsed {len(c)} cases, "
+                          f"total {n}")
+            print(f"- per-case differences: {len(diff)}"
+                  f" (over {len(set(ca) | set(cb))} cases)")
             for c in diff:
                 print(f"  - {c}: {a}={ca.get(c)} {b}={cb.get(c)}")
             for c in notpass:

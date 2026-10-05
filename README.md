@@ -1,6 +1,6 @@
 # Bluetooth MGMT Mesh Send leak: retest
 
-An independent retest of the Linux kernel patch
+A separate retest of the Linux kernel patch
 "Bluetooth: MGMT: fix mesh_tx leak on hci_cmd_sync_queue() failure"
 ([patchwork 14831271](https://patchwork.kernel.org/patch/14831271/)),
 with everything needed to repeat it.

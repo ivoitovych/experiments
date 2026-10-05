@@ -34,11 +34,34 @@ for f in "$LOGS"/*/*.log; do
 	[ "$reports" != 0 ] && { note="$note kernel-reports"; bad=1; }
 	case $run in
 	*tester*)
-		# testers exit 1 when any case fails; judged by their summary
+		# A tester must print a complete summary: one result line per
+		# case, as many as its Total. It exits 1 if any case failed.
+		total=$(sed 's/\x1b\[[0-9;]*m//g; s/\r$//' "$f" |
+			sed -n 's/^Total: \([0-9]*\),.*Failed: \([0-9]*\),.*Not Run: \([0-9]*\).*/\1 \2 \3/p' |
+			tail -1)
+		cases=$(sed 's/\x1b\[[0-9;]*m//g; s/\r$//' "$f" |
+			sed -n '/^Test Summary/,/^Total:/p' |
+			grep -cE " (Passed|Failed|Timed out|Not Run) +[0-9.]+ seconds$")
+		if [ -z "$total" ]; then
+			note="$note no-tester-summary"; bad=1
+		else
+			set -- $total
+			[ "$1" != "$cases" ] && { note="$note summary-has-$cases-of-$1"; bad=1; }
+			want=0; [ "$2" != 0 ] && want=1
+			[ "${status:-x}" != "$want" ] && { note="$note exit-vs-summary"; bad=1; }
+		fi
 		;;
 	*)
 		[ "${status:-x}" != 0 ] && { note="$note nonzero-exit"; bad=1; }
 		grep -aq "^ERROR:" "$f" && { note="$note reproducer-error"; bad=1; }
+		tr -d '\r' < "$f" | grep -aqE "^=== end scenario .* \(ok\) ===$" ||
+			{ note="$note scenario-incomplete"; bad=1; }
+		if grep -aq "scan=after_exit\|reproducer exited with status" "$f"; then
+			tr -d '\r' < "$f" | grep -aq "^reproducer exited with status 0$" ||
+				{ note="$note reproducer-failed"; bad=1; }
+			grep -aq "kmemleak round=5 scan=after_exit" "$f" ||
+				{ note="$note scans-incomplete"; bad=1; }
+		fi
 		;;
 	esac
 	printf "%-26s %-42s %-6s %-14s %s%s\n" "$build" "$run" "${status:-none}" \

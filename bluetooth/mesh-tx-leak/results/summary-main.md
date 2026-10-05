@@ -328,7 +328,7 @@ patched kernel reports: 0
 
 - control: Total: 10, Passed: 8 (80.0%), Failed: 2, Not Run: 0
 - patched: Total: 10, Passed: 8 (80.0%), Failed: 2, Not Run: 0
-- per-case differences: 0
+- per-case differences: 0 (over 10 cases)
 - not passing: Mesh - Send cancel - 1: control=Timed out patched=Timed out
 - not passing: Mesh - Send cancel - 2: control=Timed out patched=Timed out
 
@@ -340,7 +340,7 @@ patched kernel reports: 0
 
 - control: Total: 503, Passed: 503 (100.0%), Failed: 0, Not Run: 0
 - patched: Total: 503, Passed: 503 (100.0%), Failed: 0, Not Run: 0
-- per-case differences: 0
+- per-case differences: 0 (over 503 cases)
 
 control kernel reports: 0
 
