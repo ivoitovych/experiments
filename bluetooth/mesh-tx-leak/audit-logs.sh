@@ -59,8 +59,20 @@ for f in "$LOGS"/*/*.log; do
 		if grep -aq "scan=after_exit\|reproducer exited with status" "$f"; then
 			tr -d '\r' < "$f" | grep -aq "^reproducer exited with status 0$" ||
 				{ note="$note reproducer-failed"; bad=1; }
-			grep -aq "kmemleak round=5 scan=after_exit" "$f" ||
-				{ note="$note scans-incomplete"; bad=1; }
+		fi
+		# kmemleak scans: after-exit runs must show rounds 1-5 exactly;
+		# in-process runs must show rounds 1..N without gaps.
+		rounds=$(grep -aoE "kmemleak round=[0-9]+" "$f" | sed 's/.*=//' | tr '\n' ' ')
+		if [ -n "$rounds" ]; then
+			n=$(echo $rounds | wc -w)
+			if grep -aq "scan=after_exit" "$f"; then
+				want="1 2 3 4 5 "
+			else
+				want=$(seq 1 "$n" | tr '\n' ' ')
+			fi
+			[ "$rounds" != "$want" ] && { note="$note scans-[$rounds]"; bad=1; }
+		elif grep -aq "reproducer exited with status" "$f"; then
+			note="$note no-scans"; bad=1
 		fi
 		;;
 	esac
