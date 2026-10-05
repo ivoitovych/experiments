@@ -1,14 +1,18 @@
 #!/bin/sh
 # Verify author, committer and message trailers of commits.
 # Usage: tools/check-attribution.sh [<rev-range>]   (default: all commits on HEAD)
-# As a pre-push hook it reads "<local ref> <local sha> <remote ref> <remote sha>"
+# Installed as .git/hooks/pre-push (symlink) it reads "<local ref> <local sha> <remote ref> <remote sha>"
 # lines from stdin and checks every commit not yet on the remote.
 IDENT='Iaroslav Voitovych <yaroslav.voytovych@gmail.com>'
 ZERO=0000000000000000000000000000000000000000
 fail=0
 
 check_range() {
-	for c in $(git rev-list "$@"); do
+	if ! revs=$(git rev-list "$@"); then
+		echo "BAD range     $*"; fail=1
+		return
+	fi
+	for c in $revs; do
 		a=$(git show -s --format='%an <%ae>' "$c")
 		m=$(git show -s --format='%cn <%ce>' "$c")
 		if [ "$a" != "$IDENT" ]; then
@@ -30,9 +34,8 @@ check_range() {
 	done
 }
 
-if [ $# -gt 0 ]; then
-	check_range "$@"
-elif [ ! -t 0 ]; then
+if [ "$(basename "$0")" = pre-push ]; then
+	# Hook mode: $1 = remote name, $2 = remote URL; refs come on stdin.
 	while read -r lref lsha rref rsha; do
 		[ "$lsha" = "$ZERO" ] && continue
 		if [ "$rsha" = "$ZERO" ]; then
@@ -41,6 +44,8 @@ elif [ ! -t 0 ]; then
 			check_range "$rsha..$lsha"
 		fi
 	done
+elif [ $# -gt 0 ]; then
+	check_range "$@"
 else
 	check_range HEAD
 fi
