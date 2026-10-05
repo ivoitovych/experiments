@@ -465,7 +465,7 @@ static void failslab_setup(void)
 	write_file(FS "probability", "100");
 	write_file(FS "interval", "1");
 	write_file(FS "space", "0");
-	write_file(FS "verbose", "1");
+	write_file(FS "verbose", "2");
 	write_file(FS "task-filter", "Y");
 	write_file(FS "ignore-gfp-wait", "N");
 	write_file(FS "cache-filter", "N");
