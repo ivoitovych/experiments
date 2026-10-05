@@ -21,7 +21,8 @@ covers what is here and how to run it again.
 | `run-kmemleak-reps.sh`, `kmemleak-after-exit.sh` | Repeated kmemleak runs with three scan methods |
 | `audit-logs.sh` | Checks every log: run completed, expected kernel commit, no kernel reports |
 | `summarize.py` | Side-by-side comparison of two builds |
-| `results/logs/<build>/` | Raw console logs (kernel log + reproducer or tester output) |
+| `tabulate-reps.py` | Detection table for the repeated kmemleak runs |
+| `results/logs/<build>/` | Raw console logs (kernel log + reproducer or tester output); `reps-<build>/` holds the repeated kmemleak runs |
 | `results/summary-*.md`, `results/audit.txt` | Generated from the logs |
 
 The four builds are `control` (base), `patched` (base + patch),
@@ -33,8 +34,9 @@ knob + patch, kmemleak).
 * The reproducer only observes. It exits 0 when a scenario ran to the
   end, not when the kernel behaved "correctly". What happened is in its
   `RESULT` lines; compare builds with `summarize.py`.
-* Each scenario ran once per build, advertising type and CPU count.
-  `run-kmemleak-reps.sh` repeats the kmemleak cases.
+* Each scenario ran once per build, advertising type and CPU count. The
+  kmemleak cases were also repeated (`results/logs/reps-*`,
+  `results/summary-kmemleak-reps.md`).
 * The runs used QEMU without KVM (TCG).
 
 ## Reproducing
@@ -125,6 +127,7 @@ New logs go to `logs/<build>/` (not tracked). Then:
 ./audit-logs.sh logs
 ./summarize.py logs control patched
 ./summarize.py logs diag-control diag-patched
+./tabulate-reps.py logs diag-control diag-patched
 ```
 
 `run-matrix.sh main` exits non-zero because mesh-tester exits 1 when any
