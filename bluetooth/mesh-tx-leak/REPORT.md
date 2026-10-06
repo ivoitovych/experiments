@@ -192,9 +192,13 @@ failed requests was completed or started in any run. See
 
 With a single failure, only the "completion" was observed (S5, O2).
 Among multiple-failure sequences, only the three-failure case was tested.
-The code explains the behaviour: after a transmission ends, the next
-pending entry is selected and started, without regard to whether its Mesh
-Send had failed.
+The code (at `036d4119079a`) explains the behaviour. When a transmission
+ends, `mesh_send_done_sync()` completes and removes the first pending entry
+on the controller, which need not be the one that was transmitted. Its
+completion callback `mesh_next()` then queues the new first pending entry
+to `mesh_send_sync()`. Neither step checks whether that entry's Mesh Send
+had failed. In the tested sequence this completes handle 1 without
+starting it, then starts handles 2 and 3, then starts B's packet again.
 
 **O4. How the tested sequences ended.**
 
