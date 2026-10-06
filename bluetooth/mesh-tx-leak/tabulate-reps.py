@@ -6,7 +6,8 @@ scans reported an object allocated by mgmt_mesh_add() (the leaked
 request) and one allocated by hci_sock_create() (its socket), and the
 earliest round in which the request was reported.
 
-busy-drain: per advertising type, in how many runs socket A was Busy after
+busy-drain: per advertising type, in how many runs socket A had three
+outstanding handles before B's send, was Busy after
 power-on, Mesh Packet Complete was sent for A's failed handle 1 although it
 was never started,
 A's failed handles 2 and 3 were started (mesh_send_sync) and their data
@@ -81,6 +82,8 @@ def busy_drain(path):
     done = re.search(r"RESULT end sockB packet_complete_handles=([\d,]+)", text)
     completed = {int(h) for h in done.group(1).split(",")} if done else set()
     return {
+        "A had 3 outstanding handles before B's send":
+            "sockA_after_3_failures outstanding=3" in text,
         "A Busy after power-on":
             "sockA_send_after_power_on status=Busy" in text,
         "A has no outstanding handles after B's 1st send":

@@ -190,9 +190,11 @@ type (plus the first run of each). On the patched kernel, none of A's
 failed requests was completed or started in any run. See
 [summary-reps.md](results/summary-reps.md).
 
-With a single failure, only the "completion" was observed (S5, O2). Only
-the three-failure case was run. From the code, a failed request is
-started whenever another failed request is pending ahead of it.
+With a single failure, only the "completion" was observed (S5, O2).
+Among multiple-failure sequences, only the three-failure case was tested.
+The code explains the behaviour: after a transmission ends, the next
+pending entry is selected and started, without regard to whether its Mesh
+Send had failed.
 
 **O4. How the tested sequences ended.**
 

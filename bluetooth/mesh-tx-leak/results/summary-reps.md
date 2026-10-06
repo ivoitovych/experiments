@@ -2,6 +2,7 @@
 
 | Observation | ext | legacy |
 |---|---|---|
+| A had 3 outstanding handles before B's send | 5/5 | 5/5 |
 | A Busy after power-on | 5/5 | 5/5 |
 | A has no outstanding handles after B's 1st send | 5/5 | 5/5 |
 | Mesh Packet Complete for failed handle 1, never started | 5/5 | 5/5 |
@@ -14,6 +15,7 @@
 
 | Observation | ext | legacy |
 |---|---|---|
+| A had 3 outstanding handles before B's send | 0/5 | 0/5 |
 | A Busy after power-on | 0/5 | 0/5 |
 | A has no outstanding handles after B's 1st send | 5/5 | 5/5 |
 | Mesh Packet Complete for failed handle 1, never started | 0/5 | 0/5 |
